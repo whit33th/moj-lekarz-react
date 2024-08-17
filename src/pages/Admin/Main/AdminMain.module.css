@@ -1,0 +1,178 @@
+.card, .tableCard, .requestCard, .statsCard, .notesCard {
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: 0 0 50px 5px #00000014;
+  padding: 20px;
+}
+.tableCard table, .notesCard ul {
+  width: 100%;
+  border-collapse: collapse;
+}
+.notesList {
+  list-style: none;
+  padding: 0;
+}
+.iconAdmin {
+  width: 30px;
+  height: 30px;
+}
+.graph p {
+  margin: 0 5px;
+}
+.graph img {
+  width: 18px;
+}
+.percentage {
+  background-color: #e0f7fa;
+  color: #00796b;
+  padding: 5px 10px;
+  border-radius: 20px;
+}
+.smBack {
+  padding: 6px 10px;
+  background: #FFFFFF;
+  border-radius: 6px;
+}
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.cardContent {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+}
+.label {
+  font-size: 14px;
+  color: #888;
+}
+.count {
+  font-size: 32px;
+  font-weight: bold;
+  color: #4a148c;
+}
+.dashboardFour {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+.tCenter {
+  text-align: center;
+}
+.itemsCenter {
+  display: flex;
+  align-items: center;
+}
+.flex {
+  display: flex;
+  flex-direction: row;
+}
+.percentage {
+  background-color: #e0f7fa;
+  color: #00796b;
+  padding: 5px 10px;
+  border-radius: 20px;
+}
+.content {
+  gap: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.titleCard {
+  margin-bottom: 10px;
+  font-size: 1.4em;
+}
+.newUser {
+  width: 45%;
+}
+.tableCard th {
+  text-align: center;
+  color: gray;
+  font-size: 12px;
+  font-weight: normal;
+}
+
+.tableCard th, .tableCard td {
+  text-align: center;
+  padding: 10px;
+  border-bottom: 1px solid #f0f0f0;
+}
+.dashboardTree {
+  display: flex;
+  gap: 20px;
+}
+.newCompanies {
+  width: 35%;
+}
+.requestCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.countBig {
+  font-size: 72px;
+  font-weight: bold;
+  color: #4a148c;
+}
+.requestCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.requestHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.requestContent {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+}
+.ico {
+  width: 18px;
+  margin-left: 10px;
+}
+.center {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;
+  justify-content: space-between;
+}
+.newApplications {
+  width: 20%;
+}
+.dashboardTwo, .dashboardTwoStats {
+  align-items: flex-start;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+.notesHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.notesList li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  gap: 10px;
+}
+.noteIco {
+  width: 18px;
+  height: 18px;
+}
+.deleteNote {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+}

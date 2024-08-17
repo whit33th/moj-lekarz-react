@@ -1,0 +1,159 @@
+.calendarNavbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.buttDef {
+  width: 100%;
+  background: transparent;
+  border-radius: 100px;
+  height: 45px;
+  border: 1px solid black;
+}
+
+.fillBlue {
+  background: #3E36B0 !important;
+  color: white !important;
+  border: none !important;
+}
+
+.addButton {
+  width: 100px;
+}
+
+.infoNavbarButt {
+  border-radius: 1000px;
+  background: #3E36B0;
+  width: 60%;
+}
+
+.infoNavbarButt span.active {
+  background: #A6DEF7;
+  color: black;
+  transition: 0.3s ease;
+}
+
+.infoNavbarButt span {
+  transition: 0.2s ease;
+  height: 40px;
+  display: flex;
+  color: white;
+  width: 50%;
+
+  border-radius: 1000px;
+  justify-content: center;
+  align-items: center;
+}
+
+.tCenter {
+  text-align: center;
+}
+
+.itemsCenter {
+  display: flex;
+  align-items: center;
+}
+
+
+.calendarNavbarDate {
+  padding: 3px;
+  font-size: 2.5em;
+  display: flex;
+  gap: 10px;
+}
+
+.calendarNavbarButt {
+  color: black;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  background: #A6DEF7;
+  border-radius: 20px;
+}
+
+
+.calendarNavbarButt img {
+
+  width: 12px;
+  margin: 9px 20px 9PX 0;
+}
+
+
+
+
+.calendarNavbarButt span {
+
+  padding: 9px 20px;
+  color: black;
+  user-select: none;
+  transition: 0.3s;
+}
+
+.calendarNavbarButt span.active {
+  color: black;
+  background: #A6DEF7;
+  border-radius: 20px;
+  transition: 0.3s;
+}
+
+.search {
+  display: flex;
+  flex-direction: row;
+  width: 85%;
+  box-shadow: 0 0 10px 5px #00000014;
+  padding: 10px 0;
+  border-radius: 20px;
+  border: none;
+}
+
+.search img,
+.chatSearch img {
+  margin: 0 10px 0 20px;
+  filter: invert(0.8);
+  padding: 0;
+  height: 20px;
+  width: 20px !important;
+}
+
+.search input {
+  width: 100%;
+  border: none;
+  border-radius: 100px;
+}
+
+.tableContainer table {
+  border: 1px solid #e5e5e5;
+  width: 100%;
+  border-spacing: 0;
+  border-collapse: separate;
+}
+
+.shadow {
+  box-shadow: 0 0 50px 5px #00000014;
+  transition: 0.3s;
+  border-radius: 20px;
+}
+
+.tableContainer tbody tr:nth-child(odd)>td {
+  background-color: #F3F3F3;
+}
+
+.nameTd {
+  display: flex;
+  align-items: center;
+}
+
+.tableContainer tbody td {
+  padding: 20px;
+}
+
+.tableContainer thead th {
+  padding: 20px;
+}
+
+.clientSearch form {
+  width: 70%;
+}

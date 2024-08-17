@@ -1,0 +1,50 @@
+.avatar {
+  width: 70px!important;
+  height: 70px !important;
+  border-radius: 100px;
+  padding: 7px;
+}
+.userName {
+  font-weight: 600;
+  font-size: 16px;
+  color: black;
+}
+.star:nth-child(n+3) {
+  color: #ccc;
+}
+.star {
+  color: #ffcc00;
+  font-size: 18px;
+}
+.reviewRating {
+  margin: 5px 0;
+}
+.reviewHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.reviewText {
+  color: #333;
+  font-size: 14px;
+  margin: 5px 0;
+}
+.moreLink {
+  text-align: end;
+  color: #4a90e2;
+  text-decoration: none;
+  font-size: 14px;
+}
+.reviewDate {
+  color: #888;
+  font-size: 12px;
+}
+.reviewContent {
+  flex-grow: 1;
+}
+.reviewCard {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+	padding: 10px 0;
+}

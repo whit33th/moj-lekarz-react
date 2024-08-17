@@ -1,0 +1,96 @@
+* {
+  user-select: none;
+}
+
+.calendar {
+  gap: 15px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background: #f5f5f5;
+  border-bottom: 1px solid #ddd;
+}
+
+.daysOfWeek,
+.days {
+  justify-items: center;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+}
+
+.daysOfWeek,
+.day,
+.emptyDay {
+  text-align: center;
+}
+
+.day {
+  display: flex;
+  height: 40px;
+  width: 40px;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s ease;
+}
+
+.day:hover {
+  opacity: 0.7;
+  transition: 0.3s;
+}
+
+.day:active {
+  transform: scale(0.9);
+}
+
+.today {
+  background: #3E36B0 !important ;
+  color: white !important;
+}
+
+.reserved {
+  background-color: #A6DEF7;
+}
+
+.calendarNavbarButt {
+  gap: 5px;
+  PADDING: 5PX 110px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.calendarNavbarButt img {
+  padding: 8px;
+  border-radius: 50%;
+  width: 30px;
+  transition: background 0.1s;
+}
+
+.calendarNavbarButt img:hover {
+  background: #dddddd;
+}
+
+.calendarNavbarButt span {
+  display: contents;
+}
+
+@media screen and (max-width: 1200px) {
+
+  .day {
+      width: 30px;
+      height: 30px;
+      line-height: 30px;
+  }
+}

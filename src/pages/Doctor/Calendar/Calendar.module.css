@@ -1,0 +1,154 @@
+.calendarNavbar {
+	display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.calendarNavbarDate  {
+	padding: 3px;
+	font-size: 2.5em;
+	display: flex;
+	gap: 10px;
+}
+
+
+
+.calendarNavbarButt {
+  
+	display: flex;
+	height: 40px;
+	background: #3E36B0;
+	border-radius: 20px;
+  
+}
+
+.calendarNavbarButt button {
+ 
+	background: transparent;
+	border: none;
+	user-select: none;
+	color: white;
+}
+.changeTypeDate{
+  padding: 9px 20px;
+  
+  transition: 0.3s ease;
+  
+  
+}
+
+.calendarNavbarButt button.active {
+	color: black;
+	background: #A6DEF7;
+	border-radius: 20px;
+	transition: 0.3s ease;
+}
+
+.calendarNavbarButt img {
+	width: 20px;
+	margin: 9px;
+}
+
+.days div:hover {
+  opacity: 0.7;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.days div:active {
+  scale: 0.9;
+}
+
+.calendarContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border: 1px solid #e5e5e5;
+  border-radius: 20px;
+}
+
+.headerRow {
+  display: flex;
+  background: #3e36b0;
+  border-radius: 20px 20px 0 0;
+}
+
+.emptySlot {
+  min-width: 60px;
+  min-height: 30px;
+  border-bottom: none !important;
+}
+
+.dayHeader {
+  color: white;
+  width: 60px;
+  min-width: 60px;
+  flex-grow: 1;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.timeAndDays {
+  display: flex;
+}
+
+.timeColumn {
+  display: flex;
+  flex-direction: column;
+  width: 60px;
+  border-right: 1px solid #ddd;
+}
+
+.timeSlot:last-child, .timeSlotEmptySlot:last-child {
+  border-radius: 0 0 0 20px;
+}
+.timeSlotEmptySlot:first-child{
+	border: none;
+}
+
+.timeSlot, .timeSlotEmptySlot  {
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  width: 60px;
+  height: 30px;
+  text-align: center;
+  padding-right: 5px;
+  box-sizing: border-box;
+  border-bottom: 1px solid #ddd;
+}
+
+.daysGrid {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.dayRow {
+  display: flex;
+}
+
+.dayCell {
+  width: 60px;
+  flex-grow: 1;
+  border-right: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  height: 30px;
+  box-sizing: border-box;
+}
+
+.dayCell:last-child {
+  border-right: none;
+}
+
+.dayRow:last-child > .dayCell:last-child {
+  border-radius: 0 0 20px 0;
+}
+.changeDate{
+  display: flex;
+justify-content: center;
+align-items: center;
+}

@@ -1,0 +1,45 @@
+.modal {
+	visibility: hidden;
+	transform: scale(0);
+	opacity: ;
+	transition: transform 1s;
+}
+.modalActive{
+	opacity: 1;
+	display: flex;
+	z-index: 100;
+	backdrop-filter: blur(8px);
+	margin-left: 15%;
+	height: 100dvh;
+	width: 85%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	justify-content: center;
+	align-items: center;
+	transform: scale(1);
+	visibility:visible;
+}
+
+.modal__content {
+	padding: 45px;
+	border-radius: 16px;
+	background-color: white;
+	width: 40%;
+	height: fit-content;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	box-shadow: 0 0 40px 5px #3e36b01c;
+	flex-direction: column;
+	> div{
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		gap:  20px;
+	}
+}
+.modal__content h1{
+	margin: 0;
+}
+

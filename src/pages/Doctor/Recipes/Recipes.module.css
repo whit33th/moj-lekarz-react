@@ -1,0 +1,148 @@
+.calendarNavbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.calendarNavbarDate {
+  padding: 3px;
+  font-size: 2.5em;
+  display: flex;
+  gap: 10px;
+}
+
+.calendarNavbarButt {
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  background: #A6DEF7;
+  border-radius: 20px;
+}
+
+.calendarNavbarButt img {
+  width: 12px;
+  margin-right: 20px;
+  margin-left: 0;
+  margin: 9px 20px 9px 0; /* Используйте сокращенную запись для margin */
+}
+
+.calendarNavbarButt span {
+  padding: 9px 20px;
+  color: black;
+  user-select: none;
+  transition: 0.3s;
+}
+
+.calendarNavbarButt span.active {
+  background: #A6DEF7;
+  border-radius: 20px;
+}
+
+.search {
+  display: flex;
+  flex-direction: row;
+  width: 85%;
+  padding: 10px 0;
+  border-radius: 20px;
+  border: none;
+  box-shadow: 0 0 10px 5px #00000014;
+}
+
+.search img,
+.chatSearch img {
+  height: 20px;
+  width: 20px;
+  margin: 0 10px 0 20px;
+  filter: invert(0.8);
+}
+
+.search input {
+  width: 100%;
+  border: none;
+  border-radius: 100px;
+}
+
+.tableContainer table {
+  width: 100%;
+  border: 1px solid #e5e5e5;
+  border-spacing: 0;
+  border-collapse: separate;
+}
+
+.shadow {
+  box-shadow: 0 0 50px 5px #00000014;
+  border-radius: 20px;
+  transition: 0.3s;
+}
+
+.tableContainer tbody tr:nth-child(odd) td {
+  background-color: #F3F3F3;
+}
+
+.nameTd {
+  display: flex;
+  align-items: center;
+}
+
+.tableContainer tbody td,
+.tableContainer thead th {
+  padding: 20px;
+}
+
+.clientSearch form {
+  width: 70%;
+}
+
+.buttonAddTh {
+  display: grid;
+  justify-content: center;
+}
+
+
+.buttDefold{
+  border-radius: 30px;
+  width: 100px;
+  height: 45px;
+}
+
+
+.buttDef {
+  width: 100%;
+  height: 45px;
+  border-radius: 100px;
+  background: transparent;
+  border: 1px solid black;
+}
+.fillBlue {
+  background: #3E36B0;
+  color: white;
+  border: none;
+}
+.borderBlue {
+  border: 1px solid #3E36B0;
+  color: #3E36B0;
+}
+
+
+
+.choice {
+  display: flex;
+  gap: 20px;
+}
+
+.modalInputBox {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-content: center;
+}
+
+.modalInputBox input {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 16px;
+  box-shadow: 0 0 40px 5px #00000014;
+}

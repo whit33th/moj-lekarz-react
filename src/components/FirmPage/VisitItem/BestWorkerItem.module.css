@@ -1,0 +1,75 @@
+.round {
+  border-radius: 100px;
+  padding: 7px;
+
+}
+
+.record img {
+  width: 60px;
+}
+.rating {
+  font-weight: bold;
+  gap: 5px;
+  display: flex;
+  border-radius: 10px;
+  padding: 10px;
+  background: #A6DEF7;
+}
+.rating img {
+  width: 22px;
+  height: 22px;
+}
+.grey {
+  color: #919191;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.date {
+  margin-left: 10px;
+  font-size: 0.8em;
+}
+
+
+
+.h1Login {
+  padding: 0;
+  margin: 0 0 50px;
+  color: white;
+}
+
+.name {
+  font-weight: 600;
+  margin-left: 10px;
+}
+P {
+	color: black;
+}
+.evenly {
+	justify-content: space-evenly;
+}
+.flexColumn {
+	display: flex;
+	flex-direction: column;
+}
+.nameSection {
+	align-items: stretch !important;
+}
+
+.flex {
+	display: flex;
+	flex-direction: row;
+}
+.center {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	align-content: center;
+	justify-content: space-between;
+}
+.between {
+	justify-content: space-between;
+}

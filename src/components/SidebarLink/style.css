@@ -1,0 +1,13 @@
+.sidebar-link-div {
+	width: 70%;
+	padding: 15px 0;
+	transition: 0.1s;
+	display: flex;
+	align-items: center;
+}
+
+.sidebar-link-div img {
+	filter: invert(1);
+	width: 16px;
+	margin-right: 10px;
+}
