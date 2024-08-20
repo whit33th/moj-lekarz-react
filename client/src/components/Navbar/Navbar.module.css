@@ -33,19 +33,20 @@
 	z-index: 100;
 	transition: 0.3s;
 }
-#messages {
+.messages {
 	position: relative;
 }
 .incomingMessages {
 	border-radius: 16px;
 	box-shadow: 0 0 50px 5px #00000014;
-	backdrop-filter: blur(2px);
 	position: absolute;
-	top: 160%;
-	right: 50%;
+	top: 150%;
+	right: 0;
 	display: none;
 	transition: 0.1s;
 	width: 330px;
+	background-color: white !important;
+	opacity: 1;
 }
 .profile img {
 	border-radius: 100px;
@@ -65,10 +66,12 @@
 .message:first-child {
 	border-radius: 16px 2px 0 0;
 }
+.message:last-child {
+	border-radius: 0 0 16px 16px;
+}
 .message {
 	font-size: 12px;
 	display: flex;
-	background: rgba(250, 250, 250, 0.9);
 	padding: 10px 20px;
 	border-left: 1px solid #eee;
 	border-right: 1px solid #eee;
@@ -80,6 +83,8 @@
 	align-items: center;
 	justify-content: space-between;
 	gap: 30px;
+	position: relative;
+	background-color: white;
 }
 .message p {
 	width: 72%;

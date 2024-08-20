@@ -1,46 +1,99 @@
 .topPhoto {
-	font-size: 18px;
-	padding: 48px;
-	display: flex;
-	flex-direction: column;
-	align-content: center;
-	align-items: center;
+  font-size: 18px;
+  padding: 48px;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
 }
 
 .topPhoto img {
-
-	width: 220px;
-	border-radius: 50%;
-	margin: 10px;
-
+  width: 220px;
+  border-radius: 50%;
+  margin: 10px;
 }
 
 .grey {
-	color: #919191;
+  color: #919191;
 }
 .mainInfo {
-	gap: 10px;
-	display: flex;
-	font-size: 16px;
-	padding: 50px;
-	width: 100%;
-	flex-direction: column;
-	justify-content: space-between;
+  gap: 10px;
+  display: flex;
+  font-size: 16px;
+  padding: 50px;
+  width: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.mainInfo input {
+  border-radius: 16px;
+  padding: 10px 15px;
+  border: none;
+  box-shadow: 0 0 45px 5px #00000014;
+  width: 100%;
 }
 .oneThird {
-	gap: 20px;
-	display: grid !important;
-	flex-direction: row !important;
-	grid-template-columns: repeat(3, 1fr);
-	align-items: end;
-	>div{
-		display: flex;
+  gap: 20px;
+  display: grid !important;
+  flex-direction: row !important;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: end;
+  > div {
+    gap: 10px;
+    display: flex;
     flex-direction: column;
-	}
-	.row{
-		
+  }
+  .row {
     gap: 20px;
     flex-direction: row;
-    
-	}
+    > div {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+  }
+}
+.settingNavbarButt {
+  border-radius: 1000px;
+  border: 1px solid #3e36b0;
+  display: flex;
+  user-select: none;
+}
+
+.settingNavbarButt button {
+	width: 200px;
+  color: #3e36b0;
+  justify-content: center;
+  padding: 5px 10px;
+  border-radius: 1000px;
+	border: none;
+}
+
+.settingNavbarButt button.active {
+  background: #3e36b0;
+  color: white;
+}
+
+.rules {
+  font-weight: 500;
+  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px 50px 50px 50px;
+}
+.rules div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.commentsType {
+  background: #a6def7;
+  border-radius: 6px;
+  padding: 5px 10px;
+}
+.center {
+  display: flex;
+  justify-content: center !important;
 }

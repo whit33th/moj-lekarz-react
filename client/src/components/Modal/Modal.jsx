@@ -1,25 +1,39 @@
-import React from 'react';
-import styles from './Modal.module.css';
-import useStore from '../../data/store';
-import BlueBtn from '../Buttons/BlueBtn/BlueBtn'
+import React, { useEffect } from "react";
+import styles from "./Modal.module.css";
+import useStore from "../../data/store";
+
 
 function Modal({ children }) {
   const { isModalActive, setModalActive, modalContent } = useStore();
 
   function handleActiveStatus() {
-    setModalActive(false); 
+    setModalActive(false);
   }
+
+  function handleContentClick(event) {
+    event.stopPropagation();
+  }
+
+  useEffect(() => {
+    console.log("isModalActive:", isModalActive);
+    const body = document.querySelector("body");
+    if (isModalActive) {
+      body.style.overflow = "hidden";
+    }
+    if (!isModalActive) {
+      body.style.overflow = "auto";
+    }
+  }, [isModalActive]);
 
   return (
     <div
-      className={`${styles.modal} ${isModalActive ? styles.modalActive : ''}`}
-      
+      className={`${styles.modal} ${isModalActive ? styles.modalActive : ""}`}
+      onClick={handleActiveStatus}
     >
-      <div className={styles.modal__content}>
+      <div className={styles.modal__content} onClick={handleContentClick}>
         {modalContent}
         {children}
       </div>
-      
     </div>
   );
 }

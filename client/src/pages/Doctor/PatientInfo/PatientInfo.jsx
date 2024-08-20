@@ -1,15 +1,48 @@
-import React from 'react';
-import styles from './PatientInfo.module.css'
+import React, { useState } from "react";
+import styles from "./PatientInfo.module.css";
+import profil from "../../../assets/img/profil.webp";
+import BlueBtn from "../../../components/Buttons/BlueBtn/BlueBtn";
 
 function PatientInfo() {
+  const [activeTab, setActiveTab] = useState("Uwagi");
+  const Buttons = ["Uwagi", "Historia wizyt"];
+
+  function handleTabClick(name) {
+    setActiveTab(name);
+  }
+  const comments = (
+    <>
+      <div>
+        <span>Tadalafil Inventum</span>
+        <div className={styles.commentsType}>Uczulenie</div>
+      </div>
+      <div>
+        <span>Tadalafil Inventum</span>
+        <div className={styles.commentsType}>Uczulenie</div>
+      </div>
+    </>
+  );
+  const history = (
+    <>
+      <div>
+        <span>Pulmolog</span>
+        <span className={styles.grey}>Adnrej Duda</span>
+        <span>24.04.2022</span>
+      </div>
+      <div>
+        <span>Pulmolog</span>
+        <span className={styles.grey}>Adnrej Duda</span>
+        <span>24.04.2022</span>
+      </div>
+    </>
+  );
   return (
     <div className={styles.profilDiv}>
       <div className={styles.topPhoto}>
-        <img src="/assets/profil.webp" alt="Profile" />
-        
-          <h1>Tomasz Jankowski</h1>
-          <p className={styles.pacjentTel}>+ 48 556 667 776</p>
-      
+        <img src={profil} alt="Profile" />
+
+        <h1 style={{ margin: "0" }}>Tomasz Jankowski</h1>
+        <p className={styles.grey}>+ 48 556 667 776</p>
       </div>
       <div className={styles.hr}>
         <hr />
@@ -23,50 +56,90 @@ function PatientInfo() {
             </div>
             <div>
               <label htmlFor="surname">Nazwisko</label>
-              <input type="text" id="surname" name="surname" placeholder="Nowik" />
+              <input
+                type="text"
+                id="surname"
+                name="surname"
+                placeholder="Nowik"
+              />
             </div>
             <div>
               <label htmlFor="pesel">PESEL</label>
-              <input type="number" id="pesel" name="pesel" placeholder="08058615499" />
+              <input
+                type="number"
+                id="pesel"
+                name="pesel"
+                placeholder="08058615499"
+              />
             </div>
           </div>
           <div className={styles.oneThird}>
             <div>
               <label htmlFor="data">Data urodzenia</label>
-              <input type="date" id="data" name="data" placeholder="28.08.1993" />
+              <input type="date" id="date" name="date" />
             </div>
             <div>
               <label htmlFor="postcode">Kod posztowy</label>
-              <input type="text" id="postcode" name="postcode" placeholder="71-232" />
+              <input
+                type="text"
+                id="postcode"
+                name="postcode"
+                placeholder="71-232"
+              />
             </div>
-            <div className={styles.row} >
-              <div >
+            <div className={styles.row}>
+              <div>
                 <label htmlFor="house-nr">Nr. Domu</label>
-                <input type="text" id="house-nr" name="house-nr" placeholder="32A" />
+                <input
+                  type="text"
+                  id="house-nr"
+                  name="house-nr"
+                  placeholder="32A"
+                />
               </div>
-              <div >
+              <div>
                 <label htmlFor="flat-nr">Nr. Lokalu</label>
-                <input type="text" id="flat-nr" name="flat-nr" placeholder="122" />
+                <input
+                  type="text"
+                  id="flat-nr"
+                  name="flat-nr"
+                  placeholder="122"
+                />
               </div>
             </div>
           </div>
           <div className={styles.oneThird}>
             <div>
               <label htmlFor="address">Adres</label>
-              <input type="text" id="address" name="address" placeholder="ul. Szamarzewskiego" />
+              <input
+                type="text"
+                id="address"
+                name="address"
+                placeholder="ul. Szamarzewskiego"
+              />
             </div>
-            <div className={styles.row} >
-              <div >
+            <div className={styles.row}>
+              <div>
                 <label htmlFor="height">Wzrost</label>
-                <input type="number" id="height" name="height" placeholder="122" />
+                <input
+                  type="number"
+                  id="height"
+                  name="height"
+                  placeholder="122"
+                />
               </div>
-              <div >
+              <div>
                 <label htmlFor="weight">Waga</label>
-                <input type="number" id="weight" name="weight" placeholder="50" />
+                <input
+                  type="number"
+                  id="weight"
+                  name="weight"
+                  placeholder="50"
+                />
               </div>
             </div>
-            <div >
-              <button className={styles.buttDef}>Więcej informacji</button>
+            <div>
+              <BlueBtn>Więcej informacji</BlueBtn>
             </div>
           </div>
         </div>
@@ -75,24 +148,22 @@ function PatientInfo() {
         <hr />
       </div>
       <div className={styles.rules}>
-        <div >
-          <div className={styles.infoNavbarButt}>
-            <span className={styles.active}>Uwagi</span>
-            <span>Historia wizyt</span>
+        <div className={styles.center}>
+          <div className={styles.settingNavbarButt}>
+            {Buttons.map((name) => (
+              <button
+                onClick={() => handleTabClick(name)}
+                className={activeTab === name ? styles.active : ""}
+                key={name}
+              >
+                {name}
+              </button>
+            ))}
           </div>
         </div>
-        <div >
-          <span>Tadalafil Inventum</span>
-          <div className={styles.commentsType}>Uczulenie</div>
-        </div>
-        <div >
-          <span>CLOTRIMAZOLUM</span>
-          <div className={styles.commentsType}>Alergia</div>
-        </div>
-        <div >
-          <span>IBS Control Forte</span>
-          <div className={styles.commentsType}>Uczulenie</div>
-        </div>
+
+        {activeTab === "Uwagi" && comments}
+        {activeTab === "Historia wizyt" && history}
       </div>
     </div>
   );

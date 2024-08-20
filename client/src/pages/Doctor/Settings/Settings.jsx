@@ -18,12 +18,12 @@ function Settings() {
 
   function handleTabClick(name) {
     setActiveTab(name);
-    console.log(activeTab);
   }
 
   const conclusions = (
     <div className={styles.workTime}>
       <div className={styles.shadow}>
+      
         <Calendar />
       </div>
 
@@ -43,6 +43,7 @@ function Settings() {
   const workTime = (
     <div className={styles.workTime}>
       <div className={styles.shadow}>
+        
         <Calendar />
       </div>
 
@@ -66,7 +67,9 @@ function Settings() {
   const settingData = (
     <div className={styles.settingData}>
       <div className={styles.settingInfo}>
+        
         <div className={styles.halfRow}>
+        
           <div>
             <label htmlFor="name">Imię</label>
             <input type="text" id="name" name="name" placeholder="Pawel" />

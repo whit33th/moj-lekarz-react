@@ -64,11 +64,12 @@
 
 .calendarNavbarButt {
   gap: 5px;
-  PADDING: 5PX 110px;
+  PADDING: 5PX 0;
   display: flex;
   justify-content: center;
   align-items: center;
   justify-content: space-between;
+  white-space: nowrap;
 }
 
 .calendarNavbarButt img {

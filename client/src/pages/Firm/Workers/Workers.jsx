@@ -3,10 +3,10 @@ import styles from "./Workers.module.css";
 import searchIco from "../../../assets/img/search.png";
 import down from "../../../assets/img/down.png";
 import filters from "../../../assets/img/filters.png";
-import PatientItem from "../../../components/DoctorPage/PatientList/PatientItem";
 import { userItems } from "../../../helpers/userItemList";
 import { useState } from "react";
 import Dropdown from '../../../components/Dropdown/Dropdown'
+import WorkerItem from "../../../components/FirmPage/map/WorkerItem";
 
 function Workers() {
   const [activeTab, setActiveTab] = useState("Lista pracowników");
@@ -88,7 +88,7 @@ function Workers() {
           </thead>
           <tbody>
             {userItems.map((userItem, index) => (
-              <PatientItem
+              <WorkerItem
                 key={index}
                 img={userItem.img}
                 name={userItem.name}

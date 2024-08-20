@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import styles from './Navbar.module.css'
 import searchIco from '../../assets/img/search.png'
 import bell from '../../assets/img/bell.png'
@@ -11,6 +11,11 @@ function Navbar() {
     const searchResultsRef = useRef(null)
     const searchFormRef = useRef(null)
 
+    const [isMessageActive, setIsMessageActive] = useState(false)
+
+    function toggleMessage () {
+        setIsMessageActive(!isMessageActive)
+    }
     function showSearchResults() {
         setSearchActive(true)
     }
@@ -74,22 +79,22 @@ function Navbar() {
                 </div>
             </form>
 
-            <div id="messages" className={styles.messages}>
+            <div onClick={toggleMessage} id="messages" className={styles.messages}>
                 <div id="message-icon">
                     <img className={styles.bell} src={bell} alt="bell" />
                 </div>
 
-                <div className={styles.incomingMessages}>
+                <div style={isMessageActive ? {display: 'block'}  : {display: 'none'}  } className={styles.incomingMessages}>
                     <div className={styles.message}>
                         <p>Masz nową wiadomość od Marcina Wojceha</p>
                         <button className={styles.buttDef}>
-                            {/* <Link to="">Zobacz</Link> */}
+                            Zobacz
                         </button>
                     </div>
                     <div className={styles.message}>
                         <p>Masz nową wiadomość</p>
                         <button className={styles.buttDef}>
-                            {/* <Link to="">Zobacz</Link> */}
+                        Zobacz
                         </button>
                     </div>
                 </div>

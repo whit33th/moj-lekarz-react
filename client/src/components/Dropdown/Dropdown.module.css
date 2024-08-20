@@ -10,7 +10,7 @@ height: 40px;
   position: relative;
   border-radius: 40px;
   padding: 0 19px;
-  border: none;
+  border: 1px solid #e4e4e4;
   box-shadow: 0px 0px 50px 0px #0000001a;
   outline: none;
   font-family: "Manrope";
@@ -39,6 +39,7 @@ height: 40px;
 
 .dropdownMenu {
 	padding: 0;
+  border: 1px solid #e3e3e3;
 	
 	list-style: none;
   z-index: 1;

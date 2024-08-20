@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Sidebar from "./components/Sidebar/Sidebar";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import DoctorMain from "./pages/Doctor/Main/DoctorMain";
@@ -20,9 +20,7 @@ import Modal from "./components/Modal/Modal";
 import PatientInfo from "./pages/Doctor/PatientInfo/PatientInfo";
 
 function App() {
-  const [role, setRole] = useState("doctor");
-
-
+  const [role, setRole] = useState("firm");
 
   const doctorRoutes = (
     <Routes>
@@ -63,7 +61,7 @@ function App() {
       <Sidebar role={role} />
       <div className="container">
         <Navbar />
-        
+
         {role === "doctor" && doctorRoutes}
         {role === "admin" && adminRoutes}
         {role === "firm" && firmRoutes}

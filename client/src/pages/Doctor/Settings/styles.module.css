@@ -133,6 +133,10 @@ button {
 	box-shadow: 0 0 50px 5px #00000014;
 	transition: 0.3s;
 	border-radius: 20px;
+	padding: 20px;
+	> p {
+		font-size: 1.4em;
+	}
 }
 
 .textarea {
@@ -150,10 +154,10 @@ button {
 	display: flex;
 	flex-direction: row;
 	gap: 20px;
-
+	
 }
 .workSchedule{
-	width: 50%;
+	width: -webkit-fill-available;
 	display: flex;
 	flex-direction: column;
 	box-shadow: 0 0 10px 5px #00000014;
@@ -167,11 +171,6 @@ button {
 .workSchedule p {
 	padding: 6px 0;
 }
-.shadow{
-	box-shadow: 0 0 10px 5px #00000014;
-	padding: 20px;
-	width: 50%;
-}
 .blueBack{
 	border-radius: 10px;
     padding: 6px 10px;
@@ -181,7 +180,7 @@ button {
 .conclusions{
 	display: flex;
 	flex-direction: column;
-	width: 50%;
+	width: -webkit-fill-available;
 	gap: 15px;
 
 

@@ -27,16 +27,17 @@
 	gap: 40px;
 	background: white;
 	box-shadow: 0 0 40px 5px #3e36b01c;
+	min-width: fit-content;
 	width: 500px;
 	padding: 45px;
 	z-index: 1;
-	margin: 30px;
+
 	flex-direction: column;
 	border-radius: 16px;
 	transform: scale(0);
-	transition: transform 0.3s; /* Added transition for transform */
+	transition:  0.3s; 
 	>div{
-		display: flex ;
+		/* display: flex ; */
 		flex-direction: column;
 		gap: 20px;
 	}
