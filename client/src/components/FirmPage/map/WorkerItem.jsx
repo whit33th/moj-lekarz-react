@@ -9,12 +9,14 @@ import useStore from "../../../data/store";
 import profil from "../../../assets/img/profil.webp";
 import BlueBtn from "./../../Buttons/BlueBtn/BlueBtn";
 import BlueBorderBtn from "./../../Buttons/BlueBorderBtn/BlueBorderBtn";
+import Dropdown from "./../../Dropdown/Dropdown";
+import Choice from "../../Modal/Choice";
 
 function PatientItem({ img, name, id, gender }) {
   // State to manage the modal visibility
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { setModalActive, setModalContent } = useStore();
-	const modalContent = (
+  const modalContentInfo = (
     <div className={styles.row}>
       <div className={styles.generalInfo}>
         <div>
@@ -42,7 +44,10 @@ function PatientItem({ img, name, id, gender }) {
           <div className={styles.topInfo}>
             <img src={profil} className={styles.employeeImage} alt="Employee" />
             <div>
-              <p style={{ color: "#3E36B0" }}> <strong>Brat Solitko</strong>  </p>
+              <p style={{ color: "#3E36B0" }}>
+                {" "}
+                <strong>Brat Solitko</strong>{" "}
+              </p>
               <div>
                 <p className={styles.phone}>
                   <span style={{ color: "#3E36B0" }}>Tel:</span>
@@ -79,24 +84,64 @@ function PatientItem({ img, name, id, gender }) {
         </div>
         <div className={styles.actions}>
           <BlueBtn>Edytuj</BlueBtn>
-          <BlueBorderBtn >Usuń</BlueBorderBtn>
+          <BlueBorderBtn cb={openMainModalDeleteAccount}>Usuń</BlueBorderBtn>
         </div>
       </div>
     </div>
   );
-	function openMainModal() {
+  const modalContentDeleteAccount = (
+    <>
+      <h1>Usuwanie konta</h1>
+      <div
+        style={{
+          display: "flex",
+          gap: "20px",
+        }}
+      >
+        <Dropdown></Dropdown>
+        <Dropdown></Dropdown>
+        <Choice
+          choice1={"Anuluj"}
+          choice2={"Usuń"}
+          cb1={openMainModalInfo}
+        ></Choice>
+      </div>
+    </>
+  );
+
+  const modalContentMessage = (
+    <>
+      <h1>Nowa Wiadomość</h1>
+      <textarea
+        className={styles.textarea}
+        placeholder="Wpisz tekst"
+      ></textarea>
+      <div className={styles.flex}>
+        <Choice choice1={"Anuluj"} choice2={"Wyślij"} cb1={closeMainModal}></Choice>
+      </div>
+    </>
+  );
+
+  function openMainModalInfo() {
     setModalActive(true);
-    setModalContent(modalContent);
+    setModalContent(modalContentInfo);
   }
-	function closeMainModal() {
+  function openMainModalDeleteAccount() {
+    setModalContent(modalContentDeleteAccount);
+  }
+
+  function openMainModalMessage() {
+    setModalActive(true);
+    setModalContent(modalContentMessage);
+  }
+
+  function closeMainModal() {
     setModalActive(false);
   }
- 
+
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
   };
-  
-  
 
   return (
     <tr>
@@ -125,17 +170,18 @@ function PatientItem({ img, name, id, gender }) {
 
           {isModalOpen && (
             <div className={styles.moreInfoModal}>
-              <NavLink
+              <button
+                onClick={openMainModalInfo}
+                className={styles.hoverOpacity}
+              >
+                <p>Informacja</p>
+              </button>
+
+              <button
                 className={styles.hoverOpacity}
                 href="pacjent-info.php"
                 to="patient-info"
-              >
-                <p>Informacja</p>
-              </NavLink>
-              <button
-                onClick={openMainModal}
-                className={styles.hoverOpacity}
-                to="/"
+                onClick={openMainModalMessage}
               >
                 <p>Wiadomość</p>
               </button>

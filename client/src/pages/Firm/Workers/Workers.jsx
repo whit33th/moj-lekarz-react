@@ -5,7 +5,7 @@ import down from "../../../assets/img/down.png";
 import filters from "../../../assets/img/filters.png";
 import { userItems } from "../../../helpers/userItemList";
 import { useState } from "react";
-import Dropdown from '../../../components/Dropdown/Dropdown'
+import Dropdown from "../../../components/Dropdown/Dropdown";
 import WorkerItem from "../../../components/FirmPage/map/WorkerItem";
 
 function Workers() {
@@ -20,9 +20,18 @@ function Workers() {
     <div className="content">
       <div className={styles.calendarNavbar}>
         <Dropdown
-          selectedOption="Sortuj"
+          defaultOption="Sortuj"
+          selectedOptionChanging={false}
           color={"#A6DEF7"}
-          options={["1", "2"]}
+          options={[
+            "Od A do Z",
+            "Od Z do A",
+            "Najpierw mężczyźni",
+            "Najpierw kobiety",
+            "Najpierw starsi",
+            "Najpierw młodsi",
+          ]}
+          listStyle="elipse"
         >
           <i className="bx bx-chevron-down"></i>
         </Dropdown>
@@ -44,9 +53,10 @@ function Workers() {
           </span>
         </div>
         <Dropdown
-          selectedOption="Filtruj"
+          defaultOption="Filtruj"
           color={"#A6DEF7"}
           options={["1", "2"]}
+          selectedOptionChanging={false}
         >
           <img src={filters} alt="" />
         </Dropdown>

@@ -49,9 +49,10 @@ function App() {
       <Route path="/" element={<FirmMain />} />
       <Route path="/workers" element={<Workers />} />
       <Route path="/firm-management" element={<FirmManagement />} />
-      <Route path="/notifications" element={<Notifications />} />
+      <Route path="/notification" element={<Notifications />} />
       <Route path="/settings" element={<Settings />} />
       <Route path="/profile" element={<Profil />} />
+      <Route path="/calendar" element={<Calendar />} />
     </Routes>
   );
 

@@ -1,10 +1,16 @@
 import React, { useEffect } from "react";
 import styles from "./Modal.module.css";
 import useStore from "../../data/store";
-
+import { useLocation } from "react-router-dom";
 
 function Modal({ children }) {
   const { isModalActive, setModalActive, modalContent } = useStore();
+
+  const currentLocation = useLocation();
+  
+  useEffect(() => {
+    setModalActive(false);
+  }, [currentLocation]);
 
   function handleActiveStatus() {
     setModalActive(false);
@@ -15,7 +21,6 @@ function Modal({ children }) {
   }
 
   useEffect(() => {
-    console.log("isModalActive:", isModalActive);
     const body = document.querySelector("body");
     if (isModalActive) {
       body.style.overflow = "hidden";

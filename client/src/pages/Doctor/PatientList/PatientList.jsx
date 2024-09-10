@@ -12,9 +12,11 @@ function PatientList() {
     <div className="content">
       <div className={styles.calendarNavbar}>
         <Dropdown
-          selectedOption="Sortuj"
+          defaultOption="Sortuj"
+          selectedOptionChanging={false}
           color={"#A6DEF7"}
-          options={["1123123123123123", "2"]}
+          options={["Od A do Z", "Od Z do A", 'Najpierw mężczyźni', 'Najpierw kobiety', 'Najpierw starsi', 'Najpierw młodsi']}
+          listStyle='elipse'
         >
           <i className="bx bx-chevron-down"></i>
         </Dropdown>
@@ -22,9 +24,11 @@ function PatientList() {
           <span>Lista pacjentów</span>
         </span>
         <Dropdown
-          selectedOption="Filtruj"
+          defaultOption="Filtruj"
+          selectedOptionChanging={false}
           color={"#A6DEF7"}
           options={["1", "2"]}
+          type={'filter'}
         >
           <img src={filters} alt="" />
         </Dropdown>

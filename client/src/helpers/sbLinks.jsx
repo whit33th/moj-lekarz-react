@@ -132,7 +132,7 @@ const sbLinks = [
         role: "firm",
         title: "Czat",
         img: chat,
-        url: "/"
+        url: "/chat"
     },
     {
         role: "firm",

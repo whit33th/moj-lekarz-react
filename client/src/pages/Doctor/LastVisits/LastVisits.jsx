@@ -4,17 +4,25 @@ import calendar from "../../../assets/img/calendar.png";
 import styles from "./LastVisits.module.css";
 import { userItems } from "../../../helpers/userItemList";
 import PatientLastVisit from "../../../components/DoctorPage/PatientList/PatientLastVisit";
-import Dropdown from '../../../components/Dropdown/Dropdown'
+import Dropdown from "../../../components/Dropdown/Dropdown";
 
 function LastVisits() {
   return (
     <div className="content">
       <div className={styles.calendarNavbar}>
         <Dropdown
-          selectedOption="Sortuj"
+          defaultOption="Sortuj"
+          selectedOptionChanging={false}
           color={"#A6DEF7"}
-          options={["1", "2"]}
-          
+          options={[
+            "Od A do Z",
+            "Od Z do A",
+            "Najpierw mężczyźni",
+            "Najpierw kobiety",
+            "Najpierw starsi",
+            "Najpierw młodsi",
+          ]}
+          listStyle="elipse"
         >
           <i className="bx bx-chevron-down"></i>
         </Dropdown>
