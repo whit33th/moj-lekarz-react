@@ -18,10 +18,15 @@ import FirmManagement from "./pages/Firm/FirmManagement/FirmManagement";
 import Workers from "./pages/Firm/Workers/Workers";
 import Modal from "./components/Modal/Modal";
 import PatientInfo from "./pages/Doctor/PatientInfo/PatientInfo";
+import AuthPage from "./pages/Auth/AuthPage";
 
 function App() {
-  const [role, setRole] = useState("firm");
+  const [role, setRole] = useState("doctor"); // Возможные роли: 'doctor', 'admin', 'firm'. В реальном проекте это будет приходить с сервера
 
+  const [isAuth, setIsAuth] = useState(false); // ЧИсто для понятия что пользователь авторизован. В реальном проекте это будет приходить с сервера.
+  //можешь вписать treu и посмотреть как выглядит страницы
+
+  // Маршруты для роли "doctor"
   const doctorRoutes = (
     <Routes>
       <Route path="/" element={<DoctorMain />} />
@@ -37,6 +42,7 @@ function App() {
     </Routes>
   );
 
+  // Маршруты для роли "admin"
   const adminRoutes = (
     <Routes>
       <Route path="/" element={<AdminMain />} />
@@ -44,6 +50,7 @@ function App() {
     </Routes>
   );
 
+  // Маршруты для роли "firm"
   const firmRoutes = (
     <Routes>
       <Route path="/" element={<FirmMain />} />
@@ -59,16 +66,27 @@ function App() {
   return (
     <Router>
       <ScrollToTop />
-      <Sidebar role={role} />
-      <div className="container">
-        <Navbar />
 
-        {role === "doctor" && doctorRoutes}
-        {role === "admin" && adminRoutes}
-        {role === "firm" && firmRoutes}
+      {/* Авторизация: если пользователь не авторизован, показать страницу логина */}
+      {!isAuth ? (
+        <AuthPage />
+      ) : (
+        <>
+          {/* Сайдбар в зависимости от роли */}
+          <Sidebar role={role} />
+          <div className="container">
+            <Navbar />
 
-        <Modal />
-      </div>
+            {/* Вывод маршрутов в зависимости от роли пользователя */}
+            {role === "doctor" && doctorRoutes}
+            {role === "admin" && adminRoutes}
+            {role === "firm" && firmRoutes}
+
+            {/* Модальное окно */}
+            <Modal />
+          </div>
+        </>
+      )}
     </Router>
   );
 }

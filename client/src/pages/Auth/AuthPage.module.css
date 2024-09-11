@@ -1,0 +1,349 @@
+.authPage {
+    width: 100%;
+    min-height: 95vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+}
+
+.authPageContent {
+    width: 50%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.signIn{
+    width: 95%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+}
+.signInContent {
+    height: auto;
+    min-height: 400px;
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0px 0px 50px 0px #3E36B033;
+}
+
+.authLogo {
+    width: 190px;
+}
+
+.signInContent {
+    width: 85%;
+    padding: 40px 7%;
+
+}
+
+.signIn h1 {
+    font-family: "Manrope";
+    font-size: 34.5px;
+    font-weight: 700;
+    line-height: 49.18px;
+    text-align: center;
+    color: #0E0E0E;
+    margin-bottom: 20px;
+
+}
+
+.signIninputBlock {
+    width: 100%;
+    padding: 15px 35px;
+
+}
+
+.signIninputBlock input {
+    width: 100%;
+    height: 55px;
+    border-radius: 1000px;
+    background-color: #fff;
+    box-shadow: 0px 0px 50px 0px #0000001A;
+    border: none;
+    outline: none;
+    padding: 0 20px;
+    margin-bottom: 12px;
+    font-family: 'Manrope';
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 24.59px;
+    text-align: left;
+
+}
+
+.signInbtnBlock {
+    width: 100%;
+    padding: 15px 30px;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 24.59px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.signInbtnBlock a {
+    color: #000;
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 24.59px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-decoration: underline;
+    cursor: pointer;
+
+}
+
+.signInbtnBlock a img {
+    margin-right: 10px;
+}
+
+.authPage button {
+    width: 140px;
+    height: 49px;
+    border-radius: 1000px;
+    background:  #3E36B0;
+    box-shadow: 0px 0px 50px 0px #00000026;
+    border: none;
+    outline: none;
+    font-size: 16.5px;
+    font-weight: 500;
+    line-height: 24.59px;
+    text-align: center;
+    color: #fff;
+    cursor: pointer;
+}
+.bottomLinkBlock{
+    width: 100%;
+    height: auto;
+    padding: 30px;
+}
+.bottomLinkBlock p{
+    font-size: 16.5px;
+    font-weight: 500;
+    line-height: 24.59px;
+    text-align: center;
+
+}
+.bottomLinkBlock p a{
+    text-decoration: none;
+    font-size: 16.5px;
+    font-weight: 500;
+    line-height: 24.59px;
+    text-align: center;
+
+}
+.inputsBtnBlock{
+    width: 100%;
+}
+.forgotPassword{
+    width: 100%;
+    padding: 20px 3%;
+}
+.forgotPassword p {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 24.59px;
+    text-align: left;
+    margin: 20px 10px;
+    margin-top: 5px;
+
+}
+.forgotPassword input{
+    width: 100%;
+    height: 55px;
+    border-radius: 1000px;
+    background-color: #fff;
+    box-shadow: 0px 0px 50px 0px #0000001A;
+    border: none;
+    outline: none;
+    padding: 0 20px;
+    margin-bottom: 12px;
+    font-family: 'Manrope';
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 24.59px;
+    text-align: left;
+}
+.forgotPasswordBtnBlock{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 5%;
+    gap: 17px;
+
+}
+.forgotPasswordBtnBlock button{
+    width: 190px;
+    height: 49px;
+    border-radius: 1000px;
+    border: none;
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 24.59px;
+    text-align: center;
+    cursor: pointer;
+
+}
+.forgotPasswordBtnBlock button.forgotPasswordBtnBlockBackbtn{
+    background-color: #fff;
+    border: 1px solid #3E36B0;
+    color: #3E36B0;
+}
+
+/* Regist */
+.registService{
+    width: 100%;
+    padding: 15px 35px;
+}
+.registerServiceItem{
+    background-color: #fff;
+    cursor: pointer;
+    width: 100%;
+    height: 55px;
+    border-radius: 1000px;
+    background-color: #fff;
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0px 0px 50px 0px #0000001A;
+    padding: 0 25px;
+}
+.lub{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 20px 30px;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 24.59px;
+
+
+}
+.lub::after{
+    content: '';
+    position: absolute;
+    height: 1px;
+    width: calc(43% - 30px);
+    top: 50%;
+    left: 31px;
+    transform: translate(0 , 50%);
+    background-color: #BEBEBE;
+    line-height: 0;
+}
+.lub::before{
+    content: '';
+    position: absolute;
+    height: 1px;
+    width: calc(43% - 30px);
+    top: 50%;
+    right: 31px;
+    transform: translate(0 , 50%);
+    background-color: #BEBEBE;
+    line-height: 0;
+
+}
+.checkboxBlock {
+    width: 100%;
+    padding: 20px 35px;
+    display: flex;
+    align-items: flex-start;
+    font-size: 15.5px;
+    font-weight: 400;
+    line-height: 21.86px;
+    text-align: left;
+    padding-right: 10px;
+
+}
+
+.checkboxContainer {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+    position: relative;
+    padding-left: 35px;
+    cursor: pointer;
+    user-select: none;
+    font-size: 15.5px;
+    font-weight: 400;
+}
+
+.checkboxContainer input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #f2f2f2;
+    border-radius: 4px;
+    background-color: #A6DEF7;
+
+}
+
+.checkboxContainer input:checked ~ .checkmark {
+    background-color: #3E36B0;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.checkboxContainer input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.checkboxContainer .checkmark:after {
+    left: 7px;
+    top: 3px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+}
+.checkboxBlock p{
+    font-size: 15.5px;
+    font-weight: 400;
+    line-height: 21.86px;
+    text-align: left;
+
+}
+.registBtnBlock{
+    width: 100%;
+    padding: 15px 35px;
+
+}
+.registBtnBlock button{
+    width: 100%;
+    height: 51px;
+    border-radius: 1000px;
+    border: none;
+    background-color: #3E36B0;
+    box-shadow: 0px 0px 50px 0px #00000026;
+    color: #fff;
+    font-size: 16.5px;
+    font-weight: 500;
+    line-height: 24.59px;
+    text-align: center;
+
+}
