@@ -1,25 +1,24 @@
-/* eslint-disable no-undef */
-
-import React, { useRef, useState } from 'react';
-import PropTypes from 'prop-types';
-import styles from './Patient.module.css';
-import moreInfo from '../../../assets/img/more-info.png';
-import { NavLink } from 'react-router-dom';
-import useStore from './../../../data/store';
-import BlueBtn from '../../Buttons/BlueBtn/BlueBtn';
-import BlueBorderBtn from './../../Buttons/BlueBorderBtn/BlueBorderBtn';
+import React, { useRef, useState } from "react";
+import PropTypes, { func } from "prop-types";
+import styles from "./Patient.module.css";
+import moreInfo from "../../../assets/img/more-info.png";
+import { NavLink } from "react-router-dom";
+import useStore from "./../../../data/store";
+import BlueBorderBtn from "./../../Buttons/BlueBorderBtn/BlueBorderBtn";
+import { toast } from 'sonner';
 
 function PatientItem({ img, name, id, gender }) {
-  // State to manage the modal visibility
+
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { setModalActive, setModalContent } = useStore();
 
   const files = [
-    { name: 'Dokument 1.pdf', date: '12.08.2023' },
-    { name: 'Dokument 2.pdf', date: '12.08.2023' },
-    { name: 'Dokument 3.pdf', date: '12.08.2023' },
-    { name: 'Dokument 4.pdf', date: '12.08.2023' },
-    { name: 'Dokument 5.pdf', date: '12.08.2023' },
+    { name: "Dokument 1.pdf", date: "12.08.2023" },
+    { name: "Dokument 2.pdf", date: "12.08.2023" },
+    { name: "Dokument 3.pdf", date: "12.08.2023" },
+    { name: "Dokument 4.pdf", date: "12.08.2023" },
+    { name: "Dokument 5.pdf", date: "12.08.2023" },
   ];
 
   const fileInputRef = useRef(null);
@@ -30,12 +29,43 @@ function PatientItem({ img, name, id, gender }) {
   };
 
   const handleFileChange = (event) => {
+    const promise = () => new Promise((resolve) => setTimeout(() => resolve( ), 2000));
     const file = event.target.files[0];
-    if (file) {
-      console.log('Selected file:', file);
-      // Handle file upload here
+    if (file.type === 'application/pdf') {
+      toast.promise(promise, {
+        loading: 'Loading...',
+        success: () => {
+          return ` Plik został pomyślnie przesłany.`;
+        },
+        error: 'Error',
+        
+      });
+    } else {
+      toast.error('Proszę przesłać plik PDF.');
     }
-  };
+    
+  }; 
+  function handleDownloadPDF () {
+    const promise = () => new Promise((resolve, reject) => {
+      setTimeout(() => {
+        
+        Math.random() < 0.7 ? resolve() : reject();
+      }, 1000);
+    });
+    
+    toast.promise(promise, {
+      loading: 'Loading...',
+      success: () => {
+        return 'Plik został pomyślnie pobrany.';
+      },
+      error: () => {
+        return 'Plik uszkodzony'; // This will be shown if the promise is rejected
+      },
+    
+    });
+    
+  
+}
 
   function handleActiveStatus() {
     setModalActive(false);
@@ -43,21 +73,21 @@ function PatientItem({ img, name, id, gender }) {
 
   const uploadFile = (
     <div className={styles.fileContainer}>
-			
       <div className={styles.header}>
-        <h2 style={{ textAlign: 'center', width: '100%' }}>Dodaj plik</h2>
+        <h2 style={{ textAlign: "center", width: "100%" }}>Dodaj plik</h2>
       </div>
       <div className={styles.dropFile} onClick={handleFileClick}>
-			<i className='bx bx-cloud-upload'></i>
+        <i className="bx bx-cloud-upload"></i>
         <p>Kliknij albo upuść plik tutaj</p>
-        
+
         <input
           type="file"
           ref={fileInputRef}
-          style={{ display: 'none' }}
+          style={{ display: "none" }}
           onChange={handleFileChange}
         />
       </div>
+      
     </div>
   );
 
@@ -81,7 +111,7 @@ function PatientItem({ img, name, id, gender }) {
               <p className={styles.fileDate}>{file.date}</p>
             </div>
             <div className={styles.downloadIcon}>
-              <i className='bx bxs-download'></i>
+              <i onClick={handleDownloadPDF} className="bx bxs-download hover"></i>
             </div>
           </li>
         ))}
@@ -112,9 +142,9 @@ function PatientItem({ img, name, id, gender }) {
         <div
           className={styles.moreInfoButt}
           style={{
-            position: 'relative',
-            display: 'flex',
-            justifyContent: 'center',
+            position: "relative",
+            display: "flex",
+            justifyContent: "center",
           }}
         >
           <img
@@ -122,7 +152,7 @@ function PatientItem({ img, name, id, gender }) {
             src={moreInfo}
             alt="More Info"
             onClick={toggleModal}
-            style={{ cursor: 'pointer' }}
+            style={{ cursor: "pointer" }}
           />
 
           {isModalOpen && (
@@ -134,10 +164,7 @@ function PatientItem({ img, name, id, gender }) {
               >
                 <p>Informacja</p>
               </NavLink>
-              <button
-                onClick={openMainModal}
-                className={styles.hoverOpacity}
-              >
+              <button onClick={openMainModal} className={styles.hoverOpacity}>
                 <p>Dokumenty</p>
               </button>
             </div>

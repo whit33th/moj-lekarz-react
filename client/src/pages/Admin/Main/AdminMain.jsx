@@ -10,13 +10,15 @@ import applications from '../../../assets/img/aplications.png';
 import follow from '../../../assets/img/follow.png';
 import bucket from '../../../assets/img/bucket.png';
 import note from '../../../assets/img/note.png';
-
-
 import styles from './AdminMain.module.css';
+import { AreaChartComponent } from '../../../components/Charts/AreaChartComponent'
+
+
 
 function AdminMain() {
   return (
     <div className={styles.content}>
+      
       <h1 className={styles.witaj}>Witamy, Tomasz!</h1>
       <div className={styles.dashboardFour}>
         <div className={styles.card}>
@@ -38,7 +40,7 @@ function AdminMain() {
             <div className={`${styles.graph} ${styles.percentage} ${styles.tCenter} ${styles.smBack} ${styles.flex} ${styles.itemsCenter}`}>
               <p>12%</p>
               <img src={graphUp} alt="" />
-            </div>
+            </div> 
           </div>
           <div className={styles.cardContent}>
             <span className={styles.count}>124</span>
@@ -158,11 +160,15 @@ function AdminMain() {
           <div className={styles.charts}>
             <div className={styles.chart}>
               <h4>Użytkownicy</h4>
-              <div className={styles.chartContent}></div>
+              <div className={styles.chartContent}>
+              <AreaChartComponent/>
+              </div>
             </div>
             <div className={styles.chart}>
               <h4>Firmy</h4>
-              <div className={styles.chartContent}></div>
+              <div className={styles.chartContent}>
+              <AreaChartComponent/>
+              </div>
             </div>
           </div>
         </div>

@@ -120,7 +120,7 @@ const sbLinks = [
         role: "firm",
         title: "Zarządzanie firmą",
         img: recept,
-        url: "/firm-management"
+        url: "/management"
     },
     {
         role: "firm",

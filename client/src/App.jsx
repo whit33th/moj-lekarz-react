@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Sidebar from "./components/Sidebar/Sidebar";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import DoctorMain from "./pages/Doctor/Main/DoctorMain";
@@ -19,14 +19,18 @@ import Workers from "./pages/Firm/Workers/Workers";
 import Modal from "./components/Modal/Modal";
 import PatientInfo from "./pages/Doctor/PatientInfo/PatientInfo";
 import AuthPage from "./pages/Auth/AuthPage";
+import Database from "./pages/Admin/Database/Database";
+import FirmPage from "./pages/Admin/Database/FirmPage/FirmPage";
+import Reports from "./pages/Admin/Reports/Reports";
+import { Toaster } from 'sonner';
 
 function App() {
+  
   const [role, setRole] = useState("doctor"); // Возможные роли: 'doctor', 'admin', 'firm'. В реальном проекте это будет приходить с сервера
 
-  const [isAuth, setIsAuth] = useState(false); // ЧИсто для понятия что пользователь авторизован. В реальном проекте это будет приходить с сервера.
+  const [isAuth, setIsAuth] = useState(true); // ЧИсто для понятия что пользователь авторизован. В реальном проекте это будет приходить с сервера.
   //можешь вписать treu и посмотреть как выглядит страницы
 
-  // Маршруты для роли "doctor"
   const doctorRoutes = (
     <Routes>
       <Route path="/" element={<DoctorMain />} />
@@ -46,7 +50,11 @@ function App() {
   const adminRoutes = (
     <Routes>
       <Route path="/" element={<AdminMain />} />
+      <Route path="/database" element={<Database />} />
+      <Route path="/database/:id" element={<FirmPage />} />
+      <Route path="/reports" element={<Reports />} />
       <Route path="/profile" element={<Profil />} />
+      <Route path="/settings" element={<Settings />} />
     </Routes>
   );
 
@@ -55,7 +63,7 @@ function App() {
     <Routes>
       <Route path="/" element={<FirmMain />} />
       <Route path="/workers" element={<Workers />} />
-      <Route path="/firm-management" element={<FirmManagement />} />
+      <Route path="/management" element={<FirmManagement />} />
       <Route path="/notification" element={<Notifications />} />
       <Route path="/settings" element={<Settings />} />
       <Route path="/profile" element={<Profil />} />
@@ -67,22 +75,20 @@ function App() {
     <Router>
       <ScrollToTop />
 
-      {/* Авторизация: если пользователь не авторизован, показать страницу логина */}
       {!isAuth ? (
         <AuthPage />
       ) : (
         <>
-          {/* Сайдбар в зависимости от роли */}
           <Sidebar role={role} />
           <div className="container">
             <Navbar />
 
-            {/* Вывод маршрутов в зависимости от роли пользователя */}
             {role === "doctor" && doctorRoutes}
             {role === "admin" && adminRoutes}
             {role === "firm" && firmRoutes}
-
-            {/* Модальное окно */}
+            
+            
+            <Toaster duration={3500} richColors   />
             <Modal />
           </div>
         </>

@@ -1,0 +1,10 @@
+
+.myCustomButton { /* Стили для кнопки */
+  background-color: #3E36B0; /* Цвет фона кнопки */
+  color: white; /* Цвет текста */
+  border: none; /* Убираем стандартные рамки */
+  border-radius: 5px; /* Скругляем углы */
+  padding: 8px 16px; /* Отступы внутри кнопки */
+  cursor: pointer; /* Курсор при наведении */
+  transition: background-color 0.3s; /* Плавный переход при наведении */
+}
