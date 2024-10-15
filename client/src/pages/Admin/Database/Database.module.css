@@ -1,10 +1,33 @@
+.myCustomButton {
+  background-color: #3E36B0;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  padding: 12px 0px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
 
-.myCustomButton { /* Стили для кнопки */
-  background-color: #3E36B0; /* Цвет фона кнопки */
-  color: white; /* Цвет текста */
-  border: none; /* Убираем стандартные рамки */
-  border-radius: 5px; /* Скругляем углы */
-  padding: 8px 16px; /* Отступы внутри кнопки */
-  cursor: pointer; /* Курсор при наведении */
-  transition: background-color 0.3s; /* Плавный переход при наведении */
+.userInfo {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+} 
+.receptId{
+  background: #A6DEF7;
+    padding: 10px;
+    border-radius: 6px;
+    font-weight: bold;
+}
+.nameTd {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.nameTd img{
+  width: 60px;
+}
+.round{
+  border-radius: 100px;
+    padding: 7px;
 }

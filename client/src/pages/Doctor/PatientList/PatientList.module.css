@@ -22,6 +22,10 @@
   background: #A6DEF7;
   border-radius: 20px;
 }
+.round{
+  border-radius: 100px;
+    padding: 7px;
+}
 
 
 .calendarNavbarButt img {
@@ -90,6 +94,10 @@
 .nameTd {
   display: flex;
   align-items: center;
+  gap: 20px;
+}
+.nameTd img{
+  width: 60px;
 }
 .tableContainer tbody td {
   padding: 20px;

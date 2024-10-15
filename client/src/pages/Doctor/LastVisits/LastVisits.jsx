@@ -5,8 +5,45 @@ import styles from "./LastVisits.module.css";
 import { userItems } from "../../../helpers/userItemList";
 import PatientLastVisit from "../../../components/DoctorPage/PatientList/PatientLastVisit";
 import Dropdown from "../../../components/Dropdown/Dropdown";
+import Table from '../../../components/Table/Table'
+
 
 function LastVisits() {
+  const tableData = userItems.map((item) => ({
+    img: item.img,
+    name: item.name,
+    id: item.id,
+    
+    birthday: item.birthDate,
+  }));
+
+  const columns = [
+    
+    {
+      header: "Search",
+      render: (item) => (
+        <div className={styles.nameTd}>
+          {item.img && (
+            <img src={item.img} alt="Avatar" className={styles.round} />
+          )}
+          <div className={styles.userInfo}>
+             <p>{item.name || "-"}</p>
+
+          </div>
+        </div>
+      ),
+    },
+    {header: 'Numer ID', dataKey: 'id'},
+    {header: 'Data', render: (item) => (item.birthday)},
+    {header: 'Czas', render: () => (
+      <div>
+        <div>
+          <span className={styles.receptId}>10:30</span>
+        </div>
+      </div>
+    ),}
+   
+  ];
   return (
     <div className="content">
       <div className={styles.calendarNavbar}>
@@ -40,43 +77,12 @@ function LastVisits() {
       </div>
 
       <div className={styles.tableContainer}>
-        <table className={styles.shadow}>
-          <thead>
-            <tr>
-              <th>
-                <div className={styles.top}>
-                  <div className={styles.clientSearch}>
-                    <form className={styles.search} action="" method="post">
-                      <img src={search} alt="search" />
-                      <input
-                        className={styles.searchInput}
-                        placeholder="Szukaj pacjenta..."
-                        type="text"
-                        name="search"
-                        id="client-search"
-                      />
-                    </form>
-                  </div>
-                </div>
-              </th>
-              <th>Numer ID</th>
-              <th>Data</th>
-              <th>Czas</th>
-            </tr>
-          </thead>
-          <tbody>
-            {userItems.map((u, i) => (
-              <PatientLastVisit
-                key={i}
-                name={u.name}
-                id={u.id}
-                date={u.date}
-                time={u.time}
-                img={u.img}
-              />
-            ))}
-          </tbody>
-        </table>
+      <Table
+        columns={columns}
+        data={tableData}
+        showImage={true}
+        together={true}
+      />
       </div>
     </div>
   );

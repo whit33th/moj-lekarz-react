@@ -6,12 +6,12 @@ import graphDown from '../../../assets/img/graph-down.png';
 import companies from '../../../assets/img/companies.png';
 import doctor from '../../../assets/img/doctor-s.png';
 import visits from '../../../assets/img/visits.png';
-import applications from '../../../assets/img/aplications.png';
+
 import follow from '../../../assets/img/follow.png';
 import bucket from '../../../assets/img/bucket.png';
 import note from '../../../assets/img/note.png';
 import styles from './AdminMain.module.css';
-import { AreaChartComponent } from '../../../components/Charts/AreaChartComponent'
+import AreaChartComp from '../../../components/Charts/AreaChart'
 
 
 
@@ -74,7 +74,7 @@ function AdminMain() {
           </div>
         </div>
       </div>
-      <div className={styles.dashboardTree}>
+      <div className={styles.dashboardTwo}>
         <div className={`${styles.tableCard} ${styles.newUser}`}>
           <p className={styles.titleCard}>Nowi użytkownicy</p>
           <table>
@@ -138,36 +138,22 @@ function AdminMain() {
             </tbody>
           </table>
         </div>
-        <div className={`${styles.requestCard} ${styles.newApplications}`}>
-          <div className={styles.requestHeader}>
-            <img className={styles.iconAdmin} src={applications} alt="" />
-            <NavLink className={styles.black} to="#">
-              <div className={`${styles.flex} ${styles.center}`}>
-                <p style={{ fontSize: '1.2em' }}>Sprawdź</p>
-                <img className={styles.ico} src={follow} alt="" />
-              </div>
-            </NavLink>
-          </div>
-          <div className={styles.requestContent}>
-            <span className={styles.countBig}>16</span>
-            <span className={styles.label}>Wnioski oczekujące na zatwierdzenie</span>
-          </div>
-        </div>
+        
       </div>
       <div className={styles.dashboardTwo}>
         <div className={styles.statsCard}>
           <p className={styles.titleCard}>Statystyki</p>
           <div className={styles.charts}>
             <div className={styles.chart}>
-              <h4>Użytkownicy</h4>
+              <p>Użytkownicy</p>
               <div className={styles.chartContent}>
-              <AreaChartComponent/>
+              <AreaChartComp/>
               </div>
             </div>
-            <div className={styles.chart}>
-              <h4>Firmy</h4>
+            <div className={styles.chartContent}>
+              <p>Firmy</p>
               <div className={styles.chartContent}>
-              <AreaChartComponent/>
+              <AreaChartComp/>
               </div>
             </div>
           </div>

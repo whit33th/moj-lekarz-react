@@ -45,8 +45,7 @@ function PatientItem({ img, name, id, gender }) {
             <img src={profil} className={styles.employeeImage} alt="Employee" />
             <div>
               <p style={{ color: "#3E36B0" }}>
-                {" "}
-                <strong>Brat Solitko</strong>{" "}
+                Brat Solitko
               </p>
               <div>
                 <p className={styles.phone}>

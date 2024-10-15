@@ -1,48 +1,53 @@
-
-import styles from 
-'./VisitModal.module.css'
+import styles from "./VisitModal.module.css";
 import profil from "../../../assets/img/profil.webp";
-import BlueBorderBtn from '../../Buttons/BlueBorderBtn/BlueBorderBtn'
+import BlueBorderBtn from "../../Buttons/BlueBorderBtn/BlueBorderBtn";
 
-import BlueBtn from '../../Buttons/BlueBtn/BlueBtn'
-import useStore from '../../../data/store'
+import BlueBtn from "../../Buttons/BlueBtn/BlueBtn";
+import useStore from "../../../data/store";
 
 function VisitModal() {
-	const { setModalActive } = useStore();
-	function closeMainModal() {
+  const { setModalActive } = useStore();
+  function closeMainModal() {
     setModalActive(false);
   }
-	return (
-		<div className={styles.row}>
+  return (
+    <div className={styles.row}>
       <div className={styles.generalInfo}>
         <div>
-          <h2>Ogólna informacja</h2>
+          <h2>Informacja o wizycie</h2>
 
           <div className={styles.infoTag}>
             <span>Godziny pracy:</span> <span> 08:30 - 16:45</span>
           </div>
 
           <div className={styles.infoTag}>
-            <span>Rodzaj pracy:</span> <span>Konsultacja</span>
+            <span>Pacjent:</span> <span>Andrzej Witold-Jagoda</span>
           </div>
 
+          <div className={styles.infoTag}>
+            <span>Rodzaj wizyty:</span> <span>Konsultacja</span>
+          </div>
+          <div className={styles.infoTag}>
+            <span>Adres:</span> <span>Ul. Przelewska 3</span>
+          </div>
           <div className={styles.infoTag}>
             <span>Sala:</span> <span>203</span>
           </div>
         </div>
-        <BlueBorderBtn cb={closeMainModal}>Anuluj</BlueBorderBtn>
+        <BlueBorderBtn 
+        // cb={closeMainModal}
+        >Lista receptur</BlueBorderBtn>
       </div>
 
       <div className={styles.employeeInfo}>
-        <h2>Informacje pracownika</h2>
+        <h2>Informacje o pacjencie</h2>
 
         <div className={styles.employeeDetails}>
           <div className={styles.topInfo}>
             <img src={profil} className={styles.employeeImage} alt="Employee" />
             <div>
               <p style={{ color: "#3E36B0" }}>
-                {" "}
-                <strong>Brat Solitko</strong>{" "}
+                Andrzej Witold-Jagoda
               </p>
               <div>
                 <p className={styles.phone}>
@@ -58,33 +63,43 @@ function VisitModal() {
           </div>
 
           <div className={styles.botInfo}>
+            <div className={styles.Comments}> 
+              <span>Uwagi:</span>{" "}
+              <li style={{listStyle: "none"}}>
+                <ul>Jest uczulony na Ibupron</ul>
+                <ul>Jest uczulony na Klatra</ul>
+              </li>
+            </div>
             <div>
               <span>Miasto:</span>
-              <span>City</span>
+              <span>Wrocław</span>
             </div>
             <div>
               <span>Adres:</span>
-              <span>Sdasda 2</span>
+              <span>ul.Szamarzewskiego 17/131</span>
             </div>
             <div>
               <span>Data urodzenia:</span>
-              <span>2932.33.23</span>
+              <span>28.08.1993</span>
             </div>
             <div>
-              <span>Plec:</span> <span>M</span>
+              <span>Plec:</span> <span>Mężczyzna</span>
             </div>
             <div>
-              <span>Wzrost:</span> <span>17 cm</span>
+              <span>Wzrost:</span> <span>183 cm.</span>
+            </div>
+            <div>
+              <span>Waga:</span> <span>79 kg.</span>
             </div>
           </div>
         </div>
         <div className={styles.actions}>
-          <BlueBtn>Edytuj</BlueBtn>
-          <BlueBorderBtn >Usuń</BlueBorderBtn>
+          <BlueBtn>Więcej informacji</BlueBtn>
+          
         </div>
       </div>
     </div>
-	)
+  );
 }
 
-export default VisitModal
+export default VisitModal;

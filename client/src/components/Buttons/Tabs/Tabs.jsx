@@ -1,20 +1,25 @@
 import React, { useEffect } from 'react';
 import styles from './Tabs.module.css';
 
-function Tabs({ buttons, activeTab, onTabClick }) {
+function Tabs({ buttons, activeTab, onTabClick, storageKey }) {
     const buttonsArray = buttons.split(',').map(name => name.trim());
 
-    // Используем useEffect для проверки локального хранилища при первом рендере
+    // Если storageKey не передан, генерируем уникальный ключ только один раз
+    const defaultKey = React.useMemo(() => {
+        return storageKey || `tabs-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`;
+    }, [storageKey]);
+
+    // При загрузке компонента проверяем наличие сохраненного активного таба
     useEffect(() => {
-        const storedTab = localStorage.getItem('activeTab'); // Получаем сохраненную вкладку
+        const storedTab = localStorage.getItem(defaultKey); // Читаем из localStorage по уникальному ключу
         if (storedTab) {
-            onTabClick(storedTab); // Устанавливаем сохраненную вкладку как активную
+            onTabClick(storedTab); // Устанавливаем сохраненную вкладку активной
         }
-    }, [onTabClick]);
+    }, [onTabClick, defaultKey]);
 
     const handleTabClick = (name) => {
-        localStorage.setItem('activeTab', name); // Сохраняем активную вкладку в localStorage
-        onTabClick(name); // Передаем клики обратно в родительский компонент
+        localStorage.setItem(defaultKey, name); // Сохраняем активную вкладку в localStorage с уникальным ключом
+        onTabClick(name); // Передаем активную вкладку родительскому компоненту
     };
 
     return (
@@ -22,7 +27,7 @@ function Tabs({ buttons, activeTab, onTabClick }) {
             {buttonsArray.map((name) => (
                 <button
                     key={name}
-                    onClick={() => handleTabClick(name)} // Обновляем функцию клика
+                    onClick={() => handleTabClick(name)} // При клике сохраняем вкладку
                     className={activeTab === name ? styles.active : ""}
                 >
                     {name}

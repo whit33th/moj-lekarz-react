@@ -1,9 +1,32 @@
+
+.userInfo {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+} 
+.receptId{
+  background: #A6DEF7;
+    padding: 10px;
+    border-radius: 6px;
+    font-weight: bold;
+}
+.nameTd {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.nameTd img{
+  width: 60px;
+}
+.round{
+  border-radius: 100px;
+    padding: 7px;
+} 
 .calendarNavbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-
 
 .calendarNavbarDate {
   padding: 3px;

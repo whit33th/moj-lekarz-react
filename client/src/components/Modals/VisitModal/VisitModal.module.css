@@ -213,10 +213,13 @@
 .generalInfo {
   white-space: nowrap;
   border-right: 1px solid #e0e0e0;
-  padding-right: 20px;
+  padding-right: 40px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+.employeeInfo{
+  padding-left: 20px;
 }
 
 .header {
@@ -254,6 +257,21 @@
   border-radius: 5px;
   margin-bottom: 10px;
   display: inline-block;
+}
+.Comments{
+  background-color: #a6def7;
+  padding: 10px;
+  border-radius: 20px;
+  align-items: center;
+}
+.Comments li {
+  list-style: none;
+  font-size: 14px;
+}
+.Comments li > ul {
+  margin: 0;
+  padding: 0;
+  color: grey;
 }
 
 .actions {
@@ -298,7 +316,7 @@
   flex-direction: row;
   align-items: center;
   margin-bottom: 30px;
-  gap: 60px;
+  gap: 20px;
   white-space: nowrap;
 }
 .topInfo > div {
@@ -328,4 +346,7 @@
 .phone {
   font-size: small;
   color: grey;
+  display: flex;
+  justify-content: space-between;
+
 }

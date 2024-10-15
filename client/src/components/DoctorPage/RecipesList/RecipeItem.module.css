@@ -92,6 +92,7 @@
 .userInfo {
   display: flex;
   flex-direction: column;
+  text-align: left;
 }
 .tableContainer tbody td {
   padding: 20px;

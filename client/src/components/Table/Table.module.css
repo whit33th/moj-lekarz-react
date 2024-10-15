@@ -44,7 +44,8 @@
 .search {
   display: flex;
   flex-direction: row;
-  width: 85%;
+  width:100%;
+  max-width: 350px;
   box-shadow: 0 0 10px 5px #00000014;
   padding: 10px 0;
   border-radius: 20px;

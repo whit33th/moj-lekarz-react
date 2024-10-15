@@ -75,14 +75,14 @@ const sbLinks = [
         role: "admin",
         title: "Opinia",
         img: notifications,
-        url: "/feedback"
+        url: "/reviews"
     },
 
     {
         role: "admin",
         title: "Statystyki",
         img: chat,
-        url: "/database"
+        url: "/statistic"
     },
     {
         role: "admin",

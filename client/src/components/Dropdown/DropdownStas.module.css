@@ -1,0 +1,73 @@
+.dropdownContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.dropdown {
+  width: 100%;
+  height: 50px;
+  border-radius: 40px;
+  padding: 0 19px;
+  border: none;
+  box-shadow: 0px 0px 50px 0px #0000001a;
+  outline: none;
+  font-family: "Manrope";
+  font-size: 15.5px;
+  font-weight: 400;
+  line-height: 21.86px;
+  background: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #595959;
+}
+
+.arrow {
+  background: url('../../assets/img/Vector10.svg') no-repeat center;
+  width: 12px;
+  height: 12px;
+  transition: transform 0.3s ease;
+}
+
+.arrowOpen {
+  transform: rotate(180deg);
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: 55px;
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0px 0px 50px 0px #0000001a;
+  background: #fff;
+  overflow: hidden;
+  opacity: 0;
+  animation: fadeIn 0.3s forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dropdownMenuItem {
+  padding: 10px;
+  font-family: "Manrope";
+  font-size: 15.5px;
+  font-weight: 400;
+  line-height: 21.86px;
+  cursor: pointer;
+}
+
+.dropdownMenuItem:hover {
+  background: #f0f0f0;
+}

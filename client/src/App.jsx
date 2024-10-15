@@ -23,10 +23,11 @@ import Database from "./pages/Admin/Database/Database";
 import FirmPage from "./pages/Admin/Database/FirmPage/FirmPage";
 import Reports from "./pages/Admin/Reports/Reports";
 import { Toaster } from 'sonner';
+import ReviewPage from './pages/Admin/Reviews/ReviewPage'
 
 function App() {
   
-  const [role, setRole] = useState("doctor"); // Возможные роли: 'doctor', 'admin', 'firm'. В реальном проекте это будет приходить с сервера
+  const [role, setRole] = useState("admin"); // Возможные роли: 'doctor', 'admin', 'firm'. В реальном проекте это будет приходить с сервера
 
   const [isAuth, setIsAuth] = useState(true); // ЧИсто для понятия что пользователь авторизован. В реальном проекте это будет приходить с сервера.
   //можешь вписать treu и посмотреть как выглядит страницы
@@ -36,13 +37,15 @@ function App() {
       <Route path="/" element={<DoctorMain />} />
       <Route path="/calendar" element={<Calendar />} />
       <Route path="/list" element={<PatientList />} />
-      <Route path="/list/patient-info" element={<PatientInfo />} />
+      <Route path="/patient-info/:id" element={<PatientInfo />} />
       <Route path="/recipes" element={<Recipes />} />
       <Route path="/notifications" element={<Notifications />} />
+      <Route path="/chat" element={<Notifications />} />
       <Route path="/settings" element={<Settings />} />
       <Route path="/last-visits" element={<LastVisits />} />
       <Route path="/todays-visits" element={<TodaysVisits />} />
       <Route path="/profile" element={<Profil />} />
+      
     </Routes>
   );
 
@@ -55,6 +58,8 @@ function App() {
       <Route path="/reports" element={<Reports />} />
       <Route path="/profile" element={<Profil />} />
       <Route path="/settings" element={<Settings />} />
+      <Route path="/reviews" element={<ReviewPage />} />
+      <Route path="/chat" element={<Notifications />} />
     </Routes>
   );
 
@@ -64,7 +69,8 @@ function App() {
       <Route path="/" element={<FirmMain />} />
       <Route path="/workers" element={<Workers />} />
       <Route path="/management" element={<FirmManagement />} />
-      <Route path="/notification" element={<Notifications />} />
+      <Route path="/notifications" element={<Notifications />} />
+      <Route path="/chat" element={<Notifications />} />
       <Route path="/settings" element={<Settings />} />
       <Route path="/profile" element={<Profil />} />
       <Route path="/calendar" element={<Calendar />} />
