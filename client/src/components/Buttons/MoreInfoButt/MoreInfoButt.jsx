@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import  { useState, useRef } from "react";
 import moreInfo from "../../../assets/img/more-info.png";
 import { NavLink } from "react-router-dom";
 import styles from "./MoreInfoButt.module.css";
@@ -108,7 +108,7 @@ const MoreInfoButt = ({ id }) => {
         ))}
       </ul>
 
-      <BlueBorderBtn cb={toggleModal}>Back</BlueBorderBtn>
+      <BlueBorderBtn cb={()=> (setModalActive(false))}>Back</BlueBorderBtn>
     </div>
   );
 
@@ -133,11 +133,11 @@ const MoreInfoButt = ({ id }) => {
             to={`/patient-info/${patientId}`}
             className={styles.hoverOpacity}
           >
-            <p>Informacja</p>
+            <p style={{fontWeight: '500'}}>Informacja</p>
           </NavLink>
 
           <button onClick={openDocumentModal} className={styles.hoverOpacity}>
-            <p>Dokumenty</p>
+            <p style={{fontWeight: '500'}}>Dokumenty</p>
           </button>
         </div>
       )}

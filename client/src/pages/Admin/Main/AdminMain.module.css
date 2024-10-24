@@ -4,6 +4,14 @@
   box-shadow: 0 0 50px 5px #00000014;
   padding: 20px;
 }
+.add{
+  transition: 0.3s;
+  opacity: 1;
+}
+.add:hover{
+  opacity: 0.7;
+  
+}
 .tableCard table, .notesCard ul {
   width: 100%;
   border-collapse: collapse;

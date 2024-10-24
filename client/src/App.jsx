@@ -27,7 +27,7 @@ import ReviewPage from './pages/Admin/Reviews/ReviewPage'
 
 function App() {
   
-  const [role, setRole] = useState("admin"); // Возможные роли: 'doctor', 'admin', 'firm'. В реальном проекте это будет приходить с сервера
+  const [role, setRole] = useState("doctor"); // Возможные роли: 'doctor', 'admin', 'firm'. В реальном проекте это будет приходить с сервера
 
   const [isAuth, setIsAuth] = useState(true); // ЧИсто для понятия что пользователь авторизован. В реальном проекте это будет приходить с сервера.
   //можешь вписать treu и посмотреть как выглядит страницы

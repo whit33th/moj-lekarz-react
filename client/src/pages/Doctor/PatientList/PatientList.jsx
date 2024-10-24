@@ -1,5 +1,5 @@
 import styles from "./PatientList.module.css";
-import searchIco from "../../../assets/img/search.png";
+
 import filters from "../../../assets/img/filters.png";
 import Dropdown from "../../../components/Dropdown/Dropdown";
 import Table from '../../../components/Table/Table';
@@ -31,8 +31,8 @@ function PatientList() {
       </div>
     )
   },
-  { header: "ID", dataKey: "id" },       // ID column
-  { header: "Płeć", dataKey: "gender" }, // Gender column
+  { header: "ID", dataKey: "id" },       
+  { header: "Płeć", dataKey: "gender" }, 
   { 
     header: "Akcja", 
     render: (item) => (

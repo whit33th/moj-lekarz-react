@@ -1,30 +1,46 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink } from "react-router-dom";
 
-import users from '../../../assets/img/users.png';
-import graphUp from '../../../assets/img/graph-up.png';
-import graphDown from '../../../assets/img/graph-down.png';
-import companies from '../../../assets/img/companies.png';
-import doctor from '../../../assets/img/doctor-s.png';
-import visits from '../../../assets/img/visits.png';
+import users from "../../../assets/img/users.png";
+import graphUp from "../../../assets/img/graph-up.png";
+import graphDown from "../../../assets/img/graph-down.png";
+import companies from "../../../assets/img/companies.png";
+import doctor from "../../../assets/img/doctor-s.png";
+import visits from "../../../assets/img/visits.png";
 
-import follow from '../../../assets/img/follow.png';
-import bucket from '../../../assets/img/bucket.png';
-import note from '../../../assets/img/note.png';
-import styles from './AdminMain.module.css';
-import AreaChartComp from '../../../components/Charts/AreaChart'
-
-
+import plus from "../../../assets/img/plusBlack.png";
+import bucket from "../../../assets/img/bucket.png";
+import note from "../../../assets/img/note.png";
+import styles from "./AdminMain.module.css";
+import AreaChartComp from "../../../components/Charts/AreaChart";
+import useStore from "./../../../data/store";
+import Textarea from '../../../components/UI/TextArea/Textarea'
+import BlueBtn from './../../../components/Buttons/BlueBtn/BlueBtn';
 
 function AdminMain() {
+  const { setModalActive, setModalContent } = useStore();
+
+
+  const NoteModal = (
+    <>
+      <h1>Dodanie notatki</h1>
+      <Textarea placeholder={'Wpisz temat'}/>
+      <BlueBtn  >Dodaj notatkę</BlueBtn>
+    </>
+  );
+  function handleAddNote() {
+    setModalActive(true);
+    setModalContent(NoteModal);
+  }
   return (
     <div className={styles.content}>
-      
       <h1 className={styles.witaj}>Witamy, Tomasz!</h1>
       <div className={styles.dashboardFour}>
         <div className={styles.card}>
           <div className={styles.cardHeader}>
             <img className={styles.iconAdmin} src={users} alt="" />
-            <div className={`${styles.graph} ${styles.percentage} ${styles.tCenter} ${styles.smBack} ${styles.flex} ${styles.itemsCenter}`}>
+            <div
+              className={`${styles.graph} ${styles.percentage} ${styles.tCenter} ${styles.smBack} ${styles.flex} ${styles.itemsCenter}`}
+            >
               <p>12%</p>
               <img src={graphDown} alt="" />
             </div>
@@ -37,10 +53,12 @@ function AdminMain() {
         <div className={styles.card}>
           <div className={styles.cardHeader}>
             <img className={styles.iconAdmin} src={companies} alt="" />
-            <div className={`${styles.graph} ${styles.percentage} ${styles.tCenter} ${styles.smBack} ${styles.flex} ${styles.itemsCenter}`}>
+            <div
+              className={`${styles.graph} ${styles.percentage} ${styles.tCenter} ${styles.smBack} ${styles.flex} ${styles.itemsCenter}`}
+            >
               <p>12%</p>
               <img src={graphUp} alt="" />
-            </div> 
+            </div>
           </div>
           <div className={styles.cardContent}>
             <span className={styles.count}>124</span>
@@ -50,7 +68,9 @@ function AdminMain() {
         <div className={styles.card}>
           <div className={styles.cardHeader}>
             <img className={styles.iconAdmin} src={doctor} alt="" />
-            <div className={`${styles.graph} ${styles.percentage} ${styles.tCenter} ${styles.smBack} ${styles.flex} ${styles.itemsCenter}`}>
+            <div
+              className={`${styles.graph} ${styles.percentage} ${styles.tCenter} ${styles.smBack} ${styles.flex} ${styles.itemsCenter}`}
+            >
               <p>12%</p>
               <img src={graphUp} alt="" />
             </div>
@@ -63,14 +83,18 @@ function AdminMain() {
         <div className={styles.card}>
           <div className={styles.cardHeader}>
             <img className={styles.iconAdmin} src={visits} alt="" />
-            <div className={`${styles.graph} ${styles.percentage} ${styles.tCenter} ${styles.smBack} ${styles.flex} ${styles.itemsCenter}`}>
+            <div
+              className={`${styles.graph} ${styles.percentage} ${styles.tCenter} ${styles.smBack} ${styles.flex} ${styles.itemsCenter}`}
+            >
               <p>12%</p>
               <img src={graphUp} alt="" />
             </div>
           </div>
           <div className={styles.cardContent}>
             <span className={styles.count}>124</span>
-            <span className={styles.label}>Całkowita liczba zarejestrowanych wizyt</span>
+            <span className={styles.label}>
+              Całkowita liczba zarejestrowanych wizyt
+            </span>
           </div>
         </div>
       </div>
@@ -138,7 +162,6 @@ function AdminMain() {
             </tbody>
           </table>
         </div>
-        
       </div>
       <div className={styles.dashboardTwo}>
         <div className={styles.statsCard}>
@@ -147,13 +170,13 @@ function AdminMain() {
             <div className={styles.chart}>
               <p>Użytkownicy</p>
               <div className={styles.chartContent}>
-              <AreaChartComp/>
+                <AreaChartComp />
               </div>
             </div>
             <div className={styles.chartContent}>
               <p>Firmy</p>
               <div className={styles.chartContent}>
-              <AreaChartComp/>
+                <AreaChartComp />
               </div>
             </div>
           </div>
@@ -161,12 +184,14 @@ function AdminMain() {
         <div className={styles.notesCard}>
           <div className={styles.notesHeader}>
             <p className={styles.titleCard}>Moje notatki</p>
-            <NavLink className={styles.black} to="#">
-              <div className={`${styles.flex} ${styles.center}`}>
-                <p style={{ fontSize: '1.2em' }}>Dodaj</p>
-                <img className={styles.ico} src={follow} alt="" />
-              </div>
-            </NavLink>
+
+            <div
+              onClick={handleAddNote}
+              className={`${styles.flex} ${styles.center} ${styles.add}`}
+            >
+              <p style={{ fontSize: "1.2em" }}>Dodaj</p>
+              <img className={styles.ico} src={plus} alt="" />
+            </div>
           </div>
           <ul className={styles.notesList}>
             <li>
@@ -187,7 +212,7 @@ function AdminMain() {
               <img className={styles.noteIco} src={note} alt="" />
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               <button className={styles.deleteNote}>
-                <img className={styles.noteIco}  src={bucket} alt="" />
+                <img className={styles.noteIco} src={bucket} alt="" />
               </button>
             </li>
             <li>

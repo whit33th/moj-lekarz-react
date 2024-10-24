@@ -19,6 +19,7 @@
   transition: 0.3s;
 }
 
+
 .moreInfoModal {
   display: flex;
   border: 1px solid #0000000f;
@@ -34,6 +35,7 @@
   align-items: flex-start;
   z-index: 1;
 
+  
   & > a:hover , button:hover {
     border-bottom: 1px solid black;
     transition: 0.3s;

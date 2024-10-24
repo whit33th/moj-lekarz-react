@@ -1,53 +1,65 @@
+.dayCellMonth {
+  width: 60px;
+  flex-grow: 1;
+  border: 1px solid #ddd;
+  height: 200px; /* Adjust height for day cubes */
+  display: flex;
+  justify-content: right;
+}
+.dayCellMonth span {
+  padding: 5px;
+}
+.greyedOut {
+  color: #919191; 
+}
+.dayCellEmpty {
+  width: 60px;
+  flex-grow: 1;
+  height: 100px;
+}
+
 .calendarNavbar {
-	display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-
-.calendarNavbarDate  {
-	padding: 3px;
-	font-size: 2.5em;
-	display: flex;
-	gap: 10px;
+.calendarNavbarDate {
+  padding: 3px;
+  font-size: 2.5em;
+  display: flex;
+  gap: 10px;
 }
-
-
 
 .calendarNavbarButt {
-  
-	display: flex;
-	height: 40px;
-	background: #3E36B0;
-	border-radius: 20px;
-  
+  display: flex;
+  height: 40px;
+  background: #3e36b0;
+  border-radius: 20px;
 }
 
 .calendarNavbarButt button {
- 
-	background: transparent;
-	border: none;
-	user-select: none;
-	color: white;
+  background: transparent;
+  border: none;
+  user-select: none;
+  color: white;
 }
-.changeTypeDate{
+.changeTypeDate {
   padding: 9px 20px;
-  
+
   transition: 0.3s ease;
-  
-  
 }
 
 .calendarNavbarButt button.active {
-	color: black;
-	background: #A6DEF7;
-	border-radius: 20px;
-	transition: 0.3s ease;
+  color: black;
+  background: #a6def7;
+  border-radius: 20px;
+  transition: 0.3s ease;
 }
 
 .calendarNavbarButt img {
-	width: 20px;
-	margin: 9px;
+  width: 20px;
+  margin: 9px;
 }
 
 .days div:hover {
@@ -102,14 +114,16 @@
   border-right: 1px solid #ddd;
 }
 
-.timeSlot:last-child, .timeSlotEmptySlot:last-child {
+.timeSlot:last-child,
+.timeSlotEmptySlot:last-child {
   border-radius: 0 0 0 20px;
 }
-.timeSlotEmptySlot:first-child{
-	border: none;
+.timeSlotEmptySlot:first-child {
+  border: none;
 }
 
-.timeSlot, .timeSlotEmptySlot  {
+.timeSlot,
+.timeSlotEmptySlot {
   justify-content: center;
   display: flex;
   align-items: center;
@@ -147,8 +161,8 @@
 .dayRow:last-child > .dayCell:last-child {
   border-radius: 0 0 20px 0;
 }
-.changeDate{
+.changeDate {
   display: flex;
-justify-content: center;
-align-items: center;
+  justify-content: center;
+  align-items: center;
 }
