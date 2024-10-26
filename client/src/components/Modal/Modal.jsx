@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import styles from "./Modal.module.css";
 import useStore from "../../data/store";
 import { useLocation } from "react-router-dom";

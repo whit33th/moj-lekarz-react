@@ -1,4 +1,4 @@
-import  { useState, useRef } from "react";
+import { useState, useRef } from "react";
 import moreInfo from "../../../assets/img/more-info.png";
 import { NavLink } from "react-router-dom";
 import styles from "./MoreInfoButt.module.css";
@@ -6,8 +6,7 @@ import useStore from "../../../data/store";
 import BlueBorderBtn from "../BlueBorderBtn/BlueBorderBtn";
 import { toast } from "sonner";
 
-
-const MoreInfoButt = ({ id }) => {
+const MoreInfoButtPatient = ({ id }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { setModalActive, setModalContent } = useStore();
   const fileInputRef = useRef(null);
@@ -108,7 +107,7 @@ const MoreInfoButt = ({ id }) => {
         ))}
       </ul>
 
-      <BlueBorderBtn cb={()=> (setModalActive(false))}>Back</BlueBorderBtn>
+      <BlueBorderBtn cb={() => setModalActive(false)}>Back</BlueBorderBtn>
     </div>
   );
 
@@ -133,11 +132,11 @@ const MoreInfoButt = ({ id }) => {
             to={`/patient-info/${patientId}`}
             className={styles.hoverOpacity}
           >
-            <p style={{fontWeight: '500'}}>Informacja</p>
+            <p style={{ fontWeight: "500" }}>Informacja</p>
           </NavLink>
 
           <button onClick={openDocumentModal} className={styles.hoverOpacity}>
-            <p style={{fontWeight: '500'}}>Dokumenty</p>
+            <p style={{ fontWeight: "500" }}>Dokumenty</p>
           </button>
         </div>
       )}
@@ -145,4 +144,4 @@ const MoreInfoButt = ({ id }) => {
   );
 };
 
-export default MoreInfoButt;
+export default MoreInfoButtPatient;

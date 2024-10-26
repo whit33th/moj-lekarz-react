@@ -22,10 +22,6 @@
   background: #A6DEF7;
   border-radius: 20px;
 }
-.round{
-  border-radius: 100px;
-    padding: 7px;
-}
 
 
 .calendarNavbarButt img {
@@ -88,26 +84,7 @@
   border-radius: 20px;
 }
 
-.tableContainer tbody tr:nth-child(odd) > td {
-  background-color: #F3F3F3;
-}
-.nameTd {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-.nameTd img{
-  width: 60px;
-}
-.tableContainer tbody td {
-  padding: 20px;
-}
-.tableContainer thead th {
-  padding: 20px;
-}
-.clientSearch form {
-  width: 70%;
-}
+
 
 
 

@@ -13,7 +13,7 @@
 }
 
 .fillBlue {
-  background: #3E36B0 !important;
+  background: #3e36b0 !important;
   color: white !important;
   border: none !important;
 }
@@ -24,12 +24,12 @@
 
 .infoNavbarButt {
   border-radius: 1000px;
-  background: #3E36B0;
+  background: #3e36b0;
   width: 60%;
 }
 
 .infoNavbarButt span.active {
-  background: #A6DEF7;
+  background: #a6def7;
   color: black;
   transition: 0.3s ease;
 }
@@ -55,7 +55,6 @@
   align-items: center;
 }
 
-
 .calendarNavbarDate {
   padding: 3px;
   font-size: 2.5em;
@@ -70,22 +69,16 @@
   align-items: center;
   justify-content: center;
   height: 40px;
-  background: #A6DEF7;
+  background: #a6def7;
   border-radius: 20px;
 }
 
-
 .calendarNavbarButt img {
-
   width: 12px;
-  margin: 9px 20px 9PX 0;
+  margin: 9px 20px 9px 0;
 }
 
-
-
-
 .calendarNavbarButt span {
-
   padding: 9px 20px;
   color: black;
   user-select: none;
@@ -94,7 +87,7 @@
 
 .calendarNavbarButt span.active {
   color: black;
-  background: #A6DEF7;
+  background: #a6def7;
   border-radius: 20px;
   transition: 0.3s;
 }
@@ -137,14 +130,16 @@
   border-radius: 20px;
 }
 
-.tableContainer tbody tr:nth-child(odd)>td {
-  background-color: #F3F3F3;
+.tableContainer tbody tr:nth-child(odd) > td {
+  background-color: #f3f3f3;
 }
 
 .nameTd {
   display: flex;
   align-items: center;
 }
+
+
 
 .tableContainer tbody td {
   padding: 20px;

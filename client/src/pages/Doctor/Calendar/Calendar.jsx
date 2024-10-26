@@ -12,8 +12,18 @@ function Calendar() {
 
   // Array of month names in Polish
   const monthNames = [
-    "Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec",
-    "Lipiec", "Sierpień", "Wrzesień", "Październik", "Listopad", "Grudzień"
+    "Styczeń",
+    "Luty",
+    "Marzec",
+    "Kwiecień",
+    "Maj",
+    "Czerwiec",
+    "Lipiec",
+    "Sierpień",
+    "Wrzesień",
+    "Październik",
+    "Listopad",
+    "Grudzień",
   ];
 
   function handleActiveTab(tab) {
@@ -46,54 +56,72 @@ function Calendar() {
   });
 
   const CalendarHeader = () => (
-  <div className={styles.calendarNavbar}>
-    <div className={styles.calendarNavbarButt} style={{ background: "#A6DEF7" }}>
-      <button className={styles.changeDate} onClick={handlePreviousMonth}>
-        <img className={styles.opacityLess} id="left-butt" src={left} alt="Left" />
-      </button>
-      <img onClick={() => {
-        setCurrentMonth(today.getMonth());
-        setCurrentYear(today.getFullYear());
-      }} className={styles.separator} src={separator} alt="Separator" />
-      <button className={styles.changeDate} onClick={handleNextMonth}>
-        <img className={styles.opacityLess} id="right-butt" src={right} alt="Right" />
-      </button>
-      {/* Кнопка для возврата к текущему месяцу */}
-      
-    </div>
-    
-    <span className={styles.calendarNavbarDate}>
-      {/* Отображение диапазона дат */}
-      <span className={styles.calendarNavbarDay}>
-        {new Date(currentYear, currentMonth, 1).getDate()}-
-        {new Date(currentYear, currentMonth + 1, 0).getDate()}
-      </span>
-      <span className={styles.calendarNavbarMonth}>
-        {monthNames[currentMonth]}
-      </span>
-      <span className={styles.calendarNavbarYear}>{currentYear}</span>
-    </span>
-    <div className={styles.calendarNavbarButt}>
-      <button
-        className={`${activeTab === "Tydzień" ? styles.active : ""} ${styles.changeTypeDate}`}
-        onClick={() => handleActiveTab("Tydzień")}
+    <div className={styles.calendarNavbar}>
+      <div
+        className={styles.calendarNavbarButt}
+        style={{ background: "#A6DEF7" }}
       >
-        Tydzień
-      </button>
-      <button
-        className={`${activeTab === "Miesiąc" ? styles.active : ""} ${styles.changeTypeDate}`}
-        onClick={() => handleActiveTab("Miesiąc")}
-      >
-        Miesiąc
-      </button>
-    </div>
-  </div>
-);
+        <button className={styles.changeDate} onClick={handlePreviousMonth}>
+          <img
+            className={styles.opacityLess}
+            id="left-butt"
+            src={left}
+            alt="Left"
+          />
+        </button>
+        <img
+          className={styles.separator}
+          src={separator}
+          alt="Separator"
+        />
+        <button className={styles.changeDate} onClick={handleNextMonth}>
+          <img
+            className={styles.opacityLess}
+            id="right-butt"
+            src={right}
+            alt="Right"
+          />
+        </button>
+        {/* Кнопка для возврата к текущему месяцу */}
+      </div>
 
+      <span className={styles.calendarNavbarDate}>
+        {/* Отображение диапазона дат */}
+        <span className={styles.calendarNavbarDay}>
+          {new Date(currentYear, currentMonth, 1).getDate()}-
+          {new Date(currentYear, currentMonth + 1, 0).getDate()}
+        </span>
+        <span className={styles.calendarNavbarMonth}>
+          {monthNames[currentMonth]}
+        </span>
+        <span className={styles.calendarNavbarYear}>{currentYear}</span>
+      </span>
+      <div className={styles.calendarNavbarButt}>
+        <button
+          className={`${activeTab === "Tydzień" ? styles.active : ""} ${
+            styles.changeTypeDate
+          }`}
+          onClick={() => handleActiveTab("Tydzień")}
+        >
+          Tydzień
+        </button>
+        <button
+          className={`${activeTab === "Miesiąc" ? styles.active : ""} ${
+            styles.changeTypeDate
+          }`}
+          onClick={() => handleActiveTab("Miesiąc")}
+        >
+          Miesiąc
+        </button>
+      </div>
+    </div>
+  );
 
   const CalendarDaysHeader = () => (
     <div className={styles.headerRow}>
-      {activeTab === "Tydzień" && <div className={styles.timeSlotEmptySlot}></div>}
+      {activeTab === "Tydzień" && (
+        <div className={styles.timeSlotEmptySlot}></div>
+      )}
       {daysOfWeek.map((day) => (
         <div key={day} className={styles.dayHeader}>
           {day}
@@ -139,19 +167,40 @@ function Calendar() {
             {Array.from({ length: 7 }, (_, dayIndex) => {
               const day = rowIndex * 7 + dayIndex - firstDayOfMonth + 1; // Calculate the day of the month
               const isCurrentMonth = day > 0 && day <= daysInMonth;
-              const isNextMonth = day > daysInMonth && day <= daysInMonth + nextMonthDaysToAdd;
+              const isNextMonth =
+                day > daysInMonth && day <= daysInMonth + nextMonthDaysToAdd;
 
               return isCurrentMonth ? (
-                <div key={dayIndex} className={`${styles.dayCellMonth} ${today.getDate() === day && currentMonth === today.getMonth() && currentYear === today.getFullYear() ? styles.today : ''}`}>
+                <div
+                  key={dayIndex}
+                  className={`${styles.dayCellMonth} ${
+                    today.getDate() === day &&
+                    currentMonth === today.getMonth() &&
+                    currentYear === today.getFullYear()
+                      ? styles.today
+                      : ""
+                  }`}
+                >
                   <span>{day}</span>
                 </div>
               ) : isNextMonth ? (
-                <div key={dayIndex} className={`${styles.dayCellMonth} ${styles.greyedOut}`}>
-                  <span>{day - daysInMonth}</span> {/* Display the next month day */}
+                <div
+                  key={dayIndex}
+                  className={`${styles.dayCellMonth} ${styles.greyedOut}`}
+                >
+                  <span>{day - daysInMonth}</span>{" "}
+                  {/* Display the next month day */}
                 </div>
               ) : (
-                <div key={dayIndex} className={`${styles.dayCellMonth} ${styles.greyedOut}`}>
-                  {day <= 0 ? <span>{new Date(currentYear, currentMonth, 0).getDate() + day}</span> : null}
+                <div
+                  key={dayIndex}
+                  className={`${styles.dayCellMonth} ${styles.greyedOut}`}
+                >
+                  {day <= 0 ? (
+                    <span>
+                      {new Date(currentYear, currentMonth, 0).getDate() + day}
+                    </span>
+                  ) : null}
                 </div>
               );
             })}
@@ -175,11 +224,24 @@ function Calendar() {
   return (
     <div className="content">
       <CalendarHeader />
-      <div className={styles.calendarContainer}>
-        <CalendarDaysHeader />
-        <div className={styles.timeAndDays}>
-          {activeTab === "Tydzień" && <TimeColumn />}
-          <CalendarDaysGrid />
+      <div>
+        {currentMonth !== today.getMonth() && (
+          <div
+            className={styles.resetDate}
+            onClick={() => {
+              setCurrentMonth(today.getMonth());
+              setCurrentYear(today.getFullYear());
+            }}
+          >
+            Wróć na bieżący miesiąc
+          </div>
+        )}
+        <div className={styles.calendarContainer}>
+          <CalendarDaysHeader />
+          <div className={styles.timeAndDays}>
+            {activeTab === "Tydzień" && <TimeColumn />}
+            <CalendarDaysGrid />
+          </div>
         </div>
       </div>
     </div>

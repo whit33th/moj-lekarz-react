@@ -166,6 +166,41 @@ function FirmManagement() {
       rating: 1,
       image: profil,
     },
+    {
+      name: "Daniel Novikov",
+      date: "06.02.2024",
+      text: "Ola lubi wszystkie przedmioty. Wie, że nauka jest ważna. Najmilej spędza czas na lekcjach o przyrodzie – Ola bardzo lubi zwierzęta. W klasie Oli mieszka chomik. Wszystkie dzieci dbają o niego. Przynoszą mu jedzenie i głaszczą. Ola nie ma własnego zwierzęcia, więc chomik to kolejny powód dla którego lubi chodzić do szkoły.",
+      rating: 1,
+      image: profil,
+    },
+    {
+      name: "Daniel Novikov",
+      date: "06.02.2024",
+      text: "Ola lubi wszystkie przedmioty. Wie, że nauka jest ważna. Najmilej spędza czas na lekcjach o przyrodzie – Ola bardzo lubi zwierzęta. W klasie Oli mieszka chomik. Wszystkie dzieci dbają o niego. Przynoszą mu jedzenie i głaszczą. Ola nie ma własnego zwierzęcia, więc chomik to kolejny powód dla którego lubi chodzić do szkoły.",
+      rating: 1,
+      image: profil,
+    },
+    {
+      name: "Daniel Novikov",
+      date: "06.02.2024",
+      text: "Ola lubi wszystkie przedmioty. Wie, że nauka jest ważna. Najmilej spędza czas na lekcjach o przyrodzie – Ola bardzo lubi zwierzęta. W klasie Oli mieszka chomik. Wszystkie dzieci dbają o niego. Przynoszą mu jedzenie i głaszczą. Ola nie ma własnego zwierzęcia, więc chomik to kolejny powód dla którego lubi chodzić do szkoły.",
+      rating: 1,
+      image: profil,
+    },
+    {
+      name: "Daniel Novikov",
+      date: "06.02.2024",
+      text: "Ola lubi wszystkie przedmioty. Wie, że nauka jest ważna. Najmilej spędza czas na lekcjach o przyrodzie – Ola bardzo lubi zwierzęta. W klasie Oli mieszka chomik. Wszystkie dzieci dbają o niego. Przynoszą mu jedzenie i głaszczą. Ola nie ma własnego zwierzęcia, więc chomik to kolejny powód dla którego lubi chodzić do szkoły.",
+      rating: 1,
+      image: profil,
+    },
+    {
+      name: "Daniel Novikov",
+      date: "06.02.2024",
+      text: "Ola lubi wszystkie przedmioty. Wie, że nauka jest ważna. Najmilej spędza czas na lekcjach o przyrodzie – Ola bardzo lubi zwierzęta. W klasie Oli mieszka chomik. Wszystkie dzieci dbają o niego. Przynoszą mu jedzenie i głaszczą. Ola nie ma własnego zwierzęcia, więc chomik to kolejny powód dla którego lubi chodzić do szkoły.",
+      rating: 1,
+      image: profil,
+    },
 	
   ];
 

@@ -6,6 +6,7 @@ const userItems = [
     name: "Victor Laplas",
     surname: "Laplas",
     birthDate: "28.11.2002",
+    date: "2024.01.15",
     postcode: "61-000",
     houseNumber: "10",
     flatNumber: "5",
@@ -15,11 +16,11 @@ const userItems = [
     phone: "+48 123 456 789",
     comments: [
       { name: "Doctor", type: "Follow-up required" },
-      { name: "Nurse", type: "Check medication" }
+      { name: "Nurse", type: "Check medication" },
     ],
     history: [
       { doctor: "Dr. Smith", name: "Visit for check-up", date: "2024-01-15" },
-      { doctor: "Dr. Jones", name: "Annual physical exam", date: "2023-11-12" }
+      { doctor: "Dr. Jones", name: "Annual physical exam", date: "2023-11-12" },
     ],
     id: 890127650,
     gender: "W",
@@ -27,7 +28,7 @@ const userItems = [
     status: "Inactive",
     passport: "FG332254",
     firmName: "PharmaCorp",
-    reports: 'Aktywność użytkowników'
+    reports: "Aktywność użytkowników",
   },
   {
     img: userAvatar,
@@ -40,13 +41,9 @@ const userItems = [
     lastMessage: "ahh",
     status: "Active",
     firmName: "MediHealth",
-    reports: 'Aktywność użytkowników',
-    comments: [
-      { name: "Dr. Smith", type: "Initial Consultation" },
-    ],
-    history: [
-      { doctor: "Dr. Brown", name: "Checkup", date: "2024-02-20" },
-    ],
+    reports: "Aktywność użytkowników",
+    comments: [{ name: "Dr. Smith", type: "Initial Consultation" }],
+    history: [{ doctor: "Dr. Brown", name: "Checkup", date: "2024-02-20" }],
     pesel: "12345678902",
     birthDate: "1985-02-02",
     postcode: "60-002",
@@ -55,7 +52,7 @@ const userItems = [
     address: "Another Address, City",
     height: "165 cm",
     weight: "60 kg",
-    phone: "+48123456780"
+    phone: "+48123456780",
   },
   {
     img: userAvatar,
@@ -66,7 +63,7 @@ const userItems = [
     gender: "M",
     lastMessage: "Bye",
     status: "Active",
-    firmName: "WellnessPharma" // Название фармацевтической компании
+    firmName: "WellnessPharma", // Название фармацевтической компании
   },
   {
     img: userAvatar,
@@ -77,7 +74,7 @@ const userItems = [
     gender: "W",
     lastMessage: "52",
     info: "bla-bla-blaa..",
-    firmName: "CureAll" // Название фармацевтической компании
+    firmName: "CureAll", // Название фармацевтической компании
   },
   {
     img: userAvatar,
@@ -87,7 +84,7 @@ const userItems = [
     id: 543765456,
     gender: "M",
     lastMessage: "Can u pls...",
-    firmName: "HealthFirst" // Название фармацевтической компании
+    firmName: "HealthFirst", // Название фармацевтической компании
   },
   {
     img: userAvatar,
@@ -98,7 +95,7 @@ const userItems = [
     gender: "W",
     lastMessage: "",
     info: "Lorem ipsum dolor sit amet, consectetur...",
-    firmName: "BioPharma" // Название фармацевтической компании
+    firmName: "BioPharma", // Название фармацевтической компании
   },
 ];
 

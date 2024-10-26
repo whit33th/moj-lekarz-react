@@ -11,9 +11,13 @@ function Table({
 }) {
   const [searchTerm, setSearchTerm] = useState("");
 
-  // Filter items based on search term
+  // Find the search field based on the `searchId` property
+  const searchColumn = columns.find((column) => column.header === "Search");
+  const searchField = searchColumn?.searchId || "name";
+
+  // Filter items based on the specified search field
   const filteredItems = data.filter((item) =>
-    item.name?.toLowerCase().includes(searchTerm.toLowerCase())
+    item[searchField]?.toString().toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
@@ -35,10 +39,8 @@ function Table({
                     />
                   </div>
                 ) : typeof column.header === "function" ? (
-                  // If the header is a function (React component), render it
                   column.header()
                 ) : (
-                  // Otherwise, render the header as text
                   column.header
                 )}
               </th>
@@ -55,7 +57,11 @@ function Table({
                       column.render(item) // Custom render function if provided
                     ) : column.dataKey === "img" && showImage ? (
                       item.img ? (
-                        <img className={styles.round} src={item.img} alt="Avatar" />
+                        <img
+                          className={styles.round}
+                          src={item.img}
+                          alt="Avatar"
+                        />
                       ) : null
                     ) : (
                       item[column.dataKey] || "—"

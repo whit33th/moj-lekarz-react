@@ -82,18 +82,20 @@ function Database() {
     id: item.id,
     gender: item.gender,
     firmName: item.firmName,
+    date: item.date
   }));
 
   const columns3 = [
     {
       header: "Search",
+      searchId: 'firmName',
       render: (item) => (
         <div className={styles.nameTd}>
           {item.img && (
             <img src={item.img} alt="Avatar" className={styles.round} />
           )}
           <div className={styles.userInfo}>
-             <p>{item.name || "-"}</p>
+             <p>{item.firmName || "-"}</p>
           </div>
         </div>
       ),
@@ -103,8 +105,8 @@ function Database() {
       dataKey: 'id',
     },
     {
-      header: "Nazwa firmy",
-      dataKey: 'firmName',
+      header: "Data rejstracji",
+      dataKey: 'date',
     },
     {
       render: (item) => (<NavLink to={`${location}/${item.id}`} className={styles.myCustomButton}>

@@ -22,6 +22,9 @@
 			width: 100% !important;
 			left: 0 !important;
 	}
+	.modal__content {
+		min-width: 200px !important;
+	}
 }
 
 /* Стили для активного модального окна */
@@ -32,7 +35,7 @@
 }
 
 .modal__content {
-	min-height: fit-content;
+	
 	max-height: 90dvh;
 	overflow-y: auto;
 	overflow-x: hidden;
@@ -40,8 +43,8 @@
 	gap: 40px;
 	background: white;
 	box-shadow: 0 0 40px 5px #3e36b01c;
-	min-width: fit-content;
-	width: 500px;
+	min-width: 500px;
+	width: fit-content;
 	padding: 45px;
 	z-index: 1;
 

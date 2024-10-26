@@ -1,27 +1,4 @@
 
-.userInfo {
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-} 
-.receptId{
-  background: #A6DEF7;
-    padding: 10px;
-    border-radius: 6px;
-    font-weight: bold;
-}
-.nameTd {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-.nameTd img{
-  width: 60px;
-}
-.round{
-  border-radius: 100px;
-    padding: 7px;
-} 
 .calendarNavbar {
   display: flex;
   justify-content: space-between;
@@ -42,22 +19,16 @@
   align-items: center;
   justify-content: center;
   height: 40px;
-  background: #A6DEF7;
+  background: #a6def7;
   border-radius: 20px;
 }
 
-
 .calendarNavbarButt img {
-  
   width: 12px;
-  margin: 9px 20px 9PX 0 ;
+  margin: 9px 20px 9px 0;
 }
 
-
-
-
 .calendarNavbarButt span {
-
   padding: 9px 20px;
   color: black;
   user-select: none;
@@ -66,116 +37,7 @@
 
 .calendarNavbarButt span.active {
   color: black;
-  background: #A6DEF7;
+  background: #a6def7;
   border-radius: 20px;
   transition: 0.3s;
-}
-
-.search {
-  display: flex;
-  flex-direction: row;
-  width: 85%;
-  box-shadow: 0 0 10px 5px #00000014;
-  padding: 10px 0;
-  border-radius: 20px;
-  border: none;
-}
-
-.search img, .chatSearch img {
-  margin: 0 10px 0 20px;
-  filter: invert(0.8);
-  padding: 0;
-  height: 20px;
-  width: 20px !important;
-}
-.search input {
-  width: 100%;
-  border: none;
-  border-radius: 100px;
-}
-
-.tableContainer table {
-  border: 1px solid #e5e5e5;
-  width: 100%;
-  border-spacing: 0;
-  border-collapse: separate;
-}
-
-.shadow {
-  box-shadow: 0 0 50px 5px #00000014;
-  transition: 0.3s;
-  border-radius: 20px;
-}
-
-.tableContainer tbody tr:nth-child(odd) > td {
-  background-color: #F3F3F3;
-}
-.nameTd {
-  display: flex;
-  align-items: center;
-}
-.nameTd span{
-  padding: 0 20px;
-}
-.tableContainer tbody td {
-  padding: 20px;
-}
-.tableContainer thead th {
-  padding: 20px;
-}
-.clientSearch form {
-  width: 70%;
-}
-
-.buttonAddTh{
-  display: grid; 
-  justify-content: center
-  
-}
-.buttDef {
-  width: 100%;
-  background: transparent;
-  border-radius: 100px;
-  height: 45px;
-  border: 1px solid black;
-  width: 100px;
-}
-.fillBlue {
-  background: #3E36B0 !important;
-  color: white !important;
-  border: none !important;
-}
-.round{
-  border-radius: 100px;
-  padding: 7px;
-}
-
-.tCenter{
-  text-align: center;
-}
-.lastVisitsNavbarButt{
-  min-height: 40px;
-  background: #A6DEF7;
-  border-radius: 20px;
-}
-.lastVisitsNavbarButt span {
-  padding: 0 15px;
-}
-.lastVisitsNavbarButt img {
-  width: 16px;
-  margin: 9px 0 9PX 20px;
-}
-.itemsCenter {
-  display: flex;
-  align-items: center;
-}
-.down {
-  width: 12px !important;
-  margin: 9px 20px 9PX 0 !important;
-}
-.lastVisitsTime span {
-    background: #A6DEF7;
-    padding: 10px;
-    border-radius: 6px;
-    font-weight: bold;
 }

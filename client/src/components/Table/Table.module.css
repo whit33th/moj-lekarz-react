@@ -87,6 +87,7 @@
 .nameTd {
   display: flex;
   align-items: center;
+  gap: 20px;
 }
 
 .tableContainer tbody td {
@@ -97,13 +98,13 @@
   padding: 20px;
 }
 
-.round {
-  border-radius: 100px;
-  padding: 7px;
-}
 
-.nameTd span {
-  padding: 0 20px;
+
+.receptId {
+  background: #a6def7;
+  padding: 10px;
+  border-radius: 6px;
+  font-weight: bold;
 }
 
 .tCenter {
@@ -137,7 +138,9 @@
   font-weight: bold;
 }
 
-.nameTd img {
+.round {
+  border-radius: 100px;
+  padding: 7px;
   width: 60px;
 }
 

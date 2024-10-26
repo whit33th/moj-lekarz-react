@@ -1,4 +1,5 @@
 import styles from "./Workers.module.css";
+import tablecss from "../../../components/Table/Table.module.css";
 
 import searchIco from "../../../assets/img/search.png";
 import down from "../../../assets/img/down.png";
@@ -7,6 +8,8 @@ import { userItems } from "../../../helpers/userItemList";
 import { useState } from "react";
 import Dropdown from "../../../components/Dropdown/Dropdown";
 import WorkerItem from "../../../components/FirmPage/map/WorkerItem";
+import Table from "./../../../components/Table/Table";
+import MoreInfoButtPatient from "../../../components/Buttons/MoreInfoButt/MoreInfoButtFirm";
 
 function Workers() {
   const [activeTab, setActiveTab] = useState("Lista pracowników");
@@ -15,6 +18,39 @@ function Workers() {
     setActiveTab(tab);
     console.log("date");
   }
+
+  const tableData = userItems.map((item) => ({
+    img: item.img,
+    name: item.name,
+    id: item.id,
+    gender: item.gender,
+  }));
+
+  const columns = [
+    {
+      header: "Search",
+      render: (item) => (
+        <div className={tablecss.nameTd}>
+          {item.img && (
+            <img src={item.img} alt="Avatar" className={tablecss.round} />
+          )}
+          <span>{item.name || "-"}</span>
+        </div>
+      ),
+    },
+    { header: "ID", dataKey: "id" },
+    { header: "Płeć", dataKey: "gender" },
+    {
+      header: "Akcja",
+      render: (item) => (
+        <MoreInfoButtPatient
+          id={item.id}
+          onClick={() => console.log(item.id)}
+          label="More Info"
+        />
+      ),
+    },
+  ];
 
   return (
     <div className="content">
@@ -61,54 +97,12 @@ function Workers() {
           <img src={filters} alt="" />
         </Dropdown>
       </div>
-
-      <div className={styles.tableContainer}>
-        <table className={styles.shadow}>
-          <thead>
-            <tr>
-              <th>
-                <div className={styles.top}>
-                  <div className={styles.clientSearch}>
-                    <form className={styles.search} action="" method="post">
-                      <img src={searchIco} alt="search" />
-                      <input
-                        className={styles.searchInput}
-                        placeholder="Szukaj pacjenta..."
-                        type="text"
-                        name="search"
-                        id="client-search"
-                      />
-                    </form>
-                  </div>
-                </div>
-              </th>
-              <th>Numer ID</th>
-              <th>Płeć</th>
-              <th>
-                <button
-                  className={`${styles.buttDef}  
-								${styles.addButton}
-								${styles.fillBlue}`}
-                  id="add-prescriptions"
-                >
-                  Dodaj
-                </button>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {userItems.map((userItem, index) => (
-              <WorkerItem
-                key={index}
-                img={userItem.img}
-                name={userItem.name}
-                id={userItem.id}
-                gender={userItem.gender}
-              />
-            ))}
-          </tbody>
-        </table>
-      </div>
+      <Table
+        columns={columns}
+        data={tableData}
+        showImage={true}
+        together={true}
+      />
     </div>
   );
 }

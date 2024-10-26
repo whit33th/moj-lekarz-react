@@ -1,13 +1,9 @@
-import React from "react";
 import styles from "./Recipes.module.css";
-import searchIco from "../../../assets/img/search.png";
+import tablecss from "../../../components/Table/Table.module.css";
 import { userItems } from "../../../helpers/userItemList";
-import RecipeItem from "../../../components/DoctorPage/RecipesList/RecipeItem";
-
 import useStore from "../../../data/store";
 import AddRecipesModal from "../../../components/Modals/AddRecipesModal/AddRecipesModal";
 import Table from "../../../components/Table/Table";
-import BlueBtn from "../../../components/Buttons/BlueBtn/BlueBtn";
 
 function PatientList() {
   const { setModalActive, setModalContent } = useStore();
@@ -24,13 +20,15 @@ function PatientList() {
     {
       header: "Search",
       render: (item) => (
-        <div className={styles.nameTd}>
+        <div className={tablecss.nameTd}>
           {item.img && (
-            <img src={item.img} alt="Avatar" className={styles.round} />
+            <img src={item.img} alt="Avatar" className={tablecss.round} />
           )}
           <div className={styles.userInfo}>
-             <p>{item.name || "-"}</p>
-             <p>{item.birthday || "-"} - {item.birthday || "-"}</p>
+            <p>{item.name || "-"}</p>
+            <p>
+              {item.birthday || "-"} - {item.birthday || "-"}
+            </p>
           </div>
         </div>
       ),
@@ -49,7 +47,7 @@ function PatientList() {
       render: () => (
         <div>
           <div>
-            <span className={styles.receptId}>3223</span>
+            <span className={tablecss.receptId}>3223</span>
           </div>
         </div>
       ),
@@ -76,8 +74,6 @@ function PatientList() {
         showImage={true}
         together={true}
       />
-
-      
     </div>
   );
 }

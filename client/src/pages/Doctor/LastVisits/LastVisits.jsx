@@ -1,11 +1,10 @@
-import down from "../../../assets/img/down.png";
-import search from "../../../assets/img/search.png";
+import tablecss from "../../../components/Table/Table.module.css";
 import calendar from "../../../assets/img/calendar.png";
 import styles from "./LastVisits.module.css";
 import { userItems } from "../../../helpers/userItemList";
-import PatientLastVisit from "../../../components/DoctorPage/PatientList/PatientLastVisit";
 import Dropdown from "../../../components/Dropdown/Dropdown";
 import Table from '../../../components/Table/Table'
+
 
 
 function LastVisits() {
@@ -22,9 +21,9 @@ function LastVisits() {
     {
       header: "Search",
       render: (item) => (
-        <div className={styles.nameTd}>
+        <div className={tablecss.nameTd}>
           {item.img && (
-            <img src={item.img} alt="Avatar" className={styles.round} />
+            <img src={item.img} alt="Avatar" className={tablecss.round} />
           )}
           <div className={styles.userInfo}>
              <p>{item.name || "-"}</p>
@@ -38,7 +37,7 @@ function LastVisits() {
     {header: 'Czas', render: () => (
       <div>
         <div>
-          <span className={styles.receptId}>10:30</span>
+          <span className={tablecss.receptId}>10:30</span>
         </div>
       </div>
     ),}

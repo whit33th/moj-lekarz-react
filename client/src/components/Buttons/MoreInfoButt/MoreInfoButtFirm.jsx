@@ -1,22 +1,19 @@
-/* eslint-disable no-undef */
-
-import React, { useState } from "react";
-import PropTypes from "prop-types";
-import styles from "./WorkerItem.module.css";
+import { useState } from "react";
 import moreInfo from "../../../assets/img/more-info.png";
-import { NavLink } from "react-router-dom";
+import styles from "./MoreInfoButt.module.css";
 import useStore from "../../../data/store";
-import profil from "../../../assets/img/profil.webp";
-import BlueBtn from "./../../Buttons/BlueBtn/BlueBtn";
-import BlueBorderBtn from "./../../Buttons/BlueBorderBtn/BlueBorderBtn";
+import BlueBorderBtn from "../BlueBorderBtn/BlueBorderBtn";
+import BlueBtn from "./../BlueBtn/BlueBtn";
 import Dropdown from "./../../Dropdown/Dropdown";
-import Choice from "../../Modal/Choice";
+import profil from "../../../assets/img/profil.webp";
+import Choice from "./../../Modal/Choice";
 
-function PatientItem({ img, name, id, gender }) {
-  // State to manage the modal visibility
+const MoreInfoButtPatient = ({ id }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { setModalActive, setModalContent } = useStore();
-  
+
+  const toggleModal = () => setIsModalOpen(!isModalOpen);
+
   const modalContentInfo = (
     <div className={styles.row}>
       <div className={styles.generalInfo}>
@@ -35,7 +32,7 @@ function PatientItem({ img, name, id, gender }) {
             <span>Sala:</span> <span>203</span>
           </div>
         </div>
-        <BlueBorderBtn cb={closeMainModal}>Anuluj</BlueBorderBtn>
+        <BlueBorderBtn cb={() => setModalActive(false)}>Anuluj</BlueBorderBtn>
       </div>
 
       <div className={styles.employeeInfo}>
@@ -45,9 +42,7 @@ function PatientItem({ img, name, id, gender }) {
           <div className={styles.topInfo}>
             <img src={profil} className={styles.employeeImage} alt="Employee" />
             <div>
-              <p style={{ color: "#3E36B0" }}>
-                Brat Solitko
-              </p>
+              <p style={{ color: "#3E36B0" }}>Brat Solitko</p>
               <div>
                 <p className={styles.phone}>
                   <span style={{ color: "#3E36B0" }}>Tel:</span>
@@ -84,7 +79,9 @@ function PatientItem({ img, name, id, gender }) {
         </div>
         <div className={styles.actions}>
           <BlueBtn>Edytuj</BlueBtn>
-          <BlueBorderBtn cb={openMainModalDeleteAccount}>Usuń</BlueBorderBtn>
+          <BlueBorderBtn cb={() => setModalContent(modalContentDeleteAccount)}>
+            Usuń
+          </BlueBorderBtn>
         </div>
       </div>
     </div>
@@ -103,12 +100,11 @@ function PatientItem({ img, name, id, gender }) {
         <Choice
           choice1={"Anuluj"}
           choice2={"Usuń"}
-          cb1={openMainModalInfo}
+          cb1={() => modalContentInfo()}
         ></Choice>
       </div>
     </>
   );
-
   const modalContentMessage = (
     <>
       <h1>Nowa Wiadomość</h1>
@@ -117,87 +113,52 @@ function PatientItem({ img, name, id, gender }) {
         placeholder="Wpisz tekst"
       ></textarea>
       <div className={styles.flex}>
-        <Choice choice1={"Anuluj"} choice2={"Wyślij"} cb1={closeMainModal}></Choice>
+        <Choice
+          choice1={"Anuluj"}
+          choice2={"Wyślij"}
+          cb1={() => (setModalActive(false))}
+        ></Choice>
       </div>
     </>
   );
-
-  function openMainModalInfo() {
+  const openInfoModal = () => {
     setModalActive(true);
     setModalContent(modalContentInfo);
-  }
-  function openMainModalDeleteAccount() {
-    setModalContent(modalContentDeleteAccount);
-  }
-
-  function openMainModalMessage() {
+  };
+  const openNotificationModal = () => {
     setModalActive(true);
     setModalContent(modalContentMessage);
-  }
-
-  function closeMainModal() {
-    setModalActive(false);
-  }
-
-  const toggleModal = () => {
-    setIsModalOpen(!isModalOpen);
   };
 
-  return (
-    <tr>
-      <td className={styles.nameTd}>
-        <img className={styles.round} src={img} alt="Profile" />
-        <span>{name}</span>
-      </td>
-      <td className={styles.tCenter}>{id}</td>
-      <td className={styles.tCenter}>{gender}</td>
-      <td className={styles.tCenter}>
-        <div
-          className={styles.moreInfoButt}
-          style={{
-            position: "relative",
-            display: "flex",
-            justifyContent: "center",
-          }}
-        >
-          <img
-            className={styles.moreInfo}
-            src={moreInfo}
-            alt="More Info"
-            onClick={toggleModal} // Toggle modal on click
-            style={{ cursor: "pointer" }}
-          />
+  const patientId = id || "unknown"; // Handle undefined id here
+  console.log("Patient ID in MoreInfoButt:", patientId); // Add this log for debugging
 
-          {isModalOpen && (
-            <div className={styles.moreInfoModal}>
-              <button
-                onClick={openMainModalInfo}
-                className={styles.hoverOpacity}
-              >
-                <p>Informacja</p>
-              </button>
+  return (  
+    <div
+      className={styles.moreInfoButt}
+      onClick={toggleModal}
+      style={{ cursor: "pointer" }}
+    >
+      <img src={moreInfo} alt="More Info" />
+      {isModalOpen && (
+        <div className={styles.moreInfoModal}>
+          <button
+            onClick={openInfoModal}
+            className={styles.hoverOpacity}
+          >
+            <p style={{ fontWeight: "500" }}>Informacja</p>
+          </button>
 
-              <button
-                className={styles.hoverOpacity}
-                href="pacjent-info.php"
-                to="patient-info"
-                onClick={openMainModalMessage}
-              >
-                <p>Wiadomość</p>
-              </button>
-            </div>
-          )}
+          <button
+            onClick={openNotificationModal}
+            className={styles.hoverOpacity}
+          >
+            <p style={{ fontWeight: "500" }}>Wiadomość</p>
+          </button>
         </div>
-      </td>
-    </tr>
+      )}
+    </div>
   );
-}
-
-PatientItem.propTypes = {
-  name: PropTypes.string.isRequired,
-  img: PropTypes.string.isRequired,
-  id: PropTypes.number.isRequired,
-  gender: PropTypes.string.isRequired,
 };
 
-export default PatientItem;
+export default MoreInfoButtPatient;

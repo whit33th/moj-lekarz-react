@@ -1,9 +1,8 @@
-import down from "../../../assets/img/down.png";
-import search from "../../../assets/img/search.png";
+
 import follow from "../../../assets/img/follow.png";
 import styles from "./TodaysVisits.module.css";
+import tablecss from "../../../components/Table/Table.module.css";
 import { userItems } from "../../../helpers/userItemList";
-import PatientLastVisit from "../../../components/DoctorPage/PatientList/PatientLastVisit";
 import { NavLink } from "react-router-dom";
 import Dropdown from "../../../components/Dropdown/Dropdown";
 import Table from '../../../components/Table/Table'
@@ -13,7 +12,7 @@ function TodaysVisits() {
     img: item.img,
     name: item.name,
     id: item.id,
-    
+
     birthday: item.birthDate,
   }));
 
@@ -22,11 +21,11 @@ function TodaysVisits() {
     {
       header: "Search",
       render: (item) => (
-        <div className={styles.nameTd}>
+        <div className={tablecss.nameTd}>
           {item.img && (
-            <img src={item.img} alt="Avatar" className={styles.round} />
+            <img src={item.img} alt="Avatar" className={tablecss.round} />
           )}
-          <div className={styles.userInfo}>
+          <div className={tablecss.userInfo}>
              <p>{item.name || "-"}</p>
              
           </div>
@@ -38,7 +37,7 @@ function TodaysVisits() {
     {header: 'Czas', render: () => (
       <div>
         <div>
-          <span className={styles.receptId}>10:30</span>
+          <span className={tablecss.receptId}>10:30</span>
         </div>
       </div>
     ),}
