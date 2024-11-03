@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Sidebar from "./components/Sidebar/Sidebar";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import DoctorMain from "./pages/Doctor/Main/DoctorMain";
@@ -22,58 +22,72 @@ import AuthPage from "./pages/Auth/AuthPage";
 import Database from "./pages/Admin/Database/Database";
 import FirmPage from "./pages/Admin/Database/FirmPage/FirmPage";
 import Reports from "./pages/Admin/Reports/Reports";
-import { Toaster } from 'sonner';
-import ReviewPage from './pages/Admin/Reviews/ReviewPage'
+import { Toaster } from "sonner";
+import ReviewPage from "./pages/Admin/Reviews/ReviewPage";
+import GraphManagement from "./pages/Firm/GraphManagement/GraphManagement";
+import SelectedGraph from "./pages/Firm/GraphManagement/SelectedGraph";
+import { pageConfig } from "./config/config";
+import WorkersInfo from './pages/Firm/Workers/WorkersInfo'
 
 function App() {
-  
-  const [role, setRole] = useState("doctor"); // Возможные роли: 'doctor', 'admin', 'firm'. В реальном проекте это будет приходить с сервера
+  const [role, setRole] = useState("firm"); // Возможные роли: 'doctor', 'admin', 'firm'. В реальном проекте это будет приходить с сервера
 
   const [isAuth, setIsAuth] = useState(true); // ЧИсто для понятия что пользователь авторизован. В реальном проекте это будет приходить с сервера.
   //можешь вписать treu и посмотреть как выглядит страницы
+  // Initialize Lenis
+  
+
+  // Listen for the scroll event and log the event data
+
+
 
   const doctorRoutes = (
     <Routes>
-      <Route path="/" element={<DoctorMain />} />
-      <Route path="/calendar" element={<Calendar />} />
-      <Route path="/list" element={<PatientList />} />
-      <Route path="/patient-info/:id" element={<PatientInfo />} />
-      <Route path="/recipes" element={<Recipes />} />
-      <Route path="/notifications" element={<Notifications />} />
-      <Route path="/chat" element={<Notifications />} />
-      <Route path="/settings" element={<Settings />} />
-      <Route path="/last-visits" element={<LastVisits />} />
-      <Route path="/todays-visits" element={<TodaysVisits />} />
-      <Route path="/profile" element={<Profil />} />
-      
+      <Route path={pageConfig.doctor.home} element={<DoctorMain />} />
+      <Route path={pageConfig.doctor.calendar} element={<Calendar />} />
+      <Route path={pageConfig.doctor.list} element={<PatientList />} />
+      <Route path={pageConfig.doctor.patientInfo} element={<PatientInfo />} />
+      <Route path={pageConfig.doctor.recipes} element={<Recipes />} />
+      <Route
+        path={pageConfig.doctor.notifications}
+        element={<Notifications />}
+      />
+      <Route path={pageConfig.doctor.chat} element={<Notifications />} />
+      <Route path={pageConfig.doctor.settings} element={<Settings />} />
+      <Route path={pageConfig.doctor.lastVisits} element={<LastVisits />} />
+      <Route path={pageConfig.doctor.todaysVisits} element={<TodaysVisits />} />
+      <Route path={pageConfig.doctor.profile} element={<Profil />} />
     </Routes>
   );
 
-  // Маршруты для роли "admin"
+  // Admin routes
   const adminRoutes = (
     <Routes>
-      <Route path="/" element={<AdminMain />} />
-      <Route path="/database" element={<Database />} />
-      <Route path="/database/:id" element={<FirmPage />} />
-      <Route path="/reports" element={<Reports />} />
-      <Route path="/profile" element={<Profil />} />
-      <Route path="/settings" element={<Settings />} />
-      <Route path="/reviews" element={<ReviewPage />} />
-      <Route path="/chat" element={<Notifications />} />
+      <Route path={pageConfig.admin.home} element={<AdminMain />} />
+      <Route path={pageConfig.admin.database} element={<Database />} />
+      <Route path={pageConfig.admin.databaseId} element={<FirmPage />} />
+      <Route path={pageConfig.admin.reports} element={<Reports />} />
+      <Route path={pageConfig.admin.profile} element={<Profil />} />
+      <Route path={pageConfig.admin.settings} element={<Settings />} />
+      <Route path={pageConfig.admin.reviews} element={<ReviewPage />} />
+      <Route path={pageConfig.admin.chat} element={<Notifications />} />
     </Routes>
   );
 
-  // Маршруты для роли "firm"
+  // Firm routes
   const firmRoutes = (
     <Routes>
-      <Route path="/" element={<FirmMain />} />
-      <Route path="/workers" element={<Workers />} />
-      <Route path="/management" element={<FirmManagement />} />
-      <Route path="/notifications" element={<Notifications />} />
-      <Route path="/chat" element={<Notifications />} />
-      <Route path="/settings" element={<Settings />} />
-      <Route path="/profile" element={<Profil />} />
-      <Route path="/calendar" element={<Calendar />} />
+      <Route path={pageConfig.firm.home} element={<FirmMain />} />
+      <Route path={pageConfig.firm.calendar} element={<Calendar />} />
+      <Route path={pageConfig.firm.graph} element={<GraphManagement />} />
+      <Route path={pageConfig.firm.graphManage} element={<SelectedGraph />} />
+      <Route path={pageConfig.firm.workers} element={<Workers />} />
+      <Route path={pageConfig.firm.management} element={<FirmManagement />} />
+      <Route path={pageConfig.firm.notifications} element={<Notifications />} />
+      <Route path={pageConfig.firm.chat} element={<Notifications />} />
+      <Route path={pageConfig.firm.settings} element={<Settings />} />
+      <Route path={pageConfig.firm.profile} element={<Profil />} />
+      <Route path="/workers/id" element={<WorkersInfo />} />
     </Routes>
   );
 
@@ -92,9 +106,8 @@ function App() {
             {role === "doctor" && doctorRoutes}
             {role === "admin" && adminRoutes}
             {role === "firm" && firmRoutes}
-            
-            
-            <Toaster duration={3500} richColors   />
+
+            <Toaster duration={3500} richColors />
             <Modal />
           </div>
         </>

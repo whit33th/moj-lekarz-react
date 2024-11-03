@@ -138,8 +138,18 @@
   display: flex;
   align-items: center;
 }
-
-
+.plus{
+  width: 24px;
+  height: 24px;
+transition: 0.3s;
+opacity: 1;
+}
+.plus:hover{
+opacity: 0.8;
+}
+.plus:active{
+scale: 0.9;
+}
 
 .tableContainer tbody td {
   padding: 20px;
@@ -152,3 +162,5 @@
 .clientSearch form {
   width: 70%;
 }
+
+

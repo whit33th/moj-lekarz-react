@@ -15,11 +15,11 @@ function Sidebar({ role }) {
 
   const modalContent = (
     <div>
-      <h1>Czy na pewno chcesz wylogować się z konta?</h1>
+      <h1 className={styles.title}>Czy na pewno chcesz <br/> wylogować się z konta?</h1>
 
       <div className={styles.choice}>
         <BlueBorderBtn cb={() => setModalActive(false)}>Nie</BlueBorderBtn>
-        <BlueBtn>Tak</BlueBtn>
+        <BlueBtn >Tak</BlueBtn>
       </div>
     </div>
   );

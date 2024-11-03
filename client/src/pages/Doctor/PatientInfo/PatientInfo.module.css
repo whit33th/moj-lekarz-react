@@ -61,12 +61,12 @@
 }
 
 .settingNavbarButt button {
-	width: 200px;
+  width: 200px;
   color: #3e36b0;
   justify-content: center;
   padding: 5px 10px;
   border-radius: 1000px;
-	border: none;
+  border: none;
 }
 
 .settingNavbarButt button.active {
@@ -97,3 +97,30 @@
   display: flex;
   justify-content: center !important;
 }
+
+.btnPlus {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+}
+.btnPlus img {
+  width: 20px;
+  height: 20px;
+}
+
+.allergy {
+  display: flex;
+  width: 100%;
+  gap: 20px;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.allergy > div {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+

@@ -1,22 +1,60 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import moreInfo from "../../../assets/img/more-info.png";
 import { NavLink } from "react-router-dom";
 import styles from "./MoreInfoButt.module.css";
 import useStore from "../../../data/store";
 import BlueBorderBtn from "../BlueBorderBtn/BlueBorderBtn";
-import { toast } from "sonner";
+import cross from "../../../assets/img/cross.png"
+import back from "../../../assets/img/back.png";
 
 const MoreInfoButtPatient = ({ id }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const { setModalActive, setModalContent } = useStore();
+  const {
+    activeMoreInfoButtId,
+    setActiveMoreInfoButtId,
+    resetActiveMoreInfoButtId,
+    setModalActive,
+    setModalContent,
+  } = useStore();
+
   const fileInputRef = useRef(null);
+  const modalRef = useRef(null);
 
-  // Toggle the modal for More Info dropdown
-  const toggleModal = () => setIsModalOpen(!isModalOpen);
+  const isModalOpen = activeMoreInfoButtId === id;
 
-  // Function to handle file upload
-  const handleFileChange = (e) => {
-    const promise = () => new Promise((resolve) => setTimeout(resolve, 2000)); // Simulate a file upload process
+  const openModal = () => setActiveMoreInfoButtId(id);
+  const closeModal = () => resetActiveMoreInfoButtId();
+
+  const patientId = id || "unknown";
+  const openDocumentModal = () => {
+    setModalActive(true);
+    setModalContent(modalContent);
+  };
+  // Закрытие модалки при клике вне её
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        modalRef.current &&
+        !modalRef.current.contains(event.target) &&
+        !event.target.closest(`.${styles.moreInfoButt}`)
+      ) {
+        closeModal();
+      }
+    };
+
+    if (isModalOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isModalOpen]);
+
+  // Остальной функционал остается без изменений
+  const handleFileChange = async (e) => {
+    const promise = () => new Promise((resolve) => setTimeout(resolve, 2000));
     const file = e.target.files[0];
 
     if (file && file.type === "application/pdf") {
@@ -26,20 +64,20 @@ const MoreInfoButtPatient = ({ id }) => {
         error: "Wystąpił błąd podczas przesyłania pliku.",
       });
     } else {
+      const { toast } = await import("sonner");
       toast.error("Proszę przesłać plik PDF.");
     }
   };
 
-  // Function to trigger the hidden file input when drop area is clicked
   const handleFileClick = () => {
-    fileInputRef.current.click(); // Open file picker dialog
+    fileInputRef.current.click();
   };
 
-  // Function to download PDF (replace with actual logic)
-  const handleDownloadPDF = (fileName) => {
+  const handleDownloadPDF = async (fileName) => {
+    const { toast } = await import("sonner");
     const promise = () =>
       new Promise((resolve, reject) => {
-        setTimeout(() => (Math.random() < 0.7 ? resolve() : reject()), 1000); // Simulating a download action
+        setTimeout(() => (Math.random() < 0.7 ? resolve() : reject()), 1000);
       });
 
     toast.promise(promise, {
@@ -49,7 +87,6 @@ const MoreInfoButtPatient = ({ id }) => {
     });
   };
 
-  // Files for the document modal
   const files = [
     { name: "Dokument 1.pdf", date: "12.08.2023" },
     { name: "Dokument 2.pdf", date: "12.08.2023" },
@@ -58,11 +95,22 @@ const MoreInfoButtPatient = ({ id }) => {
     { name: "Dokument 5.pdf", date: "12.08.2023" },
   ];
 
-  // Modal content for displaying files
   const uploadFile = (
     <div className={styles.fileContainer}>
+      <img
+        onClick={() => setModalActive(false)}
+        className={styles.cross}
+        src={cross}
+        alt="close"
+      />
+      <img
+        onClick={() => setModalContent(modalContent)}
+        className={styles.back}
+        src={back}
+        alt="back"
+      />
       <div className={styles.header}>
-        <h2 style={{ textAlign: "center", width: "100%" }}>Dodaj plik</h2>
+        <h2 style={{margin: '0', textAlign: "center", width: "100%" }}>Dodaj plik</h2>
       </div>
       <div className={styles.dropFile} onClick={handleFileClick}>
         <i className="bx bx-cloud-upload"></i>
@@ -80,6 +128,12 @@ const MoreInfoButtPatient = ({ id }) => {
 
   const modalContent = (
     <div className={styles.fileContainer}>
+      <img
+        onClick={() => setModalActive(false)}
+        className={styles.cross}
+        src={cross}
+        alt="back"
+      />
       <div className={styles.header}>
         <h2>Wszystkie pliki</h2>
         <button
@@ -106,28 +160,18 @@ const MoreInfoButtPatient = ({ id }) => {
           </li>
         ))}
       </ul>
-
-      <BlueBorderBtn cb={() => setModalActive(false)}>Back</BlueBorderBtn>
     </div>
   );
-
-  const openDocumentModal = () => {
-    setModalActive(true);
-    setModalContent(modalContent);
-  };
-
-  const patientId = id || "unknown"; // Handle undefined id here
-  console.log("Patient ID in MoreInfoButt:", patientId); // Add this log for debugging
 
   return (
     <div
       className={styles.moreInfoButt}
-      onClick={toggleModal}
+      onClick={() => (isModalOpen ? closeModal() : openModal())}
       style={{ cursor: "pointer" }}
     >
       <img src={moreInfo} alt="More Info" />
       {isModalOpen && (
-        <div className={styles.moreInfoModal}>
+        <div ref={modalRef} className={styles.moreInfoModal}>
           <NavLink
             to={`/patient-info/${patientId}`}
             className={styles.hoverOpacity}

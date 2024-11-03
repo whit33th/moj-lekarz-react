@@ -20,4 +20,12 @@
   border-radius: 100px;
   background: transparent;
   border: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+.buttDef img{
+  width: 20px;
+  height: 20px;
 }

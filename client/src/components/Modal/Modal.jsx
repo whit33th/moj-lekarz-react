@@ -4,13 +4,21 @@ import useStore from "../../data/store";
 import { useLocation } from "react-router-dom";
 
 function Modal({ children }) {
-  const { isModalActive, setModalActive, modalContent } = useStore();
+  const { isModalActive, setModalActive, modalContent, clearModalContent } =
+    useStore();
   const currentLocation = useLocation();
 
   useEffect(() => {
     setModalActive(false);
-  }, [currentLocation]);
+  }, [currentLocation, setModalActive]);
 
+  useEffect(() => {
+    if (isModalActive === false) {
+      setTimeout(() => {
+        clearModalContent();
+      }, 200);
+    }
+  }, [clearModalContent, isModalActive]);
   function handleActiveStatus() {
     setModalActive(false);
   }

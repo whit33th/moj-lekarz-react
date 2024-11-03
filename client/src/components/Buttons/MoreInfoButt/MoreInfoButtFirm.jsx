@@ -4,16 +4,27 @@ import styles from "./MoreInfoButt.module.css";
 import useStore from "../../../data/store";
 import BlueBorderBtn from "../BlueBorderBtn/BlueBorderBtn";
 import BlueBtn from "./../BlueBtn/BlueBtn";
-import Dropdown from "./../../Dropdown/Dropdown";
 import profil from "../../../assets/img/profil.webp";
 import Choice from "./../../Modal/Choice";
+import DropdownStas from "./../../Dropdown/DropdownStas";
+import RedBorderBtn from "./../RedBorderBtn/RedBorderBtn";
+import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
+import clip from "../../../assets/img/clip.png";
 
 const MoreInfoButtPatient = ({ id }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { setModalActive, setModalContent } = useStore();
+  const navigate = useNavigate();
 
   const toggleModal = () => setIsModalOpen(!isModalOpen);
-
+  const option = [
+    "Usunięcie z powodu nieobecności",
+    "Usunięcie z powodu rozwiązania umowy",
+    "Usunięcie z powodu zaniedbania",
+    "Kalendarz nullam non iaculis massa",
+    "Nunc kalendarz aliquam metus",
+  ];
   const modalContentInfo = (
     <div className={styles.row}>
       <div className={styles.generalInfo}>
@@ -32,13 +43,14 @@ const MoreInfoButtPatient = ({ id }) => {
             <span>Sala:</span> <span>203</span>
           </div>
         </div>
-        <BlueBorderBtn cb={() => setModalActive(false)}>Anuluj</BlueBorderBtn>
+        <BlueBorderBtn cb={() => setModalContent(modalContentDeleteAccount)}>
+          Usuń
+        </BlueBorderBtn>
       </div>
 
       <div className={styles.employeeInfo}>
-        <h2>Informacje pracownika</h2>
-
         <div className={styles.employeeDetails}>
+          <h2>Informacje pracownika</h2>
           <div className={styles.topInfo}>
             <img src={profil} className={styles.employeeImage} alt="Employee" />
             <div>
@@ -78,10 +90,7 @@ const MoreInfoButtPatient = ({ id }) => {
           </div>
         </div>
         <div className={styles.actions}>
-          <BlueBtn>Edytuj</BlueBtn>
-          <BlueBorderBtn cb={() => setModalContent(modalContentDeleteAccount)}>
-            Usuń
-          </BlueBorderBtn>
+          <BlueBtn cb={() => navigate(`/workers/id`)}>Edytuj</BlueBtn>
         </div>
       </div>
     </div>
@@ -95,12 +104,13 @@ const MoreInfoButtPatient = ({ id }) => {
           gap: "20px",
         }}
       >
-        <Dropdown></Dropdown>
-        <Dropdown></Dropdown>
+        <DropdownStas placeholder={"Jakub Witold Jagoda"} />
+        <DropdownStas placeholder={"Wpisz tekst"} options={option} />
         <Choice
           choice1={"Anuluj"}
           choice2={"Usuń"}
-          cb1={() => modalContentInfo()}
+          cb1={() => setModalContent(modalContentInfo)}
+          cb2={() => setModalContent(acceptDeleting)}
         ></Choice>
       </div>
     </>
@@ -108,18 +118,46 @@ const MoreInfoButtPatient = ({ id }) => {
   const modalContentMessage = (
     <>
       <h1>Nowa Wiadomość</h1>
-      <textarea
-        className={styles.textarea}
-        placeholder="Wpisz tekst"
-      ></textarea>
+
+      <div className={styles.textareaDiv}>
+        <textarea className={styles.textarea} placeholder="Wpisz tekst" />
+        <img className={styles.clip} src={clip} alt="" />
+      </div>
+
       <div className={styles.flex}>
         <Choice
           choice1={"Anuluj"}
           choice2={"Wyślij"}
-          cb1={() => (setModalActive(false))}
+          cb2={() => toast.success("Wiadomość została wysłana.")}
+          cb1={() => setModalActive(false)}
         ></Choice>
       </div>
     </>
+  );
+
+  function operationStatus() {
+    const status = Math.random() < 0.5;
+
+    status === true
+      ? toast.success("Profil został usunięty :(")
+      : toast.error("Error");
+    
+    setModalActive(false)
+  }
+
+  //*FIX добавить асинс подгрузки елементов модал
+  const acceptDeleting = (
+    <div>
+      <h1 style={{ textAlign: "center" }}>
+        Czy na pewno chcesz <br /> Usunąć konto?
+      </h1>
+      <div className={styles.actions}>
+        <BlueBorderBtn cb={() => setModalContent(modalContentDeleteAccount)}>
+          Nie
+        </BlueBorderBtn>
+        <RedBorderBtn cb={operationStatus}>Tak</RedBorderBtn>
+      </div>
+    </div>
   );
   const openInfoModal = () => {
     setModalActive(true);
@@ -133,7 +171,7 @@ const MoreInfoButtPatient = ({ id }) => {
   const patientId = id || "unknown"; // Handle undefined id here
   console.log("Patient ID in MoreInfoButt:", patientId); // Add this log for debugging
 
-  return (  
+  return (
     <div
       className={styles.moreInfoButt}
       onClick={toggleModal}
@@ -142,10 +180,7 @@ const MoreInfoButtPatient = ({ id }) => {
       <img src={moreInfo} alt="More Info" />
       {isModalOpen && (
         <div className={styles.moreInfoModal}>
-          <button
-            onClick={openInfoModal}
-            className={styles.hoverOpacity}
-          >
+          <button onClick={openInfoModal} className={styles.hoverOpacity}>
             <p style={{ fontWeight: "500" }}>Informacja</p>
           </button>
 

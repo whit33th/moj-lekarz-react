@@ -12,6 +12,9 @@
 	top: 0;
 	justify-content: space-evenly;
 }
+.title{
+	text-align: center;
+}
 .logo img {
 	width: 60px;
 }

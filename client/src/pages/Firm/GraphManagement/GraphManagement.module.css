@@ -1,0 +1,151 @@
+.container {
+  border: 1px solid #e5e5e5;
+  width: 100%;
+  border-spacing: 0;
+  border-collapse: separate;
+
+  box-shadow: 0 0 50px 5px #00000014;
+  transition: 0.3s;
+  border-radius: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+	gap: 20px;
+  border-bottom: 1px solid #e0e0e0;
+}
+.header > *{
+	flex: 1;
+	height: 50px !important;
+}
+
+.searchField input,
+.specializationField select {
+  padding: 10px 15px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  font-size: 14px;
+  width: 250px;
+}
+
+.submitButton {
+  padding: 10px 20px;
+  background-color: #5d5fef;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.submitButton:hover {
+  background-color: #4b4de0;
+}
+
+.tableContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+.row,
+.rowAlt {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  
+}
+
+
+
+.rowAlt {
+  background-color: #f3f3f3;
+}
+
+.checkboxContainer {
+  margin-right: 15px;
+}
+
+.checkboxContainer input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+	border-color: #0056b3;
+}
+
+.info {
+  flex-grow: 1;
+	display: flex;
+	gap: 20px;
+	justify-content: space-evenly;
+}
+
+.name {
+  font-weight: 500;
+  margin-bottom: 3px;
+}
+
+.phone {
+  color: #666;
+  font-size: 14px;
+}
+
+/* Убираем границу у последних элементов в колонках */
+.column:last-child .row:last-child,
+.column:last-child .rowAlt:last-child {
+  border-bottom: none;
+}
+
+/* Добавляем вертикальную линию между колонками */
+.column:first-child {
+  border-right: 1px solid #e0e0e0;
+}
+
+.noDataMessage {
+  text-align: center;
+  width: 100%;
+  margin: 20px 0; /* Можно настроить отступы по необходимости */
+  font-size: 18px; /* Настройте размер шрифта по необходимости */
+}
+.card {
+  flex: 1;
+	box-shadow: 0 0 50px 5px #00000014;
+	transition: 0.3s;
+	border-radius: 20px;
+	padding: 20px;
+	gap: 10px;
+  display: flex;
+  flex-direction: column;
+}
+.card span{
+  flex: 1;
+}
+
+
+.handleContainer{
+  gap: 20px;
+  display: flex;
+}
+.userRow{
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+align-items: center;
+}
+.userRow img{
+  width: 20px;
+  height: 20px;
+  
+}
+
+.btnDiv{
+  flex: 0.5;
+}

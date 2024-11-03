@@ -2,7 +2,11 @@
 button {
 	font-size: 16px;
 }
-
+input[type="date"] {
+  color: #808080;
+	    font-family: 'Manrope', sans-serif;
+  font-style: normal;
+}
 /* Navbar Styles */
 .settingNavbarButt {
 	background: #3E36B0;
@@ -37,6 +41,7 @@ button {
 
 .settingInfo input,
 .mainInfo input {
+	height: 40px;
 	border-radius: 16px;
 	padding: 10px 15px;
 	border: none;
@@ -156,8 +161,12 @@ button {
 	gap: 20px;
 	
 }
+.workTime > div {
+	flex: 1;
+	
+}
 .workSchedule{
-	width: -webkit-fill-available;
+	
 	display: flex;
 	flex-direction: column;
 	box-shadow: 0 0 10px 5px #00000014;

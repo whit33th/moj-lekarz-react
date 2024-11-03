@@ -1,0 +1,31 @@
+.search {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  max-width: 350px;
+  box-shadow: 0 0 50px 8px rgba(0, 0, 0, 0.1);
+
+  border-radius: 20px;
+  border: none;
+  align-items: center;
+  
+}
+
+.search img,
+.chatSearch img {
+  margin: 0 10px 0 20px;
+  filter: invert(0.8);
+  padding: 0;
+  height: 14px;
+  width: 14px !important;
+}
+
+.search input {
+  font-family: "Manrope";
+
+  font-size: 15.5px;
+  padding: 10px 0;
+  width: 100%;
+  border: none;
+  border-radius: 100px;
+}

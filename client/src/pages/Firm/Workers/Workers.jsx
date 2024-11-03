@@ -1,19 +1,21 @@
 import styles from "./Workers.module.css";
 import tablecss from "../../../components/Table/Table.module.css";
 
-import searchIco from "../../../assets/img/search.png";
-import down from "../../../assets/img/down.png";
+import plus from "../../../assets/img/plus.png";
+
 import filters from "../../../assets/img/filters.png";
 import { userItems } from "../../../helpers/userItemList";
 import { useState } from "react";
 import Dropdown from "../../../components/Dropdown/Dropdown";
-import WorkerItem from "../../../components/FirmPage/map/WorkerItem";
+
 import Table from "./../../../components/Table/Table";
 import MoreInfoButtPatient from "../../../components/Buttons/MoreInfoButt/MoreInfoButtFirm";
+import useStore from "../../../data/store";
+import AddWorkersModal from "../../../components/Modals/AddWorkersModal/AddWorkersModal";
 
 function Workers() {
   const [activeTab, setActiveTab] = useState("Lista pracowników");
-
+  const { setModalActive, setModalContent } = useStore();
   function handleActiveTab(tab) {
     setActiveTab(tab);
     console.log("date");
@@ -41,7 +43,14 @@ function Workers() {
     { header: "ID", dataKey: "id" },
     { header: "Płeć", dataKey: "gender" },
     {
-      header: "Akcja",
+      header: (
+        <img
+          onClick={handleAddWorkersModal}
+          className={styles.plus}
+          src={plus}
+          alt="add"
+        />
+      ),
       render: (item) => (
         <MoreInfoButtPatient
           id={item.id}
@@ -51,6 +60,10 @@ function Workers() {
       ),
     },
   ];
+  function handleAddWorkersModal() {
+    setModalActive(true);
+    setModalContent(<AddWorkersModal />);
+  }
 
   return (
     <div className="content">

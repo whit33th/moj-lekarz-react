@@ -1,27 +1,27 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import styles from "./PatientInfo.module.css";
 import profil from "../../../assets/img/profil.webp";
 import BlueBtn from "../../../components/Buttons/BlueBtn/BlueBtn";
-import { userItems } from '../../../helpers/userItemList';
-import { useParams } from 'react-router-dom';
+import { userItems } from "../../../helpers/userItemList";
+import { useParams } from "react-router-dom";
+import useStore from "./../../../data/store";
+import PatientMoreInfoModal from "../../../components/Modals/PatientMoreInfoModal/PatientMoreInfoModal";
 
 function PatientInfo() {
-  const { id } = useParams(); // Get the patient ID from URL parameters
+  const { id } = useParams();
   const [activeTab, setActiveTab] = useState("Uwagi");
   const Buttons = ["Uwagi", "Historia wizyt"];
   const [patient, setPatient] = useState({});
 
-  useEffect(() => {
-    console.log("ID from useParams:", id); // Log the ID from useParams
+  const { setModalActive, setModalContent } = useStore();
 
+  useEffect(() => {
     if (id) {
-      // Ensure to convert id to a number or string based on your data
-      const foundPatient = userItems.find((p) => p.id === Number(id)); // Convert id to number
-      setPatient(foundPatient || {}); // Set to empty object if not found
+      const foundPatient = userItems.find((p) => p.id === Number(id));
+      setPatient(foundPatient || {});
     }
   }, [id]);
 
-  // If there are no comments or history, show appropriate text
   const comments = patient?.comments?.length ? (
     patient.comments.map((comment, index) => (
       <div key={index}>
@@ -49,9 +49,13 @@ function PatientInfo() {
     setActiveTab(name);
   }
 
+  function handleModal() {
+    setModalActive(true);
+    setModalContent(<PatientMoreInfoModal patient={patient} />);
+  }
+
   return (
     <div className={styles.profilDiv}>
-      {console.log({ id })}
       <div className={styles.topPhoto}>
         <img src={profil} alt="Profile" />
         <h1 style={{ margin: "0" }}>{patient?.name || "UNKNOWN"}</h1>
@@ -172,7 +176,7 @@ function PatientInfo() {
               </div>
             </div>
             <div>
-              <BlueBtn>Więcej informacji</BlueBtn>
+              <BlueBtn cb={handleModal}>Więcej informacji</BlueBtn>
             </div>
           </div>
         </div>

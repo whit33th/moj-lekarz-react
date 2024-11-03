@@ -66,9 +66,8 @@ function LastVisits() {
           <span>Ostatnie wizyty</span>
         </span>
         <Dropdown
-          selectedOption="09.23.2222 - 09.23.2222"
           color={"#A6DEF7"}
-          options={["20-08-2003", "2"]}
+          options={["08.05.2024 - 14.05.2024", "08.06.2024 - 14.06.2024"]}
           childrenLeft={<img src={calendar} alt="Sort" />}
         >
           <i className="bx bx-chevron-down"></i>
@@ -76,12 +75,13 @@ function LastVisits() {
       </div>
 
       <div className={styles.tableContainer}>
-      <Table
-        columns={columns}
-        data={tableData}
-        showImage={true}
-        together={true}
-      />
+        <Table
+          inputPlaceholder={"Szukaj pacjenta..."}
+          columns={columns}
+          data={tableData}
+          showImage={true}
+          together={true}
+        />
       </div>
     </div>
   );

@@ -4,9 +4,11 @@ import BlueBorderBtn from "../../Buttons/BlueBorderBtn/BlueBorderBtn";
 
 import BlueBtn from "../../Buttons/BlueBtn/BlueBtn";
 import useStore from "../../../data/store";
+import { useNavigate } from "react-router-dom";
 
 function VisitModal() {
   const { setModalActive } = useStore();
+    const navigate = useNavigate();
   function closeMainModal() {
     setModalActive(false);
   }
@@ -34,9 +36,11 @@ function VisitModal() {
             <span>Sala:</span> <span>203</span>
           </div>
         </div>
-        <BlueBorderBtn 
+        <BlueBorderBtn
         // cb={closeMainModal}
-        >Lista receptur</BlueBorderBtn>
+        >
+          Lista receptur
+        </BlueBorderBtn>
       </div>
 
       <div className={styles.employeeInfo}>
@@ -46,9 +50,7 @@ function VisitModal() {
           <div className={styles.topInfo}>
             <img src={profil} className={styles.employeeImage} alt="Employee" />
             <div>
-              <p style={{ color: "#3E36B0" }}>
-                Andrzej Witold-Jagoda
-              </p>
+              <p style={{ color: "#3E36B0" }}>Andrzej Witold-Jagoda</p>
               <div>
                 <p className={styles.phone}>
                   <span style={{ color: "#3E36B0" }}>Tel:</span>
@@ -63,9 +65,9 @@ function VisitModal() {
           </div>
 
           <div className={styles.botInfo}>
-            <div className={styles.Comments}> 
+            <div className={styles.Comments}>
               <span>Uwagi:</span>{" "}
-              <li style={{listStyle: "none"}}>
+              <li style={{ listStyle: "none" }}>
                 <ul>Jest uczulony na Ibupron</ul>
                 <ul>Jest uczulony na Klatra</ul>
               </li>
@@ -94,8 +96,9 @@ function VisitModal() {
           </div>
         </div>
         <div className={styles.actions}>
-          <BlueBtn>Więcej informacji</BlueBtn>
-          
+          <BlueBtn cb={() => navigate("/patient-info/890127650")}>
+            Więcej informacji
+          </BlueBtn>
         </div>
       </div>
     </div>

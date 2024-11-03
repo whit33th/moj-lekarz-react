@@ -1,8 +1,10 @@
-import { useEffect, useState } from "react";
-import styles from "./Dropdown.module.css"; 
+import { useEffect, useState, useRef } from "react";
+import styles from "./Dropdown.module.css";
 import unpointed from "../../assets/img/unpointed.png";
 import pointed from "../../assets/img/pointed.png";
-import Choice from '../Modal/Choice'
+import Choice from "../Modal/Choice";
+import Search from "../UI/Search/Search";
+import Filter from "../Modals/Filter/Filter";
 
 const Dropdown = ({
   label,
@@ -17,6 +19,15 @@ const Dropdown = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(options[0]);
+  const dropdownRef = useRef(null);
+
+  // Filter state in Dropdown to persist values
+  const [filterState, setFilterState] = useState({
+    selectedGender: "K",
+    selectedSortOption: "az",
+    dateFrom: "",
+    dateTo: "",
+  });
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -26,66 +37,45 @@ const Dropdown = ({
     setSelectedOption(option);
   };
 
+  // Update the filter state when options are selected in Filter
+  const handleFilterChange = (newFilterState) => {
+    setFilterState(newFilterState);
+  };
+
+  // Reset filter state to default values
+  const resetFilter = () => {
+    setFilterState({
+      selectedGender: "K",
+      selectedSortOption: "az",
+      dateFrom: "",
+      dateTo: "",
+    });
+  };
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleOutsideClick);
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, []);
+
   useEffect(() => {
     console.log(selectedOption);
     setIsOpen(false);
   }, [selectedOption]);
 
-  // Filter constant
-  const filter = (
-    <div className={styles.filterWindow}>
-      <div className={styles.searchContainer}>
-        <input
-          type="text"
-          className={styles.searchInput}
-          placeholder="Id pacjeta..."
-        />
-      </div>
-      <div className={styles.filterSection}>
-        <label>Plec</label>
-        <div className={styles.toggle}>
-          <button className={styles.toggleButton}>K</button>
-          <button className={styles.toggleButton}>M</button>
-        </div>
-      </div>
-      <div className={styles.filterSection}>
-        <label>Wiek od:</label>
-        <input
-          type="text"
-          className={styles.dateInput}
-          placeholder="dd_mm_rrrr"
-        />
-      </div>
-      <div className={styles.filterSection}>
-        <label>Wiek do:</label>
-        <input
-          type="text"
-          className={styles.dateInput}
-          placeholder="dd_mm_rrrr"
-        />
-      </div>
-      <div className={styles.filterSection}>
-        <div className={styles.radioContainer}>
-          <div className={styles.radioButton}>
-            <input type="radio" id="az" name="sort" />
-            <label htmlFor="az">Od A do Z</label>
-          </div>
-          <div className={styles.radioButton}>
-            <input type="radio" id="za" name="sort" />
-            <label htmlFor="za">Od Z do A</label>
-          </div>
-        </div>
-      </div>
-      <Choice choice1='Anuluj' choice2='Sortuj'></Choice>
-    </div>
-  );
-
   return (
-    <div className={styles.dropdownContainer}>
+    <div ref={dropdownRef} className={styles.dropdownContainer}>
       {label && <label>{label}</label>}
-      
       <div
-        style={{ backgroundColor: color }} 
+        style={{ backgroundColor: color }}
         className={styles.dropdown}
         onClick={toggleDropdown}
       >
@@ -94,10 +84,16 @@ const Dropdown = ({
           ? defaultOption
           : selectedOption || "Wybierz..."}
         {children}
-        
-        {isOpen && (
-          type === 'filter' ? (
-            filter
+
+        {isOpen &&
+          (type === "filter" ? (
+            // Pass the filter state, update and reset handlers as props to Filter
+            <Filter
+              onClick={(e) => e.stopPropagation()}
+              filterState={filterState}
+              onFilterChange={handleFilterChange}
+              onReset={resetFilter}
+            />
           ) : (
             <ul className={styles.dropdownMenu}>
               {options.map((option) => (
@@ -120,8 +116,7 @@ const Dropdown = ({
                 </li>
               ))}
             </ul>
-          )
-        )}
+          ))}
       </div>
     </div>
   );

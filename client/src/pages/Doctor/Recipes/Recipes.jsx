@@ -69,6 +69,7 @@ function PatientList() {
       </div>
 
       <Table
+        inputPlaceholder="Szukaj pacjenta..."
         columns={columns}
         data={tableData}
         showImage={true}

@@ -39,12 +39,12 @@ function Profil() {
 					</div>
 					<div className={styles.halfRow}>
 						<div>
-							<label htmlFor="city">Miasto</label>
-							<input type="text" id="city" name="city" placeholder="zxc" />
+							<label htmlFor="city">Login</label>
+							<input type="text" id="Login" name="Login" placeholder="zxc" />
 						</div>
 						<div>
-							<label htmlFor="postalCode">Kod posztowy</label>
-							<input type="text" id="postalCode" name="postalCode" placeholder="71-232" />
+							<label htmlFor="postalCode">PESEL</label>
+							<input type="text" id="PESEL" name="PESEL" placeholder="712322232" />
 						</div>
 					</div>
 					<div className={styles.halfRow}>
@@ -71,10 +71,10 @@ function Profil() {
 					</div>
 				</div>
 			</div>
-			<div className={styles.hr}>
+			{/* <div className={styles.hr}>
 				<hr />
-			</div>
-			<div className={styles.rules}>
+			</div> */}
+			{/* <div className={styles.rules}>
 				<div>
 					<span>Badanie lekarskie</span>
 					<hr className={styles.dashed} />
@@ -96,7 +96,7 @@ function Profil() {
 						<img src={confirmedImage} alt="Confirmed" />
 					</div>
 				</div>
-			</div>
+			</div> */}
 		</div>
 	)
 }

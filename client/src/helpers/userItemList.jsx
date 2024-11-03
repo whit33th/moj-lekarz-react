@@ -29,6 +29,7 @@ const userItems = [
     passport: "FG332254",
     firmName: "PharmaCorp",
     reports: "Aktywność użytkowników",
+    position: "Dentysta",
   },
   {
     img: userAvatar,
@@ -53,6 +54,7 @@ const userItems = [
     height: "165 cm",
     weight: "60 kg",
     phone: "+48123456780",
+    position: "Dentysta",
   },
   {
     img: userAvatar,
@@ -63,7 +65,8 @@ const userItems = [
     gender: "M",
     lastMessage: "Bye",
     status: "Active",
-    firmName: "WellnessPharma", // Название фармацевтической компании
+    firmName: "WellnessPharma",
+    position: "Dentysta",
   },
   {
     img: userAvatar,
@@ -75,6 +78,7 @@ const userItems = [
     lastMessage: "52",
     info: "bla-bla-blaa..",
     firmName: "CureAll", // Название фармацевтической компании
+    position: "Dentysta",
   },
   {
     img: userAvatar,
@@ -85,6 +89,7 @@ const userItems = [
     gender: "M",
     lastMessage: "Can u pls...",
     firmName: "HealthFirst", // Название фармацевтической компании
+    position: "Dentysta",
   },
   {
     img: userAvatar,
@@ -96,6 +101,7 @@ const userItems = [
     lastMessage: "",
     info: "Lorem ipsum dolor sit amet, consectetur...",
     firmName: "BioPharma", // Название фармацевтической компании
+    position: "Dentysta",
   },
 ];
 

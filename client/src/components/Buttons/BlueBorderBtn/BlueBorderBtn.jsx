@@ -4,8 +4,6 @@ function BlueBorderBtn({children, cb}) {
 	return (
 		<button onClick={cb} className={s.btn}>
 			{children}	
-			
-
 		</button>
 	)
 }

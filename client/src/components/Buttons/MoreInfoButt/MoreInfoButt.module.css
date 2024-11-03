@@ -18,34 +18,52 @@
   opacity: 0.8;
   transition: 0.3s;
 }
+.cross{
+  width: 18px;
+  height: 18px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+.back{
+  width: 18px;
+  height: 18px;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
 
 .moreInfoModal {
   display: flex;
   border: 1px solid #0000000f;
-  right: 50%;
+  right: 100%;
   top: 100%;
   position: absolute;
-  gap: 10px;
+
   border-radius: 16px 0 16px 16px;
   box-shadow: 0 0 50px 5px #00000014;
   background: white;
-  padding: 10px 20px;
+
   flex-direction: column;
   align-items: flex-start;
-  z-index: 1;
+  z-index: 2;
 
-  & > a:hover,
-  button:hover {
+  & > a:hover p,
+  button:hover p {
     border-bottom: 1px solid black;
     transition: 0.3s;
     opacity: 0.7;
   }
+  a,
   button {
-    padding: 0;
+    padding: 8px 20px;
+  }
+  button {
     border: none;
     background: transparent;
   }
 }
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -129,7 +147,11 @@
   font-size: 100px;
   color: #a6def7;
 }
+.textareaDiv{
+  position: relative; 
+}
 .textarea {
+
   border-radius: 16px;
   padding: 15px;
   box-shadow: 0 0 10px 5px #00000014;
@@ -216,8 +238,9 @@
 
 .actions {
   display: flex;
+  
   justify-content: space-between;
-  margin-top: 40px;
+  
   gap: 20px;
 }
 
@@ -250,7 +273,12 @@
   margin-bottom: 40px;
   margin-top: 0;
 }
+.employeeInfo{
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
 
+}
 .topInfo {
   display: flex;
   flex-direction: row;
@@ -285,4 +313,20 @@
 .phone {
   font-size: small;
   color: grey;
+}
+.clip{
+  width: 14px;
+  height: auto;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  opacity: 1;
+  transition: 0.3s;
+}
+.clip:hover{
+  opacity: 0.7;
+}
+.clip:active{
+  scale: 0.9;
+  opacity: 0.7;
 }

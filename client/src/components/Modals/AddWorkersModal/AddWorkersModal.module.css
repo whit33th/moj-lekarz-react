@@ -1,0 +1,84 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.infoGrid4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.infoGrid3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.infoGrid2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.infoGroup {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.infoGroup label {
+  padding: 5px 0;
+  font-weight: 500;
+}
+
+.infoGroup input,
+.infoGroup select {
+  height: 40px;
+  border-radius: 16px;
+  padding: 10px 15px;
+  border: none;
+  box-shadow: 0 0 45px 5px #00000014;
+  width: 100%;
+}
+
+.infoRowDuplex {
+  display: flex;
+  gap: 20px;
+}
+
+.positionSection {
+  gap: 15px;
+  display: flex;
+  width: 50%;
+  flex-direction: column;
+}
+
+.actions {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+.checkbox {
+  display: flex;
+  gap: 20px;
+  flex-direction: row;
+  align-items: center;
+}
+.checkIco {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .infoGrid2,
+  .infoGrid3,
+  .infoGrid4 {
+    grid-template-columns: 1fr;
+  }
+  .positionSection {
+    width: 100%;
+  }
+}

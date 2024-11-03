@@ -22,20 +22,30 @@
     --chart-5: 340 75% 55%;
   }
 }
+:root{
+  --sx-color-primary: #a6def7;;
+}
 
 #root {
   width: 100%;
   min-height: 100dvh;
 }
+*{
+   font-family: "Manrope", sans-serif;
+}
 
 body {
+  scroll-behavior: smooth; 
   font-family: "Manrope", sans-serif;
   margin: 0;
   padding: 0;
   width: 100%;
   min-height: 100dvh;
 }
-
+input{
+  font-family: "Manrope", sans-serif;
+ 
+}
 .container {
   width: 85%;
   min-height: 100dvh;
@@ -137,4 +147,14 @@ button {
     width: 100% !important;
     margin-left: 0 !important;
   }
+}
+
+.sx__date-picker-wrapper{
+  display: none;
+}
+.sx__month-grid-day__header{
+  height: 100px;
+}
+.sx__event, .sx__time-grid-event,.sx__time-grid-event-inner {
+  min-height: fit-content !important;
 }

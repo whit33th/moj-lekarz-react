@@ -2,13 +2,24 @@ import { useState } from "react";
 import styles from "./styles.module.css"; // Импортируем CSS-модуль
 import photo from "../../../assets/img/profil.webp";
 import Calendar from "../../../components/DoctorPage/Home/Calendar/CalendarBlock";
-import Dropdown from '../../../components/Dropdown/Dropdown';
+
+import DropdownStas from '../../../components/Dropdown/DropdownStas'
 
 function Settings() {
   const [activeTab, setActiveTab] = useState("Dane podstawowe");
   const [selectedName, setSelectedName] = useState("Dariusz Adamek");
   const [selectedReason, setSelectedReason] = useState("Wybierz");
 
+  const option1 = [
+    "Dariusz Adamek",
+    "Option 1",
+    "Option 2",
+    "Dariusz Adamek",
+    "Option 1",
+    "Option 2",
+   "Dariusz Adamek", "Option 1", "Option 2", "Option 3",
+  ];
+    const option2 = ["Wybierz", "Option 1", "Option 2", "Option 3"]
   const Buttons = [
     "Dane podstawowe",
     "Dane dodatkowe",
@@ -23,18 +34,19 @@ function Settings() {
   const conclusions = (
     <div className={styles.workTime}>
       <div className={styles.shadow}>
-      
         <Calendar />
       </div>
 
       <div className={styles.conclusions}>
-        <Dropdown
+        <DropdownStas
+          placeholder={option1[0]}
           label="Imię i nazwisko"
-          options={["Dariusz Adamek", "Option 1", "Option 2", "Option 3"]}
+          options={option1}
         />
-        <Dropdown
+        <DropdownStas
+          placeholder={option2[0]}
           label="Powód nieobecności"
-          options={["Wybierz", "Option 1", "Option 2", "Option 3"]}
+          options={option2}
         />
       </div>
     </div>
@@ -67,9 +79,7 @@ function Settings() {
   const settingData = (
     <div className={styles.settingData}>
       <div className={styles.settingInfo}>
-        
         <div className={styles.halfRow}>
-        
           <div>
             <label htmlFor="name">Imię</label>
             <input type="text" id="name" name="name" placeholder="Pawel" />
@@ -96,19 +106,39 @@ function Settings() {
         </div>
         <div className={styles.fullRow}>
           <div>
-            <label htmlFor="street">Ulica i numer domu</label>
+            <label htmlFor="street">Ulica</label>
             <input
               type="text"
               id="street"
               name="street"
-              placeholder="Ul.Kutrzeby 10"
+              placeholder="Ul.Kutrzeby"
             />
           </div>
         </div>
         <div className={styles.halfRow}>
           <div>
-            <label htmlFor="flat">Mieszkanie</label>
-            <input type="text" id="flat" name="flat" placeholder="32" />
+            <label htmlFor="Numer domu">Numer domu</label>
+            <input
+              type="text"
+              id="Numer domu"
+              name="NumerDomu"
+              placeholder="62"
+            />
+          </div>
+          <div>
+            <label htmlFor="Mieszkanie">Mieszkanie</label>
+            <input
+              type="text"
+              id="Mieszkanie"
+              name="Mieszkanie"
+              placeholder="52a"
+            />
+          </div>
+        </div>
+        <div className={styles.halfRow}>
+          <div>
+            <label htmlFor="date">Data urodzenia</label>
+            <input type="date" id="date" name="flat" placeholder="21.12.2002" />
           </div>
           <div>
             <label htmlFor="pesel">Pesel</label>

@@ -8,6 +8,7 @@ function Table({
   buttonProps,
   together = true,
   showImage = true,
+  inputPlaceholder = null
 }) {
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -32,7 +33,7 @@ function Table({
                     <img src={searchIco} alt="search" />
                     <input
                       className={styles.searchInput}
-                      placeholder={`Szukaj ${column.header.toLowerCase()}...`}
+                      placeholder={inputPlaceholder}
                       type="text"
                       value={searchTerm}
                       onChange={(e) => setSearchTerm(e.target.value)}
