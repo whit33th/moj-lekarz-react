@@ -132,11 +132,13 @@ function App() {
 
   return (
     <Router>
-      
       <ScrollToTop />
-
-      {!isAuth ? (
-        <AuthPage />
+      {role === "user" ? (
+        <>
+          {/* <Header /> */}
+          {userRoutes}
+          {/* <Footer /> */}
+        </>
       ) : (
         <>
           <Sidebar role={role} />
