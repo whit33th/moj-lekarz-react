@@ -1,9 +1,9 @@
-import React, { useRef, useState } from 'react'
+import  { useRef, useState } from 'react'
 import styles from './Map.module.css';
 import CountUp from '../CountUp';
-import img1 from '../../assets/staticIcon1.svg'
-import img2 from '../../assets/staticIcon2.svg'
-import img3 from '../../assets/staticIcon3.svg'
+import img1 from '../../assets/img/staticIcon1.svg'
+import img2 from '../../assets/img/staticIcon2.svg'
+import img3 from '../../assets/img/staticIcon3.svg'
 
 
 const mapPaths = [

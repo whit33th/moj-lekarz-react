@@ -1,8 +1,7 @@
-import React from 'react';
 import styles from './AppPromo.module.css'
-import img1 from '../../assets/image1.svg'
-import img2 from '../../assets/image2.svg'
-import phone from '../../assets/foto.webp'
+import img1 from '../../assets/img/image1.svg'
+import img2 from '../../assets/img/image2.svg'
+import phone from '../../assets/img/foto.webp'
 
 
 function AppPromo() {

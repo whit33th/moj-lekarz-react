@@ -1,15 +1,18 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import 'react-datepicker/dist/react-datepicker.css';
 import styles from './style/Home.module.css';
-import mainImg from '../assets/Frame364.svg';
+import mainImg from "../../assets/img/Frame364.svg";
 import DatePicker from 'react-datepicker';
-import img1 from '../assets/Frame1.svg'
-import img2 from '../assets/Frame2.svg'
-import img3 from '../assets/Frame3.svg'
-import arrow from '../assets/arrowmain.svg'
-import SwiperSlider from '../components/SwiperSlider';
-import Map from '../components/MapComponent/Map';
-import AppPromo from '../components/AppPromo/AppPromo';
+import img1 from '../../assets/img/Frame1.svg'
+import img2 from "../../assets/img/Frame2.svg";
+import img3 from "../../assets/img/Frame3.svg";
+import arrow from "../../assets/img/arrowmain.svg";
+
+
+
+import SwiperSlider from './../../components/SwiperSlider';
+import Map from './../../components/MapComponent/Map';
+import AppPromo from './../../components/AppPromo/AppPromo';
 
 function Home() {
   const [isOpen1, setIsOpen1] = useState(false);

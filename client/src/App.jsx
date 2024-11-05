@@ -27,19 +27,17 @@ import ReviewPage from "./pages/Admin/Reviews/ReviewPage";
 import GraphManagement from "./pages/Firm/GraphManagement/GraphManagement";
 import SelectedGraph from "./pages/Firm/GraphManagement/SelectedGraph";
 import { pageConfig } from "./config/config";
-import WorkersInfo from './pages/Firm/Workers/WorkersInfo'
+import WorkersInfo from "./pages/Firm/Workers/WorkersInfo";
+import Home from './pages/User/Home';
 
 function App() {
-  const [role, setRole] = useState("firm"); // Возможные роли: 'doctor', 'admin', 'firm'. В реальном проекте это будет приходить с сервера
+  const [role, setRole] = useState("user"); // Возможные роли: 'doctor', 'admin', 'firm'. В реальном проекте это будет приходить с сервера
 
   const [isAuth, setIsAuth] = useState(true); // ЧИсто для понятия что пользователь авторизован. В реальном проекте это будет приходить с сервера.
   //можешь вписать treu и посмотреть как выглядит страницы
   // Initialize Lenis
-  
 
   // Listen for the scroll event and log the event data
-
-
 
   const doctorRoutes = (
     <Routes>
@@ -93,22 +91,48 @@ function App() {
 
   const userRoutes = (
     <Routes>
-      <Route path={pageConfig.firm.home} element={<FirmMain />} />
-      <Route path={pageConfig.firm.calendar} element={<Calendar />} />
-      <Route path={pageConfig.firm.graph} element={<GraphManagement />} />
-      <Route path={pageConfig.firm.graphManage} element={<SelectedGraph />} />
-      <Route path={pageConfig.firm.workers} element={<Workers />} />
-      <Route path={pageConfig.firm.management} element={<FirmManagement />} />
-      <Route path={pageConfig.firm.notifications} element={<Notifications />} />
-      <Route path={pageConfig.firm.chat} element={<Notifications />} />
-      <Route path={pageConfig.firm.settings} element={<Settings />} />
-      <Route path={pageConfig.firm.profile} element={<Profil />} />
-      <Route path="/workers/id" element={<WorkersInfo />} />
+      {/* Эти работают +- */}
+
+      <Route path="/" element={<Home />} />
+
+      {/* <Route path="/auth/*" element={<AuthPage setIsAuth={setIsAuth} />} />
+
+      <Route path="/reviews/user/:id" element={<ReviewsUser />} />
+
+      <Route path="/clinic-zapis/:id" element={<ClinicZapisPage />} />
+      <Route path="/firm" element={<Firm />} />
+      <Route path="/mobilna" element={<MobileAppPage />} />
+      <Route path="/*" element={<NotFound />} /> */}
+
+      {/* Эти нет! */}
+
+      {/* <Route path="/recipes" element={<RecipesPage />} /> */}
+      {/* <Route
+        path="/znajdz-lekarzaversion2/"
+        element={<ZhaidzLekarzaVersion2 />}
+      /> */}
+      {/* <Route path="/QA" element={<QAComponent />} /> */}
+      {/* <Route path="/Blog" element={<Blog />} /> */}
+      {/* <Route path="/visits" element={<VisitsPage />} />
+      <Route path="/visits-version2" element={<VisitsPageTwo />} /> */}
+      {/* <Route path="/ResearchResult" element={<ResearchResultsPage />} />
+      <Route path="/Profile" element={<Profile />} />
+
+      <Route path="/profileDoctor/:id" element={<DoctorProfile />} /> */}
+      {/* <Route path="/Search-clinic" element={<SearchClinicPage/>} />
+      <Route path="/profile-clinic/:id" element={<ProfileClinic />} /> */}
+      {/* <Route path="/policy/regulamin" element={<PolicyRegulamin />} />
+      <Route path="/policy/personaldata" element={<PolicyPersonalData />} />
+      <Route path="/policy/cookies" element={<PolicyCookies />} />
+      <Route path="/policy/privacy" element={<PolicyPrivacy />} /> */}
+      {/* <Route path="/howitwork" element={<HowItWorks />} /> */}
+      {/* <Route path="/znajdz-lekarza/*" element={<ZnaidzLekarzaConteiner />} /> */}
     </Routes>
   );
 
   return (
     <Router>
+      
       <ScrollToTop />
 
       {!isAuth ? (
