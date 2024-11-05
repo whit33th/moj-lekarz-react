@@ -3,8 +3,9 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 import 'swiper/swiper-bundle.css';
 import 'swiper/css/navigation';
-import { useSelector } from 'react-redux';
+
 import styles from './style/Blog.module.css';
+import useStore from '../../data/store'
 
 const BlogButton = React.memo(({ onClick, active, children }) => (
     <button onClick={onClick} className={active ? styles.activeButton : ''}>
@@ -26,7 +27,7 @@ function Blog() {
     const [searchTerm, setSearchTerm] = useState("");
     const [isPopupVisible, setIsPopupVisible] = useState(false);
     const [selectedBlog, setSelectedBlog] = useState(null);
-    const blogs = useSelector((state) => state.some.blogs); 
+    const {blogs} = useStore(); 
 
     const handleSearchChange = (event) => {
         setSearchTerm(event.target.value);

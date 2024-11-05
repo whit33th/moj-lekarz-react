@@ -39,6 +39,7 @@ import NotFound from './pages/User/NotFound';
 import RecipesPage from './pages/User/RecipesPage';
 import QAComponent from './pages/User/QAComponent';
 import Blog from './pages/User/Blog';
+import VisitsPage from './pages/User/Visits/VisitsPage';
 
 function App() {
   const [role, setRole] = useState("user"); // Возможные роли: 'doctor', 'admin', 'firm'. В реальном проекте это будет приходить с сервера
@@ -113,6 +114,7 @@ function App() {
       <Route path="/recipes" element={<RecipesPage />} />
       <Route path="/QA" element={<QAComponent />} />
       <Route path="/Blog" element={<Blog />} />
+      <Route path="/visits" element={<VisitsPage />} />
       {/* Эти нет! */}
 
       {/*  */}
@@ -122,7 +124,7 @@ function App() {
       /> */}
       {/*  */}
       {/*  */}
-      {/* <Route path="/visits" element={<VisitsPage />} />
+      {/* 
       <Route path="/visits-version2" element={<VisitsPageTwo />} /> */}
       {/* <Route path="/ResearchResult" element={<ResearchResultsPage />} />
       <Route path="/Profile" element={<Profile />} />

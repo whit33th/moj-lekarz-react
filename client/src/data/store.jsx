@@ -1,6 +1,6 @@
 // src/zustand/someStore.js
 import { create } from "zustand";
-
+import imageblog from "../assets/img/imageblog.webp";
 // Определение состояния
 const useStore = create((set) => ({
   // Modal state
@@ -99,7 +99,7 @@ const useStore = create((set) => ({
         id: 0,
         name: "Morfologia krwi",
         date: "12.12.2023",
-        fileUrl: "./assets/imageblog.webp",
+        fileUrl: imageblog,
       },
     ],
     otherDocs: [
@@ -107,25 +107,25 @@ const useStore = create((set) => ({
         id: 0,
         name: "Morfologia krwi",
         date: "12.12.2023",
-        fileUrl: "./assets/imageblog.webp",
+        fileUrl: imageblog,
       },
       {
         id: 1,
         name: "Morfologia kssrwi",
         date: "12.12.2023",
-        fileUrl: "./assets/imageblog.webp",
+        fileUrl: imageblog,
       },
       {
         id: 2,
         name: "Morfologia krwi",
         date: "12.12.2023",
-        fileUrl: "./assets/imageblog.webp",
+        fileUrl: imageblog,
       },
       {
         id: 3,
         name: "Morfologia krwi",
         date: "12.12.2023",
-        fileUrl: "./assets/imageblog.webp",
+        fileUrl: imageblog,
       },
     ],
   },
@@ -214,39 +214,39 @@ const useStore = create((set) => ({
       data: [
         {
           id: 0,
-          img: "/assets/imageblog.webp",
+          img: imageblog,
           name: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
           link: "undefined",
           text: "Vestibulum non lectus eu massa tristique vehicula eu vel massa. Nullam euismod facilisis nisi ac fermentum. Donec non dolor sed odio hendrerit porttitor sit amet vel elit. Sed aliquet eleifend quam, vel cursus elit egestas quis. Donec quam est, dictum nec malesuada id, accumsan ut magna. Nunc ullamcorper eu velit non tempor. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin semper quam vitae nunc ornare, ut suscipit quam molestie.",
         },
         {
           id: 1,
-          img: "/assets/imageblog.webp",
+          img: imageblog,
           name: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
           link: "undefined",
           text: "lorooorem",
         },
         {
           id: 2,
-          img: "/assets/imageblog.webp",
+          img: imageblog,
           name: "tttt.",
           link: "undefined",
         },
         {
           id: 3,
-          img: "/assets/imageblog.webp",
+          img: imageblog,
           name: "www.",
           link: "undefined",
         },
         {
           id: 4,
-          img: "/assets/imageblog.webp",
+          img: imageblog,
           name: ".Lorem ipsum dolor sit amet, consectetur adipiscing elit",
           link: "undefined",
         },
         {
           id: 5,
-          img: "/assets/imageblog.webp",
+          img: imageblog,
           name: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
           link: "undefined",
           text: "lorooorem",
@@ -259,31 +259,31 @@ const useStore = create((set) => ({
       data: [
         {
           id: 0,
-          img: "assets/imageblog.webp",
+          img: imageblog,
           name: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
           link: "undefined",
         },
         {
           id: 1,
-          img: "assets/imageblog.webp",
+          img: imageblog,
           name: "1999 году умер ",
           link: "undefined",
         },
         {
           id: 2,
-          img: "assets/imageblog.webp",
+          img: imageblog,
           name: "txit",
           link: "undefined",
         },
         {
           id: 3,
-          img: "assets/imageblog.webp",
+          img: imageblog,
           name: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
           link: "undefined",
         },
         {
           id: 4,
-          img: "assets/imageblog.webp",
+          img: imageblog,
           name: "Lorem ipsum dolor sit amet, consectetur adipiscing элит.",
           link: "undefined",
         },
@@ -295,25 +295,25 @@ const useStore = create((set) => ({
       data: [
         {
           id: 0,
-          img: "assets/imageblog.webp",
+          img: imageblog,
           name: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
           link: "undefined",
         },
         {
           id: 1,
-          img: "assets/imageblog.webp",
+          img: imageblog,
           name: "Lorem ipsum dolor sit amet, consectetur adipiscing элит.",
           link: "undefined",
         },
         {
           id: 2,
-          img: "assets/imageblog.webp",
+          img: imageblog,
           name: "Lorem ipsum dolor sit amet, consectetur adipiscing элит.",
           link: "undefined",
         },
         {
           id: 3,
-          img: "assets/imageblog.webp",
+          img: imageblog,
           name: "Lorem ipsum dolor sit amet, consectetur adipiscing элит.",
           link: "undefined",
         },
@@ -415,7 +415,7 @@ const useStore = create((set) => ({
       id: 2,
       name: "Ania Kaczmarska",
       type: "ortoped",
-      imglink: "/assets/imageblog.webp",
+      imglink: imageblog,
       rating: 5,
       address: { street: "'Ul. Kutrzeby 10, 61-714 ", city: "NYC" },
       price: "190",
@@ -460,7 +460,7 @@ const useStore = create((set) => ({
       id: 3,
       name: "Anna Kacszmarska",
       type: "surgeon",
-      imglink: "/assets/imageblog.webp",
+      imglink: imageblog,
       rating: 5,
       address: { street: "'Ul. Kutrzeby 10, 61-714 ", city: "Poznań" },
       price: "190",
@@ -523,7 +523,7 @@ const useStore = create((set) => ({
         },
       ],
       types: ["Chirurg", "Endokrynolog", "Ginekolog", "Kardiolog"],
-      imglink: "./assets/imageblog.webp",
+      imglink: imageblog,
       rating: 5,
       address: { street: "Ul. Kutrzeby 10, 61-714 ", city: "Poznań" },
       price: "190",
@@ -595,7 +595,7 @@ const useStore = create((set) => ({
         },
       ],
       types: ["Chirurg", "Endokrynolog", "Ginekolog", "Kardiolog"],
-      imglink: "./assets/imageblog.webp",
+      imglink: imageblog,
       rating: 5,
       address: { street: "Ul. Kutrzeby 10, 61-714 ", city: "Poznań" },
       price: "190",
@@ -667,7 +667,7 @@ const useStore = create((set) => ({
         },
       ],
       types: ["Chirurg", "Endokrynolog", "Kardiolog"],
-      imglink: "./assets/imageblog.webp",
+      imglink: imageblog,
       rating: 5,
       address: { street: "Ul. Kutrzeby 10, 61-714 ", city: "Poznań" },
       price: "190",
@@ -739,7 +739,7 @@ const useStore = create((set) => ({
         },
       ],
       types: ["Chirurg", "Endokrynolog", "Ginekolog"],
-      imglink: "./assets/imageblog.webp",
+      imglink: imageblog,
       rating: 5,
       address: { street: "Ul. Kutrzeby 10, 61-714 ", city: "Tokyo" },
       price: "190",
@@ -811,7 +811,7 @@ const useStore = create((set) => ({
         },
       ],
       types: ["Chirurg", "Endokrynolog", "Ginekolog", "logoped"],
-      imglink: "./assets/imageblog.webp",
+      imglink: imageblog,
       rating: 5,
       address: { street: "Ul. Kutrzeby 10, 61-714 ", city: "Poznań" },
       price: "190",
@@ -866,7 +866,6 @@ const useStore = create((set) => ({
   ],
   status: "idle",
   error: null,
-  
 }));
 
 export default useStore;
