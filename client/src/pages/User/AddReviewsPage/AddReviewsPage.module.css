@@ -1,0 +1,623 @@
+.addReviewsBlock{
+    width: 100%;
+    padding: 10px 0;
+}
+.addReviewsTopBlock{
+    width: 100%;
+    height: max-content;
+    display: grid;
+    grid-template-columns: repeat(4 , 1fr);
+    position: relative;
+}
+.addReviewsTopBlock::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 5px;
+    width: 100%;
+    background: #D9D9D9; 
+    z-index: 1;
+}
+.addReviewsTopBlock::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 5px;
+    width: 0;
+    background: var(--gwny, #3E36B0); 
+    transition: width 0.5s ease;
+    z-index: 2;
+    border-radius: 0 15px 15px 0;
+
+}
+.addReviewsTopBlock > div{
+    width: 100%;
+    padding: 40px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    font-weight: 600;
+    line-height: 40.98px;
+    text-align: center;
+}
+
+.addReviewsContent{
+    width: 100%;
+    padding: 50px 5%;
+    padding-top: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+}
+.leftBlock{
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+}
+.visitsCard{
+    width: 90%;
+    height: max-content;
+    padding: 30px;
+    border-radius: 20px;
+    background-color: #fff;
+    box-shadow: 0px 0px 50px 0px #0000001A;
+    position: relative;
+}
+.visitsCardTimeBlock p{
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 24.59px;
+    text-align: left;
+
+}
+.visitsCardTimeBlock p.visitsCardTimeText{
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 54.64px;
+    color: #3E36B0;
+    
+}
+
+.visitsCardNameBlock{
+    margin-top: 30px;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 24.59px;
+    display: flex;
+    align-items: self-start;
+
+
+}
+.visitsCardNameBlock img{
+    margin-right: 8px;
+    margin-top: 3.5px;
+}
+.visitsCardType{
+    color: #939393;
+    font-size: 16px;
+    margin-top: -2px;
+}
+.visitsCardAddressBlock{
+    margin-top: 30px;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 24.59px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: self-start;
+}
+.visitsCardAddressBlock img{
+    margin-right: 8px;
+    margin-top: 3.5px;
+}
+.visitsCardCity{
+    color: #939393;
+    font-size: 16px;
+    margin-top: -2px;
+}
+.visitsCardAddressBlockBtnPhone{
+    width: 100%;
+    margin-top: 20px;
+}
+.visitsCardAddressBlockBtnPhone a{
+    width: 145px;
+    height: 43px;
+    border: 1px solid var(--gwny, #3E36B0);
+    border-radius: 1000px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 19.12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #3E36B0;
+    text-decoration: none;
+}
+.visitsCardAddressBlockBtnPhone a img{
+    margin-top: -2px;
+}
+
+.visitsCardBottomPrice{
+    width: 100%;
+    margin-top: 25px;
+    padding-top: 20px;
+    padding-left: 1px;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 24.59px;
+    text-align: left;
+    border-top: 1px solid #3E36B0;
+
+}
+
+
+
+
+
+.addReviewsTopBlock.progress-1::before { width: 25%; }
+.addReviewsTopBlock.progress-2::before { width: 50%; }
+.addReviewsTopBlock.progress-3::before { width: 75%; }
+.addReviewsTopBlock.progress-4::before { width: 100%; }
+
+.rightBlock{
+    width: 50%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    min-height: 600px;
+}
+.stepBtnBlock{
+    width: 100%;
+    display: flex;
+    position: relative;
+    height: 49px;
+
+}
+.stepBtnBlockNext{
+    position: absolute;
+    top: 0;
+    right: 7.5%;
+    width: 110px;
+    height: 43px;
+    background: var(--gwny, #3E36B0);
+    border: 1px solid #3E36B0;
+
+    border-radius: 1000px;
+    color: #fff;
+    font-family: Manrope;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 21.86px;
+    text-align: center;
+    cursor: pointer;
+
+}
+.stepBtnBlockPrev{
+    position: absolute;
+    top: 0;
+    left: 7.5%;
+    width: 110px;
+    height: 43px;
+    background: #fff;
+    border: 1px solid #3E36B0;
+    border-radius: 1000px;
+    color: #3E36B0;
+    font-family: Manrope;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 21.86px;
+    text-align: center;
+    cursor: pointer;
+
+}
+.starRatingBlock{
+    width: 100%;
+    height: auto;
+    padding-top: 40px;
+    position: relative;
+}
+.starRatingBlock h1{
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 54.64px;
+    text-align: center;
+
+}
+.starBlock{
+    padding-top: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+
+.bestsBlock{
+    width: 100%;
+    height: auto;
+    padding-top: 40px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    padding: 40px 30px;
+}
+.bestsBlock h1{
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 54.64px;
+    text-align: center;
+    width: 90%;
+}
+.bestsBlockContent{
+    width: 80%;
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+    justify-content: center;
+
+}
+
+.bestsBlockContent span , .bestsBlockContentStep3 span{
+    padding: 10px 15px;
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0px 0px 50px 0px #0000001A;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 21.86px;
+    text-align: center;
+    border: 1px solid #fff;
+
+}
+
+.bestsBlockContentStep3{
+    width: 94%;
+    display: flex;
+    gap: 22px 8px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+    justify-content: center;
+}
+.rightBlock > div{
+    transition: 0.3s;
+}
+
+
+.textareaBlock{
+    width: 100%;
+    height: auto;
+    padding-top: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.textareaBlock h1{
+    width: 100%;
+    text-align: center;
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 18.64px;
+}
+.textareaBlock p{
+    font-size: 18.5px;
+    font-weight: 400;
+    line-height: 27.32px;
+    text-align: center;
+    width: 100%;
+    color: var(--666, #595959);
+}
+.textareaBlock textarea{
+    width: 84%;
+    margin-top: 30px;
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0px 0px 50px 0px #0000001A;
+    border: none;
+    height: 300px;
+    padding: 20px;
+    font-family: 'Manrope';
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 24.59px;
+    text-align: left;
+    outline: none;
+    margin-bottom: 30px;
+    resize: none;
+}
+
+.loading{
+    width: 100%;
+    height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.thanksPage{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    height: 85vh;
+    padding-top: 100px;
+}
+
+.thanksPageContent{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: flex-start;
+    width: 45%;
+    gap: 0 20px;
+}
+
+.thanksPageContent h1{
+    width: 75%;
+    font-family: 'Manrope';
+    font-size: 38px;
+    font-weight: 600;
+    line-height: 54.64px;
+    text-align: center;
+    
+}
+.thanksPageContent p{
+    font-family: 'Manrope';
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 27.32px;
+    text-align: center;
+    width: 100%;
+    color: var(--666, #595959);
+}
+.thanksPageContent a{
+    margin-top: 30px;
+    padding: 12px 29px;
+    border-radius: 1000px ;
+    text-decoration: none;
+    color: #fff;
+    background: var(--gwny, #3E36B0);
+
+}
+
+@media (max-width: 624px) {
+    .addReviewsBlock{
+        padding-top: 120px;
+    }
+    .addReviewsTopBlock > div{
+        font-size: 1rem;
+        padding: 20px 0;
+    }
+    .rightBlock{
+        order: 1;
+        width: 100%;
+
+    }
+    .leftBlock{
+        order: 2;
+        width: 100%;
+        margin-top: 40px;
+    }
+    .addReviewsContent{
+        flex-wrap: wrap;
+    }
+    .starRatingBlock{
+        padding-top: 0px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-content: flex-start;
+    }
+    .starRatingBlock h1{
+        font-size: 2rem;
+        width: 85%;
+    }
+    .rightBlock{
+        min-height: 400px;
+    }
+    .bestsBlock{
+        width: 100%;
+        height: auto;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-content: flex-start;
+        flex-wrap: wrap;
+        padding: 0px 10px;
+    }
+    .bestsBlock h1{
+        font-size: 1.9rem;
+        width: 90%;
+        line-height: 49.64px;
+    }
+    .addReviewsContent{
+        width: 100%;
+        padding: 30px 3%;
+        padding-top: 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+    
+    }
+    .bestsBlockContent{
+        width: 95%;
+        display: flex;
+        gap: 10px 7px;
+        flex-wrap: wrap;
+        margin-top: 20px;
+        justify-content: center;
+        margin-bottom: 30px;
+    
+    }
+    
+    .bestsBlockContent span , .bestsBlockContentStep3 span{
+        padding: 8px 7.5px;
+        background-color: #fff;
+        border-radius: 20px;
+        box-shadow: 0px 0px 50px 0px #0000001A;
+        cursor: pointer;
+        font-size: 0.85rem;
+        font-weight: 500;
+        line-height: 18.86px;
+        text-align: center;
+        border: 1px solid #fff;
+    
+    }
+    .bestsBlockContentStep3{
+        width: 94%;
+        display: flex;
+        gap: 12px 6px;
+        flex-wrap: wrap;
+        margin-top: 30px;
+        justify-content: center;
+        margin-bottom: 35px;
+    }
+
+    .textareaBlock h1{
+        width: 100%;
+        text-align: center;
+        font-size: 2rem;
+        font-weight: 600;
+        line-height: 36.64px;
+    }
+    .thanksPage{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        height: 90vh;
+        padding-top: 150px;
+    }
+    .thanksPageContent{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-content: flex-start;
+        width: 90%;
+        gap: 0 8px;
+    }
+    .thanksPageContent h1{
+        width: 100%;
+        font-family: 'Manrope';
+        font-size: 1.9rem;
+        font-weight: 600;
+        line-height: 36.64px;
+        text-align: center;
+        
+    }
+    .thanksPageContent p{
+        font-size: 1rem;
+        line-height: 22.32px;
+        color: var(--666, #595959);
+    }
+    .thanksPageContent a{
+        margin-top: 30px;
+        padding: 8px 10px;
+        border-radius: 1000px ;
+        text-decoration: none;
+        color: #fff;
+        background: var(--gwny, #3E36B0);
+        font-size: 0.9rem;
+    
+    }
+
+
+    .stepBtnBlock{
+        width: 100%;
+        display: flex;
+        position: relative;
+        height: 49px;
+    
+    }
+    .stepBtnBlockNext{
+        position: absolute;
+        top: 0;
+        right: 7.5%;
+        width: 120px;
+        height: 40px;
+        background: var(--gwny, #3E36B0);
+        border: 1px solid #3E36B0;
+    
+        border-radius: 1000px;
+        color: #fff;
+        font-family: Manrope;
+        font-size: 15px;
+        font-weight: 500;
+        line-height: 21.86px;
+        text-align: center;
+        cursor: pointer;
+    
+    }
+    .stepBtnBlockPrev{
+        position: absolute;
+        top: 0;
+        left: 7.5%;
+        width: 120px;
+        height: 40px;
+        background: #fff;
+        border: 1px solid #3E36B0;
+        border-radius: 1000px;
+        color: #3E36B0;
+        font-family: Manrope;
+        font-size: 15px;
+        font-weight: 500;
+        line-height: 21.86px;
+        text-align: center;
+        cursor: pointer;
+    
+    }
+
+
+
+
+
+    .visitsCard{
+        width: 100%;
+        padding: 30px 25px;
+    }
+    .visitsCardAddressBlock{
+        font-size: 0.98rem;
+        margin-top: 15px;
+    }
+    .visitsCardCity{
+        font-size: 0.85rem;
+    }
+    .visitsCardBottomPrice{
+        font-size: 1rem;
+        display: flex;
+        justify-content: center;
+
+    }
+
+}
+
+@media (max-width: 370px) {
+    .thanksPageContent{
+        width: 95%;
+        gap: 0 5px;
+    }
+    .thanksPageContent a{
+        margin-top: 30px;
+        padding: 8px 7px;
+        border-radius: 1000px ;
+        text-decoration: none;
+        color: #fff;
+        background: var(--gwny, #3E36B0);
+        font-size: 0.9rem;
+    
+    }
+    .thanksPageContent h1{
+        font-size: 1.7rem;
+        
+    }
+    .thanksPageContent p{
+        font-size: 0.9rem;
+    }
+}

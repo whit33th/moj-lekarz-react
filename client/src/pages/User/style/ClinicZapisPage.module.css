@@ -1,0 +1,189 @@
+.clinicZapisPage{
+    width: 100%;
+    padding: 50px 7.5%;
+    display: flex;
+}
+.leftBlock{
+    width: 50%;
+    position: relative;
+}
+.leftBlock h1{
+    margin-bottom: 50px;
+}
+
+
+.zapisPageRight{
+    margin-left: 3%;
+    width: 43%;
+    padding: 30px 40px;
+}
+
+.zapisPagePriceBlock{
+    width: 100%;
+    margin-top: 38px;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 24.59px;
+
+}
+.zapisPagePriceBlock p {
+    margin-bottom: 15px;
+}
+.dropdownContainer{
+    width: 100%;
+}
+.dropdownContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+}
+
+
+
+.dropdown {
+    width: 100%;
+    height: 50px;
+    border-radius: 40px;
+    padding: 0 19px;
+    border: none;
+    box-shadow: 0px 0px 50px 0px #0000001A;
+    outline: none;
+    font-family: "Manrope";
+    font-size: 15.5px;
+    font-weight: 400;
+    line-height: 21.86px;
+    background: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #595959;
+    box-shadow: 0px 0px 50px 0px #0000001A;
+
+}
+
+.zapisPagePriceBlock .arrow {
+    background: url('../../assets/Vector10.svg') no-repeat center;
+    width: 12px;
+    /* Adjust the size as needed */
+    height: 12px;
+}
+
+.dropdownMenu {
+    position: absolute;
+    top: 55px;
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0px 0px 50px 0px #0000001A;
+    background: #fff;
+    overflow: hidden;
+    opacity: 0;
+    animation: fadeIn 0.3s forwards;
+    z-index: 2;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.dropdownMenuItem {
+    padding: 10px;
+    font-family: "Manrope";
+    font-size: 15.5px;
+    font-weight: 400;
+    line-height: 21.86px;
+    cursor: pointer;
+}
+
+.dropdownMenuItem:hover {
+    background: #f0f0f0;
+}
+.choiceBlock{
+    width: 100%;
+    margin-top: 30px;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 24.59px;
+}
+.choiceBlock > div{
+    display: flex;
+    justify-content: flex-start;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 24.59px;
+    margin-top: 15px;
+
+}
+.choiceBlock > div label{
+    margin-right: 35px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+
+}
+.choiceBlock > div input{
+    margin-right: 5px;
+    width:18px;
+    height: 18px;
+}
+.btnBlock{
+    width: 100%;
+    height: auto;
+    margin-top: 25px;
+    padding: 15px;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+}
+.btnBlock button{
+    width: 251px;
+    height: 49px;
+    border-radius: 1000px ;
+    border: none;
+    background-color: #3E36B0;
+    font-size: 16.5px;
+    font-weight: 500;
+    line-height: 24.59px;
+    text-align: center;
+    color: #fff;
+
+}
+.btnBlock button.btnBlockBack{
+    background-color: #fff;
+    border: 1px solid #3E36B0;
+    color: #3E36B0;
+}
+
+@media (max-width: 624px) {
+    .clinicZapisPage{
+        padding: 50px 3%;
+        padding-top: 130px;
+        flex-wrap: wrap;
+    }
+    .leftBlock{
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .leftBlock h1{
+        margin-bottom: 30px;
+        text-align: center;
+        width: 100%;
+    }
+    .zapisPageRight{
+        width: 100%;
+        padding: 30px 10px;
+    }
+}

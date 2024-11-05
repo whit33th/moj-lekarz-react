@@ -1,0 +1,186 @@
+.visitsPage{
+    width: 100%;
+    padding: 40px 5%;
+    display: flex;
+}
+
+.modalWindow{
+    width: 100%;
+    position: fixed;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.075);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    z-index: 22;
+    transition: 0.3s;
+}
+.modalWindowRow{
+    width: 408px;
+    height: auto;
+    padding: 20px 30px;
+    border-radius: 16px;
+    background-color: #fff;
+
+}
+.modalWindowRow h1{
+    font-size: 30px;
+    font-weight: 500;
+    line-height: 43.71px;
+    text-align: center;
+}
+.modalWindowBtn{
+    width: 100%;
+    display: flex;
+    margin-top: 15px;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+.modalWindowBtn button{
+    width: 168px;
+    height: 46px;
+    border-radius: 1000px;
+    border: 1.5px solid #3E36B0;
+    cursor: pointer;
+    transition: 0.3s;
+
+}
+.modalWindowBtnBack{
+    background: #fff;
+    color: #3E36B0;
+}
+.modalWindowBtnYes{
+    background: #3E36B0;
+    color: #fff;
+}
+.modalWindowBtnBack:hover{
+    border: 1.5px solid #DE5B10;
+
+}
+.modalWindowBtnYes:hover{
+    background: #DE5B10;
+    border: 1px solid #DE5B10;
+
+}
+.visitsPageLeft{
+    width: 40%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+}
+.visitsPageLeft h1{
+    font-family: Manrope;
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 54.64px;
+    text-align: center;
+
+}
+.newVisitsBtn{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+.newVisitsBtn a{
+    width: 169px;
+    height: 42px;
+    border-radius: 1000px;
+    background: var(--gwny, #3E36B0);
+    font-family: Manrope;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 21.86px;
+    text-align: center;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+
+}
+.newVisitsBtn a span{
+    font-size: 20px;
+    font-weight: 600;
+    margin-top: 3px;
+    margin-left: 2px;
+}
+.visitsPageRight{
+    width: 60%;
+    padding: 50px 5%;
+
+}
+.visitsPageRight p{
+    font-size: 21px;
+    font-weight: 500;
+    line-height: 32.78px;
+    text-align: center;
+}
+.visitsPageRightIcons{
+    width: 100%;
+    height: auto;
+    padding: 30px 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.visitsPageRightIcons img{
+    width: 70%;
+    margin: 0 30px;
+}
+.qrBlock{
+    width: 100%;
+    height: auto;
+    padding: 30px 0 ;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.qr{
+    width: 184px;
+    height: 177px;
+    background-color: rgba(89, 89, 89, 1);
+
+}
+.qrBlock p{
+    margin-top: 40px;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 24.59px;
+    text-align: center;
+    width: 100%;
+
+}
+
+@media (max-width: 624px) {
+    .visitsPage{
+        padding-top: 150px;
+        flex-wrap: wrap;
+    }
+    .visitsPageLeft{
+        width: 100%;
+    }
+    .visitsPageRight{
+        width: 100%;
+    }
+    .visitsPageRightIcons{
+        padding: 36px 2%;
+    }
+    .qrBlock{
+        display: none;
+    }
+    .visitsPageLeft h1{
+        font-family: Manrope;
+        font-size: 2rem;
+        font-weight: 600;
+        line-height: 54.64px;
+        text-align: center;
+    
+    }
+}

@@ -1,0 +1,161 @@
+.profileInfoBlock{
+    width: 100%;
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0px 0px 50px 0px #0000001A;
+    padding: 60px 7.5% 20px 7.5%;
+    position: relative;
+}
+.profileInfoImgBlock{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+}
+.profileInfoImgBlock .profileImg{
+    border-radius: 1000px;
+    width: 200px;
+    height: 200px;
+}
+.profileImg img{
+    width: 100%;
+    max-height: 100%;
+    
+}
+.profileInfoImgBlock p{
+    width: 100%;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 27.32px;
+
+}
+.changeBlockLeft{
+    width: 49%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px 22px;
+
+}
+.changeInputBlock{
+    width: 100%;
+
+}
+.changeInputBlock p{
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 24.59px;
+    margin-bottom: 15px;
+
+}
+.changeInputBlock input{
+    height: 46px;
+    border-radius: 16px;
+    border: none ;
+    outline: none;
+    padding: 0 15px;
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 24.59px;
+    box-shadow: 0px 0px 50px 0px #0000001A;
+    width: 100%;
+}
+.changeBlockRight{
+    width: 43%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 25px 22px;
+    margin-left: 4%;
+    align-content: flex-start;
+}
+.changeBlockRight > .changeInputBlock{
+    flex: 1;
+
+}
+.changeInputBlockAddress{
+    display: flex;
+    width: 100%;
+    gap: 20px;
+
+}
+.changeInputBlockAddress > div:first-child{
+    width: 82%;
+
+}
+.changeInputBlockAddress > div:last-child{
+    
+    width: 18%;
+}
+
+.changeInputBlockAddress > div:last-child input , .changeInputBlockAddress > div:last-child p{
+    text-align: center;
+}
+.changeBtn{
+    width: 28px;
+    height: 28px;
+    position: absolute;
+    cursor: pointer;
+    outline: none;
+    right: 30px;
+    top: 30px;
+}
+.changeBtn img{
+    height: 100%;
+}
+.changeBlock {
+    display: flex;
+    padding: 30px 0;
+    transition: max-height 0.5s ease, opacity 0.5s ease; /* Плавный переход */
+    max-height: 0; /* Скрываем блок по умолчанию */
+    overflow: hidden; /* Скрываем содержимое за пределами блока */
+    opacity: 0; /* Исходная непрозрачность */
+    flex-wrap: wrap;
+}
+
+.changeBlock.open {
+    max-height: 500px; /* Максимальная высота при открытом состоянии, измените при необходимости */
+    opacity: 1; /* Полная непрозрачность */
+}
+.line{
+    width: 100%;
+    height: 1.2px;
+    background: var(--gwny, #3E36B0);
+    margin: 50px 0 ;
+}
+
+
+
+
+@media (max-width: 624px) {
+
+    .changeBlockLeft{
+        width: 100%;
+    }
+    .changeBlock.open {
+        height: auto;
+        max-height: max-content;
+    }
+    .changeBlockRight{
+        width: 100%;
+        margin-left: 0;
+        margin-top: 15px;
+    }
+    
+    .changeInputBlockAddress{
+        flex-wrap: wrap;
+    }
+    .changeInputBlockAddress > div:first-child{
+        width: 100%;
+    
+    }
+    .changeInputBlockAddress > div:last-child{
+        
+        width: 40%;
+    }
+    .changeInputBlockAddress > div:last-child p {
+        text-align: left;
+    }
+    
+}

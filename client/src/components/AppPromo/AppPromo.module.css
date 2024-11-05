@@ -1,0 +1,140 @@
+.appPromo{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+.appPromoContent{
+    width: 65%;
+    height: 408px;
+    background-color: #A6DEF7;
+    border-radius: 20px;
+    z-index: 2;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    padding-top: 30px;
+
+
+}
+.appPromoBottom{
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    height: 50%;
+    z-index: 1;
+    background-color: #3E36B0;
+}
+.appPromoContentLeft{
+    width: 48%;
+    padding: 20px 25px;
+
+}
+.appPromoContentLeft h1{
+    font-size: 37px;
+    font-weight: 600;
+    line-height: 54.64px;
+    text-align: left;
+    margin-bottom: 20px;
+    margin-top: 15px;
+
+}
+.appPromoContentLeft p {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 24.59px;
+    text-align: left;
+
+}
+
+.appPromoIcons{
+    width: 80%;
+    height: auto;
+    padding: 30px 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+    margin-top: 20px;
+}
+.appPromoIcons a{
+    width: 50%;
+}
+.appPromoIcons img{
+    width: 100%;
+    margin: 0 20px;
+}
+.appPromoContentRight{
+    width: 48%;
+}
+.appPromoContentRight{
+    position: relative;
+    overflow: hidden;
+    padding: 0 40px;
+    padding-top: 20px;
+
+}
+.appPromoContentRight img{
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%);
+    width: 85%;
+}
+
+
+@media (max-width: 624px){
+    .appPromo{
+        z-index: 1;
+    }
+    .appPromoContent{
+        width: 90%;
+        position: relative;
+        padding-top: 0px;
+        height: auto;
+        
+    }
+    .appPromoContentLeft{
+        width: 100%;
+        z-index: 2;
+        background-color: #e5e5e58a;
+        position: relative;
+        border-radius: 20px;
+    }
+
+    .appPromoContentRight{
+        position: absolute;
+        z-index: 1;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        left: 0;
+    }
+    .appPromoContentLeft h1{
+        font-size: 26px;
+        line-height: 30px;
+        margin-bottom: 10px;
+        margin-top: 0;
+        text-align: center;
+    }
+    .appPromoContentLeft p {
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 20.59px;
+        text-align: center;
+    
+    }
+    .appPromoIcons{
+        width: 80%;
+        padding: 0;
+        margin-top: 30px;
+    }
+    .appPromoContentRight img{
+        position: absolute;
+        top: 0;
+        left: 46%;
+        transform: translate(-50% );
+        width: 65%;
+    }
+}

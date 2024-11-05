@@ -1,0 +1,417 @@
+@font-face {
+  font-family: 'Karla';
+  src: url('../../assets/fonts/Karla-VariableFont_wght.ttf') format('truetype');
+}
+
+.descriptions {
+  width: 100%;
+  height: auto;
+  padding: 20px 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding-top: 70px;
+}
+
+.descriptions h1 {
+  font-size: 35px;
+  font-weight: 600;
+  line-height: 54.64px;
+  text-align: center;
+}
+
+.descriptionsText {
+  width: 100%;
+  justify-content: center;
+  padding: 40px 0;
+  display: flex;
+}
+
+.descriptions p {
+  width: 60%;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 27px;
+}
+
+.descriptions button {
+  width: 154px;
+  height: 46px;
+  border-radius: 1000px;
+  border: none;
+  background-color: #3e36b0;
+  cursor: pointer;
+}
+
+.descriptions button a {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 21.86px;
+  text-align: center;
+}
+
+.howItWorksImageBlock {
+  width: 100%;
+  display: grid;
+  height: auto;
+  grid-template-columns: repeat(5, 1fr);
+  padding: 30px 12%;
+}
+
+.itemImg img {
+  height: 240px;
+}
+
+.itemText {
+  text-align: center;
+  margin-top: -5px;
+}
+
+.itemText p {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 27px;
+  text-align: center;
+}
+
+.itemText p.itemTextTitle {
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 27px;
+  margin-bottom: 8px;
+}
+
+.arrow {
+  display: flex;
+  justify-content: center;
+  align-items: self-start;
+  width: 100%;
+  height: 100%;
+}
+
+.arrow img {
+  margin-top: 105px;
+  width: 50%;
+  height: auto;
+}
+
+.slideTitle {
+  text-align: center;
+  font-size: 36px;
+  font-weight: 600;
+  line-height: 54.64px;
+  margin-bottom: 60px;
+  width: 100%;
+}
+
+.slideblock {
+  width: 100%;
+  padding: 60px 8%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.formBlockConteiner {
+  width: 100%;
+  height: auto;
+  padding: 10%;
+  display: flex;
+  justify-content: center;
+}
+
+.formBlock {
+  width: 80%;
+  height: auto;
+  padding: 20px 40px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  box-shadow: 0px 0px 50px 0px #3e36b033;
+  border-radius: 20px;
+}
+
+.formBlock h1 {
+  width: 100%;
+  text-align: center;
+  font-size: 35px;
+  font-weight: 600;
+  line-height: 54.64px;
+  margin-bottom: 20px;
+}
+
+.formBlock p {
+  width: 100%;
+  text-align: center;
+  font-size: 19px;
+  font-weight: 400;
+  line-height: 27.32px;
+}
+
+.form {
+  width: 80%;
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding-top: 50px;
+}
+
+.form input {
+  width: 48%;
+  height: 50px;
+  border-radius: 40px;
+  padding: 0 19px;
+  border: none;
+  box-shadow: 0px 0px 50px 0px #0000001a;
+  outline: none;
+  margin-bottom: 15px;
+  font-family: "Manrope";
+  font-size: 15.5px;
+  font-weight: 400;
+  line-height: 21.86px;
+}
+
+.form textarea {
+  height: 133px;
+  width: 100%;
+  border-radius: 20px;
+  box-shadow: 0px 0px 50px 0px #0000001a;
+  resize: none;
+  border: none;
+  outline: none;
+  padding: 20px;
+  font-family: "Manrope";
+  font-size: 15.5px;
+  font-weight: 400;
+  line-height: 21.86px;
+}
+
+.form input:focus,
+.form textarea:focus {
+  box-shadow: 0px 0px 50px 0px #00000029;
+}
+
+.formBtn {
+  width: 80%;
+  display: flex;
+  justify-content: flex-end;
+  margin: 30px 0;
+  padding-right: 3px;
+}
+
+.formBtn button {
+  width: 164px;
+  height: 43px;
+  gap: 10px;
+  border-radius: 1000px;
+  background-color: #3e36b0;
+  border: none;
+  font-family: "Manrope";
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 21.86px;
+  text-align: center;
+  color: #fff;
+  cursor: pointer;
+}
+
+.dropdownContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 48%;
+  margin-bottom: 15px;
+}
+
+.dropdown {
+  width: 100%;
+  height: 50px;
+  border-radius: 40px;
+  padding: 0 19px;
+  border: none;
+  box-shadow: 0px 0px 50px 0px #0000001a;
+  outline: none;
+  font-family: "Manrope";
+  font-size: 15.5px;
+  font-weight: 400;
+  line-height: 21.86px;
+  background: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #595959;
+}
+
+.formBlockConteiner .arrow {
+  background: url('../../assets/Vector10.svg') no-repeat center;
+  width: 12px;
+  height: 12px;
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: 55px;
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0px 0px 50px 0px #0000001a;
+  background: #fff;
+  overflow: hidden;
+  opacity: 0;
+  animation: fadeIn 0.3s forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dropdownMenuItem {
+  padding: 10px;
+  font-family: "Manrope";
+  font-size: 15.5px;
+  font-weight: 400;
+  line-height: 21.86px;
+  cursor: pointer;
+}
+
+.dropdownMenuItem:hover {
+  background: #f0f0f0;
+}
+
+@media (max-width: 624px) {
+  .descriptions {
+    padding-top: 150px;
+  }
+
+  .descriptions p {
+    width: 85%;
+  }
+
+  .descriptionsText {
+    padding: 20px 0;
+  }
+
+  .howItWorksImageBlock {
+    width: 100%;
+    grid-template-columns: repeat(1, 1fr);
+    padding: 30px 10%;
+  }
+
+  .howItWorksImageBlock .arrow {
+    display: none;
+  }
+  .howItWorksImageBlock>div {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .itemImg {
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .itemImg img {
+    width: 80%;
+    height: auto;
+  }
+
+  .itemText {
+    width: 70%;
+
+  }
+
+  .formBlock {
+    width: 95%;
+    padding: 20px 25px;
+  }
+
+  .formBlockConteiner {
+    padding: 10% 4%;
+
+  }
+
+  .form {
+    width: 100%;
+    padding-top: 20px;
+  }
+
+  .form input,
+  .dropdownContainer {
+    width: 100%;
+  }
+
+  .formBtn {
+    width: 100%;
+  }
+
+}
+
+@media (min-width: 1024px) and (max-width: 1280px) {
+  .howItWorksImageBlock {
+    padding: 30px 8%;
+  }
+
+  .arrow img {
+    margin-top: 105px;
+    width: 75%;
+    height: auto;
+  }
+
+  .formBlock {
+    width: 95%;
+  }
+}
+
+@media (min-width: 1280px) and (max-width: 1440px) {
+  .howItWorksImageBlock {
+    padding: 30px 10%;
+  }
+
+  .arrow img {
+    width: 55%;
+  }
+
+  .formBlock {
+    width: 92%;
+  }
+}
+
+@media (min-width: 1440px) and (max-width: 1690px) {
+  .howItWorksImageBlock {
+    padding: 30px 14.5%;
+  }
+}
+
+@media (min-width: 1690px) {
+  .howItWorksImageBlock {
+    padding: 30px 17.5%;
+  }
+
+  .formBlock {
+    width: 65%;
+  }
+}

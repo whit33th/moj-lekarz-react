@@ -1,0 +1,150 @@
+.visitsPageTwo{
+    width: 100%;
+    padding: 40px 5%;
+
+}
+.visitsPageTwo h1{
+    text-align: center;
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 54.64px;
+    margin: 30px 0;
+
+}
+.visitsListBlock{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 0 10%;
+}
+.visitsAddBtn{
+    background: var(--gwny, #3E36B0);
+    width: 180px;
+    height: 46px;
+    border-radius: 10000px;
+    display: flex;
+    align-items: center;
+    padding: 0 28px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 21.86px;
+    color: #fff;
+    position: relative;
+
+}
+.visitsBtnBlock{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 30px 0;
+}
+.visitsBtnBlock a{
+    text-decoration: none;
+    color:#fff;
+}
+.visitsAddBtn span::after{
+    content: '';
+    width: 18px;
+    height: 1.5px;
+    background-color: #fff;
+    position: absolute;
+    top: 50%;
+    right: 28px;
+    transform: translate(-50% 0);
+    border-radius: 50px;
+
+}
+.visitsAddBtn span::before{
+    content: '';
+    width: 18px;
+    height: 1.5px;
+    background-color: #fff;
+    position: absolute;
+    top: 50%;
+    right: 28px;
+    transform: translate(-50% 0);
+    transform: rotate(90deg);
+    border-radius: 50px;
+
+
+}
+.visitsMobileQrBlock{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.visitsPageLeft{
+    width: 40%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+}
+.visitsPageRight{
+    width: 60%;
+    padding: 50px 5%;
+
+}
+.visitsPageRight p{
+    font-size: 21px;
+    font-weight: 500;
+    line-height: 32.78px;
+    text-align: center;
+}
+.visitsPageRightIcons{
+    width: 100%;
+    height: auto;
+    padding: 30px 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.visitsPageRightIcons img{
+    width: 70%;
+    margin: 0 30px;
+}
+.qrBlock{
+    width: 100%;
+    height: auto;
+    padding: 30px 0 ;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.qr{
+    width: 184px;
+    height: 177px;
+    background-color: rgba(89, 89, 89, 1);
+
+}
+.qrBlock p{
+    margin-top: 40px;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 24.59px;
+    text-align: center;
+    width: 100%;
+
+}
+
+@media (max-width: 624px) {
+    .visitsPageTwo{
+        padding-top: 150px;
+    }
+    .visitsListBlock{
+        width: 100%;
+        padding: 0;
+    }
+
+    .visitsPageRight{
+        width: 100%;
+    }
+    .visitsPageRightIcons{
+        padding: 36px 2%;
+    }
+    .qrBlock{
+        display: none;
+    }
+}

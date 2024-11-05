@@ -1,0 +1,109 @@
+.clinicCard {
+    width: 100%;
+    height: auto;
+    box-shadow: 0px 0px 50px 0px #0000001A;
+    border-radius: 20px;
+    background-color: #fff;
+    padding: 20px;
+}
+
+.nameBlock {
+    display: flex;
+    align-items: center;
+
+}
+
+.nameBlock>img {
+    width: 70px;
+    height: 70px;
+    margin-right: 15px;
+    border-radius: 1000px;
+}
+
+.starsBlock img {
+    width: 15px;
+}
+
+.nameBlock p {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 27.32px;
+    margin-bottom: 2px;
+}
+
+.nameBlock span {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24.59px;
+    margin-bottom: 2px;
+}
+.namelinkBlock{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 8px;
+}
+.nameBlockText{
+    width: 65%;
+}
+.clinicInfo{
+    width: 100%;
+    margin-top: 20px;
+
+}
+.clinicInfo > div{
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: self-start;
+    padding: 6.5px 2px;
+
+}
+.clinicInfo > div > img:first-child{
+    margin-top: 3px;
+}
+.clinicInfo > div > div{
+    margin-left: 5px;
+    font-size: 17.5px;
+    font-weight: 400;
+    line-height: 24.59px;
+}
+.clinicplaceholder{
+    color: #595959;
+}
+.link{
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+
+}
+.clinicCard a{
+    color: #3E36B0;
+}
+
+@media (max-width: 624px) {
+    .nameBlock>img {
+        width: 50px;
+        height: 50px;
+        margin-right: 10px;
+    }
+    .namelinkBlock{
+        display: none;
+    }
+    .nameBlockText{
+        width: auto;
+        max-width: calc(100% - 50px);
+    }
+    .nameBlock p {
+        font-size: 1rem;
+    }
+    .nameBlock span {
+        font-size: 0.9rem;
+        line-height: 20.59px;
+    }
+    .clinicInfo > div > div{
+        font-size: 1rem;
+    }
+    
+}

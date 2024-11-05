@@ -1,0 +1,402 @@
+.homeFirstBlock {
+    background-color: #3E36B0;
+    width: 100%;
+    height: auto;
+    padding: 60px 0;
+    margin-top: -10px;
+    padding-bottom: 90px;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.homeFirstBlockLeft {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 45%;
+    height: auto;
+}
+
+.homeFirstBlockRight {
+    width: 45%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mainFormBlock {
+    width: 522px;
+    min-height: 378px;
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 15px;
+}
+
+.mainFormBlock h2 {
+    font-size: 30px;
+    font-weight: 500;
+    line-height: 43.71px;
+    text-align: center;
+    color: #0E0E0E;
+    margin-bottom: 20px;
+    font-size: 'Manrope';
+}
+
+.mainFormIntupsBlock {
+    width: 100%;
+    padding: 15px 6%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-bottom: 10px;
+}
+
+.dropdownContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.dropdownContainer.litle {
+    width: 48%;
+}
+
+.dropdown {
+    width: 100%;
+    height: 50px;
+    border-radius: 40px;
+    padding: 0 19px;
+    border: none;
+    box-shadow: 0px 0px 50px 0px #0000001A;
+    outline: none;
+    font-family: "Manrope";
+    font-size: 15.5px;
+    font-weight: 400;
+    line-height: 21.86px;
+    background: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #595959;
+}
+
+.homeFirstBlock .arrow {
+    background: url('../../assets/Vector10.svg') no-repeat center;
+    width: 12px;
+    /* Adjust the size as needed */
+    height: 12px;
+}
+
+.dropdownMenu {
+    position: absolute;
+    top: 55px;
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0px 0px 50px 0px #0000001A;
+    background: #fff;
+    overflow: hidden;
+    opacity: 0;
+    animation: fadeIn 0.3s forwards;
+    z-index: 2;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.dropdownMenuItem {
+    padding: 10px;
+    font-family: "Manrope";
+    font-size: 15.5px;
+    font-weight: 400;
+    line-height: 21.86px;
+    cursor: pointer;
+}
+
+.dropdownMenuItem:hover {
+    background: #f0f0f0;
+}
+
+.formCalendar {
+    width: 48%;
+    height: 50px;
+    border-radius: 40px;
+    box-shadow: 0px 0px 50px 0px #0000001A;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.formCalendar .react-datepicker-popper {
+    border-radius: 20px;
+    border: none;
+}
+
+.datePicker {
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    text-align: center;
+    font-family: "Manrope";
+    font-size: 15.5px;
+    font-weight: 400;
+    line-height: 21.86px;
+    color: #595959;
+    padding: 0 19px;
+    cursor: pointer;
+}
+
+.mainFormBtn {
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    padding: 0px 6%;
+}
+
+.mainFormBtn button {
+    width: 160px;
+    height: 46px;
+    padding: 12px 24px 12px 24px;
+    border-radius: 1000px;
+    color: #fff;
+    background-color: #3E36B0;
+    border: none;
+    cursor: pointer;
+
+
+}
+
+.descriptions {
+    width: 100%;
+    height: auto;
+    padding: 20px 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding-top: 70px;
+}
+
+.descriptions h1 {
+    font-size: 35px;
+    font-weight: 600;
+    line-height: 54.64px;
+    text-align: center;
+}
+
+.descriptionsText {
+    width: 100%;
+    justify-content: center;
+    padding: 40px 0;
+    display: flex;
+}
+
+.descriptions p {
+    width: 60%;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 27px;
+}
+
+.howItWorksImageBlock {
+    width: 100%;
+    display: grid;
+    height: auto;
+    grid-template-columns: repeat(5, 1fr);
+    padding: 30px 12%;
+}
+
+.itemImg img {
+    height: 240px;
+}
+
+.itemText {
+    text-align: center;
+    margin-top: -5px;
+}
+
+.itemText p {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 27px;
+    text-align: center;
+}
+
+.itemText p.itemTextTitle {
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 27px;
+    margin-bottom: 8px;
+}
+
+.howItWorksImageBlock .arrow {
+    display: flex;
+    justify-content: center;
+    align-items: self-start;
+    width: 100%;
+    height: 100%;
+}
+
+.howItWorksImageBlock .arrow img {
+    margin-top: 105px;
+    width: 50%;
+    height: auto;
+}
+
+
+
+.slideTitle {
+    text-align: center;
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 54.64px;
+    margin-bottom: 60px;
+    width: 100%;
+}
+
+.slideblock {
+    width: 100%;
+    padding: 60px 5%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.mapBlock{
+    width: 100%;
+    padding: 50px 6%;
+    padding: 100px;
+    display: flex;
+    justify-content: center;
+}
+@media (max-width: 624px) {
+    .mapBlock {
+      width: 100%;
+      flex-wrap: wrap;
+      padding: 50px 0;
+      height: auto;
+  
+    }
+    .itemImg img {
+        width: 100%;
+        height: auto;
+    }
+    .itemText p {
+        font-size: 14px;
+    }
+    
+    .itemText p.itemTextTitle {
+        font-size: 16px;
+    }
+    .mainFormBlock {
+        width: 88%;
+        min-height: 378px;
+        background-color: #fff;
+        border-radius: 20px;
+        padding: 15px;
+    }
+    .homeFirstBlock {
+        flex-wrap: wrap;
+        position: relative;
+        padding: 150px 0;
+        width: 100%;
+        overflow: hidden;
+
+    }
+    .homeFirstBlock img{
+        width: 100%;
+    }
+    
+    .homeFirstBlockLeft {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        overflow: hidden;
+
+    }
+    
+    .homeFirstBlockRight {
+        width: 100%;
+        position: relative;
+        z-index: 2;
+        padding: 20px 0;
+
+    }
+    .mainFormBlock h2 {
+        font-size: 24px;
+    }
+    .mainFormIntupsBlock{
+        padding: 15px 3%;
+    }
+    .descriptionsText{
+        padding: 30px 0;
+    }
+    .descriptions p {
+        width: 88%;
+    }
+    .howItWorksImageBlock {
+        width: 100%;
+        grid-template-columns: repeat(1, 1fr);
+        padding: 30px 10%;
+    }
+    .howItWorksImageBlock .arrow{
+        display: none;
+    }
+    .howItWorksImageBlock > div{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .itemImg{
+        width: 60%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .itemImg img{
+        width: 80%;
+        height: auto;
+    }
+    .itemText {
+        width: 60%;
+
+    }
+    .itemText p {
+        font-size: 15px;
+        font-weight: 400;
+        line-height: 20px;
+    }
+    .itemText p.itemTextTitle {
+        font-size: 17.5px;
+        font-weight: 500;
+        line-height: 20px;
+        margin-bottom: 3px;
+    }
+    
+  }

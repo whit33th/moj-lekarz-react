@@ -1,0 +1,286 @@
+.zapisDone{
+    width: 100%;
+
+}
+.zapisDoneRow{
+    padding: 40px 7.5%;
+}
+.zapisDoneFirstBlock{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+}
+.zapisDoneFirstBlock h1{
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 54.64px;
+    text-align: center;
+    margin-bottom: 40px;
+    
+}
+.zapisDoneFirstBlock a{
+    width: 240px;
+    height: 47px;
+    border-radius: 1000px;
+    border: none;
+    cursor: pointer;
+    background-color: #3E36B0;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+}
+.zapisDoneFirstBtnBlock{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    align-items: center;
+}
+.zapisDoneInfoBlock{
+    width: 100%;
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 100px;
+
+}
+.zapisDoneInfoBlockContent{
+    width: 65%;
+}
+.zapisDoneInfoBlock h1{
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 54.64px;
+    text-align: center;
+}
+.zapisDoneInfoBlockCard{
+    width: 100%;
+    margin-top: 50px;
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0px 0px 50px 0px #0000001A;
+    padding: 20px 30px;
+}
+
+
+
+
+
+.zapisPageLeft{
+    width: 65%;
+    height: auto;
+    padding: 30px 45px;
+    border-radius: 20px;
+    background-color: #fff;
+    box-shadow: 0px 0px 50px 0px #0000001A;
+}
+
+.zapisPageLeftTimeBlock p{
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 24.59px;
+    text-align: left;
+
+}
+.zapisPageLeftTimeBlock p.zapisPageLeftTimeText{
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 54.64px;
+    color: #3E36B0;
+    
+}
+
+.zapisPageLeftNameBlock{
+    margin-top: 30px;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 24.59px;
+    display: flex;
+    align-items: self-start;
+
+
+}
+.zapisPageLeftNameBlock img{
+    margin-right: 8px;
+    margin-top: 3.5px;
+}
+.zapisPageLeftType{
+    color: #939393;
+    font-size: 16px;
+    margin-top: -2px;
+}
+.zapisPageLeftAddressBlock{
+    margin-top: 30px;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 24.59px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: self-start;
+}
+.zapisPageLeftAddressBlock img{
+    margin-right: 8px;
+    margin-top: 3.5px;
+}
+.zapisPageLeftCity{
+    color: #939393;
+    font-size: 16px;
+    margin-top: -2px;
+}
+.zapisPageLeftAddressBlockBtnPhone{
+    width: 100%;
+    margin-top: 20px;
+}
+.zapisPageLeftAddressBlockBtnPhone a{
+    width: 175px;
+    height: 45px;
+    border: 1px solid var(--gwny, #3E36B0);
+    border-radius: 1000px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 19.12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #3E36B0;
+    text-decoration: none;
+}
+.zapisPageLeftAddressBlockBtnPhone a img{
+    margin-top: -2px;
+    margin-right: 5px;
+}
+
+.infoblock{
+    width: 100%;
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 40px;
+}
+.infoblock > div{
+    width: 40%;
+    height: 100%;
+    display: flex;
+    align-content: space-between;
+    flex-wrap: wrap;
+    gap: 25px;
+
+}
+.infoblock > div.infoblockNameBlock > div{
+    width: 100%;
+}
+.infoblock > div.infoblockPhoneBlock{
+    width: 60%;  
+}
+.infoblock > div.infoblockPhoneBlock > div , .infoblockNameBlock > div {
+    margin-top: 20px;
+}
+.zapisPageLeftAddressBlock{
+    align-content: space-between;
+    margin: 0;
+}
+.zapisPageLeftAddressBlockBtnPhone{
+    margin-top: 20px;
+}
+.leftBlockBottomPrice{
+    width: 100%;
+    margin-top: 25px;
+    padding-top: 20px;
+    padding-left: 1px;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 24.59px;
+    text-align: left;
+    border-top: 1px solid #3E36B0;
+
+}
+.fileNameBlock{
+    width: 100%;
+    padding: 15px 0;
+    display: flex;
+    align-items: self-start;
+    margin-top: 10px;
+
+}
+.fileNameBlock img{
+    margin-right: 8px;
+    margin-top: 2px;
+}
+.fileNameBlock p{
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 24.59px;
+    margin-bottom: 5px;
+
+}
+.fileNameBlock span{
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 21.86px;
+    color: #939393;
+    white-space: pre-wrap; 
+    word-wrap: break-word; 
+    width: 100%; 
+    display: block;
+  
+}
+
+.leftBlockBottomPrice{
+    width: 100%;
+    margin-top: 25px;
+    padding-top: 20px;
+    padding-left: 1px;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 24.59px;
+    text-align: left;
+    border-top: 1px solid #3E36B0;
+
+}
+@media (max-width: 624px) {
+    .zapisDoneRow{
+        padding: 40px 3%;
+        padding-top: 100px;
+    }
+    .zapisDoneFirstBlock a{
+        width: 50%;
+        height: 40px;
+        font-size: 0.85rem;
+    }
+    .zapisDoneFirstBtnBlock{
+        gap: 15px;
+    }
+    .zapisDoneFirstBlock > div{
+        width: 95%;
+    }
+    .zapisDoneInfoBlockContent{
+        width: 98%;
+    }
+    .zapisDoneInfoBlock h1{
+        font-size: 1.8rem;
+        line-height: 36.64px;
+    }
+    .infoblock{
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0px;
+        justify-content: start;
+        align-items: start;
+        margin-top: 20px;
+    }
+    .infoblock > div{
+        width: 100%;
+    }
+    .infoblock > div.infoblockPhoneBlock > div , .infoblockNameBlock > div {
+        display: flex;
+        flex-wrap: nowrap;
+    }
+    .zapisPageLeftAddressBlock{
+        font-size: 1rem;
+    }
+}

@@ -1,0 +1,88 @@
+.profileClinic{
+    width: 100%;
+    padding: 80px 7.5%;
+}
+.profileClinic button{
+    cursor: pointer;
+}
+.profileClinicRow{
+    width: 100%;
+    height: auto;
+    padding: 50px 100px;
+    box-shadow: 0px 0px 50px 0px #0000001A;
+    background-color: #fff;
+    border-radius: 20px;
+}
+.clinicNameBlock > div{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.profileImg img{
+    width: 150px;
+    height: 150px;
+    border-radius: 1000px;
+}
+.profileImg{
+    margin-bottom: 20px;
+
+}
+.clinicNameBlock p{
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 27.32px;
+    text-align: center;
+
+}
+.clinicStars{
+    margin-top: 10px;
+}
+.clinicStars img{
+    width: 20px;
+}
+.clinicMenu{
+    width: 100%;
+    margin: 50px 0;
+    display: flex;
+    justify-content: center;
+    gap: 35px;
+}
+.clinicMenuBtn{
+    height: 50px;
+    width: 196px;
+    border: none;
+    border-radius: 1000px;
+    box-shadow: 0px 0px 50px 0px #00000025;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 21.86px;
+    color: #0E0E0E;
+    background-color: #fff;
+    transition: 0.3s;
+
+}
+.active{
+    background-color: #3E36B0;
+    color: #fff;
+}
+.profileClinicContent{
+    width: 100%;
+    margin: 50px 0;
+}
+
+@media (max-width: 624px) {
+    .profileClinic{
+        padding: 80px 3%;
+        padding-top: 120px;
+    }
+    .profileClinicRow{
+        padding: 30px 10px;
+    }
+    .clinicMenu{
+        width: 100%;
+        margin: 50px 0;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+}

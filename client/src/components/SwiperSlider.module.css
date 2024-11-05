@@ -1,0 +1,129 @@
+@font-face {
+    font-family: 'Karla';
+    src: url(../assets/fonts/Karla-VariableFont_wght.ttf);
+  }
+
+.slideTitle{
+    text-align: center;
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 54.64px;
+    margin-bottom: 60px;
+    width: 100%;
+}
+.slideblock{
+    width: 100%;
+    padding: 60px 8% ;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.sliderItem{
+    width: 305px;
+    height: 305px;
+    border-radius: 20px;
+    background-color:  rgba(166, 222, 247, 0.5);
+    cursor: grab;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    padding-top: 31%;
+}
+.sliderRow{
+    width: 90%;
+    height: 325px;
+    padding-bottom: 50px;
+    position: relative;
+}
+.sliderItem h3{
+    font-family: "Karla" , sans-serif;;
+    font-size: 128px;
+    font-weight: 500;
+    line-height: 149.63px;
+    opacity: 0.8;
+    color: #fff;
+    position: absolute;
+    z-index: 2;
+    right: 10px;
+    top: 0;
+
+}
+.sliderItemText{
+    z-index: 3;
+    position: relative;
+    width: 80%;
+    height: auto;
+}
+.sliderItemText p{
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 21.86px;
+
+}
+.sliderItemText p.sliderItemTextTitle{
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 27.32px;
+    margin-bottom: 8px
+
+}
+.sliderRow .swiper-pagination {
+    position: absolute; /* Позиционирование абсолютно */
+    bottom: -30px; /* Отступ снизу */
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.sliderRow .swiper-pagination-bullet {
+    width: 12px;
+    height: 12px;
+    background: #007aff;
+    opacity: 1;
+    margin: 0 5px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.sliderRow .swiper-pagination-bullet-active {
+    background: #000;
+}
+
+.sliderRow{
+    :global(.swiper-wrapper){
+        padding-bottom: 49px;
+    }
+    :global(.swiper-pagination-bullet) {
+        background: #A6DEF7;
+        width: 10px;
+        height: 10px;
+        border-radius: 25px;
+        opacity: 1;
+    }
+    
+    :global(.swiper-pagination-bullet-active) {
+      background-color: #3E36B0;
+      width: 20px;
+      height: 10px;
+      border-radius: 25px;
+    }
+}
+@media (max-width: 384px) {
+    .sliderRow{
+        width: 98%;
+
+    }
+}
+@media (min-width: 1024px) and (max-width: 1280px) {
+    .sliderRow{
+        width: 100%;
+    }
+}
+@media (min-width: 1690px) {
+    .sliderRow{
+        width: 85%;
+    }
+}

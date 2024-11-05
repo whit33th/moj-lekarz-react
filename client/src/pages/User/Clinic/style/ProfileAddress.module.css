@@ -1,0 +1,98 @@
+.addressBlock{
+    width: 100%;
+    padding: 0 8%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 50px;
+}
+.leftBlock{
+    width: 40%;
+    height: auto;
+}
+
+.leftBlock p{
+    margin-bottom: 25px ;
+    font-family: Manrope;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 24.59px;
+    display: flex;
+    align-items: center;
+}
+.leftBlock p img{
+    margin-right: 10px;
+
+}
+.rightTextBlock{
+    width: auto;
+    margin-right: 20px;
+
+}
+.rightTextBlock img{
+    margin-right: 7px;
+}
+.rightBlock{
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+    
+}
+.rightTimeBlock{
+    margin-right: 25px;
+
+}
+.timeItem{
+    display: flex;
+    justify-content: end;
+    flex-wrap: wrap;
+    font-family: Manrope;
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 24.59px;
+    margin-bottom: 12px;
+
+}
+.timeItem span{
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 21.86px;
+    border-radius: 6px;
+    width: 120px;
+    background-color: #A6DEF7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3px 0;
+    margin-left: 8px;
+
+}
+
+@media (max-width: 624px) {
+    .addressBlock{
+        width: 100%;
+        padding: 0 2%;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+    .leftBlock{
+        width: 100%;
+    }
+    .rightBlock{
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        
+    }
+    .rightTextBlock{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        margin-bottom: 20px;
+    }
+    .rightTimeBlock{
+        justify-content: center;
+    }
+}

@@ -1,0 +1,246 @@
+.zhaidzLekarza{
+    width: 100%;
+
+}
+.filterBlock{
+    width: 100%;
+    height: auto;
+    padding: 70px 0;
+    display: flex;
+    justify-content: center;
+    background-color: #A6DEF7;
+
+}
+.filterBlockContent{
+    width: 85%;
+    min-height: 280px;
+    background-color: #FFFFFF;
+    border-radius: 20px;
+    padding: 30px 60px;
+}
+.filterBlockContent > h1{
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 43.71px;
+    text-align: center;
+    margin-bottom: 25px;
+
+}
+.filterBlockContentSelects{
+    width: 100%;
+    margin-top: 15px;
+
+}
+.mainFormIntupsBlock{
+    width: 100%;
+    display: flex;
+    height: 70px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+
+
+/* selects and calendar */
+
+.dropdownContainer:nth-child(2){
+    width: 120%;
+}
+.dropdownContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+}
+
+.dropdownContainer.litle {
+    width: 80%;
+}
+
+.dropdown {
+    width: 100%;
+    height: 50px;
+    border-radius: 40px;
+    padding: 0 19px;
+    border: none;
+    box-shadow: 0px 0px 50px 0px #0000001A;
+    outline: none;
+    font-family: "Manrope";
+    font-size: 15.5px;
+    font-weight: 400;
+    line-height: 21.86px;
+    background: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #595959;
+}
+
+.mainFormIntupsBlock .arrow {
+    background: url('../../assets/Vector10.svg') no-repeat center;
+    width: 12px;
+    /* Adjust the size as needed */
+    height: 12px;
+}
+
+.dropdownMenu {
+    position: absolute;
+    top: 55px;
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0px 0px 50px 0px #0000001A;
+    background: #fff;
+    overflow: hidden;
+    opacity: 0;
+    animation: fadeIn 0.3s forwards;
+    z-index: 2;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.dropdownMenuItem {
+    padding: 10px;
+    font-family: "Manrope";
+    font-size: 15.5px;
+    font-weight: 400;
+    line-height: 21.86px;
+    cursor: pointer;
+}
+
+.dropdownMenuItem:hover {
+    background: #f0f0f0;
+}
+
+.formCalendar {
+    width: 48%;
+    height: 50px;
+    border-radius: 40px;
+    box-shadow: 0px 0px 50px 0px #0000001A;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.formCalendar .react-datepicker-popper {
+    border-radius: 20px;
+    border: none;
+}
+
+.datePicker {
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    text-align: center;
+    font-family: "Manrope";
+    font-size: 15.5px;
+    font-weight: 400;
+    line-height: 21.86px;
+    color: #595959;
+    padding: 0 19px;
+    cursor: pointer;
+}
+
+.filterBtnBlock{
+    width: 70%;
+    margin: 10px 0;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+.filterBtnBlock button{
+    background-color: #3E36B0;
+    width: 170px;
+    height: 48px;
+    border: none;
+    border-radius: 1000px;
+    outline: none;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 21.86px;
+    text-align: center;
+    color: #FFF;
+    cursor: pointer;
+}
+
+
+.zhaidzLekarzaContentBlock{
+    width: 100%;
+    padding: 20px 7.5%;
+}
+.zhaidzLekarzaContentTitle{
+    width: 100%;
+    padding: 50px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.zhaidzLekarzaContentTitle h2{
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 54.64px;
+}
+.zhaidzLekarzaContentTitle button{
+    background-color: #3E36B0;
+    width: 160px;
+    height: 43px;
+    border: none;
+    border-radius: 1000px;
+    outline: none;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 21.86px;
+    text-align: center;
+    color: #FFF;
+    cursor: pointer;
+}
+.doctorsCards{
+    width: 100%;
+    padding: 70px 7.5%;
+    padding-top: 0;
+}
+.nonDoctorCardBlock{
+    width: 100%;
+    height: 280px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24.5px;
+    font-weight: 600;
+    line-height: 43.71px;
+    text-align: center;
+
+}
+.filterBlockContentSelects{
+    padding: 60px 7.5%;
+    margin-top: 50px;
+}
+
+@media (max-width: 624px) {
+    .zhaidzLekarza{
+        padding-top: 100px;
+    }
+    .mainFormIntupsBlock{
+        height: auto;
+        flex-wrap: wrap;
+    }
+    .dropdownContainer.litle {
+        width: 100%;
+    }
+}

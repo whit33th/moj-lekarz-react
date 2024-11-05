@@ -1,0 +1,70 @@
+.reviewCard{
+    width: 100%;
+    margin: 20px 0 ;
+    box-shadow: 0px 0px 50px 0px #0000001A;
+    background-color: #fff;
+    border-radius: 18px;
+    padding: 30px 40px;
+}
+
+.userInfo{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+}
+.userInfo .reviewNameBlock{
+    width: 70%;
+
+}
+.userInfo .reviewNameBlock p{
+font-size: 20px;
+font-weight: 500;
+line-height: 27.32px;
+
+}
+.userInfo .reviewNameBlock span{
+font-size: 18px;
+font-weight: 400;
+line-height: 24.59px;
+}
+.userInfo > img{
+    width: 100px;
+    height: 100px;
+    border-radius: 100px;
+}
+.starsBlock img {
+    width: 15px;
+}
+.userReviewText{
+    margin-top: 20px;
+    padding: 20px 0;
+}
+
+@media (max-width: 624px) {
+    .reviewCard{
+        padding: 30px 25px;
+    }
+    .userInfo > img{
+        width: 60px;
+        height: 60px;
+        border-radius: 100px;
+    }
+    .userInfo .reviewNameBlock{
+        padding-left: 5px;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+    .starsBlock{
+        width: 75px;
+        display: flex;
+    }
+    .starsBlock img {
+        width: 14px;
+    }
+    .userReviewText{
+        margin-top: 0;
+        padding: 20px 0;
+    }
+}

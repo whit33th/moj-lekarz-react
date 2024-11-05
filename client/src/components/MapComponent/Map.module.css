@@ -1,0 +1,146 @@
+.mapBlock {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.mapBlockLeft {
+  width: 48%;
+  height: auto;
+}
+
+.mapBlockLeft h1 {
+  font-size: 2.4rem;
+  font-weight: 600;
+  line-height: 54.64px;
+  text-align: left;
+}
+
+.mapBlockRight {
+  width: 51%;
+}
+
+.leftBtnblock {
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.leftBtnblock button {
+  width: 214px;
+  height: 49px;
+  border-radius: 1000px;
+  background-color: #3E36B0;
+  font-size: 1.05rem;
+  font-weight: 500;
+  line-height: 24.59px;
+  text-align: center;
+  color: #fff;
+  border: none;
+}
+
+.staticBlock {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin-top: 80px;
+}
+
+.staticItem {
+  padding: 0px 10px;
+}
+
+.staticItem h3 {
+  font-size: 58px;
+  font-weight: 600;
+  line-height: 87.42px;
+  text-align: left;
+}
+
+.staticItem p {
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 24.59px;
+  text-align: left;
+}
+
+.staticItem img {
+  height: 35px;
+}
+
+.mapBlock svg path {
+  cursor: pointer;
+}
+
+.mapBlockRight {
+  position: relative;
+}
+
+svg {
+  position: relative;
+}
+
+.tooltipLink {
+  z-index: 111;
+}
+
+.leftBtnblock h1 {
+  margin-bottom: 30px;
+}
+
+@media (max-width: 624px) {
+  .mapBlock {
+    width: 100%;
+    flex-wrap: wrap;
+    padding: 30px 0;
+    height: auto;
+
+  }
+  .mapBlockLeft{
+    width: 100%;
+
+  }
+  .mapBlockRight{
+    width: 100%;
+  }
+  .mapBlockRight svg{
+    width: 100%;
+    margin-top: -50px;
+  }
+  .staticItem h3 {
+    font-size: 40px;
+    width: 100%;
+    text-align: center;
+  }
+  .staticItem p {
+    font-size: 15.5px;
+    width: 100%;
+    text-align: center;
+  }
+  .staticBlock {
+    width: 96%;
+  }
+  .mapBlockLeft h1 {
+    font-size: 1.8rem;
+    line-height: 38px;
+    text-align: center;
+    width: 100%;
+  }
+  .leftBtnblock {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .leftBtnblock button {
+    width: 55%;
+    height: 43px;
+  }
+  .staticItem img {
+    height: 30px;
+  }
+  .staticItem {
+    display: flex;
+    align-content: flex-start;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}

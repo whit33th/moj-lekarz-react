@@ -1,0 +1,132 @@
+
+.bookingContainer button {
+    color: #000 !important;
+    box-shadow: none;
+}
+
+.react-calendar__tile.react-calendar__month-view__days__day.react-calendar__month-view__days__day--neighboringMonth{
+    opacity: 0 !important;
+}
+
+.calendarContainer {
+    max-width: 70%;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.customCalendar {
+    width: 100%;
+    border: none;
+    font-family: Arial, sans-serif;
+}
+
+.customCalendar .react-calendar__navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+}
+
+.customCalendar .react-calendar__navigation button {
+    background-color: #fff;
+    color: #fff;
+    /* Делаем текст кнопок незаметным */
+    border: none;
+    /* Убираем бордер */
+}
+
+.customCalendar .react-calendar__month-view__weekdays__weekday {
+    color: black;
+    font-weight: bold;
+    text-align: center;
+}
+
+.customCalendar .react-calendar__month-view__weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+    /* Добавляем расстояние между днями */
+}
+
+.customCalendar .react-calendar__month-view__days__day {
+    color: black;
+    background-color: #fff;
+    border-radius: 50%;
+    /* Делаем дни круглыми */
+    text-align: center;
+    height: 40px;
+    /* Высота и ширина одинаковы для идеального круга */
+    width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.customCalendar .react-calendar__tile--now {
+    background: none;
+    /* Убираем выделение сегодняшней даты */
+}
+
+.customCalendar .react-calendar__tile {
+    background-color: #fff;
+    color: black;
+    border-radius: 5px;
+    margin: 5px;
+}
+
+.customCalendar .react-calendar__tile--active {
+    background-color: #007bff;
+    color: white;
+}
+
+.customCalendar .react-calendar__tile--active:hover {
+    background-color: #0056b3;
+    color: white;
+}
+
+.customCalendar .react-calendar__tile:hover {
+    background-color: #A6DEF7;
+}
+
+.availableDate {
+    background-color: #A6DEF7;
+    color: white;
+}
+.timeSlot:hover {
+    background-color: #0056b3;
+}
+
+.calendarContainer .react-calendar__tile--now {
+    background-color: #fff !important;
+}
+
+.react-calendar__navigation button:disabled{
+    background-color: #fff !important;
+}
+.react-calendar__tile--now{
+    background-color: #fff !important;
+}
+
+.bookingContainer button :not(.react-calendar__navigation button:disabled ){
+    box-shadow: 0 0 10px #ececec !important;
+}
+.react-calendar button{
+    margin-bottom: 3px !important;
+}
+.react-calendar__tile--now {
+    background-color: #A6DEF7 !important; /* Делаем сегодняшний день видимым */
+    color: white !important; /* Обеспечиваем, что текст на сегодняшний день будет видимым */
+}
+.customCalendar .react-calendar__navigation button {
+    background-color: #fff;
+    color: #000; /* Сделать текст кнопок видимым */
+    border: none;
+    cursor: pointer; /* Убедитесь, что кнопка имеет курсор указателя */
+}
+
+.customCalendar .react-calendar__navigation button:disabled {
+    color: #ccc; /* Установите цвет для отключенных кнопок */
+    cursor: not-allowed;
+}

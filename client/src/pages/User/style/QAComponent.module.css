@@ -1,0 +1,117 @@
+.QAComponentBlock{
+    width: 100%;
+    height: auto;
+    padding: 50px 8%;
+}
+.QAComponentBlock h1{
+    margin-bottom: 40px;
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 54.64px;
+    text-align: center;
+    color: #0E0E0E;
+
+}
+.questionBlock{
+    width: 100%;
+}
+
+.questionBlockItems {
+    width: 100%;
+}
+
+.questionBlockItem {
+    margin: 15px 0;
+    height: auto;
+    padding: 25px 30px;
+    border-radius: 20px;
+    background-color: #fff;
+    box-shadow: 0px 0px 50px 0px rgba(0, 0, 0, 0.1);
+    position: relative;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.questionBlockItem img {
+    position: absolute;
+    right: 35px;
+    top: 35px;
+    height: 10px;
+    transition: transform 0.5s ease;
+}
+
+.questionBlockItem > p {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 24.59px;
+    text-align: left;
+}
+
+.questionBlockItemText {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.5s ease, opacity 0.5s ease;
+}
+
+.questionBlockItemText p {
+    margin-top: 19px;
+    width: 96%;
+}
+
+.questionBlockItemText.show {
+    max-height: 200px; 
+    opacity: 1;
+}
+
+.rotate {
+    transform: rotate(180deg);
+}
+.questionInfoBlock{
+    width: 100%;
+    padding: 30px 0.5%;
+    padding-top: 50px;
+}
+.questionInfoBlock h3{
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 27.32px;
+    text-align: left;
+    margin-bottom: 20px;
+
+}
+.questionInfoBlock ul{
+    margin-bottom: 20px;
+}
+.questionInfoBlock ul li{
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 34.59px;
+    text-align: left;
+    margin-left: 2%;
+
+}
+.questionInfoBlock p{
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 24.59px;
+    text-align: left;
+}
+
+@media (max-width: 624px) {
+    .QAComponentBlock{
+        padding: 50px 3%;
+        padding-top: 150px;
+    }
+    .QAComponentBlock h1{
+        font-size: 2rem;
+        margin-bottom: 20px;
+    }
+    .questionBlockItem {
+        padding: 25px 25px;
+    }
+    .questionBlockItem > p {
+        font-size: 1rem;
+        width: 90%;
+    }
+}
