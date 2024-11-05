@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import styles from './/client/src/components/Header/Header.module.css';
 import logo from './/client/src/assets/img/logo.svg';
-import imgProfile from './/client/src/assets/img/Vector23111111.svg';
+import imgProfile from './/client/src/assets/img/Vector23.svg';
 import cx from 'classnames';
 
 function Header({ isLoggedIn }) {
