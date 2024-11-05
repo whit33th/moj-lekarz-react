@@ -1,11 +1,11 @@
 import React from 'react';
 import styles from './Footer.module.css';
-import facebook from '../../assets/facebook.svg';
-import whatsapp from '../../assets/whatsapp.svg';
-import instagram from '../../assets/mage_instagram-circle.svg';
-import twiter from '../../assets/twiter.svg';
-import phone from '../../assets/Group4.svg';
-import arrow from '../../assets/Vectorarrow.svg';
+import facebook from "../../assets/img/facebook.svg";
+import whatsapp from "../../assets/img/whatsapp.svg";
+import instagram from "../../assets/img/mage_instagram-circle.svg";
+import twiter from "../../assets/img/twiter.svg";
+import phone from "../../assets/img/Group4.svg";
+import arrow from '../../assets/img/Vectorarrow.svg';
 import { NavLink, useLocation } from 'react-router-dom';
 
 function Footer() {
