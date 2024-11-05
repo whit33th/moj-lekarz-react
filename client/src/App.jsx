@@ -31,6 +31,7 @@ import WorkersInfo from "./pages/Firm/Workers/WorkersInfo";
 import Home from './pages/User/Home';
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer';
+import ReviewsUser from './pages/User/ReviewsUser';
 
 function App() {
   const [role, setRole] = useState("user"); // Возможные роли: 'doctor', 'admin', 'firm'. В реальном проекте это будет приходить с сервера
@@ -97,9 +98,10 @@ function App() {
 
       <Route path="/" element={<Home />} />
       <Route path="/auth/*" element={<AuthPage setIsAuth={setIsAuth} />} />
+      <Route path="/reviews/user/:id" element={<ReviewsUser />} />
       {/* 
 
-      <Route path="/reviews/user/:id" element={<ReviewsUser />} />
+      
 
       <Route path="/clinic-zapis/:id" element={<ClinicZapisPage />} />
       <Route path="/firm" element={<Firm />} />

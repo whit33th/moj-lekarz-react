@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import styles from "./AuthPage.module.css";
 import img1 from "../../assets/img/Vector13.svg";
 import { NavLink } from "react-router-dom";
@@ -73,7 +73,7 @@ function SignInComponent() {
       </div>
       {!isForgotPassword && (
         <div className={styles.bottomLinkBlock}>
-          <NavLink to="/Signup">
+          <NavLink to="signup">
             <p>Nie masz konta?</p>
           </NavLink>
         </div>
