@@ -1,9 +1,9 @@
-import React from "react";
+
 import styles from "./ReviewCard.module.css";
-import Choice from "../../../components/Modal/Choice";
+
 import avatar from "../../../assets/img/profil.webp";
 import useStore from "../../../data/store";
-import ModerationModal from "../../../components/Modals/ReviewModal/ModerationModal";
+
 import BlueBtn from "../../../components/Buttons/BlueBtn/BlueBtn";
 import ReviewModal from '../../../components/Modals/ReviewModal/ReviewModal'
 

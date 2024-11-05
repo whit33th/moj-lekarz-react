@@ -1,4 +1,4 @@
-import React from 'react'
+
 import styles from './style/ReviewsUser.module.css'
 import ReviewCard from './ReviewCard';
 import { useParams } from 'react-router-dom';

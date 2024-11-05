@@ -99,11 +99,12 @@ function App() {
       <Route path="/" element={<Home />} />
       <Route path="/auth/*" element={<AuthPage setIsAuth={setIsAuth} />} />
       <Route path="/reviews/user/:id" element={<ReviewsUser />} />
+      <Route path="/clinic-zapis/:id" element={<ClinicZapisPage />} />
       {/* 
 
       
 
-      <Route path="/clinic-zapis/:id" element={<ClinicZapisPage />} />
+      
       <Route path="/firm" element={<Firm />} />
       <Route path="/mobilna" element={<MobileAppPage />} />
       <Route path="/*" element={<NotFound />} /> */}

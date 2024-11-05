@@ -1,7 +1,7 @@
-import React from 'react';
-import img from '../assets/tst,small,845x845-pad,1000x1000,f8f8f8.jpg';
+
+import img from "../../assets/img/tst,small,845x845-pad,1000x1000,f8f8f8.jpg";
 import styles from './style/ReviewCard.module.css'
-import starimg from '../assets/Star.svg';
+import starimg from "../../assets/img/Star.svg";
 
 
 function ReviewCard(props) {
