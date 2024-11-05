@@ -109,7 +109,7 @@ function App() {
       <Route path="/mobilna" element={<MobileAppPage />} />
       <Route path="/*" element={<NotFound />} />
       <Route path="/recipes" element={<RecipesPage />} />
-
+      <Route path="/QA" element={<QAComponent />} />
       {/* Эти нет! */}
 
       {/*  */}
@@ -117,7 +117,7 @@ function App() {
         path="/znajdz-lekarzaversion2/"
         element={<ZhaidzLekarzaVersion2 />}
       /> */}
-      {/* <Route path="/QA" element={<QAComponent />} /> */}
+      {/*  */}
       {/* <Route path="/Blog" element={<Blog />} /> */}
       {/* <Route path="/visits" element={<VisitsPage />} />
       <Route path="/visits-version2" element={<VisitsPageTwo />} /> */}
