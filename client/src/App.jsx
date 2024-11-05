@@ -29,6 +29,7 @@ import SelectedGraph from "./pages/Firm/GraphManagement/SelectedGraph";
 import { pageConfig } from "./config/config";
 import WorkersInfo from "./pages/Firm/Workers/WorkersInfo";
 import Home from './pages/User/Home';
+import Footer from './components/Footer/Footer'
 
 function App() {
   const [role, setRole] = useState("user"); // Возможные роли: 'doctor', 'admin', 'firm'. В реальном проекте это будет приходить с сервера
@@ -137,7 +138,7 @@ function App() {
         <>
           {/* <Header /> */}
           {userRoutes}
-          {/* <Footer /> */}
+          <Footer />
         </>
       ) : (
         <>

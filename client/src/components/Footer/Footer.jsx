@@ -1,17 +1,17 @@
-import React from 'react';
 import styles from './Footer.module.css';
-import facebook from '../../assets/facebook.svg';
-import whatsapp from '../../assets/whatsapp.svg';
-import instagram from '../../assets/mage_instagram-circle.svg';
-import twiter from '../../assets/twiter.svg';
-import phone from '../../assets/Group4.svg';
-import arrow from '../../assets/Vectorarrow.svg';
+import facebook from '../../assets/img/facebook.svg';
+import whatsapp from '../../assets/img/whatsapp.svg';
+import instagram from "../../assets/img/mage_instagram-circle.svg";
+import twiter from "../../assets/img/twiter.svg";
+import phone from "../../assets/img/Group4.svg";
+import arrow from "../../assets/img/Vectorarrow.svg";
 import { NavLink, useLocation } from 'react-router-dom';
+import { useEffect } from 'react'
 
 function Footer() {
     const location = useLocation();
 
-    React.useEffect(() => {
+    useEffect(() => {
         // Smooth scrolling to the anchor when the location changes
         const hash = location.hash;
         if (hash) {
@@ -37,8 +37,8 @@ function Footer() {
                     <div className={styles.numberBlock}>
                         <p>Infolinia:</p>
                         <div>
-                            <h3><a href="tel:+800 000 000">800 000 000</a></h3>
-                            <p>lub +48 473 283 333 – dla połączeń komórkowych oraz z zagranicy</p>
+                            <h3><a href="tel:+800 000 000">800 000 000</a></h3>
+                            <p>lub +48 473 283 333 – dla połączeń komórkowych oraz z zagranicy</p>
                         </div>
                     </div>
                     <p>Infolinia czynna całą dobę, 7 dni w tygodniu. Opłata za połączenie według taryfy operatora. Infolinia w języku polskim.</p>
