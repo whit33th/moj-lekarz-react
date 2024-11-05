@@ -36,6 +36,7 @@ import ClinicZapisPage from './pages/User/ClinicZapisPage';
 import Firm from './pages/User/Firm';
 import MobileAppPage from './pages/User/MobileAppPage';
 import NotFound from './pages/User/NotFound';
+import RecipesPage from './pages/User/RecipesPage';
 
 function App() {
   const [role, setRole] = useState("user"); // Возможные роли: 'doctor', 'admin', 'firm'. В реальном проекте это будет приходить с сервера
@@ -107,12 +108,11 @@ function App() {
       <Route path="/firm" element={<Firm />} />
       <Route path="/mobilna" element={<MobileAppPage />} />
       <Route path="/*" element={<NotFound />} />
-
-    
+      <Route path="/recipes" element={<RecipesPage />} />
 
       {/* Эти нет! */}
 
-      {/* <Route path="/recipes" element={<RecipesPage />} /> */}
+      {/*  */}
       {/* <Route
         path="/znajdz-lekarzaversion2/"
         element={<ZhaidzLekarzaVersion2 />}
