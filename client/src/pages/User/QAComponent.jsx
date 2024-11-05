@@ -1,11 +1,11 @@
 // src/components/QAComponent.jsx
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import  { useState } from 'react';
 import styles from './style/QAComponent.module.css';
-import vector from '../assets/Vector9.svg';
+import vector from '../../assets/img/Vector9.svg';
+import useStore from '../../data/store'
 
 function QAComponent() {
-  const questionsData = useSelector((state) => state.some.questionsData);
+  const {questionsData} = useStore();
   const [activeIndex, setActiveIndex] = useState(null);
 
   const toggleQuestion = (index) => {
