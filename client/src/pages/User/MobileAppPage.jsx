@@ -1,11 +1,11 @@
-import React from 'react';
+
 import styles from './style/MobileAppPage.module.css';
-import img1 from '../assets/image1.svg'
-import img2 from '../assets/image2.svg'
-import phone from '../assets/foto.webp'
-import img3 from '../assets/Frame1.svg'
-import img4 from '../assets/Frame2.svg'
-import img5 from '../assets/Frame3.svg'
+import img1 from '../../assets/img/image1.svg'
+import img2 from '../../assets/img/image2.svg'
+import phone from '../../assets/img/foto.webp'
+import img3 from '../../assets/img/Frame1.svg'
+import img4 from '../../assets/img/Frame2.svg'
+import img5 from '../../assets/img/Frame3.svg'
 
 
 
