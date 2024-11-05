@@ -1,9 +1,9 @@
 import React from 'react'
 import styles from './VisitsCard.module.css';
-import imgName from '../../assets/simple-line-i.svg';
-import imgType from '../../assets/Vector14.svg';
-import phoneImg from '../../assets/ph_phone-light.svg';
-import closeImg from '../../assets/Vector (33).svg'
+import imgName from '../../../assets/img/simple-line-i.svg';
+import imgType from '../../../assets/img/Vector14.svg';
+import phoneImg from '../../../assets/img/ph_phone-light.svg';
+import closeImg from '../../../assets/img/Vector (33).svg'
 
 function VisitsCard({ data , deleteFc }) {
 

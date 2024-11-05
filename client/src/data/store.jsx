@@ -1,7 +1,6 @@
-// src/zustand/someStore.js
 import { create } from "zustand";
 import imageblog from "../assets/img/imageblog.webp";
-// Определение состояния
+
 const useStore = create((set) => ({
   // Modal state
   isModalActive: false,
@@ -49,7 +48,7 @@ const useStore = create((set) => ({
         clinicalAddress: "Osiedle Zwycięstwa 108",
         phone: "234 000 211",
         serviceName: "Konsultacja ginekologiczna",
-        servicePrice: "290,00 zł",
+        servicePrice: "290,00 zł",
       },
       {
         id: 1,
@@ -61,7 +60,7 @@ const useStore = create((set) => ({
         clinicalAddress: "Osiedle Zwycięstwa 108",
         phone: "234 000 211",
         serviceName: "Konsultacja ginekologiczna",
-        servicePrice: "290,00 zł",
+        servicePrice: "290,00 zł",
       },
     ],
     completedVisits: [
@@ -75,7 +74,7 @@ const useStore = create((set) => ({
         clinicalAddress: "Osiedle Zwycięstwa 108",
         phone: "234 000 211",
         serviceName: "Konsultacja ginekologiczna",
-        servicePrice: "290,00 zł",
+        servicePrice: "290,00 zł",
       },
       {
         id: 1,
@@ -87,7 +86,7 @@ const useStore = create((set) => ({
         clinicalAddress: "Osiedle Zwycięstwa 108",
         phone: "234 000 211",
         serviceName: "Konsultacja ginekologiczna",
-        servicePrice: "290,00 zł",
+        servicePrice: "290,00 zł",
       },
     ],
   },
@@ -866,6 +865,29 @@ const useStore = create((set) => ({
   ],
   status: "idle",
   error: null,
+
+  setQuestionsData: (questionsData) => set({ questionsData }),
+  setBlogs: (blogs) => set({ blogs }),
+  deleteVisitById: (idToDelete) =>
+    set((state) => ({
+      visitsState: {
+        ...state.visitsState,
+        plannedVisits: state.visitsState.plannedVisits.filter(
+          (visit) => visit.id !== idToDelete
+        ),
+      },
+    })),
+
+  // Converted createAsyncThunk to a Zustand action
+  fetchBlogs: async () => {
+    set({ status: "loading" });
+    try {
+      const response = await fetch.get("/blogs"); //fetch было axios
+      set({ status: "succeeded", blogs: response.data });
+    } catch (error) {
+      set({ status: "failed", error: error.message });
+    }
+  },
 }));
 
 export default useStore;
