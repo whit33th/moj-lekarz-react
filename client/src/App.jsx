@@ -32,6 +32,7 @@ import Home from './pages/User/Home';
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer';
 import ReviewsUser from './pages/User/ReviewsUser';
+import ClinicZapisPage from './pages/User/ClinicZapisPage';
 
 function App() {
   const [role, setRole] = useState("user"); // Возможные роли: 'doctor', 'admin', 'firm'. В реальном проекте это будет приходить с сервера

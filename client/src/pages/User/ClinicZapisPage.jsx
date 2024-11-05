@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import styles from './style/ClinicZapisPage.module.css'
-import BookingComponent from '../components/BookingComponent';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
+import BookingComponent from './../../components/BookingComponent';
 
 
 const arraySelectOptions = {
