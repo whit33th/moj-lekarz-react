@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
-import styles from './Header.module.css';
-import logo from '../../assets/logo.svg';
-import imgProfile from '../../assets/Vector23.svg';
+import styles from './/client/src/components/Header/Header.module.css';
+import logo from './/client/src/assets/img/logo.svg';
+import imgProfile from './/client/src/assets/img/Vector23.svg';
 import cx from 'classnames';
 
 function Header({ isLoggedIn }) {

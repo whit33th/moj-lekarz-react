@@ -135,7 +135,7 @@ function App() {
       <ScrollToTop />
       {role === "user" ? (
         <>
-          {/* <Header /> */}
+           <Header />
           {userRoutes}
           {/* <Footer /> */}
         </>
