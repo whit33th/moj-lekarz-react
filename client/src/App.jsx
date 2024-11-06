@@ -28,22 +28,31 @@ import GraphManagement from "./pages/Firm/GraphManagement/GraphManagement";
 import SelectedGraph from "./pages/Firm/GraphManagement/SelectedGraph";
 import { pageConfig } from "./config/config";
 import WorkersInfo from "./pages/Firm/Workers/WorkersInfo";
-import Home from './pages/User/Home';
-import Header from './components/Header/Header'
-import Footer from './components/Footer/Footer';
-import ReviewsUser from './pages/User/ReviewsUser';
-import ClinicZapisPage from './pages/User/ClinicZapisPage';
-import Firm from './pages/User/Firm';
-import MobileAppPage from './pages/User/MobileAppPage';
-import NotFound from './pages/User/NotFound';
-import RecipesPage from './pages/User/RecipesPage';
-import QAComponent from './pages/User/QAComponent';
-import Blog from './pages/User/Blog';
-import VisitsPage from './pages/User/Visits/VisitsPage';
-import VisitsPageTwo from './pages/User/Visits/VisitsPageTwo';
-import DoctorProfile from './pages/User/ZnaidzLekarza/DoctorProfile';
-import ResearchResultsPage from './pages/User/ResearchResults/ResearchResultsPage';
-import Profile from './pages/User/Profile/Profile';
+import Home from "./pages/User/Home";
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
+import ReviewsUser from "./pages/User/ReviewsUser";
+import ClinicZapisPage from "./pages/User/ClinicZapisPage";
+import Firm from "./pages/User/Firm";
+import MobileAppPage from "./pages/User/MobileAppPage";
+import NotFound from "./pages/User/NotFound";
+import RecipesPage from "./pages/User/RecipesPage";
+import QAComponent from "./pages/User/QAComponent";
+import Blog from "./pages/User/Blog";
+import VisitsPage from "./pages/User/Visits/VisitsPage";
+import VisitsPageTwo from "./pages/User/Visits/VisitsPageTwo";
+import DoctorProfile from "./pages/User/ZnaidzLekarza/DoctorProfile";
+import ResearchResultsPage from "./pages/User/ResearchResults/ResearchResultsPage";
+import Profile from "./pages/User/Profile/Profile";
+import SearchClinicPage from "./pages/User/Clinic/SearchClinicPage";
+import ProfileClinic from "./pages/User/Clinic/ProfileClinic";
+import PolicyRegulamin from "./pages/User/Policy/PolicyRegulamin";
+import PolicyPersonalData from "./pages/User/Policy/PolicyPersonalData";
+import PolicyCookies from "./pages/User/Policy/PolicyCookies";
+import HowItWorks from "./pages/User/HowItWorks/HowItWorks";
+import ZnajdzLekarzaContainer from "./pages/User/ZnaidzLekarza/ZnaidzLekarzaConteiner";
+import PolicyPrivacy from "./pages/User/Policy/PolicyPrivacy";
+import ZnajdzLekarzaVersion2 from "./pages/User/ZhaidzLekarzaVaersion2";
 
 function App() {
   const [role, setRole] = useState("user"); // Возможные роли: 'doctor', 'admin', 'firm'. В реальном проекте это будет приходить с сервера
@@ -106,7 +115,6 @@ function App() {
 
   const userRoutes = (
     <Routes>
-      {/* Эти работают +- */}
 
       <Route path="/" element={<Home />} />
       <Route path="/auth/*" element={<AuthPage setIsAuth={setIsAuth} />} />
@@ -124,27 +132,17 @@ function App() {
       <Route path="/ResearchResult" element={<ResearchResultsPage />} />
       <Route path="/Profile" element={<Profile />} />
       <Route path="/Search-clinic" element={<SearchClinicPage />} />
-      {/* Эти нет! */}
-
-      {/* <Route
-        path="/znajdz-lekarzaversion2/"
-        element={<ZhaidzLekarzaVersion2 />}
-      /> */}
-
-      {/*
-       */}
-      {/* 
-      
-
-       */}
-      {/* 
-      <Route path="/profile-clinic/:id" element={<ProfileClinic />} /> */}
-      {/* <Route path="/policy/regulamin" element={<PolicyRegulamin />} />
-      <Route path="/policy/personaldata" element={<PolicyPersonalData />} />
+      <Route path="/profile-clinic/:id" element={<ProfileClinic />} />
+      <Route path="/policy/regulamin" element={<PolicyRegulamin />} />
+      <Route path="/policy/personal-data" element={<PolicyPersonalData />} />
       <Route path="/policy/cookies" element={<PolicyCookies />} />
-      <Route path="/policy/privacy" element={<PolicyPrivacy />} /> */}
-      {/* <Route path="/howitwork" element={<HowItWorks />} /> */}
-      {/* <Route path="/znajdz-lekarza/*" element={<ZnaidzLekarzaConteiner />} /> */}
+      <Route path="/how-it-work" element={<HowItWorks />} />
+      <Route path="/znajdz-lekarza/*" element={<ZnajdzLekarzaContainer />} />
+      <Route
+        path="/znajdz-lekarza-version2/"
+        element={<ZnajdzLekarzaVersion2 />}
+      />
+      <Route path="/policy/privacy" element={<PolicyPrivacy />} />
     </Routes>
   );
 
@@ -153,7 +151,7 @@ function App() {
       <ScrollToTop />
       {role === "user" ? (
         <>
-           <Header />
+          <Header />
           {userRoutes}
           <Footer />
         </>

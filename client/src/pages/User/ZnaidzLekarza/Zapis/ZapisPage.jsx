@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import  { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './ZapisPage.module.css';
-import imgName from '../../../assets/simple-line-i.svg';
-import imgType from '../../../assets/Vector14.svg';
-import phoneImg from '../../../assets/ph_phone-light.svg';
+import imgName from '../../../../assets/img/simple-line-i.svg';
+import imgType from '../../../../assets/img/Vector14.svg';
+import phoneImg from '../../../../assets/img/ph_phone-light.svg';
 
 const arraySelectOptions = {
   select1: ['Konsultacja ginekologiczna • 290,00 zł', 'Konsultacja ginekologiczna • 2090,00 zł', 'Konsultacja ginekologiczna • 2900,00 zł'],

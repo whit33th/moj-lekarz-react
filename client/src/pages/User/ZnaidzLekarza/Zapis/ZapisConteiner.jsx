@@ -1,14 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import ZapisPage from './ZapisPage'
 import { useNavigate } from 'react-router-dom';
 import ZapisFormPage from './ZapisFormPage';
 import ZapisDone from './ZapisDone';
-import { getCookie } from '../../../utilits/AuthToken';
-import { useSelector } from 'react-redux';
+
+
 import { useParams } from 'react-router-dom';
 import LoadingPage from './LoadingPage';
 
-import { sendNewOrder } from '../../../services/apiService';
+
+import useStore from '../../../../data/store'
+import { getCookie } from './../../../../utils/AuthToken';
+import { sendNewOrder } from './../../../../helpers/apiService';
 
 function ZapisConteiner({ zapisState , isLoggedIn}) {
 
@@ -21,7 +24,7 @@ function ZapisConteiner({ zapisState , isLoggedIn}) {
     const [formDataObj , setFormDataObj] = useState({})
     const navigate = useNavigate();
     const { id } = useParams();
-    const doctorCard = useSelector((state) => state.some.doctorCard);
+    const {doctorCard} = useStore();
     useEffect(() => {
         const doctor = doctorCard.find((item) => item.id == id);
         const dataDoctor = {

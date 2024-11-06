@@ -1,17 +1,17 @@
-import React, { useState } from 'react'
-import starimg from '../../assets/Star.svg';
+import { useState } from 'react'
+import starimg from '../../../assets/img/Star.svg';
 import styles from './style/ProfileClinic.module.css'
-import img1 from '../../assets/tst,small,845x845-pad,1000x1000,f8f8f8.jpg'
 import UslugiCard from './UslugiCard';
 import ProfileClinicAbout from './ProfileClinicAbout';
 import ProfileAddress from './ProfileAddress';
 import ProfileClinicReviews from './ProfileClinicReviews';
-import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import useStore from '../../../data/store'
+
 
 
 function ProfileClinic() {
-  const clinicCard = useSelector((state) => state.some.clinicCard);
+  const {clinicCard} = useStore();
   const { id } = useParams();
 
   let state = clinicCard.filter(item => item.id == id);

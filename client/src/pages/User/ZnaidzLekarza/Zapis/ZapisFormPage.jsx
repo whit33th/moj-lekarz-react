@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import  { useState } from 'react';
 
 import styles from './ZapisFormPage.module.css';
-import imgName from '../../../assets/simple-line-i.svg';
-import imgType from '../../../assets/Vector14.svg';
-import phoneImg from '../../../assets/ph_phone-light.svg';
-import visitorImg from '../../../assets/Vector15.svg';
-import fileInputImg from '../../../assets/Vector16.svg';
-import fileInputv2 from '../../../assets/tabler_file-filled.svg';
-import visitorImg2 from '../../../assets/pobierz.svg';
+import imgName from '../../../../assets/img/simple-line-i.svg';
+import imgType from '../../../../assets/img/Vector14.svg';
+import phoneImg from '../../../../assets/img/ph_phone-light.svg';
+import visitorImg from '../../../../assets/img/Vector15.svg';
+import fileInputImg from '../../../../assets/img/Vector16.svg';
+import fileInputv2 from '../../../../assets/img/tabler_file-filled.svg';
+import visitorImg2 from '../../../../assets/img/pobierz.svg';
 
 import { NavLink } from 'react-router-dom';
 

@@ -1,10 +1,10 @@
 import React from 'react';
 import styles from './style/ClinicCard.module.css';
-import img1 from '../../assets/tst,small,845x845-pad,1000x1000,f8f8f8.jpg';
-import starimg from '../../assets/Star.svg';
+import img1 from '../../../assets/img/tst,small,845x845-pad,1000x1000,f8f8f8.jpg';
+import starimg from '../../../assets/img/Star.svg';
 import { NavLink } from 'react-router-dom';
-import imgIcon1 from '../../assets/simple-line-i.svg';
-import imgIcon2 from '../../assets/Vector14.svg';
+import imgIcon1 from '../../../assets/img/simple-line-i.svg';
+import imgIcon2 from '../../../assets/img/Vector14.svg';
 
 function ClinicCard(props) {
     const data = props.state;

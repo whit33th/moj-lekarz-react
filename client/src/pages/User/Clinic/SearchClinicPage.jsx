@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import styles from './style/SearchClinicPage.module.css'
 import ClinicCard from './ClinicCard'
-import { useSelector } from 'react-redux';
+
+import useStore from '../../../data/store'
 
 
 
@@ -13,7 +14,7 @@ const arraySelectOptions = {
 }
 
 function SearchClinicPage() {
-  const clinicCard = useSelector((state) => state.some.clinicCard);
+  const {clinicCard} = useStore();
 
 
     const [isOpen1, setIsOpen1] = useState(false);
@@ -63,8 +64,8 @@ function SearchClinicPage() {
                         </div>
                         {isOpen1 && (
                             <ul className={styles.dropdownMenu}>
-                                {arraySelectOptions.select1.map(elem => (
-                                    <li className={styles.dropdownMenuItem} onClick={() => handleOptionClick(elem, setSelectedOption1, setIsOpen1)}>
+                                {arraySelectOptions.select1.map((elem,index) => (
+                                    <li key={index} className={styles.dropdownMenuItem} onClick={() => handleOptionClick(elem, setSelectedOption1, setIsOpen1)}>
                                         {elem}
                                     </li>
                                 ))}
@@ -112,8 +113,8 @@ function SearchClinicPage() {
                         </div>
                         {isOpen4 && (
                             <ul className={styles.dropdownMenu}>
-                                {arraySelectOptions.select4.map(elem => (
-                                    <li className={styles.dropdownMenuItem} onClick={() => handleOptionClick(elem, setSelectedOption4, setIsOpen4)}>
+                                {arraySelectOptions.select4.map((elem,index) => (
+                                    <li key={index} className={styles.dropdownMenuItem} onClick={() => handleOptionClick(elem, setSelectedOption4, setIsOpen4)}>
                                         {elem}
                                     </li>
                                 ))}
@@ -128,7 +129,7 @@ function SearchClinicPage() {
             </div>
             <div className={styles.clinicCardsBlock}>
                 {
-                    state.map(item => <ClinicCard state={item}/>)
+                    state.map(item => <ClinicCard state={item} />)
                 }
                 
             </div>

@@ -1,10 +1,10 @@
-import React from 'react'
+
 import styles from './style/ProfileAddress.module.css';
-import imgIcon1 from '../../assets/simple-line-i.svg';
-import imgIcon2 from '../../assets/ph_phone-light (2).svg';
-import imgIcon3 from '../../assets/oui_email.svg';
-import imgIcon4 from '../../assets/fluent_text-number-list-ltr-20-regular.svg';
-import imgIcon5 from '../../assets/Group-1.svg';
+import imgIcon1 from '../../../assets/img/simple-line-i.svg';
+import imgIcon2 from '../../../assets/img/ph_phone-light (2).svg';
+import imgIcon3 from '../../../assets/img/oui_email.svg';
+import imgIcon4 from '../../../assets/img/fluent_text-number-list-ltr-20-regular.svg';
+import imgIcon5 from '../../../assets/img/Group-1.svg';
 
 
 

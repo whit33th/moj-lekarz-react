@@ -1,8 +1,8 @@
 import React from 'react';
 import styles from './style/DoctorCard.module.css';
-import starimg from '../../assets/Star.svg';
-import imgIcon1 from '../../assets/simple-line-i.svg';
-import imgIcon2 from '../../assets/Vector14.svg';
+import starimg from '../../../assets/img/Star.svg';
+import imgIcon1 from '../../../assets/img/simple-line-i.svg';
+import imgIcon2 from '../../../assets/img/Vector14.svg';
 import { NavLink } from 'react-router-dom';
 
 function DoctorCard({ data, selectedDate, addZapis }) {

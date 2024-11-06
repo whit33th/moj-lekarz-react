@@ -1,12 +1,12 @@
-import React, { useState } from 'react'
+import  { useState } from 'react'
 import styles from './ZapisDone.module.css'
-import imgName from '../../../assets/simple-line-i.svg';
-import imgType from '../../../assets/Vector14.svg';
-import phoneImg from '../../../assets/ph_phone-light.svg';
-import visitorImg from '../../../assets/Vector15.svg';
-import downloadimg from '../../../assets/material-symbols-light_download.svg';
-import commentsImg from '../../../assets/iconamoon_comment-light.svg';
-import AppPromo from '../../../components/AppPromo/AppPromo'
+import imgName from "../../../../assets/img/simple-line-i.svg";
+import imgType from '../../../../assets/img/Vector14.svg';
+import phoneImg from '../../../../assets/img/ph_phone-light.svg';
+import visitorImg from '../../../../assets/img/Vector15.svg';
+import downloadImg from '../../../../assets/img/material-symbols-light_download.svg';
+import commentsImg from '../../../../assets/img/iconamoon_comment-light.svg';
+import AppPromo from '../../../../components/AppPromo/AppPromo';
 import { NavLink, useParams } from 'react-router-dom';
 
 
@@ -69,7 +69,7 @@ function ZapisDone(props) {
 
                             </div>
                             <div className={styles.fileNameBlock}>
-                                <img src={downloadimg} />
+                                <img src={downloadImg} />
                                 <div>
                                     <p>Dodane dokumenty:</p>
                                     <span>{props.formDataObj.file && props.formDataObj.file.length < 3 ? 'undefined' : props.formDataObj.file}</span>
