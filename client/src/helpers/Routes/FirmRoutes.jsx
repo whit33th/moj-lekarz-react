@@ -1,0 +1,31 @@
+import { Route, Routes } from 'react-router-dom'
+import { pageConfig } from '../../config/config'
+import FirmMain from "../../pages/Firm/Main/FirmMain";
+import Calendar from '../../pages/Doctor/Calendar/Calendar'
+import GraphManagement from '../../pages/Firm/GraphManagement/GraphManagement'
+import SelectedGraph from '../../pages/Firm/GraphManagement/SelectedGraph'
+import Workers from '../../pages/Firm/Workers/Workers'
+import FirmManagement from '../../pages/Firm/FirmManagement/FirmManagement'
+import Notifications from '../../pages/Doctor/Notifications/Notifications'
+import Settings from '../../pages/Doctor/Settings/Settings'
+import Profil from '../../pages/Doctor/Profil/Profil'
+import WorkersInfo from '../../pages/Firm/Workers/WorkersInfo'
+function FirmRoutes() {
+	return (
+    <Routes>
+      <Route path={pageConfig.firm.home} element={<FirmMain />} />
+      <Route path={pageConfig.firm.calendar} element={<Calendar />} />
+      <Route path={pageConfig.firm.graph} element={<GraphManagement />} />
+      <Route path={pageConfig.firm.graphManage} element={<SelectedGraph />} />
+      <Route path={pageConfig.firm.workers} element={<Workers />} />
+      <Route path={pageConfig.firm.management} element={<FirmManagement />} />
+      <Route path={pageConfig.firm.notifications} element={<Notifications />} />
+      <Route path={pageConfig.firm.chat} element={<Notifications />} />
+      <Route path={pageConfig.firm.settings} element={<Settings />} />
+      <Route path={pageConfig.firm.profile} element={<Profil />} />
+      <Route path="/workers/id" element={<WorkersInfo />} />
+    </Routes>
+  );
+}
+
+export default FirmRoutes

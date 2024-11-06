@@ -3,7 +3,7 @@ import styles from './Footer.module.css';
 import facebook from "../../assets/img/facebook.svg";
 import whatsapp from "../../assets/img/whatsapp.svg";
 import instagram from "../../assets/img/mage_instagram-circle.svg";
-import twiter from "../../assets/img/twiter.svg";
+import twitter from "../../assets/img/twiter.svg";
 import phone from "../../assets/img/Group4.svg";
 import arrow from '../../assets/img/Vectorarrow.svg';
 import { NavLink, useLocation } from 'react-router-dom';
@@ -87,7 +87,7 @@ function Footer() {
                     <a href="#"><img src={facebook} alt="facebook" /></a>
                     <a href="#"><img src={whatsapp} alt="whatsapp" /></a>
                     <a href="#"><img src={instagram} alt="instagram" className={styles.instaIcon} /></a>
-                    <a href="#"><img src={twiter} alt="twiter" /></a>
+                    <a href="#"><img src={twitter} alt="twitter" /></a>
                 </div>
                 <div className={styles.politykaNavigate}>
                     <NavLink to="/policy/privacy">Polityka prywatności</NavLink>
