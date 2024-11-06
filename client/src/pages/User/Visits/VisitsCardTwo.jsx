@@ -1,9 +1,9 @@
-import React from 'react';
+
 import styles from './VisitsCardTwo.module.css';
-import imgName from '../../assets/simple-line-i.svg';
-import imgType from '../../assets/Vector14.svg';
-import phoneImg from '../../assets/ph_phone-light.svg';
-import visitorImg from '../../assets/Vector15.svg';
+import imgName from '../../../assets/img/simple-line-i.svg';
+import imgType from '../../../assets/img/Vector14.svg';
+import phoneImg from '../../../assets/img/ph_phone-light.svg';
+import visitorImg from '../../../assets/img/Vector15.svg';
 
 
 function VisitsCardTwo({ data }) {

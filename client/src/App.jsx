@@ -40,6 +40,8 @@ import RecipesPage from './pages/User/RecipesPage';
 import QAComponent from './pages/User/QAComponent';
 import Blog from './pages/User/Blog';
 import VisitsPage from './pages/User/Visits/VisitsPage';
+import VisitsPageTwo from './pages/User/Visits/VisitsPageTwo';
+import DoctorProfile from './pages/User/ZnaidzLekarza/DoctorProfile';
 
 function App() {
   const [role, setRole] = useState("user"); // Возможные роли: 'doctor', 'admin', 'firm'. В реальном проекте это будет приходить с сервера
@@ -115,21 +117,21 @@ function App() {
       <Route path="/QA" element={<QAComponent />} />
       <Route path="/Blog" element={<Blog />} />
       <Route path="/visits" element={<VisitsPage />} />
+      <Route path="/visits-version2" element={<VisitsPageTwo />} />
+      <Route path="/profileDoctor/:id" element={<DoctorProfile />} />
       {/* Эти нет! */}
 
-      {/*  */}
       {/* <Route
         path="/znajdz-lekarzaversion2/"
         element={<ZhaidzLekarzaVersion2 />}
       /> */}
-      {/*  */}
-      {/*  */}
-      {/* 
-      <Route path="/visits-version2" element={<VisitsPageTwo />} /> */}
+
+      {/*
+       */}
       {/* <Route path="/ResearchResult" element={<ResearchResultsPage />} />
       <Route path="/Profile" element={<Profile />} />
 
-      <Route path="/profileDoctor/:id" element={<DoctorProfile />} /> */}
+       */}
       {/* <Route path="/Search-clinic" element={<SearchClinicPage/>} />
       <Route path="/profile-clinic/:id" element={<ProfileClinic />} /> */}
       {/* <Route path="/policy/regulamin" element={<PolicyRegulamin />} />
