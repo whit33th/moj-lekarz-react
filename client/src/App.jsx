@@ -121,6 +121,7 @@ function App() {
       <Route path="/visits-version2" element={<VisitsPageTwo />} />
       <Route path="/profileDoctor/:id" element={<DoctorProfile />} />
       <Route path="/ResearchResult" element={<ResearchResultsPage />} />
+      <Route path="/Profile" element={<Profile />} />
       {/* Эти нет! */}
 
       {/* <Route
@@ -131,7 +132,7 @@ function App() {
       {/*
        */}
       {/* 
-      <Route path="/Profile" element={<Profile />} />
+      
 
        */}
       {/* <Route path="/Search-clinic" element={<SearchClinicPage/>} />
