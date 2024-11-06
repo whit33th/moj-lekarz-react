@@ -43,6 +43,7 @@ import VisitsPage from './pages/User/Visits/VisitsPage';
 import VisitsPageTwo from './pages/User/Visits/VisitsPageTwo';
 import DoctorProfile from './pages/User/ZnaidzLekarza/DoctorProfile';
 import ResearchResultsPage from './pages/User/ResearchResults/ResearchResultsPage';
+import Profile from './pages/User/Profile/Profile';
 
 function App() {
   const [role, setRole] = useState("user"); // Возможные роли: 'doctor', 'admin', 'firm'. В реальном проекте это будет приходить с сервера
@@ -122,6 +123,7 @@ function App() {
       <Route path="/profileDoctor/:id" element={<DoctorProfile />} />
       <Route path="/ResearchResult" element={<ResearchResultsPage />} />
       <Route path="/Profile" element={<Profile />} />
+      <Route path="/Search-clinic" element={<SearchClinicPage />} />
       {/* Эти нет! */}
 
       {/* <Route
@@ -135,7 +137,7 @@ function App() {
       
 
        */}
-      {/* <Route path="/Search-clinic" element={<SearchClinicPage/>} />
+      {/* 
       <Route path="/profile-clinic/:id" element={<ProfileClinic />} /> */}
       {/* <Route path="/policy/regulamin" element={<PolicyRegulamin />} />
       <Route path="/policy/personaldata" element={<PolicyPersonalData />} />
