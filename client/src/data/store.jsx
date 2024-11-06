@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import imageblog from "../assets/img/imageblog.webp";
-
+import doctor from "../assets/img/doctor.jpg";
 const useStore = create((set) => ({
   // Modal state
   isModalActive: false,
@@ -324,7 +324,7 @@ const useStore = create((set) => ({
       id: 0,
       name: "Ania Kaczmarska",
       type: "ortoped",
-      imglink: "/assets/doctor.jpg",
+      imglink: doctor,
       rating: 5,
       address: { street: "'Ul. Kutrzeby 10, 61-714 ", city: "Poznań" },
       price: "190",
@@ -369,7 +369,7 @@ const useStore = create((set) => ({
       id: 1,
       name: "Ania Kaczmarska",
       type: "logoped",
-      imglink: "/assets/doctor.jpg",
+      imglink: doctor,
       rating: 5,
       address: { street: "'Ul. Kutrzeby 10, 61-714 ", city: "Poznań" },
       price: "190",

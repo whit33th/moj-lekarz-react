@@ -1,9 +1,10 @@
-import React, { useState , useEffect} from 'react'
+import  { useState , useEffect} from 'react'
 import styles from './style/DoctorProfile.module.css';
 import ReviewCard from '../ReviewCard';
 import { NavLink } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+
 import { useParams } from 'react-router-dom';
+import useStore from '../../../data/store'
 
 const reviewData = [
     {},
@@ -15,7 +16,7 @@ const reviewData = [
 function DoctorProfile() {
     const [doctorInfo , setDoctorInfo] = useState({})
     const { id } = useParams();
-    const doctorCard = useSelector((state) => state.some.doctorCard);
+    const {doctorCard} = useStore();
 
     useEffect(() => {
         const doctor = doctorCard.find((item) => item.id == id);
