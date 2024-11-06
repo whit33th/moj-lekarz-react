@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import styles from "./MoreInfoButt.module.css";
 import useStore from "../../../data/store";
 import BlueBorderBtn from "../BlueBorderBtn/BlueBorderBtn";
-import cross from "../../../assets/img/cross.png"
+import cross from "../../../assets/img/cross.png";
 import back from "../../../assets/img/back.png";
 
 const MoreInfoButtPatient = ({ id }) => {
@@ -56,7 +56,7 @@ const MoreInfoButtPatient = ({ id }) => {
   const handleFileChange = async (e) => {
     const promise = () => new Promise((resolve) => setTimeout(resolve, 2000));
     const file = e.target.files[0];
-
+    const { toast } = await import("sonner");
     if (file && file.type === "application/pdf") {
       toast.promise(promise, {
         loading: "Wysyłanie pliku...",
@@ -64,7 +64,6 @@ const MoreInfoButtPatient = ({ id }) => {
         error: "Wystąpił błąd podczas przesyłania pliku.",
       });
     } else {
-      const { toast } = await import("sonner");
       toast.error("Proszę przesłać plik PDF.");
     }
   };
@@ -110,7 +109,9 @@ const MoreInfoButtPatient = ({ id }) => {
         alt="back"
       />
       <div className={styles.header}>
-        <h2 style={{margin: '0', textAlign: "center", width: "100%" }}>Dodaj plik</h2>
+        <h2 style={{ margin: "0", textAlign: "center", width: "100%" }}>
+          Dodaj plik
+        </h2>
       </div>
       <div className={styles.dropFile} onClick={handleFileClick}>
         <i className="bx bx-cloud-upload"></i>

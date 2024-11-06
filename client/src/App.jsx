@@ -1,19 +1,22 @@
-import { useState } from "react";
-import Sidebar from "./components/Sidebar/Sidebar";
+import { useState, lazy, Suspense } from "react";
+
 import { BrowserRouter as Router } from "react-router-dom";
-import Navbar from "./components/Navbar/Navbar";
-import ScrollToTop from "./utils/scrollToTop";
-import Modal from "./components/Modal/Modal";
+
 import { Toaster } from "sonner";
-import Header from "./components/Header/Header";
-import Footer from "./components/Footer/Footer";
-import DoctorRoutes from "./helpers/Routes/DoctorRoutes";
-import FirmRoutes from "./helpers/Routes/FirmRoutes";
-import AdminRoutes from "./helpers/Routes/AdminRoutes";
-import UserRoutes from "./helpers/Routes/UserRoutes";
+import ScrollToTop from "./utils/scrollToTop";
+
+const Sidebar = lazy(() => import("./components/Sidebar/Sidebar"));
+const Navbar = lazy(() => import("./components/Navbar/Navbar"));
+const Header = lazy(() => import("./components/Header/Header"));
+const Footer = lazy(() => import("./components/Footer/Footer"));
+const FirmRoutes = lazy(() => import("./helpers/Routes/FirmRoutes"));
+const AdminRoutes = lazy(() => import("./helpers/Routes/AdminRoutes"));
+const UserRoutes = lazy(() => import("./helpers/Routes/UserRoutes"));
+const DoctorRoutes = lazy(() => import("./helpers/Routes/DoctorRoutes"));
+const Modal = lazy(() => import("./components/Modal/Modal"));
 
 function App() {
-  const [role] = useState("firm"); // Возможные роли: 'doctor', 'admin', 'firm'. В реальном проекте это будет приходить с сервера
+  const [role] = useState("firm"); // Возможные роли: 'doctor', 'admin', 'firm'.
 
   return (
     <Router>
