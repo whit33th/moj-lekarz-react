@@ -245,14 +245,32 @@
   cursor: pointer;
   margin-top: 20px;
 }
-.mainContainer{
-  width: 70vw;
-}
+
 .cardsContainer{
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
-  
+  /* display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); */
+  /* gap: 20px; */
+  column-count: 2;
+  column-gap: 20px;    
+}
+.Navbar{
+  display: flex;
+  justify-content: space-between;
+}
+.Navbar > img{
+  width: 20px;
+  height: 20px;
+  transition: 0.3s;
+}
+.Navbar > img:hover{
+  cursor: pointer;
+  opacity: 0.8;
+}
+.Navbar > img:active{
+  scale: 0.9;
+}
+.Navbar .Dropdown{
+width: fit-content;
 }
 
 @media screen and (max-width: 920px) {

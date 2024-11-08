@@ -7,14 +7,18 @@ import BestWorkerItem from "../../../components/FirmPage/VisitItem/BestWorkerIte
 import { userItems } from "../../../helpers/userItemList";
 
 import styles from "./FirmManagement.module.css";
-import Review from "../../../components/FirmPage/Revieu/Review";
+import Review from "../../../components/FirmPage/Review/Review";
 import useStore from "./../../../data/store";
 import Choice from "../../../components/Modal/Choice";
-import CommentCard from "../../../components/FirmPage/map//CommentCard";
+
 import profil from "../../../assets/img/profil.webp";
+import ReviewCard from "../../../components/FirmPage/Review/ReviewCard";
+
+import Dropdown from "../../../components/Dropdown/Dropdown";
+import exit from "../../../assets/img/cross.png";
 function FirmManagement() {
   const { setModalActive, setModalContent } = useStore();
-  
+
   function openMainModal() {
     setModalActive(true);
     setModalContent(ModalContentEdit);
@@ -145,27 +149,20 @@ function FirmManagement() {
       rating: 2,
       image: profil,
     },
-		{
+    {
       name: "Daniel Novikov",
       date: "06.02.2024",
       text: "Bravo.",
       rating: 3,
       image: profil,
     },
-		{
+    {
       name: "Daniel Novikov",
       date: "06.02.2024",
       text: "Git",
       rating: 5,
       image: profil,
     },
-		{
-      name: "Daniel Novikov",
-      date: "06.02.2024",
-      text: "Ola lubi wszystkie przedmioty. Wie, że nauka jest ważna. Najmilej spędza czas na lekcjach o przyrodzie – Ola bardzo lubi zwierzęta. W klasie Oli mieszka chomik. Wszystkie dzieci dbają o niego. Przynoszą mu jedzenie i głaszczą. Ola nie ma własnego zwierzęcia, więc chomik to kolejny powód dla którego lubi chodzić do szkoły.",
-      rating: 1,
-      image: profil,
-    },
     {
       name: "Daniel Novikov",
       date: "06.02.2024",
@@ -201,14 +198,47 @@ function FirmManagement() {
       rating: 1,
       image: profil,
     },
-	
+    {
+      name: "Daniel Novikov",
+      date: "06.02.2024",
+      text: "Ola lubi wszystkie przedmioty. Wie, że nauka jest ważna. Najmilej spędza czas na lekcjach o przyrodzie – Ola bardzo lubi zwierzęta. W klasie Oli mieszka chomik. Wszystkie dzieci dbają o niego. Przynoszą mu jedzenie i głaszczą. Ola nie ma własnego zwierzęcia, więc chomik to kolejny powód dla którego lubi chodzić do szkoły.",
+      rating: 1,
+      image: profil,
+    },
   ];
 
   const modalContentComments = (
     <div className={styles.mainContainer}>
+      <div className={styles.Navbar}>
+        <div className={styles.Dropdown}>
+          <Dropdown
+            defaultOption="Sortuj"
+            selectedOptionChanging={false}
+            color={"#A6DEF7"}
+            options={[
+              "Najpierw nowe",
+              "Najpierw stare",
+              "W rankingu rosnącym",
+              "W rankingu malejącym",
+              
+            ]}
+            listStyle="elipse"
+            
+          />
+        </div>
+        <img onClick={() => setModalActive(false)} src={exit} alt="cross" />
+      </div>
       <div className={styles.cardsContainer}>
         {reviews.map((review, index) => (
-          <CommentCard review={review} key={index} />
+          // <CommentCard review={review} key={index} />
+          <ReviewCard
+            key={index}
+            name={review.name}
+            date={review.date}
+            text={review.text}
+            rating={review.rating}
+            image={review.image}
+          />
         ))}
       </div>
     </div>
@@ -256,9 +286,9 @@ function FirmManagement() {
             <p className={styles.titleCard}>Komentarze</p>
             <button
               onClick={() => {
-								setModalActive(true);
-								setModalContent(modalContentComments);
-							}}
+                setModalActive(true);
+                setModalContent(modalContentComments);
+              }}
               className={styles.transparentBtn}
             >
               <div className={`${styles.flex} ${styles.center}`}>

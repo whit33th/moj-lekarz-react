@@ -35,7 +35,7 @@
 }
 
 .modal__content {
-	max-width: 80%;
+	max-width: 85%;
 	position: relative;
 	max-height: 90dvh;
 	overflow-y: auto;

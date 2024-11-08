@@ -36,7 +36,7 @@ function App() {
             {role === "doctor" && <DoctorRoutes />}
             {role === "admin" && <AdminRoutes />}
             {role === "firm" && <FirmRoutes />}
-
+        
             <Toaster duration={3500} richColors />
             <Modal />
           </div>

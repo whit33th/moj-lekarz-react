@@ -112,7 +112,7 @@ function Filter({ onClick, filterState, onFilterChange, onReset }) {
         <Choice
           choice1="Anuluj"
           choice2="Sortuj"
-          cb1={onReset} // Reset state to defaults
+          cb1={onReset} 
 					
         />
       </div>
