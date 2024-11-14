@@ -83,15 +83,15 @@
 }
 
 .placeholder {
-  color: #a9a9a9; /* Gray color for placeholder */
+  color: #a9a9a9;
 }
 .inputField {
   width: 100%;
   height: 100%;
-  border: 0;  
+  border: 0;
   border-radius: 16px;
   padding: 0 19px;
 }
-.dropdownInput{
+.dropdownInput {
   padding: 0 !important;
 }

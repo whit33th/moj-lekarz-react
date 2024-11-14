@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./PatientInfo.module.css";
 import profil from "../../../assets/img/profil.webp";
 import BlueBtn from "../../../components/Buttons/BlueBtn/BlueBtn";
-import { userItems } from '../../../helpers/userItemList';
+import { userItems } from "../../../helpers/userItemList";
 
 function PatientInfo({ patientId }) {
   const [activeTab, setActiveTab] = useState("Uwagi");
@@ -10,16 +10,14 @@ function PatientInfo({ patientId }) {
   const [patient, setPatient] = useState({});
 
   useEffect(() => {
-    
     const foundPatient = userItems.find((p) => p.id === patientId);
-    setPatient(foundPatient || {}); // Set to empty object if not found
+    setPatient(foundPatient || {});
   }, [patientId]);
 
   function handleTabClick(name) {
     setActiveTab(name);
   }
 
-  // If there are no comments or history, show appropriate text
   const comments = patient?.comments?.length ? (
     patient.comments.map((comment, index) => (
       <div key={index}>

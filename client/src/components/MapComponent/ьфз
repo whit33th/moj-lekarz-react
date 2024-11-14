@@ -44,9 +44,7 @@ function Map(props) {
         console.log('BBox:', bbox);
         setTooltip({
           visible: true,
-          x: bbox.x + bbox.width / 2, // Центрирование подсказки по X
-          y: bbox.y - 10, // Положение подсказки над путем
-          text: data.title
+          x: bbox.x + bbox.width / 2,           y: bbox.y - 10,           text: data.title
         });
         setSelectedPathId(id);
         onPathClick(data);
@@ -80,8 +78,7 @@ function Map(props) {
         </div>
       </div>
       <div className={styles.mapBlockRight}>
-        <svg ref={svgRef} width="685" height="550" viewBox="0 0 685 550" fill="none" xmlns="http://www.w3.org/2000/svg">
-          {mapPaths.map(({ id, pathData, data, title }) => (
+        <svg ref={svgRef} width="685" height="550" viewBox="0 0 685 550" fill="none" xmlns="http:          {mapPaths.map(({ id, pathData, data, title }) => (
             <g>
               <path
                 key={id}

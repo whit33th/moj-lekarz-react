@@ -41,8 +41,7 @@ function Map(props) {
           visible: true,
           x: bbox.x + bbox.width / 2,
           y: bbox.y - 10,
-          text: `${data.locations} placówki medyczne`, // Пример текста
-        });
+          text: `${data.locations} placówki medyczne`,         });
       }
     }
   };
@@ -97,8 +96,7 @@ function Map(props) {
           height="550"
           viewBox="0 0 685 550"
           fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
+          xmlns="http:        >
           {mapPaths.map(({ id, pathData, data }) => (
             <g key={id}>
               <path
@@ -141,8 +139,7 @@ function Map(props) {
                 fill="#fff"
                 textAnchor="middle"
                 style={{ textDecoration: 'underline', cursor: 'pointer' }}
-                onClick={() => window.open("https://google.com", "_blank")}
-              >
+                onClick={() => window.open("https:              >
                 Zobacz więcej →
               </text>
             </g>

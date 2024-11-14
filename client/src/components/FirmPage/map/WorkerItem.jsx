@@ -1,5 +1,3 @@
-/* eslint-disable no-undef */
-
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import styles from "./WorkerItem.module.css";
@@ -13,10 +11,9 @@ import Dropdown from "./../../Dropdown/Dropdown";
 import Choice from "../../Modal/Choice";
 
 function PatientItem({ img, name, id, gender }) {
-  // State to manage the modal visibility
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { setModalActive, setModalContent } = useStore();
-  
+
   const modalContentInfo = (
     <div className={styles.row}>
       <div className={styles.generalInfo}>
@@ -45,9 +42,7 @@ function PatientItem({ img, name, id, gender }) {
           <div className={styles.topInfo}>
             <img src={profil} className={styles.employeeImage} alt="Employee" />
             <div>
-              <p style={{ color: "#3E36B0" }}>
-                Brat Solitko
-              </p>
+              <p style={{ color: "#3E36B0" }}>Brat Solitko</p>
               <div>
                 <p className={styles.phone}>
                   <span style={{ color: "#3E36B0" }}>Tel:</span>
@@ -117,7 +112,11 @@ function PatientItem({ img, name, id, gender }) {
         placeholder="Wpisz tekst"
       ></textarea>
       <div className={styles.flex}>
-        <Choice choice1={"Anuluj"} choice2={"Wyślij"} cb1={closeMainModal}></Choice>
+        <Choice
+          choice1={"Anuluj"}
+          choice2={"Wyślij"}
+          cb1={closeMainModal}
+        ></Choice>
       </div>
     </>
   );
@@ -164,7 +163,7 @@ function PatientItem({ img, name, id, gender }) {
             className={styles.moreInfo}
             src={moreInfo}
             alt="More Info"
-            onClick={toggleModal} // Toggle modal on click
+            onClick={toggleModal}
             style={{ cursor: "pointer" }}
           />
 

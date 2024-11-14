@@ -1,179 +1,173 @@
 .bookingContainer {
-    display: flex;
-    align-items: flex-start;
-    gap: 20px;
-    flex-wrap: wrap;
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  flex-wrap: wrap;
 }
 
 .bookingContainer button {
-    color: #000 !important;
-    box-shadow: none;
+  color: #000 !important;
+  box-shadow: none;
 }
 
-.react-calendar__tile.react-calendar__month-view__days__day.react-calendar__month-view__days__day--neighboringMonth{
-    opacity: 0 !important;
+.react-calendar__tile.react-calendar__month-view__days__day.react-calendar__month-view__days__day--neighboringMonth {
+  opacity: 0 !important;
 }
 
 .calendarContainer {
-    max-width: 100%;
-    padding: 20px;
-    background-color: #ffffff00;
-    border-radius: 15px;
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+  max-width: 100%;
+  padding: 20px;
+  background-color: #ffffff00;
+  border-radius: 15px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
 }
-.bookingContainerRow{
-    width: 65%;
-    height: auto;
-    background-color: #fff;
-    border-radius: 15px;
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+.bookingContainerRow {
+  width: 65%;
+  height: auto;
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .customCalendar {
-    width: 100%;
-    border: none;
-    font-family: Arial, sans-serif;
+  width: 100%;
+  border: none;
+  font-family: Arial, sans-serif;
 }
 
 .customCalendar .react-calendar__navigation {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
 }
 
 .customCalendar .react-calendar__navigation button {
-    background-color: #fff;
-    color: #fff;
-   
-    border: none;
-    
+  background-color: #fff;
+  color: #fff;
+
+  border: none;
 }
 
 .customCalendar .react-calendar__month-view__weekdays__weekday {
-    color: black;
-    font-weight: bold;
-    text-align: center;
+  color: black;
+  font-weight: bold;
+  text-align: center;
 }
 
 .customCalendar .react-calendar__month-view__weekdays {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 10px;
-    /* Добавляем расстояние между днями */
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
 }
 
 .customCalendar .react-calendar__month-view__days__day {
-    color: black;
-    background-color: #fff;
-    border-radius: 50%;
-    /* Делаем дни круглыми */
-    text-align: center;
-    height: 40px;
-    /* Высота и ширина одинаковы для идеального круга */
-    width: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  color: black;
+  background-color: #fff;
+  border-radius: 50%;
+
+  text-align: center;
+  height: 40px;
+
+  width: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .customCalendar .react-calendar__tile--now {
-    background: none;
-    /* Убираем выделение сегодняшней даты */
+  background: none;
 }
 
 .customCalendar .react-calendar__tile {
-    background-color: #fff;
-    color: black;
-    border-radius: 5px;
-    margin: 5px;
+  background-color: #fff;
+  color: black;
+  border-radius: 5px;
+  margin: 5px;
 }
 
 .customCalendar .react-calendar__tile--active {
-    background-color: #007bff;
-    color: white;
+  background-color: #007bff;
+  color: white;
 }
 
 .customCalendar .react-calendar__tile--active:hover {
-    background-color: #0056b3;
-    color: white;
+  background-color: #0056b3;
+  color: white;
 }
 
 .customCalendar .react-calendar__tile:hover {
-    background-color: #f0f0f0;
+  background-color: #f0f0f0;
 }
 
 .availableDate {
-    background-color: #A6DEF7;
-    color: white;
+  background-color: #a6def7;
+  color: white;
 }
 
 .timeSlots {
-    display: flex;
-    background-color: #fff;
-    padding: 20px 0;
-    gap: 5px;
-    flex-wrap: wrap;
-    margin-top: 20px;
-    padding-top: 25px;
-    border-top: 1px solid #00000056;
-    width: 90%;
-    margin-left: 5%;
-
+  display: flex;
+  background-color: #fff;
+  padding: 20px 0;
+  gap: 5px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  padding-top: 25px;
+  border-top: 1px solid #00000056;
+  width: 90%;
+  margin-left: 5%;
 }
 
 .timeSlot {
-    width: 69px;
-    height: 37px;
-    background-color: #A6DEF7;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 15px;
-    font-weight: 300;
-    transition: background-color 0.3s;
-    
+  width: 69px;
+  height: 37px;
+  background-color: #a6def7;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 300;
+  transition: background-color 0.3s;
 }
 
 .timeSlot:hover {
-    background-color: #0056b3;
+  background-color: #0056b3;
 }
 
 .calendarContainer .react-calendar__tile--now {
-    background-color: #fff !important;
+  background-color: #fff !important;
 }
 
-.activeTimeSlot{
-    background-color: #0056b3;
+.activeTimeSlot {
+  background-color: #0056b3;
 }
 
-.bookingContainer .react-calendar__month-view__days button{
-    width: 30px !important;
-    margin-bottom: 3px;
+.bookingContainer .react-calendar__month-view__days button {
+  width: 30px !important;
+  margin-bottom: 3px;
 }
 .react-calendar__tile--now {
-    background-color: #A6DEF7 !important; /* Делаем сегодняшний день видимым */
-    color: white !important; /* Обеспечиваем, что текст на сегодняшний день будет видимым */
+  background-color: #a6def7 !important;
+  color: white !important;
 }
 .customCalendar .react-calendar__navigation button {
-    background-color: #fff;
-    color: #000; /* Сделать текст кнопок видимым */
-    border: none;
-    cursor: pointer; /* Убедитесь, что кнопка имеет курсор указателя */
+  background-color: #fff;
+  color: #000;
+  border: none;
+  cursor: pointer;
 }
 
 .customCalendar .react-calendar__navigation button:disabled {
-    color: #ccc; /* Установите цвет для отключенных кнопок */
-    cursor: not-allowed;
+  color: #ccc;
+  cursor: not-allowed;
 }
 
-
 @media (max-width: 624px) {
-    .bookingContainer{
-        justify-content: center;
-    }
-    .bookingContainerRow{
-        width: 90%;
-    }
+  .bookingContainer {
+    justify-content: center;
+  }
+  .bookingContainerRow {
+    width: 90%;
+  }
 }

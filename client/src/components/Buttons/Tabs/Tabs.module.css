@@ -1,10 +1,7 @@
-/* Tabs.module.css */
-
 .on {
   font-size: 16px;
 }
 
-/* Navbar Styles */
 .settingNavbarButt {
   margin: 0 auto;
   width: fit-content;
@@ -16,13 +13,13 @@
 
 .settingNavbarButt button {
   text-align: center;
-	width: 255px;
+  width: 255px;
   color: white;
   border-radius: 20px;
   padding: 9px 20px;
   background: transparent;
   border: none;
-  cursor: pointer; /* Добавлено для указателя при наведении */
+  cursor: pointer;
 }
 
 .settingNavbarButt button.active {

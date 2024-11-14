@@ -1,4 +1,4 @@
-import styles from './Search.module.css'
+import styles from "./Search.module.css";
 import searchIco from "../../../assets/img/search.png";
 function Search({ placeholder, onChange }) {
   return (
@@ -9,8 +9,6 @@ function Search({ placeholder, onChange }) {
         className={styles.searchInput}
         placeholder={placeholder}
         type="text"
-
-        // onChange={(e) => setSearchTerm(e.target.value)}
       />
     </div>
   );

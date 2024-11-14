@@ -141,11 +141,10 @@ const MoreInfoButtPatient = ({ id }) => {
     status === true
       ? toast.success("Profil został usunięty :(")
       : toast.error("Error");
-    
-    setModalActive(false)
+
+    setModalActive(false);
   }
 
-  //*FIX добавить асинс подгрузки елементов модал
   const acceptDeleting = (
     <div>
       <h1 style={{ textAlign: "center" }}>
@@ -160,16 +159,15 @@ const MoreInfoButtPatient = ({ id }) => {
     </div>
   );
   const handleNavigate = () => {
-    navigate('/workers/id')
+    navigate("/workers/id");
   };
   const openNotificationModal = () => {
     setModalActive(true);
     setModalContent(modalContentMessage);
   };
 
-  const patientId = id || "unknown"; // Handle undefined id here
-  console.log("Patient ID in MoreInfoButt:", patientId); // Add this log for debugging
-
+  const patientId = id || "unknown";
+  console.log("Patient ID in MoreInfoButt:", patientId);
   return (
     <div
       className={styles.moreInfoButt}

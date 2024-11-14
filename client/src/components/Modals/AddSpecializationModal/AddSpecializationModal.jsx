@@ -12,10 +12,8 @@ function AddSpecializationModal({ onAddSpecialization }) {
   const [visitTypes, setVisitTypes] = useState([
     { id: 1, type: "", price: "" },
   ]);
-  const [specialty, setSpecialty] = useState(visitTypeOptions[0]); // Начальное значение
-
+  const [specialty, setSpecialty] = useState(visitTypeOptions[0]);
   useEffect(() => {
-    // Устанавливаем specialty в дефолтное значение при первой загрузке компонента
     setSpecialty(visitTypeOptions[0]);
   }, []);
 
@@ -47,7 +45,7 @@ function AddSpecializationModal({ onAddSpecialization }) {
         options={visitTypeOptions}
         label="Stanowisko"
         onChange={(value) => setSpecialty(value)}
-        selected={specialty} // Дефолтное значение
+        selected={specialty}
       />
       <div className={styles.inputs}>
         {visitTypes.map((visit, index) => (
@@ -75,7 +73,12 @@ function AddSpecializationModal({ onAddSpecialization }) {
         Dodaj typ
         <img src={plus} alt="Add visit type" />
       </button>
-      <Choice choice1="Anuluj" choice2="Dodaj" cb1={() => setModalActive(false)} cb2={handleAddSpecialization} />
+      <Choice
+        choice1="Anuluj"
+        choice2="Dodaj"
+        cb1={() => setModalActive(false)}
+        cb2={handleAddSpecialization}
+      />
     </div>
   );
 }

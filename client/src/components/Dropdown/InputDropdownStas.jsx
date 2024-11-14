@@ -1,9 +1,14 @@
-import { useState } from 'react';
-import styles from './InputDropdownStas.module.css';
+import { useState } from "react";
+import styles from "./InputDropdownStas.module.css";
 
-const InputDropdownStas = ({ options, selectedOption, onOptionSelect, placeholder }) => {
+const InputDropdownStas = ({
+  options,
+  selectedOption,
+  onOptionSelect,
+  placeholder,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState("");
   const [filteredOptions, setFilteredOptions] = useState(options);
 
   const toggleDropdown = () => {
@@ -11,9 +16,9 @@ const InputDropdownStas = ({ options, selectedOption, onOptionSelect, placeholde
   };
 
   const handleOptionClick = (option) => {
-    if (option !== 'Brak dopasowań') {
+    if (option !== "Brak dopasowań") {
       onOptionSelect(option);
-      setInputValue(option); // Устанавливаем выбранное значение в инпут
+      setInputValue(option);
     }
     setIsOpen(false);
   };
@@ -22,16 +27,16 @@ const InputDropdownStas = ({ options, selectedOption, onOptionSelect, placeholde
     const value = e.target.value;
     setInputValue(value);
 
-    if (value.trim() === '') {
+    if (value.trim() === "") {
       setFilteredOptions(options);
     } else {
-      const filtered = options.filter(option =>
+      const filtered = options.filter((option) =>
         option.toLowerCase().includes(value.toLowerCase())
       );
-      setFilteredOptions(filtered.length > 0 ? filtered : ['Brak dopasowań']);
+      setFilteredOptions(filtered.length > 0 ? filtered : ["Brak dopasowań"]);
     }
 
-    setIsOpen(true); 
+    setIsOpen(true);
   };
 
   return (
@@ -43,19 +48,12 @@ const InputDropdownStas = ({ options, selectedOption, onOptionSelect, placeholde
           value={inputValue}
           placeholder={placeholder}
           onChange={handleInputChange}
-          
         />
-        <span className={`${styles.arrow} ${isOpen ? styles.open : ''}`}></span>
+        <span className={`${styles.arrow} ${isOpen ? styles.open : ""}`}></span>
       </div>
       {isOpen && (
         <ul className={styles.dropdownMenu}>
-          <li
-              
-              className={styles.dropdownMenuItem}
-              
-            >
-             
-            </li>
+          <li className={styles.dropdownMenuItem}></li>
           {filteredOptions.map((option, index) => (
             <li
               key={index}

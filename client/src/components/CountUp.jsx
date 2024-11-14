@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 const CountUp = ({ endValue, duration }) => {
   const [value, setValue] = useState(0);
@@ -11,7 +11,7 @@ const CountUp = ({ endValue, duration }) => {
     const animate = (currentTime) => {
       const elapsedTime = currentTime - startTime;
       const progress = Math.min(elapsedTime / duration, 1);
-      const easing = 1 - Math.pow(1 - progress, 2); // Simple easing function
+      const easing = 1 - Math.pow(1 - progress, 2);
       setValue(Math.round(startValue + easing * (end - startValue)));
 
       if (progress < 1) {

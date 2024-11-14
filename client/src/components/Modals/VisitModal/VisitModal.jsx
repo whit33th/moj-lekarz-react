@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 function VisitModal() {
   const { setModalActive } = useStore();
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   function closeMainModal() {
     setModalActive(false);
   }
@@ -36,11 +36,7 @@ function VisitModal() {
             <span>Sala:</span> <span>203</span>
           </div>
         </div>
-        <BlueBorderBtn
-        // cb={closeMainModal}
-        >
-          Lista receptur
-        </BlueBorderBtn>
+        <BlueBorderBtn>Lista receptur</BlueBorderBtn>
       </div>
 
       <div className={styles.employeeInfo}>

@@ -3,22 +3,23 @@ import styles from "./Table.module.css";
 import searchIco from "../../assets/img/search.png";
 
 function Table({
-  columns, // Expecting an array of column objects
+  columns,
   data,
   buttonProps,
   together = true,
   showImage = true,
-  inputPlaceholder = null
+  inputPlaceholder = null,
 }) {
   const [searchTerm, setSearchTerm] = useState("");
 
-  // Find the search field based on the `searchId` property
   const searchColumn = columns.find((column) => column.header === "Search");
   const searchField = searchColumn?.searchId || "name";
 
-  // Filter items based on the specified search field
   const filteredItems = data.filter((item) =>
-    item[searchField]?.toString().toLowerCase().includes(searchTerm.toLowerCase())
+    item[searchField]
+      ?.toString()
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase())
   );
 
   return (
@@ -55,7 +56,7 @@ function Table({
                 {columns.map((column, colIndex) => (
                   <td key={colIndex} className={styles.tCenter}>
                     {column.render ? (
-                      column.render(item) // Custom render function if provided
+                      column.render(item)
                     ) : column.dataKey === "img" && showImage ? (
                       item.img ? (
                         <img

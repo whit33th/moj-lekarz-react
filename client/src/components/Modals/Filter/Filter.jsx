@@ -9,17 +9,14 @@ function Filter({ onClick, filterState, onFilterChange, onReset }) {
   const inputDateFrom = useRef();
   const inputDateTo = useRef();
 
-  // Update the selected gender
   const handleGenderSelect = (gender) => {
     onFilterChange({ ...filterState, selectedGender: gender });
   };
 
-  // Update the selected sort option
   const handleSortSelect = (sortOption) => {
     onFilterChange({ ...filterState, selectedSortOption: sortOption });
   };
 
-  // Update date inputs
   const handleDateChange = () => {
     onFilterChange({
       ...filterState,
@@ -109,12 +106,7 @@ function Filter({ onClick, filterState, onFilterChange, onReset }) {
         </div>
       </div>
       <div style={{ width: "100%" }}>
-        <Choice
-          choice1="Anuluj"
-          choice2="Sortuj"
-          cb1={onReset} 
-					
-        />
+        <Choice choice1="Anuluj" choice2="Sortuj" cb1={onReset} />
       </div>
     </div>
   );

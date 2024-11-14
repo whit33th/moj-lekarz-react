@@ -6,7 +6,7 @@
 
 .dropdownContainer {
   display: flex;
- 
+
   flex-direction: column;
 }
 
@@ -95,9 +95,6 @@
 .option {
   white-space: nowrap;
 }
-
-/* New Styles for the Filter Window */
-
 
 .cancelButton {
   background: none;

@@ -1,6 +1,6 @@
 import { useState, lazy, Suspense } from "react";
 
-import { BrowserRouter as Router,  } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 
 import { Toaster } from "sonner";
 import ScrollToTop from "./utils/scrollToTop";
@@ -15,11 +15,10 @@ const DoctorRoutes = lazy(() => import("./helpers/Routes/DoctorRoutes"));
 const Modal = lazy(() => import("./components/Modal/Modal"));
 
 function App() {
-  const [role] = useState("admin"); // Возможные роли: 'doctor', 'admin', 'firm'.
-  
+  const [role] = useState("admin"); // 'doctor', 'admin', 'firm'.
+
   return (
     <Router>
-     
       <ScrollToTop />
       {role === "user" ? (
         <>

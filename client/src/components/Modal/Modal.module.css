@@ -1,65 +1,63 @@
-/* Общие стили для модального окна */
 .modal {
-	visibility: hidden;
-	display: flex;
-	top: 0;
-	left: 15%;
-	position: fixed; /* Changed from absolute to fixed */
-	height: 100dvh;
-	width: 85%;
-	backdrop-filter: blur(10px);
-	justify-content: center;
-	align-items: center;
-	z-index: 100;
-	transition: opacity 0.3s;
-	opacity: 0;
-	h1{
-		margin: 0 ;
-	}
+  visibility: hidden;
+  display: flex;
+  top: 0;
+  left: 15%;
+  position: fixed;
+  height: 100dvh;
+  width: 85%;
+  backdrop-filter: blur(10px);
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  transition: opacity 0.3s;
+  opacity: 0;
+  h1 {
+    margin: 0;
+  }
 }
 @media screen and (max-width: 920px) {
-	.modal {
-			width: 100% !important;
-			left: 0 !important;
-	}
-	.modal__content {
-		min-width: 200px !important;
-	}
+  .modal {
+    width: 100% !important;
+    left: 0 !important;
+  }
+  .modal__content {
+    min-width: 200px !important;
+  }
 }
 
-/* Стили для активного модального окна */
 .modalActive {
-	visibility: visible;
-	opacity: 1;
-	transition: opacity 0.3s;
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.3s;
 }
 
 .modal__content {
-	max-width: 85%;
-	position: relative;
-	max-height: 90dvh;
-	overflow-y: auto;
-	overflow-x: hidden;
-	display: flex;
-	gap: 40px;
-	background: white;
-	box-shadow: 0 0 40px 5px #3e36b01c;
-	min-width: 500px;
-	width: fit-content;
-	padding: 45px;
-	z-index: 1;
+  max-width: 85%;
+  position: relative;
+  max-height: 90dvh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  gap: 40px;
+  background: white;
+  box-shadow: 0 0 40px 5px #3e36b01c;
+  min-width: 500px;
+  width: fit-content;
+  padding: 45px;
+  z-index: 1;
 
-	flex-direction: column;
-	border-radius: 16px;
-	transform: scale(0);
-	transition:  0.3s; 
-	>div{
-		display: flex ;
-		flex-direction: column;
-		gap: 20px;
-	}
+  flex-direction: column;
+  border-radius: 16px;
+  transform: scale(0);
+  transition: 0.3s;
+  > div {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
 }
 
 .modalActive .modal__content {
-	transform: scale(1);
+  transform: scale(1);
 }

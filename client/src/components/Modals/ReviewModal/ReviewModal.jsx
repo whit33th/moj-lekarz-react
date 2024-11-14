@@ -6,7 +6,6 @@ import BlueBtn from "../../Buttons/BlueBtn/BlueBtn";
 import { useState } from "react";
 import star from "../../../assets/img/Star.svg";
 import starGrey from "../../../assets/img/Star 6.svg";
-// *FIX пролема с дропдаунтом в модалке
 
 const ReviewModal = ({ name, date, text, rating }) => {
   const [selectedOption, setSelectedOption] = useState("");
@@ -19,11 +18,7 @@ const ReviewModal = ({ name, date, text, rating }) => {
   return (
     <div className={styles.card}>
       <div className={styles.header}>
-        <img
-          src={avatar} // Replace with actual avatar image path
-          alt="Avatar"
-          className={styles.avatar}
-        />
+        <img src={avatar} alt="Avatar" className={styles.avatar} />
         <div className={styles.headerInfo}>
           <div className={styles.gap}>
             <div className={styles.topHeader}>

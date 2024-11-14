@@ -1,13 +1,13 @@
-import styles from "../../../pages/Doctor/PatientInfo/PatientInfo.module.css"; // Path to styles
+import styles from "../../../pages/Doctor/PatientInfo/PatientInfo.module.css";
 import BlueBorderBtn from "../../Buttons/BlueBorderBtn/BlueBorderBtn";
 import Choice from "./../../Modal/Choice";
 import plus from "../../../assets/img/plus.png";
 import bucketBlue from "../../../assets/img/bucketBlue.png";
 
-import useStore from './../../../data/store';
+import useStore from "./../../../data/store";
 
 function PatientMoreInfoModal({ patient }) {
-	const { setModalActive, setModalContent } = useStore();
+  const { setModalActive, setModalContent } = useStore();
   return (
     <div className={styles.profilInfo}>
       <div className={styles.mainInfo}>
@@ -188,7 +188,11 @@ function PatientMoreInfoModal({ patient }) {
         </div>
       </div>
       <div className={styles.actionButtons}>
-        <Choice cb1={() => (setModalActive(false))} choice1={"Anuluj"} choice2={"Aktualizuj"}></Choice>
+        <Choice
+          cb1={() => setModalActive(false)}
+          choice1={"Anuluj"}
+          choice2={"Aktualizuj"}
+        ></Choice>
       </div>
     </div>
   );

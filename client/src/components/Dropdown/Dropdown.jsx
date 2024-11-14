@@ -15,13 +15,12 @@ const Dropdown = ({
   childrenLeft,
   selectedOptionChanging = true,
   listStyle,
-  type, // Add type prop
+  type,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(options[0]);
   const dropdownRef = useRef(null);
 
-  // Filter state in Dropdown to persist values
   const [filterState, setFilterState] = useState({
     selectedGender: "K",
     selectedSortOption: "az",
@@ -37,12 +36,10 @@ const Dropdown = ({
     setSelectedOption(option);
   };
 
-  // Update the filter state when options are selected in Filter
   const handleFilterChange = (newFilterState) => {
     setFilterState(newFilterState);
   };
 
-  // Reset filter state to default values
   const resetFilter = () => {
     setFilterState({
       selectedGender: "K",
@@ -52,7 +49,6 @@ const Dropdown = ({
     });
   };
 
-  // Close dropdown when clicking outside
   useEffect(() => {
     const handleOutsideClick = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -87,7 +83,6 @@ const Dropdown = ({
 
         {isOpen &&
           (type === "filter" ? (
-            // Pass the filter state, update and reset handlers as props to Filter
             <Filter
               onClick={(e) => e.stopPropagation()}
               filterState={filterState}

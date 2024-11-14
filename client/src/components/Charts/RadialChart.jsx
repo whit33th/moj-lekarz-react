@@ -43,7 +43,7 @@ const ColorfulRatingChart = ({ data = [] }) => {
                   .reduce((sum, prev) => sum + prev.value, 0)) /
                 total) *
               360;
-            const radius = 100; // Adjust radius as needed
+            const radius = 100;
             const x = Math.cos(((angle - 90) * Math.PI) / 180) * radius + 100;
             const y = Math.sin(((angle - 90) * Math.PI) / 180) * radius + 100;
             return (

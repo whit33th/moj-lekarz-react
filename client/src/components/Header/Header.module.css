@@ -1,223 +1,218 @@
 .header {
-    width: 100%;
-    height: 105px;
-    z-index: 2;
-    position: relative;
-  }
-  
-  .headerTopBlock {
-    width: 100%;
-    height: 36px;
-    background-color: #0E0E0E;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 19.12px;
-    text-align: center;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .headerBottomBlock {
-    width: 100%;
-    height: 79px;
-    border-radius: 0 0 20px 20px;
-    box-shadow: 0px 0px 50px 0px #0000001A;
-    padding: 0 7%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    z-index: 3; 
-    position: relative;
-    background-color: #fff;
-  }
-  
-.headerBottomBlock a{
-    text-decoration: none;
+  width: 100%;
+  height: 105px;
+  z-index: 2;
+  position: relative;
 }
-.headerLogo a{
-    width: 100%;
-    height: 100%;
-}
-.headerNavigate{
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.headerSignBtn{
-    background-color: #3E36B0;
-    width: 143px;
-    height: 46px;
-    /* padding: 12px 24px 12px 24px; */
-    border-radius: 1000px ;
-    opacity: 0px;
-    
-}
-.headerSignBtn a{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 21.86px;
-    text-align: center;
-    color:#fff;
-}
-.headerNavigate ul{
-    display: flex;
-    width: 100%;
-    justify-content: center;
 
+.headerTopBlock {
+  width: 100%;
+  height: 36px;
+  background-color: #0e0e0e;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 19.12px;
+  text-align: center;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.headerNavigateItem{
-    list-style-type: none;
-    margin: 0 15px;
+
+.headerBottomBlock {
+  width: 100%;
+  height: 79px;
+  border-radius: 0 0 20px 20px;
+  box-shadow: 0px 0px 50px 0px #0000001a;
+  padding: 0 7%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 3;
+  position: relative;
+  background-color: #fff;
 }
-.headerNavigateItem a{
-    color: #000;
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 21.86px;
-    transition: 0.4s;
-    position: relative;
+
+.headerBottomBlock a {
+  text-decoration: none;
+}
+.headerLogo a {
+  width: 100%;
+  height: 100%;
+}
+.headerNavigate {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.headerSignBtn {
+  background-color: #3e36b0;
+  width: 143px;
+  height: 46px;
+
+  border-radius: 1000px;
+  opacity: 0px;
+}
+.headerSignBtn a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 21.86px;
+  text-align: center;
+  color: #fff;
+}
+.headerNavigate ul {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+.headerNavigateItem {
+  list-style-type: none;
+  margin: 0 15px;
+}
+.headerNavigateItem a {
+  color: #000;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 21.86px;
+  transition: 0.4s;
+  position: relative;
 }
 .headerNavigateItem a::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 1.3px;
-    bottom: -2px;
-    left: 0;
-    background-color: #333;
-    transform: scaleX(0);
-    transform-origin: bottom right;
-    transition: transform 0.4s;
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 1.3px;
+  bottom: -2px;
+  left: 0;
+  background-color: #333;
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform 0.4s;
 }
 .headerNavigateItem a:hover::after {
-    transform: scaleX(1);
-    transform-origin: bottom left;
+  transform: scaleX(1);
+  transform-origin: bottom left;
 }
 .headerNavigateItem.active a {
-    color:#3E36B0;
-
+  color: #3e36b0;
 }
-.headerMobileBtn{
-    display: none;
-    /* display: flex; */
-    align-content: center;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 3px;
-    background-color: #3E36B0;
-    width: 45px;
-    height: 50%;
-    border-radius: 5px;
-}
-.headerMobileBtn span{
-    width: 60%;
-    display: block;
-    height: 2.5px;
-    background-color: #fff;
-    border-radius: 1000px;
-    /* margin-top: 10%; */
+.headerMobileBtn {
+  display: none;
 
+  align-content: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 3px;
+  background-color: #3e36b0;
+  width: 45px;
+  height: 50%;
+  border-radius: 5px;
+}
+.headerMobileBtn span {
+  width: 60%;
+  display: block;
+  height: 2.5px;
+  background-color: #fff;
+  border-radius: 1000px;
 }
 
-.headerProfileBtnMobile , .headerSignBtnMobile{
-    display: none ;
+.headerProfileBtnMobile,
+.headerSignBtnMobile {
+  display: none;
 }
 @media (max-width: 624px) {
-    .header{
-        width:100%;
-        position: relative;
-    }
-    .headerNavigate{
-        display: none;
-    }
-    .headerMobileBtn{
-        display: flex;
-    }
-    .headerProfileBtn , .headerSignBtn{
-        display: none ;
-    }
-    .headerProfileBtnMobile , .headerSignBtnMobile{
-        display: block ;
-        margin: 0 15px;
-    }
-    .headerProfileBtnMobile a , .headerSignBtnMobile a{
-        color: #000;
-        font-size: 24px;
-        line-height: 33px;
-        font-weight: 500;
-        transition: 0.4s;
-        position: relative;
-    }
-    .header{
-        position: fixed;
-        z-index: 88;
-    }
-    .headerNavigate ul{
-        display: block;
-        width: 90%;
-        padding: 20px 0;
-        margin-top: 18%;
+  .header {
+    width: 100%;
+    position: relative;
+  }
+  .headerNavigate {
+    display: none;
+  }
+  .headerMobileBtn {
+    display: flex;
+  }
+  .headerProfileBtn,
+  .headerSignBtn {
+    display: none;
+  }
+  .headerProfileBtnMobile,
+  .headerSignBtnMobile {
+    display: block;
+    margin: 0 15px;
+  }
+  .headerProfileBtnMobile a,
+  .headerSignBtnMobile a {
+    color: #000;
+    font-size: 24px;
+    line-height: 33px;
+    font-weight: 500;
+    transition: 0.4s;
+    position: relative;
+  }
+  .header {
+    position: fixed;
+    z-index: 88;
+  }
+  .headerNavigate ul {
+    display: block;
+    width: 90%;
+    padding: 20px 0;
+    margin-top: 18%;
+  }
+  .headerNavigate ul li {
+    margin-top: 30px;
+  }
+  .headerNavigateItem a {
+    font-size: 24px;
+    line-height: 33px;
+  }
+  .headerLogo,
+  .headerMobileBtn {
+    z-index: 4;
+  }
+  .activeMobileMenu {
+    transition: 0.3s;
 
-
-    }
-    .headerNavigate ul li{
-        margin-top:30px;
-    }
-    .headerNavigateItem a{
-        font-size: 24px;
-        line-height: 33px;
-    }
-    .headerLogo , .headerMobileBtn{
-        z-index: 4;
-    }
-    .activeMobileMenu{
-        transition: 0.3s;
-
-        display: flex;
-        position: fixed;
-        top: 0%;
-        left: 0;
-        width: 100%;
-        height: 99vh;
-        background-color: #fff;
-        z-index: 3;
-        align-items: flex-start;
-        justify-content: center;
-    }
-    .hiddenMobileMenu{
-        transition: 0.3s;
-        display: flex;
-        position: fixed;
-        top: -100%;
-        left: 0;
-        width: 100%;
-        height: 99vh;
-        background-color: #fff;
-        z-index: 3;
-        align-items: flex-start;
-        justify-content: center;
-        opacity: 0;
-    }
+    display: flex;
+    position: fixed;
+    top: 0%;
+    left: 0;
+    width: 100%;
+    height: 99vh;
+    background-color: #fff;
+    z-index: 3;
+    align-items: flex-start;
+    justify-content: center;
+  }
+  .hiddenMobileMenu {
+    transition: 0.3s;
+    display: flex;
+    position: fixed;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 99vh;
+    background-color: #fff;
+    z-index: 3;
+    align-items: flex-start;
+    justify-content: center;
+    opacity: 0;
+  }
 }
 
 @media (min-width: 1824px) {
-    .headerBottomBlock{
-        padding: 0 8%;
-    }
+  .headerBottomBlock {
+    padding: 0 8%;
+  }
 }
 @media (min-width: 2224px) {
-    .headerBottomBlock{
-        padding: 0 10%;
-    }
+  .headerBottomBlock {
+    padding: 0 10%;
+  }
 }
-
-
-

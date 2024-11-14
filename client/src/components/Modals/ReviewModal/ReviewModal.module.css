@@ -1,24 +1,23 @@
 .card {
   background-color: white;
   border-radius: 10px;
-  
-  
+
   position: relative;
   gap: 15px;
-    display: flex;
-    flex-direction: column;
-		width: 600px;
+  display: flex;
+  flex-direction: column;
+  width: 600px;
 }
 
 .header {
   display: flex;
   align-items: center;
-  justify-content: space-between; /* To position name/date on the left and rating on the right */
+  justify-content: space-between;
 }
 
 .headerInfo {
-  flex-grow: 1; /* Allow headerInfo to take remaining space */
-  margin-left: 15px; /* Space between avatar and info */
+  flex-grow: 1;
+  margin-left: 15px;
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -35,7 +34,7 @@
   font-weight: 600;
   font-size: 16px;
   color: black;
-  margin: 0; /* Remove default margin */
+  margin: 0;
 }
 
 .date {
@@ -62,30 +61,27 @@
   width: 16px;
 }
 
-
-
 .text {
   font-weight: 500;
   color: #333;
   font-size: 15px;
-  
-  line-height: 1.6; /* Add line height */
+
+  line-height: 1.6;
 }
-.choice{
-	display: flex;
-    gap: 20px;
+.choice {
+  display: flex;
+  gap: 20px;
 }
 .buttonDiv {
-	display: flex;
-	align-self: flex-end;
-	gap: 20px;
-	width: 100%;
+  display: flex;
+  align-self: flex-end;
+  gap: 20px;
+  width: 100%;
 }
 .buttonDiv > * {
-	width: 50%;
+  width: 50%;
 }
 
-/* You may want to adjust the Choice component's styles as needed */
 .service {
   display: grid;
   grid-template-columns: repeat(2, 1fr);

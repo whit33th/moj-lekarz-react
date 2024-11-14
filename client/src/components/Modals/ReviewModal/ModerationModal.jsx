@@ -8,7 +8,6 @@ import InputDropdownStas from "../../Dropdown/InputDropdownStas";
 
 import star from "../../../assets/img/Star.svg";
 import starGrey from "../../../assets/img/Star 6.svg";
-// *FIX пролема с дропдаунтом в модалке
 
 const ModerationModal = ({ name, date, text, rating }) => {
   const [RefuseBtn, setRefuseBtn] = useState(false);
@@ -31,11 +30,7 @@ const ModerationModal = ({ name, date, text, rating }) => {
   return (
     <div className={styles.card}>
       <div className={styles.header}>
-        <img
-          src={avatar} // Replace with actual avatar image path
-          alt="Avatar"
-          className={styles.avatar}
-        />
+        <img src={avatar} alt="Avatar" className={styles.avatar} />
         <div className={styles.headerInfo}>
           <div className={styles.gap}>
             <div className={styles.topHeader}>

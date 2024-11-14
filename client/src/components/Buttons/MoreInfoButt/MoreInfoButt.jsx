@@ -29,7 +29,6 @@ const MoreInfoButtPatient = ({ id }) => {
     setModalActive(true);
     setModalContent(modalContent);
   };
-  // Закрытие модалки при клике вне её
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
@@ -52,7 +51,6 @@ const MoreInfoButtPatient = ({ id }) => {
     };
   }, [isModalOpen]);
 
-  // Остальной функционал остается без изменений
   const handleFileChange = async (e) => {
     const promise = () => new Promise((resolve) => setTimeout(resolve, 2000));
     const file = e.target.files[0];
@@ -76,7 +74,7 @@ const MoreInfoButtPatient = ({ id }) => {
   const handleDownloadPDF = () => {
     const link = document.createElement("a");
     link.href = fileUrl;
-    link.download = "Download.pdf"; // Можно изменить имя
+    link.download = "Download.pdf";
     link.click();
     link.remove();
   };
