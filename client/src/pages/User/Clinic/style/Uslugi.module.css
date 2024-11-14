@@ -1,81 +1,76 @@
 .uslugiBlock {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
 }
 
 .column {
-    display: grid;
-    gap: 20px;
-    grid-auto-rows: min-content;
+  display: grid;
+  gap: 20px;
+  grid-auto-rows: min-content;
 }
 
 .uslugiItem {
-    box-shadow: 0px 0px 50px 0px #0000001A;
-    background-color: #fff;
-    border-radius: 1000px;
-    padding: 20px 30px;
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 21.86px;
-    color: #0E0E0E;
-    transition:  max-height 0.8s ease;
-    overflow: hidden;
-    cursor: pointer;
+  box-shadow: 0px 0px 50px 0px #0000001a;
+  background-color: #fff;
+  border-radius: 1000px;
+  padding: 20px 30px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 21.86px;
+  color: #0e0e0e;
+  transition: max-height 0.8s ease;
+  overflow: hidden;
+  cursor: pointer;
 }
-.titleBlock{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.titleBlock {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .active {
-    border-radius: 20px;
-    max-height: 1000px; /* Достаточно большое значение, чтобы раскрыть блок */
+  border-radius: 20px;
+  max-height: 1000px;
 }
 
 .contentBlock {
-    margin-top: 15px;
+  margin-top: 15px;
 }
 
 .uslugiTypeItem {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
 }
 
 .titleBlock span {
-    background-color: #3E36B0;
-    border-radius: 1000px;
-    color: #fff;
-    padding: 1px 7px;
+  background-color: #3e36b0;
+  border-radius: 1000px;
+  color: #fff;
+  padding: 1px 7px;
 }
-.uslugiItemArrow{
-    background: url('../../../assets/Vector10.svg') no-repeat center;
-    width: 12px;
-    height: 12px;
-    transition: 0.2s;
+.uslugiItemArrow {
+  background: url("../../../assets/Vector10.svg") no-repeat center;
+  width: 12px;
+  height: 12px;
+  transition: 0.2s;
 }
-.uslugiItemArrow.activeArrow{
-    transform: rotate(180deg);
+.uslugiItemArrow.activeArrow {
+  transform: rotate(180deg);
 }
-/*
-.mainFormIntupsBlock .arrow {
-    
-} */
-
 
 @media (max-width: 624px) {
-    .uslugiBlock {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-    .uslugiTypeItem{
-        flex-wrap: wrap;
-        gap: 7px;
-    }
-    .uslugiTypeItem > div{
-        width: 100%;
-    }
+  .uslugiBlock {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .uslugiTypeItem {
+    flex-wrap: wrap;
+    gap: 7px;
+  }
+  .uslugiTypeItem > div {
+    width: 100%;
+  }
 }

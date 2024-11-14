@@ -1,12 +1,10 @@
-import React from "react";
+
 import styles from "./ReviewCard.module.css";
 import star from "../../../assets/img/Star.svg";
 import starGrey from "../../../assets/img/Star 6.svg";
 
 function ReviewCard({ name, date, text, rating, image }) {
-  // Функция для условного отображения текста отзыва, ограниченного по длине
-  
-  // Положительные и отрицательные отзывы для блока "service"
+
   const positiveFeedbacks = [
     "Profesjonalne podejście",
     "Dbałość o komfort pacjenta",
@@ -27,7 +25,7 @@ function ReviewCard({ name, date, text, rating, image }) {
               {[...Array(5)].map((_, index) => (
                 <img
                   key={index}
-                  src={index < rating ? star : starGrey} // Желтая звезда для рейтинга, серая для остальных
+                  src={index < rating ? star : starGrey} 
                   alt="star"
                   className={styles.imgNameBlockStar}
                 />

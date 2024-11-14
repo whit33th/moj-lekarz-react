@@ -33,7 +33,7 @@ function PatientList() {
         </div>
       ),
     },
-    { header: "Info", dataKey: <div></div> }, // ID column
+    { header: "Info", dataKey: <div></div> },
     {
       header: (
         <button
@@ -51,10 +51,9 @@ function PatientList() {
           </div>
         </div>
       ),
-    }, // Gender column
+    },
   ];
 
-  // Функция для открытия модального окна
   function handleOpenModal() {
     setModalContent(<AddRecipesModal />);
     setModalActive(true);

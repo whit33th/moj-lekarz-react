@@ -10,6 +10,7 @@ import Notifications from '../../pages/Doctor/Notifications/Notifications'
 import Settings from '../../pages/Doctor/Settings/Settings'
 import Profil from '../../pages/Doctor/Profil/Profil'
 import WorkersInfo from '../../pages/Firm/Workers/WorkersInfo'
+import Patients from '../../pages/Firm/Patients/Patients'
 function FirmRoutes() {
 	return (
     <Routes>
@@ -18,12 +19,14 @@ function FirmRoutes() {
       <Route path={pageConfig.firm.graph} element={<GraphManagement />} />
       <Route path={pageConfig.firm.graphManage} element={<SelectedGraph />} />
       <Route path={pageConfig.firm.workers} element={<Workers />} />
+      <Route path={pageConfig.firm.patient} element={<Patients />} />
       <Route path={pageConfig.firm.management} element={<FirmManagement />} />
       <Route path={pageConfig.firm.notifications} element={<Notifications />} />
       <Route path={pageConfig.firm.chat} element={<Notifications />} />
       <Route path={pageConfig.firm.settings} element={<Settings />} />
       <Route path={pageConfig.firm.profile} element={<Profil />} />
-      <Route path="/workers/id" element={<WorkersInfo />} />
+      <Route path={pageConfig.firm.workersInfo} element={<WorkersInfo />} />
+      
     </Routes>
   );
 }

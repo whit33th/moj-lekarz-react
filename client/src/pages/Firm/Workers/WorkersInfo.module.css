@@ -1,5 +1,4 @@
-/* asd */
-.container{
+.container {
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -37,11 +36,9 @@
 .profileName {
   text-align: center;
   font-size: 28px;
-
 }
 
 .infoGrid {
-  
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
@@ -67,24 +64,29 @@
   width: 100%;
 }
 
-
-
 .addressGrid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
 }
+.rating {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+.imgNameBlockStar {
+  width: 22px;
+  height: 22px;
+}
 
-
-
-.visitsSection, .positionSection{
-      width: 50%;
+.visitsSection,
+.positionSection {
+  width: 50%;
 }
 
 .visitsSection h3 {
   font-size: 18px;
   font-weight: normal;
-
 }
 
 .visitType {
@@ -96,7 +98,7 @@
 .visitType span:last-child {
   color: #666;
 }
-.infoRowDuplex{
+.infoRowDuplex {
   display: flex;
 
   gap: 20px;
@@ -107,21 +109,22 @@
   background: none;
   border: none;
 
-  
+  align-items: center;
   cursor: pointer;
-  
+
   display: flex;
-  gap: 10px ;
+  gap: 10px;
   padding: 0;
   transition: 0.3s;
 }
-.addVisit img, .visitType img{
-  width: 20px ;
-  height: 20px;
+.addVisit img,
+.visitType img {
+  width: 18px;
+  height: 18px;
   transition: 0.3s;
   opacity: 1;
 }
-.visitType img:hover{
+.visitType img:hover {
   opacity: 0.8;
 }
 
@@ -165,9 +168,8 @@
     width: 100%;
   }
 }
-.actions{
+.actions {
   display: flex;
   flex-direction: row;
   gap: 20px;
-  
 }

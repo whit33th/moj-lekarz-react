@@ -70,7 +70,6 @@ function ZnajdzLekarzaVersion2(props) {
               dateObj.date === selectedDate.toLocaleDateString("pl-PL")
           )
         : true;
-      // Добавьте условия для фильтрации по остальным селекторам
       return matchesCity && matchesType && matchesDate;
     });
     setState(filteredDoctors);

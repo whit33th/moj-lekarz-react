@@ -9,7 +9,7 @@
   width: 60px;
   flex-grow: 1;
   border: 1px solid #ddd;
-  height: 200px; /* Adjust height for day cubes */
+  height: 200px;
   display: flex;
   justify-content: right;
 }
@@ -19,7 +19,7 @@
 }
 
 .greyedOut {
-  color: #919191; 
+  color: #919191;
 }
 
 .dayCellEmpty {
@@ -86,7 +86,7 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  /* border: 1px solid #e5e5e5; */
+
   border-radius: 20px;
 }
 
@@ -179,5 +179,5 @@
   align-items: center;
 }
 .rbc-row-content {
-  display: none; /* Hides the row content */
+  display: none;
 }

@@ -1,218 +1,207 @@
 .clinickPage {
-    width: 100%;
-    padding: 40px 7.5%;
+  width: 100%;
+  padding: 40px 7.5%;
 }
 
 .clinickPage h1 {
-    font-size: 40px;
-    font-weight: 600;
-    line-height: 54.64px;
-    text-align: center;
-    color: #0E0E0E;
-    margin: 70px 0;
-
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 54.64px;
+  text-align: center;
+  color: #0e0e0e;
+  margin: 70px 0;
 }
 
-
-
-.filterBlock{
-    width: 100%;
-    height: auto;
-    padding: 70px 0;
-    display: flex;
-    justify-content: center;
-    background-color: #A6DEF7;
-
+.filterBlock {
+  width: 100%;
+  height: auto;
+  padding: 70px 0;
+  display: flex;
+  justify-content: center;
+  background-color: #a6def7;
 }
-.filterBlockContent{
-    width: 85%;
-    min-height: 280px;
-    background-color: #FFFFFF;
-    border-radius: 20px;
-    padding: 30px 60px;
+.filterBlockContent {
+  width: 85%;
+  min-height: 280px;
+  background-color: #ffffff;
+  border-radius: 20px;
+  padding: 30px 60px;
 }
-.filterBlockContent > h1{
-    font-size: 32px;
-    font-weight: 500;
-    line-height: 43.71px;
-    text-align: center;
-    margin-bottom: 25px;
-
+.filterBlockContent > h1 {
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 43.71px;
+  text-align: center;
+  margin-bottom: 25px;
 }
-.filterBlockContentSelects{
-    width: 100%;
-    margin-top: 15px;
-
+.filterBlockContentSelects {
+  width: 100%;
+  margin-top: 15px;
 }
-.mainFormIntupsBlock{
-    width: 100%;
-    display: flex;
-    height: 70px;
-    align-items: center;
-    justify-content: space-between;
-    gap: 15px;
+.mainFormIntupsBlock {
+  width: 100%;
+  display: flex;
+  height: 70px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
 }
 
-
-
-/* selects and calendar */
-
-.dropdownContainer:nth-child(2){
-    width: 60%;
+.dropdownContainer:nth-child(2) {
+  width: 60%;
 }
 .dropdownContainer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
 }
 
 .dropdownContainer.litle {
-    width: 48%;
+  width: 48%;
 }
 
 .dropdown {
-    width: 100%;
-    height: 50px;
-    border-radius: 40px;
-    padding: 0 19px;
-    border: none;
-    box-shadow: 0px 0px 50px 0px #0000001A;
-    outline: none;
-    font-family: "Manrope";
-    font-size: 15.5px;
-    font-weight: 400;
-    line-height: 21.86px;
-    background: #fff;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    color: #595959;
+  width: 100%;
+  height: 50px;
+  border-radius: 40px;
+  padding: 0 19px;
+  border: none;
+  box-shadow: 0px 0px 50px 0px #0000001a;
+  outline: none;
+  font-family: "Manrope";
+  font-size: 15.5px;
+  font-weight: 400;
+  line-height: 21.86px;
+  background: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #595959;
 }
 
 .mainFormIntupsBlock .arrow {
-    background: url('../../../assets/Vector10.svg') no-repeat center;
-    width: 12px;
-    /* Adjust the size as needed */
-    height: 12px;
+  background: url("../../../assets/Vector10.svg") no-repeat center;
+  width: 12px;
+
+  height: 12px;
 }
 
 .dropdownMenu {
-    position: absolute;
-    top: 55px;
-    width: 100%;
-    border-radius: 10px;
-    box-shadow: 0px 0px 50px 0px #0000001A;
-    background: #fff;
-    overflow: hidden;
-    opacity: 0;
-    animation: fadeIn 0.3s forwards;
-    z-index: 2;
+  position: absolute;
+  top: 55px;
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0px 0px 50px 0px #0000001a;
+  background: #fff;
+  overflow: hidden;
+  opacity: 0;
+  animation: fadeIn 0.3s forwards;
+  z-index: 2;
 }
 
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
 
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .dropdownMenuItem {
-    padding: 10px;
-    font-family: "Manrope";
-    font-size: 15.5px;
-    font-weight: 400;
-    line-height: 21.86px;
-    cursor: pointer;
+  padding: 10px;
+  font-family: "Manrope";
+  font-size: 15.5px;
+  font-weight: 400;
+  line-height: 21.86px;
+  cursor: pointer;
 }
 
 .dropdownMenuItem:hover {
-    background: #f0f0f0;
+  background: #f0f0f0;
 }
 
-
-.filterBtnBlock{
-    width: auto;
-    margin: 10px 0;
-    display: flex;
-    justify-content: end;
-    align-items: center;
+.filterBtnBlock {
+  width: auto;
+  margin: 10px 0;
+  display: flex;
+  justify-content: end;
+  align-items: center;
 }
-.filterBtnBlock button{
-    background-color: #3E36B0;
-    width: 170px;
-    height: 48px;
-    border: none;
-    border-radius: 1000px;
-    outline: none;
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 21.86px;
-    text-align: center;
-    color: #FFF;
-    cursor: pointer;
+.filterBtnBlock button {
+  background-color: #3e36b0;
+  width: 170px;
+  height: 48px;
+  border: none;
+  border-radius: 1000px;
+  outline: none;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 21.86px;
+  text-align: center;
+  color: #fff;
+  cursor: pointer;
 }
-.clinicCardsBlock{
-    width: 100%;
-    margin-top: 50px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-}
-
-.nonClinicCardBlock{
-    width: 100%;
-    height: 280px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 24.5px;
-    font-weight: 600;
-    line-height: 43.71px;
-    text-align: center;
-
+.clinicCardsBlock {
+  width: 100%;
+  margin-top: 50px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
 }
 
+.nonClinicCardBlock {
+  width: 100%;
+  height: 280px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24.5px;
+  font-weight: 600;
+  line-height: 43.71px;
+  text-align: center;
+}
 
 @media (max-width: 624px) {
-    .clinickPage{
-        padding-top: 120px;
-    }
-    .clinickPage h1 {
-        font-size: 2rem;
-        line-height: 40px;
-    }
-    .mainFormIntupsBlock{
-        width: 100%;
-        height: auto;
-        flex-wrap: wrap;
-    }
-    .dropdownContainer ,.dropdownContainer:nth-child(2) , .dropdownContainer.litle{ 
-        width: 100%;
-    }
-    .filterBtnBlock{
-        width: 100%;
-    }
-    .filterBtnBlock button{
-        width: 100%;
-        height: 42px;
-        font-size: 15px;
-    }
-    .dropdownMenuItem{
-        font-size: 15px;
-    }
-    .dropdown{
-        height: 45px;
-        font-size: 15px;
-    }
-    .clinicCardsBlock{
-        grid-template-columns: 1fr;
-    }
+  .clinickPage {
+    padding-top: 120px;
+  }
+  .clinickPage h1 {
+    font-size: 2rem;
+    line-height: 40px;
+  }
+  .mainFormIntupsBlock {
+    width: 100%;
+    height: auto;
+    flex-wrap: wrap;
+  }
+  .dropdownContainer,
+  .dropdownContainer:nth-child(2),
+  .dropdownContainer.litle {
+    width: 100%;
+  }
+  .filterBtnBlock {
+    width: 100%;
+  }
+  .filterBtnBlock button {
+    width: 100%;
+    height: 42px;
+    font-size: 15px;
+  }
+  .dropdownMenuItem {
+    font-size: 15px;
+  }
+  .dropdown {
+    height: 45px;
+    font-size: 15px;
+  }
+  .clinicCardsBlock {
+    grid-template-columns: 1fr;
+  }
 }

@@ -1,30 +1,30 @@
-import  { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import styles from './ZapisPage.module.css';
-import imgName from '../../../../assets/img/simple-line-i.svg';
-import imgType from '../../../../assets/img/Vector14.svg';
-import phoneImg from '../../../../assets/img/ph_phone-light.svg';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import styles from "./ZapisPage.module.css";
+import imgName from "../../../../assets/img/simple-line-i.svg";
+import imgType from "../../../../assets/img/Vector14.svg";
+import phoneImg from "../../../../assets/img/ph_phone-light.svg";
 
 const arraySelectOptions = {
-  select1: ['Konsultacja ginekologiczna • 290,00 zł', 'Konsultacja ginekologiczna • 2090,00 zł', 'Konsultacja ginekologiczna • 2900,00 zł'],
-  select2: ['Prywatna', 'Tokyo', 'NYC'],
+  select1: [
+    "Konsultacja ginekologiczna • 290,00 zł",
+    "Konsultacja ginekologiczna • 2090,00 zł",
+    "Konsultacja ginekologiczna • 2900,00 zł",
+  ],
+  select2: ["Prywatna", "Tokyo", "NYC"],
 };
 
 function ZapisPage(props) {
-  
   const [isOpen1, setIsOpen1] = useState(false);
   const [isOpen2, setIsOpen2] = useState(false);
   const [data, setData] = useState(props.data);
 
   const navigate = useNavigate();
 
-
   const handleGoBack = () => {
-    navigate(-1); // Переход на предыдущую страницу в истории
+    navigate(-1);
   };
   const doctorInfo = data.allData || {};
-
-  
 
   const handleOptionClick = (option, setSelectedOption, setIsOpen) => {
     setSelectedOption(option);
@@ -40,7 +40,9 @@ function ZapisPage(props) {
       <div className={styles.zapisPageLeft}>
         <div className={styles.zapisPageLeftTimeBlock}>
           <p>{data.date}</p>
-          <p className={styles.zapisPageLeftTimeText}>{data.time} - {props.endTime}</p>
+          <p className={styles.zapisPageLeftTimeText}>
+            {data.time} - {props.endTime}
+          </p>
         </div>
         <div className={styles.zapisPageLeftNameBlock}>
           <img src={imgType} alt="Doctor" />
@@ -53,10 +55,15 @@ function ZapisPage(props) {
           <img src={imgName} alt="Location" />
           <div>
             <p>{doctorInfo.medCenterInfo.name}</p>
-            <p className={styles.zapisPageLeftCity}>{doctorInfo.medCenterInfo.address}</p>
+            <p className={styles.zapisPageLeftCity}>
+              {doctorInfo.medCenterInfo.address}
+            </p>
           </div>
           <div className={styles.zapisPageLeftAddressBlockBtnPhone}>
-            <a href={`tel:+${doctorInfo.medCenterInfo.phone}`}><img src={phoneImg} alt="Phone" />{doctorInfo.medCenterInfo.phone}</a>
+            <a href={`tel:+${doctorInfo.medCenterInfo.phone}`}>
+              <img src={phoneImg} alt="Phone" />
+              {doctorInfo.medCenterInfo.phone}
+            </a>
           </div>
         </div>
       </div>
@@ -65,14 +72,23 @@ function ZapisPage(props) {
         <div className={styles.zapisPagePriceBlock}>
           <p>Typ wizyty</p>
           <div className={styles.dropdownContainer}>
-            <div className={styles.dropdown} onClick={() => toggleDropdown(isOpen1, setIsOpen1)}>
+            <div
+              className={styles.dropdown}
+              onClick={() => toggleDropdown(isOpen1, setIsOpen1)}
+            >
               {props.typWizyty || "Konsultacja ginekologiczna • 290,00 zł "}
               <span className={styles.arrow}></span>
             </div>
             {isOpen1 && (
               <ul className={styles.dropdownMenu}>
-                {arraySelectOptions.select1.map(elem => (
-                  <li className={styles.dropdownMenuItem} onClick={() => handleOptionClick(elem, props.setTypWizyty, setIsOpen1)} key={elem}>
+                {arraySelectOptions.select1.map((elem) => (
+                  <li
+                    className={styles.dropdownMenuItem}
+                    onClick={() =>
+                      handleOptionClick(elem, props.setTypWizyty, setIsOpen1)
+                    }
+                    key={elem}
+                  >
                     {elem}
                   </li>
                 ))}
@@ -83,14 +99,23 @@ function ZapisPage(props) {
         <div className={styles.zapisPagePriceBlock}>
           <p>Rodzaj wizyty</p>
           <div className={styles.dropdownContainer}>
-            <div className={styles.dropdown} onClick={() => toggleDropdown(isOpen2, setIsOpen2)}>
+            <div
+              className={styles.dropdown}
+              onClick={() => toggleDropdown(isOpen2, setIsOpen2)}
+            >
               {props.rodzajWizyty || "Prywatna"}
               <span className={styles.arrow}></span>
             </div>
             {isOpen2 && (
               <ul className={styles.dropdownMenu}>
-                {arraySelectOptions.select2.map(elem => (
-                  <li className={styles.dropdownMenuItem} onClick={() => handleOptionClick(elem, props.setRodzajWizyty, setIsOpen2)} key={elem}>
+                {arraySelectOptions.select2.map((elem) => (
+                  <li
+                    className={styles.dropdownMenuItem}
+                    onClick={() =>
+                      handleOptionClick(elem, props.setRodzajWizyty, setIsOpen2)
+                    }
+                    key={elem}
+                  >
                     {elem}
                   </li>
                 ))}
@@ -101,13 +126,33 @@ function ZapisPage(props) {
         <div className={styles.choiceBlock}>
           <p>Czy to Twoja pierwsza wizyta u tego specjalisty?</p>
           <div>
-            <label><input type="radio" name="choice" checked={props.selectedRadio === 'Tak'} onChange={() => props.setSelectedRadio('Tak')} />Tak</label>
-            <label><input type="radio" name="choice" checked={props.selectedRadio === 'Nie'} onChange={() => props.setSelectedRadio('Nie')} />Nie</label>
+            <label>
+              <input
+                type="radio"
+                name="choice"
+                checked={props.selectedRadio === "Tak"}
+                onChange={() => props.setSelectedRadio("Tak")}
+              />
+              Tak
+            </label>
+            <label>
+              <input
+                type="radio"
+                name="choice"
+                checked={props.selectedRadio === "Nie"}
+                onChange={() => props.setSelectedRadio("Nie")}
+              />
+              Nie
+            </label>
           </div>
         </div>
         <div className={styles.btnBlock}>
-          <button className={styles.btnBlockBack} onClick={handleGoBack}>Anuluj</button>
-          <button onClick={()=>props.changeActivePage('ZapisFormPage')}>Kontynuj</button>
+          <button className={styles.btnBlockBack} onClick={handleGoBack}>
+            Anuluj
+          </button>
+          <button onClick={() => props.changeActivePage("ZapisFormPage")}>
+            Kontynuj
+          </button>
         </div>
       </div>
     </div>

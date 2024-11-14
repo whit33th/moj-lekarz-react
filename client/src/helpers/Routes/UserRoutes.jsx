@@ -29,6 +29,7 @@ import PolicyPrivacy from "../../pages/User/Policy/PolicyPrivacy";
 function UserRoutes() {
     const [isAuth, setIsAuth] = useState(true); 
   return (
+    
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/auth/*" element={<AuthPage setIsAuth={setIsAuth} />} />

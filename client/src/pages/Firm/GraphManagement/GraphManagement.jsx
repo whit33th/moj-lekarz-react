@@ -18,33 +18,18 @@ function GraphManagement() {
     );
   };
 
-  const leftColumnData = Array.from({ length: 15 }, (_, i) => ({
-    id: `left-${i + 1}`,
-    name: "Jan Bukalski",
-    phone: "456-029-485",
-  }));
-
-  const rightColumnData = Array.from({ length: 15 }, (_, i) => ({
-    id: `right-${i + 1}`,
-    name: "Dmitry Shak",
-    phone: "333-412-666",
+  const allPatients = Array.from({ length: 25 }, (_, i) => ({
+    id: `user-${i + 1}`,
+    name: i % 2 === 0 ? "Jan Bukalski" : "Dmitry Shak",
+    phone: i % 2 === 0 ? "456-029-485" : "333-412-666",
   }));
 
   const options = ["Dentysta", "Psychotherapist", "Antroherapist"];
-  const allPatients = [...leftColumnData, ...rightColumnData];
 
   const filteredPatients = allPatients.filter(
     (item) =>
       item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       item.phone.includes(searchTerm)
-  );
-
-  const leftFilteredData = filteredPatients.slice(
-    0,
-    Math.ceil(filteredPatients.length / 2)
-  );
-  const rightFilteredData = filteredPatients.slice(
-    Math.ceil(filteredPatients.length / 2)
   );
 
   const navigate = useNavigate();
@@ -58,12 +43,10 @@ function GraphManagement() {
     }
   }
 
-  // Проверка, есть ли данные
   const hasData = filteredPatients.length > 0;
 
   return (
     <div className={styles.container}>
-      {/* Header */}
       <div className={styles.header}>
         <Search
           placeholder={"Szukaj pracownika..."}
@@ -78,59 +61,33 @@ function GraphManagement() {
         <BlueBtn cb={handleNextClick}>Wybierz i przejdź dalej</BlueBtn>
       </div>
 
-      {/* Table */}
+      {}
       <div
-        style={{
-          gridTemplateColumns: hasData ? "1fr 1fr" : "1fr",
-          justifyItems: hasData ? "initial" : "center",
-        }}
+        style={{ columns: hasData ? 2 : 1 }}
         className={styles.tableContainer}
       >
         {hasData ? (
-          <>
-            <div className={styles.column}>
-              {leftFilteredData.map((item, index) => (
-                <div
-                  key={item.id}
-                  className={index % 2 === 0 ? styles.row : styles.rowAlt}
-                >
-                  <label className={styles.checkboxContainer}>
-                    <input
-                      type="checkbox"
-                      checked={selectedUsers.some((u) => u.id === item.id)}
-                      onChange={() => handleUserSelect(item)}
-                    />
-                    <span className={styles.checkmark}></span>
-                  </label>
-                  <div className={styles.info}>
-                    <div className={styles.name}>{item.name}</div>
-                    <div className={styles.phone}>{item.phone}</div>
-                  </div>
+          <div className={styles.column}>
+            {filteredPatients.map((item, index) => (
+              <div
+                key={item.id}
+                className={index % 2 === 0 ? styles.row : styles.rowAlt}
+              >
+                <label className={styles.checkboxContainer}>
+                  <input
+                    type="checkbox"
+                    checked={selectedUsers.some((u) => u.id === item.id)}
+                    onChange={() => handleUserSelect(item)}
+                  />
+                  <span className={styles.checkmark}></span>
+                </label>
+                <div className={styles.info}>
+                  <div className={styles.name}>{item.name}</div>
+                  <div className={styles.phone}>{item.phone}</div>
                 </div>
-              ))}
-            </div>
-            <div className={styles.column}>
-              {rightFilteredData.map((item, index) => (
-                <div
-                  key={item.id}
-                  className={index % 2 === 0 ? styles.rowAlt : styles.row}
-                >
-                  <label className={styles.checkboxContainer}>
-                    <input
-                      type="checkbox"
-                      checked={selectedUsers.some((u) => u.id === item.id)}
-                      onChange={() => handleUserSelect(item)}
-                    />
-                    <span className={styles.checkmark}></span>
-                  </label>
-                  <div className={styles.info}>
-                    <div className={styles.name}>{item.name}</div>
-                    <div className={styles.phone}>{item.phone}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </>
+              </div>
+            ))}
+          </div>
         ) : (
           <div className={styles.noDataMessage}>Brak danych</div>
         )}

@@ -46,10 +46,9 @@ function DoctorProfile() {
 
             </div>
             <div className={styles.mapBlock}>
-                {/* <MapComponent address={"Tokyo"} /> */}
+                {}
                 <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d155738.88831080226!2d16.79320059739124!3d52.41718485762118!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470444d2ece10ab7%3A0xa4ea31980334bfd1!2zUG96bmHFhCwgUG9sYW5k!5e0!3m2!1sen!2skz!4v1723792122706!5m2!1sen!2skz"
-                    width="100%"
+                    src="https:                    width="100%"
                     height="300"
                     style={{ border: 0 }}
                     allowFullScreen=""

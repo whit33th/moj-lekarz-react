@@ -16,6 +16,8 @@ import ReviewCard from "../../../components/FirmPage/Review/ReviewCard";
 
 import Dropdown from "../../../components/Dropdown/Dropdown";
 import exit from "../../../assets/img/cross.png";
+import BlueBtn from "../../../components/Buttons/BlueBtn/BlueBtn";
+
 function FirmManagement() {
   const { setModalActive, setModalContent } = useStore();
 
@@ -26,12 +28,14 @@ function FirmManagement() {
   const ModalContentEdit = (
     <div>
       <form className={styles.form}>
+        <img onClick={() => setModalActive(false)} src={exit} alt="cross" />
         <div className={styles.row}>
           <div className={styles.column}>
             <label className={styles.label}>Nazwa firmy</label>
             <input
               type="text"
-              defaultValue="Gabinet lekarski Iwona Las" // Начальное значение, которое можно изменить
+              name="firm"
+              defaultValue="Gabinet lekarski Iwona Las"
               className={styles.input}
             />
           </div>
@@ -39,7 +43,8 @@ function FirmManagement() {
             <label className={styles.label}>NIP</label>
             <input
               type="text"
-              defaultValue="21344059222321" // Начальное значение
+              name="nip"
+              defaultValue="21344059222321"
               className={styles.input}
               disabled
             />
@@ -49,8 +54,9 @@ function FirmManagement() {
           <div className={styles.column}>
             <label className={styles.label}>Data rejestracji</label>
             <input
-              type="text"
-              defaultValue="23.09.2001" // Начальное значение
+              type="date"
+              name="house"
+              defaultValue="2001-09-11"
               className={styles.input}
             />
           </div>
@@ -58,7 +64,8 @@ function FirmManagement() {
             <label className={styles.label}>Numer licencji</label>
             <input
               type="text"
-              defaultValue="12236897654632" // Начальное значение
+              name="license"
+              defaultValue="12236897654632"
               className={styles.input}
             />
           </div>
@@ -68,23 +75,37 @@ function FirmManagement() {
             <label className={styles.label}>Miasto</label>
             <input
               type="text"
-              defaultValue="Wrocław" // Начальное значение
+              name="city"
+              defaultValue="Wrocław"
               className={styles.input}
             />
           </div>
           <div className={styles.column}>
-            <label className={styles.label}>Adres</label>
+            <label className={styles.label}>Ulica</label>
             <input
               type="text"
-              defaultValue="ul. Szylinga" // Начальное значение
+              name="street"
+              defaultValue="ul. Szylinga"
               className={styles.input}
             />
           </div>
+        </div>
+        <div className={styles.row}>
           <div className={styles.column}>
             <label className={styles.label}>Nr. Domu</label>
             <input
               type="text"
-              defaultValue="131" // Начальное значение
+              name="house"
+              defaultValue="131"
+              className={styles.input}
+            />
+          </div>
+          <div className={styles.column}>
+            <label className={styles.label}>Kod pocztowy</label>
+            <input
+              type="text"
+              name="post"
+              defaultValue="64-732"
               className={styles.input}
             />
           </div>
@@ -94,16 +115,9 @@ function FirmManagement() {
             <label className={styles.label}>Adres korespondencji</label>
             <input
               type="text"
-              defaultValue="ul. Szamarzewskiego" // Начальное значение
+              name="street"
+              defaultValue="ul. Szamarzewskiego"
               className={styles.input}
-            />
-          </div>
-          <div className={styles.column}>
-            <label className={styles.label}>Nr. Domu</label>
-            <input
-              type="text"
-              defaultValue="131" // Начальное значение
-              className={`${styles.input}`}
             />
           </div>
         </div>
@@ -112,33 +126,26 @@ function FirmManagement() {
             <label className={styles.label}>Email</label>
             <input
               type="email"
-              defaultValue="Glekwona@wp.pl" // Начальное значение
+              name="email"
+              defaultValue="Glekwona@wp.pl"
               className={styles.input}
             />
           </div>
           <div className={styles.column}>
             <label className={styles.label}>Telefon</label>
             <input
-              type="text"
-              defaultValue="512495333" // Начальное значение
-              className={styles.input}
-            />
-          </div>
-          <div className={styles.column}>
-            <label className={styles.label}>Telefon</label>
-            <input
-              type="text"
-              defaultValue="511433333" // Начальное значение
+              type="tel"
+              name="tel"
+              defaultValue="512495333"
               className={styles.input}
             />
           </div>
         </div>
       </form>
-      <Choice
-        choice1={"Anuluj"}
-        choice2={"Aktualizuj"}
-        cb1={() => setModalActive(false)}
-      ></Choice>
+      <div className={styles.choice}>
+        <div></div>
+        <BlueBtn cb={() => setModalActive(false)}>Aktualizuj</BlueBtn>
+      </div>
     </div>
   );
   const reviews = [
@@ -220,17 +227,14 @@ function FirmManagement() {
               "Najpierw stare",
               "W rankingu rosnącym",
               "W rankingu malejącym",
-              
             ]}
             listStyle="elipse"
-            
           />
         </div>
         <img onClick={() => setModalActive(false)} src={exit} alt="cross" />
       </div>
       <div className={styles.cardsContainer}>
         {reviews.map((review, index) => (
-          // <CommentCard review={review} key={index} />
           <ReviewCard
             key={index}
             name={review.name}
@@ -298,7 +302,7 @@ function FirmManagement() {
             </button>
           </div>
           <div className={styles.reviews}>
-            {userItems.slice(-5).map((u, index) => (
+            {userItems.slice(-3).map((u, index) => (
               <Review
                 key={index}
                 name={u.name}

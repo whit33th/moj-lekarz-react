@@ -1,5 +1,3 @@
-import { NavLink } from "react-router-dom";
-
 import users from "../../../assets/img/users.png";
 import graphUp from "../../../assets/img/graph-up.png";
 import graphDown from "../../../assets/img/graph-down.png";
@@ -9,27 +7,36 @@ import visits from "../../../assets/img/visits.png";
 
 import plus from "../../../assets/img/plusBlack.png";
 import bucket from "../../../assets/img/bucket.png";
-import note from "../../../assets/img/note.png";
+import noteIco from "../../../assets/img/note.png";
 import styles from "./AdminMain.module.css";
 import AreaChartComp from "../../../components/Charts/AreaChart";
 import useStore from "./../../../data/store";
-import Textarea from '../../../components/UI/TextArea/Textarea'
-import BlueBtn from './../../../components/Buttons/BlueBtn/BlueBtn';
+import Textarea from "../../../components/UI/TextArea/Textarea";
+import BlueBtn from "./../../../components/Buttons/BlueBtn/BlueBtn";
+import { useState } from "react";
 
 function AdminMain() {
   const { setModalActive, setModalContent } = useStore();
-
-
+  const [notes, setNotes] = useState(
+    Array.from({ length: 4 }, (_, i) => ({
+      id: i + 1,
+      text:
+        `Lorem ipsum dolor sit amet, consectetur adipiscing elit.` + (i + 1),
+    }))
+  );
   const NoteModal = (
     <>
       <h1>Dodanie notatki</h1>
-      <Textarea placeholder={'Wpisz temat'}/>
-      <BlueBtn  >Dodaj notatkę</BlueBtn>
+      <Textarea placeholder={"Wpisz temat"} />
+      <BlueBtn>Dodaj notatkę</BlueBtn>
     </>
   );
   function handleAddNote() {
     setModalActive(true);
     setModalContent(NoteModal);
+  }
+  function deleteNote(id) {
+    setNotes((prevNotes) => prevNotes.filter((note) => note.id !== id));
   }
   return (
     <div className={styles.content}>
@@ -100,7 +107,7 @@ function AdminMain() {
       </div>
       <div className={styles.dashboardTwo}>
         <div className={`${styles.tableCard} ${styles.newUser}`}>
-          <p className={styles.titleCard}>Nowi użytkownicy</p>
+          <p className={styles.titleCard}>Nowe użytkownicy</p>
           <table>
             <thead>
               <tr>
@@ -194,34 +201,22 @@ function AdminMain() {
             </div>
           </div>
           <ul className={styles.notesList}>
-            <li>
-              <img className={styles.noteIco} src={note} alt="" />
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              <button className={styles.deleteNote}>
-                <img className={styles.noteIco} src={bucket} alt="" />
-              </button>
-            </li>
-            <li>
-              <img className={styles.noteIco} src={note} alt="" />
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              <button className={styles.deleteNote}>
-                <img className={styles.noteIco} src={bucket} alt="" />
-              </button>
-            </li>
-            <li>
-              <img className={styles.noteIco} src={note} alt="" />
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              <button className={styles.deleteNote}>
-                <img className={styles.noteIco} src={bucket} alt="" />
-              </button>
-            </li>
-            <li>
-              <img className={styles.noteIco} src={note} alt="" />
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              <button className={styles.deleteNote}>
-                <img className={styles.noteIco} src={bucket} alt="" />
-              </button>
-            </li>
+            {notes.map((note) => (
+              <li key={note.id}>
+                
+                  <img className={styles.noteIco} src={noteIco} alt="" />
+                  {note.text}
+              
+                <button className={styles.deleteNote}>
+                  <img
+                    onClick={() => deleteNote(note.id)}
+                    className={styles.noteIco}
+                    src={bucket}
+                    alt=""
+                  />
+                </button>
+              </li>
+            ))}
           </ul>
         </div>
       </div>

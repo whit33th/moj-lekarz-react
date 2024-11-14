@@ -8,6 +8,8 @@ import Profil from '../../pages/Doctor/Profil/Profil'
 import Settings from '../../pages/Doctor/Settings/Settings'
 import ReviewPage from '../../pages/Admin/Reviews/ReviewPage'
 import Notifications from '../../pages/Doctor/Notifications/Notifications'
+import AddFirm from '../../pages/Admin/AddFirm/AddFirm'
+import Statistic from '../../pages/Admin/Statistic/Statistic'
 
 
 function AdminRoutes() {
@@ -21,6 +23,8 @@ function AdminRoutes() {
       <Route path={pageConfig.admin.settings} element={<Settings />} />
       <Route path={pageConfig.admin.reviews} element={<ReviewPage />} />
       <Route path={pageConfig.admin.chat} element={<Notifications />} />
+      <Route path={pageConfig.admin.addFirm} element={<AddFirm />} />
+      <Route path={pageConfig.admin.statistic} element={<Statistic />} />
     </Routes>
   );
 }

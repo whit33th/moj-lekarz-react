@@ -17,6 +17,8 @@ const useStore = create((set) => ({
   activeDropdownId: null,
   setActiveDropdownId: (id) => set({ activeDropdownId: id }),
 
+  selectedDate: new Date(),
+  setSelectedDate: (date) => set({ selectedDate: date }),
   // Profile state
   profileState: {
     id: 0,

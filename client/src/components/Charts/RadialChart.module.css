@@ -1,0 +1,81 @@
+.ratingChartContent {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 40px;
+  padding: 20px;
+	width: fit-content;
+}
+
+.donutChart {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.donutHole {
+  position: absolute;
+  width: 55%;
+  height: 55%;
+  top: 22.5%;
+  left: 22.5%;
+  background-color: #ffffff;
+  border-radius: 50%;
+}
+
+.donutLabel {
+  position: absolute;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  font-weight: bold;
+  box-shadow: 0px 0px 15px 2px #00000021;
+  background-color: white;
+  transform: translate(-50%, -50%);
+}
+
+.ratingLegend {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  
+  flex-shrink: 0;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.legendColor {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+.duplex {
+  display: flex;
+  align-items: center;
+	gap: 20px;
+}
+.legendName {
+  display: flex;
+  align-items: center;
+  min-width: 60px; 
+  gap: 10px;
+}
+
+.star {
+  width: 20px;
+  height: 20px;
+}
+
+.legendValue {
+  font-weight: bold;
+}

@@ -5,12 +5,13 @@ import recept from "../assets/img/sidebar-recepy.png";
 import notifications from "../assets/img/sidebar-notefictions.png";
 import chat from "../assets/img/c.png";
 import settings from "../assets/img/sidebar-settings.png";
+import { pageConfig } from "../config/config";
 
 const sbLinks = [
   //doctorLinks
   {
     role: "doctor",
-    title: "Glowna",
+    title: "Główna",
     img: home,
     url: "/",
   },
@@ -22,7 +23,7 @@ const sbLinks = [
   },
   {
     role: "doctor",
-    title: "Lista pacjętów",
+    title: "Lista pacjentów",
     img: list,
     url: "/list",
   },
@@ -54,9 +55,15 @@ const sbLinks = [
   //adminLinks
   {
     role: "admin",
-    title: "Glowna",
+    title: "Główna",
     img: home,
     url: "/",
+  },
+  {
+    role: "admin",
+    title: "Dodanie firmy",
+    img: home,
+    url: "/add-firm",
   },
   {
     role: "admin",
@@ -105,7 +112,7 @@ const sbLinks = [
   //firmLinks
   {
     role: "firm",
-    title: "Glowna",
+    title: "Główna",
     img: home,
     url: "/",
   },
@@ -123,13 +130,13 @@ const sbLinks = [
   },
   {
     role: "firm",
-    title: "Pracowniсy",
+    title: "Lista pacjentów",
     img: list,
-    url: "/workers",
+    url: "/patients",
   },
   {
     role: "firm",
-    title: "Lista pacjętów",
+    title: "Pracownicy",
     img: list,
     url: "/workers",
   },
@@ -144,13 +151,13 @@ const sbLinks = [
     role: "firm",
     title: "Wiadomości",
     img: notifications,
-    url: "/notification",
+    url: pageConfig.firm.notifications,
   },
   {
     role: "firm",
     title: "Ustawienia",
     img: settings,
-    url: "/settings",
+    url: pageConfig.firm.settings,
   },
 ];
 

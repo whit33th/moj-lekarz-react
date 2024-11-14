@@ -8,10 +8,12 @@ import DropdownStas from "./../../../components/Dropdown/DropdownStas";
 import { useNavigate } from "react-router-dom";
 import { pageConfig } from "../../../config/config";
 import useStore from "../../../data/store";
-import AddVisitType from "../../../components/Modals/AddVisitType/AddVisitType";
+import AddVisitTypeModal from "../../../components/Modals/AddVisitType/AddVisitTypeModal";
 import BlueBorderBtn from "../../../components/Buttons/BlueBorderBtn/BlueBorderBtn";
 import RedBorderBtn from "../../../components/Buttons/RedBorderBtn/RedBorderBtn";
 import { toast } from "sonner";
+import star from "../../../assets/img/Star.svg";
+import starGrey from "../../../assets/img/Star 6.svg";
 
 export default function WorkersInfo() {
   const navigate = useNavigate();
@@ -23,7 +25,6 @@ export default function WorkersInfo() {
     "Kalendarz nullam non iaculis massa",
     "Nunc kalendarz aliquam metus",
   ];
-  // State to manage visit types
   const [visitTypes, setVisitTypes] = useState([
     { id: "1", name: "Konsultacja ortopedyczna", price: 220.0, checked: true },
     { id: "2", name: "Kontrola po operacji", price: 0.0, checked: true },
@@ -31,15 +32,13 @@ export default function WorkersInfo() {
 
   function handleModal() {
     setModalActive(true);
-    setModalContent(<AddVisitType onAddVisitType={addVisitType} />);
+    setModalContent(<AddVisitTypeModal onAddVisitType={addVisitType} />);
   }
 
-  // Function to add a new visit type
   function addVisitType(newVisitType) {
     setVisitTypes((prevVisitTypes) => [...prevVisitTypes, newVisitType]);
   }
 
-  // Function to delete a visit type
   function handleDeleteVisitType(id) {
     setVisitTypes((prevVisitTypes) =>
       prevVisitTypes.filter((type) => type.id !== id)
@@ -68,8 +67,8 @@ export default function WorkersInfo() {
     setModalContent(editModal);
   }
 
-  function deleteAccountStatus(){
-toast.success("Profil został usunięty")
+  function deleteAccountStatus() {
+    toast.success("Profil został usunięty");
     setModalActive(false);
   }
   const modalContentDeleteAccount = (
@@ -126,6 +125,16 @@ toast.success("Profil został usunięty")
           <img src={avatar} alt="Profile" />
         </div>
         <h1 className={styles.profileName}>Tomasz Jankowski</h1>
+        <div className={styles.rating}>
+          {Array.from({ length: 5 }).map((_, i) => (
+            <img
+              key={i}
+              src={i < 3 ? star : starGrey}
+              alt="star"
+              className={styles.imgNameBlockStar}
+            />
+          ))}
+        </div>
       </div>
 
       <div className={styles.infoGrid}>

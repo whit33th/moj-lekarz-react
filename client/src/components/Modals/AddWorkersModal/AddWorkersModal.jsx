@@ -1,10 +1,12 @@
 import { useState } from 'react'
 import BlueBtn from "../../Buttons/BlueBtn/BlueBtn";
 import DropdownStas from "../../Dropdown/DropdownStas";
-
+import exit from "../../../assets/img/cross.png";
 import styles from "./AddWorkersModal.module.css";
+import useStore from '../../../data/store'
 
 function AddWorkersModal() {
+const {setModalActive}  = useStore()
   const [visitTypes, setVisitTypes] = useState([
     { id: "1", name: "Konsultacja ortopedyczna", price: 220.0, checked: true },
     { id: "2", name: "Badanie kontrolne", price: 220.0, checked: false },
@@ -30,6 +32,7 @@ function AddWorkersModal() {
 	console.log(selectedPosition)
   return (
     <div className={styles.container}>
+      <img onClick={() => setModalActive(false)} src={exit} alt="cross" />
       <div className={styles.infoGrid3}>
         <div className={styles.infoGroup}>
           <label>Imię</label>
@@ -47,7 +50,7 @@ function AddWorkersModal() {
         </div>
       </div>
       <div className={styles.infoGrid3}>
-        {" "}
+      
         <div className={styles.infoGroup}>
           <label>Telefon</label>
           <input type="text" value="555 666 777" readOnly />
@@ -114,7 +117,7 @@ function AddWorkersModal() {
           <DropdownStas
             placeholder="Wybierz stanowisko"
             options={["Dentysta", "Lobista"]}
-            onChange={(value) => setSelectedPosition(value)} 
+            onChange={(value) => setSelectedPosition(value)}
           />
         </div>
         {selectedPosition && (

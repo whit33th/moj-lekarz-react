@@ -24,7 +24,7 @@ import imgfirstBlock2 from "../../assets/img/Group 6.svg";
 
 import { sendFormData } from "../../helpers/apiService";
 
-import PartnersSlider from './../../components/PartnersSlider';
+import PartnersSlider from "./../../components/PartnersSlider";
 
 function Firm() {
   const [nameInputValue, setNameInputValue] = useState("");
@@ -63,10 +63,8 @@ function Firm() {
       try {
         const result = await sendFormData(formData);
         console.log("Form submitted successfully:", result);
-        // Handle success (e.g., show a success message, reset form)
       } catch (error) {
         console.error("Error submitting form:", error);
-        // Handle error (e.g., show an error message)
       }
     },
     [nameInputValue, emailInputValue, phoneInputValue, textareaInputValue]
@@ -398,7 +396,7 @@ function Firm() {
       <div className={styles.partners}>
         <h1 id="Partnerzy">Partnerzy</h1>
         <div className={styles.partnersIcons}>
-          {/* Добавьте ссылки на партнеров или их логотипы */}
+          {}
           <PartnersSlider />
         </div>
         <div className={styles.partnersBtn}>

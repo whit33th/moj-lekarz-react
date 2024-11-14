@@ -4,21 +4,16 @@ import profilImage from "../../../../assets/img/profil.webp";
 import confirmedImage from "../../../../assets/img/confirmed.png";
 import unconfirmedImage from "../../../../assets/img/unconfirmed.png";
 import styles from "./FirmPage.module.css";
-import mockFirmData from "../../../../helpers/firmItemList"; 
-
-
-// Ищем по айди который в пути ссылки
-
+import mockFirmData from "../../../../helpers/firmItemList";
 
 function FirmPage() {
-  const { id } = useParams(); // Получаем ID из параметров
-  const [firmData, setFirmData] = useState(null); // Для хранения данных о фирме
-  const [loading, setLoading] = useState(true); // Статус загрузки
-  const [error, setError] = useState(null); // Статус ошибки
+  const { id } = useParams();
+  const [firmData, setFirmData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [vacationStatus, setVacationStatus] = useState(false);
 
   useEffect(() => {
-    // Имитация задержки для загрузки данных
     const fetchFirmData = () => {
       setLoading(true);
       setTimeout(() => {
@@ -28,7 +23,7 @@ function FirmPage() {
           setError("Фирма не найдена");
         }
         setLoading(false);
-      }, 300); // Задержка 1 секунда
+      }, 300);
     };
 
     fetchFirmData();
@@ -39,11 +34,11 @@ function FirmPage() {
   }
 
   if (loading) {
-    return <div>Загрузка данных...</div>; // Показываем загрузку, пока данные загружаются
+    return <div>Загрузка данных...</div>;
   }
 
   if (error) {
-    return <div>Ошибка: {error}</div>; // Показываем ошибку, если она есть
+    return <div>Ошибка: {error}</div>;
   }
 
   return (
@@ -55,33 +50,42 @@ function FirmPage() {
       <div className={styles.hr}>
         <hr />
         <div className={styles.infoContainer}>
-          <div style={{padding: "30px"}} className={styles.infoBox}>
-					<p>Telefon: {firmData.phone}</p>
+          <div style={{ padding: "30px" }} className={styles.infoBox}>
+            <p>Telefon: {firmData.phone}</p>
+            <p>Województwo: Wielkopolskie</p>
+            <p>Miasto: Poznan</p>
+
+            <p>Adres: {firmData.address}</p>
             <p>Email: {firmData.email}</p>
-						<p>Adres: {firmData.address}</p>
             <p>Numer NIP: {firmData.nipNumber}</p>
-						<p>Liczba lekarzy: {firmData.numberOfDoctors}</p>
+          </div>
+          <div style={{ padding: "30px" }} className={styles.infoBox}>
+            <p>
+              <span>Liczba lekarzy: </span>
+              <span className={styles.timeBackground}>
+                {firmData.numberOfDoctors}
+              </span>
+            </p>
             <p>Numer ID: {firmData.idNumber}</p>
             <p>Data rejestracji: {firmData.hiredDate}</p>
           </div>
-
           <div className={styles.infoBox}>
             <div className={styles.time}>
               <div>
-                <p style={{padding: "10px"}}>Godziny pracy: </p>
+                <p style={{ padding: "10px", textWrap: "nowrap" }}>
+                  Godziny pracy:{" "}
+                </p>
               </div>
-              <div className={styles.gap} >
+              <div className={styles.gap}>
                 {Object.entries(firmData.workingHours).map(([day, hours]) => (
                   <p className={styles.timeDiv} key={day}>
-                    {day}: <div className={styles.timeBackground}>{hours}</div> 
+                    {day}: <div className={styles.timeBackground}>{hours}</div>
                   </p>
                 ))}
               </div>
             </div>
           </div>
         </div>
-
-        
       </div>
     </div>
   );

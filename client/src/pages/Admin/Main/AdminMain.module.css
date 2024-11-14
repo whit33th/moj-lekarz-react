@@ -1,43 +1,46 @@
-.card, .tableCard, .requestCard, .statsCard, .notesCard {
+.card,
+.tableCard,
+.requestCard,
+.statsCard,
+.notesCard {
   background-color: white;
   border-radius: 16px;
   box-shadow: 0 0 50px 5px #00000014;
   padding: 20px;
 }
-.add{
+.add {
   transition: 0.3s;
   opacity: 1;
 }
-.add:hover{
+.add:hover {
   opacity: 0.7;
-  
 }
-.tableCard table, .notesCard ul {
+.tableCard table,
+.notesCard ul {
   width: 100%;
   border-collapse: collapse;
 }
-.witaj{
+.witaj {
   margin: 0;
 }
-.charts{
+.charts {
   display: flex;
   flex-direction: row;
- gap: 20px;  
+  gap: 20px;
 }
-.charts > div{
-  width: 100%; 
+.charts > div {
+  width: 100%;
 }
-.chartContent{
+.chartContent {
   width: 100%;
   height: 200px;
 }
 
 .charts p {
- font-size: 12px;
- font-weight: 500;
- margin: 10px 0 20px 0;
+  font-size: 12px;
+  font-weight: 500;
+  margin: 10px 0 20px 0;
 }
-
 
 .charts > .recharts-surface {
   width: 100px;
@@ -45,6 +48,16 @@
 .notesList {
   list-style: none;
   padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+}
+.notesList li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
 }
 .iconAdmin {
   width: 30px;
@@ -64,7 +77,7 @@
 }
 .smBack {
   padding: 6px 10px;
-  background: #FFFFFF;
+  background: #ffffff;
   border-radius: 6px;
 }
 .cardHeader {
@@ -129,7 +142,8 @@
   font-weight: normal;
 }
 
-.tableCard th, .tableCard td {
+.tableCard th,
+.tableCard td {
   text-align: center;
   padding: 10px;
   border-bottom: 1px solid #f0f0f0;
@@ -178,24 +192,20 @@
 .newApplications {
   width: 20%;
 }
-.dashboardTwo, .dashboardTwoStats {
+.dashboardTwo,
+.dashboardTwoStats {
   display: grid;
-    grid-template-columns:  65% auto; 
-    gap: 20px;
-    align-items: flex-start; 
+  grid-template-columns: 65% auto;
+  gap: 20px;
+  align-items: flex-start;
 }
 .notesHeader {
+  margin-bottom: 10px;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
 }
-.notesList li {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 0;
-  gap: 10px;
-}
+
 .noteIco {
   width: 18px;
   height: 18px;

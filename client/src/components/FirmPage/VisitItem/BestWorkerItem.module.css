@@ -12,12 +12,12 @@
   gap: 5px;
   display: flex;
   border-radius: 10px;
-  padding: 10px;
+  padding: 8px 10px;
   background: #A6DEF7;
 }
 .rating img {
-  width: 22px;
-  height: 22px;
+  width: 20px;
+  height: 20px;
 }
 .grey {
   color: #919191;

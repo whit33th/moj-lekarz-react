@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styles from "./AddVisitType.module.css";
-import Choice from '../../Modal/Choice'
-function AddVisitType() {
+import Choice from "../../Modal/Choice";
+function AddVisitTypeModal() {
   // Initialize visitTypes with useState
   const [visitTypes, setVisitTypes] = useState([
     { id: "1", name: "Konsultacja ortopedyczna", price: 220.0, checked: true },
@@ -42,9 +42,9 @@ function AddVisitType() {
           </label>
         </div>
       ))}
-			<Choice choice1={'Anuluj'} choice2={'Dodaj'}/>
+      <Choice choice1={"Anuluj"} choice2={"Dodaj"} />
     </div>
   );
 }
 
-export default AddVisitType;
+export default AddVisitTypeModal;

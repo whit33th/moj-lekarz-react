@@ -1,194 +1,182 @@
-.doctorCard{
-    width: 100%;
-    padding: 25px 20px;
-    border-radius: 20px;
-    background-color: #fff;
-    box-shadow: 0px 0px 50px 0px #0000001A;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin-bottom: 40px;
-
+.doctorCard {
+  width: 100%;
+  padding: 25px 20px;
+  border-radius: 20px;
+  background-color: #fff;
+  box-shadow: 0px 0px 50px 0px #0000001a;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 40px;
 }
-.doctorCardInfoImgBlock{
-    display: flex;
-    align-items: center;
+.doctorCardInfoImgBlock {
+  display: flex;
+  align-items: center;
 }
-.doctorCardInfoImgBlock > a{
-    width: 75px;
-    height: 75px;
-    border-radius: 1000px;
+.doctorCardInfoImgBlock > a {
+  width: 75px;
+  height: 75px;
+  border-radius: 1000px;
 }
-.doctorCardInfoImgBlock a img{
-    width: 75px;
-    height: 75px;
-    border-radius: 1000px;
+.doctorCardInfoImgBlock a img {
+  width: 75px;
+  height: 75px;
+  border-radius: 1000px;
 }
-.doctorCardInfoImgBlock > div{
-    margin-left: 15px;
+.doctorCardInfoImgBlock > div {
+  margin-left: 15px;
 }
-.doctorCardInfoImgBlock p.doctorCardInfoImgBlockName{
-    font-size: 20px;
-    font-weight: 500;
-    line-height: 27.32px;
-
+.doctorCardInfoImgBlock p.doctorCardInfoImgBlockName {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 27.32px;
 }
-.doctorCardInfoImgBlock p{
-    font-size: 18px;
-    font-weight: 400;
-    line-height: 24.59px;
-    margin: 8px 0;
-
+.doctorCardInfoImgBlock p {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 24.59px;
+  margin: 8px 0;
 }
-.imgNameBlockStar{
-    width: 15px;
+.imgNameBlockStar {
+  width: 15px;
 }
-.doctorCardAddressBlock{
-    margin-top: 20px;
+.doctorCardAddressBlock {
+  margin-top: 20px;
 }
-.doctorCardAddressBlock > div{
-    width: 100%;
-    height: auto;
-    display: flex;
-    align-items: self-start;
-    padding: 6.5px 2px;
-
+.doctorCardAddressBlock > div {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: self-start;
+  padding: 6.5px 2px;
 }
-.doctorCardAddressBlock > div > img:first-child{
-    margin-top: 3px;
+.doctorCardAddressBlock > div > img:first-child {
+  margin-top: 3px;
 }
-.doctorCardAddressBlock > div > div{
-    margin-left: 5px;
-    font-size: 17.5px;
-    font-weight: 400;
-    line-height: 24.59px;
+.doctorCardAddressBlock > div > div {
+  margin-left: 5px;
+  font-size: 17.5px;
+  font-weight: 400;
+  line-height: 24.59px;
 }
-.doctorCardAddressPlaceholder{
-    color: #595959;
+.doctorCardAddressPlaceholder {
+  color: #595959;
 }
-.doctorDescription{
-    width: 68%;
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 24px;
-    text-align: left;
-    padding-right: 20px;
-
+.doctorDescription {
+  width: 68%;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: left;
+  padding-right: 20px;
 }
-.doctorDescription > div{
-    width: 100%;
-    display: flex;
-    align-content: center;
-    padding-top: 20px;
-    justify-content: end;
-    padding-right: 10px;
+.doctorDescription > div {
+  width: 100%;
+  display: flex;
+  align-content: center;
+  padding-top: 20px;
+  justify-content: end;
+  padding-right: 10px;
 }
-.doctorDescription > div a{
-    text-decoration: none;
+.doctorDescription > div a {
+  text-decoration: none;
 }
-.doctorCardTimeBlock{
-    width: 100%;
-    padding: 20px 10px;
-
+.doctorCardTimeBlock {
+  width: 100%;
+  padding: 20px 10px;
 }
-.doctorCardTimeBlock h3{
-    font-size: 18px;
-    font-weight: 500;
-    line-height: 24.59px;
-    margin-bottom: 20px;
+.doctorCardTimeBlock h3 {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 24.59px;
+  margin-bottom: 20px;
 }
-.doctorCardTimeBlockItems{
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
+.doctorCardTimeBlockItems {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
-.doctorCardTimeBlockItem{
-    width: 45%;
-    height: auto;
-    display: flex;
-    flex-wrap: wrap;
-
+.doctorCardTimeBlockItem {
+  width: 45%;
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
 }
-.doctorCardTimeBlockItem p{
-    width: 100%;
-
+.doctorCardTimeBlockItem p {
+  width: 100%;
 }
-.doctorCardHoursItems{
-    width: 100%;
-    display: flex;
-    padding: 15px 3px;
-    flex-wrap: wrap;
-    gap: 7px;
-
+.doctorCardHoursItems {
+  width: 100%;
+  display: flex;
+  padding: 15px 3px;
+  flex-wrap: wrap;
+  gap: 7px;
 }
-.doctorCardHoursItem{
-    border-radius: 6px;
-    padding: 7px 16.5px;
-    background-color: #A6DEF7;
+.doctorCardHoursItem {
+  border-radius: 6px;
+  padding: 7px 16.5px;
+  background-color: #a6def7;
 }
-.doctorCardHoursItems a{
-    text-decoration: none;
-    color: #000;
+.doctorCardHoursItems a {
+  text-decoration: none;
+  color: #000;
 }
 @media (max-width: 624px) {
-    .doctorDescription{
-        width: 100%;
-    }
-    .doctorCard {
-        flex-direction: column;
-        padding: 15px;
-    }
+  .doctorDescription {
+    width: 100%;
+  }
+  .doctorCard {
+    flex-direction: column;
+    padding: 15px;
+  }
 
-    
+  .doctorCardAddressBlock {
+    margin-top: 15px;
+    margin-bottom: 10px;
 
-    .doctorCardAddressBlock {
-        margin-top: 15px;
-        margin-bottom: 10px;
+    text-align: center;
+  }
 
-        text-align: center;
-    }
+  .doctorDescription {
+    width: 100%;
+    font-size: 14px;
+    padding-right: 0;
+  }
 
-    .doctorDescription {
-        width: 100%;
-        font-size: 14px;
-        padding-right: 0;
-    }
+  .doctorCardTimeBlock {
+    padding: 15px 0;
+  }
 
-    .doctorCardTimeBlock {
-        padding: 15px 0;
-    }
+  .doctorCardTimeBlockItems {
+    flex-direction: column;
+  }
 
-    .doctorCardTimeBlockItems {
-        flex-direction: column;
-    }
+  .doctorCardTimeBlockItem {
+    width: 100%;
+  }
 
-    .doctorCardTimeBlockItem {
-        width: 100%;
-    }
+  .doctorCardHoursItems {
+    gap: 5px;
+  }
 
-    .doctorCardHoursItems {
-        /* justify-content: center; */
-        gap: 5px;
-    }
-
-    .doctorCardHoursItem {
-        padding: 5px 10px;
-    }
-    .doctorDescription p {
-        display: -webkit-box;
-        -webkit-line-clamp: 3;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: normal;
-    }
-    .doctorCardAddressBlock > div > div{
-        font-size: 15px;
-    }
-    .doctorCardAddressPlaceholder{
-        display: none;
-    }
-    .doctorCardAddressBlock > div{
-        padding: 5px 3px;
-    }
+  .doctorCardHoursItem {
+    padding: 5px 10px;
+  }
+  .doctorDescription p {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+  }
+  .doctorCardAddressBlock > div > div {
+    font-size: 15px;
+  }
+  .doctorCardAddressPlaceholder {
+    display: none;
+  }
+  .doctorCardAddressBlock > div {
+    padding: 5px 3px;
+  }
 }

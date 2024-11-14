@@ -6,7 +6,7 @@ import useStore from "../../../data/store";
 import BlueBorderBtn from "../BlueBorderBtn/BlueBorderBtn";
 import cross from "../../../assets/img/cross.png";
 import back from "../../../assets/img/back.png";
-
+import download from "../../../assets/img/material-symbols-light_download.svg";
 const MoreInfoButtPatient = ({ id }) => {
   const {
     activeMoreInfoButtId,
@@ -72,18 +72,13 @@ const MoreInfoButtPatient = ({ id }) => {
     fileInputRef.current.click();
   };
 
-  const handleDownloadPDF = async (fileName) => {
-    const { toast } = await import("sonner");
-    const promise = () =>
-      new Promise((resolve, reject) => {
-        setTimeout(() => (Math.random() < 0.7 ? resolve() : reject()), 1000);
-      });
-
-    toast.promise(promise, {
-      loading: "Pobieranie pliku...",
-      success: `Plik ${fileName} został pobrany.`,
-      error: "Plik jest uszkodzony.",
-    });
+  const fileUrl = "/path/to/file.pdf";
+  const handleDownloadPDF = () => {
+    const link = document.createElement("a");
+    link.href = fileUrl;
+    link.download = "Download.pdf"; // Можно изменить имя
+    link.click();
+    link.remove();
   };
 
   const files = [
@@ -153,10 +148,11 @@ const MoreInfoButtPatient = ({ id }) => {
               <p className={styles.fileDate}>{file.date}</p>
             </div>
             <div className={styles.downloadIcon}>
-              <i
+              <img
+                src={download}
                 onClick={() => handleDownloadPDF(file.name)}
-                className="bx bxs-download hover"
-              ></i>
+                width={15}
+              />
             </div>
           </li>
         ))}

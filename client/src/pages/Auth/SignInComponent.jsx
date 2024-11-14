@@ -1,8 +1,7 @@
-import  { useState } from "react";
+import { useState } from "react";
 import styles from "./AuthPage.module.css";
 import img1 from "../../assets/img/Vector13.svg";
 import { NavLink } from "react-router-dom";
-// import { sendAuthData } from '../../services/apiService';
 
 function SignInComponent() {
   const [inputLogin, setInputLogin] = useState("");
@@ -16,7 +15,6 @@ function SignInComponent() {
       login: inputLogin,
       password: inputPassword,
     };
-    // sendAuthData(formData) // запрос к серверу
   };
 
   return (
@@ -43,7 +41,6 @@ function SignInComponent() {
             </div>
             <div className={styles.signInbtnBlock}>
               <a onClick={() => setIsForgotPassword(true)}>
-                {" "}
                 <img src={img1} /> Nie pamiętam hasła
               </a>
               <button>Zaloguj się</button>

@@ -1,29 +1,46 @@
 import { useState, useRef, useEffect } from "react";
 import styles from "./DropdownStas.module.css";
 
-const DropdownStas = ({ options, label, placeholder, onChange }) => {
+const DropdownStas = ({
+  options, 
+  label,
+  placeholder,
+  onChange,
+  type = "dropdown",
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(
-    placeholder || options[0] || "Wybierz"
+    placeholder || (type === "dropdown" && options[0]) || "Wybierz"
   );
+  const [inputValue, setInputValue] = useState("");
   const dropdownRef = useRef(null);
 
   const toggleDropdown = () => {
-    setIsOpen((prev) => !prev);
+    if (type === "dropdown") {
+      setIsOpen((prev) => !prev);
+    }
   };
 
   const handleOptionClick = (option) => {
     setSelectedOption(option);
     setIsOpen(false);
     if (onChange) {
-      onChange(option); 
+      onChange(option);
+    }
+  };
+
+  const handleInputChange = (event) => {
+    setInputValue(event.target.value);
+    setSelectedOption(event.target.value);
+    if (onChange) {
+      onChange(event.target.value);
     }
   };
 
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setIsOpen(false); 
+        setIsOpen(false);
       }
     };
 
@@ -38,21 +55,33 @@ const DropdownStas = ({ options, label, placeholder, onChange }) => {
     <div ref={dropdownRef} className={styles.dropdownContainer}>
       {label && <label>{label}</label>}
       <div
-        className={`${styles.dropdown} ${isOpen ? styles.open : ""}`}
+        className={`${styles.dropdown} ${
+          type === "input" ? styles.dropdownInput : ""
+        } ${isOpen ? styles.open : ""}`}
         onClick={toggleDropdown}
       >
-        <span
-          className={selectedOption === placeholder ? styles.placeholder : ""}
-        >
-          {selectedOption}
-        </span>
-        {options && (
+        {type === "input" ? (
+          <input
+            type="text"
+            value={inputValue}
+            onChange={handleInputChange}
+            placeholder={placeholder}
+            className={styles.inputField}
+          />
+        ) : (
+          <span
+            className={selectedOption === placeholder ? styles.placeholder : ""}
+          >
+            {selectedOption}
+          </span>
+        )}
+        {type === "dropdown" && options && (
           <span
             className={`${styles.arrow} ${isOpen ? styles.arrowOpen : ""}`}
           ></span>
         )}
       </div>
-      {isOpen && (
+      {type === "dropdown" && isOpen && (
         <ul className={styles.dropdownMenu}>
           {options &&
             options.map((option, index) => (

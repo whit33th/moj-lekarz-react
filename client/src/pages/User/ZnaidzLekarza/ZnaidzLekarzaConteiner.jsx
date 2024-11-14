@@ -14,7 +14,6 @@ function ZnajdzLekarzaContainer({ isLoggedIn }) {
     time: undefined,
     allData: {},
   });
-  // const navigate = useNavigate();
   useEffect(() => {
     const savedState = localStorage.getItem("zapisState");
     if (savedState) {

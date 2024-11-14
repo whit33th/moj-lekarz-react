@@ -42,14 +42,17 @@
 }
 
 .search {
+  border: 1px solid #efefef;
+  height: 50px;
+  align-items: center;
   display: flex;
   flex-direction: row;
-  width:100%;
+  width: 100%;
   max-width: 350px;
-  box-shadow: 0 0 10px 5px #00000014;
+  box-shadow: 0 0 50px 5px #00000014;
   padding: 10px 0;
   border-radius: 20px;
-  border: none;
+  
 }
 
 .search img,
@@ -93,12 +96,13 @@
 .tableContainer tbody td {
   padding: 20px;
 }
-
-.tableContainer thead th {
-  padding: 20px;
+.tableContainer thead th:first-child {
+  padding: 20px ;
 }
 
-
+.tableContainer thead th {
+  padding: 20px 0;
+}
 
 .receptId {
   background: #a6def7;

@@ -1,8 +1,6 @@
-
 import img from "../../assets/img/tst,small,845x845-pad,1000x1000,f8f8f8.jpg";
-import styles from './style/ReviewCard.module.css'
+import styles from "./style/ReviewCard.module.css";
 import starimg from "../../assets/img/Star.svg";
-
 
 function ReviewCard(props) {
   const rating = parseInt("5", 10);
@@ -17,16 +15,23 @@ function ReviewCard(props) {
         </div>
         <div className={styles.starsBlock}>
           {[...Array(rating)].map((_, index) => (
-            <img key={index} src={starimg} alt="star" className={styles.imgNameBlockStar} />
+            <img
+              key={index}
+              src={starimg}
+              alt="star"
+              className={styles.imgNameBlockStar}
+            />
           ))}
         </div>
       </div>
       <div className={styles.userReviewText}>
-        {/* здесь надо поставить условия о количестве букв  */}
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Earum fugit inventore quam minus perspiciatis quisquam autem necessitatibus praesentium soluta consequatur sit harum, error porro. Quasi debitis optio necessitatibus distinctio adipisci.
+        {}
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Earum fugit
+        inventore quam minus perspiciatis quisquam autem necessitatibus
+        praesentium soluta consequatur sit harum, error porro. Quasi debitis
+        optio necessitatibus distinctio adipisci.
       </div>
-
     </div>
-  )
+  );
 }
 export default ReviewCard;

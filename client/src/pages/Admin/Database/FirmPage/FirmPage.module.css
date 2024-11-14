@@ -1,12 +1,12 @@
 .infoContainer {
   display: flex;
-  justify-content: space-between; /* Распределяем колонки равномерно */
-  margin: 20px 0; /* Отступ сверху и снизу */
+  justify-content: space-between;
+  margin: 20px 0;
 }
 
 .infoBox {
-  flex: 1; /* Каждая колонка занимает равное пространство */
-  padding: 20px; /* Внутренние отступы */
+  flex: 1;
+  padding: 20px;
   display: flex;
   gap: 20px;
   flex-direction: column;
@@ -21,8 +21,9 @@
   gap: 20px;
 }
 .timeBackground {
+  text-wrap: nowrap;
   border-radius: 6px;
-  padding: 10px;
+  padding: 6px 10px;
   background: #a6def7;
 }
 .timeDiv {
@@ -30,16 +31,14 @@
   flex-direction: row;
   align-content: center;
   align-items: center;
-	gap: 10px;
-	justify-content: space-between;
+  gap: 10px;
+  justify-content: space-between;
 }
-.gap{
-	display: flex;
-	gap: 10px;
-	flex-direction: column;
+.gap {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
 }
-
-
 
 .shadow {
   box-shadow: 0 0 50px 5px #00000014;
@@ -68,7 +67,7 @@
 .grey {
   color: #919191;
 }
-hr {
+.hr hr {
   border: 1px solid #3e36b0;
 }
 

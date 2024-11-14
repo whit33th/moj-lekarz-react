@@ -1,26 +1,21 @@
 import styles from "./Workers.module.css";
 import tablecss from "../../../components/Table/Table.module.css";
-
 import plus from "../../../assets/img/plus.png";
-
 import filters from "../../../assets/img/filters.png";
 import { userItems } from "../../../helpers/userItemList";
 import { useState } from "react";
 import Dropdown from "../../../components/Dropdown/Dropdown";
-
 import Table from "./../../../components/Table/Table";
 import MoreInfoButtPatient from "../../../components/Buttons/MoreInfoButt/MoreInfoButtFirm";
 import useStore from "../../../data/store";
 import AddWorkersModal from "../../../components/Modals/AddWorkersModal/AddWorkersModal";
+import Tabs from "../../../components/Buttons/Tabs/Tabs";
+import AddSpecializationModal from "../../../components/Modals/AddSpecializationModal/AddSpecializationModal";
 
 function Workers() {
   const [activeTab, setActiveTab] = useState("Lista pracowników");
   const { setModalActive, setModalContent } = useStore();
-  function handleActiveTab(tab) {
-    setActiveTab(tab);
-    console.log("date");
-  }
-
+  const [specializations, setSpecializations] = useState([]);
   const tableData = userItems.map((item) => ({
     img: item.img,
     name: item.name,
@@ -60,9 +55,25 @@ function Workers() {
       ),
     },
   ];
+
+  function handleActiveTab(tab) {
+    setActiveTab(tab);
+  }
+
   function handleAddWorkersModal() {
     setModalActive(true);
     setModalContent(<AddWorkersModal />);
+  }
+
+  function handleModal() {
+    setModalActive(true);
+    setModalContent(
+      <AddSpecializationModal onAddSpecialization={handleAddSpecialization} />
+    );
+  }
+
+  function handleAddSpecialization(newSpecialization) {
+    setSpecializations([...specializations, newSpecialization]);
   }
 
   return (
@@ -84,23 +95,11 @@ function Workers() {
         >
           <i className="bx bx-chevron-down"></i>
         </Dropdown>
-        <div className={`${styles.infoNavbarButt} ${styles.itemsCenter}`}>
-          <span
-            className={`${styles.tCenter} 
-					${activeTab === "Lista pracowników" ? styles.active : ""}`}
-            onClick={() => handleActiveTab("Lista pracowników")}
-          >
-            Lista pracowników
-          </span>
-
-          <span
-            className={`${styles.tCenter} 
-					${activeTab === "Zarządzanie" ? styles.active : ""}`}
-            onClick={() => handleActiveTab("Zarządzanie")}
-          >
-            Zarządzanie
-          </span>
-        </div>
+        <Tabs
+          onTabClick={handleActiveTab}
+          buttons={"Lista pracowników, Zarządzanie"}
+          activeTab={activeTab}
+        />
         <Dropdown
           defaultOption="Filtruj"
           color={"#A6DEF7"}
@@ -110,12 +109,43 @@ function Workers() {
           <img src={filters} alt="" />
         </Dropdown>
       </div>
-      <Table
-        columns={columns}
-        data={tableData}
-        showImage={true}
-        together={true}
-      />
+      {activeTab === "Lista pracowników" ? (
+        <Table
+          columns={columns}
+          data={tableData}
+          showImage={true}
+          together={true}
+        />
+      ) : (
+        <>
+          <div>
+            <h1 style={{ textAlign: "center" }}>
+              Wybierz specjalizacje, które są dostępne w<br /> Twojej placówce
+              medycznej
+            </h1>
+            <button onClick={handleModal} className={styles.addVisit}>
+              Dodaj specjalizacje
+              <img src={plus} alt="Add visit type" />
+            </button>
+          </div>
+          <div className={styles.grid}>
+            {specializations.map((specialization, index) => (
+              <div key={index} className={styles.specializationCard}>
+                <p>{specialization.specialty}</p>
+                <br />
+                <div className={styles.flex}>
+                  {specialization.visitTypes.map((visit, index) => (
+                    <div key={index}>
+                      <span>{visit.type} </span>
+                      <span>{visit.price}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </>
+      )}
     </div>
   );
 }

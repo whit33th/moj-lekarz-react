@@ -20,6 +20,8 @@
   flex-grow: 1; /* Allow headerInfo to take remaining space */
   margin-left: 15px; /* Space between avatar and info */
   display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 .avatar {
@@ -39,7 +41,7 @@
 .date {
   font-weight: 500;
   color: #494949;
-  font-size: 12px;
+  font-size: 14px;
   margin: 0;
 }
 .gap {
@@ -55,15 +57,12 @@
   margin: 5px 0;
 }
 
-.star {
-  color: #ffcc00; /* Gold color for filled stars */
-  font-size: 20px;
+.rating img {
+  height: 16px;
+  width: 16px;
 }
 
-.starEmpty {
-  color: #ccc; /* Gray color for empty stars */
-  font-size: 18px;
-}
+
 
 .text {
   font-weight: 500;
@@ -87,3 +86,33 @@
 }
 
 /* You may want to adjust the Choice component's styles as needed */
+.service {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.service .bad,
+.service .good {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  font-size: 10px;
+  padding: 7px 10px;
+  border-radius: 9999px;
+  text-align: center;
+  width: 100%;
+}
+
+.service .bad {
+  border: 2px solid #ff3b30;
+}
+
+.service .good {
+  border: 2px solid #34c759;
+}
+.imgNameBlockStar {
+  width: 16px;
+  height: 16px;
+}

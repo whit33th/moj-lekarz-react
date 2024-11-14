@@ -60,8 +60,8 @@ function DoctorMain() {
 
             <div className={`${styles.visitStats} ${styles.card}`}>
               <p>
-                Całkowita liczba
-                <br /> pacjentów
+                Średnia ocena
+                <br /> pacjenta
               </p>
               <div className={styles.center}>
                 <p className={`${styles.biggerCard} ${styles.smCountNumber}`}>

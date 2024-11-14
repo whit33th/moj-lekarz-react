@@ -4,7 +4,7 @@ import styles from './BestWorkerItem.module.css';
 
 function VisitItem({ img, name, position, rating = '5.0', index }) {
     return (
-      <NavLink key={index} to="/user" className={styles.black}>
+      <NavLink key={index} to="/workers/id" className={styles.black}>
         <div className={`${styles.record} ${styles.center} ${styles.between}`}>
           <div className={styles.flex}>
             <img className={styles.round} src={img} alt="" />

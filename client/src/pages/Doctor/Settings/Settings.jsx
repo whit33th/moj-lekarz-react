@@ -1,9 +1,9 @@
 import { useState } from "react";
-import styles from "./styles.module.css"; // Импортируем CSS-модуль
+import styles from "./styles.module.css";
 import photo from "../../../assets/img/profil.webp";
 import Calendar from "../../../components/DoctorPage/Home/Calendar/CalendarBlock";
 
-import DropdownStas from '../../../components/Dropdown/DropdownStas'
+import DropdownStas from "../../../components/Dropdown/DropdownStas";
 
 function Settings() {
   const [activeTab, setActiveTab] = useState("Dane podstawowe");
@@ -17,9 +17,12 @@ function Settings() {
     "Dariusz Adamek",
     "Option 1",
     "Option 2",
-   "Dariusz Adamek", "Option 1", "Option 2", "Option 3",
+    "Dariusz Adamek",
+    "Option 1",
+    "Option 2",
+    "Option 3",
   ];
-    const option2 = ["Wybierz", "Option 1", "Option 2", "Option 3"]
+  const option2 = ["Wybierz", "Option 1", "Option 2", "Option 3"];
   const Buttons = [
     "Dane podstawowe",
     "Dane dodatkowe",
@@ -55,7 +58,6 @@ function Settings() {
   const workTime = (
     <div className={styles.workTime}>
       <div className={styles.shadow}>
-        
         <Calendar />
       </div>
 
@@ -138,7 +140,12 @@ function Settings() {
         <div className={styles.halfRow}>
           <div>
             <label htmlFor="date">Data urodzenia</label>
-            <input type="date" id="date" name="flat" placeholder="21.12.2002" />
+            <input
+              type="date"
+              id="date"
+              name="flat"
+              defaultValue="2002-12-21"
+            />
           </div>
           <div>
             <label htmlFor="pesel">Pesel</label>

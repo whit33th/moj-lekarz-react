@@ -138,17 +138,17 @@
   display: flex;
   align-items: center;
 }
-.plus{
+.plus {
   width: 24px;
   height: 24px;
-transition: 0.3s;
-opacity: 1;
+  transition: 0.3s;
+  opacity: 1;
 }
-.plus:hover{
-opacity: 0.8;
+.plus:hover {
+  opacity: 0.8;
 }
-.plus:active{
-scale: 0.9;
+.plus:active {
+  scale: 0.9;
 }
 
 .tableContainer tbody td {
@@ -163,4 +163,39 @@ scale: 0.9;
   width: 70%;
 }
 
-
+.addVisit {
+  color: #3e36b0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  gap: 10px;
+  padding: 0;
+  transition: 0.3s;
+  align-items: center;
+}
+.addVisit img,
+.visitType img {
+  width: 18px;
+  height: 18px;
+  transition: 0.3s;
+  opacity: 1;
+}
+.visitType img:hover {
+  opacity: 0.8;
+}
+.grid{
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 15px;
+}
+.specializationCard {
+  padding: 20px;
+  border-radius: 6px;
+  box-shadow: 0 0 10px 5px #00000014;
+}
+.flex{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

@@ -159,9 +159,8 @@ const MoreInfoButtPatient = ({ id }) => {
       </div>
     </div>
   );
-  const openInfoModal = () => {
-    setModalActive(true);
-    setModalContent(modalContentInfo);
+  const handleNavigate = () => {
+    navigate('/workers/id')
   };
   const openNotificationModal = () => {
     setModalActive(true);
@@ -180,7 +179,7 @@ const MoreInfoButtPatient = ({ id }) => {
       <img src={moreInfo} alt="More Info" />
       {isModalOpen && (
         <div className={styles.moreInfoModal}>
-          <button onClick={openInfoModal} className={styles.hoverOpacity}>
+          <button onClick={handleNavigate} className={styles.hoverOpacity}>
             <p style={{ fontWeight: "500" }}>Informacja</p>
           </button>
 
