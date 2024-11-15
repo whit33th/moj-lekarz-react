@@ -316,10 +316,10 @@ function FirmManagement() {
 
         <div className={`${styles.mainCard} ${styles.biggerCard}`}>
           <div className={`${styles.flex} ${styles.between}`}>
-            <p className={styles.titleCard}>Lista najlepszych pracowników</p>
+            <p className={styles.titleCard}>Dostępne lekarzy</p>
             <NavLink className={styles.black} to="/">
               <div className={`${styles.flex} ${styles.center}`}>
-                <p className={styles.followLink}>Zobacz wszystkie</p>
+                <p className={styles.followLink}>Otwórz</p>
                 <img className={styles.ico} src={follow} alt="Follow" />
               </div>
             </NavLink>

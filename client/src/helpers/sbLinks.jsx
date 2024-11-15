@@ -128,7 +128,7 @@ const sbLinks = [
   },
   {
     role: "admin",
-    title: "Generowanie raportów",
+    title: "Raporty",
     img: reports,
     url: "/reports",
   },

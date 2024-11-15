@@ -22,9 +22,6 @@
     --chart-5: 340 75% 55%;
   }
 }
-:root {
-  --sx-color-primary: #a6def7;
-}
 
 #root {
   width: 100%;
@@ -41,35 +38,17 @@ body {
   padding: 0;
   width: 100%;
   min-height: 100dvh;
-  background: linear-gradient(to bottom, #ebf8ff, #e6f4ff);
-}
-@media (prefers-color-scheme: dark) {
-  body {
-    background: linear-gradient(
-      to bottom,
-      #1e3a8a,
-      #1e40af
-    ); /* from-blue-900 to-blue-800 */
-  }
+  background: linear-gradient(to bottom, #ebf8ffc4, #e6f4ff);
 }
 input {
   font-family: "Manrope", sans-serif;
-}
-.container {
-  position: relative;
-  width: 85%;
-  min-height: 100dvh;
-  margin-left: 15%;
-  gap: 20px;
-  padding: 45px 6.5%;
-  display: flex;
-  flex-direction: column;
 }
 
 .content {
   gap: 20px;
   display: flex;
   flex-direction: column;
+  
 }
 .myCustomButton {
   background-color: #3e36b0;
@@ -83,6 +62,7 @@ input {
   cursor: pointer;
   transition: background-color 0.3s;
 }
+
 input[type="checkbox"] {
   width: 18px;
   height: 18px;
@@ -141,6 +121,7 @@ button:active {
 
 button {
   font-size: 16px;
+  cursor: pointer;
 }
 
 ::-webkit-scrollbar {
@@ -157,11 +138,34 @@ button {
   -webkit-box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
   background-color: #f9f9fd;
 }
+/* Главный контейнер */
+.container {
+  margin-left: 220px; 
+  width: calc(100% - 220px); /* Основное пространство */
+  min-height: 100dvh;
+  padding: 40px 80px;
+  background: #f9f9f9;
+  overflow-y: auto; 
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  transition: margin-left 0.3s ease, width 0.3s ease;
+  background: linear-gradient(to bottom, #ebf8ffc4, #e6f4ff);
+}
+
+/* Адаптивность */
+@media screen and (max-width: 1100px) {
+  .container {
+    margin-left: 60px; /* Узкий сайдбар */
+    width: calc(100% - 60px);
+     padding: 20px 40px;
+  }
+}
 
 @media screen and (max-width: 920px) {
   .container {
-    width: 100% !important;
-    margin-left: 0 !important;
+    margin-left: 0;
+    width: 100%;
   }
 }
 
@@ -175,4 +179,22 @@ button {
 .sx__time-grid-event,
 .sx__time-grid-event-inner {
   min-height: fit-content !important;
+}
+.sx-react-calendar-wrapper {
+  box-shadow: 0 0 50px 5px #00000014;
+}
+.sx__week-grid__date--is-today .sx__week-grid__date-number {
+  background-color: #3e36b0 !important;
+}
+.sx__calendar,
+.sx__calendar-wrapper,
+.sx-react-calendar-wrapper {
+  border-radius: 20px !important;
+}
+.sx__calendar {
+  border: 1px solid #e5e5e5 !important;
+}
+.sx__event-modal-default {
+  overflow-y: auto;
+  box-shadow: 0 0 50px 5px #00000014 !important;
 }

@@ -146,7 +146,7 @@ input[type="date"] {
 .textarea {
   border-radius: 16px;
   padding: 15px;
-  box-shadow: 0 0 10px 5px #00000014;
+  box-shadow: 0 0 50px 5px #00000014;
   border: none;
   min-height: 200px;
   max-width: 100%;
@@ -160,6 +160,7 @@ input[type="date"] {
   gap: 20px;
 }
 .workTime > div {
+  padding: 20px;
   flex: 1;
 }
 .workSchedule {

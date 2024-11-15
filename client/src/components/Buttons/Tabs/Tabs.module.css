@@ -12,6 +12,7 @@
 }
 
 .settingNavbarButt button {
+  cursor: pointer;
   text-align: center;
   width: 255px;
   color: white;

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useCalendarApp, ScheduleXCalendar } from "@schedule-x/react";
 import {
   createViewDay,
@@ -9,9 +9,9 @@ import {
 import { createEventsServicePlugin } from "@schedule-x/events-service";
 import "@schedule-x/theme-default/dist/index.css";
 import styles from "./Calendar.module.css";
-
+import { createEventModalPlugin } from "@schedule-x/event-modal";
 function Calendar() {
-  const plugins = [createEventsServicePlugin()];
+  const plugins = [createEventsServicePlugin(), createEventModalPlugin()];
   const calendar = useCalendarApp(
     {
       views: [
@@ -29,32 +29,45 @@ function Calendar() {
         {
           id: "1",
           title: "Pavel Kerenda",
-          start: "2024-10-27 08:00",
-          end: "2024-10-27 08:15",
+          start: "2024-11-16 08:00",
+          end: "2024-11-16 08:15",
         },
         {
           id: "2",
           title: "Встреча с клиентом",
-          start: "2024-10-27 09:00",
-          end: "2024-10-27 10:00",
+          start: "2024-11-17 09:00",
+          end: "2024-11-17 10:00",
         },
         {
           id: "3",
           title: "Обеденный перерыв",
-          start: "2024-10-27 12:00",
-          end: "2024-10-27 13:00",
+          start: "2024-11-18 12:00",
+          end: "2024-11-18 13:00",
         },
         {
           id: "4",
           title: "Проектная встреча",
-          start: "2024-10-27 15:00",
-          end: "2024-10-27 16:00",
+          start: "2024-11-18 15:00",
+          end: "2024-11-18 16:00",
+        },
+        {
+          id: "5",
+          title: "Проектная встреча 2",
+          start: "2024-11-18 15:00",
+          end: "2024-11-18 16:00",
+        },
+        {
+          id: "6",
+          title: "Проектная встреча 3",
+          start: "2024-11-18 15:00",
+          end: "2024-11-18 16:00",
+          eventModal: "zxc",
         },
       ],
     },
     plugins
   );
-
+ 
   useEffect(() => {
     calendar.eventsService.getAll();
   }, [calendar]);
@@ -62,7 +75,11 @@ function Calendar() {
   return (
     <div className="content">
       <div className={styles.calendarContainer}>
-        <ScheduleXCalendar calendarApp={calendar} />
+        <ScheduleXCalendar
+          
+          
+          calendarApp={calendar}
+        />
       </div>
     </div>
   );
