@@ -121,9 +121,9 @@ export default function WorkersInfo() {
       <h1 className={styles.title}>Informacje o pracowniku</h1>
 
       <div className={styles.profileSection}>
-        <div className={styles.profileImage}>
-          <img src={avatar} alt="Profile" />
-        </div>
+        
+          <img className={styles.profileImage} src={avatar} alt="Profile" />
+        
         <h1 className={styles.profileName}>Tomasz Jankowski</h1>
         <div className={styles.rating}>
           {Array.from({ length: 5 }).map((_, i) => (

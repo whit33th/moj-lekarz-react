@@ -1,10 +1,70 @@
-.notfound{
-    width: 100%;
-    height: 50vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+/* src/NieZnaleziono.css */
+
+.not-found-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 500px;
+  background: linear-gradient(to bottom, #ebf8ff, #e6f4ff);
+  padding: 20px;
+  text-align: center;
 }
-.notfound p{
-    margin-top: 20px;
+
+.not-found-content {
+  max-width: 600px;
+}
+
+.not-found-icon {
+  color: #3b82f6;
+  width: 64px;
+  height: 64px;
+  margin-bottom: 20px;
+}
+
+.not-found-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #1f2937;
+  margin-bottom: 16px;
+}
+
+.not-found-subtitle {
+  font-size: 1.25rem;
+  color: #4b5563;
+  margin-bottom: 24px;
+}
+
+.not-found-text p {
+  font-size: 1rem;
+  color: #6b7280;
+  margin: 8px 0;
+}
+
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #3e36b0;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 8px;
+  text-decoration: none;
+  margin-top: 20px;
+  transition: 0.3s;
+  gap: 10px;
+}
+
+.back-button:hover {
+  background-color: #3E36B0;
+}
+
+.back-icon {
+  margin-right: 8px;
+  width: 16px;
+  height: 16px;
+}
+.home{
+  filter: invert(1);
 }

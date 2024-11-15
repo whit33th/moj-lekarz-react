@@ -54,9 +54,10 @@ input[type="date"] {
 }
 
 .settingData {
+  box-shadow: 0 0 50px 5px #00000014;
   display: flex;
   gap: 100px;
-   padding: 40px;
+  padding: 40px;
   background-color: white;
   border-radius: 20px;
 }
@@ -65,7 +66,7 @@ input[type="date"] {
   display: flex;
   width: 60%;
   flex-direction: column;
-  justify-content: space-between;
+
   gap: 12px;
 }
 
@@ -137,7 +138,6 @@ input[type="date"] {
   transition: 0.3s;
   border-radius: 20px;
   padding: 20px;
-  background-color: white;
   > p {
     font-size: 1.4em;
   }
@@ -162,12 +162,10 @@ input[type="date"] {
 .workTime > div {
   flex: 1;
 }
-
 .workSchedule {
-  background-color: white;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 0 50px 5px #00000014;
+  box-shadow: 0 0 10px 5px #00000014;
   padding: 20px;
   border-radius: 20px;
   justify-content: center;
@@ -177,6 +175,11 @@ input[type="date"] {
 }
 .workSchedule p {
   padding: 6px 0;
+}
+.background {
+  padding: 40px;
+  background-color: white;
+  border-radius: 20px;
 }
 .blueBack {
   border-radius: 10px;
@@ -192,7 +195,7 @@ input[type="date"] {
 }
 .conclusions select {
   width: 100%;
-  box-shadow: 0 0 10px 5px #00000014;
+  box-shadow: 0 0 50px 5px #00000014;
   border: none;
   padding: 12px;
   border-radius: 16px;

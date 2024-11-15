@@ -4,6 +4,9 @@
   transition: 0.3s;
   border-radius: 20px;
 }
+.profilDiv{
+	background-color: white;
+}
 
 .topPhoto {
 	font-size: 18px;

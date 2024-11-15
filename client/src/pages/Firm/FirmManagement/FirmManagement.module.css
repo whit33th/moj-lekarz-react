@@ -52,6 +52,7 @@
   flex-direction: column;
 }
 .mainCard {
+  background-color: white;
   display: flex;
   padding: 20px;
   box-shadow: 0 0 50px 5px #00000014;

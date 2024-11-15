@@ -50,7 +50,7 @@ function ReviewPage() {
         buttons="Moderacja,Opinia"
         activeTab={activeTab}
         onTabClick={handleTabClick}
-        storageKey="page1-tabs"
+        storageKey="ReviewPageNavbar"
       />
       <div className={styles.cardsContainer}>
         <div className={styles.column}>

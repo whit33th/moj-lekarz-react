@@ -190,9 +190,10 @@
   gap: 15px;
 }
 .specializationCard {
+  background-color: white;
   padding: 20px;
   border-radius: 6px;
-  box-shadow: 0 0 10px 5px #00000014;
+  box-shadow: 0 0 50px 5px #00000014;
 }
 .flex{
   display: flex;

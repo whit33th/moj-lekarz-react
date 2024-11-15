@@ -46,6 +46,7 @@
   border-radius: 20px;
 }
 .profilDiv {
+  background-color: white;
   display: flex;
   flex-direction: column;
   gap: 15px;

@@ -18,11 +18,25 @@
   text-align: center;
   margin: 0;
 }
-
+.profileSection {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.background {
+  box-shadow: 0 0 50px 5px #00000014;
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+  padding: 40px;
+  background-color: white;
+  border-radius: 20px;
+}
 .profileImage {
-  width: 220px;
+  width: 200px;
+  height: 200px;
   border-radius: 50%;
-  margin: 10px;
+
   overflow: hidden;
   margin: 0 auto;
 }

@@ -3,20 +3,14 @@ import Choice from "../../../components/Modal/Choice";
 import styles from "./AddFirm.module.css";
 import avatar from "../../../assets/img/profil.webp";
 import plus from "../../../assets/img/plus.png";
-import bucket from "../../../assets/img/bucketBlue.png";
 import DropdownStas from "./../../../components/Dropdown/DropdownStas";
-import { useNavigate } from "react-router-dom";
-import { pageConfig } from "../../../config/config";
 import useStore from "../../../data/store";
 import AddVisitTypeModal from "../../../components/Modals/AddVisitType/AddVisitTypeModal";
 import BlueBorderBtn from "../../../components/Buttons/BlueBorderBtn/BlueBorderBtn";
 import RedBorderBtn from "../../../components/Buttons/RedBorderBtn/RedBorderBtn";
 import { toast } from "sonner";
-import star from "../../../assets/img/Star.svg";
-import starGrey from "../../../assets/img/Star 6.svg";
 
 export default function AddFirm() {
-  const navigate = useNavigate();
   const { setModalActive, setModalContent } = useStore();
   const option = [
     "Usunięcie z powodu nieobecności",
@@ -111,95 +105,88 @@ export default function AddFirm() {
 
   return (
     <div className={styles.container}>
-      <button
-        onClick={() => navigate(pageConfig.firm.workers)}
-        className={styles.returnButton}
-      >
-        Powrót
-      </button>
-
-      <div className={styles.profileSection}>
-        <div className={styles.profileImage}>
-          <img src={avatar} alt="Profile" />
+      <div className={styles.background}>
+        <div className={styles.profileSection}>
+          <img className={styles.profileImage} src={avatar} alt="Profile" />
         </div>
-      </div>
 
-      <div>
-        <div className={styles.infoGridTwo}>
-          <div className={styles.infoGroup}>
-            <label>Nazwa firmy</label>
-            <input type="text" placeholder="Wpisz nazwę" />
+        <div>
+          <div className={styles.infoGridTwo}>
+            <div className={styles.infoGroup}>
+              <label>Nazwa firmy</label>
+              <input type="text" placeholder="Wpisz nazwę" />
+            </div>
+
+            <div className={styles.infoGroup}>
+              <label>Województwo</label>
+              <input type="text" placeholder="Wielkopolskie" />
+            </div>
           </div>
+          <div className={styles.infoGrid}>
+            <div className={styles.infoGroup}>
+              <label>Miasto</label>
+              <input type="text" placeholder="Poznań" />
+            </div>
 
-          <div className={styles.infoGroup}>
-            <label>Województwo</label>
-            <input type="text" placeholder="Wielkopolskie" />
+            <div className={styles.infoGroup}>
+              <label>Kod pocztowy</label>
+              <input type="text" placeholder="61-714" />
+            </div>
+
+            <div className={styles.infoGroup}>
+              <label>Ulica</label>
+              <input type="text" placeholder="Wpisz nazwę ulicy" />
+            </div>
+
+            <div className={styles.infoGroup}>
+              <label>Numer budynku</label>
+              <input type="text" placeholder="Wpisz numer budynku" />
+            </div>
+
+            <div className={styles.infoGroup}>
+              <label>Numer NIP</label>
+              <input type="text" placeholder="Wpisz numer NIP" />
+            </div>
+            <div className={styles.infoGroup}>
+              <label>Telefon</label>
+              <input type="tel" placeholder="555 666 777" />
+            </div>
+            <div className={styles.infoGroup}>
+              <label>Email</label>
+              <input type="email" placeholder="dariusz@gmail.com " />
+            </div>
           </div>
         </div>
+
         <div className={styles.infoGrid}>
           <div className={styles.infoGroup}>
-            <label>Miasto</label>
-            <input type="text" placeholder="Poznań" />
-          </div>
-
-          <div className={styles.infoGroup}>
-            <label>Kod pocztowy</label>
-            <input type="text" placeholder="61-714" />
-          </div>
-
-          <div className={styles.infoGroup}>
-            <label>Ulica</label>
-            <input type="text" placeholder="Wpisz nazwę ulicy" />
-          </div>
-
-          <div className={styles.infoGroup}>
-            <label>Numer budynku</label>
-            <input type="text" placeholder="Wpisz numer budynku" />
-          </div>
-
-          <div className={styles.infoGroup}>
-            <label>Numer NIP</label>
-            <input type="text" placeholder="Wpisz numer NIP" />
+            <label>Typy wizyt</label>
+            <div className={styles.dropdown}>
+              <DropdownStas
+                placeholder={"Wybierz typ wizyty"}
+                options={["Typ nr.1", "Typ nr.2"]}
+              />
+            </div>
           </div>
           <div className={styles.infoGroup}>
-            <label>Telefon</label>
-            <input type="tel" placeholder="555 666 777" />
-          </div>
-          <div className={styles.infoGroup}>
-            <label>Email</label>
-            <input type="email" placeholder="dariusz@gmail.com " />
+            <label>Maksymalna liczba specjalizacji</label>
+            <input type="email" placeholder="Typy wizyt" />
           </div>
         </div>
-      </div>
 
-      <div className={styles.infoGrid}>
-        <div className={styles.infoGroup}>
-          <label>Typy wizyt</label>
-          <div className={styles.dropdown}>
-            <DropdownStas
-              placeholder={"Wybierz typ wizyty"}
-              options={["Typ nr.1", "Typ nr.2"]}
-            />
-          </div>
+        <button onClick={handleModal} className={styles.addVisit}>
+          Dodaj typ
+          <img src={plus} alt="Add visit type" />
+        </button>
+
+        <div className={styles.buttonGroup}>
+          <Choice
+            choice1={"Usuń"}
+            choice2={"Edytuj"}
+            cb1={handleDelete}
+            cb2={handleEditModal}
+          />
         </div>
-        <div className={styles.infoGroup}>
-          <label>Maksymalna liczba specjalizacji</label>
-          <input type="email" placeholder="Typy wizyt" />
-        </div>
-      </div>
-
-      <button onClick={handleModal} className={styles.addVisit}>
-        Dodaj typ
-        <img src={plus} alt="Add visit type" />
-      </button>
-
-      <div className={styles.buttonGroup}>
-        <Choice
-          choice1={"Usuń"}
-          choice2={"Edytuj"}
-          cb1={handleDelete}
-          cb2={handleEditModal}
-        />
       </div>
     </div>
   );

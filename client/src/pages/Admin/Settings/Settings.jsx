@@ -1,9 +1,10 @@
 import { useState } from "react";
-import styles from "./styles.module.css"; // Импортируем CSS-модуль
+import styles from "./styles.module.css";
 import photo from "../../../assets/img/profil.webp";
 import Calendar from "../../../components/DoctorPage/Home/Calendar/CalendarBlock";
 
 import DropdownStas from "../../../components/Dropdown/DropdownStas";
+import Tabs from "../../../components/Buttons/Tabs/Tabs";
 
 function Settings() {
   const [activeTab, setActiveTab] = useState("Dane podstawowe");
@@ -96,47 +97,7 @@ function Settings() {
             />
           </div>
         </div>
-        <div className={styles.halfRow}>
-          <div>
-            <label htmlFor="city">Miasto</label>
-            <input type="text" id="city" name="city" placeholder="Warszawa" />
-          </div>
-          <div>
-            <label htmlFor="code">Kod posztowy</label>
-            <input type="text" id="code" name="code" placeholder="71-232" />
-          </div>
-        </div>
-        <div className={styles.fullRow}>
-          <div>
-            <label htmlFor="street">Ulica</label>
-            <input
-              type="text"
-              id="street"
-              name="street"
-              placeholder="Ul.Kutrzeby"
-            />
-          </div>
-        </div>
-        <div className={styles.halfRow}>
-          <div>
-            <label htmlFor="Numer domu">Numer domu</label>
-            <input
-              type="text"
-              id="Numer domu"
-              name="NumerDomu"
-              placeholder="62"
-            />
-          </div>
-          <div>
-            <label htmlFor="Mieszkanie">Mieszkanie</label>
-            <input
-              type="text"
-              id="Mieszkanie"
-              name="Mieszkanie"
-              placeholder="52a"
-            />
-          </div>
-        </div>
+
         <div className={styles.halfRow}>
           <div>
             <label htmlFor="date">Data urodzenia</label>
@@ -204,23 +165,17 @@ function Settings() {
 
   return (
     <div className="content">
-      <div className={styles.settingNavbarButt}>
-        {Buttons.map((name) => (
-          <button
-            onClick={() => handleTabClick(name)}
-            className={activeTab === name ? styles.active : ""}
-            key={name}
-          >
-            {name}
-          </button>
-        ))}
-      </div>
+      <Tabs
+        buttons="Dane podstawowe, Dane dodatkowe"
+        activeTab={activeTab}
+        onTabClick={handleTabClick}
+        storageKey="SettingAdminNavbar"
+      />
+
       
         {activeTab === "Dane podstawowe" && settingData}
+        {activeTab === "Dane dodatkowe" && additionalData}
      
-      {activeTab === "Dane dodatkowe" && additionalData}
-      {activeTab === "Czas pracy" && workTime}
-      {activeTab === "Wnioski" && conclusions}
     </div>
   );
 }

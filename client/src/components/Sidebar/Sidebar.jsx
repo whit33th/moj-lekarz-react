@@ -2,7 +2,7 @@ import sbLinks from "../../helpers/sbLinks";
 import SidebarLink from "../SidebarLink/SidebarLink";
 import { NavLink } from "react-router-dom";
 
-import exit from "../../assets/img/sidebar-settings.png";
+import exit from "../../assets/img/exitIco.png";
 import logo from "../../assets/img/logoonly.png";
 
 import styles from "./Sidebar.module.css";

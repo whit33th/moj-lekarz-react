@@ -22,31 +22,41 @@
     --chart-5: 340 75% 55%;
   }
 }
-:root{
-  --sx-color-primary: #a6def7;;
+:root {
+  --sx-color-primary: #a6def7;
 }
 
 #root {
   width: 100%;
   min-height: 100dvh;
 }
-*{
-   font-family: "Manrope", sans-serif;
+* {
+  font-family: "Manrope", sans-serif;
 }
 
 body {
-  scroll-behavior: smooth; 
+  scroll-behavior: smooth;
   font-family: "Manrope", sans-serif;
   margin: 0;
   padding: 0;
   width: 100%;
   min-height: 100dvh;
+  background: linear-gradient(to bottom, #ebf8ff, #e6f4ff);
 }
-input{
+@media (prefers-color-scheme: dark) {
+  body {
+    background: linear-gradient(
+      to bottom,
+      #1e3a8a,
+      #1e40af
+    ); /* from-blue-900 to-blue-800 */
+  }
+}
+input {
   font-family: "Manrope", sans-serif;
- 
 }
 .container {
+  position: relative;
   width: 85%;
   min-height: 100dvh;
   margin-left: 15%;
@@ -74,10 +84,10 @@ input{
   transition: background-color 0.3s;
 }
 input[type="checkbox"] {
-    width: 18px;
-    height: 18px;
-    cursor: pointer;
-    border-color: #0056b3;
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  border-color: #0056b3;
 }
 
 * {
@@ -155,12 +165,14 @@ button {
   }
 }
 
-.sx__date-picker-wrapper{
+.sx__date-picker-wrapper {
   display: none;
 }
-.sx__month-grid-day__header{
+.sx__month-grid-day__header {
   height: 100px;
 }
-.sx__event, .sx__time-grid-event,.sx__time-grid-event-inner {
+.sx__event,
+.sx__time-grid-event,
+.sx__time-grid-event-inner {
   min-height: fit-content !important;
 }

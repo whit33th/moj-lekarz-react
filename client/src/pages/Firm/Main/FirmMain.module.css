@@ -73,6 +73,7 @@
   width: 50%;
   flex-direction: column;
   position: relative;
+  background-color: white;
 }
 .topLayer, .botLayer {
   display: flex;

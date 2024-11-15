@@ -99,6 +99,7 @@ function Workers() {
           onTabClick={handleActiveTab}
           buttons={"Lista pracowników, Zarządzanie"}
           activeTab={activeTab}
+          storageKey='WorkersNavbar'
         />
         <Dropdown
           defaultOption="Filtruj"
