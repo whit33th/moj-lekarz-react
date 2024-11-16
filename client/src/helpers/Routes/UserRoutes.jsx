@@ -34,8 +34,8 @@ function UserRoutes() {
       <Route path="/auth/*" element={<AuthPage setIsAuth={setIsAuth} />} />
       <Route path="/reviews/user/:id" element={<ReviewsUser />} />
       <Route path="/clinic-zapis/:id" element={<ClinicZapisPage />} />
-      <Route path="/firm" element={<Firm />} />
-      <Route path="/mobilna" element={<MobileAppPage />} />
+      <Route path="/firm/" element={<Firm />} />
+      <Route path="/mobilna/" element={<MobileAppPage />} />
       <Route path="/*" element={<NotFound />} />
       <Route path="/recipes" element={<RecipesPage />} />
       <Route path="/QA" element={<QAComponent />} />

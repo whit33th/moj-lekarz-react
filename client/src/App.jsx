@@ -13,7 +13,7 @@ import AdminRoutes from "./helpers/Routes/AdminRoutes";
 import UserRoutes from "./helpers/Routes/UserRoutes";
 
 function App() {
-  const [role] = useState("firm"); // Возможные роли: 'doctor', 'admin', 'firm'. В реальном проекте это будет приходить с сервера
+  const [role] = useState("user"); // Возможные роли: 'doctor', 'admin', 'firm'. В реальном проекте это будет приходить с сервера
 
   return (
     <Router>
