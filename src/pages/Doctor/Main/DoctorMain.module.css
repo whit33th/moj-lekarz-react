@@ -1,0 +1,216 @@
+.greeting {
+  margin: 0 20px;
+}
+.visits {
+	justify-content: space-between;
+}
+.history {
+	gap: 5px;
+	display: grid;
+	flex-direction: column;
+	align-items: start;
+}
+.mainCard {
+  background-color: white;
+	display: flex;
+	padding: 20px;
+	box-shadow: 0 0 50px 5px #00000014;
+	border-radius: 20px;
+	width: 50%;
+	flex-direction: column;
+	position: relative;
+}
+
+.robotImage{
+  width: 240px;
+  top: 10px;
+  right: 0;
+  position: absolute;
+  z-index: 0;
+  transition: 0.3s  ease;
+}
+.robotImage:hover{
+  scale: 1.1;
+  transition: 0.3s  ease;
+}
+
+.card {
+  background: #a6def7b3;
+  width: 50%;
+  display: flex;
+  box-shadow: 0 0 50px 5px #00000014;
+  border-radius: 20px;
+  padding: 10px 20px 10px 20px;
+  flex-direction: column;
+  align-content: center;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  transition:  0.3s;
+  
+}
+.card:hover {
+	scale: 1.01;
+	transition: 0.3s;
+	backdrop-filter: none;
+}
+.mainCard {
+  gap: 15px;
+  display: flex;
+  padding: 20px;
+  box-shadow: 0 0 50px 5px #00000014;
+  border-radius: 20px;
+  width: 50%;
+  flex-direction: column;
+  position: relative;
+}
+.topLayer, .botLayer {
+  display: flex;
+  flex-direction: row;
+  height: 50%;
+  gap: 20px;
+
+}
+.titleCard {
+	font-size: 1.4em;
+  z-index: 1;
+  position: relative;
+}
+.countNumber {
+	font-size: 4.5em;
+	font-weight: bold;
+}
+.botCards {
+	display: flex;
+	flex-direction: row;
+	gap: 25px;
+	z-index: 1;
+}
+.biggerCard {
+	width: 65% !important;
+}
+.smBack {
+	padding: 6px 10px;
+	background: #FFFFFF;
+	border-radius: 6px;
+}
+.graph p {
+	margin: 0 5px;
+}
+.graph img {
+	width: 18px;
+}
+.smCountNumber {
+	font-weight: bold;
+	font-size: 2.5em;
+}
+.center {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	align-content: center;
+	justify-content: space-between;
+}
+.tCenter {
+	text-align: center;
+}
+.itemsCenter {
+	display: flex;
+	align-items: center;
+}
+.ico {
+	width: 18px;
+	margin-left: 10px;
+}
+.between {
+	justify-content: space-between;
+}
+.flex {
+	display: flex;
+	flex-direction: row;
+}
+
+.followLink{
+	font-size: 1.2em;
+	color: black;
+}
+
+@media screen and (max-width: 920px) {
+
+  .biggerCard {
+       width: 50% !important;
+  }
+  .sidebar{
+      display: none !important;
+  }
+  .botCards {
+      
+      flex-direction: column;
+    
+  }
+
+  .botCards div{
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+  }
+  .center{
+    gap: 10px;
+  }
+  .smBack {
+      flex-direction: row !important;
+      justify-content: space-between;
+  }
+
+  .topLayer, .botLayer {
+      flex-direction: column;
+      width: 100% !important;
+
+  }
+
+  .mainCard {
+      width: 100% !important;
+  }
+
+  .sidebar {
+      display: flex;
+      align-items: center;
+      background: #3E36B0;
+      width: 100%;
+      position: static;
+      gap: 10px;
+      flex-direction: row;
+      flex-wrap: nowrap;
+  }
+
+  .container {
+      width: 100%;
+      margin-left: 0;
+  }
+
+  .sidebarLinks {
+      gap: 10px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-around;
+  }
+  main {
+      width: 100%;
+      display: grid;
+      flex-direction: column;
+  }
+  .sidebarLinkDiv {
+      font-size: 13px;
+      width: 100%;
+      padding: 5px;
+      transition: 0.1s;
+      display: flex;
+      align-items: center;
+  }
+  .logo img {
+      width: 40px;
+  }
+  
+}

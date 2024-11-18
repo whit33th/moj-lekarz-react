@@ -1,0 +1,290 @@
+.shadow {
+  box-shadow: 0 0 50px 5px #00000014;
+  transition: 0.3s;
+  border-radius: 20px;
+}
+.profilDiv {
+  background-color: white;
+}
+
+.topPhoto {
+  font-size: 18px;
+  padding: 48px;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+}
+.topPhoto img {
+  width: 220px;
+  border-radius: 50%;
+  margin: 10px;
+}
+.grey {
+  color: #919191;
+}
+.hr hr {
+  border: 1px solid #3e36b0;
+}
+
+.hr {
+  padding: 0 50px;
+}
+.halfRow {
+  gap: 20px;
+  display: flex !important;
+  flex-direction: row !important;
+}
+.halfRow div {
+  width: 50%;
+}
+.statusInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+  width: 35%;
+  gap: 50px;
+}
+
+.statusInfo div {
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+p {
+  margin: 0;
+}
+.profilInfo {
+  font-weight: 500;
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
+}
+
+.profilInfo label {
+  padding: 5px 0;
+  font-weight: 500;
+}
+.mainInfo {
+  gap: 10px;
+  display: flex;
+  font-size: 16px;
+  padding: 50px;
+  width: 65%;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.mainInfo input {
+  height: 40px;
+  border-radius: 16px;
+  padding: 10px 15px;
+  border: none;
+  box-shadow: 0 0 45px 5px #00000014;
+  width: 100%;
+}
+.mainInfo div {
+  display: flex;
+  flex-direction: column;
+}
+.blueButt {
+  color: white;
+  width: 42%;
+  background: #3e36b0;
+  border: none;
+  border-radius: 100px;
+  padding: 16px;
+  width: 100%;
+}
+.greyButt {
+  color: rgb(255, 255, 255);
+  width: 42%;
+  background: #919191;
+  border: none;
+  border-radius: 100px;
+  padding: 16px;
+  width: 100%;
+}
+.smCountNumber {
+  font-weight: bold;
+  font-size: 2.5em;
+}
+
+.rules {
+  font-weight: 500;
+  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px 50px 50px 50px;
+}
+.rules div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.rules span {
+  width: 30%;
+  display: flex;
+}
+.imgCenter {
+  width: 5%;
+  justify-content: center;
+}
+hr.dashed {
+  height: 1px;
+  width: 65%;
+  margin: 0;
+  border-top: 2px dashed #3e36b0;
+}
+
+.rules img {
+  width: 18px;
+}
+
+@media screen and (max-width: 1200px) {
+  .topPhoto {
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .mainInfo {
+    padding: 50px;
+    width: 100%;
+  }
+
+  .profilInfo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .halfRow div {
+    width: 100%;
+  }
+
+  .statusInfo {
+    width: 100%;
+    padding: 30px;
+  }
+
+  .blueButt,
+  .greyButt {
+    padding: 14px;
+  }
+
+  .smCountNumber {
+    font-size: 2em;
+  }
+}
+
+/* Для экранов шириной менее 992px */
+@media screen and (max-width: 992px) {
+  .topPhoto {
+    padding: 24px;
+  }
+
+  .profilInfo {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .halfRow div {
+    width: 100%;
+  }
+
+  .smCountNumber {
+    font-size: 1.8em;
+  }
+
+  .blueButt,
+  .greyButt {
+    padding: 12px;
+  }
+}
+
+/* Для экранов шириной менее 768px */
+@media screen and (max-width: 768px) {
+  .topPhoto {
+    padding: 16px;
+  }
+  .halfRow {
+    flex-direction: column !important;
+  }
+
+  .topPhoto img {
+    width: 180px;
+  }
+
+  .profilInfo {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .halfRow div {
+    width: 100%;
+  }
+
+  .smCountNumber {
+    font-size: 1.6em;
+  }
+
+  .blueButt,
+  .greyButt {
+    padding: 10px;
+  }
+}
+
+/* Для экранов шириной менее 576px */
+@media screen and (max-width: 576px) {
+  .topPhoto {
+    padding: 12px;
+  }
+
+  .topPhoto img {
+    width: 150px;
+  }
+
+  .mainInfo {
+    padding: 30px;
+  }
+
+  .profilInfo {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .halfRow div {
+    width: 100%;
+  }
+
+  .smCountNumber {
+    font-size: 1.5em;
+  }
+
+  .blueButt,
+  .greyButt {
+    padding: 8px;
+  }
+
+  .profilInfo label {
+    font-size: 14px;
+  }
+
+  .mainInfo input {
+    height: 35px;
+    font-size: 14px;
+  }
+	.statusInfo{
+		padding: 10px 30px 30px 30px;
+	}
+}

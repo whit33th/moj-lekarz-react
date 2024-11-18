@@ -1,0 +1,180 @@
+.calendarNavbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.calendarNavbarDate {
+  padding: 3px;
+  font-size: 2.5em;
+  display: flex;
+  gap: 10px;
+}
+
+.calendarNavbarButt {
+  color: black;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  background: #a6def7;
+  border-radius: 20px;
+}
+
+.calendarNavbarButt img {
+  width: 12px;
+  margin: 9px 20px 9px 0;
+}
+
+.calendarNavbarButt span {
+  padding: 9px 20px;
+  color: black;
+  user-select: none;
+  transition: 0.3s;
+}
+
+.calendarNavbarButt span.active {
+  color: black;
+  background: #a6def7;
+  border-radius: 20px;
+  transition: 0.3s;
+}
+
+.search {
+  display: flex;
+  flex-direction: row;
+  width: 85%;
+  box-shadow: 0 0 10px 5px #00000014;
+  padding: 10px 0;
+  border-radius: 20px;
+  border: none;
+}
+
+.search img,
+.chatSearch img {
+  margin: 0 10px 0 20px;
+  filter: invert(0.8);
+  padding: 0;
+  height: 20px;
+  width: 20px !important;
+}
+
+.search input {
+  width: 100%;
+  border: none;
+  border-radius: 100px;
+}
+
+.tableContainer table {
+  border: 1px solid #e5e5e5;
+  width: 100%;
+  border-spacing: 0;
+  border-collapse: separate;
+}
+
+.shadow {
+  box-shadow: 0 0 50px 5px #00000014;
+  transition: 0.3s;
+  border-radius: 20px;
+}
+
+/* Медиа-запросы для адаптивности */
+
+/* Для экранов шириной менее 920px */
+@media screen and (max-width: 920px) {
+  .calendarNavbarDate {
+    font-size: 2em;
+    gap: 8px;
+  }
+
+  .calendarNavbarButt {
+    height: 35px;
+    padding: 8px;
+  }
+
+  .calendarNavbarButt img {
+    margin: 7px 15px 7px 0;
+  }
+
+  .calendarNavbarButt span {
+    padding: 8px 18px;
+  }
+
+  .search {
+    width: 90%;
+    padding: 8px 0;
+  }
+
+  .search img {
+    height: 18px;
+    width: 18px !important;
+  }
+
+  .tableContainer table {
+    font-size: 14px;
+  }
+}
+
+/* Для экранов шириной менее 768px */
+@media screen and (max-width: 768px) {
+  .calendarNavbarDate {
+    font-size: 1.8em;
+    gap: 5px;
+  }
+
+  .calendarNavbarButt {
+    height: 30px;
+    padding: 6px;
+  }
+
+  .calendarNavbarButt img {
+    margin: 5px 10px 5px 0;
+  }
+
+  .calendarNavbarButt span {
+    padding: 6px 15px;
+  }
+
+  .search {
+    width: 95%;
+    padding: 6px 0;
+  }
+
+  .search img {
+    height: 16px;
+    width: 16px !important;
+  }
+}
+
+/* Для экранов шириной менее 576px */
+@media screen and (max-width: 576px) {
+  .calendarNavbarDate {
+    font-size: 1.5em;
+    gap: 5px;
+    text-align: center;
+  }
+
+  .calendarNavbarButt {
+    height: 28px;
+    padding: 5px;
+  }
+
+  .calendarNavbarButt img {
+    margin: 5px 8px 5px 0;
+  }
+
+  .calendarNavbarButt span {
+    padding: 5px 12px;
+  }
+
+  .search {
+    width: 100%;
+    padding: 5px 0;
+  }
+
+  .search img {
+    height: 14px;
+    width: 14px !important;
+  }
+}

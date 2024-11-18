@@ -1,0 +1,150 @@
+.cardsContainer {
+  display: flex;
+  gap: 20px;
+}
+
+.column {
+  display: flex;
+  gap: 20px;
+  flex: 1;
+  flex-direction: column;
+}
+
+.card {
+  border: 1px solid #e1e1e1;
+  border-radius: 10px;
+  padding: 15px;
+  background-color: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.name {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.date {
+  font-size: 0.9em;
+  color: #888;
+}
+
+.text {
+  margin: 10px 0;
+  font-size: 1em;
+  line-height: 1.5;
+}
+
+.rating {
+  margin: 10px 0;
+}
+
+.star {
+  color: gold;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.button:hover {
+  background-color: #0056b3;
+}
+
+@media (min-width: 768px) {
+  .cardsContainer {
+    gap: 30px; /* Увеличиваем отступы между колонками */
+  }
+
+  .column {
+    width: 48%; /* Колонки занимают меньше места, чтобы все вмещалось в ряд */
+  }
+
+  .card {
+    padding: 20px;
+  }
+
+  .name {
+    font-size: 1.3em; /* Увеличиваем шрифт заголовка */
+  }
+
+  .text {
+    font-size: 1.1em; /* Увеличиваем шрифт текста */
+  }
+
+  .button {
+    padding: 8px 16px; /* Увеличиваем размер кнопок */
+  }
+}
+
+/* Для экранов с шириной более 1200px (для больших экранов) */
+@media (min-width: 1200px) {
+  .cardsContainer {
+    gap: 40px; /* Большее расстояние между элементами */
+  }
+
+  .column {
+    width: 48%; /* Колонки остаются с одинаковым размером */
+  }
+
+  .card {
+    padding: 25px; /* Увеличиваем padding на больших экранах */
+  }
+
+  .name {
+    font-size: 1.4em; /* Увеличиваем размер шрифта для заголовков */
+  }
+
+  .text {
+    font-size: 1.2em; /* Увеличиваем размер шрифта для текста */
+  }
+}
+
+/* Для экранов с шириной менее 768px (например, для мобильных устройств) */
+@media (max-width: 768px) {
+  .cardsContainer {
+    flex-direction: column;
+    gap: 20px; /* Уменьшаем отступы */
+  }
+
+  .column {
+    width: 100%; /* Каждая колонка занимает всю ширину экрана */
+  }
+
+  .card {
+    padding: 15px;
+  }
+
+  .name {
+    font-size: 1.1em; /* Уменьшаем шрифт заголовка */
+  }
+
+  .text {
+    font-size: 0.95em; /* Уменьшаем шрифт текста */
+  }
+
+  .button {
+    padding: 5px 10px; /* Уменьшаем размер кнопок */
+  }
+}

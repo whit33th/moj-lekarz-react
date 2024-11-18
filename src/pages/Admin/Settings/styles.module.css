@@ -1,0 +1,352 @@
+button {
+  font-size: 16px;
+}
+input[type="date"] {
+  color: #808080;
+  font-family: "Manrope", sans-serif;
+  font-style: normal;
+}
+
+.settingNavbarButt {
+  background: #3e36b0;
+  border-radius: 20px;
+  display: flex;
+  user-select: none;
+}
+
+.settingNavbarButt button {
+  width: 25%;
+  text-align: center;
+  color: white;
+  border-radius: 20px;
+  padding: 9px 20px;
+  background: transparent;
+  border: none;
+}
+
+.settingNavbarButt button.active {
+  color: black;
+  background: #a6def7;
+  border-radius: 20px;
+  transition: 0.3s;
+}
+
+.settingInfo label,
+.profilInfo label {
+  padding: 5px 0;
+  font-weight: 500;
+}
+
+.settingInfo input,
+.mainInfo input {
+  height: 40px;
+  border-radius: 16px;
+  padding: 10px 15px;
+  border: none;
+  box-shadow: 0 0 45px 5px #00000014;
+  width: 100%;
+}
+
+.settingInfo div,
+.mainInfo div {
+  display: flex;
+  flex-direction: column;
+}
+
+.settingData {
+  display: flex;
+  gap: 100px;
+  padding: 40px;
+  background-color: white;
+  border-radius: 20px;
+}
+
+.settingInfo {
+  flex: 1;
+  display: flex;
+  width: 60%;
+  flex-direction: column;
+
+  gap: 12px;
+}
+
+.fullRow div {
+  width: 100%;
+}
+
+.halfRow {
+  gap: 20px;
+  display: flex !important;
+  flex-direction: row !important;
+}
+
+.halfRow div {
+  width: 50%;
+}
+
+.settingImg {
+  flex: 1;
+  height: fit-content;
+  max-width: 400px;
+}
+
+.photo img {
+  border-radius: 20px 20px 0 0;
+  height: auto;
+  width: -webkit-fill-available;
+  margin-bottom: 20px;
+}
+
+.settingInfo button {
+  width: 100%;
+  padding: 12px;
+  background-color: #3e36b0;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 20px;
+  transition: 0.3s;
+  font-weight: 500;
+  margin: 10px 0;
+}
+
+.lightButt {
+  color: #3e36b0;
+  width: 42%;
+  background: transparent;
+  border: 1px solid #3e36b0;
+  border-radius: 100px;
+  padding: 16px;
+}
+
+.blueButt {
+  color: white;
+  width: 42%;
+  background: #3e36b0;
+  border: none;
+  border-radius: 100px;
+  padding: 16px;
+}
+
+.imgPanel {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 20px 0;
+}
+
+.shadow {
+  box-shadow: 0 0 50px 5px #00000014;
+  transition: 0.3s;
+  border-radius: 20px;
+  padding: 20px;
+  background-color: white;
+  > p {
+    font-size: 1.4em;
+  }
+}
+
+.textarea {
+  border-radius: 16px;
+  padding: 15px;
+  box-shadow: 0 0 50px 5px #00000014;
+  border: none;
+  min-height: 200px;
+  max-width: 100%;
+  max-height: 450px;
+  outline: none;
+}
+
+.workTime {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+.workTime > div {
+  flex: 1;
+  padding: 20px;
+}
+
+.workSchedule {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 50px 5px #00000014;
+  padding: 20px;
+  border-radius: 20px;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 10px;
+  height: fit-content;
+}
+.workSchedule p {
+  padding: 6px 0;
+}
+.blueBack {
+  border-radius: 10px;
+  padding: 6px 10px;
+  background: #a6def7;
+}
+
+.conclusions {
+  display: flex;
+  flex-direction: column;
+  width: -webkit-fill-available;
+  gap: 15px;
+}
+.conclusions select {
+  width: 100%;
+  box-shadow: 0 0 10px 5px #00000014;
+  border: none;
+  padding: 12px;
+  border-radius: 16px;
+  user-select: none;
+  outline: none;
+  color: #858585;
+  font-size: 16px;
+}
+
+@media screen and (max-width: 920px) {
+  .settingNavbarButt button {
+    width: 33%;
+    padding: 8px;
+  }
+
+  .settingData {
+    flex-direction: column;
+    gap: 40px;
+    padding: 30px;
+  }
+
+  .settingInfo {
+    width: 100%;
+  }
+
+  .settingImg{
+    max-width: 300px;
+    margin: 0 auto;
+  }
+  
+
+  .halfRow {
+    gap: 15px;
+    flex-direction: column;
+  }
+
+  .workTime {
+    flex-direction: column;
+  }
+
+  .workSchedule {
+    width: 100%;
+  }
+
+  .settingInfo input {
+    height: 35px;
+  }
+
+  .settingInfo button {
+    padding: 10px;
+  }
+
+  .imgPanel {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .lightButt,
+  .blueButt {
+    width: 100%;
+    padding: 12px;
+  }
+
+  .textarea {
+    min-height: 150px;
+    max-height: 350px;
+  }
+}
+
+/* Для экранов шириной менее 768px */
+@media screen and (max-width: 768px) {
+  .settingNavbarButt button {
+    width: 50%;
+    font-size: 14px;
+  }
+
+  .settingData {
+    padding: 25px;
+  }
+
+  .settingInfo {
+    width: 100%;
+  }
+
+  .settingInfo input {
+    font-size: 14px;
+  }
+
+  .workSchedule {
+    width: 100%;
+  }
+
+  .imgPanel {
+    padding: 15px 0;
+  }
+
+  .shadow {
+    padding: 15px;
+  }
+}
+
+/* Для экранов шириной менее 576px */
+@media screen and (max-width: 576px) {
+  .settingNavbarButt button {
+    width: 100%;
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .settingData {
+    padding: 20px;
+  }
+
+  .settingImg{
+    max-width: 250px;
+    margin: 0 auto;
+  }
+  .settingInfo {
+    width: 100%;
+    gap: 10px;
+  }
+
+  .settingInfo input {
+    font-size: 14px;
+    height: 35px;
+  }
+
+  
+
+  .workTime {
+    flex-direction: column;
+  }
+
+  .workSchedule {
+    width: 100%;
+  }
+
+  .imgPanel {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .lightButt,
+  .blueButt {
+    width: 100%;
+    padding: 12px;
+  }
+
+  .textarea {
+    min-height: 150px;
+    max-height: 300px;
+  }
+}
