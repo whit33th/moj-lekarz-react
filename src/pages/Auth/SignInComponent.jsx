@@ -1,26 +1,21 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import styles from "./AuthPage.module.css";
 import img1 from "../../assets/img/Vector13.svg";
 import { NavLink } from "react-router-dom";
-import useAuthUser from "react-auth-kit/hooks/useAuthUser";
+import { pageConfig } from "../../config/config";
+import { useForm } from "react-hook-form";
+import InputError from "../../components/UI/InputError/InputError";
 
 function SignInComponent(props) {
-  const [inputLogin, setInputLogin] = useState("");
-  const [inputPassword, setInputPassword] = useState("");
-  const [emailValue, setEmailValue] = useState("");
   const [isForgotPassword, setIsForgotPassword] = useState(false);
 
-  console.log(props);
+  const { register, handleSubmit, formState } = useForm({
+    mode: "onChange",
+  });
 
-  const btnClick = () => {
-    const formData = {
-      login: inputLogin,
-      password: inputPassword,
-    };
-    props.authSignFc(inputLogin, inputPassword);
-  };
-
-  const auth = useAuthUser();
+  function onSubmit(data) {
+    console.log(data["email"]);
+  }
 
   return (
     <div className={styles.signIn}>
@@ -28,29 +23,48 @@ function SignInComponent(props) {
         <h1>Zaloguj się, aby rozpocząć</h1>
         {!isForgotPassword ? (
           <div className={styles.inputsBtnBlock}>
-            <div className={styles.signIninputBlock}>
-              <input
-                type="text"
-                name="login"
-                placeholder="Login..."
-                value={inputLogin}
-                onChange={(e) => setInputLogin(e.target.value)}
-              />
-              <input
-                type="password"
-                name="password"
-                placeholder="Hasło..."
-                value={inputPassword}
-                onChange={(e) => setInputPassword(e.target.value)}
-              />
-            </div>
-            <div className={styles.signInbtnBlock}>
-              <a onClick={() => setIsForgotPassword(true)}>
-                <img src={img1} alt="Forgot Password" />
-                Nie pamiętam hasła
-              </a>
-              <button onClick={btnClick}>Zaloguj się</button>
-            </div>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <div className={styles.signIninputBlock}>
+                <div>
+                  <input
+                    name="login"
+                    placeholder="Login..."
+                    {...register("email", {
+                      required: "This field is required",
+                      pattern: {
+                        value:
+                          /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
+                        message: "Wrong email",
+                      },
+                    })}
+                  />
+                  <InputError errorField={"email"} formState={formState} />
+                </div>
+
+                <div>
+                  <input
+                    type="password"
+                    name="password"
+                    placeholder="Hasło..."
+                    {...register("password", {
+                      required: "This field is required.",
+                      minLength: {
+                        value: 8,
+                        message: "Password too short.",
+                      },
+                    })}
+                  />
+                  <InputError errorField={"password"} formState={formState} />
+                </div>
+              </div>
+              <div className={styles.signInbtnBlock}>
+                <a onClick={() => setIsForgotPassword(true)}>
+                  <img src={img1} alt="Forgot Password" />
+                  Nie pamiętam hasła
+                </a>
+                <button onClick={() => {}}>Zaloguj się</button>
+              </div>
+            </form>
           </div>
         ) : (
           <div className={styles.forgotPassword}>
@@ -77,7 +91,8 @@ function SignInComponent(props) {
       {!isForgotPassword && (
         <div className={styles.bottomLinkBlock}>
           <p>
-            Nie masz konta? <NavLink to="/Auth/Signup">Zarejestruj się</NavLink>{" "}
+            Nie masz konta?{" "}
+            <NavLink to={pageConfig.registration}>Zarejestruj się</NavLink>
           </p>
         </div>
       )}

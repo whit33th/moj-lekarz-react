@@ -1,6 +1,6 @@
 .authPage {
   width: 100%;
-  min-height: 95vh;
+  min-height: 100dvh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -62,12 +62,15 @@
   border: none;
   outline: none;
   padding: 0 20px;
-  margin-bottom: 12px;
+
   font-family: "Manrope";
   font-size: 17px;
   font-weight: 400;
   line-height: 24.59px;
   text-align: left;
+}
+.signIninputBlock > div {
+  margin-bottom: 12px;
 }
 
 .signInbtnBlock {

@@ -1,50 +1,20 @@
-import { Routes, Route, useNavigate } from "react-router-dom";
+import {useLocation } from "react-router-dom";
 import styles from "./AuthPage.module.css";
 import logo from "../../assets/img/logo.svg";
 import SignInComponent from "./SignInComponent";
 import SignUpComponent from "./SignUpComponent";
+import { pageConfig } from "../../config/config";
 
-function AuthPage(props) {
-  const navigate = useNavigate();
- 
+function AuthPage() {
 
-  const authSignFc = (login, pass) => {
-    if (login.length > 2 && pass.length > 2) {
-      console.log("Authentication successful");
-      props.setIsLoggedIn(true);
-      navigate("/profile");
-    } else {
-      console.log("Authentication failed");
-    }
-  };
-  const authRegistrFc = (email, repeatEmail, password, isChecked) => {
-    if (email.length > 2 && password.length > 2) {
-      console.log("Authentication successful");
-      props.setIsLoggedIn(true);
-      navigate("/profile");
-    } else {
-      console.log("Authentication failed");
-    }
-  };
+  const location = useLocation();
 
   return (
     <div className={styles.authPage}>
       <div className={styles.authPageContent}>
         <img src={logo} alt="Logo" className={styles.authLogo} />
-        <Routes>
-          <Route
-            path="/"
-            element={<SignInComponent authSignFc={authSignFc} />}
-          />
-          <Route
-            path="signin"
-            element={<SignInComponent authSignFc={authSignFc} />}
-          />
-          <Route
-            path="signup"
-            element={<SignUpComponent authRegistrFc={authRegistrFc} />}
-          />
-        </Routes>
+        {location.pathname === pageConfig.login && <SignInComponent />}
+        {location.pathname === pageConfig.registration && <SignUpComponent />}
       </div>
     </div>
   );

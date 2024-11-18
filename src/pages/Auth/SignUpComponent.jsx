@@ -18,7 +18,7 @@ function SignUpComponent(props) {
       repeatEmailValue: repeatEmailValue,
       passwordValue: passwordValue,
     };
-    props.authRegistrFc(emailValue, repeatEmailValue, passwordValue, isChecked);
+    // props.authRegistrFc(emailValue, repeatEmailValue, passwordValue, isChecked);
   };
 
   const handleCheckboxChange = () => {

@@ -3,6 +3,8 @@ class PageConfig {
   home = "/";
   settings = "/settings";
   profile = "/profile";
+  login = "/login";
+  registration = "/registration";
   // Doctor routes
   doctor = {
     home: this.home,
