@@ -14,7 +14,7 @@ class PageConfig {
     AplikacjaMobilna: "/aplikacja-mobilna", //mobilna
     Blog: "/blog", //blog
     ProfileDoktor: "/profile-doktor", //profileDoctor
-    ZnajdzZapis: "/znajdz-zapis" ///znajdz-lekarza/zapis/0
+    ZnajdzZapis: "/znajdz-zapis", ///znajdz-lekarza/zapis/0
     ZnajdzLekarzaZapis: "/znajdz-lekarza-zapis", ///znajdz-lekarza/zapis/0
     PlacowkiMedyczne: "/placowki-medyczne", ///Search-clinic
     ProfileKlinik: "profile-clinic", ///profile-clinic/1
