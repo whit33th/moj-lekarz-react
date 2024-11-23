@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query"
 
-import { authService } from "../../services/AuthServices"
+import { authService } from "../../services/authServices"
 
 import useStore from '../../data/store'
 
