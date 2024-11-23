@@ -9,6 +9,11 @@ export default defineConfig({
   //     cert: './cert/localhost.crt',
   //   },
   // },
+  resolve: {
+    alias: {
+      '@assets': '/src/assets', 
+    },
+  },
   plugins: [react()],
 
 })
