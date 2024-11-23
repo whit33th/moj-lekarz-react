@@ -8,7 +8,7 @@ import settings from "../assets/img/sidebar-settings.png";
 import stetoskop from "../assets/img/stetoskop.png";
 import calendarManage from "../assets/img/CalendarManage.png";
 import firm from "../assets/img/FirmIco.png";
-import addingFirm from "../assets/img/AddFirm.png";
+import addingFirm from "../assets/img/addFirm.png";
 import table from "../assets/img/tableIco.png";
 import news from "../assets/img/NewsIco.png";
 import stats from "../assets/img/StatsIco.png";
