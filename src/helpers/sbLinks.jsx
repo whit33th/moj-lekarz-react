@@ -6,7 +6,7 @@ import notifications from "../assets/img/sidebar-notefictions.png";
 import chat from "../assets/img/chat.png";
 import settings from "../assets/img/sidebar-settings.png";
 import stetoskop from "../assets/img/stetoskop.png";
-import calendarManage from "../assets/img/calendarManage.png";
+import calendarManage from "../assets/img/CalendarManage.png";
 import firm from "../assets/img/firmIco.png";
 import addingFirm from "../assets/img/addFirm.png";
 import table from "../assets/img/tableIco.png";
