@@ -9,6 +9,7 @@ import AddVisitTypeModal from "../../../components/Modals/AddVisitType/AddVisitT
 import BlueBorderBtn from "../../../components/Buttons/BlueBorderBtn/BlueBorderBtn";
 import RedBorderBtn from "../../../components/Buttons/RedBorderBtn/RedBorderBtn";
 import { toast } from "sonner";
+import { useForm } from 'react-hook-form'
 
 export default function AddFirm() {
   const { setModalActive, setModalContent } = useStore();
@@ -28,6 +29,9 @@ export default function AddFirm() {
     setModalActive(true);
     setModalContent(<AddVisitTypeModal onClick={addVisitType} />);
   }
+  const { control, handleSubmit, watch } = useForm({
+
+  })
 
   function addVisitType(newVisitType) {
     setVisitTypes((prevVisitTypes) => [...prevVisitTypes, newVisitType]);
@@ -74,8 +78,8 @@ export default function AddFirm() {
           gap: "20px",
         }}
       >
-        <DropdownStas placeholder={"Jakub Witold Jagoda"} />
-        <DropdownStas placeholder={"Wpisz tekst"} options={option} />
+        <DropdownStas control={control} name={"."} placeholder={"Jakub Witold Jagoda"} />
+        <DropdownStas control={control} name={".."} placeholder={"Wpisz tekst"} options={option} />
         <Choice
           choice1={"Anuluj"}
           choice2={"Usuń"}
@@ -163,6 +167,7 @@ export default function AddFirm() {
             <label>Typy wizyt</label>
             <div className={styles.dropdown}>
               <DropdownStas
+                control={control} name={"..."}
                 placeholder={"Wybierz typ wizyty"}
                 options={["Typ nr.1", "Typ nr.2"]}
               />

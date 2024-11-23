@@ -14,8 +14,12 @@ import RedBorderBtn from "../../../components/Buttons/RedBorderBtn/RedBorderBtn"
 import { toast } from "sonner";
 import star from "../../../assets/img/Star.svg";
 import starGrey from "../../../assets/img/Star 6.svg";
+import { useForm } from 'react-hook-form'
 
 export default function WorkersInfo() {
+  const { control, handleSubmit, watch } = useForm({
+
+  })
   const navigate = useNavigate();
   const { setModalActive, setModalContent } = useStore();
   const option = [
@@ -80,8 +84,8 @@ export default function WorkersInfo() {
           gap: "20px",
         }}
       >
-        <DropdownStas placeholder={"Jakub Witold Jagoda"} />
-        <DropdownStas placeholder={"Wpisz tekst"} options={option} />
+        <DropdownStas control={control} name={"."} placeholder={"Jakub Witold Jagoda"} />
+        <DropdownStas control={control} name={".."} placeholder={"Wpisz tekst"} options={option} />
         <Choice
           choice1={"Anuluj"}
           choice2={"Usuń"}
@@ -208,7 +212,7 @@ export default function WorkersInfo() {
       <div className={styles.positionSection}>
         <div className={styles.infoGroup}>
           <label>Stanowisko</label>
-          <DropdownStas options={["zxc", "zxs"]} />
+          <DropdownStas control={control} name={"..."} options={["zxc", "zxs"]} />
         </div>
       </div>
 

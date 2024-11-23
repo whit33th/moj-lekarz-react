@@ -4,6 +4,7 @@ import DropdownStas from "../../Dropdown/DropdownStas";
 import Choice from "../../Modal/Choice";
 import styles from "./AddSpecialization.module.css";
 import plus from "../../../assets/img/plus.png";
+import { useForm } from 'react-hook-form'
 
 function AddSpecializationModal({ onAddSpecialization }) {
   const { setModalActive } = useStore();
@@ -16,7 +17,9 @@ function AddSpecializationModal({ onAddSpecialization }) {
   useEffect(() => {
     setSpecialty(visitTypeOptions[0]);
   }, []);
+  const { control, handleSubmit, watch } = useForm({
 
+  })
   const addVisitType = () => {
     setVisitTypes([...visitTypes, { id: Date.now(), type: "", price: "" }]);
   };
@@ -42,6 +45,7 @@ function AddSpecializationModal({ onAddSpecialization }) {
     <div>
       <h1>Dodanie specjalizacji</h1>
       <DropdownStas
+        control={control} name={"."}
         options={visitTypeOptions}
         label="Stanowisko"
         onChange={(value) => setSpecialty(value)}
@@ -52,6 +56,7 @@ function AddSpecializationModal({ onAddSpecialization }) {
           <div key={visit.id} className={styles.flex}>
             <div className={styles.type}>
               <DropdownStas
+                control={control} name={".."}
                 placeholder="Wybierz typ wizyty"
                 type="input"
                 label={index === 0 ? "Typ wizyty" : ""}
@@ -60,6 +65,7 @@ function AddSpecializationModal({ onAddSpecialization }) {
             </div>
             <div className={styles.price}>
               <DropdownStas
+                control={control} name={"..."}
                 label={index === 0 ? "Cena" : ""}
                 type="input"
                 placeholder="100"

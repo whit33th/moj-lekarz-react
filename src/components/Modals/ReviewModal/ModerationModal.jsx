@@ -8,6 +8,7 @@ import InputDropdownStas from "../../Dropdown/InputDropdownStas";
 
 import star from "../../../assets/img/Star.svg";
 import starGrey from "../../../assets/img/Star 6.svg";
+import { useForm } from 'react-hook-form'
 
 const ModerationModal = ({ name, date, text, rating }) => {
   const [RefuseBtn, setRefuseBtn] = useState(false);
@@ -22,7 +23,9 @@ const ModerationModal = ({ name, date, text, rating }) => {
   function toggleRefuse() {
     setRefuseBtn(!RefuseBtn);
   }
+  const { control, handleSubmit, watch } = useForm({
 
+  })
   const handleOptionSelect = (option) => {
     setSelectedOption(option);
   };
@@ -82,6 +85,7 @@ const ModerationModal = ({ name, date, text, rating }) => {
             <div className={styles.choice}>
               <div style={{ width: "100%" }}>
                 <InputDropdownStas
+                  control={control} name={"."}
                   options={["Option 1", "Option 2", "Option 3"]}
                   selectedOption={selectedOption}
                   onOptionSelect={handleOptionSelect}

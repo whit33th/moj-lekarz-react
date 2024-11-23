@@ -1,52 +1,57 @@
-import React, { useState } from "react";
-import styles from "./style/ZhaidzLekarza.module.css";
-import DatePicker from "react-datepicker";
-import DoctorCard from "./DoctorCard";
+import React, { useState } from "react"
+import styles from "./style/ZhaidzLekarza.module.css"
+import DatePicker from "react-datepicker"
+import DoctorCard from "./DoctorCard"
+import DropdownStas from '../../../components/Dropdown/DropdownStas'
+import { useForm } from 'react-hook-form'
 
 const arraySelectOptions = {
   select1: ["ortoped", "logoped", "surgeon"],
   select2: ["Poznań", "Tokyo", "NYC"],
   select3: ["Options 1", "Options 2", "Options 3"],
-};
+}
+
 
 function ZhaidzLekarza(props) {
-  const doctorCard = props.doctorCard;
-  const [isOpen1, setIsOpen1] = useState(false);
-  const [isOpen2, setIsOpen2] = useState(false);
-  const [isOpen3, setIsOpen3] = useState(false);
-  const [selectedOption1, setSelectedOption1] = useState("");
-  const [selectedOption2, setSelectedOption2] = useState("");
-  const [selectedOption3, setSelectedOption3] = useState("");
-  const [selectedDate, setSelectedDate] = useState(null);
-  const [state, setState] = useState(doctorCard);
+  const doctorCard = props.doctorCard
+  const [isOpen1, setIsOpen1] = useState(false)
+  const [isOpen2, setIsOpen2] = useState(false)
+  const [isOpen3, setIsOpen3] = useState(false)
+  const [selectedOption1, setSelectedOption1] = useState("")
+  const [selectedOption2, setSelectedOption2] = useState("")
+  const [selectedOption3, setSelectedOption3] = useState("")
+  const [selectedDate, setSelectedDate] = useState(null)
+  const [state, setState] = useState(doctorCard)
+  const { control, handleSubmit, watch } = useForm({
 
+  })
   const handleOptionClick = (option, setSelectedOption, setIsOpen) => {
-    setSelectedOption(option);
-    setIsOpen(false);
-  };
+    setSelectedOption(option)
+    setIsOpen(false)
+  }
 
   const toggleDropdown = (isOpen, setIsOpen) => {
-    setIsOpen(!isOpen);
-  };
+    setIsOpen(!isOpen)
+  }
   const clickFilterBtn = () => {
     const filteredDoctors = doctorCard.filter((doctor) => {
       const matchesType = selectedOption1
         ? doctor.type === selectedOption1
-        : true;
+        : true
       const matchesCity = selectedOption2
         ? doctor.address.city === selectedOption2
-        : true;
+        : true
 
       const matchesDate = selectedDate
         ? doctor.dates.some(
-            (dateObj) =>
-              dateObj.date === selectedDate.toLocaleDateString("pl-PL")
-          )
-        : true;
-      return matchesCity && matchesType && matchesDate;
-    });
-    setState(filteredDoctors);
-  };
+          (dateObj) =>
+            dateObj.date === selectedDate.toLocaleDateString("pl-PL")
+        )
+        : true
+      return matchesCity && matchesType && matchesDate
+    })
+    setState(filteredDoctors)
+  }
   return (
     <div className={styles.zhaidzLekarza}>
       <div className={styles.filterBlock}>
@@ -55,59 +60,13 @@ function ZhaidzLekarza(props) {
           <div className={styles.filterBlockContentSelects}>
             <div className={styles.mainFormIntupsBlock}>
               <div className={styles.dropdownContainer}>
-                <div
-                  className={styles.dropdown}
-                  onClick={() => toggleDropdown(isOpen1, setIsOpen1)}
-                >
-                  {selectedOption1 || "Wybierz specjalizacje "}
-                  <span className={styles.arrow}></span>
-                </div>
-                {isOpen1 && (
-                  <ul className={styles.dropdownMenu}>
-                    {arraySelectOptions.select1.map((elem) => (
-                      <li
-                        className={styles.dropdownMenuItem}
-                        onClick={() =>
-                          handleOptionClick(
-                            elem,
-                            setSelectedOption1,
-                            setIsOpen1
-                          )
-                        }
-                      >
-                        {elem}
-                      </li>
-                    ))}
-                  </ul>
-                )}
+
+                <DropdownStas control={control} name={"."} options={arraySelectOptions.select1} placeholder={"Wybierz specjalizacje"} />
+
               </div>
 
               <div className={styles.dropdownContainer}>
-                <div
-                  className={styles.dropdown}
-                  onClick={() => toggleDropdown(isOpen2, setIsOpen2)}
-                >
-                  {selectedOption2 || "Wybierz miasto"}
-                  <span className={styles.arrow}></span>
-                </div>
-                {isOpen2 && (
-                  <ul className={styles.dropdownMenu}>
-                    {arraySelectOptions.select2.map((elem) => (
-                      <li
-                        className={styles.dropdownMenuItem}
-                        onClick={() =>
-                          handleOptionClick(
-                            elem,
-                            setSelectedOption2,
-                            setIsOpen2
-                          )
-                        }
-                      >
-                        {elem}
-                      </li>
-                    ))}
-                  </ul>
-                )}
+                <DropdownStas control={control} name={".."} options={arraySelectOptions.select2} placeholder={"Wybierz miasto"} />
               </div>
 
               <div className={styles.formCalendar}>
@@ -122,31 +81,7 @@ function ZhaidzLekarza(props) {
               </div>
 
               <div className={`${styles.dropdownContainer} ${styles.litle}`}>
-                <div
-                  className={styles.dropdown}
-                  onClick={() => toggleDropdown(isOpen3, setIsOpen3)}
-                >
-                  {selectedOption3 || "Rodzaj wizyty"}
-                  <span className={styles.arrow}></span>
-                </div>
-                {isOpen3 && (
-                  <ul className={styles.dropdownMenu}>
-                    {arraySelectOptions.select3.map((elem) => (
-                      <li
-                        className={styles.dropdownMenuItem}
-                        onClick={() =>
-                          handleOptionClick(
-                            elem,
-                            setSelectedOption3,
-                            setIsOpen3
-                          )
-                        }
-                      >
-                        {elem}
-                      </li>
-                    ))}
-                  </ul>
-                )}
+                <DropdownStas control={control} name={"..."} options={arraySelectOptions.select3} placeholder={"Wybierz ..."} />
               </div>
             </div>
             <div className={styles.filterBtnBlock}>
@@ -178,7 +113,7 @@ function ZhaidzLekarza(props) {
         )}
       </div>
     </div>
-  );
+  )
 }
 
-export default ZhaidzLekarza;
+export default ZhaidzLekarza

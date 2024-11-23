@@ -152,6 +152,11 @@ button {
   transition: margin-left 0.3s ease, width 0.3s ease;
   background: linear-gradient(to bottom, #ebf8ffc4, #e6f4ff);
 }
+.react-datepicker-popper {
+  border-radius: 20px;
+  border: none;
+  z-index: 2 !important;
+}
 
 /* Адаптивность */
 @media screen and (max-width: 1100px) {

@@ -4,6 +4,7 @@ import DropdownStas from "../../Dropdown/DropdownStas";
 import exit from "../../../assets/img/cross.png";
 import styles from "./AddWorkersModal.module.css";
 import useStore from '../../../data/store'
+import { useForm } from 'react-hook-form'
 
 function AddWorkersModal() {
 const {setModalActive}  = useStore()
@@ -19,7 +20,9 @@ const {setModalActive}  = useStore()
     { id: "4", name: "Kontrola po operacji", price: 0.0, checked: true },
     { id: "5", name: "Wizyta rehabilitacyjna", price: 110.0, checked: true },
   ]);
+  const { control, handleSubmit, watch } = useForm({
 
+  })
 
   const handleCheckboxChange = (id) => {
     setVisitTypes((prevVisitTypes) =>
@@ -115,6 +118,7 @@ const {setModalActive}  = useStore()
         <div className={styles.infoGroup}>
           <label>Stanowisko</label>
           <DropdownStas
+            control={control} name={".."}
             placeholder="Wybierz stanowisko"
             options={["Dentysta", "Lobista"]}
             onChange={(value) => setSelectedPosition(value)}

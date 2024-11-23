@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import { useState } from 'react'
 import { pageConfig } from "../../config/config";
 import Home from "../../pages/User/Home";
-import AuthPage from "../../pages/Auth/AuthPage";
+import AuthPage from '../../pages/Auth/AuthPage';
 import ReviewsUser from "../../pages/User/ReviewsUser";
 import ClinicZapisPage from "../../pages/User/ClinicZapisPage";
 import Firm from "../../pages/User/Firm";
@@ -32,7 +32,8 @@ function UserRoutes() {
     
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/auth/*" element={<AuthPage setIsAuth={setIsAuth} />} />
+      <Route path={pageConfig.login} element={<AuthPage />} />
+      <Route path={pageConfig.registration} element={<AuthPage />} />
       <Route path="/reviews/user/:id" element={<ReviewsUser />} />
       <Route path="/clinic-zapis/:id" element={<ClinicZapisPage />} />
       <Route path="/firm" element={<Firm />} />

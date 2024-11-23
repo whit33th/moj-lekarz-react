@@ -20,6 +20,10 @@
 /* Логотип */
 .logo img {
   width: 60px;
+  transition: 0.3s ease;
+}
+.title{
+  text-align: center;
 }
 
 /* Ссылки */

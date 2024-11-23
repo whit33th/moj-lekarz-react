@@ -1,78 +1,75 @@
-import { useState, useRef, useEffect } from "react";
-import styles from "./DropdownStas.module.css";
+import { useState, useRef, useEffect } from "react"
+import { useController } from "react-hook-form"
+import styles from "./DropdownStas.module.css"
 
 const DropdownStas = ({
-  options, 
+  options,
   label,
   placeholder,
-  onChange,
   type = "dropdown",
+  control,
+  name,
 }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(
-    placeholder || (type === "dropdown" && options[0]) || "Wybierz"
-  );
-  const [inputValue, setInputValue] = useState("");
-  const dropdownRef = useRef(null);
+  let field = { value: "", onChange: () => { } }
+
+  if (control && name) {
+    field = useController({ name, control }).field
+  }
+
+  const [internalValue, setInternalValue] = useState("")
+  const value = control && name ? field.value : internalValue
+  const onChange = control && name ? field.onChange : setInternalValue
+
+  const [isOpen, setIsOpen] = useState(false)
+  const dropdownRef = useRef(null)
 
   const toggleDropdown = () => {
     if (type === "dropdown") {
-      setIsOpen((prev) => !prev);
+      setIsOpen((prev) => !prev)
     }
-  };
+  }
 
   const handleOptionClick = (option) => {
-    setSelectedOption(option);
-    setIsOpen(false);
-    if (onChange) {
-      onChange(option);
-    }
-  };
+    onChange(option)
+    setIsOpen(false)
+  }
 
   const handleInputChange = (event) => {
-    setInputValue(event.target.value);
-    setSelectedOption(event.target.value);
-    if (onChange) {
-      onChange(event.target.value);
-    }
-  };
+    onChange(event.target.value)
+  }
 
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setIsOpen(false);
+        setIsOpen(false)
       }
-    };
+    }
 
-    document.addEventListener("mousedown", handleClickOutside);
-
+    document.addEventListener("mousedown", handleClickOutside)
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
+      document.removeEventListener("mousedown", handleClickOutside)
+    }
+  }, [])
 
   return (
     <div ref={dropdownRef} className={styles.dropdownContainer}>
       {label && <label>{label}</label>}
       <div
-        className={`${styles.dropdown} ${
-          type === "input" ? styles.dropdownInput : ""
-        } ${isOpen ? styles.open : ""}`}
+        className={`${styles.dropdown} ${type === "input" ? styles.dropdownInput : ""
+          } ${isOpen ? styles.open : ""}`}
         onClick={toggleDropdown}
       >
         {type === "input" ? (
           <input
             type="text"
-            value={inputValue}
+            value={value || ""}
             onChange={handleInputChange}
             placeholder={placeholder}
             className={styles.inputField}
           />
         ) : (
-          <span
-            className={selectedOption === placeholder ? styles.placeholder : ""}
-          >
-            {selectedOption}
+          <span className={value === placeholder ? styles.placeholder : ""}>
+            {value || placeholder}
           </span>
         )}
         {type === "dropdown" && options && (
@@ -96,7 +93,7 @@ const DropdownStas = ({
         </ul>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default DropdownStas;
+export default DropdownStas

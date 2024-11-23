@@ -5,6 +5,7 @@ import Search from "../../../components/UI/Search/Search";
 import BlueBtn from "../../../components/Buttons/BlueBtn/BlueBtn";
 
 import { useNavigate } from "react-router-dom";
+import { useForm } from 'react-hook-form'
 
 function GraphManagement() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -45,6 +46,9 @@ function GraphManagement() {
 
   const hasData = filteredPatients.length > 0;
 
+  const { control, handleSubmit, watch } = useForm({
+
+  })
   return (
     <div className={styles.container}>
       <div className={styles.header}>

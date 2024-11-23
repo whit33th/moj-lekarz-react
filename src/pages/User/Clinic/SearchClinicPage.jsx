@@ -1,175 +1,119 @@
-import { useState } from "react";
-import styles from "./style/SearchClinicPage.module.css";
-import ClinicCard from "./ClinicCard";
+import { useState } from "react"
+import { useForm, Controller } from "react-hook-form"
+import styles from "./style/SearchClinicPage.module.css"
+import ClinicCard from "./ClinicCard"
 
-import useStore from "../../../data/store";
+import useStore from "../../../data/store"
+import DropdownStas from '../../../components/Dropdown/DropdownStas'
 
 const arraySelectOptions = {
-  select1: ["name ", "name ", "name"],
-  select2: ["ortoped 1", "logoped", "Kardiolog", "Ginekolog"],
+  select1: ["name1", "name2", "name3"],
+  select2: ["ortoped", "logoped", "Kardiolog", "Ginekolog"],
   select3: ["Poznań", "Tokyo", "Ala"],
-  select4: ["Tokyo", "USA", "Ala"],
-};
+  select4: ["Publiczne", "Prywatne"],
+}
+
 
 function SearchClinicPage() {
-  const { clinicCard } = useStore();
+  
+  const { clinicCard } = useStore()
+  const [state, setState] = useState(clinicCard)
 
-  const [isOpen1, setIsOpen1] = useState(false);
-  const [isOpen2, setIsOpen2] = useState(false);
-  const [isOpen3, setIsOpen3] = useState(false);
-  const [isOpen4, setIsOpen4] = useState(false);
+  const { control, handleSubmit, watch } = useForm({
 
-  const [selectedOption1, setSelectedOption1] = useState("");
-  const [selectedOption2, setSelectedOption2] = useState("");
-  const [selectedOption3, setSelectedOption3] = useState("");
-  const [selectedOption4, setSelectedOption4] = useState("");
+  })
 
-  const [selectedDate, setSelectedDate] = useState(null);
-  const [state, setState] = useState(clinicCard);
-
-  const handleOptionClick = (option, setSelectedOption, setIsOpen) => {
-    setSelectedOption(option);
-    setIsOpen(false);
-  };
-
-  const toggleDropdown = (isOpen, setIsOpen) => {
-    setIsOpen(!isOpen);
-  };
+  const watchFields = watch()
 
   const clickFilterBtn = () => {
+    const { select1, select2, select3, select4 } = watchFields
     const filteredDoctors = clinicCard.filter((doctor) => {
-      const matchesName = selectedOption1
-        ? doctor.name === selectedOption1
-        : true;
-      const matchesTypes = selectedOption2
-        ? doctor.types.some((type) => selectedOption2.includes(type))
-        : true;
-      const matchesCity = selectedOption3
-        ? doctor.address.city === selectedOption3
-        : true;
-      console.log(doctor.types.includes(selectedOption1));
-      return matchesCity && matchesName && matchesTypes;
-    });
-    setState(filteredDoctors);
-  };
+      const matchesName = select1 ? doctor.name === select1 : true
+      const matchesTypes = select2
+        ? doctor.types.some((type) => select2.includes(type))
+        : true
+      const matchesCity = select3 ? doctor.address.city === select3 : true
+      const publicType = select4 ? doctor.public === select4 : true
+      return matchesCity && matchesName && matchesTypes && publicType
+    })
+    setState(filteredDoctors)
+  }
+
   return (
     <div className={styles.clinickPage}>
       <h1>Wybierz spośród 5 324 dostępnych centrów medycznych</h1>
       <div className={styles.filterBlockContentSelects}>
-        <div className={styles.mainFormIntupsBlock}>
-          <div className={styles.dropdownContainer}>
-            <div
-              className={styles.dropdown}
-              onClick={() => toggleDropdown(isOpen1, setIsOpen1)}
-            >
-              {selectedOption1 || "Wybierz  centrum medyczny "}
-              <span className={styles.arrow}></span>
-            </div>
-            {isOpen1 && (
-              <ul className={styles.dropdownMenu}>
-                {arraySelectOptions.select1.map((elem, index) => (
-                  <li
-                    key={index}
-                    className={styles.dropdownMenuItem}
-                    onClick={() =>
-                      handleOptionClick(elem, setSelectedOption1, setIsOpen1)
-                    }
-                  >
-                    {elem}
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
+        <form onSubmit={handleSubmit(clickFilterBtn)}>
+          <div className={styles.mainFormIntupsBlock}>
+            <div className={styles.dropdownContainer}>
 
-          <div className={styles.dropdownContainer}>
-            <div
-              className={styles.dropdown}
-              onClick={() => toggleDropdown(isOpen2, setIsOpen2)}
-            >
-              {selectedOption2 || "Wybierz specjalizacje "}
-              <span className={styles.arrow}></span>
-            </div>
-            {isOpen2 && (
-              <ul className={styles.dropdownMenu}>
-                {arraySelectOptions.select2.map((elem) => (
-                  <li
-                    className={styles.dropdownMenuItem}
-                    onClick={() =>
-                      handleOptionClick(elem, setSelectedOption2, setIsOpen2)
-                    }
-                  >
-                    {elem}
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
 
-          <div className={`${styles.dropdownContainer} ${styles.litle}`}>
-            <div
-              className={styles.dropdown}
-              onClick={() => toggleDropdown(isOpen3, setIsOpen3)}
-            >
-              {selectedOption3 || "Wybierz miasto"}
-              <span className={styles.arrow}></span>
+
+              <DropdownStas
+              
+                name="select1"
+                control={control}
+
+                options={arraySelectOptions.select1}
+                placeholder={"Wybierz centrum medyczny"}
+              />
+
+
             </div>
-            {isOpen3 && (
-              <ul className={styles.dropdownMenu}>
-                {arraySelectOptions.select3.map((elem) => (
-                  <li
-                    className={styles.dropdownMenuItem}
-                    onClick={() =>
-                      handleOptionClick(elem, setSelectedOption3, setIsOpen3)
-                    }
-                  >
-                    {elem}
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
-          <div className={`${styles.dropdownContainer} ${styles.litle}`}>
-            <div
-              className={styles.dropdown}
-              onClick={() => toggleDropdown(isOpen4, setIsOpen4)}
-            >
-              {selectedOption4 || "Rodzaj wizyty"}
-              <span className={styles.arrow}></span>
+
+            <div className={styles.dropdownContainer}>
+
+              <DropdownStas
+                name="select2"
+                control={control}
+                options={arraySelectOptions.select2}
+                placeholder={"Wybierz specjalizacje"}
+              />
+
             </div>
-            {isOpen4 && (
-              <ul className={styles.dropdownMenu}>
-                {arraySelectOptions.select4.map((elem, index) => (
-                  <li
-                    key={index}
-                    className={styles.dropdownMenuItem}
-                    onClick={() =>
-                      handleOptionClick(elem, setSelectedOption4, setIsOpen4)
-                    }
-                  >
-                    {elem}
-                  </li>
-                ))}
-              </ul>
-            )}
+
+            <div className={`${styles.dropdownContainer} ${styles.litle}`}>
+
+              <DropdownStas
+                name="select3"
+                control={control}
+                options={arraySelectOptions.select3}
+                placeholder={"Wybierz miasto"}
+              />
+
+
+            </div>
+
+            <div className={`${styles.dropdownContainer} ${styles.litle}`}>
+
+              <DropdownStas
+                name="select4"
+                control={control}
+
+                options={arraySelectOptions.select4}
+                placeholder={"Rodzaj wizyty"}
+              />
+
+            </div>
+
+            <div className={styles.filterBtnBlock}>
+              <button type="submit">Szukaj terminu</button>
+            </div>
           </div>
-          <div className={styles.filterBtnBlock}>
-            <button onClick={clickFilterBtn}>Szukaj terminu</button>
-          </div>
-        </div>
+        </form>
       </div>
       <div className={styles.clinicCardsBlock}>
         {state.map((item) => (
-          <ClinicCard state={item} />
+          <ClinicCard key={item.id} state={item} />
         ))}
       </div>
-      {state.length == 0 && (
+      {state.length === 0 && (
         <div className={styles.nonCinicCardBlock}>
           <h1>Brak dostępnych placówek medycznych</h1>
         </div>
       )}
     </div>
-  );
+  )
 }
 
-export default SearchClinicPage;
+export default SearchClinicPage

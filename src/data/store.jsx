@@ -1,7 +1,19 @@
-import { create } from "zustand";
-import imageblog from "../assets/img/imageblog.webp";
-import doctor from "../assets/img/doctor.jpg";
+import { create } from "zustand"
+import imageblog from "../assets/img/imageblog.webp"
+import doctor from "../assets/img/doctor.jpg"
 const useStore = create((set) => ({
+  //role
+  role: null,
+  setRole: (role) => set({ role: role }),
+
+  //userId
+  userId: null,
+  setUserId: (userId) => set({ userId: userId }),
+
+  // Auth state
+  isAuth: false,
+  setIsAuth: (isAuth) => set({ isAuth: isAuth }),
+
   // Modal state
   isModalActive: false,
   setModalActive: (status) => set({ isModalActive: status }),
@@ -882,14 +894,14 @@ const useStore = create((set) => ({
 
   // Converted createAsyncThunk to a Zustand action
   fetchBlogs: async () => {
-    set({ status: "loading" });
+    set({ status: "loading" })
     try {
-      const response = await fetch.get("/blogs"); //fetch было axios
-      set({ status: "succeeded", blogs: response.data });
+      const response = await fetch.get("/blogs") //fetch было axios
+      set({ status: "succeeded", blogs: response.data })
     } catch (error) {
-      set({ status: "failed", error: error.message });
+      set({ status: "failed", error: error.message })
     }
   },
-}));
+}))
 
-export default useStore;
+export default useStore

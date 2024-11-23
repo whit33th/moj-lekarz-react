@@ -70,7 +70,7 @@ const sbLinks = [
   },
   {
     role: "firm",
-    title: "Zarządzanie grafikiem pracy",
+    title: "Grafik pracy",
     img: calendarManage,
     url: "/graph",
   },

@@ -2,14 +2,15 @@ import { useLocation } from "react-router-dom";
 import Header from "../components/Header/Header";
 
 import Footer from "../components/Footer/Footer";
+import { pageConfig } from "../config/config";
 
 const UserLayout = ({ children, activePage, setActivePage, isLoggedIn }) => {
   const location = useLocation();
 
-  const shouldShowHeaderFooter = !location.pathname
-    .toLowerCase()
-    .startsWith("/auth");
-
+  const shouldShowHeaderFooter = ![
+    pageConfig.login,
+    pageConfig.registration,
+  ].some((path) => location.pathname.toLowerCase().startsWith(path));
   return (
     <>
       {shouldShowHeaderFooter && (

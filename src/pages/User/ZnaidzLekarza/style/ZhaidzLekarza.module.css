@@ -128,8 +128,8 @@
   position: relative;
 }
 
-.formCalendar .react-datepicker-popper {
-  border-radius: 20px;
+.formCalendar, .react-datepicker-popper {
+  border-radius: 16px;
   border: none;
 }
 

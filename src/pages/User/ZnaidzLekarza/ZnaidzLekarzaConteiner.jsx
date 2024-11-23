@@ -4,7 +4,7 @@ import styles from "./style/ZnaidzLekarzaConteiner.module.css";
 
 import { Routes, Route } from "react-router-dom";
 import ZapisConteiner from "./Zapis/ZapisConteiner";
-import { useNavigate } from "react-router-dom";
+
 import useStore from "../../../data/store";
 
 function ZnajdzLekarzaContainer({ isLoggedIn }) {

@@ -12,7 +12,7 @@ import TodaysVisits from "../../pages/Doctor/TodaysVisits/TodaysVisits";
 import Profil from "../../pages/Doctor/Profil/Profil";
 import Calendar from "./../../pages/Doctor/Calendar/Calendar";
 import NotFound from "../../pages/User/NotFound";
-import AuthOutlet from "@auth-kit/react-router/AuthOutlet";
+
 import AuthPage from "../../pages/Auth/AuthPage";
 
 function DoctorRoutes() {
@@ -21,7 +21,7 @@ function DoctorRoutes() {
       <Route path={pageConfig.login} element={<AuthPage />} />
       <Route path={pageConfig.registration} element={<AuthPage />} />
       <Route path="/*" element={<NotFound />} />
-      <Route element={<AuthOutlet fallbackPath={pageConfig.doctor.login} />}>
+      
         <Route path={pageConfig.doctor.calendar} element={<Calendar />} />
         <Route path={pageConfig.doctor.home} element={<DoctorMain />} />
         <Route path={pageConfig.doctor.list} element={<PatientList />} />
@@ -39,7 +39,7 @@ function DoctorRoutes() {
         />
         <Route path={pageConfig.doctor.profile} element={<Profil />} />
         <Route path="/*" element={<NotFound />} />
-      </Route>
+
     </Routes>
   );
 }

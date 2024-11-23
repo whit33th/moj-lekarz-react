@@ -1,72 +1,100 @@
-import { useState } from "react";
-import styles from "./InputDropdownStas.module.css";
+import { useEffect, useRef, useState } from "react"
+import styles from "./InputDropdownStas.module.css"
+import { useController } from "react-hook-form"
 
 const InputDropdownStas = ({
   options,
-  selectedOption,
-  onOptionSelect,
   placeholder,
+  seeOptions = false,
+  control,
+  name,
 }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [inputValue, setInputValue] = useState("");
-  const [filteredOptions, setFilteredOptions] = useState(options);
+ 
+  const {
+    field: { value, onChange },
+  } = useController({ name, control })
+
+  const [isOpen, setIsOpen] = useState(false)
+  const [filteredOptions, setFilteredOptions] = useState(options)
 
   const toggleDropdown = () => {
-    setIsOpen(!isOpen);
-  };
+    setIsOpen((prev) => !prev)
+  }
 
   const handleOptionClick = (option) => {
     if (option !== "Brak dopasowań") {
-      onOptionSelect(option);
-      setInputValue(option);
+      onChange(option) // обновляем значение через `react-hook-form`
     }
-    setIsOpen(false);
-  };
+    setIsOpen(false)
+  }
 
   const handleInputChange = (e) => {
-    const value = e.target.value;
-    setInputValue(value);
+    const inputValue = e.target.value
+    onChange(inputValue) // обновляем значение через `react-hook-form`
 
-    if (value.trim() === "") {
-      setFilteredOptions(options);
+    if (inputValue.trim() === "") {
+      setFilteredOptions(options)
     } else {
       const filtered = options.filter((option) =>
-        option.toLowerCase().includes(value.toLowerCase())
-      );
-      setFilteredOptions(filtered.length > 0 ? filtered : ["Brak dopasowań"]);
+        option.toLowerCase().includes(inputValue.toLowerCase())
+      )
+      setFilteredOptions(filtered.length > 0 ? filtered : ["Brak dopasowań"])
     }
 
-    setIsOpen(true);
-  };
+    setIsOpen(true)
+  }
+
+  const dropdownRef = useRef(null)
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsOpen(false)
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside)
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside)
+    }
+  }, [])
 
   return (
-    <div onClick={toggleDropdown} className={styles.dropdownContainer}>
-      <div className={styles.dropdown}>
+    <div ref={dropdownRef} className={styles.dropdownContainer}>
+      <div
+        className={`${styles.dropdown} ${isOpen ? styles.open : ""}`}
+        onClick={toggleDropdown}
+      >
         <input
           type="text"
           className={styles.dropdownInput}
-          value={inputValue}
+          value={value || ""}
           placeholder={placeholder}
           onChange={handleInputChange}
         />
-        <span className={`${styles.arrow} ${isOpen ? styles.open : ""}`}></span>
+        {seeOptions && (
+          <span
+            className={`${styles.arrow} ${isOpen ? styles.open : ""}`}
+          ></span>
+        )}
       </div>
-      {isOpen && (
-        <ul className={styles.dropdownMenu}>
-          <li className={styles.dropdownMenuItem}></li>
-          {filteredOptions.map((option, index) => (
-            <li
-              key={index}
-              className={styles.dropdownMenuItem}
-              onClick={() => handleOptionClick(option)}
-            >
-              {option}
-            </li>
-          ))}
-        </ul>
-      )}
+      {seeOptions &&
+        isOpen && (
+          <ul className={styles.dropdownMenu}>
+            {filteredOptions.map((option, index) => (
+              <li
+                key={index}
+                className={styles.dropdownMenuItem}
+                onClick={() => handleOptionClick(option)}
+              >
+                {option}
+              </li>
+            ))}
+          </ul>
+        )}
     </div>
-  );
-};
+  )
+}
 
-export default InputDropdownStas;
+export default InputDropdownStas

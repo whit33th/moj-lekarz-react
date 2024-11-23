@@ -5,6 +5,7 @@ import Calendar from "../../../components/DoctorPage/Home/Calendar/CalendarBlock
 
 import DropdownStas from "../../../components/Dropdown/DropdownStas";
 import Tabs from "../../../components/Buttons/Tabs/Tabs";
+import { useForm } from 'react-hook-form'
 
 function Settings() {
   const [activeTab, setActiveTab] = useState("Dane podstawowe");
@@ -34,6 +35,9 @@ function Settings() {
   function handleTabClick(name) {
     setActiveTab(name);
   }
+  const { control, handleSubmit, watch } = useForm({
+
+  })
 
   const conclusions = (
     <div className={styles.workTime}>

@@ -8,6 +8,7 @@ import imgProfile from "../../assets/img/Vector23.svg";
 
 
 import cx from 'classnames';
+import { pageConfig } from '../../config/config'
 
 function Header({ isLoggedIn }) {
   const location = useLocation();
@@ -102,7 +103,7 @@ function Header({ isLoggedIn }) {
               </li>
             ) : (
               <li className={styles.headerSignBtnMobile}>
-                <NavLink to="/Auth">Zaloguj się</NavLink>
+                <NavLink to={pageConfig.login}>Zaloguj się</NavLink>
               </li>
             )}
           </ul>
@@ -115,7 +116,7 @@ function Header({ isLoggedIn }) {
           </div>
         ) : (
           <div className={styles.headerSignBtn}>
-            <NavLink to="/Auth">Zaloguj się</NavLink>
+            <NavLink to={pageConfig.login}>Zaloguj się</NavLink>
           </div>
         )}
         <div

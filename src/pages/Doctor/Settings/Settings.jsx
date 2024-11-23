@@ -5,12 +5,15 @@ import Calendar from "../../../components/DoctorPage/Home/Calendar/CalendarBlock
 
 import DropdownStas from "../../../components/Dropdown/DropdownStas";
 import Choice from "../../../components/Modal/Choice";
+import { useForm } from 'react-hook-form'
 
 function Settings() {
   const [activeTab, setActiveTab] = useState("Dane podstawowe");
   const [selectedName, setSelectedName] = useState("Dariusz Adamek");
   const [selectedReason, setSelectedReason] = useState("Wybierz");
+  const { control, handleSubmit, watch } = useForm({
 
+  })
   const option1 = [
     "Dariusz Adamek",
     "Option 1",

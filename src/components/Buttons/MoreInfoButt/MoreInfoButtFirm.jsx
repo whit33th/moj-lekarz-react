@@ -11,6 +11,7 @@ import RedBorderBtn from "./../RedBorderBtn/RedBorderBtn";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 import clip from "../../../assets/img/clip.png";
+import { useForm } from 'react-hook-form'
 
 const MoreInfoButtPatient = ({ id }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -25,6 +26,9 @@ const MoreInfoButtPatient = ({ id }) => {
     "Kalendarz nullam non iaculis massa",
     "Nunc kalendarz aliquam metus",
   ];
+  const { control, handleSubmit, watch } = useForm({
+
+  })
   const modalContentInfo = (
     <div className={styles.row}>
       <div className={styles.generalInfo}>
@@ -104,8 +108,8 @@ const MoreInfoButtPatient = ({ id }) => {
           gap: "20px",
         }}
       >
-        <DropdownStas placeholder={"Jakub Witold Jagoda"} />
-        <DropdownStas placeholder={"Wpisz tekst"} options={option} />
+        <DropdownStas control={control} name={"username"}  placeholder={"Jakub Witold Jagoda"} />
+        <DropdownStas control={control} name={"."} placeholder={"Wpisz tekst"} options={option} />
         <Choice
           choice1={"Anuluj"}
           choice2={"Usuń"}

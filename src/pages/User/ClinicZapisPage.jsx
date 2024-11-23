@@ -1,8 +1,10 @@
-import { useState } from "react";
-import styles from "./style/ClinicZapisPage.module.css";
-import { useNavigate } from "react-router-dom";
-import { useParams } from "react-router-dom";
-import BookingComponent from "./../../components/BookingComponent";
+import { useState } from "react"
+import styles from "./style/ClinicZapisPage.module.css"
+import { useNavigate } from "react-router-dom"
+import { useParams } from "react-router-dom"
+import BookingComponent from "./../../components/BookingComponent"
+import DropdownStas from '../../components/Dropdown/DropdownStas'
+import { useForm } from 'react-hook-form'
 
 const arraySelectOptions = {
   select1: [
@@ -11,33 +13,48 @@ const arraySelectOptions = {
     "Konsultacja ginekologiczna • 2900,00 zł",
   ],
   select2: ["Prywatna", "Tokyo", "NYC"],
-};
+}
 function ClinicZapisPage() {
-  const { id } = useParams();
+  const { id } = useParams()
+  const { control, handleSubmit, watch } = useForm({
 
-  const [isOpen1, setIsOpen1] = useState(false);
-  const [isOpen2, setIsOpen2] = useState(false);
-  const [timeValue, setTimeValue] = useState("");
-  const [dateValue, setDateValue] = useState("");
+  })
+  const [isOpen1, setIsOpen1] = useState(false)
+  const [isOpen2, setIsOpen2] = useState(false)
+  const [timeValue, setTimeValue] = useState("")
+  const [dateValue, setDateValue] = useState("")
 
-  const [typWizyty, setTypWizyty] = useState("");
-  const [rodzajWizyty, setRodzajWizyty] = useState("");
-  const [selectedRadio, setSelectedRadio] = useState("");
+  const [typWizyty, setTypWizyty] = useState("")
+  const [rodzajWizyty, setRodzajWizyty] = useState("")
+  const [selectedRadio, setSelectedRadio] = useState("")
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const handleGoBack = () => {
-    navigate(-1);
-  };
+    navigate(-1)
+  }
 
   const handleOptionClick = (option, setSelectedOption, setIsOpen) => {
-    setSelectedOption(option);
-    setIsOpen(false);
-  };
+    setSelectedOption(option)
+    setIsOpen(false)
+  }
+  const visitTypeOptions = [
+    "Konsultacja ginekologiczna • 290,00 zł",
+    "Konsultacja ginekologiczna • 2900,00 zł",
+    "Konsultacja ginekologiczna • 2090,00 zł",
+    "Konsultacja ginekologiczna • 290,00 zł",
+    "Konsultacja ginekologiczna • 2900,00 zł",
+    "Konsultacja ginekologiczna • 2090,00 zł",
+  ]
+  const visitTypeOptions2 = [
+    'Prywatna','Publiczna'
+  ]
+  
+  
 
   const toggleDropdown = (isOpen, setIsOpen) => {
-    setIsOpen(!isOpen);
-  };
+    setIsOpen(!isOpen)
+  }
   const zapisClickBtn = () => {
     if (timeValue.length > 2) {
       const newState = {
@@ -46,11 +63,11 @@ function ClinicZapisPage() {
         time: timeValue,
         typWizyty: typWizyty,
         rodzajWizyty: rodzajWizyty,
-      };
-      localStorage.setItem("zapisStateClinic", JSON.stringify(newState));
+      }
+      localStorage.setItem("zapisStateClinic", JSON.stringify(newState))
     }
-    navigate(`/znajdz-lekarza/zapis/${id}`);
-  };
+    navigate(`/znajdz-lekarza/zapis/${id}`)
+  }
   return (
     <div className={styles.clinicZapisPage}>
       <div className={styles.leftBlock}>
@@ -65,55 +82,21 @@ function ClinicZapisPage() {
         <div className={styles.zapisPagePriceBlock}>
           <p>Typ wizyty</p>
           <div className={styles.dropdownContainer}>
-            <div
-              className={styles.dropdown}
-              onClick={() => toggleDropdown(isOpen1, setIsOpen1)}
-            >
-              {typWizyty || "Konsultacja ginekologiczna • 290,00 zł "}
-              <span className={styles.arrow}></span>
-            </div>
-            {isOpen1 && (
-              <ul className={styles.dropdownMenu}>
-                {arraySelectOptions.select1.map((elem) => (
-                  <li
-                    className={styles.dropdownMenuItem}
-                    onClick={() =>
-                      handleOptionClick(elem, setTypWizyty, setIsOpen1)
-                    }
-                    key={elem}
-                  >
-                    {elem}
-                  </li>
-                ))}
-              </ul>
-            )}
+
+            <DropdownStas
+              control={control} name={"."}
+              options={visitTypeOptions}
+               />
+
           </div>
         </div>
         <div className={styles.zapisPagePriceBlock}>
           <p>Rodzaj wizyty</p>
           <div className={styles.dropdownContainer}>
-            <div
-              className={styles.dropdown}
-              onClick={() => toggleDropdown(isOpen2, setIsOpen2)}
-            >
-              {rodzajWizyty || "Prywatna"}
-              <span className={styles.arrow}></span>
-            </div>
-            {isOpen2 && (
-              <ul className={styles.dropdownMenu}>
-                {arraySelectOptions.select2.map((elem) => (
-                  <li
-                    className={styles.dropdownMenuItem}
-                    onClick={() =>
-                      handleOptionClick(elem, setRodzajWizyty, setIsOpen2)
-                    }
-                    key={elem}
-                  >
-                    {elem}
-                  </li>
-                ))}
-              </ul>
-            )}
+            <DropdownStas
+              control={control} name={".."}
+              options={visitTypeOptions2}
+            />
           </div>
         </div>
         <div className={styles.choiceBlock}>
@@ -147,6 +130,6 @@ function ClinicZapisPage() {
         </div>
       </div>
     </div>
-  );
+  )
 }
-export default ClinicZapisPage;
+export default ClinicZapisPage
