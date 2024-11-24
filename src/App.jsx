@@ -1,5 +1,5 @@
 import { useState, lazy, Suspense } from "react"
-import { BrowserRouter as Router } from "react-router-dom"
+import { BrowserRouter as Router, useLocation } from "react-router-dom"
 import ScrollToTop from "./utils/scrollToTop"
 
 import Workspace from "./layouts/Workspace"
@@ -11,12 +11,11 @@ const AdminRoutes = lazy(() => import("./helpers/Routes/AdminRoutes"))
 const UserRoutes = lazy(() => import("./helpers/Routes/UserRoutes"))
 const DoctorRoutes = lazy(() => import("./helpers/Routes/DoctorRoutes"))
 import useIsAuth from './hooks/AuthHooks/useIsAuth'
-import AuthRoutes from './helpers/Routes/AuthRoutes'
 
 function App() {
   // const [role] = useState("admin"); // 'doctor', 'admin', 'firm'
   const { role, isAuth } = useStore()
-  // useIsAuth()
+  
   return (
 
     <Router>

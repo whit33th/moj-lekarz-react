@@ -35,9 +35,12 @@ class AuthServices {
   sessionValid() {
 
     return axios.get("https://doc-web-rose.vercel.app/api/protected", {
-      withCredentials: true, // Обязательно, чтобы куки отправлялись
+      withCredentials: true, 
+      
     })
   }
+
+
 }
 
 export const authService = new AuthServices()

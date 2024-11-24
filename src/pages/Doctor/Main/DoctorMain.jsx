@@ -11,10 +11,13 @@ import Calendar from '../../../components/DoctorPage/Home/Calendar/CalendarBlock
 
 import styles from './DoctorMain.module.css'
 
+
 function DoctorMain() {
+	
 	return (
 		<div className="content">
 			<h1 className={styles.greeting}>Witaj {myData.name} {myData.surname}</h1>
+			
 			<div className={styles.topLayer}>
 				<div className={`${styles.visits} ${styles.mainCard} ${styles.biggerCard}`}>
 					<img id="robot" src={robot} alt="Robot" className={styles.robotImage} />

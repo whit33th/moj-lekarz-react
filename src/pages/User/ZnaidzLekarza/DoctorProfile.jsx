@@ -7,6 +7,7 @@ import { useParams } from "react-router-dom";
 import useStore from "../../../data/store";
 
 const reviewData = [{}, {}, {}, {}];
+
 function DoctorProfile() {
   const [doctorInfo, setDoctorInfo] = useState({});
   const { id } = useParams();
@@ -19,6 +20,7 @@ function DoctorProfile() {
   console.log(doctorInfo);
   return (
     <div className={styles.doctorProfile}>
+     
       <div className={styles.doctorProfileRow}>
         <div className={styles.profileNameBlock}>
           <div>

@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query"
-
+import Cookies from "js-cookie"
 import { authService } from "../../services/authServices"
 
 import useStore from '../../data/store'
@@ -7,7 +7,7 @@ import useStore from '../../data/store'
 import { useNavigate } from 'react-router-dom'
 
 export default function useLogin() {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
   const { role, setRole, setUserId, userId, setIsAuth, IsAuth } = useStore()
   const { mutate, error, isError, isSuccess, isPending } = useMutation({
     mutationKey: ["login"],
@@ -21,7 +21,10 @@ export default function useLogin() {
       setUserId(userId)
       setIsAuth(true)
       console.log(role, userId)
-      navigate('/', { replace: true });
+      Cookies.set("isAuth", true, { expires: 7 })
+      
+      navigate('/', { replace: true })
+
     },
     onError: (error) => {
       console.error("Defeat ->", error)

@@ -21,6 +21,7 @@ function SignInForm({ setIsForgotPassword }) {
       <div className={styles.signIninputBlock}>
         <div>
           <input
+            
             placeholder="Email..."
             autoComplete="email"
             {...register("email", {
