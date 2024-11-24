@@ -7,13 +7,13 @@ import useStore from "../../../../data/store";
 const CalendarBlock = () => {
   const { selectedDate, setSelectedDate } = useStore();
   const [currentDate, setCurrentDate] = useState(new Date());
-  const renderCount = useRef(0); // Начинаем с 0 для первого рендера
+  // const renderCount = useRef(0); // Начинаем с 0 для первого рендера
 
   // Подсчёт количества рендеров
-  useEffect(() => {
-    renderCount.current += 1; // Увеличиваем счётчик при каждом рендере
-    console.log(`Компонент ререндерился ${renderCount.current} раз(а)`);
-  }, []); 
+  // useEffect(() => {
+  //   renderCount.current += 1; // Увеличиваем счётчик при каждом рендере
+  //   console.log(`Компонент ререндерился ${renderCount.current} раз(а)`);
+  // }, []); 
   useEffect(() => {
     if (!selectedDate) {
       const today = new Date();

@@ -1,4 +1,4 @@
-import { useState, lazy, Suspense } from "react"
+import { useState, lazy, Suspense, useEffect } from "react"
 import { BrowserRouter as Router, useLocation } from "react-router-dom"
 import ScrollToTop from "./utils/scrollToTop"
 
@@ -13,16 +13,22 @@ const DoctorRoutes = lazy(() => import("./helpers/Routes/DoctorRoutes"))
 import useIsAuth from './hooks/AuthHooks/useIsAuth'
 
 function App() {
-  // const [role] = useState("admin"); // 'doctor', 'admin', 'firm'
   const { role, isAuth } = useStore()
-  
+  console.log('role', role, 'isAuth', isAuth)
+
+  const { checkIsAuth } = useIsAuth()
+  useEffect(() => {
+    checkIsAuth()
+  }, [checkIsAuth]) // Срабатывает только один раз после монтирования
+
+
   return (
 
     <Router>
       <ScrollToTop />
 
       <Suspense>
-        {role === "patient" || !isAuth ? (
+        {role === "patient" && !isAuth ? (
           <UserLayout>
             <UserRoutes />
           </UserLayout>
@@ -30,7 +36,7 @@ function App() {
           <Workspace role={role}>
             {role === "doctor" && <DoctorRoutes />}
             {role === "admin" && <AdminRoutes />}
-            {role === "firm" && <FirmRoutes />}
+            {role === "clinic" && <FirmRoutes />}
           </Workspace>
         )}
       </Suspense>

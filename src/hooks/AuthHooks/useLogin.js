@@ -22,7 +22,7 @@ export default function useLogin() {
       setIsAuth(true)
       console.log(role, userId)
       Cookies.set("isAuth", true, { expires: 7 })
-      
+      Cookies.set("role", role, { expires: 7 })
       navigate('/', { replace: true })
 
     },

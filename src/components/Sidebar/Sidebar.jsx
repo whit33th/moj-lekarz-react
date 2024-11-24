@@ -1,32 +1,20 @@
-import sbLinks from "../../helpers/sbLinks";
-import { NavLink, useNavigate } from "react-router-dom";
-import exit from "../../assets/img/exitIco.png";
-import logo from "../../assets/img/logoonly.png";
-import styles from "./Sidebar.module.css";
-import BlueBtn from "../Buttons/BlueBtn/BlueBtn";
-import BlueBorderBtn from "../Buttons/BlueBorderBtn/BlueBorderBtn";
-import useStore from "../../data/store";
-import Choice from "../Modal/Choice";
+import sbLinks from "../../helpers/sbLinks"
+import { NavLink, useNavigate } from "react-router-dom"
+import exit from "../../assets/img/exitIco.png"
+import logo from "../../assets/img/logoonly.png"
+import styles from "./Sidebar.module.css"
+import useStore from "../../data/store"
+import ExitModal from '../Modals/ExitModal/ExitModal'
 
 function Sidebar({ role, children }) {
-  const { setModalActive, setModalContent } = useStore();
-  const navigate = useNavigate();
+  const { setModalActive, setModalContent } = useStore()
+  const navigate = useNavigate()
 
-  const modalContent = (
-    <div>
-      <h1 className={styles.title}>
-        Czy na pewno chcesz <br /> wylogować się z konta?
-      </h1>
-
-      <Choice choice1="Nie" choice2="Tak" cb1={() => setModalActive(false)} />
-    </div>
-  );
-
-  const sidebarLinkFilters = sbLinks.filter((sbLink) => sbLink.role === role);
+  const sidebarLinkFilters = sbLinks.filter((sbLink) => sbLink.role === role)
 
   function handleModal() {
-    setModalActive(true);
-    setModalContent(modalContent);
+    setModalActive(true)
+    setModalContent(<ExitModal/>)
   }
 
   return (
@@ -57,7 +45,7 @@ function Sidebar({ role, children }) {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default Sidebar;
+export default Sidebar

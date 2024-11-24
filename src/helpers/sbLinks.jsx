@@ -57,51 +57,51 @@ const sbLinks = [
 
   //firmLinks
   {
-    role: "firm",
+    role: "clinic",
     title: "Główna",
     img: home,
     url: "/",
   },
   {
-    role: "firm",
+    role: "clinic",
     title: "Kalendarz",
     img: calendar,
     url: "/calendar",
   },
   {
-    role: "firm",
+    role: "clinic",
     title: "Grafik pracy",
     img: calendarManage,
     url: "/graph",
   },
   {
-    role: "firm",
+    role: "clinic",
     title: "Pracownicy",
     img: stetoskop,
     url: "/workers",
   },
   {
-    role: "firm",
+    role: "clinic",
     title: "Lista pacjentów",
     img: list,
     url: "/patients",
   },
 
   {
-    role: "firm",
+    role: "clinic",
     title: "Zarządzanie firmą",
     img: firm,
     url: "/management",
   },
 
   {
-    role: "firm",
+    role: "clinic",
     title: "Wiadomości",
     img: notifications,
     url: pageConfig.firm.notifications,
   },
   {
-    role: "firm",
+    role: "clinic",
     title: "Ustawienia",
     img: settings,
     url: pageConfig.firm.settings,

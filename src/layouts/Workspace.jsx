@@ -3,14 +3,16 @@ import Navbar from "../components/Navbar/Navbar"
 import Sidebar from "../components/Sidebar/Sidebar"
 import { Toaster } from "sonner"
 import useIsAuth from '../hooks/AuthHooks/useIsAuth'
+import useGetShortInfo from '../hooks/DoctorHooks/useGetShortInfo'
 
 
 const Modal = lazy(() => import("../components/Modal/Modal"))
 
 function Workspace({ role, children }) {
-  useIsAuth()
 
+  const { data } = useGetShortInfo(1)
 
+  console.log(data)
   return (
     <>
 

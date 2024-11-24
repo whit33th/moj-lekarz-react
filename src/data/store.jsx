@@ -1,9 +1,10 @@
 import { create } from "zustand"
 import imageblog from "../assets/img/imageblog.webp"
 import doctor from "../assets/img/doctor.jpg"
+import Cookies from 'js-cookie'
 const useStore = create((set) => ({
   //role
-  role: null,
+  role: Cookies.get("role") === undefined ? "patient" : Cookies.get("role"),
   setRole: (role) => set({ role: role }),
 
   //userId
@@ -11,7 +12,7 @@ const useStore = create((set) => ({
   setUserId: (userId) => set({ userId: userId }),
 
   // Auth state
-  isAuth: false,
+  isAuth: Cookies.get("userId") === undefined ? false : true,
   setIsAuth: (isAuth) => set({ isAuth: isAuth }),
 
   // Modal state
