@@ -8,6 +8,11 @@ class DoctorServices {
 			withCredentials: true,
 		})
 	}
+	async getAppointment(id) {
+		return axios.get(`${this.URL}/api/doctors/${id}/appointments`, {
+			withCredentials: true,
+		})
+	}
 
 }
 

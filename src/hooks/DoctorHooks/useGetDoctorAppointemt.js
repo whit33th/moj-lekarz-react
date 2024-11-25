@@ -1,17 +1,16 @@
 import { useQuery } from "@tanstack/react-query"
 import { doctorServices } from '../../services/doctorServices'
 
-function useGetShortInfo(id) {
+function useGetDoctorAppointment(id) {
 
 	const { data } = useQuery({
-		queryKey: ["getShortInfo", id],
-		queryFn: () => doctorServices.getShortInfo(id),
+		queryKey: ["getAppointment", id],
+		queryFn: () => doctorServices.getAppointment(id),
 		select: (data) => data.data,
-		
 		enabled: !!id
 	})
 
 	return { data }
 }
 
-export default useGetShortInfo
+export default useGetDoctorAppointment

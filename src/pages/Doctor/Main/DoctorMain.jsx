@@ -10,22 +10,36 @@ import { userItems, myData } from '../../../helpers/userItemList'
 import Calendar from '../../../components/DoctorPage/Home/Calendar/CalendarBlock'
 
 import styles from './DoctorMain.module.css'
+import useGetShortInfo from './../../../hooks/DoctorHooks/useGetShortInfo'
+import useStore from '../../../data/store'
+import useGetDoctorAppointment from '../../../hooks/DoctorHooks/useGetDoctorAppointemt'
 
 
 function DoctorMain() {
-	
+	const { userId } = useStore()
+	const { data: doctorInfo } = useGetShortInfo(userId)
+	const { data: appointments } = useGetDoctorAppointment(userId)
+
+	console.log(appointments)
 	return (
 		<div className="content">
-			<h1 className={styles.greeting}>Witaj {myData.name} {myData.surname}</h1>
-			
+			{doctorInfo && (
+				<h1 className={styles.greeting}>
+					Witaj {doctorInfo.user.first_name} {doctorInfo.user.last_name}
+				</h1>
+			)}
+
+
 			<div className={styles.topLayer}>
 				<div className={`${styles.visits} ${styles.mainCard} ${styles.biggerCard}`}>
 					<img id="robot" src={robot} alt="Robot" className={styles.robotImage} />
 
-					<div className={`${styles.visitCount} ${styles.twoSide}`}>
+					{appointments && (<div className={`${styles.visitCount} ${styles.twoSide}`}>
 						<p className={styles.titleCard}>Dzisiejsze wizyty</p>
-						<p className={styles.countNumber}>36</p>
-					</div>
+						<p className={styles.countNumber}>{appointments.length}</p>
+					</div>)}
+
+
 
 					<div className={styles.botCards}>
 						<div className={`${styles.visitStats} ${styles.card}`}>
@@ -52,17 +66,17 @@ function DoctorMain() {
 					</div>
 				</div>
 				<div className={`${styles.mainCard}`}>
-				<div className={`${styles.flex} ${styles.between}`}>
-							<p className={styles.titleCard}>Ostatnie wizyty</p>
-							<NavLink className={styles.black} to="/last-visits">
-								<div className={`${styles.flex} ${styles.center}`}>
-									<p className={styles.followLink}>Więcej</p>
-									<img className={styles.ico} src={follow} alt="Follow" />
-								</div>
-							</NavLink>
-						</div>
+					<div className={`${styles.flex} ${styles.between}`}>
+						<p className={styles.titleCard}>Ostatnie wizyty</p>
+						<NavLink className={styles.black} to="/last-visits">
+							<div className={`${styles.flex} ${styles.center}`}>
+								<p className={styles.followLink}>Więcej</p>
+								<img className={styles.ico} src={follow} alt="Follow" />
+							</div>
+						</NavLink>
+					</div>
 					<div className={styles.visitHistory}>
-						
+
 
 						<div className={styles.history}>
 							{userItems.slice(-3).map((userItem, index) => (

@@ -8,11 +8,11 @@ const useStore = create((set) => ({
   setRole: (role) => set({ role: role }),
 
   //userId
-  userId: null,
+  userId: Cookies.get("id") === undefined ? 0 : Cookies.get("id"),
   setUserId: (userId) => set({ userId: userId }),
 
   // Auth state
-  isAuth: Cookies.get("userId") === undefined ? false : true,
+  isAuth: Cookies.get("isAuth") === undefined ? false : true,
   setIsAuth: (isAuth) => set({ isAuth: isAuth }),
 
   // Modal state
