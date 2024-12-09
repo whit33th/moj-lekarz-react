@@ -1,48 +1,64 @@
-import tablecss from "../../../components/Table/Table.module.css";
-import calendar from "../../../assets/img/calendar.png";
-import styles from "./LastVisits.module.css";
-import { userItems } from "../../../helpers/userItemList";
-import Dropdown from "../../../components/Dropdown/Dropdown";
+import tablecss from "../../../components/Table/Table.module.css"
+import calendar from "../../../assets/img/calendar.png"
+import styles from "./LastVisits.module.css"
+
+import Dropdown from "../../../components/Dropdown/Dropdown"
 import Table from '../../../components/Table/Table'
+import useGetDoctorAppointment from '../../../hooks/DoctorHooks/useGetDoctorAppointment'
+import useStore from '../../../data/store'
+import { is } from './../../../../node_modules/preact/compat/src/util'
+import Pagination from './../../../components/UI/Pagination/Pagination';
 
 
 
 function LastVisits() {
-  const tableData = userItems.map((item) => ({
-    img: item.img,
-    name: item.name,
-    id: item.id,
-    
-    birthday: item.birthDate,
-  }));
+  const { userId, todayDate } = useStore()
+  const { data: appointments, isLoading } = useGetDoctorAppointment({
+    id: userId,
+    dateFrom: '2023-11-05',
+    dateTo: '2025-11-10',
+  })
 
+  const tableData = appointments?.map((appointment) => ({
+    img: appointment?.patient.photo,
+    name: appointment?.patient?.first_name + " " + appointment?.patient?.last_name || '',
+    id: appointment?.id || '',
+    date: appointment?.date || '',
+    time: appointment?.start_time || '',
+  })) || []
+
+  console.log(appointments)
   const columns = [
-    
+
     {
       header: "Search",
-      render: (item) => (
+      render: (appointment) => (
         <div className={tablecss.nameTd}>
-          {item.img && (
-            <img src={item.img} alt="Avatar" className={tablecss.round} />
+          {appointment.img && (
+            <img src={appointment.img} alt="Avatar" className={tablecss.round} />
           )}
           <div className={styles.userInfo}>
-             <p>{item.name || "-"}</p>
+            <p>{appointment.name || "-"}</p>
 
           </div>
         </div>
       ),
     },
-    {header: 'Numer ID', dataKey: 'id'},
-    {header: 'Data', render: (item) => (item.birthday)},
-    {header: 'Czas', render: () => (
-      <div>
+    { header: 'Numer ID', dataKey: 'id' },
+    { header: 'Data', render: (appointment) => (appointment.date) },
+    {
+      header: 'Czas', render: (appointment) => (
         <div>
-          <span className={tablecss.receptId}>10:30</span>
+          <div>
+            <span className={tablecss.receptId}>{appointment.time.slice(0, 5)}</span>
+          </div>
         </div>
-      </div>
-    ),}
-   
-  ];
+      ),
+    }
+
+  ]
+
+  
   return (
     <div className="content">
       <div className={styles.calendarNavbar}>
@@ -76,15 +92,17 @@ function LastVisits() {
 
       <div className={styles.tableContainer}>
         <Table
+          loading={isLoading}
           inputPlaceholder={"Szukaj pacjenta..."}
           columns={columns}
           data={tableData}
           showImage={true}
           together={true}
         />
+        <Pagination />
       </div>
     </div>
-  );
+  )
 }
 
-export default LastVisits;
+export default LastVisits

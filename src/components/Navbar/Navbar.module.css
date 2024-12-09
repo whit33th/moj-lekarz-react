@@ -1,27 +1,29 @@
 .lastVisitsNavbarButt img {
-  width: 16px;
-  margin: 9px 0 9PX 20px;
+	width: 16px;
+	margin: 9px 0 9PX 20px;
 }
 
 .lastVisitsNavbarButt span {
-  padding: 0 15px;
+	padding: 0 15px;
 }
 
 .navbar {
 
 
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
-  align-items: center;
-  justify-content: space-between;
+	display: flex;
+	flex-direction: row;
+	gap: 20px;
+	align-items: center;
+	justify-content: space-between;
 
 }
+
 #searchForm {
 	position: relative;
 	transition: 0.3s;
-	
+
 }
+
 .search {
 	background-color: white;
 	display: flex;
@@ -35,9 +37,14 @@
 	z-index: 100;
 	transition: 0.3s;
 }
+
 .messages {
 	position: relative;
+	
+	
 }
+
+
 .incomingMessages {
 	border-radius: 16px;
 	box-shadow: 0 0 50px 5px #00000014;
@@ -49,11 +56,14 @@
 	width: 330px;
 	background-color: white !important;
 	opacity: 1;
+	
 }
+
 .profile img {
 	border-radius: 100px;
 	width: 48px;
 }
+
 .search img {
 	margin: 0 10px 0 20px;
 	filter: invert(0.8);
@@ -61,16 +71,27 @@
 	height: 20px;
 	width: 20px !important;
 }
+.notification{
+	border: none;
+	padding: 0;
+	
+	background: transparent;
+}
+
 .bell {
 	width: 28px;
 	transition: 0.3s;
+	cursor: pointer;
 }
+
 .message:first-child {
 	border-radius: 16px 2px 0 0;
 }
+
 .message:last-child {
 	border-radius: 0 0 16px 16px;
 }
+
 .message {
 	font-size: 12px;
 	display: flex;
@@ -78,7 +99,7 @@
 	border-left: 1px solid #eee;
 	border-right: 1px solid #eee;
 	border-bottom: 1px solid #eee;
-	cursor: pointer;
+	cursor: default;
 	z-index: 99;
 	flex-direction: row;
 	align-content: center;
@@ -88,9 +109,11 @@
 	position: relative;
 	background-color: white;
 }
+
 .message p {
 	width: 72%;
 }
+
 .message button {
 	width: 28%;
 	font-size: 12px;
@@ -101,6 +124,7 @@
 	border: none;
 	font-weight: bold;
 }
+
 button.buttDef {
 	width: 100%;
 	background: transparent;
@@ -108,33 +132,38 @@ button.buttDef {
 	height: 45px;
 	border: 1px solid black;
 }
+
 .search input {
 	width: 100%;
 	border: none;
 	border-radius: 100px;
 	padding: 10px 0;
-	
+
 }
+
 .transform {
-  border-radius: 20px 20px 0 0;
-  transition: 0.3s;
+	border-radius: 20px 20px 0 0;
+	transition: 0.3s;
 }
+
 .searchItem:last-child {
-  border-radius: 0 0 16px 16px;
+	border-radius: 0 0 16px 16px;
 
 }
+
 .searchItem {
-  background: rgba(250, 250, 250, 0.9);
-  padding: 10px 20px;
-  border-left: 1px solid #eee;
-  border-right: 1px solid #eee;
-  border-bottom: 1px solid #eee;
-  cursor: pointer;
-  z-index: 99;
+	background: rgba(250, 250, 250, 0.9);
+	padding: 10px 20px;
+	border-left: 1px solid #eee;
+	border-right: 1px solid #eee;
+	border-bottom: 1px solid #eee;
+	cursor: pointer;
+	z-index: 99;
 
 }
+
 .searchItem:hover {
-  background-color: #f1f1f1;
+	background-color: #f1f1f1;
 }
 
 .searchResults {
@@ -146,9 +175,11 @@ button.buttDef {
 	display: none;
 	transition: 0.1s;
 }
-.searchResults.show{
+
+.searchResults.show {
 	display: block !important;
 }
+
 .bell:active {
-  scale: 0.9;
+	scale: 0.9;
 }

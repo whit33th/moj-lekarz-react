@@ -17,6 +17,7 @@ function SignUpComponent() {
   const { mutate, isLoading, isError, isSuccess, error } = useRegistration();
 
   const onSubmit = (data) => {
+   
     mutate(data);
   };
 

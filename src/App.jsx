@@ -11,6 +11,7 @@ const AdminRoutes = lazy(() => import("./helpers/Routes/AdminRoutes"))
 const UserRoutes = lazy(() => import("./helpers/Routes/UserRoutes"))
 const DoctorRoutes = lazy(() => import("./helpers/Routes/DoctorRoutes"))
 import useIsAuth from './hooks/AuthHooks/useIsAuth'
+import { SkeletonTheme } from 'react-loading-skeleton'
 
 function App() {
   const { role, isAuth } = useStore()
@@ -23,25 +24,26 @@ function App() {
 
 
   return (
+    <SkeletonTheme baseColor="#f0f0f0" highlightColor="#ececec" borderRadius={12}>
+      <Router>
+        <ScrollToTop />
 
-    <Router>
-      <ScrollToTop />
+        <Suspense>
+          {role === "patient" && !isAuth ? (
+            <UserLayout>
+              <UserRoutes />
+            </UserLayout>
+          ) : (
+            <Workspace role={role}>
+              {role === "doctor" && <DoctorRoutes />}
+              {role === "admin" && <AdminRoutes />}
+              {role === "clinic" && <FirmRoutes />}
+            </Workspace>
+          )}
+        </Suspense>
 
-      <Suspense>
-        {role === "patient" && !isAuth ? (
-          <UserLayout>
-            <UserRoutes />
-          </UserLayout>
-        ) : (
-          <Workspace role={role}>
-            {role === "doctor" && <DoctorRoutes />}
-            {role === "admin" && <AdminRoutes />}
-            {role === "clinic" && <FirmRoutes />}
-          </Workspace>
-        )}
-      </Suspense>
-    </Router>
-
+      </Router>
+    </SkeletonTheme>
   )
 }
 

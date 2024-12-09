@@ -6,11 +6,8 @@ import axios from 'axios'
 import Cookies from 'js-cookie'
 
 export default function useIsAuth() {
-
-
 	const { setIsAuth } = useStore()
 	axios.defaults.withCredentials = true
-
 	const { data, isSuccess, isError, refetch } = useQuery({
 		queryKey: ['checkIsAuth'],
 		queryFn: () => authService.sessionValid(),
@@ -21,8 +18,6 @@ export default function useIsAuth() {
 	useEffect(() => {
 		if (isSuccess) {
 			setIsAuth(true)
-			console.log(data, 'cool')
-			
 		}
 	}, [isSuccess, setIsAuth, data])
 

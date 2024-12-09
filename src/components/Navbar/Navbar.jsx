@@ -1,9 +1,10 @@
 import { useState, useRef, useEffect } from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import styles from './Navbar.module.css'
 import searchIco from '../../assets/img/search.png'
 import bell from '../../assets/img/bell.png'
-import profil from '../../assets/img/profil.webp'
+import grey from '../../assets/img/grey.png'
+import useGetUserInfo from '../../hooks/UserHooks/useGetUserInfo'
 
 function Navbar() {
     const [searchActive, setSearchActive] = useState(false)
@@ -12,10 +13,12 @@ function Navbar() {
     const searchFormRef = useRef(null)
 
     const [isMessageActive, setIsMessageActive] = useState(false)
+    const messagesRef = useRef(null) // Создаем ссылку для блока с сообщениями
 
-    function toggleMessage () {
-        setIsMessageActive(!isMessageActive)
+    function toggleMessage() {
+        setIsMessageActive((prev) => !prev)
     }
+
     function showSearchResults() {
         setSearchActive(true)
     }
@@ -32,9 +35,9 @@ function Navbar() {
         }
     }
 
-    
     useEffect(() => {
         function handleClickOutside(event) {
+            // Закрываем результаты поиска, если клик был вне поля поиска
             if (
                 searchInputRef.current &&
                 !searchInputRef.current.contains(event.target) &&
@@ -43,12 +46,22 @@ function Navbar() {
             ) {
                 hideSearchResults()
             }
+
+            // Закрываем сообщения, если клик был вне блока сообщений
+            if (
+                messagesRef.current &&
+                !messagesRef.current.contains(event.target) &&
+                !document.getElementById("messages").contains(event.target)
+            ) {
+                setIsMessageActive(false)
+            }
         }
 
         document.addEventListener('mousedown', handleClickOutside)
         return () => document.removeEventListener('mousedown', handleClickOutside)
     }, [])
 
+    const { data } = useGetUserInfo()
     return (
         <div className={styles.navbar}>
             <form
@@ -63,10 +76,8 @@ function Navbar() {
                     className={styles.searchInput}
                     placeholder="Szukaj..."
                     type="text"
-                    name="search"
-                    id="search"
                     onInput={handleInput}
-                    onClick={() => handleInput() }
+                    onClick={() => handleInput()}
                 />
                 <div
                     ref={searchResultsRef}
@@ -79,29 +90,34 @@ function Navbar() {
                 </div>
             </form>
 
-            <div onClick={toggleMessage} id="messages" className={styles.messages}>
-                <div id="message-icon">
+            <div
+                onClick={toggleMessage}
+                id="messages"
+                className={styles.messages}
+                ref={messagesRef} // Добавляем ссылку для блока сообщений
+            >
+                <button className={styles.notification} >
                     <img className={styles.bell} src={bell} alt="bell" />
-                </div>
+                </button>
 
-                <div style={isMessageActive ? {display: 'block'}  : {display: 'none'}  } className={styles.incomingMessages}>
+                <div
+                    style={isMessageActive ? { display: 'block' } : { display: 'none' }}
+                    className={styles.incomingMessages}
+                >
                     <div className={styles.message}>
                         <p>Masz nową wiadomość od Marcina Wojceha</p>
-                        <button className={styles.buttDef}>
-                            Zobacz
-                        </button>
+                        <button className={styles.buttDef}>Zobacz</button>
                     </div>
                     <div className={styles.message}>
                         <p>Masz nową wiadomość</p>
-                        <button className={styles.buttDef}>
-                        Zobacz
-                        </button>
+                        <button className={styles.buttDef}>Zobacz</button>
                     </div>
                 </div>
             </div>
+
             <NavLink to="/profile">
                 <div className={styles.profile}>
-                    <img src={profil} alt="profil" />
+                    <img src={data?.photo || grey} alt="profil" />
                 </div>
             </NavLink>
         </div>

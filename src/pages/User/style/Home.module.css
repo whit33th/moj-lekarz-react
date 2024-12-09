@@ -12,6 +12,17 @@
   align-items: center;
 }
 
+.calendar {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: 16px;
+  padding: 0 19px;
+  font-size: 15.5px;
+  font-weight: 400;
+  ;
+}
+
 .homeFirstBlockLeft {
   display: flex;
   justify-content: center;
@@ -59,7 +70,7 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  width: 100% ;
+  width: 100%;
   margin-bottom: 15px;
 }
 
@@ -142,7 +153,7 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  
+
 }
 
 
@@ -285,6 +296,7 @@
   display: flex;
   justify-content: center;
 }
+
 @media (max-width: 624px) {
   .mapBlock {
     width: 100%;
@@ -292,10 +304,12 @@
     padding: 50px 0;
     height: auto;
   }
+
   .itemImg img {
     width: 100%;
     height: auto;
   }
+
   .itemText p {
     font-size: 14px;
   }
@@ -303,6 +317,7 @@
   .itemText p.itemTextTitle {
     font-size: 16px;
   }
+
   .mainFormBlock {
     width: 88%;
     min-height: 378px;
@@ -310,6 +325,7 @@
     border-radius: 20px;
     padding: 15px;
   }
+
   .homeFirstBlock {
     flex-wrap: wrap;
     position: relative;
@@ -317,6 +333,7 @@
     width: 100%;
     overflow: hidden;
   }
+
   .homeFirstBlock img {
     width: 100%;
   }
@@ -337,27 +354,34 @@
     z-index: 2;
     padding: 20px 0;
   }
+
   .mainFormBlock h2 {
     font-size: 24px;
   }
+
   .mainFormIntupsBlock {
     padding: 15px 3%;
   }
+
   .descriptionsText {
     padding: 30px 0;
   }
+
   .descriptions p {
     width: 88%;
   }
+
   .howItWorksImageBlock {
     width: 100%;
     grid-template-columns: repeat(1, 1fr);
     padding: 30px 10%;
   }
+
   .howItWorksImageBlock .arrow {
     display: none;
   }
-  .howItWorksImageBlock > div {
+
+  .howItWorksImageBlock>div {
     width: 100%;
     display: flex;
     align-items: center;
@@ -365,24 +389,29 @@
     flex-wrap: wrap;
     justify-content: center;
   }
+
   .itemImg {
     width: 60%;
     display: flex;
     justify-content: center;
     align-items: center;
   }
+
   .itemImg img {
     width: 80%;
     height: auto;
   }
+
   .itemText {
     width: 60%;
   }
+
   .itemText p {
     font-size: 15px;
     font-weight: 400;
     line-height: 20px;
   }
+
   .itemText p.itemTextTitle {
     font-size: 17.5px;
     font-weight: 500;

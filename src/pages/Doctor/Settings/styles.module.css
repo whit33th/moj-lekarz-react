@@ -53,6 +53,12 @@ input[type="date"] {
   flex-direction: column;
 }
 
+.settingInfo form{
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
 .settingData {
   display: flex;
   gap: 100px;

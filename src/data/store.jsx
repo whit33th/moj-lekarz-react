@@ -3,6 +3,7 @@ import imageblog from "../assets/img/imageblog.webp"
 import doctor from "../assets/img/doctor.jpg"
 import Cookies from 'js-cookie'
 const useStore = create((set) => ({
+  todayDate: new Date().toISOString().split("T")[0],
   //role
   role: Cookies.get("role") === undefined ? "patient" : Cookies.get("role"),
   setRole: (role) => set({ role: role }),
@@ -10,6 +11,9 @@ const useStore = create((set) => ({
   //userId
   userId: Cookies.get("id") === undefined ? 0 : Cookies.get("id"),
   setUserId: (userId) => set({ userId: userId }),
+
+  clinicId: Cookies.get("clinicId") === undefined ? 0 : Cookies.get("clinicId"),
+  setClinicId: (clinicId) => set({ clinicId: clinicId }),
 
   // Auth state
   isAuth: Cookies.get("isAuth") === undefined ? false : true,
@@ -29,9 +33,27 @@ const useStore = create((set) => ({
 
   activeDropdownId: null,
   setActiveDropdownId: (id) => set({ activeDropdownId: id }),
+  // Chosen date by user. ex: in calendar
+  selectedDate: new Date().toISOString().slice(0, 10),
+  selectedDateInWords: new Date().toLocaleString("pl-PL", {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  }),
+  setSelectedDate: (date) =>
+    set({
+      selectedDate: date,
+      selectedDateInWords: new Date(date).toLocaleString("pl-PL", {
+        // weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      }),
+    }),
 
-  selectedDate: new Date(),
-  setSelectedDate: (date) => set({ selectedDate: date }),
+  visitCountForMonth: 0,
+  setVisitCountForMonth: (visitCount) => set({ visitCountForMonth: visitCount}),
   // Profile state
   profileState: {
     id: 0,
@@ -893,11 +915,10 @@ const useStore = create((set) => ({
       },
     })),
 
-  // Converted createAsyncThunk to a Zustand action
   fetchBlogs: async () => {
     set({ status: "loading" })
     try {
-      const response = await fetch.get("/blogs") //fetch было axios
+      const response = await fetch.get("/blogs") 
       set({ status: "succeeded", blogs: response.data })
     } catch (error) {
       set({ status: "failed", error: error.message })

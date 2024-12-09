@@ -44,7 +44,7 @@
   border-radius: 50%;
   align-items: center;
   justify-content: center;
-  transition: 0.3s ease;
+  /* transition: 0.3s ease; */
 }
 
 .day:hover {
@@ -63,8 +63,13 @@
 
 .reserved {
   background-color: #A6DEF7;
-}
 
+}
+.inactive {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
 .calendarNavbarButt {
   gap: 5px;
   PADDING: 5PX 0;

@@ -1,16 +1,16 @@
-import { useState } from "react";
-import styles from "./styles.module.css";
-import photo from "../../../assets/img/profil.webp";
-import Calendar from "../../../components/DoctorPage/Home/Calendar/CalendarBlock";
+import { useState } from "react"
+import styles from "./styles.module.css"
+import photo from "../../../assets/img/profil.webp"
+import Calendar from "../../../components/DoctorPage/Home/Calendar/CalendarBlock"
 
-import DropdownStas from "../../../components/Dropdown/DropdownStas";
-import Tabs from "../../../components/Buttons/Tabs/Tabs";
+import DropdownStas from "../../../components/Dropdown/DropdownStas"
+import Tabs from "../../../components/Buttons/Tabs/Tabs"
 import { useForm } from 'react-hook-form'
 
 function Settings() {
-  const [activeTab, setActiveTab] = useState("Dane podstawowe");
-  const [selectedName, setSelectedName] = useState("Dariusz Adamek");
-  const [selectedReason, setSelectedReason] = useState("Wybierz");
+  const [activeTab, setActiveTab] = useState("Dane podstawowe")
+  const [selectedName, setSelectedName] = useState("Dariusz Adamek")
+  const [selectedReason, setSelectedReason] = useState("Wybierz")
 
   const option1 = [
     "Dariusz Adamek",
@@ -23,17 +23,17 @@ function Settings() {
     "Option 1",
     "Option 2",
     "Option 3",
-  ];
-  const option2 = ["Wybierz", "Option 1", "Option 2", "Option 3"];
+  ]
+  const option2 = ["Wybierz", "Option 1", "Option 2", "Option 3"]
   const Buttons = [
     "Dane podstawowe",
     "Dane dodatkowe",
     "Czas pracy",
     "Wnioski",
-  ];
+  ]
 
   function handleTabClick(name) {
-    setActiveTab(name);
+    setActiveTab(name)
   }
   const { control, handleSubmit, watch } = useForm({
 
@@ -58,7 +58,7 @@ function Settings() {
         />
       </div>
     </div>
-  );
+  )
 
   const workTime = (
     <div className={styles.workTime}>
@@ -81,7 +81,7 @@ function Settings() {
         </p>
       </div>
     </div>
-  );
+  )
 
   const settingData = (
     <div className={styles.settingData}>
@@ -109,7 +109,7 @@ function Settings() {
               type="date"
               id="date"
               name="flat"
-              defaultValue="2002-12-21"
+              value="2002-12-21"
             />
           </div>
           <div>
@@ -150,7 +150,7 @@ function Settings() {
         </div>
       </div>
     </div>
-  );
+  )
 
   const additionalData = (
     <>
@@ -165,7 +165,7 @@ function Settings() {
         Zapisz zmiany
       </button>
     </>
-  );
+  )
 
   return (
     <div className="content">
@@ -176,12 +176,12 @@ function Settings() {
         storageKey="SettingAdminNavbar"
       />
 
-      
-        {activeTab === "Dane podstawowe" && settingData}
-        {activeTab === "Dane dodatkowe" && additionalData}
-     
+
+      {activeTab === "Dane podstawowe" && settingData}
+      {activeTab === "Dane dodatkowe" && additionalData}
+
     </div>
-  );
+  )
 }
 
-export default Settings;
+export default Settings

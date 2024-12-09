@@ -1,16 +1,19 @@
-import styles from "./VisitModal.module.css";
-import profil from "../../../assets/img/profil.webp";
-import BlueBorderBtn from "../../Buttons/BlueBorderBtn/BlueBorderBtn";
+import styles from "./VisitModal.module.css"
+import profil from "../../../assets/img/profil.webp"
+import BlueBorderBtn from "../../Buttons/BlueBorderBtn/BlueBorderBtn"
 
-import BlueBtn from "../../Buttons/BlueBtn/BlueBtn";
-import useStore from "../../../data/store";
-import { useNavigate } from "react-router-dom";
+import BlueBtn from "../../Buttons/BlueBtn/BlueBtn"
+import useStore from "../../../data/store"
+import { useNavigate, useParams } from "react-router-dom"
 
 function VisitModal() {
-  const { setModalActive } = useStore();
-  const navigate = useNavigate();
+  const { setModalActive } = useStore()
+  const navigate = useNavigate()
+
+  const { id } = useParams()
+  console.log(id)
   function closeMainModal() {
-    setModalActive(false);
+    setModalActive(false)
   }
   return (
     <div className={styles.row}>
@@ -19,7 +22,7 @@ function VisitModal() {
           <h2>Informacja o wizycie</h2>
 
           <div className={styles.infoTag}>
-            <span>Godziny pracy:</span> <span> 08:30 - 16:45</span>
+            <span>Godziny wizyty:</span> <span> 08:30 - 16:45 { }</span>
           </div>
 
           <div className={styles.infoTag}>
@@ -98,7 +101,7 @@ function VisitModal() {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default VisitModal;
+export default VisitModal

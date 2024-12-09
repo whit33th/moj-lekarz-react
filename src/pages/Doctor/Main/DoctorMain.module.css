@@ -5,10 +5,20 @@
 	justify-content: space-between;
 }
 .history {
-	gap: 5px;
+	gap: 15px;
 	display: grid;
 	flex-direction: column;
 	align-items: start;
+}
+.noVisits{
+  display: flex;
+    height: 60px;
+    border-radius: 10px;
+    background: #f0f0f0;
+  
+   
+    align-items: center;
+    justify-content: center;
 }
 .mainCard {
   background-color: white;

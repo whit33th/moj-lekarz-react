@@ -12,7 +12,7 @@ const arraySelectOptions = {
 }
 
 
-function ZhaidzLekarza(props) {
+function ZnajdzLekarza(props) {
   const doctorCard = props.doctorCard
   const [isOpen1, setIsOpen1] = useState(false)
   const [isOpen2, setIsOpen2] = useState(false)
@@ -116,4 +116,4 @@ function ZhaidzLekarza(props) {
   )
 }
 
-export default ZhaidzLekarza
+export default ZnajdzLekarza

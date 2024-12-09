@@ -4,12 +4,12 @@ import styles from "../AuthPage.module.css";
 
 import useLogin from "../../../hooks/AuthHooks/useLogin";
 
-import useStore from "../../../data/store";
 function SignInForm({ setIsForgotPassword }) {
   const { register, handleSubmit, formState } = useForm({
     mode: "onChange",
   });
   const { mutate, role, error, isError, isSuccess, isPending } = useLogin();
+
 
   
   function onSubmit(data) {
@@ -26,10 +26,10 @@ function SignInForm({ setIsForgotPassword }) {
             autoComplete="email"
             {...register("email", {
               required: "Email jest wymagany",
-              // pattern: {
-              //   value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
-              //   message: "Błędny email",
-              // },
+              pattern: {
+                value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
+                message: "Błędny email",
+              },
             })}
           />
           <InputError errorField={"email"} formState={formState} />
@@ -41,10 +41,10 @@ function SignInForm({ setIsForgotPassword }) {
             placeholder="Hasło..."
             {...register("password", {
               required: "Hasło jest wymagane",
-              // minLength: {
-              //   value: 8,
-              //   message: "Hasło musi mieć co najmniej 8 znaków",
-              // },
+              minLength: {
+                value: 8,
+                message: "Hasło musi mieć co najmniej 8 znaków",
+              },
             })}
           />
           <InputError errorField={"password"} formState={formState} />

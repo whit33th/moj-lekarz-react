@@ -13,6 +13,7 @@ class PageConfig {
     calendar: "/calendar",
     list: "/list",
     patientInfo: "/patient-info/:id",
+    visitInfo: "/visit-info/:id",
     recipes: "/recipes",
     notifications: "/notifications",
     chat: "/chat",

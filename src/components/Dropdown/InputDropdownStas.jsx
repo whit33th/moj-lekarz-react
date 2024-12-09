@@ -9,7 +9,6 @@ const InputDropdownStas = ({
   control,
   name,
 }) => {
- 
   const {
     field: { value, onChange },
   } = useController({ name, control })
@@ -23,20 +22,20 @@ const InputDropdownStas = ({
 
   const handleOptionClick = (option) => {
     if (option !== "Brak dopasowań") {
-      onChange(option) // обновляем значение через `react-hook-form`
+      onChange(option) // update value using react-hook-form with the entire option (including ID)
     }
     setIsOpen(false)
   }
 
   const handleInputChange = (e) => {
     const inputValue = e.target.value
-    onChange(inputValue) // обновляем значение через `react-hook-form`
+    onChange(inputValue) // update value with input
 
     if (inputValue.trim() === "") {
       setFilteredOptions(options)
     } else {
       const filtered = options.filter((option) =>
-        option.toLowerCase().includes(inputValue.toLowerCase())
+        option?.label?.toLowerCase().includes(inputValue.toLowerCase())
       )
       setFilteredOptions(filtered.length > 0 ? filtered : ["Brak dopasowań"])
     }
@@ -60,6 +59,30 @@ const InputDropdownStas = ({
     }
   }, [])
 
+  const renderOption = (option) => {
+    if (typeof option === "string") {
+      return (
+        <li
+          key={option}
+          className={styles.dropdownMenuItem}
+          onClick={() => handleOptionClick(option)}
+        >
+          {option}
+        </li>
+      )
+    }
+
+    return (
+      <li
+        key={option.value}
+        className={styles.dropdownMenuItem}
+        onClick={() => handleOptionClick(option)}
+      >
+        {option.label}
+      </li>
+    )
+  }
+
   return (
     <div ref={dropdownRef} className={styles.dropdownContainer}>
       <div
@@ -69,30 +92,21 @@ const InputDropdownStas = ({
         <input
           type="text"
           className={styles.dropdownInput}
-          value={value || ""}
+          value={value ? value.label : ""}
           placeholder={placeholder}
           onChange={handleInputChange}
         />
         {seeOptions && (
           <span
-            className={`${styles.arrow} ${isOpen ? styles.open : ""}`}
+            className={`${styles.arrow} ${value && isOpen ? styles.open : ""}`}
           ></span>
         )}
       </div>
-      {seeOptions &&
-        isOpen && (
-          <ul className={styles.dropdownMenu}>
-            {filteredOptions.map((option, index) => (
-              <li
-                key={index}
-                className={styles.dropdownMenuItem}
-                onClick={() => handleOptionClick(option)}
-              >
-                {option}
-              </li>
-            ))}
-          </ul>
-        )}
+      {seeOptions && isOpen && (
+        <ul className={styles.dropdownMenu}>
+          {filteredOptions.map((option, index) => renderOption(option))}
+        </ul>
+      )}
     </div>
   )
 }

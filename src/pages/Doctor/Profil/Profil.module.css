@@ -76,8 +76,9 @@ p {
   padding: 50px;
   width: 65%;
   flex-direction: column;
-  justify-content: space-between;
+
 }
+
 .mainInfo input {
   height: 40px;
   border-radius: 16px;

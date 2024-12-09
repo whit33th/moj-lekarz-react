@@ -9,6 +9,7 @@ import useStore from "../../../data/store";
 const reviewData = [{}, {}, {}, {}];
 
 function DoctorProfile() {
+  
   const [doctorInfo, setDoctorInfo] = useState({});
   const { id } = useParams();
   const { doctorCard } = useStore();

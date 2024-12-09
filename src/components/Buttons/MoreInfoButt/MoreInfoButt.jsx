@@ -1,9 +1,9 @@
-import { useState, useRef, useEffect } from "react";
+import {  useRef, useEffect } from "react";
 import moreInfo from "../../../assets/img/more-info.png";
 import { NavLink } from "react-router-dom";
 import styles from "./MoreInfoButt.module.css";
 import useStore from "../../../data/store";
-import BlueBorderBtn from "../BlueBorderBtn/BlueBorderBtn";
+
 import cross from "../../../assets/img/cross.png";
 import back from "../../../assets/img/back.png";
 import download from "../../../assets/img/material-symbols-light_download.svg";

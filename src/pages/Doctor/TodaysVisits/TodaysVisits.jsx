@@ -1,48 +1,59 @@
 
-import follow from "../../../assets/img/follow.png";
-import styles from "./TodaysVisits.module.css";
-import tablecss from "../../../components/Table/Table.module.css";
-import { userItems } from "../../../helpers/userItemList";
-import { NavLink } from "react-router-dom";
-import Dropdown from "../../../components/Dropdown/Dropdown";
+import follow from "../../../assets/img/follow.png"
+import styles from "./TodaysVisits.module.css"
+import tablecss from "../../../components/Table/Table.module.css"
+import { NavLink } from "react-router-dom"
+import Dropdown from "../../../components/Dropdown/Dropdown"
 import Table from '../../../components/Table/Table'
+import useGetDoctorAppointment from '../../../hooks/DoctorHooks/useGetDoctorAppointment'
+import useStore from '../../../data/store'
+import Pagination from '../../../components/UI/Pagination/Pagination'
 
 function TodaysVisits() {
-  const tableData = userItems.map((item) => ({
-    img: item.img,
-    name: item.name,
-    id: item.id,
 
-    birthday: item.birthDate,
-  }));
+  const { userId, selectedDate, todayDate, selectedDateInWords } = useStore()
+  const { data: appointments, isLoading } = useGetDoctorAppointment({
+    id: userId,
+    dateFrom: selectedDate,
+    dateTo: selectedDate
+  })
+  const tableData = appointments?.map((appointment) => ({
+    img: appointment?.patient.photo,
+    name: appointment?.patient?.first_name + " " + appointment?.patient?.last_name || '',
+    id: appointment?.id || '',
+    date: appointment?.date || '',
+    time: appointment?.start_time || '',
+  })) || []
 
   const columns = [
-    
+
     {
       header: "Search",
-      render: (item) => (
+      render: (appointment) => (
         <div className={tablecss.nameTd}>
-          {item.img && (
-            <img src={item.img} alt="Avatar" className={tablecss.round} />
+          {appointment.img && (
+            <img src={appointment.img} alt="Avatar" className={tablecss.round} />
           )}
           <div className={tablecss.userInfo}>
-             <p>{item.name || "-"}</p>
-             
+            <p>{appointment.name || "-"}</p>
+
           </div>
         </div>
       ),
     },
-    {header: 'Numer ID', dataKey: 'id'},
-    {header: 'Data', render: (item) => (item.birthday)},
-    {header: 'Czas', render: () => (
-      <div>
+    { header: 'Numer ID', dataKey: 'id' },
+    { header: 'Data', render: (appointment) => (appointment.date) },
+    {
+      header: 'Czas', render: (appointment) => (
         <div>
-          <span className={tablecss.receptId}>10:30</span>
+          <div>
+            <span className={tablecss.receptId}>{appointment.time.slice(0, 5)}</span>
+          </div>
         </div>
-      </div>
-    ),}
-   
-  ];
+      ),
+    }
+
+  ]
   return (
     <div className="content">
       <div className={styles.calendarNavbar}>
@@ -63,7 +74,8 @@ function TodaysVisits() {
           <i className="bx bx-chevron-down"></i>
         </Dropdown>
         <span className={styles.calendarNavbarDate}>
-          <span>Dzisiejsze wizyty</span>
+          {selectedDate !== todayDate ? 'Wizyty ' + selectedDateInWords : <span>Dzisiejsze wizyty </span>}
+
         </span>
 
         <NavLink to="/calendar">
@@ -77,14 +89,17 @@ function TodaysVisits() {
       </div>
 
       <Table
+        loading={isLoading}
         inputPlaceholder={"Szukaj pacjenta..."}
         columns={columns}
         data={tableData}
         showImage={true}
         together={true}
       />
+      <Pagination value={1} onChange={() => { }} />
+
     </div>
-  );
+  )
 }
 
-export default TodaysVisits;
+export default TodaysVisits

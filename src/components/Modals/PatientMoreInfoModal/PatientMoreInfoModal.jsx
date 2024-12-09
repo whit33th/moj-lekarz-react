@@ -3,10 +3,9 @@ import BlueBorderBtn from "../../Buttons/BlueBorderBtn/BlueBorderBtn";
 import Choice from "./../../Modal/Choice";
 import plus from "../../../assets/img/plus.png";
 import bucketBlue from "../../../assets/img/bucketBlue.png";
-
 import useStore from "./../../../data/store";
 
-function PatientMoreInfoModal({ patient }) {
+function PatientMoreInfoModal({patientInfo}) {
   const { setModalActive, setModalContent } = useStore();
   return (
     <div className={styles.profilInfo}>
@@ -18,7 +17,7 @@ function PatientMoreInfoModal({ patient }) {
               type="text"
               id="name"
               name="name"
-              value={patient?.name || "UNKNOWN"}
+              value={patientInfo.name || "Brak"}
               readOnly
             />
           </div>
@@ -28,7 +27,7 @@ function PatientMoreInfoModal({ patient }) {
               type="text"
               id="surname"
               name="surname"
-              value={patient?.surname || "UNKNOWN"}
+              value={patientInfo?.surname || "Brak"}
               readOnly
             />
           </div>
@@ -38,7 +37,7 @@ function PatientMoreInfoModal({ patient }) {
               type="text"
               id="pesel"
               name="pesel"
-              value={patient?.pesel || "UNKNOWN"}
+              value={patientInfo?.pesel || "Brak"}
               readOnly
             />
           </div>
@@ -48,7 +47,7 @@ function PatientMoreInfoModal({ patient }) {
               type="text"
               id="phone"
               name="phone"
-              value={patient?.phone || "UNKNOWN"}
+              value={patientInfo?.phone || "Brak"}
               readOnly
             />
           </div>
@@ -58,7 +57,7 @@ function PatientMoreInfoModal({ patient }) {
               type="text"
               id="email"
               name="email"
-              value={patient?.email || "UNKNOWN"}
+              value={patientInfo?.email || "Brak"}
               readOnly
             />
           </div>
@@ -68,7 +67,7 @@ function PatientMoreInfoModal({ patient }) {
               type="text"
               id="city"
               name="city"
-              value={patient?.city || "UNKNOWN"}
+              value={patientInfo?.city || "Brak"}
               readOnly
             />
           </div>
@@ -80,7 +79,7 @@ function PatientMoreInfoModal({ patient }) {
               type="text"
               id="postcode"
               name="postcode"
-              value={patient?.postcode || "UNKNOWN"}
+              value={patientInfo?.postCode || "Brak"}
               readOnly
             />
           </div>
@@ -90,7 +89,7 @@ function PatientMoreInfoModal({ patient }) {
               type="text"
               id="address"
               name="address"
-              value={patient?.address || "UNKNOWN"}
+              value={patientInfo?.street || "Brak"}
               readOnly
             />
           </div>
@@ -101,7 +100,7 @@ function PatientMoreInfoModal({ patient }) {
                 type="text"
                 id="house-nr"
                 name="house-nr"
-                value={patient?.houseNumber || "UNKNOWN"}
+                value={patientInfo?.house || "Brak"}
                 readOnly
               />
             </div>
@@ -111,7 +110,7 @@ function PatientMoreInfoModal({ patient }) {
                 type="text"
                 id="flat-nr"
                 name="flat-nr"
-                value={patient?.flatNumber || "UNKNOWN"}
+                value={patientInfo?.flat || "Brak"}
                 readOnly
               />
             </div>
@@ -124,7 +123,7 @@ function PatientMoreInfoModal({ patient }) {
               type="text"
               id="birth-date"
               name="birth-date"
-              value={patient?.birthDate || "UNKNOWN"}
+              value={patientInfo?.birthday || "Brak"}
               readOnly
             />
           </div>
@@ -134,7 +133,7 @@ function PatientMoreInfoModal({ patient }) {
               type="text"
               id="gender"
               name="gender"
-              value={patient?.gender || "UNKNOWN"}
+              value={patientInfo?.gender || "Brak"}
               readOnly
             />
           </div>
@@ -145,7 +144,7 @@ function PatientMoreInfoModal({ patient }) {
                 type="text"
                 id="height"
                 name="height"
-                value={patient?.height || "UNKNOWN"}
+                value={patientInfo?.height || "Brak"}
                 readOnly
               />
             </div>
@@ -155,7 +154,7 @@ function PatientMoreInfoModal({ patient }) {
                 type="text"
                 id="weight"
                 name="weight"
-                value={patient?.weight || "UNKNOWN"}
+                value={patientInfo?.weight || "Brak"}
                 readOnly
               />
             </div>

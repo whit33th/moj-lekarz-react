@@ -83,9 +83,22 @@
   border-radius: 20px;
 }
 
-.tableContainer tbody tr:nth-child(odd) > td {
+.tableContainer tbody tr:nth-child(odd) {
   background-color: #f3f3f3;
 }
+
+.tableContainer tbody tr:nth-child(odd) {
+  background-color: #f3f3f3;
+}
+
+.tableContainer tbody tr:last-child td:first-child {
+  border-radius: 0 0 0 20px;
+}
+
+.tableContainer tbody tr:last-child td:last-child {
+  border-radius: 0 0 20px 0;
+}
+
 
 .nameTd {
   display: flex;

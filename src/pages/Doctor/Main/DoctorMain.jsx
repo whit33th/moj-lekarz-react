@@ -1,44 +1,57 @@
-import { NavLink } from 'react-router-dom'
-
-import robot from '../../../assets/img/robot_svg/1.png'
-import graphUp from '../../../assets/img/graph-up.png'
-import graphDown from '../../../assets/img/graph-down.png'
-import follow from '../../../assets/img/follow.png'
-
-import VisitItem from '../../../components/DoctorPage/Home/VisitItem/VisitItem'
-import { userItems, myData } from '../../../helpers/userItemList'
-import Calendar from '../../../components/DoctorPage/Home/Calendar/CalendarBlock'
-
-import styles from './DoctorMain.module.css'
-import useGetShortInfo from './../../../hooks/DoctorHooks/useGetShortInfo'
-import useStore from '../../../data/store'
-import useGetDoctorAppointment from '../../../hooks/DoctorHooks/useGetDoctorAppointemt'
-
+import { NavLink } from "react-router-dom"
+import robot from "../../../assets/img/robot_svg/1.png"
+import graphUp from "../../../assets/img/graph-up.png"
+import graphDown from "../../../assets/img/graph-down.png"
+import follow from "../../../assets/img/follow.png"
+import VisitItem from "../../../components/DoctorPage/Home/VisitItem/VisitItem"
+import Calendar from "../../../components/DoctorPage/Home/Calendar/CalendarBlock"
+import styles from "./DoctorMain.module.css"
+import useStore from "../../../data/store"
+import useGetDoctorAppointment from "../../../hooks/DoctorHooks/useGetDoctorAppointment"
+import TodayVisitItem from "../../../components/DoctorPage/Home/TodayVisitItem/TodayVisitItem"
+import useGetUserInfo from '../../../hooks/UserHooks/useGetUserInfo'
+import Skeleton from 'react-loading-skeleton'
+import SkeletonTodayVisitItem from '../../../components/DoctorPage/Home/TodayVisitItem/SkeletonTodayVisitItem'
 
 function DoctorMain() {
-	const { userId } = useStore()
-	const { data: doctorInfo } = useGetShortInfo(userId)
-	const { data: appointments } = useGetDoctorAppointment(userId)
+	const { todayDate, userId, selectedDate, selectedDateInWords, visitCountForMonth } = useStore()
+	const { data: userInfo, isLoading: isUserInfoLoading } = useGetUserInfo()
+	const { data: fetchedAppointments, isLoading: isAppointmentsLoading } = useGetDoctorAppointment({
+		limit: 10
+	}) || []
 
-	console.log(appointments)
+	const { data: fetchedAppointmentsToday, isLoading: isAppointmentsTodayLoading } = useGetDoctorAppointment({
+		id: userId,
+		dateFrom: selectedDate,
+		dateTo: selectedDate,
+	}) || []
+	const user = {
+		first_name: userInfo?.first_name || '',
+		last_name: userInfo?.last_name || '',
+		todayVisitCount: fetchedAppointmentsToday?.length || 0,
+		visitsAllTime: visitCountForMonth
+	}
 	return (
 		<div className="content">
-			{doctorInfo && (
-				<h1 className={styles.greeting}>
-					Witaj {doctorInfo.user.first_name} {doctorInfo.user.last_name}
-				</h1>
-			)}
+
+
+
+
+
+			<h1 className={styles.greeting}>
+				{isUserInfoLoading ? <Skeleton width={220} /> : `Witaj ${user.first_name}! `}
+			</h1>
 
 
 			<div className={styles.topLayer}>
 				<div className={`${styles.visits} ${styles.mainCard} ${styles.biggerCard}`}>
 					<img id="robot" src={robot} alt="Robot" className={styles.robotImage} />
 
-					{appointments && (<div className={`${styles.visitCount} ${styles.twoSide}`}>
-						<p className={styles.titleCard}>Dzisiejsze wizyty</p>
-						<p className={styles.countNumber}>{appointments.length}</p>
-					</div>)}
 
+					<div className={`${styles.visitCount} ${styles.twoSide}`}>
+						<p className={styles.titleCard}> {selectedDate !== todayDate ? "Wizyty " + selectedDateInWords : 'Dzisiejsze wizyty'}</p>
+						<p className={styles.countNumber}>{isAppointmentsTodayLoading ? <Skeleton width={50} /> : user.todayVisitCount}</p>
+					</div>
 
 
 					<div className={styles.botCards}>
@@ -46,23 +59,31 @@ function DoctorMain() {
 							<p>Całkowita liczba pacjentów</p>
 							<div className={styles.center}>
 								<p className={`${styles.biggerCard} ${styles.smCountNumber}`}>124</p>
-								<div className={`${styles.graph} ${styles.tCenter} ${styles.smBack} ${styles.flex} ${styles.itemsCenter}`}>
+								<div
+									className={`${styles.graph} ${styles.tCenter} ${styles.smBack} ${styles.flex} ${styles.itemsCenter}`}
+								>
 									<p>12%</p>
 									<img src={graphDown} alt="Graph Down" className={styles.graphIcon} />
 								</div>
 							</div>
 						</div>
 
+
 						<div className={`${styles.visitStats} ${styles.card}`}>
-							<p>Całkowita liczba pacjentów</p>
+							<p>Wizyt w całym miesiącu</p>
 							<div className={styles.center}>
-								<p className={`${styles.biggerCard} ${styles.smCountNumber}`}>666</p>
-								<div className={`${styles.graph} ${styles.tCenter} ${styles.smBack} ${styles.flex} ${styles.itemsCenter}`}>
+								<p className={`${styles.biggerCard} ${styles.smCountNumber}`}>
+									{user.visitsAllTime}
+								</p>
+								<div
+									className={`${styles.graph} ${styles.tCenter} ${styles.smBack} ${styles.flex} ${styles.itemsCenter}`}
+								>
 									<p>32%</p>
 									<img src={graphUp} alt="Graph Up" className={styles.graphIcon} />
 								</div>
 							</div>
 						</div>
+
 					</div>
 				</div>
 				<div className={`${styles.mainCard}`}>
@@ -76,30 +97,31 @@ function DoctorMain() {
 						</NavLink>
 					</div>
 					<div className={styles.visitHistory}>
-
-
 						<div className={styles.history}>
-							{userItems.slice(-3).map((userItem, index) => (
-								<VisitItem
-									name={userItem.name}
-									img={userItem.img}
-									date={userItem.date}
-									time={userItem.time}
-									key={index}
-								/>
-							))}
+							{fetchedAppointments && fetchedAppointments.length === 0 && <p className={styles.noVisits}>Nie masz wizyt</p>}
+							{!isAppointmentsLoading ?
+								fetchedAppointments
+									.slice(-3)
+									.map((appointment, index) => (
+										<VisitItem
+											firstName={appointment.patient.first_name}
+											lastName={appointment.patient.last_name}
+											img={appointment?.patient.photo}
+											date={appointment.date}
+											time={appointment.start_time}
+											key={index}
+										/>
+									)) : <SkeletonTodayVisitItem count={3} />}
 						</div>
 					</div>
 				</div>
-
-
 			</div>
 
 			<div className={styles.botLayer}>
 				<div className={`${styles.mainCard}`}>
 					<div className={`${styles.flex} ${styles.between}`}>
 						<p className={styles.titleCard}>Kalendarz</p>
-						<NavLink className={styles.black} to='/calendar'>
+						<NavLink className={styles.black} to="/calendar">
 							<div className={`${styles.flex} ${styles.center}`}>
 								<p className={styles.followLink}>Otwórz</p>
 								<img className={styles.ico} src={follow} alt="Follow" />
@@ -112,25 +134,35 @@ function DoctorMain() {
 
 				<div className={`${styles.mainCard} ${styles.biggerCard}`}>
 					<div className={`${styles.flex} ${styles.between}`}>
-						<p className={styles.titleCard}>Dzisiejsze wizyty</p>
+						{selectedDate === todayDate ? (
+							<p className={styles.titleCard}>Dzisiejsze wizyty</p>
+						) : (
+							<p className={styles.titleCard}> Wizyty {selectedDateInWords}</p>
+						)}
+
 						<NavLink className={styles.black} to="/todays-visits">
 							<div className={`${styles.flex} ${styles.center}`}>
-								<p className={styles.followLink} >Zobacz wszystkie</p>
+								<p className={styles.followLink}>Zobacz wszystkie</p>
 								<img className={styles.ico} src={follow} alt="Follow" />
 							</div>
 						</NavLink>
 					</div>
 
 					<div className={styles.history}>
-						{userItems.slice(-5).map((userItem, index) => (
-							<VisitItem
-								name={userItem.name}
-								img={userItem.img}
-								date={userItem.date}
-								time={userItem.time}
-								key={index}
-							/>
-						))}
+						{fetchedAppointmentsToday && fetchedAppointmentsToday.length === 0 && <p className={styles.noVisits}>Nie masz wizyt</p>}
+						{!isAppointmentsTodayLoading ?
+							fetchedAppointmentsToday
+								.slice(-6)
+								.map((appointment) => (
+									<TodayVisitItem
+										firstName={appointment.patient.first_name}
+										lastName={appointment.patient.last_name}
+										img={appointment?.patient.photo}
+										type={appointment.visit_type}
+										time={appointment.start_time}
+										key={appointment.id}
+									/>
+								)) : <SkeletonTodayVisitItem count={6} />}
 					</div>
 				</div>
 			</div>

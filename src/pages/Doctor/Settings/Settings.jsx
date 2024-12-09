@@ -1,41 +1,61 @@
-import { useState } from "react";
-import styles from "./styles.module.css"; // Импортируем CSS-модуль
-import photo from "../../../assets/img/profil.webp";
-import Calendar from "../../../components/DoctorPage/Home/Calendar/CalendarBlock";
+import { useEffect, useState } from "react"
+import styles from "./styles.module.css" // Импортируем CSS-модуль
 
-import DropdownStas from "../../../components/Dropdown/DropdownStas";
-import Choice from "../../../components/Modal/Choice";
+import Calendar from "../../../components/DoctorPage/Home/Calendar/CalendarBlock"
+
+import DropdownStas from "../../../components/Dropdown/DropdownStas"
+import Choice from "../../../components/Modal/Choice"
 import { useForm } from 'react-hook-form'
-
+import useGetUserInfo from '../../../hooks/UserHooks/useGetUserInfo'
+import grey from "../../../assets/img/grey.png"
+import InputError from '../../../components/UI/InputError/InputError'
 function Settings() {
-  const [activeTab, setActiveTab] = useState("Dane podstawowe");
-  const [selectedName, setSelectedName] = useState("Dariusz Adamek");
-  const [selectedReason, setSelectedReason] = useState("Wybierz");
-  const { control, handleSubmit, watch } = useForm({
+  const [activeTab, setActiveTab] = useState("Dane podstawowe")
+
+  const { register, formState, handleSubmit, reset } = useForm({
+    mode: 'onChange'
 
   })
   const option1 = [
     "Dariusz Adamek",
-    "Option 1",
-    "Option 2",
-    "Dariusz Adamek",
-    "Option 1",
-    "Option 2",
-    "Dariusz Adamek",
-    "Option 1",
-    "Option 2",
-    "Option 3",
-  ];
-  const option2 = ["Wybierz", "Option 1", "Option 2", "Option 3"];
+    "Option",
+  ]
+  const reasons = ["Wolny", "Siła wyższa", "Wakacje", "Zwolnienie lekarskie"]
   const Buttons = [
     "Dane podstawowe",
     "Dane dodatkowe",
     "Czas pracy",
     "Wnioski",
-  ];
+  ]
 
   function handleTabClick(name) {
-    setActiveTab(name);
+    setActiveTab(name)
+  }
+
+
+  const { data: user, isLoading } = useGetUserInfo() || []
+
+
+  useEffect(() => {
+    reset({
+      firstName: isLoading ? 'Ładowanie...' : user?.first_name || 'Brak',
+      lastName: isLoading ? 'Ładowanie...' : user?.last_name || 'Brak',
+      city: isLoading ? 'Ładowanie...' : user?.city || 'Brak',
+      street: isLoading ? 'Ładowanie...' : user?.street || 'Brak',
+      house: isLoading ? 'Ładowanie...' : user?.house || 'Brak',
+      flat: isLoading ? 'Ładowanie...' : user?.flat || 'Brak',
+      postCode: isLoading ? 'Ładowanie...' : user?.post_code || 'Brak',
+      birthDate: isLoading ? '0000-00-00' : user?.birthday.slice(0, 10),
+      pesel: isLoading ? 'Ładowanie...' : user?.pesel || 'Brak',
+      tel: isLoading ? 'Ładowanie...' : user?.phone || 'Brak',
+      email: isLoading ? 'Ładowanie...' : user?.email || 'Brak',
+      additional: isLoading ? 'Ładowanie...' : user?.additional || 'Brak',
+    })
+  }, [user, reset, isLoading])
+
+
+  function onSubmit(data) {
+    console.log(data)
   }
 
   const conclusions = (
@@ -43,7 +63,7 @@ function Settings() {
       <div className={styles.shadow}>
         <Calendar />
       </div>
-
+      
       <div className={styles.conclusions}>
         <DropdownStas
           placeholder={option1[0]}
@@ -51,13 +71,14 @@ function Settings() {
           options={option1}
         />
         <DropdownStas
-          placeholder={option2[0]}
+          placeholder={reasons[0]}
           label="Powód nieobecności"
-          options={option2}
+          options={reasons}
         />
       </div>
     </div>
-  );
+  )
+
 
   const workTime = (
     <div className={styles.workTime}>
@@ -80,120 +101,218 @@ function Settings() {
         </p>
       </div>
     </div>
-  );
+  )
 
   const settingData = (
     <div className={styles.settingData}>
-      <div className={styles.settingInfo}>
-        <div className={styles.halfRow}>
-          <div>
-            <label htmlFor="name">Imię</label>
-            <input type="text" id="name" name="name" placeholder="Pawel" />
-          </div>
-          <div>
-            <label htmlFor="surname">Nazwisko</label>
-            <input
-              type="text"
-              id="surname"
-              name="surname"
-              placeholder="Nowik"
-            />
-          </div>
-        </div>
-        <div className={styles.halfRow}>
-          <div>
-            <label htmlFor="city">Miasto</label>
-            <input type="text" id="city" name="city" placeholder="Warszawa" />
-          </div>
-          <div>
-            <label htmlFor="code">Kod posztowy</label>
-            <input type="text" id="code" name="code" placeholder="71-232" />
-          </div>
-        </div>
-        <div className={styles.fullRow}>
-          <div>
-            <label htmlFor="street">Ulica</label>
-            <input
-              type="text"
-              id="street"
-              name="street"
-              placeholder="Ul.Kutrzeby"
-            />
-          </div>
-        </div>
-        <div className={styles.halfRow}>
-          <div>
-            <label htmlFor="Numer domu">Numer domu</label>
-            <input
-              type="text"
-              id="Numer domu"
-              name="NumerDomu"
-              placeholder="62"
-            />
-          </div>
-          <div>
-            <label htmlFor="Mieszkanie">Mieszkanie</label>
-            <input
-              type="text"
-              id="Mieszkanie"
-              name="Mieszkanie"
-              placeholder="52a"
-            />
-          </div>
-        </div>
-        <div className={styles.halfRow}>
-          <div>
-            <label htmlFor="date">Data urodzenia</label>
-            <input
-              type="date"
-              id="date"
-              name="flat"
-              defaultValue="2002-12-21"
-            />
-          </div>
-          <div>
-            <label htmlFor="pesel">Pesel</label>
-            <input
-              type="text"
-              id="pesel"
-              name="pesel"
-              placeholder="03248891023"
-            />
-          </div>
-        </div>
-        <div className={styles.halfRow}>
-          <div>
-            <label htmlFor="tel">Telefon</label>
-            <input type="tel" id="tel" name="tel" placeholder="777 777 777" />
-          </div>
-          <div>
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              placeholder="pavel@gmail.com"
-            />
-          </div>
-        </div>
 
-        <button>Zapisz zmiany</button>
+      <div className={styles.settingInfo}>
+        <form onSubmit={handleSubmit(onSubmit)}>
+
+          <div className={styles.halfRow}>
+            <div>
+              <label htmlFor="firstName">Imię</label>
+              <input
+                type="text"
+
+                placeholder="Dariusz"
+
+                {...register('firstName', {
+                  pattern: {
+                    value: /^[a-zA-Z]+$/,
+                    message: "Tylko litery",
+                  }
+                })}
+              />
+              <InputError formState={formState} errorField={"firstName"} />
+
+            </div>
+            <div>
+              <label htmlFor="lastName">Nazwisko</label>
+              <input
+
+                placeholder="Adamek"
+                {...register('lastName', {
+                  pattern: {
+                    value: /^[a-zA-Z]+$/,
+                    message: "Tylko litery",
+                  }
+                })}
+              />
+              <InputError formState={formState} errorField={"lastName"} />
+            </div>
+          </div>
+          <div className={styles.halfRow}>
+            <div>
+              <label htmlFor="city">Miasto</label>
+              <input type="text" placeholder="Warszawa"
+                {...register('city', {
+                  pattern: {
+                    value: /^[a-zA-Z]+$/,
+                    message: "Tylko litery",
+                  }
+                })}
+              />
+              <InputError formState={formState} errorField={"city"} />
+            </div>
+            <div>
+              <label htmlFor="postCode">Kod posztowy</label>
+              <input type="text" placeholder="61-232"
+                {...register('postCode', {
+                  pattern: {
+                    value: /^\d{2}-\d{3}$/, // Разрешает формат с тире
+                    message: "Nieprawidłowy format kodu pocztowego (np. 61-232)",
+                  },
+                  maxLength: {
+                    value: 6,
+                    message: "Maksymalnie 6 cyfr",
+                  },
+
+                })} />
+              <InputError formState={formState} errorField={"postCode"} />
+            </div>
+          </div>
+          <div className={styles.fullRow}>
+            <div>
+              <label htmlFor="street">Ulica</label>
+              <input
+                type="text"
+
+                placeholder="Ul.Kutrzeby"
+                {
+                ...register('street', {
+                  pattern: {
+                    value: /^[a-zA-Z/.]+$/,
+                    message: "Tylko litery",
+                  }
+                })
+                }
+              />
+              <InputError formState={formState} errorField={"street"} />
+            </div>
+          </div>
+          <div className={styles.halfRow}>
+            <div>
+              <label htmlFor="house">Numer domu</label>
+              <input
+                type="text"
+
+                placeholder="12"
+                {...register('house')}
+              />
+              <InputError formState={formState} errorField={"house"} />
+            </div>
+            <div>
+              <label htmlFor="flat">Mieszkanie</label>
+              <input
+                type="text"
+
+                placeholder="1a"
+                {...register('flat')}
+              />
+              <InputError formState={formState} errorField={"flat"} />
+            </div>
+          </div>
+          <div className={styles.halfRow}>
+            <div>
+              <label htmlFor="birthDate">Data urodzenia</label>
+              <input
+                type='date'
+
+                placeholder='01.01.2000'
+                {
+                ...register('birthDate', {
+                  valueAsDate: true
+                })}
+
+              />
+              <InputError formState={formState} errorField={"birthDate"} />
+            </div>
+            <div>
+              <label htmlFor="pesel">Pesel</label>
+              <input
+                type="text"
+
+                placeholder="12345678901"
+                {...register('pesel', {
+                  pattern: {
+                    value: /^[0-9]+$/,
+                    message: "Tylko cyfry",
+                  },
+                  minLength: {
+                    value: 11,
+                    message: "Minimum 11 cyfr"
+                  },
+                  maxLength: {
+                    value: 11,
+                    message: "Maksymalnie 11 cyfr"
+                  },
+                })}
+              />
+              <InputError formState={formState} errorField={"pesel"} />
+            </div>
+          </div>
+          <div className={styles.halfRow}>
+            <div>
+              <label htmlFor="tel">Telefon</label>
+              <input type="tel" placeholder="+48 123 456 789"
+
+                {...register('tel',
+                  {
+                    pattern: {
+                      value: /^[0-9]+$/,
+                      message: "Tylko cyfry",
+                    },
+                    minLength: {
+                      value: 9,
+                      message: "Minimum 9 cyfr"
+                    },
+
+                  }
+                )}
+              />
+              <InputError formState={formState} errorField={"tel"} />
+
+            </div>
+            <div>
+              <label htmlFor="email">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="pavel@gmail.com"
+                {
+                ...register('email', {
+                  pattern: {
+                    value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
+                    message: "Błędny email",
+                  },
+                })
+                }
+              />
+              <InputError formState={formState} errorField={"email"} />
+            </div>
+          </div>
+
+          <button>Zapisz zmiany</button>
+        </form>
       </div>
       <div className={`${styles.settingImg}`}>
         <div className={styles.photo}>
-          <img src={photo} alt="" />
+          <img src={isLoading ? grey : user?.photo} alt="" />
         </div>
 
         <Choice choice1={"Zobacz"} choice2={"Zmień"} />
       </div>
     </div>
-  );
+  )
 
   const additionalData = (
     <>
       <textarea
         className={styles.textarea}
         placeholder="Wpisz tekst"
+
       ></textarea>
       <button
         style={{ width: "200px", marginLeft: "calc(100% - 200px)" }}
@@ -202,7 +321,7 @@ function Settings() {
         Zapisz zmiany
       </button>
     </>
-  );
+  )
 
   return (
     <div className="content">
@@ -224,7 +343,7 @@ function Settings() {
       {activeTab === "Czas pracy" && workTime}
       {activeTab === "Wnioski" && conclusions}
     </div>
-  );
+  )
 }
 
-export default Settings;
+export default Settings

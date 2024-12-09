@@ -13,30 +13,34 @@ import arrow from "../../assets/img/arrowmain.svg"
 import SwiperSlider from './../../components/SwiperSlider'
 import Map from './../../components/MapComponent/Map'
 import AppPromo from './../../components/AppPromo/AppPromo'
-import DropdownStas from './../../components/Dropdown/DropdownStas'
+
 import InputDropdownStas from './../../components/Dropdown/InputDropdownStas'
-import { ZAxis } from 'recharts'
+
 import { useForm } from 'react-hook-form'
 
 function Home() {
-  const [isOpen1, setIsOpen1] = useState(false)
-  const [isOpen2, setIsOpen2] = useState(false)
-  const [isOpen3, setIsOpen3] = useState(false)
-  const [selectedOption1, setSelectedOption1] = useState("")
-  const [selectedOption2, setSelectedOption2] = useState("")
-  const [selectedOption3, setSelectedOption3] = useState("")
+  
   const [selectedDate, setSelectedDate] = useState(null)
-  const { control, handleSubmit, watch } = useForm({
+  const { control, handleSubmit } = useForm({
 
   })
-  const handleOptionClick = (option, setSelectedOption, setIsOpen) => {
-    setSelectedOption(option)
-    setIsOpen(false)
-  }
+  const specializations = [
+    { label: "Ortopeda", value: "Ortopeda" },
+    { label: "Logopeda", value: "Logopeda" },
+    { label: "Chirurg", value: "Chirurg" },
+    { label: "Kardiolog", value: "Kardiolog" },
+    { label: "Ginekolog", value: "Ginekolog" },
+  ]
+  const cities = [
+    { label: "Poznan", value: "Poznan" },
+    { label: "Warszawa", value: "Warszawa" },
+    { label: "Wroclaw", value: "Wroclaw" },
+  ]
+  const types = [
+    { label: "Konsultacja", value: "Konsultacja" },
+    { label: "Badanie", value: "Badanie" },
+  ]
 
-  const toggleDropdown = (isOpen, setIsOpen) => {
-    setIsOpen(!isOpen)
-  }
 
   const [mapsData, setMapsData] = useState({
     id: 'path2',
@@ -58,44 +62,37 @@ function Home() {
         </div>
         <div className={styles.homeFirstBlockRight}>
           <div className={styles.mainFormBlock}>
-            <h2>Wybierz specjalizacje </h2>
+            <h2>Umów się na wizytę</h2>
             <div className={styles.mainFormIntupsBlock}>
               <div className={styles.dropdownContainer}>
                 <InputDropdownStas
-                  control={control} name={"."}
-                
-                  options={["ortoped", "logoped", "surgeon"]}
-                  placeholder={'Kim jestes'}
+                  control={control} name={"specialization"}
+                  options={specializations}
+                  placeholder={'Wybierz specjalizacje'}
+                  seeOptions
+
                 />
 
               </div>
 
               <div className={styles.dropdownContainer}>
                 <InputDropdownStas
-                  control={control} name={".."}
-                  options={["Poznań", "Tokyo", "NYC"]}
-                  placeholder={'Miasto'}
+                  control={control} name={"city"}
+                  options={cities}
+                  placeholder={'Wybierz miasto'}
                   seeOptions={true}
                 />
               </div>
 
               <div className={styles.formCalendar}>
-                <DatePicker
-                  selected={selectedDate}
-                  onChange={date => setSelectedDate(date)}
-                  dateFormat="dd/MM/yyyy"
-                  className={styles.datePicker}
-                  minDate={new Date()}
-                  placeholderText="Wybierz dzień"
-
-                />
+                <input type="date" placeholder="Data wizyty" className={styles.calendar}/>
               </div>
 
               <div className={`${styles.dropdownContainer} ${styles.litle}`}>
                 <InputDropdownStas
-                  control={control} name={"..."}
-                  options={["Poznań", "Tokyo", "NYC"]}
-                  placeholder={'Miasto'}
+                  control={control} name={"type"}
+                  options={types}
+                  placeholder={'Rodzaj wizyty'}
                   seeOptions={true}
                 />
               </div>

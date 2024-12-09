@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom";
-import styles from "./style/NotFound.module.css";
-import stethoscope from "../../assets/img/stethoscope.png";
-import home from "../../assets/img/sidebar-home.png";
+import { Link } from "react-router-dom"
+import styles from "./style/NotFound.module.css"
+import stethoscope from "../../assets/img/stethoscope.png"
+import home from "../../assets/img/sidebar-home.png"
 
 export default function NotFound() {
   return (
@@ -20,12 +20,12 @@ export default function NotFound() {
               Nie martw się, wróćmy na stronę główną i spróbujmy jeszcze raz.
             </p>
           </div>
-          <Link to="/" className={styles["back-button"]}>
+          <Link replace={true} to="/" className={styles["back-button"]}>
             <img height={16} className={styles.home} src={home} alt="" />
             Do strony głównej
           </Link>
         </div>
       </div>
     </div>
-  );
+  )
 }
