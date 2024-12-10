@@ -14,14 +14,20 @@ import { useState } from 'react'
 function LastVisits() {
   const { userId } = useStore()
   const [page, setPage] = useState(1)
+
+  const [startFilter, setStartFilter] = useState()
+  const [endFilter, setEndFilter] = useState()
   const { data, isLoading } = useGetDoctorAppointment({
     id: userId,
     status: 'completed',
+    dateFrom: startFilter,
+    dateTo: endFilter
   })
   const totalPages = data?.pages
 
   const appointments = data?.slots || []
 
+  console.log(startFilter, endFilter)
 
   const tableData = appointments?.map((appointment) => ({
     img: appointment?.patient.photo,
@@ -63,35 +69,24 @@ function LastVisits() {
   ]
 
 
+
   return (
     <div className="content">
       <div className={styles.calendarNavbar}>
-        <Dropdown
-          defaultOption="Sortuj"
-          selectedOptionChanging={false}
-          color={"#A6DEF7"}
-          options={[
-            "Od A do Z",
-            "Od Z do A",
-            "Najpierw mężczyźni",
-            "Najpierw kobiety",
-            "Najpierw starsi",
-            "Najpierw młodsi",
-          ]}
-          listStyle="elipse"
-        >
-          <i className="bx bx-chevron-down"></i>
-        </Dropdown>
+       
         <span className={styles.calendarNavbarDate}>
           <span>Ostatnie wizyty</span>
         </span>
-        <Dropdown
-          color={"#A6DEF7"}
-          options={["08.05.2024 - 14.05.2024", "08.06.2024 - 14.06.2024"]}
-          childrenLeft={<img src={calendar} alt="Sort" />}
-        >
-          <i className="bx bx-chevron-down"></i>
-        </Dropdown>
+        
+
+        <div className={styles.dateFilterContainer}>
+          <div className={styles.dateFilter}>
+
+            <input type='date' onChange={(e) => setStartFilter(e.target.value)} />
+
+            <input type='date' onChange={(e) => setEndFilter(e.target.value)} />
+          </div>
+        </div>
       </div>
 
       <div className={styles.tableContainer}>

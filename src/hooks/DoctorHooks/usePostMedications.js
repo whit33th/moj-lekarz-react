@@ -3,13 +3,14 @@ import { doctorServices } from '../../services/doctorServices'
 import { toast } from 'sonner'
 import useStore from '../../data/store'
 import { useEffect } from 'react'
-function usePostPrescriptions() {
+function usePostMedications() {
 	const { setModalActive } = useStore()
 	const queryClient = useQueryClient()
 
-	const { mutate, isSuccess, isPending, isError, error } = useMutation({
-		mutationKey: ["postPrescriptions"],
-		mutationFn: (data) => doctorServices.postPrescriptions(data),
+	const { mutate, isSuccess, isPending, isError } = useMutation({
+		mutationKey: ["usePostMedications"],
+		mutationFn: (data) => doctorServices.postMedications(data),
+
 	})
 
 
@@ -21,21 +22,19 @@ function usePostPrescriptions() {
 	}, [isError])
 	useEffect(() => {
 		if (isSuccess) {
-			toast.success('Recepta dodana pomyslnie!')
-			queryClient.invalidateQueries(['useGetPrescriptions'])
-			setModalActive(false)
+			toast.success('Lek dodany pomyslnie!')
+			queryClient.invalidateQueries(['useGetMedications'])
 		}
-
 	}, [isSuccess, setModalActive, queryClient])
 
 	useEffect(() => {
 		if (isPending) {
-			toast.loading('Dodawanie recepty...')
+			toast.loading('Dodawanie leku...')
 		}
-
+		toast.dismiss()
 	}, [isPending])
 
 	return { mutate, isSuccess, isPending }
 }
 
-export default usePostPrescriptions
+export default usePostMedications

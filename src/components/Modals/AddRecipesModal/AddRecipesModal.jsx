@@ -7,6 +7,7 @@ import InputDropdownStas from './../../Dropdown/InputDropdownStas'
 import useGetPatientsList from './../../../hooks/DoctorHooks/useGetPatientsList'
 import usePostPrescriptions from '../../../hooks/DoctorHooks/usePostPrescriptions'
 import useGetMedication from '../../../hooks/DoctorHooks/useGetMedication'
+import usePostMedications from '../../../hooks/DoctorHooks/usePostMedications'
 
 function AddRecipesModal() {
   const { setModalActive, userId } = useStore()
@@ -24,9 +25,10 @@ function AddRecipesModal() {
     id: medication.id,
   })) || []
 
-  const { control, handleSubmit, register } = useForm({
+  const { control, handleSubmit, register,getValues } = useForm({
     mode: "onChange",
   })
+  const { mutate: postMedication } = usePostMedications()
 
   const onSubmit = (data) => {
     const prescriptionData = {
@@ -39,6 +41,12 @@ function AddRecipesModal() {
     console.log(data)
   }
 
+  function addNewMedication() {
+    const medicationData = {
+      name: getValues("medication"),
+    }
+    postMedication(medicationData)
+  }
 
 
   return (
@@ -59,26 +67,28 @@ function AddRecipesModal() {
           <InputDropdownStas
             control={control}
             placeholder="Wybierz lek"
-            options={medicationOptions}  
+            options={medicationOptions}
             seeOptions
             {...register("medication", {
               required: "Lek jest wymagany",
             })}
           />
 
-          <button type="submit" className={styles.buttDef}>
+          <button onClick={addNewMedication} type="button" className={styles.buttDef}>
             <span>Dodaj następujący lek</span>
             <img src={plus} alt="plus" />
           </button>
         </div>
-
         <Choice
           cb1={() => setModalActive(false)}
           choice1="Anuluj"
-          cb2={() => { }}
+          cb2={handleSubmit(onSubmit)}
           choice2="Dodaj"
         />
       </form>
+
+
+
     </div>
   )
 }

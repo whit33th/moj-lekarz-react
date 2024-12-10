@@ -4,7 +4,7 @@ import styles from './VisitItem.module.css'
 import VisitModal from '../../../Modals/VisitModal/VisitModal'
 import useStore from '../../../../data/store'
 
-function TodayVisitItem({ img, firstName, lastName, type, startTime, endTime, index, patientId, date }) {
+function TodayVisitItem({ img, firstName, lastName, date, startTime, endTime, index, type, patientId }) {
 
     const { setModalActive, setModalContent } = useStore()
     function openMainModalInfo() {

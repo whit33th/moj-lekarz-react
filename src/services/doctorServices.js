@@ -65,6 +65,11 @@ class DoctorServices {
 			medicationId: data.medicationId
 		})
 	}
+	async postMedications(data) {
+		return await axios.post(`${this.URL}/api/medications`, {
+			name: data.name
+		})
+	}
 }
 
 export const doctorServices = new DoctorServices()

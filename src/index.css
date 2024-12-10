@@ -67,6 +67,16 @@ input {
   flex-direction: column;
 
 }
+.loop{
+  width: 100%;
+  height: auto;
+  filter: invert(1);
+  rotate: 180deg;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
 
 .myCustomButton {
   background-color: #3e36b0;

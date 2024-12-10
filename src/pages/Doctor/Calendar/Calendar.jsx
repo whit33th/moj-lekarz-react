@@ -5,6 +5,9 @@ import {
   createViewWeek,
   createViewMonthGrid,
   createViewMonthAgenda,
+  setRangeForDay,
+  viewDay,
+  viewMonthAgenda,
 } from "@schedule-x/calendar"
 import { createEventsServicePlugin } from "@schedule-x/events-service"
 import "@schedule-x/theme-default/dist/index.css"
@@ -12,13 +15,16 @@ import styles from "./Calendar.module.css"
 import { createEventModalPlugin } from "@schedule-x/event-modal"
 import useGetDoctorAppointment from "../../../hooks/DoctorHooks/useGetDoctorAppointment"
 import useStore from "../../../data/store"
+import { useSearchParams } from 'react-router-dom'
 
 function Calendar() {
   const { userId } = useStore()
-
+  const [searchParams, setSearchParams] = useSearchParams();
+  console.log(searchParams.get("date"))
   const plugins = [createEventsServicePlugin(), createEventModalPlugin(),]
   const calendar = useCalendarApp(
     {
+     
       views: [
         createViewDay(),
         createViewWeek(),
@@ -35,18 +41,18 @@ function Calendar() {
         onRangeUpdate(range) {
           setStartView(range.start.slice(0, 10))
           setEndView(range.end.slice(0, 10))
-
         },
-
       }
     },
 
     plugins
   )
 
+
   const start = calendar.$app.calendarState.range.v.start.slice(0, 10)
   const end = calendar.$app.calendarState.range.v.end.slice(0, 10)
 
+  
   const [startView, setStartView] = useState(start)
   const [endView, setEndView] = useState(end)
   const { data: appointmentsData, isLoading } = useGetDoctorAppointment({
@@ -57,6 +63,8 @@ function Calendar() {
 
   const appointments = useMemo(() => appointmentsData?.slots || [], [appointmentsData])
 
+
+ 
   useEffect(() => {
     if (appointments) {
       const mappedEvents = appointments.map((appointment) => ({
@@ -81,6 +89,7 @@ function Calendar() {
     }
   }, [appointments, calendar])
 
+  
 
 
   return (

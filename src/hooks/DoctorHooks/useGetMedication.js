@@ -5,7 +5,7 @@ function useGetMedication() {
 
 
 	const { data, isSuccess } = useQuery({
-		queryKey: ["getMedication"],
+		queryKey: ["useGetMedication"],
 		queryFn: () => doctorServices.getMedication(),
 		select: (data) => data?.data || [],
 		staleTime: 120000,

@@ -64,28 +64,13 @@ function TodaysVisits() {
   return (
     <div className="content">
       <div className={styles.calendarNavbar}>
-        <Dropdown
-          defaultOption="Sortuj"
-          selectedOptionChanging={false}
-          color={"#A6DEF7"}
-          options={[
-            "Od A do Z",
-            "Od Z do A",
-            "Najpierw mężczyźni",
-            "Najpierw kobiety",
-            "Najpierw starsi",
-            "Najpierw młodsi",
-          ]}
-          listStyle="elipse"
-        >
-          <i className="bx bx-chevron-down"></i>
-        </Dropdown>
+        
         <span className={styles.calendarNavbarDate}>
           {selectedDate !== todayDate ? 'Wizyty ' + selectedDateInWords : <span>Dzisiejsze wizyty </span>}
 
         </span>
 
-        <NavLink to="/calendar">
+        <NavLink to={`/calendar?date=${selectedDate}`}>
           <div className={`${styles.calendarNavbarButt} ${styles.itemsCenter}`}>
             <span className={styles.followLink}>Przejdź do kalendarza</span>
             <div className={styles.icoDiv}>

@@ -17,6 +17,10 @@ const InputDropdownStas = ({
   const [isOpen, setIsOpen] = useState(false)
   const [filteredOptions, setFilteredOptions] = useState(options)
 
+  useEffect(() => {
+    setFilteredOptions(options)
+  }, [options])
+  
   const toggleDropdown = () => {
     setIsOpen((prev) => !prev)
   }
