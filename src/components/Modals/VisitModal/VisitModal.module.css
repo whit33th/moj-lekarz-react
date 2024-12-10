@@ -344,6 +344,7 @@
 
 .email,
 .phone {
+  gap: 10px;
   font-size: small;
   color: grey;
   display: flex;

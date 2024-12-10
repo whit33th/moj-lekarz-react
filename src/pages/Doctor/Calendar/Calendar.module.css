@@ -27,6 +27,11 @@
   flex-grow: 1;
   height: 100px;
 }
+.loading{
+  opacity: 0.5;
+  transform: translateY(-10px); ;
+  filter: grayscale(1);
+}
 
 .calendarNavbar {
   display: flex;
@@ -87,6 +92,7 @@
   flex-direction: column;
   width: 100%;
 
+  transition: 1s ;
   border-radius: 20px;
 }
 

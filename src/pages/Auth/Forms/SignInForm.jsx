@@ -1,19 +1,35 @@
-import { useForm } from "react-hook-form";
-import InputError from "../../../components/UI/InputError/InputError";
-import styles from "../AuthPage.module.css";
+import { useForm } from "react-hook-form"
+import InputError from "../../../components/UI/InputError/InputError"
+import styles from "../AuthPage.module.css"
 
-import useLogin from "../../../hooks/AuthHooks/useLogin";
+import useLogin from "../../../hooks/AuthHooks/useLogin"
+import { cardio } from 'ldrs'
+
+cardio.register()
+
+// Default values shown
+
 
 function SignInForm({ setIsForgotPassword }) {
   const { register, handleSubmit, formState } = useForm({
     mode: "onChange",
-  });
-  const { mutate, role, error, isError, isSuccess, isPending } = useLogin();
+  })
+  const { mutate, role, error, isError, isSuccess, isPending } = useLogin()
 
 
-  
+
   function onSubmit(data) {
-    mutate(data);
+    mutate(data)
+  }
+  if (isPending) {
+    return <div className='loader'>
+      < l-cardio
+        size="60"
+        stroke="4"
+        speed="2"
+        color="black"
+      ></l-cardio >
+    </div>
   }
 
   return (
@@ -21,7 +37,7 @@ function SignInForm({ setIsForgotPassword }) {
       <div className={styles.signIninputBlock}>
         <div>
           <input
-            
+
             placeholder="Email..."
             autoComplete="email"
             {...register("email", {
@@ -50,12 +66,13 @@ function SignInForm({ setIsForgotPassword }) {
           <InputError errorField={"password"} formState={formState} />
         </div>
       </div>
+      {isError && <p className={styles.error} >Nie udało się zalogować. Spróbuj ponownie.</p>}
       <div className={styles.signInbtnBlock}>
-        <a onClick={() => setIsForgotPassword(true)}>Nie pamiętam hasła</a>
+        <a className={styles.forgotPassword} onClick={() => setIsForgotPassword(true)}>Nie pamiętam hasła</a>
         <button type="submit">Zaloguj się</button>
       </div>
     </form>
-  );
+  )
 }
 
-export default SignInForm;
+export default SignInForm

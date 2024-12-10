@@ -15,12 +15,22 @@
   justify-content: center;
   flex-wrap: wrap;
 }
+
+
+
+.error{
+  color: red;
+  text-align: center;
+  font-size: 1em;
+}
+
 .signIn {
   width: 95%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
+
 .signInContent {
   height: auto;
   min-height: 400px;
@@ -69,7 +79,8 @@
   line-height: 24.59px;
   text-align: left;
 }
-.signIninputBlock > div {
+
+.signIninputBlock>div {
   margin-bottom: 12px;
 }
 
@@ -115,17 +126,20 @@
   color: #fff;
   cursor: pointer;
 }
+
 .bottomLinkBlock {
   width: 100%;
   height: auto;
   padding: 30px;
 }
+
 .bottomLinkBlock p {
   font-size: 16.5px;
   font-weight: 500;
   line-height: 24.59px;
   text-align: center;
 }
+
 .bottomLinkBlock p a {
   text-decoration: none;
   font-size: 16.5px;
@@ -133,13 +147,16 @@
   line-height: 24.59px;
   text-align: center;
 }
+
 .inputsBtnBlock {
   width: 100%;
 }
+
 .forgotPassword {
   width: 100%;
   margin-top: 20px;
 }
+
 .forgotPassword p {
   font-size: 18px;
   font-weight: 400;
@@ -148,6 +165,7 @@
   margin: 20px 10px;
   margin-top: 5px;
 }
+
 .forgotPassword input {
   width: 100%;
   height: 55px;
@@ -157,13 +175,14 @@
   border: none;
   outline: none;
   padding: 0 20px;
-  
+
   font-family: "Manrope";
   font-size: 17px;
   font-weight: 400;
   line-height: 24.59px;
   text-align: left;
 }
+
 .forgotPasswordBtnBlock {
   width: 100%;
   display: flex;
@@ -172,6 +191,7 @@
   padding: 20px 5%;
   gap: 17px;
 }
+
 .forgotPasswordBtnBlock button {
   width: 190px;
   height: 49px;
@@ -183,6 +203,7 @@
   text-align: center;
   cursor: pointer;
 }
+
 .forgotPasswordBtnBlock button.forgotPasswordBtnBlockBackbtn {
   background-color: #fff;
   border: 1px solid #3e36b0;
@@ -193,6 +214,7 @@
   width: 100%;
   padding: 15px 35px;
 }
+
 .registerServiceItem {
   background-color: #fff;
   cursor: pointer;
@@ -207,6 +229,7 @@
   box-shadow: 0px 0px 50px 0px #0000001a;
   padding: 0 25px;
 }
+
 .lub {
   width: 100%;
   display: flex;
@@ -218,6 +241,7 @@
   font-weight: 400;
   line-height: 24.59px;
 }
+
 .lub::after {
   content: "";
   position: absolute;
@@ -229,6 +253,7 @@
   background-color: #bebebe;
   line-height: 0;
 }
+
 .lub::before {
   content: "";
   position: absolute;
@@ -240,6 +265,7 @@
   background-color: #bebebe;
   line-height: 0;
 }
+
 .checkboxBlock {
   width: 100%;
   padding: 20px 35px;
@@ -281,10 +307,10 @@
   background-color: #f2f2f2;
   border-radius: 4px;
   background-color: #a6def7;
-  
+
 }
 
-.checkboxContainer input:checked ~ .checkmark {
+.checkboxContainer input:checked~.checkmark {
   background-color: #3e36b0;
 }
 
@@ -294,7 +320,7 @@
   display: none;
 }
 
-.checkboxContainer input:checked ~ .checkmark:after {
+.checkboxContainer input:checked~.checkmark:after {
   display: block;
 }
 
@@ -307,16 +333,19 @@
   border-width: 0 3px 3px 0;
   transform: rotate(45deg);
 }
+
 .checkboxBlock p {
   font-size: 15.5px;
   font-weight: 400;
   line-height: 21.86px;
   text-align: left;
 }
+
 .registBtnBlock {
   width: 100%;
   padding: 15px 35px;
 }
+
 .registBtnBlock button {
   width: 100%;
   height: 51px;
@@ -332,62 +361,76 @@
 }
 
 @media (max-width: 624px) {
+  
   .authPageContent {
     width: 100%;
   }
+
   .signIn h1 {
     font-size: 1.3rem;
     margin-bottom: 0;
   }
+
   .signIninputBlock {
     padding: 10px 20px;
   }
+
   .signInbtnBlock {
-    padding: 10px 5px;
+    padding: 0;
     flex-wrap: wrap;
+    text-align: center;
     justify-content: center;
   }
+
   .signInbtnBlock a {
-    width: 100%;
-    padding-left: 25px;
-    align-items: center;
-    justify-content: flex-start;
+    display: block;
+    text-align: center;
     margin-bottom: 15px;
   }
+
   .signIninputBlock input {
     height: 50px;
     font-size: 1rem;
   }
+
   .authPage button {
     height: 42px;
     font-size: 0.9rem;
     width: 60%;
   }
+
   .signIn {
     width: 100%;
   }
+
   .signInContent {
     width: 92%;
   }
+
   .signInContent {
     padding: 35px 5%;
   }
+
   .registService {
     padding: 5px 15px;
   }
+
   .registerServiceItem {
     margin-top: 0;
     margin-bottom: 10px;
   }
+
   .lub {
     padding: 5px 30px;
   }
+
   .registBtnBlock {
     display: flex;
     justify-content: center;
   }
 }
-.required{
- border: 1px solid red;
- background-color: white;
+
+.required {
+  border: 1px solid red;
+  background-color: white;
 }

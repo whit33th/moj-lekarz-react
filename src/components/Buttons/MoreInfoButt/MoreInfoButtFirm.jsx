@@ -88,9 +88,9 @@ const MoreInfoButtPatient = ({ id }) => {
             <div>
               <span>Plec:</span> <span>M</span>
             </div>
-            <div>
+            {/* <div>
               <span>Wzrost:</span> <span>17 cm</span>
-            </div>
+            </div> */}
           </div>
         </div>
         <div className={styles.actions}>

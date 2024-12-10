@@ -2,6 +2,7 @@
   border-radius: 100px;
 }
 .record{
+  width: 100%;
   opacity: 1;
   transition: 0.3s ease;
   border: none;

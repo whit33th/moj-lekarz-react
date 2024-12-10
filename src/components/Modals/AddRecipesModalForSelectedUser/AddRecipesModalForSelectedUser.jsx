@@ -3,21 +3,16 @@ import styles from './AddRecipesModal.module.css'
 import Choice from '../../Modal/Choice'
 import useStore from '../../../data/store'
 import { useForm } from 'react-hook-form'
-import InputDropdownStas from './../../Dropdown/InputDropdownStas'
-import useGetPatientsList from './../../../hooks/DoctorHooks/useGetPatientsList'
+import InputDropdownStas from '../../Dropdown/InputDropdownStas'
+
 import usePostPrescriptions from '../../../hooks/DoctorHooks/usePostPrescriptions'
 import useGetMedication from '../../../hooks/DoctorHooks/useGetMedication'
 
-function AddRecipesModal() {
+function AddRecipesModalForSelectedUser({ patientId, name }) {
   const { setModalActive, userId } = useStore()
-  const { data: patientList } = useGetPatientsList({})
-  const { data: medicationList } = useGetMedication({})
-  const { mutate, isSuccess } = usePostPrescriptions()
 
-  const patientOptions = patientList?.map(patient => ({
-    label: `${patient.patient.user.first_name} ${patient.patient.user.last_name}`,
-    patientId: patient.patient.id,
-  })) || []
+  const { data: medicationList } = useGetMedication({})
+  const { mutate, isSuccess, isPending } = usePostPrescriptions()
 
   const medicationOptions = medicationList?.map(medication => ({
     label: `${medication.name}`,
@@ -27,19 +22,15 @@ function AddRecipesModal() {
   const { control, handleSubmit, register } = useForm({
     mode: "onChange",
   })
-
   const onSubmit = (data) => {
+    console.log(data.medication.id)
     const prescriptionData = {
-      patientId: data.patient.patientId,
+      patientId: patientId,
       doctorId: userId,
       medicationId: data.medication.id
     }
     mutate(prescriptionData)
-
-    console.log(data)
   }
-
-
 
   return (
     <div>
@@ -48,18 +39,19 @@ function AddRecipesModal() {
         <div className={styles.modalInputBox}>
           <InputDropdownStas
             control={control}
-            placeholder="Wybierz pacjenta"
-            options={patientOptions}
-            seeOptions
+            placeholder={name}
+            disabled
+
+            seeOptions={false}
             {...register("patient", {
-              required: "Pacjent jest wymagany",
+
             })}
           />
 
           <InputDropdownStas
             control={control}
             placeholder="Wybierz lek"
-            options={medicationOptions}  
+            options={medicationOptions}
             seeOptions
             {...register("medication", {
               required: "Lek jest wymagany",
@@ -72,10 +64,11 @@ function AddRecipesModal() {
           </button>
         </div>
 
+
         <Choice
           cb1={() => setModalActive(false)}
           choice1="Anuluj"
-          cb2={() => { }}
+
           choice2="Dodaj"
         />
       </form>
@@ -83,4 +76,4 @@ function AddRecipesModal() {
   )
 }
 
-export default AddRecipesModal
+export default AddRecipesModalForSelectedUser

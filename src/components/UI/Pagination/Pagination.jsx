@@ -1,8 +1,25 @@
-import styles from './Pagination.module.css'
 
-const Pagination = ({ value = 1 , onChange = () => {}, total = 100 }) => {
+import { useEffect } from 'react'
+import styles from './Pagination.module.css'
+import Skeleton from 'react-loading-skeleton'
+
+const Pagination = ({ value = 1, onChange = () => { }, total, isLoading }) => {
+
+
+	if (total <= 1) {
+		return null
+	}
+	if (isLoading) {
+		return <div style={{ display: 'flex', justifyContent: 'center' }}>
+			<Skeleton height={30} width={200} />
+		</div>
+	}
+
+
+
 	const maxPagesToShow = 5
 	const pageNumbers = []
+
 
 	const getStartPage = () => Math.max(1, value - Math.floor(maxPagesToShow / 2))
 	const getEndPage = (startPage) => Math.min(total, startPage + maxPagesToShow - 1)

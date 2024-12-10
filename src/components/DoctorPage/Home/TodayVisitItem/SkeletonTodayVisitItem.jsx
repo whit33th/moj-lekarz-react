@@ -7,7 +7,7 @@ function SkeletonTodayVisitItem({ count }) {
 			<div className={styles.flex}>
 				<Skeleton circle={true} height={50} width={50} className={styles.round} />
 				<div className={`${styles.nameSection} ${styles.flexColumn} ${styles.evenly}`}>
-					<Skeleton width={100} height={20} className={styles.name} />
+					<Skeleton width={150} height={20} className={styles.name} />
 					<Skeleton width={80} height={15} className={styles.date} />
 				</div>
 			</div>

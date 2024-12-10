@@ -4,6 +4,7 @@
 .record{
   opacity: 1;
   border: none;
+  width: 100%;
   background: transparent;
   transition: 0.3s ease;
   line-height: 1;

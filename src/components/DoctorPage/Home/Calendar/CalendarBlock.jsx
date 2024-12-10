@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import leftArrow from "../../../../assets/img/left.png"
 import rightArrow from "../../../../assets/img/right.png"
 import styles from "./CalendarBlock.module.css"
@@ -13,11 +13,15 @@ const CalendarBlock = () => {
   const startOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1)
   const endOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0)
 
-  const { data: appointments, isSuccess, isLoading } = useGetDoctorAppointment({
+  const { data: appointmentsData, isSuccess, isLoading } = useGetDoctorAppointment({
     id: userId,
     dateFrom: startOfMonth.toISOString().slice(0, 10),
     dateTo: endOfMonth.toISOString().slice(0, 10),
   })
+
+
+  const appointments = useMemo(() => appointmentsData?.slots || [], [appointmentsData])
+
 
   useEffect(() => {
     if (isSuccess) {

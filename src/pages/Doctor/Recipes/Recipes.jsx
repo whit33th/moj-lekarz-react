@@ -1,31 +1,37 @@
 import styles from "./Recipes.module.css"
 import tablecss from "../../../components/Table/Table.module.css"
-import { userItems } from "../../../helpers/userItemList"
 import useStore from "../../../data/store"
 import AddRecipesModal from "../../../components/Modals/AddRecipesModal/AddRecipesModal"
 import Table from "../../../components/Table/Table"
 import useGetPrescriptions from './../../../hooks/DoctorHooks/useGetPrescriptions'
 import Pagination from '../../../components/UI/Pagination/Pagination'
+import { useState } from 'react'
 
 function PatientList() {
   const { setModalActive, setModalContent } = useStore()
   const { userId } = useStore()
 
+  const [page, setPage] = useState(1)
 
-  const { data: prescriptions, isLoading } = useGetPrescriptions({
-    id: userId
+  const { data, isLoading } = useGetPrescriptions({
+    id: userId,
+    limit: 10,
+    page: page,
+    sort: "DESC",
   })
 
+  const prescriptions = data?.prescriptions || []
+  const totalPages = data?.pages 
 
 
   const tableData = prescriptions?.map((prescription) => ({
-    img: prescription.patient?.user.photo || "zdrowie.png",
-    name: prescription.patient.user.first_name + ' ' + prescription.patient.user.last_name || 'Nieznane',
-    createdDate: prescription.createdAt,
-    expirationDate: prescription.expiration_date,
-    code: prescription.code || 'Błąd',
-    medicationName: prescription.medications.name,
-  })) || []
+    img: prescription?.patient?.user?.photo || "zdrowie.png",
+    name: prescription?.patient?.user?.first_name + ' ' + prescription?.patient?.user?.last_name || 'Nieznane',
+    createdDate: prescription?.createdAt || 'Brak',
+    expirationDate: prescription?.expiration_date || 'Brak',
+    code: prescription?.code || 'Błąd',
+    medicationName: prescription?.medications?.name || 'Brak',
+  }))
 
   const columns = [
     {
@@ -86,7 +92,8 @@ function PatientList() {
         showImage={true}
         together={true}
       />
-      <Pagination  />
+
+      <Pagination total={totalPages} value={page} onChange={setPage} isLoading={isLoading} />
     </div>
   )
 }

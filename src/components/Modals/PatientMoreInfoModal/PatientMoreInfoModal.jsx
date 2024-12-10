@@ -137,7 +137,7 @@ function PatientMoreInfoModal({patientInfo}) {
               readOnly
             />
           </div>
-          <div className={styles.row}>
+          {/* <div className={styles.row}>
             <div>
               <label htmlFor="height">Wzrost</label>
               <input
@@ -158,9 +158,9 @@ function PatientMoreInfoModal({patientInfo}) {
                 readOnly
               />
             </div>
-          </div>
+          </div> */}
         </div>
-        <div className={styles.allergy}>
+        {/* <div className={styles.allergy}>
           <div>
             <label htmlFor="allergy">Wpisz na co uczulenie</label>
             <input
@@ -184,7 +184,7 @@ function PatientMoreInfoModal({patientInfo}) {
               </div>
             </BlueBorderBtn>
           </div>
-        </div>
+        </div> */}
       </div>
       <div className={styles.actionButtons}>
         <Choice

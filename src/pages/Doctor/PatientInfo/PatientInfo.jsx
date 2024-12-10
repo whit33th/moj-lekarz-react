@@ -13,7 +13,6 @@ import grey from "./../../../assets/img/grey.png"
 function PatientInfo() {
   const { id } = useParams()
   const [activeTab, setActiveTab] = useState("Uwagi")
-  const Buttons = ["Uwagi", "Historia wizyt"]
 
   const navigate = useNavigate()
 
@@ -48,16 +47,16 @@ function PatientInfo() {
   }
 
 
-  const comments = patientInfo?.comments ? (
-    patientInfo.comments.map((comment, index) => (
-      <div key={index}>
-        <span>{comment.name}</span>
-        <div className={styles.commentsType}>{comment.type}</div>
-      </div>
-    ))
-  ) : (
-    <div>Brak uwag</div>
-  )
+  // const comments = patientInfo?.comments ? (
+  //   patientInfo.comments.map((comment, index) => (
+  //     <div key={index}>
+  //       <span>{comment.name}</span>
+  //       <div className={styles.commentsType}>{comment.type}</div>
+  //     </div>
+  //   ))
+  // ) : (
+  //   <div>Brak uwag</div>
+  // )
 
   const history = patientInfo?.history ? (
     patientInfo.history.map((visit, index) => (
@@ -189,8 +188,10 @@ function PatientInfo() {
                 readOnly
               />
             </div>
-
-            <div className={styles.row}>
+            <div>
+              <BlueBtn cb={handleModal}>Więcej informacji</BlueBtn>
+            </div>
+            {/* <div className={styles.row}>
               <div>
                 <label htmlFor="height">Wzrost</label>
                 <input
@@ -211,15 +212,9 @@ function PatientInfo() {
                   readOnly
                 />
               </div>
-            </div>
+            </div> */}
           </div>
-          <div className={styles.oneThird}>
-            <div></div>
-            <div></div>
-            <div>
-              <BlueBtn cb={handleModal}>Więcej informacji</BlueBtn>
-            </div>
-          </div>
+          
         </div>
       </div>
       <div className={styles.hr}>
@@ -228,10 +223,11 @@ function PatientInfo() {
       <div className={styles.rules}>
         <div className={styles.center}>
 
-          <Tabs buttons="Uwagi, Historia wizyt" activeTab={activeTab} onTabClick={handleTabClick} />
+          {/* <Tabs buttons="Uwagi, Historia wizyt" activeTab={activeTab} onTabClick={handleTabClick} /> */}
 
+          <h1>Historia wizyt</h1>
         </div>
-        {activeTab === "Uwagi" && comments}
+        {/* {activeTab === "Uwagi" && comments} */}
         {activeTab === "Historia wizyt" && history}
       </div>
     </div>

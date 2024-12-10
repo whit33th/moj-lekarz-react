@@ -92,8 +92,8 @@ function Table({
                   </tr>
                 ))
               ) : (
-                <tr>
-                  <td colSpan={columns.length + 1} className={styles.tCenter}>
+                <tr style={{ borderRadius: "0 0 20px 20px " }}>
+                  <td style={{ borderRadius: "0 0 20px 20px " }} colSpan={columns.length + 1} className={styles.tCenter}>
                     Brak dostępnych danych
                   </td>
                 </tr>

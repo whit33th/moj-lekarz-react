@@ -12,8 +12,6 @@ const useStore = create((set) => ({
   userId: Cookies.get("id") === undefined ? 0 : Cookies.get("id"),
   setUserId: (userId) => set({ userId: userId }),
 
-  clinicId: Cookies.get("clinicId") === undefined ? 0 : Cookies.get("clinicId"),
-  setClinicId: (clinicId) => set({ clinicId: clinicId }),
 
   // Auth state
   isAuth: Cookies.get("isAuth") === undefined ? false : true,

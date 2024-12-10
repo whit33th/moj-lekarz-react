@@ -141,7 +141,7 @@ function PatientInfo({ patientId }) {
                 readOnly
               />
             </div>
-            <div className={styles.row}>
+            {/* <div className={styles.row}>
               <div>
                 <label htmlFor="height">Wzrost</label>
                 <input
@@ -162,7 +162,7 @@ function PatientInfo({ patientId }) {
                   readOnly
                 />
               </div>
-            </div>
+            </div> */}
             <div>
               <BlueBtn>Więcej informacji</BlueBtn>
             </div>

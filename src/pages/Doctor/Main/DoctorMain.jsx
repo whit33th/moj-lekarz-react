@@ -16,21 +16,32 @@ import SkeletonTodayVisitItem from '../../../components/DoctorPage/Home/TodayVis
 function DoctorMain() {
 	const { todayDate, userId, selectedDate, selectedDateInWords, visitCountForMonth } = useStore()
 	const { data: userInfo, isLoading: isUserInfoLoading } = useGetUserInfo()
-	const { data: fetchedAppointments, isLoading: isAppointmentsLoading } = useGetDoctorAppointment({
-		limit: 10
+	const { data: fetchedAppointmentsData, isLoading: isAppointmentsLoading } = useGetDoctorAppointment({
+		limit: 10,
+		status: 'completed',
 	}) || []
 
-	const { data: fetchedAppointmentsToday, isLoading: isAppointmentsTodayLoading } = useGetDoctorAppointment({
+	const fetchedAppointments = fetchedAppointmentsData?.slots || []
+
+	const { data: fetchedAppointmentsTodayData, isLoading: isAppointmentsTodayLoading } = useGetDoctorAppointment({
+		limit: 10,
 		id: userId,
 		dateFrom: selectedDate,
 		dateTo: selectedDate,
 	}) || []
+	const fetchedAppointmentsToday = fetchedAppointmentsTodayData?.slots || []
 	const user = {
 		first_name: userInfo?.first_name || '',
 		last_name: userInfo?.last_name || '',
 		todayVisitCount: fetchedAppointmentsToday?.length || 0,
 		visitsAllTime: visitCountForMonth
 	}
+
+	console.log(user.first_name)
+
+
+
+	console.log(fetchedAppointmentsToday)
 	return (
 		<div className="content">
 
@@ -96,23 +107,24 @@ function DoctorMain() {
 							</div>
 						</NavLink>
 					</div>
-					<div className={styles.visitHistory}>
-						<div className={styles.history}>
-							{fetchedAppointments && fetchedAppointments.length === 0 && <p className={styles.noVisits}>Nie masz wizyt</p>}
-							{!isAppointmentsLoading ?
-								fetchedAppointments
-									.slice(-3)
-									.map((appointment, index) => (
-										<VisitItem
-											firstName={appointment.patient.first_name}
-											lastName={appointment.patient.last_name}
-											img={appointment?.patient.photo}
-											date={appointment.date}
-											time={appointment.start_time}
-											key={index}
-										/>
-									)) : <SkeletonTodayVisitItem count={3} />}
-						</div>
+					<div className={styles.history}>
+						{fetchedAppointmentsData && fetchedAppointments.length === 0 && <p className={styles.noVisits}>Nie masz wizyt</p>}
+						{fetchedAppointmentsToday && !isAppointmentsLoading ?
+							fetchedAppointments
+								.slice(-3)
+								.map((appointment, index) => (
+									<VisitItem
+										firstName={appointment?.patient?.first_name}
+										lastName={appointment?.patient?.last_name}
+										img={appointment?.patient?.photo}
+										date={appointment?.date}
+										startTime={appointment?.start_time || '00:00'}
+										endTime={appointment?.end_time}
+										type={appointment?.visit_type}
+										patientId={appointment?.patient?.patientId}
+										key={index}
+									/>
+								)) : <SkeletonTodayVisitItem count={3} />}
 					</div>
 				</div>
 			</div>
@@ -149,18 +161,21 @@ function DoctorMain() {
 					</div>
 
 					<div className={styles.history}>
-						{fetchedAppointmentsToday && fetchedAppointmentsToday.length === 0 && <p className={styles.noVisits}>Nie masz wizyt</p>}
-						{!isAppointmentsTodayLoading ?
+						{fetchedAppointmentsTodayData && fetchedAppointmentsToday.length === 0 && <p className={styles.noVisits}>Nie masz wizyt</p>}
+						{fetchedAppointmentsToday && !isAppointmentsTodayLoading ?
 							fetchedAppointmentsToday
 								.slice(-6)
 								.map((appointment) => (
 									<TodayVisitItem
-										firstName={appointment.patient.first_name}
-										lastName={appointment.patient.last_name}
+										firstName={appointment?.patient?.first_name}
+										lastName={appointment?.patient?.last_name}
 										img={appointment?.patient.photo}
-										type={appointment.visit_type}
-										time={appointment.start_time}
-										key={appointment.id}
+										type={appointment?.visit_type}
+										startTime={appointment?.start_time || '00:00'}
+										endTime={appointment?.end_time}
+										date={appointment?.date}
+										patientId={appointment?.patient?.patientId}
+										key={appointment?.id}
 									/>
 								)) : <SkeletonTodayVisitItem count={6} />}
 					</div>

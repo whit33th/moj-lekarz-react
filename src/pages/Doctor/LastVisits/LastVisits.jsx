@@ -6,18 +6,22 @@ import Dropdown from "../../../components/Dropdown/Dropdown"
 import Table from '../../../components/Table/Table'
 import useGetDoctorAppointment from '../../../hooks/DoctorHooks/useGetDoctorAppointment'
 import useStore from '../../../data/store'
-import { is } from './../../../../node_modules/preact/compat/src/util'
-import Pagination from './../../../components/UI/Pagination/Pagination';
+import Pagination from './../../../components/UI/Pagination/Pagination'
+import { useState } from 'react'
 
 
 
 function LastVisits() {
-  const { userId, todayDate } = useStore()
-  const { data: appointments, isLoading } = useGetDoctorAppointment({
+  const { userId } = useStore()
+  const [page, setPage] = useState(1)
+  const { data, isLoading } = useGetDoctorAppointment({
     id: userId,
-    dateFrom: '2023-11-05',
-    dateTo: '2025-11-10',
+    status: 'completed',
   })
+  const totalPages = data?.pages
+
+  const appointments = data?.slots || []
+
 
   const tableData = appointments?.map((appointment) => ({
     img: appointment?.patient.photo,
@@ -58,7 +62,7 @@ function LastVisits() {
 
   ]
 
-  
+
   return (
     <div className="content">
       <div className={styles.calendarNavbar}>
@@ -99,7 +103,7 @@ function LastVisits() {
           showImage={true}
           together={true}
         />
-        <Pagination />
+        <Pagination value={page} onChange={setPage} total={totalPages} isLoading={isLoading} />
       </div>
     </div>
   )

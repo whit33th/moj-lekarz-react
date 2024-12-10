@@ -7,7 +7,7 @@ import clearAllCookies from '../../utils/deleteAllCookies'
 function useLogout() {
 
 	const navigate = useNavigate()
-	const { data, isSuccess, isError, refetch } = useQuery({
+	const { data, isSuccess, isError, isLoading, refetch } = useQuery({
 		queryKey: ['logout'],
 		queryFn: async () => {
 			const response = await authService.logout()
@@ -36,7 +36,8 @@ function useLogout() {
 		}
 	}, [isError, data, navigate])
 
-	return { data, logout: refetch }
+	
+	return { data, logout: refetch, isLoading }
 }
 
 export default useLogout

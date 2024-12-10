@@ -7,7 +7,9 @@ class UserServices {
 			withCredentials: true,
 		})
 	}
-
+	async postImg(userId, img) {
+		return await axios.post(`${this.URL}/api/api/users/${userId}/photo`, { img })
+	}
 }
 
 export const userServices = new UserServices()

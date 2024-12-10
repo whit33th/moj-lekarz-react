@@ -1,17 +1,24 @@
 import styles from "./VisitModal.module.css"
-import profil from "../../../assets/img/profil.webp"
+
 import BlueBorderBtn from "../../Buttons/BlueBorderBtn/BlueBorderBtn"
 
 import BlueBtn from "../../Buttons/BlueBtn/BlueBtn"
 import useStore from "../../../data/store"
-import { useNavigate, useParams } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
+import grey from "../../../assets/img/grey.png"
+import useGetPatientInfo from './../../../hooks/DoctorHooks/useGetPatientInfo'
+import AddRecipesModalForSelectedUser from '../AddRecipesModalForSelectedUser/AddRecipesModalForSelectedUser'
+import Skeleton from 'react-loading-skeleton'
 
-function VisitModal() {
-  const { setModalActive } = useStore()
+
+function VisitModal({ props }) {
+  const { setModalActive, setModalContent } = useStore()
   const navigate = useNavigate()
 
-  const { id } = useParams()
-  console.log(id)
+
+  const { data, isLoading } = useGetPatientInfo(props.patientId)
+
+
   function closeMainModal() {
     setModalActive(false)
   }
@@ -22,24 +29,19 @@ function VisitModal() {
           <h2>Informacja o wizycie</h2>
 
           <div className={styles.infoTag}>
-            <span>Godziny wizyty:</span> <span> 08:30 - 16:45 { }</span>
+            <span>Godziny wizyty:</span> <span>{props.startTime + " - " + props.endTime}</span>
           </div>
 
           <div className={styles.infoTag}>
-            <span>Pacjent:</span> <span>Andrzej Witold-Jagoda</span>
+            <span>Pacjent:</span> <span>{props.firstName + " " + props.lastName}</span>
           </div>
 
           <div className={styles.infoTag}>
-            <span>Rodzaj wizyty:</span> <span>Konsultacja</span>
+            <span>Rodzaj wizyty:</span> <span>{props.type}</span>
           </div>
-          <div className={styles.infoTag}>
-            <span>Adres:</span> <span>Ul. Przelewska 3</span>
-          </div>
-          <div className={styles.infoTag}>
-            <span>Sala:</span> <span>203</span>
-          </div>
+
         </div>
-        <BlueBorderBtn>Lista receptur</BlueBorderBtn>
+        <BlueBorderBtn cb={() => (setModalContent(<AddRecipesModalForSelectedUser patientId={props.patientId} name={props.firstName + " " + props.lastName} />), setModalActive(true))} >Lista receptur</BlueBorderBtn>
       </div>
 
       <div className={styles.employeeInfo}>
@@ -47,55 +49,57 @@ function VisitModal() {
 
         <div className={styles.employeeDetails}>
           <div className={styles.topInfo}>
-            <img src={profil} className={styles.employeeImage} alt="Employee" />
+            <img src={props.img || grey} className={styles.employeeImage} alt="Employee" />
             <div>
-              <p style={{ color: "#3E36B0" }}>Andrzej Witold-Jagoda</p>
+              <p style={{ color: "#3E36B0" }}>{props.firstName + " " + props.lastName}</p>
               <div>
                 <p className={styles.phone}>
                   <span style={{ color: "#3E36B0" }}>Tel:</span>
-                  <span>48 444 444 444</span>
+                  <span>{isLoading ? <Skeleton width={150} /> : data?.user?.phone || 'Brak'}</span>
                 </p>
                 <p className={styles.email}>
                   <span style={{ color: "#3E36B0" }}>Email:</span>
-                  <span>deasdasd@dgs.ccc</span>
+                  <span>{isLoading ? <Skeleton width={150} /> : data?.user?.email || 'Brak'}</span>
                 </p>
               </div>
             </div>
           </div>
 
           <div className={styles.botInfo}>
-            <div className={styles.Comments}>
+            {/* <div className={styles.Comments}>
               <span>Uwagi:</span>{" "}
               <li style={{ listStyle: "none" }}>
                 <ul>Jest uczulony na Ibupron</ul>
                 <ul>Jest uczulony na Klatra</ul>
               </li>
-            </div>
+            </div> */}
             <div>
               <span>Miasto:</span>
-              <span>Wrocław</span>
+              <span>{isLoading ? <Skeleton width={100} /> : data?.user?.address?.city || 'Brak'}</span>
             </div>
             <div>
               <span>Adres:</span>
-              <span>ul.Szamarzewskiego 17/131</span>
+              <span>{isLoading ? <Skeleton width={125} /> : data?.user?.address?.street || 'Brak'}</span>
             </div>
             <div>
               <span>Data urodzenia:</span>
-              <span>28.08.1993</span>
+              <span>{isLoading ? <Skeleton width={100} /> : data?.user?.birthday?.slice(0, 10)}</span>
             </div>
             <div>
-              <span>Plec:</span> <span>Mężczyzna</span>
+              <span>Plec:</span> <span>{isLoading ? <Skeleton width={100} /> : data?.user?.gender}</span>
             </div>
-            <div>
+
+
+            {/* <div>
               <span>Wzrost:</span> <span>183 cm.</span>
             </div>
             <div>
               <span>Waga:</span> <span>79 kg.</span>
-            </div>
+            </div> */}
           </div>
         </div>
         <div className={styles.actions}>
-          <BlueBtn cb={() => navigate("/patient-info/890127650")}>
+          <BlueBtn cb={() => navigate("/patient-info/" + props.patientId)}>
             Więcej informacji
           </BlueBtn>
         </div>

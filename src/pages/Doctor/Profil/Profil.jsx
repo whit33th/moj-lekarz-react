@@ -36,7 +36,7 @@ function Profil() {
       <div className={styles.topPhoto}>
         <img src={doctor.img || grey} alt="Profil" />
         <h1 style={{ margin: 0 }}>
-          {isLoading ? <Skeleton width={250} /> : doctor.fullname}
+          {isLoadingUser ? <Skeleton width={250} /> : doctor.fullname}
         </h1>
         <p>{isLoading ? <Skeleton width={150} /> : doctor.specialty}</p>
         <br />

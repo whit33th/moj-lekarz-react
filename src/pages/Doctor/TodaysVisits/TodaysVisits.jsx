@@ -8,15 +8,22 @@ import Table from '../../../components/Table/Table'
 import useGetDoctorAppointment from '../../../hooks/DoctorHooks/useGetDoctorAppointment'
 import useStore from '../../../data/store'
 import Pagination from '../../../components/UI/Pagination/Pagination'
+import { useState } from 'react'
 
 function TodaysVisits() {
 
   const { userId, selectedDate, todayDate, selectedDateInWords } = useStore()
-  const { data: appointments, isLoading } = useGetDoctorAppointment({
+  const [page, setPage] = useState(1)
+  const { data, isLoading } = useGetDoctorAppointment({
     id: userId,
     dateFrom: selectedDate,
-    dateTo: selectedDate
+    dateTo: selectedDate,
+    page: page
   })
+
+  const appointments = data?.slots || []
+  const totalPages = data?.pages
+
   const tableData = appointments?.map((appointment) => ({
     img: appointment?.patient.photo,
     name: appointment?.patient?.first_name + " " + appointment?.patient?.last_name || '',
@@ -96,7 +103,7 @@ function TodaysVisits() {
         showImage={true}
         together={true}
       />
-      <Pagination value={1} onChange={() => { }} />
+      <Pagination value={page} onChange={setPage} total={totalPages} isLoading={isLoading} />
 
     </div>
   )

@@ -1,23 +1,22 @@
-import { useState, useEffect } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import { useState, useEffect } from 'react'
+import { NavLink, useLocation } from 'react-router-dom'
 
-import styles from './Header.module.css';
-import logo from '../../assets/img/logo.svg';
-import imgProfile from "../../assets/img/Vector23.svg";
+import styles from './Header.module.css'
+import logo from '../../assets/img/logo.svg'
+import imgProfile from "../../assets/img/Vector23.svg"
 
-
-
-import cx from 'classnames';
 import { pageConfig } from '../../config/config'
 
 function Header({ isLoggedIn }) {
-  const location = useLocation();
-  const [mobileMenuState, setMobileMenuState] = useState(false);
+  const location = useLocation()
+  const [mobileMenuState, setMobileMenuState] = useState(false)
+
   useEffect(() => {
     if (mobileMenuState) {
-      setMobileMenuState(false);
+      setMobileMenuState(false)
     }
-  }, [location.pathname]);
+  }, [location.pathname])
+
   return (
     <header className={styles.header}>
       <div className={styles.headerTopBlock}>tryb dla słabowidzących</div>
@@ -28,71 +27,78 @@ function Header({ isLoggedIn }) {
           </NavLink>
         </div>
         <div
-          className={`${styles.headerNavigate} ${
-            mobileMenuState ? styles.activeMobileMenu : styles.hiddenMobileMenu
-          }`}
+          className={`${styles.headerNavigate} ${mobileMenuState ? styles.activeMobileMenu : styles.hiddenMobileMenu
+            }`}
         >
           <ul>
             <li
-              className={cx(styles.headerNavigateItem, {
-                [styles.active]: location.pathname === "/how-it-work",
-              })}
+              className={
+                `${styles.headerNavigateItem} ` +
+                (location.pathname === "/how-it-work" ? styles.active : "")
+              }
             >
               <NavLink to="/how-it-work">Jak to działa</NavLink>
             </li>
             <li
-              className={cx(styles.headerNavigateItem, {
-                [styles.active]: location.pathname === "/znajdz-lekarza",
-              })}
+              className={
+                `${styles.headerNavigateItem} ` +
+                (location.pathname === "/znajdz-lekarza" ? styles.active : "")
+              }
             >
               <NavLink to="/znajdz-lekarza">Znajdż lekarza</NavLink>
             </li>
             {isLoggedIn && (
               <li
-                className={cx(styles.headerNavigateItem, {
-                  [styles.active]: location.pathname === "/visits",
-                })}
+                className={
+                  `${styles.headerNavigateItem} ` +
+                  (location.pathname === "/visits" ? styles.active : "")
+                }
               >
                 <NavLink to="/visits">Moje wizyty</NavLink>
               </li>
             )}
             {isLoggedIn && (
               <li
-                className={cx(styles.headerNavigateItem, {
-                  [styles.active]: location.pathname === "/recipes",
-                })}
+                className={
+                  `${styles.headerNavigateItem} ` +
+                  (location.pathname === "/recipes" ? styles.active : "")
+                }
               >
                 <NavLink to="/recipes">Moje recepty</NavLink>
               </li>
             )}
             {isLoggedIn && (
               <li
-                className={cx(styles.headerNavigateItem, {
-                  [styles.active]: location.pathname === "/ResearchResult",
-                })}
+                className={
+                  `${styles.headerNavigateItem} ` +
+                  (location.pathname === "/ResearchResult" ? styles.active : "")
+                }
               >
                 <NavLink to="/ResearchResult">Dokumenty</NavLink>
               </li>
             )}
             <li
-              className={cx(styles.headerNavigateItem, {
-                [styles.active]: location.pathname === "/mobilna",
-              })}
+              className={
+                `${styles.headerNavigateItem} ` +
+                (location.pathname === "/mobilna" ? styles.active : "")
+              }
             >
               <NavLink to="/mobilna">Aplikacja mobilna</NavLink>
             </li>
             <li
-              className={cx(styles.headerNavigateItem, {
-                [styles.active]: location.pathname === "/blog",
-              })}
+              className={
+                `${styles.headerNavigateItem} ` +
+                (location.pathname === "/blog" ? styles.active : "")
+              }
             >
               <NavLink to="/blog">Blog</NavLink>
             </li>
             {!isLoggedIn && (
               <li
-                className={cx(styles.headerNavigateItem, {
-                  [styles.active]: location.pathname === "/firm",
-                })}
+                className={
+                  `${styles.headerNavigateItem} ` +
+                  (location.pathname === "/firm" ? styles.active : "")
+                }
               >
                 <NavLink to="/firm">Dla firm</NavLink>
               </li>
@@ -129,7 +135,7 @@ function Header({ isLoggedIn }) {
         </div>
       </div>
     </header>
-  );
+  )
 }
 
-export default Header;
+export default Header

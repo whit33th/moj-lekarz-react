@@ -8,6 +8,7 @@ const InputDropdownStas = ({
   seeOptions = false,
   control,
   name,
+  disabled = false,
 }) => {
   const {
     field: { value, onChange },
@@ -95,6 +96,7 @@ const InputDropdownStas = ({
           value={value ? value.label : ""}
           placeholder={placeholder}
           onChange={handleInputChange}
+          disabled={disabled}
         />
         {seeOptions && (
           <span

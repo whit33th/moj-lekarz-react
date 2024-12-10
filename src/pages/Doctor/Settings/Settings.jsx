@@ -4,17 +4,24 @@ import styles from "./styles.module.css" // Импортируем CSS-моду�
 import Calendar from "../../../components/DoctorPage/Home/Calendar/CalendarBlock"
 
 import DropdownStas from "../../../components/Dropdown/DropdownStas"
-import Choice from "../../../components/Modal/Choice"
 import { useForm } from 'react-hook-form'
 import useGetUserInfo from '../../../hooks/UserHooks/useGetUserInfo'
 import grey from "../../../assets/img/grey.png"
 import InputError from '../../../components/UI/InputError/InputError'
+
+import BlueBtn from '../../../components/Buttons/BlueBtn/BlueBtn'
+import usePostUpdateImg from '../../../hooks/UserHooks/usePostUpdateImg'
+import { toast } from 'sonner'
 function Settings() {
   const [activeTab, setActiveTab] = useState("Dane podstawowe")
-
+  const [previewImg, setPreviewImg] = useState(null)
+  console.log(previewImg)
   const { register, formState, handleSubmit, reset } = useForm({
     mode: 'onChange'
+  })
 
+  const { register: imgRegister, formState: imgFormState, handleSubmit: handleImgSubmit } = useForm({
+    mode: 'onChange'
   })
   const option1 = [
     "Dariusz Adamek",
@@ -34,17 +41,31 @@ function Settings() {
 
 
   const { data: user, isLoading } = useGetUserInfo() || []
+  const { mutate, isPending, isError, isSuccess } = usePostUpdateImg()
 
+
+  useEffect(() => {
+    if (isSuccess) {
+      toast.success("Plik został pomyślnie wysłany!")
+    }
+    if (isError) {
+      toast.error("Wystąpił błąd podczas wysyłania pliku!")
+    }
+    if (isPending) {
+      toast.loading("Wysyłanie pliku...")
+    }
+    toast.dismiss()
+  }, [isPending, isError, isSuccess])
 
   useEffect(() => {
     reset({
       firstName: isLoading ? 'Ładowanie...' : user?.first_name || 'Brak',
       lastName: isLoading ? 'Ładowanie...' : user?.last_name || 'Brak',
       city: isLoading ? 'Ładowanie...' : user?.city || 'Brak',
-      street: isLoading ? 'Ładowanie...' : user?.street || 'Brak',
-      house: isLoading ? 'Ładowanie...' : user?.house || 'Brak',
-      flat: isLoading ? 'Ładowanie...' : user?.flat || 'Brak',
-      postCode: isLoading ? 'Ładowanie...' : user?.post_code || 'Brak',
+      street: isLoading ? 'Ładowanie...' : user?.address?.street || 'Brak',
+      house: isLoading ? 'Ładowanie...' : user?.address?.home || 'Brak',
+      flat: isLoading ? 'Ładowanie...' : user?.address?.flat || 'Brak',
+      postCode: isLoading ? 'Ładowanie...' : user?.address?.post_index || 'Brak',
       birthDate: isLoading ? '0000-00-00' : user?.birthday.slice(0, 10),
       pesel: isLoading ? 'Ładowanie...' : user?.pesel || 'Brak',
       tel: isLoading ? 'Ładowanie...' : user?.phone || 'Brak',
@@ -57,18 +78,21 @@ function Settings() {
   function onSubmit(data) {
     console.log(data)
   }
-
+  function changeImg(img) {
+    mutate(img)
+  }
   const conclusions = (
     <div className={styles.workTime}>
       <div className={styles.shadow}>
         <Calendar />
       </div>
-      
+
       <div className={styles.conclusions}>
         <DropdownStas
           placeholder={option1[0]}
           label="Imię i nazwisko"
-          options={option1}
+          options={false}
+          type='disabled'
         />
         <DropdownStas
           placeholder={reasons[0]}
@@ -79,7 +103,16 @@ function Settings() {
     </div>
   )
 
-
+  useEffect(() => {
+    setPreviewImg(isLoading || !user ? grey : user?.photo)
+  }, [isLoading, user])
+  function handleImgChange(event) {
+    const file = event.target.files[0]
+    if (file) {
+      const objectUrl = URL.createObjectURL(file) // Создаем URL для изображения
+      setPreviewImg(objectUrl) // Устанавливаем предпросмотр
+    }
+  }
   const workTime = (
     <div className={styles.workTime}>
       <div className={styles.shadow}>
@@ -157,7 +190,9 @@ function Settings() {
             </div>
             <div>
               <label htmlFor="postCode">Kod posztowy</label>
-              <input type="text" placeholder="61-232"
+              <input
+                type="text"
+                placeholder="61-232"
                 {...register('postCode', {
                   pattern: {
                     value: /^\d{2}-\d{3}$/, // Разрешает формат с тире
@@ -165,10 +200,19 @@ function Settings() {
                   },
                   maxLength: {
                     value: 6,
-                    message: "Maksymalnie 6 cyfr",
+                    message: "Maksymalnie 6 znaków",
                   },
+                })}
+                onInput={(e) => {
+                  const value = e.target.value.replace(/\D/g, '')
+                  if (value.length > 2) {
+                    e.target.value = `${value.slice(0, 2)}-${value.slice(2, 5)}`
+                  } else {
+                    e.target.value = value
+                  }
+                }}
+              />
 
-                })} />
               <InputError formState={formState} errorField={"postCode"} />
             </div>
           </div>
@@ -182,7 +226,7 @@ function Settings() {
                 {
                 ...register('street', {
                   pattern: {
-                    value: /^[a-zA-Z/.]+$/,
+                    value: /^[\p{L}\s]+$/u,
                     message: "Tylko litery",
                   }
                 })
@@ -260,7 +304,7 @@ function Settings() {
                 {...register('tel',
                   {
                     pattern: {
-                      value: /^[0-9]+$/,
+                      value: /^[0-9/+]+$/,
                       message: "Tylko cyfry",
                     },
                     minLength: {
@@ -299,10 +343,39 @@ function Settings() {
       </div>
       <div className={`${styles.settingImg}`}>
         <div className={styles.photo}>
-          <img src={isLoading ? grey : user?.photo} alt="" />
+          <img src={previewImg} alt="" />
         </div>
 
-        <Choice choice1={"Zobacz"} choice2={"Zmień"} />
+
+
+        <form className={styles.formImg} onSubmit={handleImgSubmit(changeImg)}>
+
+          <div>
+            <label htmlFor="fileUpload" className={styles.customButton}>
+              Wybierz zdjęcie
+            </label>
+            <input
+              className={styles.inputFileHidden}
+              type="file"
+              accept="image/*"
+              {...imgRegister("photo", {
+                required: "Wybierz zdjęcie",
+                onChange: handleImgChange, // Вызываем обработчик изменения
+              })}
+              id="fileUpload"
+            />
+            <InputError formState={imgFormState} errorField={"photo"} />
+          </div>
+
+
+
+
+
+          <div>
+            <BlueBtn>Zapisz</BlueBtn> </div>
+        </form>
+
+
       </div>
     </div>
   )

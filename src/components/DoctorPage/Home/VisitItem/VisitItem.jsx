@@ -4,13 +4,13 @@ import styles from './VisitItem.module.css'
 import VisitModal from '../../../Modals/VisitModal/VisitModal'
 import useStore from './../../../../data/store'
 
-function VisitItem({ img, firstName, lastName, date, time, index }) {
+function VisitItem({ img, firstName, lastName, date, startTime, endTime, index, type, patientId }) {
 
     const { setModalActive, setModalContent } = useStore()
 
     function openMainModalInfo() {
         setModalActive(true)
-        setModalContent(<VisitModal />)
+        setModalContent(<VisitModal props={{ img, firstName, lastName, date, startTime, endTime, index, type, patientId }} />)
 
     }
     return (
@@ -23,7 +23,7 @@ function VisitItem({ img, firstName, lastName, date, time, index }) {
                     <p className={styles.date}>{date}</p>
                 </div>
             </div>
-            <p className={styles.time}>{time.slice(0, 5)}</p>
+            <p className={styles.time}>{startTime.slice(0, 5)}</p>
         </button>
 
     )
