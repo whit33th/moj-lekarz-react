@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useState } from "react"
-import leftArrow from "../../../../assets/img/left.png"
-import rightArrow from "../../../../assets/img/right.png"
+import leftArrow from "@assets/img/left.png"
+import rightArrow from "@assets/img/right.png"
 import styles from "./CalendarBlock.module.css"
-import useStore from "../../../../data/store"
-import useGetDoctorAppointment from "../../../../hooks/DoctorHooks/useGetDoctorAppointment"
+import useStore from "@data/store"
+import useGetDoctorAppointment from "@hooks/DoctorHooks/useGetDoctorAppointment"
 import Skeleton from 'react-loading-skeleton'
 
 const CalendarBlock = () => {

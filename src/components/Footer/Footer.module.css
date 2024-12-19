@@ -1,17 +1,18 @@
 @font-face {
     font-family: 'Red Hat Display';
-    src: url(../../assets/fonts/RedHatDisplay-VariableFont_wght.ttf);
-  }
-  @font-face {
-    font-family: 'Karla';
-    src: url(../../assets/fonts/Karla-VariableFont_wght.ttf);
-  }
+    src: url(@assets/fonts/RedHatDisplay-VariableFont_wght.ttf);
+}
 
-.footer{
+@font-face {
+    font-family: 'Karla';
+    src: url(@assets/fonts/Karla-VariableFont_wght.ttf);
+}
+
+.footer {
     width: 100%;
 }
 
-.footerTop{
+.footerTop {
     background-color: #3E36B0;
     height: auto;
     width: 100%;
@@ -19,15 +20,17 @@
     display: flex;
 
 }
-.phoneBlocks{
+
+.phoneBlocks {
     background-color: #A6DEF7;
     width: 303px;
     height: 341px;
     padding: 24px;
-    border-radius: 13px ;
+    border-radius: 13px;
 
 }
-.phoneBlocksTitle{
+
+.phoneBlocksTitle {
     display: flex;
     align-items: start;
     width: 100%;
@@ -37,17 +40,20 @@
     line-height: 32.78px;
 
 }
-.phoneBlocksTitle img{
+
+.phoneBlocksTitle img {
     margin-top: 8px;
     margin-right: 15px;
 }
-.numberBlock{
+
+.numberBlock {
     margin-top: 15px;
     font-family: 'Red Hat Display';
 
 
 }
-.numberBlock > p {
+
+.numberBlock>p {
     margin-bottom: 5px;
     font-family: 'Red Hat Display';
     font-size: 16px;
@@ -57,7 +63,7 @@
 
 }
 
-.numberBlock h3{
+.numberBlock h3 {
     font-family: 'Red Hat Display';
     font-size: 28px;
     font-weight: 500;
@@ -66,7 +72,8 @@
     color: #3E36B0;
     margin-bottom: 2px;
 }
-.numberBlock h3 a{
+
+.numberBlock h3 a {
     font-family: 'Red Hat Display';
     font-size: 28px;
     font-weight: 500;
@@ -77,7 +84,7 @@
     text-decoration: none;
 }
 
-.numberBlock div p{
+.numberBlock div p {
     font-family: 'Red Hat Display';
     font-size: 16px;
     font-weight: 500;
@@ -85,7 +92,8 @@
     letter-spacing: -0.01em;
 
 }
-.phoneBlocks > p{
+
+.phoneBlocks>p {
     font-family: 'Karla';
     font-size: 15px;
     font-weight: 400;
@@ -96,7 +104,7 @@
 
 }
 
-.footerNavigateBlock{
+.footerNavigateBlock {
     width: calc(100% - 303px);
     padding-left: 8%;
     height: auto;
@@ -104,17 +112,20 @@
 
 
 }
-.footerNavigateBlockTop{
+
+.footerNavigateBlockTop {
     width: 100%;
     height: auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-.footerNavigateBlockTopMenu{
+
+.footerNavigateBlockTopMenu {
     display: flex;
 }
-.footerNavigateBlockTopMenu a{
+
+.footerNavigateBlockTopMenu a {
     text-decoration: none;
     color: #fff;
     font-family: 'Manrope';
@@ -122,7 +133,8 @@
     font-weight: 300;
     line-height: 25.86px;
 }
-.footerNavigateBlockTopMenu > div{
+
+.footerNavigateBlockTopMenu>div {
     font-size: 20px;
     font-weight: 100;
     line-height: 21.86px;
@@ -132,14 +144,14 @@
 }
 
 
-.footerNavigateBlockTopBtn{
+.footerNavigateBlockTopBtn {
     width: 130px;
     height: 46px;
     border-radius: 1000px;
     background-color: #fff;
 }
 
-.footerNavigateBlockTopBtn a{
+.footerNavigateBlockTopBtn a {
     width: 100%;
     height: 100%;
     display: flex;
@@ -153,15 +165,17 @@
 
 }
 
-.footerNavigateBlockBottom{
+.footerNavigateBlockBottom {
     display: flex;
     padding: 30px 0;
     justify-content: space-between;
 }
-.footerNavigateBlockBottom li{
+
+.footerNavigateBlockBottom li {
     list-style-type: none;
 }
-.footerNavigateBlockBottom a{
+
+.footerNavigateBlockBottom a {
     text-decoration: none;
     color: #fff;
     font-family: "Manrope";
@@ -170,17 +184,19 @@
     line-height: 40.32px;
 
 }
-.footerTopUpBtn{
+
+.footerTopUpBtn {
     display: flex;
     align-items: center;
 }
-.footerNavigateBlockBottom button{
+
+.footerNavigateBlockBottom button {
     width: 54px;
     height: 54px;
     border-radius: 100px;
     border: 1px solid #fff;
-    background-color: #00000000; 
-    cursor: pointer;   
+    background-color: #00000000;
+    cursor: pointer;
 }
 
 
@@ -198,7 +214,7 @@
 
 
 
-.footerBottom{
+.footerBottom {
     width: 100%;
     height: 50px;
     background-color: #0E0E0E;
@@ -214,7 +230,8 @@
 
 
 }
-.footerBottom a{
+
+.footerBottom a {
     color: #fff;
     text-decoration: none;
     font-family: "Manrope";
@@ -222,66 +239,84 @@
     font-weight: 400;
     line-height: 19.12px;
 }
-.footerSocialNetwork{
+
+.footerSocialNetwork {
     display: flex;
 }
-.footerSocialNetwork img{
+
+.footerSocialNetwork img {
     margin: 0 15px;
     width: 20px;
 }
-.footerSocialNetwork a{
+
+.footerSocialNetwork a {
     display: flex;
     align-items: center;
 }
-.footerSocialNetwork img.instaIcon{
+
+.footerSocialNetwork img.instaIcon {
     width: 24px;
 }
-.politykaNavigate a{
+
+.politykaNavigate a {
     margin: 0 18px;
 }
+
 @media (max-width: 624px) {
-    .phoneBlocks{
-        width:80%
+    .phoneBlocks {
+        width: 80%
     }
-    .footerTop{
+
+    .footerTop {
         flex-wrap: wrap;
     }
-    .footerNavigateBlock{
+
+    .footerNavigateBlock {
         width: 100%;
     }
-    .footerBottom{
+
+    .footerBottom {
         flex-wrap: wrap;
         width: 100%;
         height: auto;
         justify-content: center;
-        
+
     }
-    .footerNavigateBlockTopMenu{
+
+    .footerNavigateBlockTopMenu {
         flex-wrap: wrap;
         width: 100%;
 
     }
-    .phoneBlocks{
-       order: 2;
-       width: 100%;
+
+    .phoneBlocks {
+        order: 2;
+        width: 100%;
     }
-    .footerNavigateBlock{
-       order:1;
+
+    .footerNavigateBlock {
+        order: 1;
     }
-    .footerNavigateBlockTop{
+
+    .footerNavigateBlockTop {
         flex-wrap: wrap;
     }
-    .footerNavigateBlockTopMenu > div{
+
+    .footerNavigateBlockTopMenu>div {
         margin: 0 6px;
-    
+
     }
-    .footerNavigateBlockTopMenu a{
+
+    .footerNavigateBlockTopMenu a {
         font-size: 14px;
     }
-    .footerNavigateBlock{
-      padding: 0 8px;
+
+    .footerNavigateBlock {
+        padding: 0 8px;
     }
-    .footerNavigateBlockTopBtn , .footerTopUpBtn{
+
+    .footerNavigateBlockTopBtn,
+    .footerTopUpBtn {
         display: none;
     }
 }

@@ -1,13 +1,13 @@
 
-import follow from "../../../assets/img/follow.png"
+import follow from "@assets/img/follow.png"
 import styles from "./TodaysVisits.module.css"
-import tablecss from "../../../components/Table/Table.module.css"
+import tablecss from "@components/Table/Table.module.css"
 import { NavLink } from "react-router-dom"
 import Dropdown from "../../../components/Dropdown/Dropdown"
-import Table from '../../../components/Table/Table'
-import useGetDoctorAppointment from '../../../hooks/DoctorHooks/useGetDoctorAppointment'
-import useStore from '../../../data/store'
-import Pagination from '../../../components/UI/Pagination/Pagination'
+import Table from '@components/Table/Table'
+import useGetDoctorAppointment from '@hooks/DoctorHooks/useGetDoctorAppointment'
+import useStore from '@data/store'
+import Pagination from '@components/UI/Pagination/Pagination'
 import { useState } from 'react'
 
 function TodaysVisits() {

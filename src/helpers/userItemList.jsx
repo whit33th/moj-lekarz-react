@@ -1,4 +1,4 @@
-import userAvatar from "../assets/img/profil.webp";
+import userAvatar from "@assets/img/profil.webp"
 
 const userItems = [
   {
@@ -103,7 +103,7 @@ const userItems = [
     firmName: "BioPharma", // Название фармацевтической компании
     position: "Dentysta",
   },
-];
+]
 
 const myData = {
   name: "Satoru",
@@ -113,6 +113,6 @@ const myData = {
   clinic: "Przychodnia 36",
   city: "Poznan",
   street: "Ul. Szylinga 13",
-};
+}
 
-export { userItems, myData };
+export { userItems, myData }

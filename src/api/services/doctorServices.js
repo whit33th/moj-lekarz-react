@@ -20,9 +20,9 @@ class DoctorServices {
 			withCredentials: true,
 		})
 	}
-	async getAppointment(userId, dateFrom, dateTo, limit, page, status) {
+	async getAppointment(dateFrom, dateTo, limit, page, status) {
 
-		let url = `${this.URL}/api/doctors/${userId}/appointments?`
+		let url = `${this.URL}/api/doctors/appointments?`
 
 		dateFrom && (url += `startDate=${dateFrom}`)
 		dateTo && (url += `&endDate=${dateTo}`)
@@ -33,8 +33,8 @@ class DoctorServices {
 			withCredentials: true,
 		})
 	}
-	async getPatientsList(userId, page, limit) {
-		let url = `${this.URL}/api/patients?sort=asc&doctorId=${userId}`
+	async getPatientsList(page, limit) {
+		let url = `${this.URL}/api/patients?sort=ASC`
 
 		limit && (url += `&limit=${limit}`)
 		page && (url += `&page=${page}`)
@@ -45,9 +45,9 @@ class DoctorServices {
 	}
 
 
-	async getPrescriptions(id, limit, page, sort) {
+	async getPrescriptions( limit, page, sort) {
 
-		let url = `${this.URL}/api/doctors/${id}/prescriptions?`
+		let url = `${this.URL}/api/prescriptions?`
 
 		limit && (url += `limit=${limit}`)
 		page && (url += `&page=${page}`)
@@ -61,7 +61,7 @@ class DoctorServices {
 	async postPrescriptions(data) {
 		return await axios.post(`${this.URL}/api/prescriptions`, {
 			patientId: data.patientId,
-			doctorId: data.doctorId,
+			
 			medicationId: data.medicationId
 		})
 	}

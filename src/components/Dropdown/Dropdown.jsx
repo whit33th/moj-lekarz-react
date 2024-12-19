@@ -1,10 +1,10 @@
-import { useEffect, useState, useRef } from "react";
-import styles from "./Dropdown.module.css";
-import unpointed from "../../assets/img/unpointed.png";
-import pointed from "../../assets/img/pointed.png";
-import Choice from "../Modal/Choice";
-import Search from "../UI/Search/Search";
-import Filter from "../Modals/Filter/Filter";
+import { useEffect, useState, useRef } from "react"
+import styles from "./Dropdown.module.css"
+import unpointed from "@assets/img/unpointed.png"
+import pointed from "@assets/img/pointed.png"
+import Choice from "../Modal/Choice"
+import Search from "../UI/Search/Search"
+import Filter from "../Modals/Filter/Filter"
 
 const Dropdown = ({
   label,
@@ -17,28 +17,28 @@ const Dropdown = ({
   listStyle,
   type,
 }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(options[0]);
-  const dropdownRef = useRef(null);
+  const [isOpen, setIsOpen] = useState(false)
+  const [selectedOption, setSelectedOption] = useState(options[0])
+  const dropdownRef = useRef(null)
 
   const [filterState, setFilterState] = useState({
     selectedGender: "K",
     selectedSortOption: "az",
     dateFrom: "",
     dateTo: "",
-  });
+  })
 
   const toggleDropdown = () => {
-    setIsOpen(!isOpen);
-  };
+    setIsOpen(!isOpen)
+  }
 
   const handleOptionClick = (option) => {
-    setSelectedOption(option);
-  };
+    setSelectedOption(option)
+  }
 
   const handleFilterChange = (newFilterState) => {
-    setFilterState(newFilterState);
-  };
+    setFilterState(newFilterState)
+  }
 
   const resetFilter = () => {
     setFilterState({
@@ -46,26 +46,26 @@ const Dropdown = ({
       selectedSortOption: "az",
       dateFrom: "",
       dateTo: "",
-    });
-  };
+    })
+  }
 
   useEffect(() => {
     const handleOutsideClick = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setIsOpen(false);
+        setIsOpen(false)
       }
-    };
+    }
 
-    document.addEventListener("mousedown", handleOutsideClick);
+    document.addEventListener("mousedown", handleOutsideClick)
     return () => {
-      document.removeEventListener("mousedown", handleOutsideClick);
-    };
-  }, []);
+      document.removeEventListener("mousedown", handleOutsideClick)
+    }
+  }, [])
 
   useEffect(() => {
-    console.log(selectedOption);
-    setIsOpen(false);
-  }, [selectedOption]);
+    console.log(selectedOption)
+    setIsOpen(false)
+  }, [selectedOption])
 
   return (
     <div ref={dropdownRef} className={styles.dropdownContainer}>
@@ -114,7 +114,7 @@ const Dropdown = ({
           ))}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Dropdown;
+export default Dropdown

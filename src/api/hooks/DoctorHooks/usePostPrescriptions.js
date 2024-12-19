@@ -1,13 +1,13 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { doctorServices } from '../../services/doctorServices'
 import { toast } from 'sonner'
-import useStore from '../../data/store'
+import useStore from '@data/store'
 import { useEffect } from 'react'
 function usePostPrescriptions() {
 	const { setModalActive } = useStore()
 	const queryClient = useQueryClient()
 
-	const { mutate, isSuccess, isPending, isError, error } = useMutation({
+	const { mutate, isSuccess, isError, error } = useMutation({
 		mutationKey: ["postPrescriptions"],
 		mutationFn: (data) => doctorServices.postPrescriptions(data),
 	})
@@ -28,14 +28,9 @@ function usePostPrescriptions() {
 
 	}, [isSuccess, setModalActive, queryClient])
 
-	useEffect(() => {
-		if (isPending) {
-			toast.loading('Dodawanie recepty...')
-		}
+	
 
-	}, [isPending])
-
-	return { mutate, isSuccess, isPending }
+	return { mutate, isSuccess }
 }
 
 export default usePostPrescriptions

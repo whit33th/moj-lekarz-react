@@ -2,7 +2,7 @@ import { lazy } from "react"
 import Navbar from "../components/Navbar/Navbar"
 import Sidebar from "../components/Sidebar/Sidebar"
 import { Toaster } from "sonner"
-import loop from '../assets/img/loop.mp4'
+import loop from '@assets/img/loop.mp4'
 
 const Modal = lazy(() => import("../components/Modal/Modal"))
 
@@ -10,13 +10,11 @@ function Workspace({ role, children }) {
 
   return (
     <>
-
-
       <Sidebar role={role} />
-      <div style={{position: "relative"}} className="container">
+      <div style={{ position: "relative" }} className="container">
         <Navbar />
-        <video className='loop' autoPlay loop muted disablePictureInPicture>
-          <source src={loop} type='video/mp4' />
+        <video src={loop} type='video/mp4' className='loop' autoPlay loop muted playsInline disablePictureInPicture>
+
         </video>
 
         {children}

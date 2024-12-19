@@ -1,39 +1,39 @@
-import { useState } from "react";
+import { useState } from "react"
 
-import styles from "./ZapisFormPage.module.css";
-import imgName from "../../../../assets/img/simple-line-i.svg";
-import imgType from "../../../../assets/img/Vector14.svg";
-import phoneImg from "../../../../assets/img/ph_phone-light.svg";
-import visitorImg from "../../../../assets/img/Vector15.svg";
-import fileInputImg from "../../../../assets/img/Vector16.svg";
-import fileInputv2 from "../../../../assets/img/tabler_file-filled.svg";
-import visitorImg2 from "../../../../assets/img/pobierz.svg";
+import styles from "./ZapisFormPage.module.css"
+import imgName from "@assets/img/simple-line-i.svg"
+import imgType from "@assets/img/Vector14.svg"
+import phoneImg from "@assets/img/ph_phone-light.svg"
+import visitorImg from "@assets/img/Vector15.svg"
+import fileInputImg from "@assets/img/Vector16.svg"
+import fileInputv2 from "@assets/img/tabler_file-filled.svg"
+import visitorImg2 from "@assets/img/pobierz.svg"
 
-import { NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom"
 
 function ZapisFormPage(props) {
-  const [nameInput, setNameInput] = useState("");
-  const [surNameInput, setSurNameInput] = useState("");
-  const [phoneInput, setPhoneInput] = useState("");
-  const [peselInput, setPeselInput] = useState("");
-  const [textareaValue, setTextareaValue] = useState("");
-  const [isChecked, setIsChecked] = useState(false);
-  const [isChecked2, setIsChecked2] = useState(false);
-  const [data, setData] = useState(props.data);
-  const [uploadedFile, setUploadedFile] = useState(null);
+  const [nameInput, setNameInput] = useState("")
+  const [surNameInput, setSurNameInput] = useState("")
+  const [phoneInput, setPhoneInput] = useState("")
+  const [peselInput, setPeselInput] = useState("")
+  const [textareaValue, setTextareaValue] = useState("")
+  const [isChecked, setIsChecked] = useState(false)
+  const [isChecked2, setIsChecked2] = useState(false)
+  const [data, setData] = useState(props.data)
+  const [uploadedFile, setUploadedFile] = useState(null)
 
   const handleFileUpload = (event) => {
-    const file = event.target.files[0];
+    const file = event.target.files[0]
     if (file) {
-      props.handleFileUpload(event);
-      setUploadedFile(file.name);
+      props.handleFileUpload(event)
+      setUploadedFile(file.name)
     }
-  };
+  }
 
-  const doctorInfo = data.allData || {};
+  const doctorInfo = data.allData || {}
   const handleCheckboxChange = () => {
-    setIsChecked(!isChecked);
-  };
+    setIsChecked(!isChecked)
+  }
 
   const clikcBtnAddOrder = () => {
     props.addZapisFc(
@@ -43,8 +43,8 @@ function ZapisFormPage(props) {
       peselInput,
       uploadedFile,
       textareaValue
-    );
-  };
+    )
+  }
   return (
     <div className={styles.zapisFormPage}>
       <h1>Informacje o wizycie</h1>
@@ -202,9 +202,8 @@ function ZapisFormPage(props) {
             onChange={() => setIsChecked2(!isChecked2)}
           />
           <span
-            className={`${styles.checkmark} ${
-              isChecked2 ? styles.checked : ""
-            }`}
+            className={`${styles.checkmark} ${isChecked2 ? styles.checked : ""
+              }`}
           ></span>
           <p>
             Chcę otrzymywać komunikację marketingową od ZnanyLekarz.
@@ -212,11 +211,11 @@ function ZapisFormPage(props) {
           </p>
         </label>
         <p>
-          Umawiając wizytę, akceptujesz nasz 
+          Umawiając wizytę, akceptujesz nasz
           <NavLink to="/policy/regulamin">regulamin i</NavLink> potwierdzasz, że
           rozumiesz naszą
           <NavLink to="/policy/regulamin">
-             politykę przetwarzania danych osobowych.
+            politykę przetwarzania danych osobowych.
           </NavLink>
         </p>
       </div>
@@ -230,6 +229,6 @@ function ZapisFormPage(props) {
         <button onClick={clikcBtnAddOrder}>Kontynuj</button>
       </div>
     </div>
-  );
+  )
 }
-export default ZapisFormPage;
+export default ZapisFormPage

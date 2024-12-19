@@ -1,52 +1,52 @@
-import { useState } from "react";
-import Choice from "../../../components/Modal/Choice";
-import styles from "./WorkersInfo.module.css";
-import avatar from "../../../assets/img/profil.webp";
-import plus from "../../../assets/img/plus.png";
-import bucket from "../../../assets/img/bucketBlue.png";
-import DropdownStas from "./../../../components/Dropdown/DropdownStas";
-import { useNavigate } from "react-router-dom";
-import { pageConfig } from "../../../config/config";
-import useStore from "../../../data/store";
-import AddVisitTypeModal from "../../../components/Modals/AddVisitType/AddVisitTypeModal";
-import BlueBorderBtn from "../../../components/Buttons/BlueBorderBtn/BlueBorderBtn";
-import RedBorderBtn from "../../../components/Buttons/RedBorderBtn/RedBorderBtn";
-import { toast } from "sonner";
-import star from "../../../assets/img/Star.svg";
-import starGrey from "../../../assets/img/Star 6.svg";
+import { useState } from "react"
+import Choice from "../../../components/Modal/Choice"
+import styles from "./WorkersInfo.module.css"
+import avatar from "@assets/img/profil.webp"
+import plus from "@assets/img/plus.png"
+import bucket from "@assets/img/bucketBlue.png"
+import DropdownStas from "./../../../components/Dropdown/DropdownStas"
+import { useNavigate } from "react-router-dom"
+import { pageConfig } from "../../../config/config"
+import useStore from "../../../data/store"
+import AddVisitTypeModal from "../../../components/Modals/AddVisitType/AddVisitTypeModal"
+import BlueBorderBtn from "../../../components/Buttons/BlueBorderBtn/BlueBorderBtn"
+import RedBorderBtn from "../../../components/Buttons/RedBorderBtn/RedBorderBtn"
+import { toast } from "sonner"
+import star from "@assets/img/Star.svg"
+import starGrey from "@assets/img/Star 6.svg"
 import { useForm } from 'react-hook-form'
 
 export default function WorkersInfo() {
   const { control, handleSubmit, watch } = useForm({
 
   })
-  const navigate = useNavigate();
-  const { setModalActive, setModalContent } = useStore();
+  const navigate = useNavigate()
+  const { setModalActive, setModalContent } = useStore()
   const option = [
     "Usunięcie z powodu nieobecności",
     "Usunięcie z powodu rozwiązania umowy",
     "Usunięcie z powodu zaniedbania",
     "Kalendarz nullam non iaculis massa",
     "Nunc kalendarz aliquam metus",
-  ];
+  ]
   const [visitTypes, setVisitTypes] = useState([
     { id: "1", name: "Konsultacja ortopedyczna", price: 220.0, checked: true },
     { id: "2", name: "Kontrola po operacji", price: 0.0, checked: true },
-  ]);
+  ])
 
   function handleModal() {
-    setModalActive(true);
-    setModalContent(<AddVisitTypeModal onAddVisitType={addVisitType} />);
+    setModalActive(true)
+    setModalContent(<AddVisitTypeModal onAddVisitType={addVisitType} />)
   }
 
   function addVisitType(newVisitType) {
-    setVisitTypes((prevVisitTypes) => [...prevVisitTypes, newVisitType]);
+    setVisitTypes((prevVisitTypes) => [...prevVisitTypes, newVisitType])
   }
 
   function handleDeleteVisitType(id) {
     setVisitTypes((prevVisitTypes) =>
       prevVisitTypes.filter((type) => type.id !== id)
-    );
+    )
   }
 
   const editModal = (
@@ -65,15 +65,15 @@ export default function WorkersInfo() {
         </RedBorderBtn>
       </div>
     </div>
-  );
+  )
   function handleEditModal() {
-    setModalActive(true);
-    setModalContent(editModal);
+    setModalActive(true)
+    setModalContent(editModal)
   }
 
   function deleteAccountStatus() {
-    toast.success("Profil został usunięty");
-    setModalActive(false);
+    toast.success("Profil został usunięty")
+    setModalActive(false)
   }
   const modalContentDeleteAccount = (
     <>
@@ -94,7 +94,7 @@ export default function WorkersInfo() {
         ></Choice>
       </div>
     </>
-  );
+  )
   const acceptDeleting = (
     <div>
       <h1 style={{ textAlign: "center" }}>
@@ -107,10 +107,10 @@ export default function WorkersInfo() {
         <RedBorderBtn cb={deleteAccountStatus}>Tak</RedBorderBtn>
       </div>
     </div>
-  );
+  )
   function handleDelete() {
-    setModalActive(true);
-    setModalContent(modalContentDeleteAccount);
+    setModalActive(true)
+    setModalContent(modalContentDeleteAccount)
   }
 
   return (
@@ -125,9 +125,9 @@ export default function WorkersInfo() {
       <h1 className={styles.title}>Informacje o pracowniku</h1>
 
       <div className={styles.profileSection}>
-        
-          <img className={styles.profileImage} src={avatar} alt="Profile" />
-        
+
+        <img className={styles.profileImage} src={avatar} alt="Profile" />
+
         <h1 className={styles.profileName}>Tomasz Jankowski</h1>
         <div className={styles.rating}>
           {Array.from({ length: 5 }).map((_, i) => (
@@ -250,5 +250,5 @@ export default function WorkersInfo() {
         />
       </div>
     </div>
-  );
+  )
 }

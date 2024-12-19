@@ -1,18 +1,18 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
-import styles from "./WorkerItem.module.css";
-import moreInfo from "../../../assets/img/more-info.png";
-import { NavLink } from "react-router-dom";
-import useStore from "../../../data/store";
-import profil from "../../../assets/img/profil.webp";
-import BlueBtn from "./../../Buttons/BlueBtn/BlueBtn";
-import BlueBorderBtn from "./../../Buttons/BlueBorderBtn/BlueBorderBtn";
-import Dropdown from "./../../Dropdown/Dropdown";
-import Choice from "../../Modal/Choice";
+import React, { useState } from "react"
+import PropTypes from "prop-types"
+import styles from "./WorkerItem.module.css"
+import moreInfo from "@assets/img/more-info.png"
+import { NavLink } from "react-router-dom"
+import useStore from "../../../data/store"
+import profil from "@assets/img/profil.webp"
+import BlueBtn from "./../../Buttons/BlueBtn/BlueBtn"
+import BlueBorderBtn from "./../../Buttons/BlueBorderBtn/BlueBorderBtn"
+import Dropdown from "./../../Dropdown/Dropdown"
+import Choice from "../../Modal/Choice"
 
 function PatientItem({ img, name, id, gender }) {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const { setModalActive, setModalContent } = useStore();
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const { setModalActive, setModalContent } = useStore()
 
   const modalContentInfo = (
     <div className={styles.row}>
@@ -83,7 +83,7 @@ function PatientItem({ img, name, id, gender }) {
         </div>
       </div>
     </div>
-  );
+  )
   const modalContentDeleteAccount = (
     <>
       <h1>Usuwanie konta</h1>
@@ -102,7 +102,7 @@ function PatientItem({ img, name, id, gender }) {
         ></Choice>
       </div>
     </>
-  );
+  )
 
   const modalContentMessage = (
     <>
@@ -119,28 +119,28 @@ function PatientItem({ img, name, id, gender }) {
         ></Choice>
       </div>
     </>
-  );
+  )
 
   function openMainModalInfo() {
-    setModalActive(true);
-    setModalContent(modalContentInfo);
+    setModalActive(true)
+    setModalContent(modalContentInfo)
   }
   function openMainModalDeleteAccount() {
-    setModalContent(modalContentDeleteAccount);
+    setModalContent(modalContentDeleteAccount)
   }
 
   function openMainModalMessage() {
-    setModalActive(true);
-    setModalContent(modalContentMessage);
+    setModalActive(true)
+    setModalContent(modalContentMessage)
   }
 
   function closeMainModal() {
-    setModalActive(false);
+    setModalActive(false)
   }
 
   const toggleModal = () => {
-    setIsModalOpen(!isModalOpen);
-  };
+    setIsModalOpen(!isModalOpen)
+  }
 
   return (
     <tr>
@@ -189,7 +189,7 @@ function PatientItem({ img, name, id, gender }) {
         </div>
       </td>
     </tr>
-  );
+  )
 }
 
 PatientItem.propTypes = {
@@ -197,6 +197,6 @@ PatientItem.propTypes = {
   img: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
   gender: PropTypes.string.isRequired,
-};
+}
 
-export default PatientItem;
+export default PatientItem

@@ -13,8 +13,8 @@ import { createEventsServicePlugin } from "@schedule-x/events-service"
 import "@schedule-x/theme-default/dist/index.css"
 import styles from "./Calendar.module.css"
 import { createEventModalPlugin } from "@schedule-x/event-modal"
-import useGetDoctorAppointment from "../../../hooks/DoctorHooks/useGetDoctorAppointment"
-import useStore from "../../../data/store"
+import useGetDoctorAppointment from "@hooks/DoctorHooks/useGetDoctorAppointment"
+import useStore from "@data/store"
 import { useSearchParams } from 'react-router-dom'
 
 function Calendar() {

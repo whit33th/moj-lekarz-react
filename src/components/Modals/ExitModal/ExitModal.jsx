@@ -1,8 +1,8 @@
-import Choice from '../../Modal/Choice'
-import useStore from '../../../data/store'
-import styles from './ExitModal.module.css'
-import useLogout from '../../../hooks/AuthHooks/useLogout'
 import { ring2 } from 'ldrs'
+import useStore from '../../../data/store'
+import Choice from '../../Modal/Choice'
+import styles from './ExitModal.module.css'
+import useLogout from '@hooks/AuthHooks/useLogout'
 
 function ExitModal() {
 	const { logout, isLoading } = useLogout()

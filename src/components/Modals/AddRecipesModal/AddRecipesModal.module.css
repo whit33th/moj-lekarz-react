@@ -11,14 +11,28 @@
   border: none;
   border-radius: 16px;
   /* box-shadow: 0 0 40px 5px #00000014; */
-} 
+}
 
-.modalForm{
+.modalForm {
   display: flex;
   flex-direction: column;
   gap: 20px;
- 
+
 }
+.addedMedications{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.addedMedicationItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+
+
 .buttDef {
   width: 100%;
   height: 45px;
@@ -30,7 +44,8 @@
   justify-content: center;
   gap: 20px;
 }
-.buttDef img{
+
+.buttDef img {
   width: 20px;
   height: 20px;
 }

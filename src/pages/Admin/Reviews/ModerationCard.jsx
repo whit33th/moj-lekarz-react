@@ -1,25 +1,25 @@
-import styles from "./ReviewCard.module.css";
-import Choice from "../../../components/Modal/Choice";
-import avatar from "../../../assets/img/profil.webp";
-import useStore from "../../../data/store";
-import ModerationModal from "../../../components/Modals/ReviewModal/ModerationModal";
-import star from "../../../assets/img/Star.svg";
-import starGrey from "../../../assets/img/Star 6.svg";
+import styles from "./ReviewCard.module.css"
+import Choice from "../../../components/Modal/Choice"
+import avatar from "@assets/img/profil.webp"
+import useStore from "../../../data/store"
+import ModerationModal from "../../../components/Modals/ReviewModal/ModerationModal"
+import star from "@assets/img/Star.svg"
+import starGrey from "@assets/img/Star 6.svg"
 
 const ModerationCard = ({ name, date, text, rating }) => {
-  const { setModalActive, setModalContent } = useStore();
+  const { setModalActive, setModalContent } = useStore()
 
   const positiveFeedbacks = [
     "Profesjonalne podejście",
     "Dbałość o komfort pacjenta",
-  ];
-  const negativeFeedbacks = ["Zbyt krótka wizyta", "Ograniczona dostępność"];
+  ]
+  const negativeFeedbacks = ["Zbyt krótka wizyta", "Ograniczona dostępność"]
 
   function handleModal() {
-    setModalActive(true);
+    setModalActive(true)
     setModalContent(
       <ModerationModal name={name} date={date} text={text} rating={rating} />
-    );
+    )
   }
   return (
     <div className={styles.card}>
@@ -62,7 +62,7 @@ const ModerationCard = ({ name, date, text, rating }) => {
       {text && <p className={styles.text}>{text}</p>}
       <Choice choice1={"Otwórz"} choice2={"Akceptuj"} cb1={handleModal} />
     </div>
-  );
-};
+  )
+}
 
-export default ModerationCard;
+export default ModerationCard

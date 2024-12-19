@@ -1,25 +1,25 @@
-import logoGoogle from "../../assets/img/logos_google-icon.svg";
-import logoApple from "../../assets/img/Group.svg";
-import InputError from "../../components/UI/InputError/InputError";
-import { useForm } from "react-hook-form";
-import styles from "./AuthPage.module.css";
-import { NavLink } from "react-router-dom";
+import logoGoogle from "@assets/img/logos_google-icon.svg"
+import logoApple from "@assets/img/Group.svg"
+import InputError from "../../components/UI/InputError/InputError"
+import { useForm } from "react-hook-form"
+import styles from "./AuthPage.module.css"
+import { NavLink } from "react-router-dom"
 
-import useRegistration from "../../hooks/AuthHooks/useRegistration";
+import useRegistration from "@hooks/AuthHooks/useRegistration"
 
 function SignUpComponent() {
   const { register, handleSubmit, formState, watch } = useForm({
     mode: "onChange",
-  });
-  const password = watch("password");
-  const checkbox = watch("checkbox");
+  })
+  const password = watch("password")
+  const checkbox = watch("checkbox")
 
-  const { mutate, isLoading, isError, isSuccess, error } = useRegistration();
+  const { mutate, isLoading, isError, isSuccess, error } = useRegistration()
 
   const onSubmit = (data) => {
-   
-    mutate(data);
-  };
+
+    mutate(data)
+  }
 
   return (
     <div className={styles.signIn}>
@@ -98,11 +98,9 @@ function SignUpComponent() {
                 })}
               />
               <span
-                className={`${styles.checkmark} ${
-                  checkbox ? styles.checked : ""
-                } ${
-                  formState.errors["checkbox"]?.message ? styles.required : ""
-                }`}
+                className={`${styles.checkmark} ${checkbox ? styles.checked : ""
+                  } ${formState.errors["checkbox"]?.message ? styles.required : ""
+                  }`}
               ></span>
               <p>
                 Zgadzam się na przetwarzanie moich danych medycznych w celu
@@ -116,14 +114,14 @@ function SignUpComponent() {
           </div>
 
           <div className={styles.registBtnBlock}>
-            <button onClick={() => {}}>Zarejestruj się</button>
+            <button onClick={() => { }}>Zarejestruj się</button>
           </div>
           {/* {isError && <p className={styles.error}>Błąd: {error.message}</p>}
           {isSuccess && <p className={styles.success}>Rejestracja udana!</p>} */}
         </form>
       </div>
     </div>
-  );
+  )
 }
 
-export default SignUpComponent;
+export default SignUpComponent

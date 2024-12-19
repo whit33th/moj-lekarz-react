@@ -1,21 +1,21 @@
-import React, { useState, useEffect } from "react";
-import styles from "./PatientInfo.module.css";
-import profil from "../../../assets/img/profil.webp";
-import BlueBtn from "../../../components/Buttons/BlueBtn/BlueBtn";
-import { userItems } from "../../../helpers/userItemList";
+import React, { useState, useEffect } from "react"
+import styles from "./PatientInfo.module.css"
+import profil from "@assets/img/profil.webp"
+import BlueBtn from "../../../components/Buttons/BlueBtn/BlueBtn"
+import { userItems } from "../../../helpers/userItemList"
 
 function PatientInfo({ patientId }) {
-  const [activeTab, setActiveTab] = useState("Uwagi");
-  const Buttons = ["Uwagi", "Historia wizyt"];
-  const [patient, setPatient] = useState({});
+  const [activeTab, setActiveTab] = useState("Uwagi")
+  const Buttons = ["Uwagi", "Historia wizyt"]
+  const [patient, setPatient] = useState({})
 
   useEffect(() => {
-    const foundPatient = userItems.find((p) => p.id === patientId);
-    setPatient(foundPatient || {});
-  }, [patientId]);
+    const foundPatient = userItems.find((p) => p.id === patientId)
+    setPatient(foundPatient || {})
+  }, [patientId])
 
   function handleTabClick(name) {
-    setActiveTab(name);
+    setActiveTab(name)
   }
 
   const comments = patient?.comments?.length ? (
@@ -27,7 +27,7 @@ function PatientInfo({ patientId }) {
     ))
   ) : (
     <div>Brak uwag</div>
-  );
+  )
 
   const history = patient?.history?.length ? (
     patient.history.map((visit, index) => (
@@ -39,7 +39,7 @@ function PatientInfo({ patientId }) {
     ))
   ) : (
     <div>Brak historii wizyt</div>
-  );
+  )
 
   return (
     <div className={styles.profilDiv}>
@@ -190,7 +190,7 @@ function PatientInfo({ patientId }) {
         {activeTab === "Historia wizyt" && history}
       </div>
     </div>
-  );
+  )
 }
 
-export default PatientInfo;
+export default PatientInfo

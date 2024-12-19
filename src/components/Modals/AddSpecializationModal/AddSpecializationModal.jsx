@@ -1,45 +1,45 @@
-import { useState, useEffect } from "react";
-import useStore from "../../../data/store";
-import DropdownStas from "../../Dropdown/DropdownStas";
-import Choice from "../../Modal/Choice";
-import styles from "./AddSpecialization.module.css";
-import plus from "../../../assets/img/plus.png";
+import { useState, useEffect } from "react"
+import useStore from "../../../data/store"
+import DropdownStas from "../../Dropdown/DropdownStas"
+import Choice from "../../Modal/Choice"
+import styles from "./AddSpecialization.module.css"
+import plus from "@assets/img/plus.png"
 import { useForm } from 'react-hook-form'
 
 function AddSpecializationModal({ onAddSpecialization }) {
-  const { setModalActive } = useStore();
-  const visitTypeOptions = ["Ortopeda", "Dentysta", "Kardiolog"];
+  const { setModalActive } = useStore()
+  const visitTypeOptions = ["Ortopeda", "Dentysta", "Kardiolog"]
 
   const [visitTypes, setVisitTypes] = useState([
     { id: 1, type: "", price: "" },
-  ]);
-  const [specialty, setSpecialty] = useState(visitTypeOptions[0]);
+  ])
+  const [specialty, setSpecialty] = useState(visitTypeOptions[0])
   useEffect(() => {
-    setSpecialty(visitTypeOptions[0]);
-  }, []);
+    setSpecialty(visitTypeOptions[0])
+  }, [])
   const { control, handleSubmit, watch } = useForm({
 
   })
   const addVisitType = () => {
-    setVisitTypes([...visitTypes, { id: Date.now(), type: "", price: "" }]);
-  };
+    setVisitTypes([...visitTypes, { id: Date.now(), type: "", price: "" }])
+  }
 
   const handleTypeChange = (index, value) => {
-    const updatedVisitTypes = [...visitTypes];
-    updatedVisitTypes[index].type = value;
-    setVisitTypes(updatedVisitTypes);
-  };
+    const updatedVisitTypes = [...visitTypes]
+    updatedVisitTypes[index].type = value
+    setVisitTypes(updatedVisitTypes)
+  }
 
   const handlePriceChange = (index, value) => {
-    const updatedVisitTypes = [...visitTypes];
-    updatedVisitTypes[index].price = value;
-    setVisitTypes(updatedVisitTypes);
-  };
+    const updatedVisitTypes = [...visitTypes]
+    updatedVisitTypes[index].price = value
+    setVisitTypes(updatedVisitTypes)
+  }
 
   const handleAddSpecialization = () => {
-    onAddSpecialization({ specialty, visitTypes });
-    setModalActive(false);
-  };
+    onAddSpecialization({ specialty, visitTypes })
+    setModalActive(false)
+  }
 
   return (
     <div>
@@ -86,7 +86,7 @@ function AddSpecializationModal({ onAddSpecialization }) {
         cb2={handleAddSpecialization}
       />
     </div>
-  );
+  )
 }
 
-export default AddSpecializationModal;
+export default AddSpecializationModal

@@ -50,6 +50,36 @@ class PageConfig {
     workersInfo: "/workers/id",
     patient: "/patients",
   };
+
+  // Patient routes
+  patient = {
+    home: this.home,
+    settings: this.settings,
+    profile: this.profile,
+    reviews: "/reviews",
+    clinicAppointments: "/clinic-appointments/:id",
+    firmInfo: "/firm/:id",
+    mobileApp: "/mobile-app",
+    recipes: "/recipes",
+    qA: "/QA",
+    blog: "/blog",
+    visits: "/visits",
+    doctorProfile: "/doctor-profile/:id",
+    researchResults: "/research-results",
+    searchClinics: "/search-clinics",
+    clinicProfile: "/clinic-profile/:id",
+    firm: "/firm",
+    policy: {
+      regulations: "/policy/regulations",
+      personalData: "/policy/personal-data",
+      cookies: "/policy/cookies",
+      privacy: "/policy/privacy",
+    },
+    howItWorks: "/how-it-works",
+    searchDoctor: "/search",
+    doctorVersion2: "/find-doctor-version2",
+  };
+
 }
 
-export const pageConfig = new PageConfig();
+export const pageConfig = new PageConfig()

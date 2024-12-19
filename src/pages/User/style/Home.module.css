@@ -20,7 +20,6 @@
   padding: 0 19px;
   font-size: 15.5px;
   font-weight: 400;
-  ;
 }
 
 .homeFirstBlockLeft {
@@ -99,7 +98,7 @@
 }
 
 .homeFirstBlock .arrow {
-  background: url("../../assets/Vector10.svg") no-repeat center;
+  background: url("@assets/Vector10.svg") no-repeat center;
   width: 12px;
 
   height: 12px;

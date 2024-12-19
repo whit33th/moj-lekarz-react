@@ -9,59 +9,83 @@
   justify-content: space-between;
   margin-bottom: 40px;
 }
+
+.servicesContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.serviceItem {
+  display: flex;
+  gap: 10px;
+}
+
 .doctorCardInfoImgBlock {
   display: flex;
   align-items: center;
 }
-.doctorCardInfoImgBlock > a {
+
+.doctorCardInfoImgBlock>a {
   width: 75px;
   height: 75px;
   border-radius: 1000px;
 }
+
 .doctorCardInfoImgBlock a img {
   width: 75px;
   height: 75px;
   border-radius: 1000px;
 }
-.doctorCardInfoImgBlock > div {
+
+.doctorCardInfoImgBlock>div {
   margin-left: 15px;
 }
+
 .doctorCardInfoImgBlock p.doctorCardInfoImgBlockName {
   font-size: 20px;
   font-weight: 500;
   line-height: 27.32px;
 }
+
 .doctorCardInfoImgBlock p {
   font-size: 18px;
   font-weight: 400;
   line-height: 24.59px;
   margin: 8px 0;
 }
+
 .imgNameBlockStar {
   width: 15px;
 }
+
 .doctorCardAddressBlock {
   margin-top: 20px;
 }
-.doctorCardAddressBlock > div {
+
+.doctorCardAddressBlock>div {
   width: 100%;
   height: auto;
   display: flex;
   align-items: self-start;
   padding: 6.5px 2px;
 }
-.doctorCardAddressBlock > div > img:first-child {
+
+.doctorCardAddressBlock>div>img:first-child {
   margin-top: 3px;
 }
-.doctorCardAddressBlock > div > div {
+
+.doctorCardAddressBlock>div>div {
   margin-left: 5px;
   font-size: 17.5px;
   font-weight: 400;
   line-height: 24.59px;
 }
+
 .doctorCardAddressPlaceholder {
   color: #595959;
 }
+
 .doctorDescription {
   width: 68%;
   font-size: 16px;
@@ -70,7 +94,8 @@
   text-align: left;
   padding-right: 20px;
 }
-.doctorDescription > div {
+
+.doctorDescription>div {
   width: 100%;
   display: flex;
   align-content: center;
@@ -78,53 +103,80 @@
   justify-content: end;
   padding-right: 10px;
 }
-.doctorDescription > div a {
+
+.doctorDescription>div a {
   text-decoration: none;
 }
+
 .doctorCardTimeBlock {
   width: 100%;
   padding: 20px 10px;
 }
+
 .doctorCardTimeBlock h3 {
   font-size: 18px;
   font-weight: 500;
   line-height: 24.59px;
   margin-bottom: 20px;
 }
+
 .doctorCardTimeBlockItems {
   display: flex;
   justify-content: space-between;
   width: 100%;
 }
+
 .doctorCardTimeBlockItem {
   width: 45%;
   height: auto;
   display: flex;
   flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+  align-content: flex-start;
 }
+
 .doctorCardTimeBlockItem p {
   width: 100%;
 }
+
 .doctorCardHoursItems {
   width: 100%;
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
   padding: 15px 3px;
-  flex-wrap: wrap;
+
   gap: 7px;
 }
+
 .doctorCardHoursItem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border-radius: 6px;
-  padding: 7px 16.5px;
+  padding: 6px 0;
   background-color: #a6def7;
 }
+
 .doctorCardHoursItems a {
   text-decoration: none;
   color: #000;
 }
+
+.skeletonGrid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+  padding: 15px 3px;
+
+  gap: 7px;
+}
+
 @media (max-width: 624px) {
   .doctorDescription {
     width: 100%;
   }
+
   .doctorCard {
     flex-direction: column;
     padding: 15px;
@@ -162,6 +214,7 @@
   .doctorCardHoursItem {
     padding: 5px 10px;
   }
+
   .doctorDescription p {
     display: -webkit-box;
     -webkit-line-clamp: 3;
@@ -170,13 +223,16 @@
     text-overflow: ellipsis;
     white-space: normal;
   }
-  .doctorCardAddressBlock > div > div {
+
+  .doctorCardAddressBlock>div>div {
     font-size: 15px;
   }
+
   .doctorCardAddressPlaceholder {
     display: none;
   }
-  .doctorCardAddressBlock > div {
+
+  .doctorCardAddressBlock>div {
     padding: 5px 3px;
   }
 }

@@ -1,11 +1,11 @@
-	import { NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
-import robot from '../../../assets/img/robot_svg/1.png'
-import graphUp from '../../../assets/img/graph-up.png'
-import graphDown from '../../../assets/img/graph-down.png'
-import follow from '../../../assets/img/follow.png'
-import pointed from '../../../assets/img/pointed.png'
-import unpointed from '../../../assets/img/unpointed.png'
+import robot from '@assets/img/robot_svg/1.png'
+import graphUp from '@assets/img/graph-up.png'
+import graphDown from '@assets/img/graph-down.png'
+import follow from '@assets/img/follow.png'
+import pointed from '@assets/img/pointed.png'
+import unpointed from '@assets/img/unpointed.png'
 
 import BestWorkerItem from '../../../components/FirmPage/VisitItem/BestWorkerItem'
 import { userItems } from '../../../helpers/userItemList'
@@ -14,7 +14,7 @@ import Calendar from '../../../components/DoctorPage/Home/Calendar/CalendarBlock
 import styles from './FirmMain.module.css'
 
 function DoctorMain() {
-	return (
+  return (
     <div className="content">
       <div className={styles.topLayer}>
         <div
@@ -159,7 +159,7 @@ function DoctorMain() {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
 export default DoctorMain

@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'Karla';
-  src: url('../../assets/fonts/Karla-VariableFont_wght.ttf') format('truetype');
+  src: url('@assets/fonts/Karla-VariableFont_wght.ttf') format('truetype');
 }
 
 .descriptions {
@@ -263,7 +263,7 @@
 }
 
 .formBlockConteiner .arrow {
-  background: url('../../assets/Vector10.svg') no-repeat center;
+  background: url('@assets/Vector10.svg') no-repeat center;
   width: 12px;
   height: 12px;
 }

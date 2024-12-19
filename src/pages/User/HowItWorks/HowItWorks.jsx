@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import styles from './HowItWorks.module.css'
-import img1 from '../../../assets/img/Frame1.svg'
-import img2 from '../../../assets/img/Frame2.svg'
-import img3 from '../../../assets/img/Frame3.svg'
-import arrow from '../../../assets/img/arrowmain.svg'
+import img1 from '@assets/img/Frame1.svg'
+import img2 from '@assets/img/Frame2.svg'
+import img3 from '@assets/img/Frame3.svg'
+import arrow from '@assets/img/arrowmain.svg'
 import SwiperSlider from '../../../components/SwiperSlider'
 import InputDropdownStas from '../../../components/Dropdown/InputDropdownStas'
 import { useForm } from 'react-hook-form'
@@ -84,7 +84,7 @@ function HowItWorks() {
                         <input type="text" placeholder='Wpisz imię i nazwisko' value={nameInputValue} onChange={(e) => setNameInputValue(e.target.value)} />
                         <div className={styles.dropdownContainer}>
 
-                            <InputDropdownStas control={control} name={"."}  seeOptions options={options} placeholder={'Kim jestes?'} />
+                            <InputDropdownStas control={control} name={"."} seeOptions options={options} placeholder={'Kim jestes?'} />
                         </div>
                         <input type="text" placeholder='Wpisz emailu' value={emailInputValue} onChange={(e) => setEmailInputValue(e.target.value)} />
                         <input type="text" placeholder='Wpisz numer telefonu' value={phoneInputValue} onChange={(e) => setPhoneInputValue(e.target.value)} />

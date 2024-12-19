@@ -1,10 +1,10 @@
 import tablecss from "../../../components/Table/Table.module.css"
-import calendar from "../../../assets/img/calendar.png"
+import calendar from "@assets/img/calendar.png"
 import styles from "./LastVisits.module.css"
 
 import Dropdown from "../../../components/Dropdown/Dropdown"
 import Table from '../../../components/Table/Table'
-import useGetDoctorAppointment from '../../../hooks/DoctorHooks/useGetDoctorAppointment'
+import useGetDoctorAppointment from '@hooks/DoctorHooks/useGetDoctorAppointment'
 import useStore from '../../../data/store'
 import Pagination from './../../../components/UI/Pagination/Pagination'
 import { useState } from 'react'
@@ -15,7 +15,7 @@ function LastVisits() {
   const { userId } = useStore()
   const [page, setPage] = useState(1)
 
-  const [startFilter, setStartFilter] = useState()
+  const [startFilter, setStartFilter] = useState('2024-01-01')
   const [endFilter, setEndFilter] = useState()
   const { data, isLoading } = useGetDoctorAppointment({
     id: userId,
@@ -32,7 +32,7 @@ function LastVisits() {
   const tableData = appointments?.map((appointment) => ({
     img: appointment?.patient.photo,
     name: appointment?.patient?.first_name + " " + appointment?.patient?.last_name || '',
-    id: appointment?.id || '',
+    id: appointment?.patient?.patientId || '',
     date: appointment?.date || '',
     time: appointment?.start_time || '',
   })) || []
@@ -73,11 +73,11 @@ function LastVisits() {
   return (
     <div className="content">
       <div className={styles.calendarNavbar}>
-       
+
         <span className={styles.calendarNavbarDate}>
           <span>Ostatnie wizyty</span>
         </span>
-        
+
 
         <div className={styles.dateFilterContainer}>
           <div className={styles.dateFilter}>

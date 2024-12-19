@@ -1,26 +1,26 @@
-import { useState } from "react";
-import styles from "./ProfileInfoBlock.module.css";
-import img from "../../../assets/img/Vector (22).svg";
-import imgfoto from "../../../assets/img/foto (1).png";
+import { useState } from "react"
+import styles from "./ProfileInfoBlock.module.css"
+import img from "@assets/img/Vector (22).svg"
+import imgfoto from "@assets/img/foto (1).png"
 
 function ProfileInfoBlock({ data }) {
-  const [stateChangeBlock, setStateChangeBlock] = useState(false);
-  const [nameInput, setNameInput] = useState(data.userName);
-  const [surNameInput, setSurNameInput] = useState(data.userSurname);
-  const [genderInput, setGenderInput] = useState(data.gender);
-  const [peselInput, setPeselInput] = useState(data.pesel);
-  const [phoneInput, setPhoneInput] = useState(data.phone);
-  const [emailInput, setEmailInput] = useState(data.email);
-  const [cityInput, setCityInput] = useState(data.address.city);
-  const [postalCodeInput, setPostalCodeInput] = useState(data.address.cityCode);
-  const [streetInput, setStreetInput] = useState(data.address.street);
+  const [stateChangeBlock, setStateChangeBlock] = useState(false)
+  const [nameInput, setNameInput] = useState(data.userName)
+  const [surNameInput, setSurNameInput] = useState(data.userSurname)
+  const [genderInput, setGenderInput] = useState(data.gender)
+  const [peselInput, setPeselInput] = useState(data.pesel)
+  const [phoneInput, setPhoneInput] = useState(data.phone)
+  const [emailInput, setEmailInput] = useState(data.email)
+  const [cityInput, setCityInput] = useState(data.address.city)
+  const [postalCodeInput, setPostalCodeInput] = useState(data.address.cityCode)
+  const [streetInput, setStreetInput] = useState(data.address.street)
   const [apartmentInput, setApartmentInput] = useState(
     data.address.numberHouse
-  );
+  )
 
   const toggleChangeBlock = () => {
-    setStateChangeBlock(!stateChangeBlock);
-  };
+    setStateChangeBlock(!stateChangeBlock)
+  }
 
   return (
     <div className={styles.profileInfoBlock}>
@@ -33,9 +33,8 @@ function ProfileInfoBlock({ data }) {
         </p>
       </div>
       <div
-        className={`${styles.changeBlock} ${
-          stateChangeBlock ? styles.open : ""
-        }`}
+        className={`${styles.changeBlock} ${stateChangeBlock ? styles.open : ""
+          }`}
       >
         <div className={styles.line}></div>
         <div className={styles.changeBlockLeft}>
@@ -139,7 +138,7 @@ function ProfileInfoBlock({ data }) {
         <img src={img} alt="Toggle Change Block" />
       </div>
     </div>
-  );
+  )
 }
 
-export default ProfileInfoBlock;
+export default ProfileInfoBlock

@@ -1,8 +1,8 @@
 import { useQuery } from '@tanstack/react-query'
 import { useEffect } from 'react'
-import { authService } from '../../services/authServices'
+import { authService } from '@services/authServices'
 import { useNavigate } from 'react-router-dom'
-import clearAllCookies from '../../utils/deleteAllCookies'
+import clearAllCookies from '@utils/deleteAllCookies'
 
 function useLogout() {
 

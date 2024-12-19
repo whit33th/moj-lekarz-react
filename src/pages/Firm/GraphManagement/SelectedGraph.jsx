@@ -1,24 +1,24 @@
-import { useLocation } from "react-router-dom";
-import { useState, useEffect } from "react";
-import CalendarBlock from "./../../../components/DoctorPage/Home/Calendar/CalendarBlock";
-import styles from "./GraphManagement.module.css";
-import bucket from "../../../assets/img/bucketBlue.png";
-import BlueBorderBtn from "../../../components/Buttons/BlueBorderBtn/BlueBorderBtn";
-import BlueBtn from "./../../../components/Buttons/BlueBtn/BlueBtn";
+import { useLocation } from "react-router-dom"
+import { useState, useEffect } from "react"
+import CalendarBlock from "./../../../components/DoctorPage/Home/Calendar/CalendarBlock"
+import styles from "./GraphManagement.module.css"
+import bucket from "@assets/img/bucketBlue.png"
+import BlueBorderBtn from "../../../components/Buttons/BlueBorderBtn/BlueBorderBtn"
+import BlueBtn from "./../../../components/Buttons/BlueBtn/BlueBtn"
 
 function SelectedGraph() {
-  const location = useLocation();
-  const initialSelectedUsers = location.state?.selectedUsers || [];
-  const [selectedUsers, setSelectedUsers] = useState(initialSelectedUsers);
+  const location = useLocation()
+  const initialSelectedUsers = location.state?.selectedUsers || []
+  const [selectedUsers, setSelectedUsers] = useState(initialSelectedUsers)
   const handleRemoveUser = (userId) => {
     setSelectedUsers((prevUsers) =>
       prevUsers.filter((user) => user.id !== userId)
-    );
-  };
+    )
+  }
 
   useEffect(() => {
-    console.log("Current selected users:", selectedUsers);
-  }, [selectedUsers]);
+    console.log("Current selected users:", selectedUsers)
+  }, [selectedUsers])
 
   return (
     <div className={styles.handleContainer}>
@@ -77,7 +77,7 @@ function SelectedGraph() {
         )}
       </div>
     </div>
-  );
+  )
 }
 
-export default SelectedGraph;
+export default SelectedGraph

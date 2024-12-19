@@ -1,32 +1,19 @@
-import React, { useEffect } from "react";
-import styles from "./Tabs.module.css";
+import styles from "./Tabs.module.css"
 
-function Tabs({ buttons, activeTab, onTabClick, storageKey }) {
-  const buttonsArray = buttons.split(",").map((name) => name.trim());
+function Tabs({ buttons, activeTab, onTabClick, fullWidth = false }) {
+  const buttonsArray = buttons.split(",").map((name) => name.trim())
 
-  const defaultKey = React.useMemo(() => {
-    return (
-      storageKey ||
-      `tabs-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`
-    );
-  }, [storageKey]);
 
-  useEffect(() => {
-    const storedTab = localStorage.getItem(defaultKey);
-    if (storedTab) {
-      onTabClick(storedTab);
-    }
-  }, [onTabClick, defaultKey]);
 
   const handleTabClick = (name) => {
-    localStorage.setItem(defaultKey, name);
-    onTabClick(name);
-  };
+    onTabClick(name)
+  }
 
   return (
-    <div className={styles.settingNavbarButt}>
+    <div style={fullWidth && { width: "100%" }} className={styles.settingNavbarButt}>
       {buttonsArray.map((name) => (
         <button
+          style={fullWidth && { width: "100%" }}
           key={name}
           onClick={() => handleTabClick(name)}
           className={activeTab === name ? styles.active : ""}
@@ -35,7 +22,7 @@ function Tabs({ buttons, activeTab, onTabClick, storageKey }) {
         </button>
       ))}
     </div>
-  );
+  )
 }
 
-export default Tabs;
+export default Tabs

@@ -1,34 +1,34 @@
-import styles from "./ReviewModal.module.css";
-import avatar from "../../../assets/img/profil.webp";
-import RedBorderBtn from "../../Buttons/RedBorderBtn/RedBorderBtn";
-import BlueBorderBtn from "../../Buttons/BlueBorderBtn/BlueBorderBtn";
-import BlueBtn from "../../Buttons/BlueBtn/BlueBtn";
-import { useState } from "react";
-import InputDropdownStas from "../../Dropdown/InputDropdownStas";
+import styles from "./ReviewModal.module.css"
+import avatar from "@assets/img/profil.webp"
+import RedBorderBtn from "../../Buttons/RedBorderBtn/RedBorderBtn"
+import BlueBorderBtn from "../../Buttons/BlueBorderBtn/BlueBorderBtn"
+import BlueBtn from "../../Buttons/BlueBtn/BlueBtn"
+import { useState } from "react"
+import InputDropdownStas from "../../Dropdown/InputDropdownStas"
 
-import star from "../../../assets/img/Star.svg";
-import starGrey from "../../../assets/img/Star 6.svg";
+import star from "@assets/img/Star.svg"
+import starGrey from "@assets/img/Star 6.svg"
 import { useForm } from 'react-hook-form'
 
 const ModerationModal = ({ name, date, text, rating }) => {
-  const [RefuseBtn, setRefuseBtn] = useState(false);
-  const [selectedOption, setSelectedOption] = useState("");
+  const [RefuseBtn, setRefuseBtn] = useState(false)
+  const [selectedOption, setSelectedOption] = useState("")
 
   const positiveFeedbacks = [
     "Profesjonalne podejście",
     "Dbałość o komfort pacjenta",
-  ];
-  const negativeFeedbacks = ["Zbyt krótka wizyta", "Ograniczona dostępność"];
+  ]
+  const negativeFeedbacks = ["Zbyt krótka wizyta", "Ograniczona dostępność"]
 
   function toggleRefuse() {
-    setRefuseBtn(!RefuseBtn);
+    setRefuseBtn(!RefuseBtn)
   }
   const { control, handleSubmit, watch } = useForm({
 
   })
   const handleOptionSelect = (option) => {
-    setSelectedOption(option);
-  };
+    setSelectedOption(option)
+  }
 
   return (
     <div className={styles.card}>
@@ -99,7 +99,7 @@ const ModerationModal = ({ name, date, text, rating }) => {
         )}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ModerationModal;
+export default ModerationModal

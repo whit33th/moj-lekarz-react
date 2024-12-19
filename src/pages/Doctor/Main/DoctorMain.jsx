@@ -1,35 +1,37 @@
 import { NavLink } from "react-router-dom"
-import robot from "../../../assets/img/robot_svg/1.png"
-import graphUp from "../../../assets/img/graph-up.png"
-import graphDown from "../../../assets/img/graph-down.png"
-import follow from "../../../assets/img/follow.png"
+import robot from "@assets/img/robot_svg/1.png"
+import graphUp from "@assets/img/graph-up.png"
+import graphDown from "@assets/img/graph-down.png"
+import follow from "@assets/img/follow.png"
 import VisitItem from "../../../components/DoctorPage/Home/VisitItem/VisitItem"
 import Calendar from "../../../components/DoctorPage/Home/Calendar/CalendarBlock"
 import styles from "./DoctorMain.module.css"
 import useStore from "../../../data/store"
-import useGetDoctorAppointment from "../../../hooks/DoctorHooks/useGetDoctorAppointment"
+import useGetDoctorAppointment from "@hooks/DoctorHooks/useGetDoctorAppointment"
 import TodayVisitItem from "../../../components/DoctorPage/Home/TodayVisitItem/TodayVisitItem"
-import useGetUserInfo from '../../../hooks/UserHooks/useGetUserInfo'
+import useGetUserInfo from '@hooks/UserHooks/useGetUserInfo'
 import Skeleton from 'react-loading-skeleton'
 import SkeletonTodayVisitItem from '../../../components/DoctorPage/Home/TodayVisitItem/SkeletonTodayVisitItem'
-
 function DoctorMain() {
 	const { todayDate, userId, selectedDate, selectedDateInWords, visitCountForMonth } = useStore()
+
 	const { data: userInfo, isLoading: isUserInfoLoading } = useGetUserInfo()
 	const { data: fetchedAppointmentsData, isLoading: isAppointmentsLoading } = useGetDoctorAppointment({
 		limit: 10,
 		status: 'completed',
+		dateFrom: '2024-01-01',
 	}) || []
-
-	const fetchedAppointments = fetchedAppointmentsData?.slots || []
-
 	const { data: fetchedAppointmentsTodayData, isLoading: isAppointmentsTodayLoading } = useGetDoctorAppointment({
 		limit: 10,
 		id: userId,
 		dateFrom: selectedDate,
 		dateTo: selectedDate,
 	}) || []
+
+
+	const fetchedAppointments = fetchedAppointmentsData?.slots || []
 	const fetchedAppointmentsToday = fetchedAppointmentsTodayData?.slots || []
+
 	const user = {
 		first_name: userInfo?.first_name || '',
 		last_name: userInfo?.last_name || '',
@@ -37,11 +39,6 @@ function DoctorMain() {
 		visitsAllTime: visitCountForMonth
 	}
 
-	console.log(user.first_name)
-
-
-
-	console.log(fetchedAppointmentsToday)
 	return (
 		<div className="content">
 

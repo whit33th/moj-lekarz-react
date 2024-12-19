@@ -1,42 +1,42 @@
-import users from "../../../assets/img/users.png";
-import graphUp from "../../../assets/img/graph-up.png";
-import graphDown from "../../../assets/img/graph-down.png";
-import companies from "../../../assets/img/companies.png";
-import doctor from "../../../assets/img/doctor-s.png";
-import visits from "../../../assets/img/visits.png";
+import users from "@assets/img/users.png"
+import graphUp from "@assets/img/graph-up.png"
+import graphDown from "@assets/img/graph-down.png"
+import companies from "@assets/img/companies.png"
+import doctor from "@assets/img/doctor-s.png"
+import visits from "@assets/img/visits.png"
 
-import plus from "../../../assets/img/plusBlack.png";
-import bucket from "../../../assets/img/bucket.png";
-import noteIco from "../../../assets/img/note.png";
-import styles from "./AdminMain.module.css";
-import AreaChartComp from "../../../components/Charts/AreaChart";
-import useStore from "./../../../data/store";
-import Textarea from "../../../components/UI/TextArea/Textarea";
-import BlueBtn from "./../../../components/Buttons/BlueBtn/BlueBtn";
-import { useState } from "react";
+import plus from "@assets/img/plusBlack.png"
+import bucket from "@assets/img/bucket.png"
+import noteIco from "@assets/img/note.png"
+import styles from "./AdminMain.module.css"
+import AreaChartComp from "../../../components/Charts/AreaChart"
+import useStore from "./../../../data/store"
+import Textarea from "../../../components/UI/TextArea/Textarea"
+import BlueBtn from "./../../../components/Buttons/BlueBtn/BlueBtn"
+import { useState } from "react"
 
 function AdminMain() {
-  const { setModalActive, setModalContent } = useStore();
+  const { setModalActive, setModalContent } = useStore()
   const [notes, setNotes] = useState(
     Array.from({ length: 4 }, (_, i) => ({
       id: i + 1,
       text:
         `Lorem ipsum dolor sit amet, consectetur adipiscing elit.` + (i + 1),
     }))
-  );
+  )
   const NoteModal = (
     <>
       <h1>Dodanie notatki</h1>
       <Textarea placeholder={"Wpisz temat"} />
       <BlueBtn>Dodaj notatkę</BlueBtn>
     </>
-  );
+  )
   function handleAddNote() {
-    setModalActive(true);
-    setModalContent(NoteModal);
+    setModalActive(true)
+    setModalContent(NoteModal)
   }
   function deleteNote(id) {
-    setNotes((prevNotes) => prevNotes.filter((note) => note.id !== id));
+    setNotes((prevNotes) => prevNotes.filter((note) => note.id !== id))
   }
   return (
     <div className={styles.content}>
@@ -203,10 +203,10 @@ function AdminMain() {
           <ul className={styles.notesList}>
             {notes.map((note) => (
               <li key={note.id}>
-                
-                  <img className={styles.noteIco} src={noteIco} alt="" />
-                  {note.text}
-              
+
+                <img className={styles.noteIco} src={noteIco} alt="" />
+                {note.text}
+
                 <button className={styles.deleteNote}>
                   <img
                     onClick={() => deleteNote(note.id)}
@@ -221,7 +221,7 @@ function AdminMain() {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default AdminMain;
+export default AdminMain

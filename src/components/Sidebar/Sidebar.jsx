@@ -1,7 +1,7 @@
 import sbLinks from "../../helpers/sbLinks"
 import { NavLink, useNavigate } from "react-router-dom"
-import exit from "../../assets/img/exitIco.png"
-import logo from "../../assets/img/logoonly.png"
+import exit from "@assets/img/exitIco.png"
+import logo from "@assets/img/logoonly.png"
 import styles from "./Sidebar.module.css"
 import useStore from "../../data/store"
 import ExitModal from '../Modals/ExitModal/ExitModal'
@@ -14,7 +14,7 @@ function Sidebar({ role, children }) {
 
   function handleModal() {
     setModalActive(true)
-    setModalContent(<ExitModal/>)
+    setModalContent(<ExitModal />)
   }
 
   return (

@@ -1,12 +1,12 @@
 import { useState } from 'react'
 import 'react-datepicker/dist/react-datepicker.css'
 import styles from './style/Home.module.css'
-import mainImg from "../../assets/img/Frame364.svg"
+import mainImg from "@assets/img/Frame364.svg"
 import DatePicker from 'react-datepicker'
-import img1 from '../../assets/img/Frame1.svg'
-import img2 from "../../assets/img/Frame2.svg"
-import img3 from "../../assets/img/Frame3.svg"
-import arrow from "../../assets/img/arrowmain.svg"
+import img1 from '@assets/img/Frame1.svg'
+import img2 from "@assets/img/Frame2.svg"
+import img3 from "@assets/img/Frame3.svg"
+import arrow from "@assets/img/arrowmain.svg"
 
 
 
@@ -17,13 +17,16 @@ import AppPromo from './../../components/AppPromo/AppPromo'
 import InputDropdownStas from './../../components/Dropdown/InputDropdownStas'
 
 import { useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
 
 function Home() {
-  
+  const navigate = useNavigate()
   const [selectedDate, setSelectedDate] = useState(null)
-  const { control, handleSubmit } = useForm({
+  const { control, handleSubmit, getValues, register } = useForm({
+
 
   })
+
   const specializations = [
     { label: "Ortopeda", value: "Ortopeda" },
     { label: "Logopeda", value: "Logopeda" },
@@ -54,6 +57,24 @@ function Home() {
     setMapsData(newData)
   }
 
+  const handleSearch = () => {
+    const formValues = getValues() 
+    const queryParams = {}
+
+    for (const key in formValues) {
+      if (formValues[key]?.value) {
+        queryParams[key] = formValues[key].value
+      } else if (formValues[key]) {
+        queryParams[key] = formValues[key]
+      }
+    }
+
+    // Преобразуем в query строку
+    const searchParams = new URLSearchParams(queryParams)
+    navigate(`/search?${searchParams.toString()}`)
+  }
+
+
   return (
     <div className={styles.home}>
       <div className={styles.homeFirstBlock}>
@@ -61,16 +82,15 @@ function Home() {
           <img src={mainImg} alt="Main image" />
         </div>
         <div className={styles.homeFirstBlockRight}>
-          <div className={styles.mainFormBlock}>
+          <form onSubmit={handleSubmit(handleSearch)} className={styles.mainFormBlock}>
             <h2>Umów się na wizytę</h2>
             <div className={styles.mainFormIntupsBlock}>
               <div className={styles.dropdownContainer}>
                 <InputDropdownStas
-                  control={control} name={"specialization"}
+                  control={control} name={"specialty"}
                   options={specializations}
                   placeholder={'Wybierz specjalizacje'}
                   seeOptions
-
                 />
 
               </div>
@@ -85,7 +105,7 @@ function Home() {
               </div>
 
               <div className={styles.formCalendar}>
-                <input type="date" placeholder="Data wizyty" className={styles.calendar}/>
+                <input type="date" placeholder="Data wizyty" className={styles.calendar} {...register("date")} />
               </div>
 
               <div className={`${styles.dropdownContainer} ${styles.litle}`}>
@@ -97,9 +117,9 @@ function Home() {
                 />
               </div>
             </div>
-            <div className={styles.mainFormBtn}><button >Szukaj terminu</button></div>
+            <div className={styles.mainFormBtn}><button type="submit" >Szukaj terminu</button></div>
 
-          </div>
+          </form>
         </div>
       </div>
 

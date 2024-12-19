@@ -1,10 +1,10 @@
 
-import styles from './style/ProfileAddress.module.css';
-import imgIcon1 from '../../../assets/img/simple-line-i.svg';
-import imgIcon2 from '../../../assets/img/ph_phone-light (2).svg';
-import imgIcon3 from '../../../assets/img/oui_email.svg';
-import imgIcon4 from '../../../assets/img/fluent_text-number-list-ltr-20-regular.svg';
-import imgIcon5 from '../../../assets/img/Group-1.svg';
+import styles from './style/ProfileAddress.module.css'
+import imgIcon1 from '@assets/img/simple-line-i.svg'
+import imgIcon2 from '@assets/img/ph_phone-light (2).svg'
+import imgIcon3 from '@assets/img/oui_email.svg'
+import imgIcon4 from '@assets/img/fluent_text-number-list-ltr-20-regular.svg'
+import imgIcon5 from '@assets/img/Group-1.svg'
 
 
 
@@ -21,10 +21,10 @@ function ProfileAddress(props) {
       </div>
       <div className={styles.rightBlock}>
         <div className={styles.rightTextBlock}>
-            <img src={imgIcon5}/>Godziny pracy:
+          <img src={imgIcon5} />Godziny pracy:
         </div>
         <div className={styles.rightTimeBlock}>
-          
+
           {Object.entries(props.graphics).map(([day, hours]) => (
             <div className={styles.timeItem}> {day} <span> {hours}</span></div>
           ))}
@@ -36,4 +36,4 @@ function ProfileAddress(props) {
     </div>
   )
 }
-export default ProfileAddress;
+export default ProfileAddress

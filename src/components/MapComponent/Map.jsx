@@ -1,9 +1,9 @@
-import  { useRef, useState } from 'react'
-import styles from './Map.module.css';
-import CountUp from '../CountUp';
-import img1 from '../../assets/img/staticIcon1.svg'
-import img2 from '../../assets/img/staticIcon2.svg'
-import img3 from '../../assets/img/staticIcon3.svg'
+import { useRef, useState } from 'react'
+import styles from './Map.module.css'
+import CountUp from '../CountUp'
+import img1 from '@assets/img/staticIcon1.svg'
+import img2 from '@assets/img/staticIcon2.svg'
+import img3 from '@assets/img/staticIcon3.svg'
 
 
 const mapPaths = [
@@ -24,45 +24,45 @@ const mapPaths = [
   { id: 'path15', data: { doctors: 555, specializations: 45, locations: 25 }, pathData: 'M413.052 326.451C414.246 326.451 415.44 326.451 416.671 326.451C417.977 328.168 419.283 329.884 420.629 331.653C425.721 337.973 430.239 339.782 438.384 340.925C444.442 339.564 444.442 339.564 449.24 337.306C449.315 338.426 449.389 339.545 449.466 340.699C450.761 345.125 450.761 345.125 456.138 346.692C458.042 347.177 459.945 347.662 461.906 348.162C463.137 348.572 464.369 348.983 465.638 349.406C469.322 350.209 469.322 350.209 473.667 349.066C478.441 348.112 480.842 348.65 485.428 349.971C485.674 354.309 485.852 358.633 485.993 362.975C486.069 364.193 486.145 365.412 486.223 366.667C486.398 373.832 485.813 376.659 481.095 382.176C479.54 383.489 477.984 384.802 476.381 386.155C475.187 387.946 473.993 389.737 472.762 391.583C470.971 391.583 469.18 391.583 467.334 391.583C466.737 393.374 466.14 395.165 465.525 397.01C461.793 399.611 461.793 399.611 456.478 402.438C455.365 403.04 454.252 403.641 453.106 404.261C447.119 407.4 441.432 410.001 434.878 411.71C433.049 412.233 431.221 412.755 429.337 413.293C428.739 414.487 428.142 415.681 427.527 416.912C423.327 417.649 419.101 418.258 414.861 418.721C411.3 413.379 409.348 409.317 407.85 403.003C406.472 396.825 406.472 396.825 401.856 394.636C400.177 394.225 398.498 393.815 396.767 393.392C394.491 392.72 392.214 392.049 389.869 391.357C387.966 390.834 386.063 390.312 384.102 389.774C384.997 384.4 384.997 384.4 385.911 378.918C384.12 377.724 382.328 376.53 380.483 375.3C381.35 366.771 382.235 359.622 385.911 351.78C388.299 352.377 390.688 352.974 393.149 353.589C393.149 348.216 393.149 342.843 393.149 337.306C399.749 335.004 406.165 333.094 413.052 331.879C413.052 330.088 413.052 328.297 413.052 326.451Z', },
   { id: 'path16', data: { doctors: 1020, specializations: 45, locations: 25 }, pathData: 'M268.3 339.115C271.285 339.115 274.271 339.115 277.347 339.115C277.347 340.309 277.347 341.503 277.347 342.734C285.912 341.621 285.912 341.621 294.31 339.681C303.382 338.601 312.299 340.803 319.981 345.674C320.839 346.495 321.698 347.315 322.582 348.161C321.723 356.925 320.059 362.494 315.344 369.872C315.344 371.663 315.344 373.454 315.344 375.299C314.15 375.299 312.956 375.299 311.726 375.299C313.76 380.676 315.748 384.951 318.963 389.773C315.978 389.773 312.992 389.773 309.916 389.773C309.292 392.18 308.695 394.594 308.107 397.01C307.734 398.54 307.36 400.07 306.976 401.646C305.917 406.293 305.917 406.293 308.107 411.484C306.973 412.099 305.84 412.715 304.672 413.349C295.825 418.347 295.825 418.347 289.935 426.282C288.823 430.65 288.823 430.65 288.203 436.813C284.775 437.859 284.775 437.859 280.966 438.622C276.467 435.29 275.535 433.186 273.728 427.767C271.041 426.871 271.041 426.871 268.3 425.957C268.897 424.166 269.494 422.375 270.109 420.53C271.304 420.53 272.498 420.53 273.728 420.53C273.131 418.142 272.534 415.753 271.919 413.293C271.322 413.89 270.725 414.487 270.109 415.102C261.205 415.787 255.44 415.437 248.397 409.674C248.397 407.883 248.397 406.092 248.397 404.247C244.217 403.65 240.037 403.053 235.731 402.438C234.835 399.751 234.835 399.751 233.921 397.01C235.041 396.898 236.161 396.786 237.314 396.671C241.65 395.531 241.65 395.531 243.195 390.678C243.717 389.185 244.239 387.693 244.778 386.155C245.972 385.558 247.166 384.961 248.397 384.346C249.626 380.735 250.831 377.116 252.015 373.49C253.21 372.296 254.404 371.102 255.634 369.872C256.194 368.155 256.754 366.439 257.33 364.67C259.253 359.017 259.253 359.017 261.967 355.511C265.666 350.426 266.788 345.163 268.3 339.115Z', },
 
-];
+]
 
 function Map(props) {
-  const [selectedPathId, setSelectedPathId] = useState(props.data.id);
-  const [tooltip, setTooltip] = useState({ visible: false, x: 0, y: 0, text: '' });
-  const svgRef = useRef(null);
+  const [selectedPathId, setSelectedPathId] = useState(props.data.id)
+  const [tooltip, setTooltip] = useState({ visible: false, x: 0, y: 0, text: '' })
+  const svgRef = useRef(null)
 
   const handlePathMouseEnter = (id, data) => {
-    const svgElement = svgRef.current;
+    const svgElement = svgRef.current
     if (svgElement) {
-      const pathElement = svgElement.querySelector(`#${id}`);
+      const pathElement = svgElement.querySelector(`#${id}`)
       if (pathElement) {
-        const bbox = pathElement.getBBox();
+        const bbox = pathElement.getBBox()
         setTooltip({
           visible: true,
           x: bbox.x + bbox.width / 2,
           y: bbox.y - 10,
           text: `${data.locations} placówki medyczne`,
-        });
+        })
       }
     }
-  };
+  }
 
   const handlePathMouseLeave = () => {
-    setTooltip((prev) => ({ ...prev, visible: false }));
-  };
+    setTooltip((prev) => ({ ...prev, visible: false }))
+  }
 
   const handlePathClick = (id, data) => {
-    setSelectedPathId(id);
-    props.onPathClick(data);
-  };
+    setSelectedPathId(id)
+    props.onPathClick(data)
+  }
 
   const handleTooltipMouseEnter = () => {
-    setTooltip((prev) => ({ ...prev, visible: true }));
-  };
+    setTooltip((prev) => ({ ...prev, visible: true }))
+  }
 
   const handleTooltipMouseLeave = () => {
-    setTooltip((prev) => ({ ...prev, visible: false }));
-  };
+    setTooltip((prev) => ({ ...prev, visible: false }))
+  }
 
   return (
     <div className={styles.mapBlock}>
@@ -149,7 +149,7 @@ function Map(props) {
         </svg>
       </div>
     </div>
-  );
+  )
 }
 
-export default Map;
+export default Map

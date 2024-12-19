@@ -40,12 +40,12 @@ function ZapisConteiner({ zapisState, isLoggedIn }) {
         allData: {},
       }
     );
-  }, [id, doctorCard]);
+  }, [id, doctorCard, zapisState]);
   useEffect(() => {
     if (!isLoggedIn) {
       navigate("/auth/");
     }
-  }, []);
+  }, [ navigate, isLoggedIn]);
 
   const handleFileUpload = (event) => {
     const file = event.target.files[0];

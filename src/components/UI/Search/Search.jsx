@@ -1,5 +1,5 @@
-import styles from "./Search.module.css";
-import searchIco from "../../../assets/img/search.png";
+import styles from "./Search.module.css"
+import searchIco from "@assets/img/search.png"
 function Search({ placeholder, onChange }) {
   return (
     <div className={styles.search}>
@@ -11,7 +11,7 @@ function Search({ placeholder, onChange }) {
         type="text"
       />
     </div>
-  );
+  )
 }
 
-export default Search;
+export default Search

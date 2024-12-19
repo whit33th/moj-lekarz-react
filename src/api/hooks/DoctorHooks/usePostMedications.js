@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { doctorServices } from '../../services/doctorServices'
 import { toast } from 'sonner'
-import useStore from '../../data/store'
+import useStore from '@data/store'
 import { useEffect } from 'react'
 function usePostMedications() {
 	const { setModalActive } = useStore()

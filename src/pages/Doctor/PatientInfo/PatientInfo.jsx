@@ -1,14 +1,12 @@
 import { useState } from "react"
 import styles from "./PatientInfo.module.css"
-
-import BlueBtn from "../../../components/Buttons/BlueBtn/BlueBtn"
-import { useNavigate, useParams } from "react-router-dom"
-import useStore from "./../../../data/store"
-import PatientMoreInfoModal from "../../../components/Modals/PatientMoreInfoModal/PatientMoreInfoModal"
-import useGetPatientInfo from '../../../hooks/DoctorHooks/useGetPatientInfo'
-import Tabs from './../../../components/Buttons/Tabs/Tabs'
+import useGetPatientInfo from '@hooks/DoctorHooks/useGetPatientInfo'
 import Skeleton from 'react-loading-skeleton'
+import { useNavigate, useParams } from "react-router-dom"
+import BlueBtn from "../../../components/Buttons/BlueBtn/BlueBtn"
+import PatientMoreInfoModal from "../../../components/Modals/PatientMoreInfoModal/PatientMoreInfoModal"
 import grey from "./../../../assets/img/grey.png"
+import useStore from "./../../../data/store"
 
 function PatientInfo() {
   const { id } = useParams()
@@ -22,28 +20,28 @@ function PatientInfo() {
 
 
   if (isError || typeof id !== "string") {
-    navigate("/*")
+    navigate("/no-patient")
   }
 
 
   const patientInfo = {
-    name: isLoading ? "Ładowanie..." : patient?.user?.first_name || "Brak",
-    surname: isLoading ? "Ładowanie..." : patient?.user?.last_name || "Brak",
-    photo: isLoading ? "Ładowanie..." : patient?.user?.photo || "zdrowie.png",
-    gender: isLoading ? "Ładowanie..." : patient?.user?.gender || "Brak",
-    pesel: isLoading ? "Ładowanie..." : patient?.user?.pesel || "Brak",
-    birthday: isLoading ? "Ładowanie..." : patient?.user?.birthday.slice(0, 10) || "Brak",
-    postCode: isLoading ? "Ładowanie..." : patient?.user?.post_code || "Brak",
-    house: isLoading ? "Ładowanie..." : patient?.user?.address?.house || "Brak",
-    flat: isLoading ? "Ładowanie..." : patient?.user?.address?.flat || "Brak",
-    street: isLoading ? "Ładowanie..." : patient?.user?.address?.street || "Brak",
-    city: isLoading ? "Ładowanie..." : patient?.user?.address?.city || "Brak",
-    height: isLoading ? "Ładowanie..." : patient?.user?.height || "Brak",
-    weight: isLoading ? "Ładowanie..." : patient?.user?.weight || "Brak",
-    tel: isLoading ? "Ładowanie..." : patient?.user?.phone || "Brak",
-    comments: patient?.user?.comments || null,
-    history: patient?.user?.history || null,
-    email: isLoading ? "Ładowanie..." : patient?.user?.email || "Brak",
+    name: isLoading ? "Ładowanie..." : patient?.patient?.user?.first_name || "Brak",
+    surname: isLoading ? "Ładowanie..." : patient?.patient?.user?.last_name || "Brak",
+    photo: isLoading ? "Ładowanie..." : patient?.patient?.user?.photo || "zdrowie.png",
+    gender: isLoading ? "Ładowanie..." : patient?.patient?.user?.gender || "Brak",
+    pesel: isLoading ? "Ładowanie..." : patient?.patient?.user?.pesel || "Brak",
+    birthday: isLoading ? "Ładowanie..." : patient?.patient?.user?.birthday.slice(0, 10) || "Brak",
+    postCode: isLoading ? "Ładowanie..." : patient?.patient?.user?.post_code || "Brak",
+    house: isLoading ? "Ładowanie..." : patient?.patient?.user?.address?.home || "Brak",
+    flat: isLoading ? "Ładowanie..." : patient?.patient?.user?.address?.flat || "Brak",
+    street: isLoading ? "Ładowanie..." : patient?.patient?.user?.address?.street || "Brak",
+    city: isLoading ? "Ładowanie..." : patient?.patient?.user?.address?.city || "Brak",
+    height: isLoading ? "Ładowanie..." : patient?.patient?.user?.height || "Brak",
+    weight: isLoading ? "Ładowanie..." : patient?.patient?.user?.weight || "Brak",
+    tel: isLoading ? "Ładowanie..." : patient?.patient?.user?.phone || "Brak",
+    comments: patient?.patient?.user?.comments || null,
+    history: patient?.patient?.user?.history || null,
+    email: isLoading ? "Ładowanie..." : patient?.patient?.user?.email || "Brak",
   }
 
 
@@ -214,7 +212,7 @@ function PatientInfo() {
               </div>
             </div> */}
           </div>
-          
+
         </div>
       </div>
       <div className={styles.hr}>

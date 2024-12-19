@@ -5,9 +5,9 @@ import BlueBorderBtn from "../../Buttons/BlueBorderBtn/BlueBorderBtn"
 import BlueBtn from "../../Buttons/BlueBtn/BlueBtn"
 import useStore from "../../../data/store"
 import { useNavigate } from "react-router-dom"
-import grey from "../../../assets/img/grey.png"
-import useGetPatientInfo from './../../../hooks/DoctorHooks/useGetPatientInfo'
-import AddRecipesModalForSelectedUser from '../AddRecipesModalForSelectedUser/AddRecipesModalForSelectedUser'
+import grey from "@assets/img/grey.png"
+import useGetPatientInfo from '@hooks/DoctorHooks/useGetPatientInfo'
+import AddRecipesModalForSelectedUser from '../AddRecipesModal/AddRecipesModalForSelectedUser'
 import Skeleton from 'react-loading-skeleton'
 
 
@@ -55,11 +55,11 @@ function VisitModal({ props }) {
               <div>
                 <p className={styles.phone}>
                   <span style={{ color: "#3E36B0" }}>Tel:</span>
-                  <span>{isLoading ? <Skeleton width={150} /> : data?.user?.phone || 'Brak'}</span>
+                  <span>{isLoading ? <Skeleton width={150} /> : data?.patient?.user?.phone || 'Brak'}</span>
                 </p>
                 <p className={styles.email}>
                   <span style={{ color: "#3E36B0" }}>Email:</span>
-                  <span>{isLoading ? <Skeleton width={150} /> : data?.user?.email || 'Brak'}</span>
+                  <span>{isLoading ? <Skeleton width={150} /> : data?.patient?.user?.email || 'Brak'}</span>
                 </p>
               </div>
             </div>
@@ -75,18 +75,18 @@ function VisitModal({ props }) {
             </div> */}
             <div>
               <span>Miasto:</span>
-              <span>{isLoading ? <Skeleton width={100} /> : data?.user?.address?.city || 'Brak'}</span>
+              <span>{isLoading ? <Skeleton width={100} /> : data?.patient?.user?.address?.city || 'Brak'}</span>
             </div>
             <div>
               <span>Adres:</span>
-              <span>{isLoading ? <Skeleton width={125} /> : data?.user?.address?.street || 'Brak'}</span>
+              <span>{isLoading ? <Skeleton width={125} /> : data?.patient?.user?.address?.street || 'Brak'}</span>
             </div>
             <div>
               <span>Data urodzenia:</span>
-              <span>{isLoading ? <Skeleton width={100} /> : data?.user?.birthday?.slice(0, 10)}</span>
+              <span>{isLoading ? <Skeleton width={100} /> : data?.patient?.user?.birthday?.slice(0, 10) || 'Brak'}</span>
             </div>
             <div>
-              <span>Plec:</span> <span>{isLoading ? <Skeleton width={100} /> : data?.user?.gender}</span>
+              <span>Plec:</span> <span>{isLoading ? <Skeleton width={100} /> : data?.patient?.user?.gender || 'Brak'}</span>
             </div>
 
 

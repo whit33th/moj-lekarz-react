@@ -1,46 +1,46 @@
-import { useState } from "react";
-import Choice from "../../../components/Modal/Choice";
-import styles from "./AddFirm.module.css";
-import avatar from "../../../assets/img/profil.webp";
-import plus from "../../../assets/img/plus.png";
-import DropdownStas from "./../../../components/Dropdown/DropdownStas";
-import useStore from "../../../data/store";
-import AddVisitTypeModal from "../../../components/Modals/AddVisitType/AddVisitTypeModal";
-import BlueBorderBtn from "../../../components/Buttons/BlueBorderBtn/BlueBorderBtn";
-import RedBorderBtn from "../../../components/Buttons/RedBorderBtn/RedBorderBtn";
-import { toast } from "sonner";
+import { useState } from "react"
+import Choice from "../../../components/Modal/Choice"
+import styles from "./AddFirm.module.css"
+import avatar from "@assets/img/profil.webp"
+import plus from "@assets/img/plus.png"
+import DropdownStas from "./../../../components/Dropdown/DropdownStas"
+import useStore from "../../../data/store"
+import AddVisitTypeModal from "../../../components/Modals/AddVisitType/AddVisitTypeModal"
+import BlueBorderBtn from "../../../components/Buttons/BlueBorderBtn/BlueBorderBtn"
+import RedBorderBtn from "../../../components/Buttons/RedBorderBtn/RedBorderBtn"
+import { toast } from "sonner"
 import { useForm } from 'react-hook-form'
 
 export default function AddFirm() {
-  const { setModalActive, setModalContent } = useStore();
+  const { setModalActive, setModalContent } = useStore()
   const option = [
     "Usunięcie z powodu nieobecności",
     "Usunięcie z powodu rozwiązania umowy",
     "Usunięcie z powodu zaniedbania",
     "Kalendarz nullam non iaculis massa",
     "Nunc kalendarz aliquam metus",
-  ];
+  ]
   const [visitTypes, setVisitTypes] = useState([
     { id: "1", name: "Konsultacja ortopedyczna", price: 220.0, checked: true },
     { id: "2", name: "Kontrola po operacji", price: 0.0, checked: true },
-  ]);
+  ])
 
   function handleModal() {
-    setModalActive(true);
-    setModalContent(<AddVisitTypeModal onClick={addVisitType} />);
+    setModalActive(true)
+    setModalContent(<AddVisitTypeModal onClick={addVisitType} />)
   }
   const { control, handleSubmit, watch } = useForm({
 
   })
 
   function addVisitType(newVisitType) {
-    setVisitTypes((prevVisitTypes) => [...prevVisitTypes, newVisitType]);
+    setVisitTypes((prevVisitTypes) => [...prevVisitTypes, newVisitType])
   }
 
   function handleDeleteVisitType(id) {
     setVisitTypes((prevVisitTypes) =>
       prevVisitTypes.filter((type) => type.id !== id)
-    );
+    )
   }
 
   const editModal = (
@@ -59,15 +59,15 @@ export default function AddFirm() {
         </RedBorderBtn>
       </div>
     </div>
-  );
+  )
   function handleEditModal() {
-    setModalActive(true);
-    setModalContent(editModal);
+    setModalActive(true)
+    setModalContent(editModal)
   }
 
   function deleteAccountStatus() {
-    toast.success("Profil został usunięty");
-    setModalActive(false);
+    toast.success("Profil został usunięty")
+    setModalActive(false)
   }
   const modalContentDeleteAccount = (
     <>
@@ -88,7 +88,7 @@ export default function AddFirm() {
         ></Choice>
       </div>
     </>
-  );
+  )
   const acceptDeleting = (
     <div>
       <h1 style={{ textAlign: "center" }}>
@@ -101,10 +101,10 @@ export default function AddFirm() {
         <RedBorderBtn cb={deleteAccountStatus}>Tak</RedBorderBtn>
       </div>
     </div>
-  );
+  )
   function handleDelete() {
-    setModalActive(true);
-    setModalContent(modalContentDeleteAccount);
+    setModalActive(true)
+    setModalContent(modalContentDeleteAccount)
   }
 
   return (
@@ -194,5 +194,5 @@ export default function AddFirm() {
         </div>
       </div>
     </div>
-  );
+  )
 }

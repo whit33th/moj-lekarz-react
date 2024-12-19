@@ -3,6 +3,7 @@
   padding: 50px 10%;
   padding-top: 100px;
 }
+
 .firmInfo h1 {
   font-size: 2.5rem;
   font-weight: 600;
@@ -10,17 +11,20 @@
   text-align: center;
   margin-bottom: 30px;
 }
+
 .firmInfoDescription {
   display: flex;
   justify-content: space-between;
   padding: 70px 0;
 }
+
 .firmInfoDescriptionLeft {
   width: 45%;
   height: auto;
   z-index: 2;
   position: relative;
 }
+
 .firmInfoDescriptionLeft p {
   font-size: 1.0625rem;
   font-weight: 400;
@@ -28,6 +32,7 @@
   text-align: left;
   margin-bottom: 15px;
 }
+
 .firmInfoDescriptionLeft button {
   height: 46px;
   padding: 0px 28px;
@@ -42,6 +47,7 @@
   cursor: pointer;
   margin-top: 20px;
 }
+
 .firmInfoDescriptionright {
   width: 52%;
   display: flex;
@@ -59,6 +65,7 @@
   bottom: 0;
   right: 0;
 }
+
 .firstBlockImgTwo {
   height: auto;
   max-width: 55%;
@@ -74,6 +81,7 @@
   padding-top: 50px;
   padding-bottom: 120px;
 }
+
 .aboutMe h1 {
   font-size: 40px;
   font-weight: 600;
@@ -81,6 +89,7 @@
   text-align: center;
   margin-bottom: 30px;
 }
+
 .aboutMeItemConteiner {
   width: 100%;
   display: flex;
@@ -88,6 +97,7 @@
   margin-bottom: 60px;
   margin-top: 90px;
 }
+
 .aboutMeItem {
   position: relative;
   width: 300px;
@@ -97,6 +107,7 @@
   flex-wrap: wrap;
   margin: 0 70px;
 }
+
 .aboutMeItem h2 {
   font-size: 260px;
   font-weight: 500;
@@ -109,6 +120,7 @@
   transform: translate(-50%, -50%);
   color: rgba(166, 222, 247, 0.6);
 }
+
 .aboutMeItem p {
   width: 100%;
   font-size: 18px;
@@ -117,6 +129,7 @@
   text-align: center;
   z-index: 2;
 }
+
 .aboutMeItem p.aboutMeItemTitle {
   font-size: 20px;
   font-weight: 500;
@@ -134,7 +147,8 @@
   color: #fff;
   margin-bottom: 20px;
 }
-.block3D > div {
+
+.block3D>div {
   width: 50%;
 }
 
@@ -143,6 +157,7 @@
   justify-content: center;
   align-items: center;
 }
+
 .block3D h1 {
   font-size: 96px;
   font-weight: 500;
@@ -150,23 +165,27 @@
   text-align: center;
   color: #fff;
 }
+
 .block3DRight {
   display: flex;
   flex-wrap: wrap;
   align-content: space-around;
 }
+
 .block3DRight h2 {
   font-size: 40px;
   font-weight: 600;
   line-height: 54.64px;
   text-align: left;
 }
+
 .block3DRight p {
   font-size: 18px;
   font-weight: 400;
   line-height: 24.59px;
   text-align: left;
 }
+
 .block3DRightBtn {
   width: 285px;
   background-color: #fff;
@@ -174,6 +193,7 @@
   padding: 0 24px;
   border-radius: 1000px;
 }
+
 .block3DRightBtn a {
   width: 100%;
   height: 100%;
@@ -190,12 +210,14 @@
   width: 100%;
   padding: 50px 8%;
 }
+
 .partners h1 {
   font-size: 40px;
   font-weight: 600;
   line-height: 54.64px;
   text-align: center;
 }
+
 .partnersIcons {
   width: 100%;
   padding: 50px 0;
@@ -212,6 +234,7 @@
   height: 46px;
   margin-top: 30px;
 }
+
 .partnersBtn a {
   height: 46px;
   padding: 0 40px;
@@ -235,6 +258,7 @@
   justify-content: center;
   padding-top: 5%;
 }
+
 .formBlock {
   width: 80%;
   height: auto;
@@ -245,6 +269,7 @@
   box-shadow: 0px 0px 50px 0px #3e36b033;
   border-radius: 20px;
 }
+
 .formBlock h1 {
   width: 100%;
   text-align: center;
@@ -253,6 +278,7 @@
   line-height: 54.64px;
   margin-bottom: 20px;
 }
+
 .formBlock p {
   width: 100%;
   text-align: center;
@@ -260,6 +286,7 @@
   font-weight: 400;
   line-height: 27.32px;
 }
+
 .form {
   width: 80%;
   height: auto;
@@ -268,6 +295,7 @@
   justify-content: space-between;
   padding-top: 50px;
 }
+
 .form input {
   width: 48%;
   height: 50px;
@@ -283,6 +311,7 @@
   font-weight: 400;
   line-height: 21.86px;
 }
+
 .form textarea {
   height: 133px;
   width: 100%;
@@ -297,10 +326,12 @@
   font-weight: 400;
   line-height: 21.86px;
 }
+
 .form input:focus,
 .form textarea:focus {
   box-shadow: 0px 0px 50px 0px #00000029;
 }
+
 .formBtn {
   width: 100%;
   display: flex;
@@ -308,6 +339,7 @@
   margin: 30px 0;
   padding-right: 3px;
 }
+
 .formBtn button {
   width: 164px;
   height: 43px;
@@ -362,7 +394,7 @@
   transition: transform 0.5s ease;
 }
 
-.questionBlockItem > p {
+.questionBlockItem>p {
   font-size: 18px;
   font-weight: 600;
   line-height: 24.59px;
@@ -389,7 +421,8 @@
 .rotate {
   transform: rotate(180deg);
 }
-.dropdownContainer  {
+
+.dropdownContainer {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -397,9 +430,12 @@
   width: 48%;
   margin-bottom: 15px;
 }
-.dropdownContainer input {margin: 0;
+
+.dropdownContainer input {
+  margin: 0;
   box-shadow: none;
 }
+
 .dropdownContainer input:focus {
   box-shadow: none;
 }
@@ -407,7 +443,7 @@
 
 
 .formBlockConteiner .arrow {
-  background: url("../../assets/Vector10.svg") no-repeat center;
+  background: url("@assets/Vector10.svg") no-repeat center;
   width: 12px;
   height: 12px;
 }
@@ -418,6 +454,7 @@
     opacity: 0;
     transform: translateY(-10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -430,23 +467,27 @@
   width: 100%;
   padding: 50px 7.5%;
 }
-.priceSliderBlock > h1 {
+
+.priceSliderBlock>h1 {
   font-size: 40px;
   font-weight: 600;
   line-height: 54.64px;
   text-align: center;
 }
+
 .priceContent {
   width: 100%;
   padding: 50px 5%;
 }
+
 .navPriceSlide {
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 20px 0;
 }
-.navPriceSlide > div {
+
+.navPriceSlide>div {
   min-width: 18%;
   font-size: 20px;
   font-weight: 500;
@@ -454,6 +495,7 @@
   text-align: center;
   cursor: pointer;
 }
+
 .navPriceSlideActiveArticle {
   color: var(--gwny, #3e36b0);
   position: relative;
@@ -466,22 +508,26 @@
   width: 100%;
   margin-top: 50px;
 }
+
 .sliderContentOneBlock,
 .sliderContentTwoBlock {
   transition: 0.3s;
 }
+
 .sliderContentOneBlock {
   width: 100%;
   display: flex;
   justify-content: center;
   gap: 40px;
 }
+
 .sliderContentTwoBlock {
   width: 100%;
   display: flex;
   justify-content: center;
   gap: 40px;
 }
+
 .priceTariffCard {
   width: 400px;
   border-radius: 20px;
@@ -492,9 +538,11 @@
   cursor: pointer;
   transition: 0.5s;
 }
+
 .priceTariffCard:hover {
   box-shadow: 0px 0px 50px 0px #3e36b066;
 }
+
 .priceTariffCard h1 {
   font-size: 20px;
   font-weight: 500;
@@ -502,6 +550,7 @@
   text-align: center;
   margin-bottom: 10px;
 }
+
 .priceTariffCard p {
   font-size: 17px;
   font-weight: 500;
@@ -509,6 +558,7 @@
   text-align: center;
   color: #595959;
 }
+
 .priceTariffCardPrice {
   font-size: 60px;
   font-weight: 500;
@@ -516,12 +566,14 @@
   text-align: center;
   margin: 20px 0;
 }
+
 .priceTariffCardPrice span {
   font-size: 38px;
   font-weight: 500;
   line-height: 54.64px;
   margin-left: 2px;
 }
+
 .priceTariffCardBtn {
   width: 100%;
   height: 49px;
@@ -537,6 +589,7 @@
   line-height: 24.59px;
   text-decoration: none;
 }
+
 .priceTariffCardSmallText {
   text-align: center;
   font-size: 16.5px;
@@ -545,9 +598,11 @@
   width: 100%;
   margin: 10px 0;
 }
+
 .priceTariffCard ul {
   margin-top: 15px;
 }
+
 .priceTariffCard ul li {
   list-style-type: none;
   margin: 10px 0;
@@ -557,6 +612,7 @@
   font-weight: 400;
   line-height: 24.59px;
 }
+
 .priceTariffCard ul li img {
   margin-right: 10px;
   width: 16px;
@@ -577,6 +633,7 @@
   opacity: 1;
   transform: translateX(0);
 }
+
 .hiddenPrice {
   opacity: 0;
   transform: translateX(-10px);
@@ -591,72 +648,91 @@
     padding: 50px 4%;
     padding-top: 150px;
   }
+
   .firmInfoDescriptionright {
     display: none;
   }
+
   .firmInfoDescriptionLeft {
     width: 100%;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
   }
+
   .firmInfoDescription {
     padding-top: 10px;
   }
+
   .firmInfoDescriptionLeft p {
     width: 100%;
   }
+
   .aboutMe {
     padding-bottom: 20px;
   }
+
   .aboutMeItemConteiner {
     flex-wrap: wrap;
     margin-top: 15px;
   }
+
   .aboutMeItem {
     width: 90%;
     margin: 0;
     margin-bottom: 18px;
   }
+
   .aboutMeItem h2 {
     font-size: 200px;
   }
+
   .priceSliderBlock {
     padding-top: 15px;
   }
-  .priceSliderBlock > h1 {
+
+  .priceSliderBlock>h1 {
     font-size: 22px;
     line-height: 28px;
   }
+
   .priceContent {
     padding: 40px 1%;
   }
+
   .navPriceSlide {
     width: 100%;
     justify-content: space-between;
   }
-  .navPriceSlide > div {
+
+  .navPriceSlide>div {
     font-size: 1.2rem;
   }
+
   .sliderContentOneBlock,
   .sliderContentTwoBlock {
     gap: 15px;
     flex-wrap: wrap;
   }
+
   .priceTariffCard h1 {
     font-size: 1.3rem;
     line-height: 35px;
   }
+
   .priceTariffCard {
     padding: 25px 25px;
   }
+
   .block3D {
     position: relative;
     padding: 0;
   }
-  .block3D > div {
+
+  .block3D>div {
     width: 100%;
   }
+
   .block3DLeft {
     position: absolute;
     z-index: 1;
@@ -669,9 +745,11 @@
     align-items: center;
     opacity: 0.7;
   }
+
   .block3D h1 {
     font-size: 7.9rem;
   }
+
   .block3DRight {
     width: 100%;
     text-align: center;
@@ -683,74 +761,93 @@
     background-color: #f0f0f024;
     padding: 30px 8%;
   }
+
   .block3DRight h2 {
     width: 100%;
     font-size: 2rem;
     line-height: 35px;
     text-align: center;
   }
+
   .block3DRight p {
     width: 100%;
     text-align: center;
   }
+
   .partners {
     padding: 25px 3%;
   }
+
   .partnersBtn {
     width: 100%;
     display: flex;
     justify-content: center;
     margin-top: 5px;
   }
+
   .partnersBtn a {
     width: 60%;
   }
+
   .formBlock {
     width: 95%;
     padding: 20px 25px;
   }
+
   .formBlockConteiner {
     padding: 10% 4%;
   }
+
   .form {
     width: 100%;
     padding-top: 20px;
   }
+
   .form input,
   .dropdownContainer {
     width: 100%;
   }
+
   .formBtn {
     width: 100%;
   }
+
   .questionBlock h1 {
     font-size: 1.8rem;
   }
+
   .questionBlock {
     padding: 10px 4%;
   }
+
   .questionBlockItem {
     padding: 20px 25px;
   }
-  .questionBlockItem > p {
+
+  .questionBlockItem>p {
     width: 90%;
     font-size: 1.1rem;
     line-height: 30px;
   }
 }
+
 @media (min-width: 1024px) and (max-width: 1400px) {
   .aboutMe {
     padding: 0 5%;
   }
+
   .aboutMeItem {
     margin: 0 40px;
   }
+
   .partners {
     padding: 30px 7%;
   }
+
   .formBlockConteiner {
     padding: 8% 8%;
   }
+
   .formBlock {
     width: 95%;
   }

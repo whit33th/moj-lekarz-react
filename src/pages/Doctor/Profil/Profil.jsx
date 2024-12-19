@@ -1,11 +1,11 @@
-import grey from "../../../assets/img/grey.png"
+import grey from "@assets/img/grey.png"
 
 import styles from "./Profil.module.css"
 import { useState } from "react"
 
 import useStore from '../../../data/store'
-import useGetFullInfo from '../../../hooks/DoctorHooks/useGetFullInfo'
-import useGetUserInfo from '../../../hooks/UserHooks/useGetUserInfo'
+import useGetFullInfo from '@hooks/DoctorHooks/useGetFullInfo'
+import useGetUserInfo from '@hooks/UserHooks/useGetUserInfo'
 import Skeleton from 'react-loading-skeleton'
 function Profil() {
   const [vacationStatus, setVacationStatus] = useState(false)
@@ -14,20 +14,17 @@ function Profil() {
     setVacationStatus(!vacationStatus)
   }
 
-  const { data, isLoading } = useGetFullInfo({
-    id: userId
-  }) || []
-  const { data: user, isLoading: isLoadingUser } = useGetUserInfo() || []
+  const { data: user, isLoading } = useGetUserInfo() || []
 
   const doctor = {
-    fullname: isLoadingUser ? 'Ładowanie...' : user?.first_name + ' ' + user?.last_name || 'Brak',
-    hired: isLoading ? 'Ładowanie...' : data?.hired_at?.slice(0, 10),
-    specialty: isLoading ? 'Ładowanie...' : data?.specialty?.name,
-    img: user?.photo ,
-    pesel: isLoadingUser ? 'Ładowanie...' : user?.pesel || 'Brak',
-    tel: isLoadingUser ? 'Ładowanie...' : user?.phone || 'Brak',
-    email: isLoadingUser ? 'Ładowanie...' : user?.email || 'Brak',
-    clinic: isLoading ? 'Ładowanie...' : data?.clinic?.name || 'Brak',
+    fullname: isLoading ? 'Ładowanie...' : user?.first_name + ' ' + user?.last_name || 'Brak',
+    hired: isLoading ? 'Ładowanie...' : user?.hired_at?.slice(0, 10),
+    specialty: isLoading ? 'Ładowanie...' : user?.specialty?.name,
+    img: user?.photo,
+    pesel: isLoading ? 'Ładowanie...' : user?.pesel || 'Brak',
+    tel: isLoading ? 'Ładowanie...' : user?.phone || 'Brak',
+    email: isLoading ? 'Ładowanie...' : user?.email || 'Brak',
+    clinic: isLoading ? 'Ładowanie...' : user?.clinic?.name || 'Brak',
 
   }
 
@@ -36,7 +33,7 @@ function Profil() {
       <div className={styles.topPhoto}>
         <img src={doctor.img || grey} alt="Profil" />
         <h1 style={{ margin: 0 }}>
-          {isLoadingUser ? <Skeleton width={250} /> : doctor.fullname}
+          {isLoading ? <Skeleton width={250} /> : doctor.fullname}
         </h1>
         <p>{isLoading ? <Skeleton width={150} /> : doctor.specialty}</p>
         <br />

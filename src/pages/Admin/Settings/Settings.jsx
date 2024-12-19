@@ -1,6 +1,6 @@
 import { useState } from "react"
 import styles from "./styles.module.css"
-import photo from "../../../assets/img/profil.webp"
+import photo from "@assets/img/profil.webp"
 import Calendar from "../../../components/DoctorPage/Home/Calendar/CalendarBlock"
 
 import DropdownStas from "../../../components/Dropdown/DropdownStas"
@@ -39,26 +39,7 @@ function Settings() {
 
   })
 
-  const conclusions = (
-    <div className={styles.workTime}>
-      <div className={styles.shadow}>
-        <Calendar />
-      </div>
 
-      <div className={styles.conclusions}>
-        <DropdownStas
-          placeholder={option1[0]}
-          label="Imię i nazwisko"
-          options={option1}
-        />
-        <DropdownStas
-          placeholder={option2[0]}
-          label="Powód nieobecności"
-          options={option2}
-        />
-      </div>
-    </div>
-  )
 
   const workTime = (
     <div className={styles.workTime}>

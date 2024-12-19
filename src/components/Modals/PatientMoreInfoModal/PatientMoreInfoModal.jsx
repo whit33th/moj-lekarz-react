@@ -1,12 +1,12 @@
-import styles from "../../../pages/Doctor/PatientInfo/PatientInfo.module.css";
-import BlueBorderBtn from "../../Buttons/BlueBorderBtn/BlueBorderBtn";
-import Choice from "./../../Modal/Choice";
-import plus from "../../../assets/img/plus.png";
-import bucketBlue from "../../../assets/img/bucketBlue.png";
-import useStore from "./../../../data/store";
+import styles from "../../../pages/Doctor/PatientInfo/PatientInfo.module.css"
+import BlueBorderBtn from "../../Buttons/BlueBorderBtn/BlueBorderBtn"
+import Choice from "./../../Modal/Choice"
+import plus from "@assets/img/plus.png"
+import bucketBlue from "@assets/img/bucketBlue.png"
+import useStore from "./../../../data/store"
 
-function PatientMoreInfoModal({patientInfo}) {
-  const { setModalActive, setModalContent } = useStore();
+function PatientMoreInfoModal({ patientInfo }) {
+  const { setModalActive, setModalContent } = useStore()
   return (
     <div className={styles.profilInfo}>
       <div className={styles.mainInfo}>
@@ -194,7 +194,7 @@ function PatientMoreInfoModal({patientInfo}) {
         ></Choice>
       </div>
     </div>
-  );
+  )
 }
 
-export default PatientMoreInfoModal;
+export default PatientMoreInfoModal

@@ -1,29 +1,29 @@
-import { NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom"
 
-import follow from "../../../assets/img/follow.png";
-import editPan from "../../../assets/img/editPen.png";
+import follow from "@assets/img/follow.png"
+import editPan from "@assets/img/editPen.png"
 
-import BestWorkerItem from "../../../components/FirmPage/VisitItem/BestWorkerItem";
-import { userItems } from "../../../helpers/userItemList";
+import BestWorkerItem from "../../../components/FirmPage/VisitItem/BestWorkerItem"
+import { userItems } from "../../../helpers/userItemList"
 
-import styles from "./FirmManagement.module.css";
-import Review from "../../../components/FirmPage/Review/Review";
-import useStore from "./../../../data/store";
-import Choice from "../../../components/Modal/Choice";
+import styles from "./FirmManagement.module.css"
+import Review from "../../../components/FirmPage/Review/Review"
+import useStore from "./../../../data/store"
+import Choice from "../../../components/Modal/Choice"
 
-import profil from "../../../assets/img/profil.webp";
-import ReviewCard from "../../../components/FirmPage/Review/ReviewCard";
+import profil from "@assets/img/profil.webp"
+import ReviewCard from "../../../components/FirmPage/Review/ReviewCard"
 
-import Dropdown from "../../../components/Dropdown/Dropdown";
-import exit from "../../../assets/img/cross.png";
-import BlueBtn from "../../../components/Buttons/BlueBtn/BlueBtn";
+import Dropdown from "../../../components/Dropdown/Dropdown"
+import exit from "@assets/img/cross.png"
+import BlueBtn from "../../../components/Buttons/BlueBtn/BlueBtn"
 
 function FirmManagement() {
-  const { setModalActive, setModalContent } = useStore();
+  const { setModalActive, setModalContent } = useStore()
 
   function openMainModal() {
-    setModalActive(true);
-    setModalContent(ModalContentEdit);
+    setModalActive(true)
+    setModalContent(ModalContentEdit)
   }
   const ModalContentEdit = (
     <div>
@@ -147,7 +147,7 @@ function FirmManagement() {
         <BlueBtn cb={() => setModalActive(false)}>Aktualizuj</BlueBtn>
       </div>
     </div>
-  );
+  )
   const reviews = [
     {
       name: "Daniel Novikov",
@@ -212,7 +212,7 @@ function FirmManagement() {
       rating: 1,
       image: profil,
     },
-  ];
+  ]
 
   const modalContentComments = (
     <div className={styles.mainContainer}>
@@ -246,7 +246,7 @@ function FirmManagement() {
         ))}
       </div>
     </div>
-  );
+  )
   return (
     <div className="content">
       <div className={styles.topLayer}>
@@ -290,8 +290,8 @@ function FirmManagement() {
             <p className={styles.titleCard}>Komentarze</p>
             <button
               onClick={() => {
-                setModalActive(true);
-                setModalContent(modalContentComments);
+                setModalActive(true)
+                setModalContent(modalContentComments)
               }}
               className={styles.transparentBtn}
             >
@@ -339,7 +339,7 @@ function FirmManagement() {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default FirmManagement;
+export default FirmManagement

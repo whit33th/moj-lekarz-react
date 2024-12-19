@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
-import styles from "./PartnersSlider.module.css";
-import imgArrow from "../assets/img/Vector (32).svg";
-import facebookLogo from "../assets/img/Frame529.png";
+import { useState, useEffect } from "react"
+import styles from "./PartnersSlider.module.css"
+import imgArrow from "@assets/img/Vector (32).svg"
+import facebookLogo from "@assets/img/Frame529.png"
 
 const partnersState = [
   { name: "Facebook", img: facebookLogo },
@@ -13,39 +13,39 @@ const partnersState = [
   { name: "Pinterest", img: facebookLogo },
   { name: "Pinterest", img: facebookLogo },
   { name: "Pinterest", img: facebookLogo },
-];
+]
 function PartnersSlider(props) {
-  const [sliderStatePage, setSliderStatePage] = useState(0);
-  const [itemsPerPage, setItemsPerPage] = useState(5);
+  const [sliderStatePage, setSliderStatePage] = useState(0)
+  const [itemsPerPage, setItemsPerPage] = useState(5)
 
   useEffect(() => {
     const updateItemsPerPage = () => {
       if (window.innerWidth <= 624) {
-        setItemsPerPage(2);
+        setItemsPerPage(2)
       } else if (window.innerWidth <= 1024) {
-        setItemsPerPage(3);
+        setItemsPerPage(3)
       } else {
-        setItemsPerPage(5);
+        setItemsPerPage(5)
       }
-    };
+    }
 
-    updateItemsPerPage();
-    window.addEventListener("resize", updateItemsPerPage);
+    updateItemsPerPage()
+    window.addEventListener("resize", updateItemsPerPage)
 
-    return () => window.removeEventListener("resize", updateItemsPerPage);
-  }, []);
+    return () => window.removeEventListener("resize", updateItemsPerPage)
+  }, [])
 
   const sliderFunctionLeft = () => {
     if (sliderStatePage > 0) {
-      setSliderStatePage(sliderStatePage - 1);
+      setSliderStatePage(sliderStatePage - 1)
     }
-  };
+  }
 
   const sliderFunctionRight = () => {
     if (sliderStatePage < partnersState.length - itemsPerPage) {
-      setSliderStatePage(sliderStatePage + 1);
+      setSliderStatePage(sliderStatePage + 1)
     }
-  };
+  }
 
   return (
     <div className={styles.partnersSlider}>
@@ -62,9 +62,8 @@ function PartnersSlider(props) {
         <div
           className={styles.sliderContentRow}
           style={{
-            transform: `translateX(-${
-              sliderStatePage * (100 / itemsPerPage)
-            }%)`,
+            transform: `translateX(-${sliderStatePage * (100 / itemsPerPage)
+              }%)`,
           }}
         >
           {partnersState.map((item, index) => (
@@ -88,7 +87,7 @@ function PartnersSlider(props) {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default PartnersSlider;
+export default PartnersSlider

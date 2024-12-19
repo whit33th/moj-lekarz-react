@@ -50,12 +50,11 @@ function SearchClinicPage() {
 
 
               <DropdownStas
-              
                 name="select1"
                 control={control}
-
                 options={arraySelectOptions.select1}
                 placeholder={"Wybierz centrum medyczny"}
+                
               />
 
 

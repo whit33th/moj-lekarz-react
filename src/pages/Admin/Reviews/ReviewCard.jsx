@@ -1,26 +1,26 @@
-import styles from "./ReviewCard.module.css";
+import styles from "./ReviewCard.module.css"
 
-import avatar from "../../../assets/img/profil.webp";
-import useStore from "../../../data/store";
+import avatar from "@assets/img/profil.webp"
+import useStore from "../../../data/store"
 
-import BlueBtn from "../../../components/Buttons/BlueBtn/BlueBtn";
-import ReviewModal from "../../../components/Modals/ReviewModal/ReviewModal";
-import star from "../../../assets/img/Star.svg";
-import starGrey from "../../../assets/img/Star 6.svg";
+import BlueBtn from "../../../components/Buttons/BlueBtn/BlueBtn"
+import ReviewModal from "../../../components/Modals/ReviewModal/ReviewModal"
+import star from "@assets/img/Star.svg"
+import starGrey from "@assets/img/Star 6.svg"
 const ReviewCard = ({ name, date, text, rating }) => {
-  const { setModalActive, setModalContent } = useStore();
+  const { setModalActive, setModalContent } = useStore()
 
   const positiveFeedbacks = [
     "Profesjonalne podejście",
     "Dbałość o komfort pacjenta",
-  ];
-  const negativeFeedbacks = ["Zbyt krótka wizyta", "Ograniczona dostępność"];
+  ]
+  const negativeFeedbacks = ["Zbyt krótka wizyta", "Ograniczona dostępność"]
 
   function handleModal() {
-    setModalActive(true);
+    setModalActive(true)
     setModalContent(
       <ReviewModal name={name} date={date} text={text} rating={rating} />
-    );
+    )
   }
   return (
     <div className={styles.card}>
@@ -66,7 +66,7 @@ const ReviewCard = ({ name, date, text, rating }) => {
         <BlueBtn cb={handleModal}> Zobacz </BlueBtn>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ReviewCard;
+export default ReviewCard

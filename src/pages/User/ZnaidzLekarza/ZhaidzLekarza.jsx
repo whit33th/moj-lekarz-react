@@ -4,35 +4,36 @@ import DatePicker from "react-datepicker"
 import DoctorCard from "./DoctorCard"
 import DropdownStas from '../../../components/Dropdown/DropdownStas'
 import { useForm } from 'react-hook-form'
+import useSearchAppointments from '@hooks/PatientHooks/useSearchAppointments'
+import DoctorCardSkeleton from './DoctorCardSkeleton'
 
 const arraySelectOptions = {
-  select1: ["ortoped", "logoped", "surgeon"],
-  select2: ["Poznań", "Tokyo", "NYC"],
-  select3: ["Options 1", "Options 2", "Options 3"],
+  select1: ["Ortopeda", "Logopeda", "Chirurg", "Kardiolog", "Ginekolog"],
+  select2: ["Poznan", "Warszawa", "Wroclaw"],
+  select3: ["Konsultacja", "Badanie"],
 }
 
 
 function ZnajdzLekarza(props) {
   const doctorCard = props.doctorCard
-  const [isOpen1, setIsOpen1] = useState(false)
-  const [isOpen2, setIsOpen2] = useState(false)
-  const [isOpen3, setIsOpen3] = useState(false)
-  const [selectedOption1, setSelectedOption1] = useState("")
-  const [selectedOption2, setSelectedOption2] = useState("")
-  const [selectedOption3, setSelectedOption3] = useState("")
   const [selectedDate, setSelectedDate] = useState(null)
   const [state, setState] = useState(doctorCard)
-  const { control, handleSubmit, watch } = useForm({
+  const { control, register, handleSubmit, getValues } = useForm({
 
   })
-  const handleOptionClick = (option, setSelectedOption, setIsOpen) => {
-    setSelectedOption(option)
-    setIsOpen(false)
-  }
 
-  const toggleDropdown = (isOpen, setIsOpen) => {
-    setIsOpen(!isOpen)
-  }
+
+  const { data, isLoading } = useSearchAppointments({
+    // specialty: 'Assistant',
+    // date: '2025-07-10',
+    select: (data) => data?.data.slots
+  })
+
+
+
+
+
+
   const clickFilterBtn = () => {
     const filteredDoctors = doctorCard.filter((doctor) => {
       const matchesType = selectedOption1
@@ -61,27 +62,20 @@ function ZnajdzLekarza(props) {
             <div className={styles.mainFormIntupsBlock}>
               <div className={styles.dropdownContainer}>
 
-                <DropdownStas control={control} name={"."} options={arraySelectOptions.select1} placeholder={"Wybierz specjalizacje"} />
+                <DropdownStas control={control} name={"specialty"} options={arraySelectOptions.select1} placeholder={"Wybierz specjalizacje"} searchParamsName={"specialty"} />
 
               </div>
 
               <div className={styles.dropdownContainer}>
-                <DropdownStas control={control} name={".."} options={arraySelectOptions.select2} placeholder={"Wybierz miasto"} />
+                <DropdownStas control={control} name={"city"} options={arraySelectOptions.select2} placeholder={"Wybierz miasto"} searchParamsName={"city"} />
               </div>
 
               <div className={styles.formCalendar}>
-                <DatePicker
-                  selected={selectedDate}
-                  onChange={(date) => setSelectedDate(date)}
-                  dateFormat="dd/MM/yyyy"
-                  className={styles.datePicker}
-                  minDate={new Date()}
-                  placeholderText="Wybierz dzień"
-                />
+                <input type="date" placeholder="Data wizyty" className={styles.calendar} {...register("date")} defaultValue={getValues("date")} />
               </div>
 
               <div className={`${styles.dropdownContainer} ${styles.litle}`}>
-                <DropdownStas control={control} name={"..."} options={arraySelectOptions.select3} placeholder={"Wybierz ..."} />
+                <DropdownStas control={control} name={"type"} options={arraySelectOptions.select3} placeholder={"Wybierz ..."} searchParamsName={"type"} />
               </div>
             </div>
             <div className={styles.filterBtnBlock}>
@@ -98,12 +92,13 @@ function ZnajdzLekarza(props) {
         </div>
       </div>
       <div className={styles.doctorsCards}>
-        {state.map((item) => (
+        {isLoading ? <DoctorCardSkeleton count={3} /> : data?.map((item) => (
           <DoctorCard
             data={item}
-            key={item.id}
-            selectedDate={selectedDate}
-            addZapis={props.addZapis}
+            key={item.doctor_id}
+            // selectedDate={selectedDate}
+            // addZapis={props.addZapis}
+            loading={isLoading}
           />
         ))}
         {state.length == 0 && (

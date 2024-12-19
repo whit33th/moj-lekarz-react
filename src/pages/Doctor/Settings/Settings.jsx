@@ -1,116 +1,97 @@
+import grey from "@assets/img/grey.png"
+import useGetUserInfo from '@hooks/UserHooks/useGetUserInfo'
+import usePostUpdateImg from '@hooks/UserHooks/usePostUpdateImg'
 import { useEffect, useState } from "react"
-import styles from "./styles.module.css" // Импортируем CSS-модуль
-
-import Calendar from "../../../components/DoctorPage/Home/Calendar/CalendarBlock"
-
-import DropdownStas from "../../../components/Dropdown/DropdownStas"
 import { useForm } from 'react-hook-form'
-import useGetUserInfo from '../../../hooks/UserHooks/useGetUserInfo'
-import grey from "../../../assets/img/grey.png"
-import InputError from '../../../components/UI/InputError/InputError'
-
+import usePutUserInfo from '../../../api/hooks/UserHooks/usePutUserInfo'
 import BlueBtn from '../../../components/Buttons/BlueBtn/BlueBtn'
-import usePostUpdateImg from '../../../hooks/UserHooks/usePostUpdateImg'
+import Tabs from '../../../components/Buttons/Tabs/Tabs'
+import Calendar from "../../../components/DoctorPage/Home/Calendar/CalendarBlock"
+import InputError from '../../../components/UI/InputError/InputError'
+import AdditionalData from './AdditionalData'
+import Conclusions from './Conclusions'
+import styles from "./styles.module.css"
 import { toast } from 'sonner'
 function Settings() {
   const [activeTab, setActiveTab] = useState("Dane podstawowe")
-  const [previewImg, setPreviewImg] = useState(null)
-  console.log(previewImg)
+  const [selectedImg, setSelectedImg] = useState(null)
+  const [fileForUpload, setFileForUpload] = useState(null)
   const { register, formState, handleSubmit, reset } = useForm({
-    mode: 'onChange'
+    mode: 'onChange',
+    defaultValues: {
+      birthDate: '2000-01-01'
+    }
   })
 
-  const { register: imgRegister, formState: imgFormState, handleSubmit: handleImgSubmit } = useForm({
+  const { register: imgRegister, formState: imgFormState, handleSubmit: handleImgSubmit, getValues } = useForm({
     mode: 'onChange'
   })
-  const option1 = [
-    "Dariusz Adamek",
-    "Option",
-  ]
-  const reasons = ["Wolny", "Siła wyższa", "Wakacje", "Zwolnienie lekarskie"]
-  const Buttons = [
-    "Dane podstawowe",
-    "Dane dodatkowe",
-    "Czas pracy",
-    "Wnioski",
-  ]
 
   function handleTabClick(name) {
     setActiveTab(name)
   }
-
-
+  
   const { data: user, isLoading } = useGetUserInfo() || []
-  const { mutate, isPending, isError, isSuccess } = usePostUpdateImg()
-
-
-  useEffect(() => {
-    if (isSuccess) {
-      toast.success("Plik został pomyślnie wysłany!")
-    }
-    if (isError) {
-      toast.error("Wystąpił błąd podczas wysyłania pliku!")
-    }
-    if (isPending) {
-      toast.loading("Wysyłanie pliku...")
-    }
-    toast.dismiss()
-  }, [isPending, isError, isSuccess])
+  const { mutate} = usePostUpdateImg()
 
   useEffect(() => {
     reset({
       firstName: isLoading ? 'Ładowanie...' : user?.first_name || 'Brak',
       lastName: isLoading ? 'Ładowanie...' : user?.last_name || 'Brak',
-      city: isLoading ? 'Ładowanie...' : user?.city || 'Brak',
+      birthDate: isLoading ? '2000-01-01' : user?.birthday.slice(0, 10),
+      pesel: isLoading ? 'Ładowanie...' : user?.pesel || 'Brak',
+      tel: isLoading ? 'Ładowanie...' : user?.phone || 'Brak',
+      email: isLoading ? 'Ładowanie...' : user?.email || 'Brak',
+      description: isLoading ? 'Ładowanie...' : user?.description || 'Brak',
+      city: isLoading ? 'Ładowanie...' : user?.address?.city || 'Brak',
       street: isLoading ? 'Ładowanie...' : user?.address?.street || 'Brak',
       house: isLoading ? 'Ładowanie...' : user?.address?.home || 'Brak',
       flat: isLoading ? 'Ładowanie...' : user?.address?.flat || 'Brak',
       postCode: isLoading ? 'Ładowanie...' : user?.address?.post_index || 'Brak',
-      birthDate: isLoading ? '0000-00-00' : user?.birthday.slice(0, 10),
-      pesel: isLoading ? 'Ładowanie...' : user?.pesel || 'Brak',
-      tel: isLoading ? 'Ładowanie...' : user?.phone || 'Brak',
-      email: isLoading ? 'Ładowanie...' : user?.email || 'Brak',
-      additional: isLoading ? 'Ładowanie...' : user?.additional || 'Brak',
     })
   }, [user, reset, isLoading])
 
-
+  const { mutate: mutateUserInfo } = usePutUserInfo()
   function onSubmit(data) {
-    console.log(data)
+    const formData = {
+      first_name: data.firstName,
+      last_name: data.lastName,
+      birthday: data.birthDate,
+      pesel: data.pesel,
+      email: data.email,
+      phone: data.tel,
+      city: data.city,
+      province: data.province || "", // Обязательно, если не приходит
+      street: data.street,
+      home: data.house,
+      flat: data.flat,
+      post_index: data.postCode,
+      hired_at: data.birthDate,
+      description: data.description,
+    }
+    mutateUserInfo(formData)
   }
-  function changeImg(img) {
-    mutate(img)
-  }
-  const conclusions = (
-    <div className={styles.workTime}>
-      <div className={styles.shadow}>
-        <Calendar />
-      </div>
+  function changeImg() {
 
-      <div className={styles.conclusions}>
-        <DropdownStas
-          placeholder={option1[0]}
-          label="Imię i nazwisko"
-          options={false}
-          type='disabled'
-        />
-        <DropdownStas
-          placeholder={reasons[0]}
-          label="Powód nieobecności"
-          options={reasons}
-        />
-      </div>
-    </div>
-  )
+    const formData = new FormData()
+
+    formData.set('image', fileForUpload)
+
+    console.log(formData)
+    
+    mutate(formData)
+  }
 
   useEffect(() => {
-    setPreviewImg(isLoading || !user ? grey : user?.photo)
+    setSelectedImg(isLoading || !user ? grey : user?.photo)
   }, [isLoading, user])
   function handleImgChange(event) {
     const file = event.target.files[0]
+    setFileForUpload(file)
+    console.log(file)
     if (file) {
       const objectUrl = URL.createObjectURL(file) // Создаем URL для изображения
-      setPreviewImg(objectUrl) // Устанавливаем предпросмотр
+      setSelectedImg(objectUrl) // Устанавливаем предпросмотр
     }
   }
   const workTime = (
@@ -138,18 +119,14 @@ function Settings() {
 
   const settingData = (
     <div className={styles.settingData}>
-
       <div className={styles.settingInfo}>
         <form onSubmit={handleSubmit(onSubmit)}>
-
           <div className={styles.halfRow}>
             <div>
               <label htmlFor="firstName">Imię</label>
               <input
                 type="text"
-
                 placeholder="Dariusz"
-
                 {...register('firstName', {
                   pattern: {
                     value: /^[a-zA-Z]+$/,
@@ -158,12 +135,10 @@ function Settings() {
                 })}
               />
               <InputError formState={formState} errorField={"firstName"} />
-
             </div>
             <div>
               <label htmlFor="lastName">Nazwisko</label>
               <input
-
                 placeholder="Adamek"
                 {...register('lastName', {
                   pattern: {
@@ -212,7 +187,6 @@ function Settings() {
                   }
                 }}
               />
-
               <InputError formState={formState} errorField={"postCode"} />
             </div>
           </div>
@@ -221,7 +195,6 @@ function Settings() {
               <label htmlFor="street">Ulica</label>
               <input
                 type="text"
-
                 placeholder="Ul.Kutrzeby"
                 {
                 ...register('street', {
@@ -240,7 +213,6 @@ function Settings() {
               <label htmlFor="house">Numer domu</label>
               <input
                 type="text"
-
                 placeholder="12"
                 {...register('house')}
               />
@@ -250,7 +222,6 @@ function Settings() {
               <label htmlFor="flat">Mieszkanie</label>
               <input
                 type="text"
-
                 placeholder="1a"
                 {...register('flat')}
               />
@@ -262,13 +233,9 @@ function Settings() {
               <label htmlFor="birthDate">Data urodzenia</label>
               <input
                 type='date'
-
-                placeholder='01.01.2000'
                 {
                 ...register('birthDate', {
-                  valueAsDate: true
                 })}
-
               />
               <InputError formState={formState} errorField={"birthDate"} />
             </div>
@@ -276,7 +243,6 @@ function Settings() {
               <label htmlFor="pesel">Pesel</label>
               <input
                 type="text"
-
                 placeholder="12345678901"
                 {...register('pesel', {
                   pattern: {
@@ -300,7 +266,6 @@ function Settings() {
             <div>
               <label htmlFor="tel">Telefon</label>
               <input type="tel" placeholder="+48 123 456 789"
-
                 {...register('tel',
                   {
                     pattern: {
@@ -311,7 +276,6 @@ function Settings() {
                       value: 9,
                       message: "Minimum 9 cyfr"
                     },
-
                   }
                 )}
               />
@@ -343,24 +307,24 @@ function Settings() {
       </div>
       <div className={`${styles.settingImg}`}>
         <div className={styles.photo}>
-          <img src={previewImg} alt="" />
+          <img src={selectedImg} alt="" />
         </div>
 
 
 
-        <form className={styles.formImg} onSubmit={handleImgSubmit(changeImg)}>
-
+        <form encType='multipart/form-data' className={styles.formImg} onSubmit={handleImgSubmit(changeImg)}>
           <div>
             <label htmlFor="fileUpload" className={styles.customButton}>
               Wybierz zdjęcie
             </label>
             <input
+
               className={styles.inputFileHidden}
               type="file"
               accept="image/*"
               {...imgRegister("photo", {
                 required: "Wybierz zdjęcie",
-                onChange: handleImgChange, // Вызываем обработчик изменения
+                onChange: handleImgChange
               })}
               id="fileUpload"
             />
@@ -380,41 +344,17 @@ function Settings() {
     </div>
   )
 
-  const additionalData = (
-    <>
-      <textarea
-        className={styles.textarea}
-        placeholder="Wpisz tekst"
-
-      ></textarea>
-      <button
-        style={{ width: "200px", marginLeft: "calc(100% - 200px)" }}
-        className={styles.blueButt}
-      >
-        Zapisz zmiany
-      </button>
-    </>
-  )
-
   return (
+
     <div className="content">
-      <div className={styles.settingNavbarButt}>
-        {Buttons.map((name) => (
-          <button
-            onClick={() => handleTabClick(name)}
-            className={activeTab === name ? styles.active : ""}
-            key={name}
-          >
-            {name}
-          </button>
-        ))}
-      </div>
+      <Tabs fullWidth buttons="Dane podstawowe,Dane dodatkowe,Czas pracy,Wnioski" activeTab={activeTab} onTabClick={handleTabClick} />
+
 
       {activeTab === "Dane podstawowe" && settingData}
 
-      {activeTab === "Dane dodatkowe" && additionalData}
+      {activeTab === "Dane dodatkowe" && <AdditionalData description={user?.description} />}
       {activeTab === "Czas pracy" && workTime}
-      {activeTab === "Wnioski" && conclusions}
+      {activeTab === "Wnioski" && <Conclusions />}
     </div>
   )
 }

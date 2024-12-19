@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 
-import { authService } from '../../services/authServices';
+import { authService } from '@services/authServices';
 
 function useRegistration() {
   const { mutate, isLoading, isError, isSuccess, error } = useMutation({

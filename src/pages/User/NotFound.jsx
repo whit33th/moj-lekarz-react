@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import styles from "./style/NotFound.module.css"
-import stethoscope from "../../assets/img/stethoscope.png"
-import home from "../../assets/img/sidebar-home.png"
+import stethoscope from "@assets/img/stethoscope.png"
+import home from "@assets/img/sidebar-home.png"
 
 export default function NotFound() {
   return (

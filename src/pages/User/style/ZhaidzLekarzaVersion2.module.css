@@ -1,6 +1,7 @@
 .zhaidzLekarza {
   width: 100%;
 }
+
 .filterBlock {
   width: 100%;
   height: auto;
@@ -9,6 +10,7 @@
   justify-content: center;
   background-color: #a6def7;
 }
+
 .filterBlockContent {
   width: 85%;
   min-height: 280px;
@@ -16,17 +18,20 @@
   border-radius: 20px;
   padding: 30px 60px;
 }
-.filterBlockContent > h1 {
+
+.filterBlockContent>h1 {
   font-size: 32px;
   font-weight: 500;
   line-height: 43.71px;
   text-align: center;
   margin-bottom: 25px;
 }
+
 .filterBlockContentSelects {
   width: 100%;
   margin-top: 15px;
 }
+
 .mainFormIntupsBlock {
   width: 100%;
   display: flex;
@@ -39,6 +44,7 @@
 .dropdownContainer:nth-child(2) {
   width: 120%;
 }
+
 .dropdownContainer {
   display: flex;
   align-items: center;
@@ -72,7 +78,7 @@
 }
 
 .mainFormIntupsBlock .arrow {
-  background: url("../../assets/Vector10.svg") no-repeat center;
+  background: url("@assets/Vector10.svg") no-repeat center;
   width: 12px;
 
   height: 12px;
@@ -156,6 +162,7 @@
   justify-content: end;
   align-items: center;
 }
+
 .filterBtnBlock button {
   background-color: #3e36b0;
   width: 170px;
@@ -175,6 +182,7 @@
   width: 100%;
   padding: 20px 7.5%;
 }
+
 .zhaidzLekarzaContentTitle {
   width: 100%;
   padding: 50px 10px;
@@ -182,11 +190,13 @@
   justify-content: space-between;
   align-items: center;
 }
+
 .zhaidzLekarzaContentTitle h2 {
   font-size: 40px;
   font-weight: 600;
   line-height: 54.64px;
 }
+
 .zhaidzLekarzaContentTitle button {
   background-color: #3e36b0;
   width: 160px;
@@ -201,11 +211,13 @@
   color: #fff;
   cursor: pointer;
 }
+
 .doctorsCards {
   width: 100%;
   padding: 70px 7.5%;
   padding-top: 0;
 }
+
 .nonDoctorCardBlock {
   width: 100%;
   height: 280px;
@@ -217,6 +229,7 @@
   line-height: 43.71px;
   text-align: center;
 }
+
 .filterBlockContentSelects {
   padding: 60px 7.5%;
   margin-top: 50px;
@@ -226,10 +239,12 @@
   .zhaidzLekarza {
     padding-top: 100px;
   }
+
   .mainFormIntupsBlock {
     height: auto;
     flex-wrap: wrap;
   }
+
   .dropdownContainer.litle {
     width: 100%;
   }

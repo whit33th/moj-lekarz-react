@@ -1,9 +1,9 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import styles from "./ZapisPage.module.css";
-import imgName from "../../../../assets/img/simple-line-i.svg";
-import imgType from "../../../../assets/img/Vector14.svg";
-import phoneImg from "../../../../assets/img/ph_phone-light.svg";
+import { useState } from "react"
+import { useNavigate } from "react-router-dom"
+import styles from "./ZapisPage.module.css"
+import imgName from "@assets/img/simple-line-i.svg"
+import imgType from "@assets/img/Vector14.svg"
+import phoneImg from "@assets/img/ph_phone-light.svg"
 
 const arraySelectOptions = {
   select1: [
@@ -12,28 +12,28 @@ const arraySelectOptions = {
     "Konsultacja ginekologiczna • 2900,00 zł",
   ],
   select2: ["Prywatna", "Tokyo", "NYC"],
-};
+}
 
 function ZapisPage(props) {
-  const [isOpen1, setIsOpen1] = useState(false);
-  const [isOpen2, setIsOpen2] = useState(false);
-  const [data, setData] = useState(props.data);
+  const [isOpen1, setIsOpen1] = useState(false)
+  const [isOpen2, setIsOpen2] = useState(false)
+  const [data, setData] = useState(props.data)
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const handleGoBack = () => {
-    navigate(-1);
-  };
-  const doctorInfo = data.allData || {};
+    navigate(-1)
+  }
+  const doctorInfo = data.allData || {}
 
   const handleOptionClick = (option, setSelectedOption, setIsOpen) => {
-    setSelectedOption(option);
-    setIsOpen(false);
-  };
+    setSelectedOption(option)
+    setIsOpen(false)
+  }
 
   const toggleDropdown = (isOpen, setIsOpen) => {
-    setIsOpen(!isOpen);
-  };
+    setIsOpen(!isOpen)
+  }
 
   return (
     <div className={styles.zapisPage}>
@@ -156,7 +156,7 @@ function ZapisPage(props) {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default ZapisPage;
+export default ZapisPage

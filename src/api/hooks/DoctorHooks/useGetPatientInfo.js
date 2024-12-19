@@ -4,14 +4,14 @@ import { patientService } from '../../services/patientService'
 function useGetPatientInfo(patientId) {
 
 
-	const { data, isSuccess, isLoading, isError, error  } = useQuery({
+	const { data, isSuccess, isLoading, isError  } = useQuery({
 		queryKey: ["getPatientInfo", patientId],
 		queryFn: () => patientService.getPatientInfo(patientId),
 		select: (data) => data.data,
 		enabled: !!patientId,
 		retry: false
 	})
-	console.log(error)
+
 
 	return { data, isSuccess, isLoading, isError }
 }

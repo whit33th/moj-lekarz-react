@@ -1,6 +1,6 @@
 import { create } from "zustand"
-import imageblog from "../assets/img/imageblog.webp"
-import doctor from "../assets/img/doctor.jpg"
+import imageblog from "@assets/img/imageblog.webp"
+import doctor from "@assets/img/doctor.jpg"
 import Cookies from 'js-cookie'
 const useStore = create((set) => ({
   todayDate: new Date().toISOString().split("T")[0],
@@ -14,7 +14,7 @@ const useStore = create((set) => ({
 
 
   // Auth state
-  isAuth: Cookies.get("isAuth") === undefined ? false : true,
+  isAuth: Cookies.get("isAuth") === undefined ? false : Cookies.get("isAuth"),
   setIsAuth: (isAuth) => set({ isAuth: isAuth }),
 
   // Modal state
@@ -51,7 +51,7 @@ const useStore = create((set) => ({
     }),
 
   visitCountForMonth: 0,
-  setVisitCountForMonth: (visitCount) => set({ visitCountForMonth: visitCount}),
+  setVisitCountForMonth: (visitCount) => set({ visitCountForMonth: visitCount }),
   // Profile state
   profileState: {
     id: 0,
@@ -916,7 +916,7 @@ const useStore = create((set) => ({
   fetchBlogs: async () => {
     set({ status: "loading" })
     try {
-      const response = await fetch.get("/blogs") 
+      const response = await fetch.get("/blogs")
       set({ status: "succeeded", blogs: response.data })
     } catch (error) {
       set({ status: "failed", error: error.message })

@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form"
 import InputError from "../../../components/UI/InputError/InputError"
 import styles from "../AuthPage.module.css"
 
-import useLogin from "../../../hooks/AuthHooks/useLogin"
+import useLogin from "@hooks/AuthHooks/useLogin"
 import { cardio } from 'ldrs'
 
 cardio.register()

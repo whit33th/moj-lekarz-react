@@ -1,10 +1,10 @@
-import styles from "./style/MobileAppPage.module.css";
-import img1 from "../../assets/img/image1.svg";
-import img2 from "../../assets/img/image2.svg";
-import phone from "../../assets/img/foto.webp";
-import img3 from "../../assets/img/Frame1.svg";
-import img4 from "../../assets/img/Frame2.svg";
-import img5 from "../../assets/img/Frame3.svg";
+import styles from "./style/MobileAppPage.module.css"
+import img1 from "@assets/img/image1.svg"
+import img2 from "@assets/img/image2.svg"
+import phone from "@assets/img/foto.webp"
+import img3 from "@assets/img/Frame1.svg"
+import img4 from "@assets/img/Frame2.svg"
+import img5 from "@assets/img/Frame3.svg"
 
 function MobileAppPage() {
   return (
@@ -26,7 +26,7 @@ function MobileAppPage() {
           </div>
           <div className={styles.qrBlock}>
             <div className={styles.qr}></div>
-            {}
+            { }
 
             <p>Zeskanuj kod i pobierz</p>
           </div>
@@ -76,6 +76,6 @@ function MobileAppPage() {
         </div>
       </div>
     </div>
-  );
+  )
 }
-export default MobileAppPage;
+export default MobileAppPage

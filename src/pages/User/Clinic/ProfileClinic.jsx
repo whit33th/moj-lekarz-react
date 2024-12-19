@@ -1,24 +1,24 @@
 import { useState } from 'react'
-import starimg from '../../../assets/img/Star.svg';
+import starimg from '@assets/img/Star.svg'
 import styles from './style/ProfileClinic.module.css'
-import UslugiCard from './UslugiCard';
-import ProfileClinicAbout from './ProfileClinicAbout';
-import ProfileAddress from './ProfileAddress';
-import ProfileClinicReviews from './ProfileClinicReviews';
-import { useParams } from 'react-router-dom';
+import UslugiCard from './UslugiCard'
+import ProfileClinicAbout from './ProfileClinicAbout'
+import ProfileAddress from './ProfileAddress'
+import ProfileClinicReviews from './ProfileClinicReviews'
+import { useParams } from 'react-router-dom'
 import useStore from '../../../data/store'
 
 
 
 function ProfileClinic() {
-  const {clinicCard} = useStore();
-  const { id } = useParams();
+    const { clinicCard } = useStore()
+    const { id } = useParams()
 
-  let state = clinicCard.filter(item => item.id == id);
-  state = state[0]
-  console.log(state)
+    let state = clinicCard.filter(item => item.id == id)
+    state = state[0]
+    console.log(state)
     const [menuBtnActive, setMenuBtnActive] = useState('Usługi')
-    const rating = parseInt(state.rating, 10);
+    const rating = parseInt(state.rating, 10)
 
     return (
         <div className={styles.profileClinic}>
@@ -47,17 +47,17 @@ function ProfileClinic() {
                 </div>
 
                 <div className={styles.profileClinicContent}>
-                    {menuBtnActive == 'Usługi' && <UslugiCard uslugiAndPrice={state.uslugiAndPrice}/>}
-                    {menuBtnActive == 'O nas' && <ProfileClinicAbout desctiption={state.description}/>}
-                    {menuBtnActive == 'Adresy' && <ProfileAddress medCenterInfo={state.medCenterInfo} graphics={state.graphics}/>}
-                    {menuBtnActive == 'Opinia' && <ProfileClinicReviews/>}
+                    {menuBtnActive == 'Usługi' && <UslugiCard uslugiAndPrice={state.uslugiAndPrice} />}
+                    {menuBtnActive == 'O nas' && <ProfileClinicAbout desctiption={state.description} />}
+                    {menuBtnActive == 'Adresy' && <ProfileAddress medCenterInfo={state.medCenterInfo} graphics={state.graphics} />}
+                    {menuBtnActive == 'Opinia' && <ProfileClinicReviews />}
 
 
-                    
+
                 </div>
             </div>
 
         </div>
     )
 }
-export default ProfileClinic;
+export default ProfileClinic

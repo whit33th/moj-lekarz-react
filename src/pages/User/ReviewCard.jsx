@@ -1,9 +1,9 @@
-import img from "../../assets/img/tst,small,845x845-pad,1000x1000,f8f8f8.jpg";
-import styles from "./style/ReviewCard.module.css";
-import starimg from "../../assets/img/Star.svg";
+import img from "@assets/img/tst,small,845x845-pad,1000x1000,f8f8f8.jpg"
+import styles from "./style/ReviewCard.module.css"
+import starimg from "@assets/img/Star.svg"
 
 function ReviewCard(props) {
-  const rating = parseInt("5", 10);
+  const rating = parseInt("5", 10)
 
   return (
     <div className={styles.reviewCard}>
@@ -25,13 +25,13 @@ function ReviewCard(props) {
         </div>
       </div>
       <div className={styles.userReviewText}>
-        {}
+        { }
         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Earum fugit
         inventore quam minus perspiciatis quisquam autem necessitatibus
         praesentium soluta consequatur sit harum, error porro. Quasi debitis
         optio necessitatibus distinctio adipisci.
       </div>
     </div>
-  );
+  )
 }
-export default ReviewCard;
+export default ReviewCard

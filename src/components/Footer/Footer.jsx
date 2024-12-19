@@ -1,29 +1,29 @@
-import React from "react";
-import styles from "./Footer.module.css";
-import facebook from "../../assets/img/facebook.svg";
-import whatsapp from "../../assets/img/whatsapp.svg";
-import instagram from "../../assets/img/mage_instagram-circle.svg";
-import twitter from "../../assets/img/twiter.svg";
-import phone from "../../assets/img/Group4.svg";
-import arrow from "../../assets/img/Vectorarrow.svg";
-import { NavLink, useLocation } from "react-router-dom";
+import React from "react"
+import styles from "./Footer.module.css"
+import facebook from "@assets/img/facebook.svg"
+import whatsapp from "@assets/img/whatsapp.svg"
+import instagram from "@assets/img/mage_instagram-circle.svg"
+import twitter from "@assets/img/twiter.svg"
+import phone from "@assets/img/Group4.svg"
+import arrow from "@assets/img/Vectorarrow.svg"
+import { NavLink, useLocation } from "react-router-dom"
 
 function Footer() {
-  const location = useLocation();
+  const location = useLocation()
 
   React.useEffect(() => {
-    const hash = location.hash;
+    const hash = location.hash
     if (hash) {
-      const element = document.querySelector(hash);
+      const element = document.querySelector(hash)
       if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
+        element.scrollIntoView({ behavior: "smooth" })
       }
     }
-  }, [location]);
+  }, [location])
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+    window.scrollTo({ top: 0, behavior: "smooth" })
+  }
 
   return (
     <footer className={styles.footer}>
@@ -131,7 +131,7 @@ function Footer() {
         </div>
       </div>
     </footer>
-  );
+  )
 }
 
-export default Footer;
+export default Footer

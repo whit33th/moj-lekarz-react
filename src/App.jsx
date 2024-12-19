@@ -1,4 +1,4 @@
-import { useState, lazy, Suspense, useEffect } from "react"
+import { lazy, Suspense, useEffect } from "react"
 import { BrowserRouter as Router, useLocation } from "react-router-dom"
 import ScrollToTop from "./utils/scrollToTop"
 
@@ -10,18 +10,18 @@ const FirmRoutes = lazy(() => import("./helpers/Routes/FirmRoutes"))
 const AdminRoutes = lazy(() => import("./helpers/Routes/AdminRoutes"))
 const UserRoutes = lazy(() => import("./helpers/Routes/UserRoutes"))
 const DoctorRoutes = lazy(() => import("./helpers/Routes/DoctorRoutes"))
-import useIsAuth from './hooks/AuthHooks/useIsAuth'
+import useIsAuth from '@hooks/AuthHooks/useIsAuth'
 import { SkeletonTheme } from 'react-loading-skeleton'
 
 function App() {
+
   const { role, isAuth } = useStore()
-  console.log('role', role, 'isAuth', isAuth)
 
   const { checkIsAuth } = useIsAuth()
   useEffect(() => {
     checkIsAuth()
-  }, [checkIsAuth]) // Срабатывает только один раз после монтирования
-
+  }, [checkIsAuth])
+  console.log(isAuth, role)
 
   return (
     <SkeletonTheme baseColor="#f0f0f0" highlightColor="#ececec" borderRadius={12}>
@@ -31,13 +31,13 @@ function App() {
         <Suspense>
           {role === "patient" && !isAuth ? (
             <UserLayout>
-              <UserRoutes />
+              <UserRoutes isAuth={isAuth} />
             </UserLayout>
           ) : (
-            <Workspace role={role}>
-              {role === "doctor" && <DoctorRoutes />}
-              {role === "admin" && <AdminRoutes />}
-              {role === "clinic" && <FirmRoutes />}
+              <Workspace isAuth={isAuth} role={role}>
+                {role === "doctor" && <DoctorRoutes isAuth={isAuth} />}
+                {role === "admin" && <AdminRoutes isAuth={isAuth} />}
+                {role === "clinic" && <FirmRoutes isAuth={isAuth} />}
             </Workspace>
           )}
         </Suspense>

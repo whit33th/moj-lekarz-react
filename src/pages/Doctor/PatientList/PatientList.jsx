@@ -1,28 +1,30 @@
 import styles from "./PatientList.module.css"
 import tablecss from "../../../components/Table/Table.module.css"
-import filters from "../../../assets/img/filters.png"
+import filters from "@assets/img/filters.png"
 import Dropdown from "../../../components/Dropdown/Dropdown"
 import Table from "../../../components/Table/Table"
 import MoreInfoButtPatient from "../../../components/Buttons/MoreInfoButt/MoreInfoButt"
 
-import useGetPatientsList from "../../../hooks/DoctorHooks/useGetPatientsList"
+import useGetPatientsList from "@hooks/DoctorHooks/useGetPatientsList"
 import Pagination from '../../../components/UI/Pagination/Pagination'
 import { useState } from 'react'
 function PatientList() {
-
-  const [offset, setOffset] = useState(1)
-  const limit = 10
-  const { data: patients, isLoading } = useGetPatientsList({
-    offset: offset,
-    limit: limit
+  const [page, setPage] = useState(1)
+  const { data, isLoading } = useGetPatientsList({
+    page: page,
+    select: (data) => {
+      return data?.data
+    }
   })
 
-  console.log(offset)
+  const patients = data?.patients
+  const totalPages = data?.pages
+
 
   const tableData = patients?.map((patient) => ({
     img: patient.patient.user.photo,
     name: `${patient.patient.user.first_name} ${patient.patient.user.last_name}`,
-    id: patient.patient.user.id,
+    id: patient.patient.id,
     gender: patient.patient.user.gender,
   })) || []  // Если нет данных, возвращаем пустой массив
 
@@ -76,10 +78,7 @@ function PatientList() {
         showImage={true}
         together={true}
       />
-      <Pagination
-      //  value={offset} onChange={setOffset}
-      //  total={100}
-       />
+      <Pagination total={totalPages} value={page} onChange={setPage} isLoading={isLoading} />
     </div>
   )
 }

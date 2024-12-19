@@ -3,10 +3,12 @@
   padding: 50px 7.5%;
   display: flex;
 }
+
 .leftBlock {
   width: 50%;
   position: relative;
 }
+
 .leftBlock h1 {
   margin-bottom: 50px;
 }
@@ -24,12 +26,15 @@
   font-weight: 500;
   line-height: 24.59px;
 }
+
 .zapisPagePriceBlock p {
   margin-bottom: 15px;
 }
+
 .dropdownContainer {
   width: 100%;
 }
+
 .dropdownContainer {
   display: flex;
   align-items: center;
@@ -60,7 +65,7 @@
 }
 
 .zapisPagePriceBlock .arrow {
-  background: url("../../assets/Vector10.svg") no-repeat center;
+  background: url("@assets/Vector10.svg") no-repeat center;
   width: 12px;
 
   height: 12px;
@@ -103,6 +108,7 @@
 .dropdownMenuItem:hover {
   background: #f0f0f0;
 }
+
 .choiceBlock {
   width: 100%;
   margin-top: 30px;
@@ -110,7 +116,8 @@
   font-weight: 500;
   line-height: 24.59px;
 }
-.choiceBlock > div {
+
+.choiceBlock>div {
   display: flex;
   justify-content: flex-start;
   font-size: 18px;
@@ -118,17 +125,20 @@
   line-height: 24.59px;
   margin-top: 15px;
 }
-.choiceBlock > div label {
+
+.choiceBlock>div label {
   margin-right: 35px;
   cursor: pointer;
   display: flex;
   align-items: center;
 }
-.choiceBlock > div input {
+
+.choiceBlock>div input {
   margin-right: 5px;
   width: 18px;
   height: 18px;
 }
+
 .btnBlock {
   width: 100%;
   height: auto;
@@ -139,6 +149,7 @@
   justify-content: center;
   align-items: center;
 }
+
 .btnBlock button {
   width: 251px;
   height: 49px;
@@ -151,6 +162,7 @@
   text-align: center;
   color: #fff;
 }
+
 .btnBlock button.btnBlockBack {
   background-color: #fff;
   border: 1px solid #3e36b0;
@@ -163,17 +175,20 @@
     padding-top: 130px;
     flex-wrap: wrap;
   }
+
   .leftBlock {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
   }
+
   .leftBlock h1 {
     margin-bottom: 30px;
     text-align: center;
     width: 100%;
   }
+
   .zapisPageRight {
     width: 100%;
     padding: 30px 10px;

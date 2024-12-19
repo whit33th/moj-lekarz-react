@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react"
 import { useController } from "react-hook-form"
+import { useNavigate, useLocation } from "react-router-dom"
 import styles from "./DropdownStas.module.css"
 
 const DropdownStas = ({
@@ -9,19 +10,34 @@ const DropdownStas = ({
   type = "dropdown",
   control,
   name,
+  searchParamsName,
+  valueOnSearchParams = true
 }) => {
-  let field = { value: "", onChange: () => { } }
+  const location = useLocation()
+  const navigate = useNavigate()
 
-  if (control && name) {
-    field = useController({ name, control }).field
+  const getInitialSearchValue = () => {
+    if (valueOnSearchParams && searchParamsName) {
+      return new URLSearchParams(location.search).get(searchParamsName) || ""
+    }
+    return ""
   }
 
-  const [internalValue, setInternalValue] = useState("")
-  const value = control && name ? field.value : internalValue
-  const onChange = control && name ? field.onChange : setInternalValue
-
+  const initialSearchValue = getInitialSearchValue()
+  const [internalValue, setInternalValue] = useState(initialSearchValue)
   const [isOpen, setIsOpen] = useState(false)
   const dropdownRef = useRef(null)
+
+  const field = useController({ name, control })?.field || { value: internalValue, onChange: setInternalValue }
+  const value = field.value
+  const onChange = field.onChange
+
+  // Синхронизация значения с параметрами URL при загрузке страницы
+  useEffect(() => {
+    if (valueOnSearchParams && searchParamsName && initialSearchValue) {
+      onChange(initialSearchValue)
+    }
+  }, [initialSearchValue, onChange, valueOnSearchParams, searchParamsName])
 
   const toggleDropdown = () => {
     if (type === "dropdown") {
@@ -32,10 +48,25 @@ const DropdownStas = ({
   const handleOptionClick = (option) => {
     onChange(option)
     setIsOpen(false)
+
+    // Если указан searchParamsName, обновляем параметры URL
+    if (searchParamsName) {
+      const searchParams = new URLSearchParams(location.search)
+      searchParams.set(searchParamsName, option)
+      navigate(`${location.pathname}?${searchParams.toString()}`, { replace: true })
+    }
   }
 
   const handleInputChange = (event) => {
-    onChange(event.target.value)
+    const newValue = event.target.value
+    onChange(newValue)
+
+    // Если указан searchParamsName, обновляем параметры URL
+    if (searchParamsName) {
+      const searchParams = new URLSearchParams(location.search)
+      searchParams.set(searchParamsName, newValue)
+      navigate(`${location.pathname}?${searchParams.toString()}`, { replace: true })
+    }
   }
 
   useEffect(() => {

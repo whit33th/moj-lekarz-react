@@ -1,21 +1,21 @@
 
-import styles from './Notifications.module.css';
-import plus from '../../../assets/img/plus.png'
-import robot from '../../../assets/img/robot_svg/4.png'
-import send from '../../../assets/img/send.png'
-import searchIco from '../../../assets/img/search.png'
-import moreInfoPurple from '../../../assets/img/more-info-purple.png'
-import profil from '../../../assets/img/profil.webp'
-import clip from '../../../assets/img/clip.png'
+import styles from './Notifications.module.css'
+import plus from '@assets/img/plus.png'
+import robot from '@assets/img/robot_svg/4.png'
+import send from '@assets/img/send.png'
+import searchIco from '@assets/img/search.png'
+import moreInfoPurple from '@assets/img/more-info-purple.png'
+import profil from '@assets/img/profil.webp'
+import clip from '@assets/img/clip.png'
 
-import Member from '../../../components/Notifications/Member';
+import Member from '../../../components/Notifications/Member'
 
-import { userItems } from '../../../helpers/userItemList';
+import { userItems } from '../../../helpers/userItemList'
 
 function Notifications() {
-  
 
-  
+
+
 
   return (
     <div className={styles.content}>
@@ -41,10 +41,10 @@ function Notifications() {
           </div>
           <div className={styles.chatMembers}>
             {userItems.map((u, index) => (
-							
-								<Member key={index} name={u.name} img={u.img} lastMessage={u.lastMessage} newMessageCount={u.newMessageCount} />
-							
-						))}
+
+              <Member key={index} name={u.name} img={u.img} lastMessage={u.lastMessage} newMessageCount={u.newMessageCount} />
+
+            ))}
           </div>
         </div>
         <div className={styles.chat}>
@@ -56,8 +56,8 @@ function Notifications() {
                 alt="current member"
               />
               <div className={styles.memberInfo}>
-                <p  className={styles.bold}>Name</p>
-                <p className={ `${styles.grey} ${styles.lastMessage}`}>aka Sigma (bo$$)</p>
+                <p className={styles.bold}>Name</p>
+                <p className={`${styles.grey} ${styles.lastMessage}`}>aka Sigma (bo$$)</p>
               </div>
             </div>
             <img
@@ -98,7 +98,7 @@ function Notifications() {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default Notifications;
+export default Notifications

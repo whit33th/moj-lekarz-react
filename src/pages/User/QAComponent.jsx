@@ -1,15 +1,15 @@
-import { useState } from "react";
-import styles from "./style/QAComponent.module.css";
-import vector from "../../assets/img/Vector9.svg";
-import useStore from "../../data/store";
+import { useState } from "react"
+import styles from "./style/QAComponent.module.css"
+import vector from "@assets/img/Vector9.svg"
+import useStore from "../../data/store"
 
 function QAComponent() {
-  const { questionsData } = useStore();
-  const [activeIndex, setActiveIndex] = useState(null);
+  const { questionsData } = useStore()
+  const [activeIndex, setActiveIndex] = useState(null)
 
   const toggleQuestion = (index) => {
-    setActiveIndex(activeIndex === index ? null : index);
-  };
+    setActiveIndex(activeIndex === index ? null : index)
+  }
 
   return (
     <div className={styles.QAComponentBlock}>
@@ -25,9 +25,8 @@ function QAComponent() {
             >
               <p>{item.question}</p>
               <div
-                className={`${styles.questionBlockItemText} ${
-                  activeIndex === index ? styles.show : ""
-                }`}
+                className={`${styles.questionBlockItemText} ${activeIndex === index ? styles.show : ""
+                  }`}
               >
                 <p>{item.answer}</p>
               </div>
@@ -56,7 +55,7 @@ function QAComponent() {
         </p>
       </div>
     </div>
-  );
+  )
 }
 
-export default QAComponent;
+export default QAComponent

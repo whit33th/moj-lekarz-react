@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import styles from "./Table.module.css"
-import searchIco from "../../assets/img/search.png"
+import searchIco from "@assets/img/search.png"
 import Skeleton from 'react-loading-skeleton'
 
 function Table({

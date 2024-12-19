@@ -1,29 +1,29 @@
-import { useRef } from "react";
-import Choice from "../../Modal/Choice";
-import Search from "../../UI/Search/Search";
-import styles from "./Filter.module.css";
-import unpointed from "../../../assets/img/unpointed.png";
-import pointed from "../../../assets/img/pointed.png";
+import { useRef } from "react"
+import Choice from "../../Modal/Choice"
+import Search from "../../UI/Search/Search"
+import styles from "./Filter.module.css"
+import unpointed from "@assets/img/unpointed.png"
+import pointed from "@assets/img/pointed.png"
 
 function Filter({ onClick, filterState, onFilterChange, onReset }) {
-  const inputDateFrom = useRef();
-  const inputDateTo = useRef();
+  const inputDateFrom = useRef()
+  const inputDateTo = useRef()
 
   const handleGenderSelect = (gender) => {
-    onFilterChange({ ...filterState, selectedGender: gender });
-  };
+    onFilterChange({ ...filterState, selectedGender: gender })
+  }
 
   const handleSortSelect = (sortOption) => {
-    onFilterChange({ ...filterState, selectedSortOption: sortOption });
-  };
+    onFilterChange({ ...filterState, selectedSortOption: sortOption })
+  }
 
   const handleDateChange = () => {
     onFilterChange({
       ...filterState,
       dateFrom: inputDateFrom.current.value,
       dateTo: inputDateTo.current.value,
-    });
-  };
+    })
+  }
 
   return (
     <div onClick={onClick} className={styles.filterWindow}>
@@ -35,17 +35,15 @@ function Filter({ onClick, filterState, onFilterChange, onReset }) {
           <label>Plec</label>
           <div className={styles.toggle}>
             <button
-              className={`${styles.toggleButton} ${
-                filterState.selectedGender === "K" ? styles.activeButton : ""
-              }`}
+              className={`${styles.toggleButton} ${filterState.selectedGender === "K" ? styles.activeButton : ""
+                }`}
               onClick={() => handleGenderSelect("K")}
             >
               K
             </button>
             <button
-              className={`${styles.toggleButton} ${
-                filterState.selectedGender === "M" ? styles.activeButton : ""
-              }`}
+              className={`${styles.toggleButton} ${filterState.selectedGender === "M" ? styles.activeButton : ""
+                }`}
               onClick={() => handleGenderSelect("M")}
             >
               M
@@ -109,7 +107,7 @@ function Filter({ onClick, filterState, onFilterChange, onReset }) {
         <Choice choice1="Anuluj" choice2="Sortuj" cb1={onReset} />
       </div>
     </div>
-  );
+  )
 }
 
-export default Filter;
+export default Filter

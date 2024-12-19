@@ -1,13 +1,13 @@
 import { useState } from 'react'
-import BlueBtn from "../../Buttons/BlueBtn/BlueBtn";
-import DropdownStas from "../../Dropdown/DropdownStas";
-import exit from "../../../assets/img/cross.png";
-import styles from "./AddWorkersModal.module.css";
+import BlueBtn from "../../Buttons/BlueBtn/BlueBtn"
+import DropdownStas from "../../Dropdown/DropdownStas"
+import exit from "@assets/img/cross.png"
+import styles from "./AddWorkersModal.module.css"
 import useStore from '../../../data/store'
 import { useForm } from 'react-hook-form'
 
 function AddWorkersModal() {
-const {setModalActive}  = useStore()
+  const { setModalActive } = useStore()
   const [visitTypes, setVisitTypes] = useState([
     { id: "1", name: "Konsultacja ortopedyczna", price: 220.0, checked: true },
     { id: "2", name: "Badanie kontrolne", price: 220.0, checked: false },
@@ -19,7 +19,7 @@ const {setModalActive}  = useStore()
     },
     { id: "4", name: "Kontrola po operacji", price: 0.0, checked: true },
     { id: "5", name: "Wizyta rehabilitacyjna", price: 110.0, checked: true },
-  ]);
+  ])
   const { control, handleSubmit, watch } = useForm({
 
   })
@@ -29,10 +29,10 @@ const {setModalActive}  = useStore()
       prevVisitTypes.map((type) =>
         type.id === id ? { ...type, checked: !type.checked } : type
       )
-    );
-  };
-  const [selectedPosition, setSelectedPosition] = useState(null); 
-	console.log(selectedPosition)
+    )
+  }
+  const [selectedPosition, setSelectedPosition] = useState(null)
+  console.log(selectedPosition)
   return (
     <div className={styles.container}>
       <img onClick={() => setModalActive(false)} src={exit} alt="cross" />
@@ -53,7 +53,7 @@ const {setModalActive}  = useStore()
         </div>
       </div>
       <div className={styles.infoGrid3}>
-      
+
         <div className={styles.infoGroup}>
           <label>Telefon</label>
           <input type="text" value="555 666 777" readOnly />
@@ -150,7 +150,7 @@ const {setModalActive}  = useStore()
         <BlueBtn>Dodaj</BlueBtn>
       </div>
     </div>
-  );
+  )
 }
 
-export default AddWorkersModal;
+export default AddWorkersModal

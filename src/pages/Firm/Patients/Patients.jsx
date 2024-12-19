@@ -1,24 +1,24 @@
-import { useState } from "react";
-import styles from "../GraphManagement/GraphManagement.module.css";
-import Search from "../../../components/UI/Search/Search";
-import avatar from "../../../assets/img/profil.webp";
+import { useState } from "react"
+import styles from "../GraphManagement/GraphManagement.module.css"
+import Search from "../../../components/UI/Search/Search"
+import avatar from "@assets/img/profil.webp"
 
 function Patients() {
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState("")
 
   const allPatients = Array.from({ length: 25 }, (_, i) => ({
     id: `user-${i + 1}`,
     name: i % 2 === 0 ? "Jan Bukalski" : "Dmitry Shak",
     phone: i % 2 === 0 ? "456-029-485" : "333-412-666",
-  }));
+  }))
 
   const filteredPatients = allPatients.filter(
     (item) =>
       item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       item.phone.includes(searchTerm)
-  );
+  )
 
-  const hasData = filteredPatients.length > 0;
+  const hasData = filteredPatients.length > 0
 
   return (
     <div className={styles.container}>
@@ -54,7 +54,7 @@ function Patients() {
         )}
       </div>
     </div>
-  );
+  )
 }
 
-export default Patients;
+export default Patients

@@ -1,5 +1,5 @@
-import star from "../../assets/img/star.png";
-import styles from "./RadialChart.module.css";
+import star from "@assets/img/star.png"
+import styles from "./RadialChart.module.css"
 
 const defaultData = [
   { name: "Ocena 5", color: "#3D35AE" },
@@ -7,25 +7,25 @@ const defaultData = [
   { name: "Ocena 3", color: "#A3DBF3" },
   { name: "Ocena 2", color: "#D2EFFC" },
   { name: "Ocena 1", color: "#D0D0D0" },
-];
+]
 
 const ColorfulRatingChart = ({ data = [] }) => {
   const mergedData = defaultData.map((item, index) => ({
     ...item,
     value: data[index] || 0,
-  }));
+  }))
 
-  const total = mergedData.reduce((sum, item) => sum + item.value, 0);
+  const total = mergedData.reduce((sum, item) => sum + item.value, 0)
 
   const gradientStops = mergedData
     .map((item, index) => {
-      const percentage = (item.value / total) * 100;
+      const percentage = (item.value / total) * 100
       const start = mergedData
         .slice(0, index)
-        .reduce((acc, curr) => acc + (curr.value / total) * 100, 0);
-      return `${item.color} ${start}% ${start + percentage}%`;
+        .reduce((acc, curr) => acc + (curr.value / total) * 100, 0)
+      return `${item.color} ${start}% ${start + percentage}%`
     })
-    .join(", ");
+    .join(", ")
 
   return (
     <>
@@ -42,10 +42,10 @@ const ColorfulRatingChart = ({ data = [] }) => {
                   .slice(0, index)
                   .reduce((sum, prev) => sum + prev.value, 0)) /
                 total) *
-              360;
-            const radius = 100;
-            const x = Math.cos(((angle - 90) * Math.PI) / 180) * radius + 100;
-            const y = Math.sin(((angle - 90) * Math.PI) / 180) * radius + 100;
+              360
+            const radius = 100
+            const x = Math.cos(((angle - 90) * Math.PI) / 180) * radius + 100
+            const y = Math.sin(((angle - 90) * Math.PI) / 180) * radius + 100
             return (
               <div
                 key={`label-${item.name}`}
@@ -57,7 +57,7 @@ const ColorfulRatingChart = ({ data = [] }) => {
               >
                 {Math.round((item.value / total) * 100)}%
               </div>
-            );
+            )
           })}
         </div>
         <div className={styles.ratingLegend}>
@@ -77,7 +77,7 @@ const ColorfulRatingChart = ({ data = [] }) => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default ColorfulRatingChart;
+export default ColorfulRatingChart

@@ -1,15 +1,15 @@
 
-import styles from "./ReviewCard.module.css";
-import star from "../../../assets/img/Star.svg";
-import starGrey from "../../../assets/img/Star 6.svg";
+import styles from "./ReviewCard.module.css"
+import star from "@assets/img/Star.svg"
+import starGrey from "@assets/img/Star 6.svg"
 
 function ReviewCard({ name, date, text, rating, image }) {
 
   const positiveFeedbacks = [
     "Profesjonalne podejście",
     "Dbałość o komfort pacjenta",
-  ];
-  const negativeFeedbacks = ["Zbyt krótka wizyta", "Ograniczona dostępność"];
+  ]
+  const negativeFeedbacks = ["Zbyt krótka wizyta", "Ograniczona dostępność"]
 
   return (
     <div className={styles.reviewCard}>
@@ -25,7 +25,7 @@ function ReviewCard({ name, date, text, rating, image }) {
               {[...Array(5)].map((_, index) => (
                 <img
                   key={index}
-                  src={index < rating ? star : starGrey} 
+                  src={index < rating ? star : starGrey}
                   alt="star"
                   className={styles.imgNameBlockStar}
                 />
@@ -48,7 +48,7 @@ function ReviewCard({ name, date, text, rating, image }) {
       </div>
       <div className={styles.userReviewText}>{(text)}</div>
     </div>
-  );
+  )
 }
 
-export default ReviewCard;
+export default ReviewCard

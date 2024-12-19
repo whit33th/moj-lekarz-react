@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
-import styles from "./VisitsPageTwo.module.css";
-import VisitsCardTwo from "./VisitsCardTwo";
-import { NavLink } from "react-router-dom";
-import img1 from "../../../assets/img/image1.svg";
-import img2 from "../../../assets/img/image2.svg";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react"
+import styles from "./VisitsPageTwo.module.css"
+import VisitsCardTwo from "./VisitsCardTwo"
+import { NavLink } from "react-router-dom"
+import img1 from "@assets/img/image1.svg"
+import img2 from "@assets/img/image2.svg"
+import { useNavigate } from "react-router-dom"
 
 const dataVisits = [
   {
@@ -33,16 +33,16 @@ const dataVisits = [
     servicePrice: "290,00 zł",
     rodzajWizyty: "Prywatna",
   },
-];
+]
 
 function VisitsPageTwo({ isLoggedIn }) {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (isLoggedIn) {
-      navigate("/auth/");
+      navigate("/auth/")
     }
-  }, []);
+  }, [])
   return (
     <div className={styles.visitsPageTwo}>
       <h1>Zaplanowane wizyty</h1>
@@ -70,13 +70,13 @@ function VisitsPageTwo({ isLoggedIn }) {
           </div>
           <div className={styles.qrBlock}>
             <div className={styles.qr}></div>
-            {}
+            { }
 
             <p>Zeskanuj kod i pobierz</p>
           </div>
         </div>
       </div>
     </div>
-  );
+  )
 }
-export default VisitsPageTwo;
+export default VisitsPageTwo

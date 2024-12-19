@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom"
 import styles from "./AuthPage.module.css"
-import logo from "../../assets/img/logo.svg"
+import logo from "@assets/img/logo.svg"
 import SignInComponent from "./SignInComponent"
 import SignUpComponent from "./SignUpComponent"
 import { pageConfig } from "../../config/config"

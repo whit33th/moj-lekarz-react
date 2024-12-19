@@ -1,23 +1,28 @@
-import plus from '../../../assets/img/plusBlack.png'
+import { useState } from 'react'
+import plus from '@assets/img/plusBlack.png'
 import styles from './AddRecipesModal.module.css'
 import Choice from '../../Modal/Choice'
 import useStore from '../../../data/store'
 import { useForm } from 'react-hook-form'
 import InputDropdownStas from './../../Dropdown/InputDropdownStas'
-import useGetPatientsList from './../../../hooks/DoctorHooks/useGetPatientsList'
-import usePostPrescriptions from '../../../hooks/DoctorHooks/usePostPrescriptions'
-import useGetMedication from '../../../hooks/DoctorHooks/useGetMedication'
-import usePostMedications from '../../../hooks/DoctorHooks/usePostMedications'
+import useGetPatientsList from '@hooks/DoctorHooks/useGetPatientsList'
+import usePostPrescriptions from '@hooks/DoctorHooks/usePostPrescriptions'
+import useGetMedication from '@hooks/DoctorHooks/useGetMedication'
+import cross from '@assets/img/cross.png'
+import { toast } from 'sonner'
 
 function AddRecipesModal() {
-  const { setModalActive, userId } = useStore()
+  const { setModalActive } = useStore()
   const { data: patientList } = useGetPatientsList({})
   const { data: medicationList } = useGetMedication({})
-  const { mutate, isSuccess } = usePostPrescriptions()
+  const { mutate } = usePostPrescriptions()
+
+  // Состояние для добавленных препаратов
+  const [addedMedications, setAddedMedications] = useState([])
 
   const patientOptions = patientList?.map(patient => ({
     label: `${patient.patient.user.first_name} ${patient.patient.user.last_name}`,
-    patientId: patient.patient.id,
+    id: patient.patient.id,
   })) || []
 
   const medicationOptions = medicationList?.map(medication => ({
@@ -25,29 +30,38 @@ function AddRecipesModal() {
     id: medication.id,
   })) || []
 
-  const { control, handleSubmit, register,getValues } = useForm({
+  const { control, handleSubmit, register, getValues, setValue } = useForm({
     mode: "onChange",
   })
-  const { mutate: postMedication } = usePostMedications()
 
+  const addNewMedication = () => {
+    const medication = getValues("medication")
+    // Проверяем, существует ли препарат в списке опций
+    if (medication && medicationOptions.some(option => option.id === medication.id)) {
+      if (!addedMedications.some(item => item.id === medication.id)) {
+        setAddedMedications([...addedMedications, medication])
+        setValue("medication", null) 
+      }
+      else {
+        toast.warning('Ten lek jest juz w liscie')
+      }
+    }
+  }
+
+  // Функция отправки данных
   const onSubmit = (data) => {
     const prescriptionData = {
-      patientId: data.patient.patientId,
-      doctorId: userId,
-      medicationId: data.medication.id
+      patientId: data.patient.id,
+      medications: addedMedications.map(med => med.id), // Отправляем ID всех добавленных препаратов
     }
     mutate(prescriptionData)
-
-    console.log(data)
+    console.log(prescriptionData)
   }
 
-  function addNewMedication() {
-    const medicationData = {
-      name: getValues("medication"),
-    }
-    postMedication(medicationData)
+  // Удаление лекарства из списка
+  const removeMedication = (id) => {
+    setAddedMedications(addedMedications.filter(med => med.id !== id))
   }
-
 
   return (
     <div>
@@ -70,7 +84,7 @@ function AddRecipesModal() {
             options={medicationOptions}
             seeOptions
             {...register("medication", {
-              required: "Lek jest wymagany",
+
             })}
           />
 
@@ -79,6 +93,25 @@ function AddRecipesModal() {
             <img src={plus} alt="plus" />
           </button>
         </div>
+
+        {/* Рендер списка добавленных лекарств */}
+        <div style={addedMedications.length > 0 ? { display: 'flex' } : { display: 'none' }} className={styles.addedMedications}>
+          {addedMedications.map((medication, index) => (
+            <div key={index} className={styles.addedMedicationItem}>
+              <span>{medication.label}</span>
+
+              <img style={{ cursor: 'pointer'}} width={15} height={15} src={cross} alt="" onClick={() => removeMedication(medication.id)} />
+              {/* <button
+                type="button"
+                className={styles.removeButton}
+                onClick={() => removeMedication(medication.id)}
+              >
+                Usuń
+              </button> */}
+            </div>
+          ))}
+        </div>
+
         <Choice
           cb1={() => setModalActive(false)}
           choice1="Anuluj"
@@ -86,9 +119,6 @@ function AddRecipesModal() {
           choice2="Dodaj"
         />
       </form>
-
-
-
     </div>
   )
 }

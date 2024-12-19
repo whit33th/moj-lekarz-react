@@ -1,20 +1,20 @@
-import  { useState } from 'react'
+import { useState } from 'react'
 import styles from './ZapisDone.module.css'
-import imgName from "../../../../assets/img/simple-line-i.svg";
-import imgType from '../../../../assets/img/Vector14.svg';
-import phoneImg from '../../../../assets/img/ph_phone-light.svg';
-import visitorImg from '../../../../assets/img/Vector15.svg';
-import downloadImg from '../../../../assets/img/material-symbols-light_download.svg';
-import commentsImg from '../../../../assets/img/iconamoon_comment-light.svg';
-import AppPromo from '../../../../components/AppPromo/AppPromo';
-import { NavLink, useParams } from 'react-router-dom';
+import imgName from "@assets/img/simple-line-i.svg"
+import imgType from '@assets/img/Vector14.svg'
+import phoneImg from '@assets/img/ph_phone-light.svg'
+import visitorImg from '@assets/img/Vector15.svg'
+import downloadImg from '@assets/img/material-symbols-light_download.svg'
+import commentsImg from '@assets/img/iconamoon_comment-light.svg'
+import AppPromo from '../../../../components/AppPromo/AppPromo'
+import { NavLink, useParams } from 'react-router-dom'
 
 
 
 function ZapisDone(props) {
-    const [data, setData] = useState(props.data);
-    const { id } = useParams();
-    const doctorInfo = data.allData || {};
+    const [data, setData] = useState(props.data)
+    const { id } = useParams()
+    const doctorInfo = data.allData || {}
     return (
         <div className={styles.zapisDone}>
             <div className={styles.zapisDoneRow}>
@@ -95,4 +95,4 @@ function ZapisDone(props) {
         </div>
     )
 }
-export default ZapisDone;
+export default ZapisDone
