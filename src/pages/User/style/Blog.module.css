@@ -35,7 +35,7 @@
 .inputConteiner::after,
 .searchBar>div::after {
     content: '';
-    background-image: url('@assets/Vector11.svg');
+    background-image: url('@assets/img/Vector11.svg');
     position: absolute;
     top: 50%;
     transform: translate(0%, -50%);
