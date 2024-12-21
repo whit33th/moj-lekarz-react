@@ -52,7 +52,7 @@ function AddRecipesModal() {
   const onSubmit = (data) => {
     const prescriptionData = {
       patientId: data.patient.id,
-      medications: addedMedications.map(med => med.id), // Отправляем ID всех добавленных препаратов
+      medications: addedMedications.map(med => med.id), 
     }
     mutate(prescriptionData)
     console.log(prescriptionData)

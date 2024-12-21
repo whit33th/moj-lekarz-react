@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom'
 
 export default function useLogin() {
   const navigate = useNavigate()
+
   const { role, setRole, setUserId, setIsAuth }
     = useStore()
   const { mutate, error, isError, isSuccess, isPending } = useMutation({

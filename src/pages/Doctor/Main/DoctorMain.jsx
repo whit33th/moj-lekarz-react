@@ -162,7 +162,7 @@ function DoctorMain() {
 						{fetchedAppointmentsToday && !isAppointmentsTodayLoading ?
 							fetchedAppointmentsToday
 								.slice(-6)
-								.map((appointment) => (
+								.map((appointment, index) => (
 									<TodayVisitItem
 										firstName={appointment?.patient?.first_name}
 										lastName={appointment?.patient?.last_name}
@@ -172,7 +172,7 @@ function DoctorMain() {
 										endTime={appointment?.end_time}
 										date={appointment?.date}
 										patientId={appointment?.patient?.patientId}
-										key={appointment?.id}
+										key={index}
 									/>
 								)) : <SkeletonTodayVisitItem count={6} />}
 					</div>

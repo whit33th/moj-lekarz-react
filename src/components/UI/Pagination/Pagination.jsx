@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+
 import { useSearchParams } from "react-router-dom"
 import styles from "./Pagination.module.css"
 import Skeleton from "react-loading-skeleton"

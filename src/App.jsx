@@ -12,12 +12,13 @@ const UserRoutes = lazy(() => import("./helpers/Routes/UserRoutes"))
 const DoctorRoutes = lazy(() => import("./helpers/Routes/DoctorRoutes"))
 import useIsAuth from '@hooks/AuthHooks/useIsAuth'
 import { SkeletonTheme } from 'react-loading-skeleton'
+import LoadingPage from './components/UI/Loading/LoadingPage'
 
 function App() {
 
+  const { checkIsAuth } = useIsAuth()
   const { role, isAuth } = useStore()
 
-  const { checkIsAuth } = useIsAuth()
   useEffect(() => {
     checkIsAuth()
   }, [checkIsAuth])
@@ -28,7 +29,7 @@ function App() {
       <Router>
         <ScrollToTop />
 
-        <Suspense>
+        <Suspense fallback={<LoadingPage/>}>
           {role === "patient" && !isAuth ? (
             <UserLayout>
               <UserRoutes isAuth={isAuth} />
@@ -38,6 +39,7 @@ function App() {
                 {role === "doctor" && <DoctorRoutes isAuth={isAuth} />}
                 {role === "admin" && <AdminRoutes isAuth={isAuth} />}
                 {role === "clinic" && <FirmRoutes isAuth={isAuth} />}
+                
             </Workspace>
           )}
         </Suspense>

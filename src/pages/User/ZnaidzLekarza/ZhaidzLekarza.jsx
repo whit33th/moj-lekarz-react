@@ -1,11 +1,11 @@
-import React, { useState } from "react"
+import { useState } from "react"
 import styles from "./style/ZhaidzLekarza.module.css"
-import DatePicker from "react-datepicker"
 import DoctorCard from "./DoctorCard"
 import DropdownStas from '../../../components/Dropdown/DropdownStas'
 import { useForm } from 'react-hook-form'
 import useSearchAppointments from '@hooks/PatientHooks/useSearchAppointments'
 import DoctorCardSkeleton from './DoctorCardSkeleton'
+import Pagination from './../../../components/UI/Pagination/Pagination'
 
 const arraySelectOptions = {
   select1: ["Ortopeda", "Logopeda", "Chirurg", "Kardiolog", "Ginekolog"],
@@ -19,16 +19,20 @@ function ZnajdzLekarza(props) {
   const [selectedDate, setSelectedDate] = useState(null)
   const [state, setState] = useState(doctorCard)
   const { control, register, handleSubmit, getValues } = useForm({
-
   })
 
 
-  const { data, isLoading } = useSearchAppointments({
+  const [page, setPage] = useState(1)
+  const { data: fullData, isLoading } = useSearchAppointments({
     // specialty: 'Assistant',
     // date: '2025-07-10',
-    select: (data) => data?.data.slots
+    select: (data) => data?.data,
+    limit: 10,
+    page: page
   })
+  const data = fullData?.slots || []
 
+  const totalPages = fullData?.pages || null
 
 
 
@@ -75,7 +79,7 @@ function ZnajdzLekarza(props) {
               </div>
 
               <div className={`${styles.dropdownContainer} ${styles.litle}`}>
-                <DropdownStas control={control} name={"type"} options={arraySelectOptions.select3} placeholder={"Wybierz ..."} searchParamsName={"type"} />
+                <DropdownStas control={control} name={"type"} options={arraySelectOptions.select3} placeholder={"Typ wizyty"} searchParamsName={"type"} />
               </div>
             </div>
             <div className={styles.filterBtnBlock}>
@@ -87,7 +91,7 @@ function ZnajdzLekarza(props) {
 
       <div className={styles.zhaidzLekarzaContentBlock}>
         <div className={styles.zhaidzLekarzaContentTitle}>
-          <h2>Wybierz spośród {state.length} dostępnych specjalistów</h2>
+          <h2>Wybierz spośród {totalPages} dostępnych specjalistów</h2>
           <button>Zobacz na mapę</button>
         </div>
       </div>
@@ -106,9 +110,11 @@ function ZnajdzLekarza(props) {
             <h1>Brak dostępnych terminów</h1>
           </div>
         )}
+        <Pagination total={totalPages} value={page} onChange={setPage} isLoading={isLoading} />
       </div>
     </div>
   )
 }
+
 
 export default ZnajdzLekarza

@@ -16,9 +16,11 @@ function usePostPrescriptions() {
 	useEffect(() => {
 		if (isError) {
 			toast.error('Cos poszło nie tak!')
+			console.log(error)
 		}
 
-	}, [isError])
+
+	}, [isError, error])
 	useEffect(() => {
 		if (isSuccess) {
 			toast.success('Recepta dodana pomyslnie!')

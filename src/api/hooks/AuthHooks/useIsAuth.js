@@ -6,15 +6,13 @@ import axios from 'axios'
 import clearAllCookies from './../../../utils/deleteAllCookies'
 export default function useIsAuth() {
 
-
-
 	const { setIsAuth } = useStore()
 	axios.defaults.withCredentials = true
 	const { data, isSuccess, isError, refetch } = useQuery({
 		queryKey: ['checkIsAuth'],
 		queryFn: () => authService.sessionValid(),
 		retry: false,
-		enabled: false
+		
 
 
 	})
@@ -22,6 +20,7 @@ export default function useIsAuth() {
 	useEffect(() => {
 		if (isSuccess) {
 			setIsAuth(true)
+			console.log('zxc')
 		}
 	}, [isSuccess, setIsAuth, data])
 

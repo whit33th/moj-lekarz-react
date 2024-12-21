@@ -1,13 +1,9 @@
 import { useForm } from "react-hook-form"
 import InputError from "../../../components/UI/InputError/InputError"
 import styles from "../AuthPage.module.css"
-
 import useLogin from "@hooks/AuthHooks/useLogin"
-import { cardio } from 'ldrs'
+import LoadingPage from './../../../components/UI/Loading/LoadingPage';
 
-cardio.register()
-
-// Default values shown
 
 
 function SignInForm({ setIsForgotPassword }) {
@@ -22,14 +18,7 @@ function SignInForm({ setIsForgotPassword }) {
     mutate(data)
   }
   if (isPending) {
-    return <div className='loader'>
-      < l-cardio
-        size="60"
-        stroke="4"
-        speed="2"
-        color="black"
-      ></l-cardio >
-    </div>
+    return <LoadingPage/>
   }
 
   return (

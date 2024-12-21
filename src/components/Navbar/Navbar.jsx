@@ -1,53 +1,41 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect, lazy } from 'react'
 import { NavLink } from 'react-router-dom'
 import styles from './Navbar.module.css'
 import searchIco from '@assets/img/search.png'
 import bell from '@assets/img/bell.png'
 import grey from '@assets/img/grey.png'
 import useGetUserInfo from '@hooks/UserHooks/useGetUserInfo'
+import SearchResults from './searchResults'
+import { useForm } from 'react-hook-form'
+import useStore from '../../data/store'
+const BlurLayer = lazy(() => import('../Modals/BlurLayer/BlurLayer'))
+
 
 function Navbar() {
-    const [searchActive, setSearchActive] = useState(false)
+
     const searchInputRef = useRef(null)
     const searchResultsRef = useRef(null)
     const searchFormRef = useRef(null)
+    const { searchActive, setSearchActive } = useStore()
 
     const [isMessageActive, setIsMessageActive] = useState(false)
-    const messagesRef = useRef(null) // Создаем ссылку для блока с сообщениями
+    const messagesRef = useRef(null)
+    const { register, watch } = useForm()
+    let searchInput = watch('search')?.trim()
 
     function toggleMessage() {
         setIsMessageActive((prev) => !prev)
     }
-
-    function showSearchResults() {
-        setSearchActive(true)
-    }
-
-    function hideSearchResults() {
-        setSearchActive(false)
-    }
-
-    function handleInput() {
-        if (searchInputRef.current.value.trim() !== '') {
-            showSearchResults()
-        } else {
-            hideSearchResults()
-        }
-    }
-
     useEffect(() => {
         function handleClickOutside(event) {
-            // Закрываем результаты поиска, если клик был вне поля поиска
             if (
-                searchInputRef.current &&
-                !searchInputRef.current.contains(event.target) &&
-                searchResultsRef.current &&
-                !searchResultsRef.current.contains(event.target)
+                searchFormRef.current &&
+                !searchFormRef.current.contains(event.target) &&
+                searchFormRef.current &&
+                !searchFormRef.current.contains(event.target)
             ) {
-                hideSearchResults()
+                setSearchActive(false)
             }
-
-            // Закрываем сообщения, если клик был вне блока сообщений
             if (
                 messagesRef.current &&
                 !messagesRef.current.contains(event.target) &&
@@ -59,7 +47,9 @@ function Navbar() {
 
         document.addEventListener('mousedown', handleClickOutside)
         return () => document.removeEventListener('mousedown', handleClickOutside)
-    }, [])
+    }, [setSearchActive])
+
+    console.log(searchInput)
 
     const { data } = useGetUserInfo()
     return (
@@ -67,7 +57,7 @@ function Navbar() {
             <form
                 id="searchForm"
                 ref={searchFormRef}
-                className={`${styles.search} ${searchActive ? styles.transform : ''}`}
+                className={`${styles.search} ${searchActive && searchInput ? styles.transform : ''}`}
                 onSubmit={(e) => e.preventDefault()}
             >
                 <img src={searchIco} alt="search" />
@@ -76,18 +66,12 @@ function Navbar() {
                     className={styles.searchInput}
                     placeholder="Szukaj..."
                     type="text"
-                    onInput={handleInput}
-                    onClick={() => handleInput()}
+                    onClick={() => setSearchActive(true)}
+
+
+                    {...register('search')}
                 />
-                <div
-                    ref={searchResultsRef}
-                    className={`${styles.searchResults} ${searchActive ? styles.show : ''}`}
-                >
-                    <div className={styles.searchItem}>Lorem ipsum kalendarz consectetur adipiscing elit.</div>
-                    <div className={styles.searchItem}>Lorem kalendarz dolor sit amet, consectetur</div>
-                    <div className={styles.searchItem}>Kalendarz nullam non iaculis massa</div>
-                    <div className={styles.searchItem}>Nunc kalendarz aliquam metus</div>
-                </div>
+                <SearchResults ref={searchResultsRef} formActive={searchActive} searchInputRef={searchInputRef} inputValue={searchInput} />
             </form>
 
             <div
@@ -120,6 +104,7 @@ function Navbar() {
                     <img src={data?.photo || grey} alt="profil" />
                 </div>
             </NavLink>
+            <BlurLayer />
         </div>
     )
 }

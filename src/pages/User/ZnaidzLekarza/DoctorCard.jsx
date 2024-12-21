@@ -8,9 +8,7 @@ import Skeleton from 'react-loading-skeleton'
 import grey from "@assets/img/grey.png"
 
 function DoctorCard({ data, loading, selectedDate, addZapis }) {
-  if (loading) {
-    return <p> Ladowanie...</p>
-  }
+  
 
   const appointment = {
     id: data?.doctor_id || 'Brak',
@@ -75,12 +73,14 @@ function DoctorCard({ data, loading, selectedDate, addZapis }) {
           </div>
           <div className={styles.servicesContainer}>
 
-            {data?.service?.map((item, index) => (
+            {data?.service?.slice(0, 5).map((item, index) => (
               <div className={styles.serviceItem} key={index}>
                 <img src={imgIcon2} alt="price" />
                 <p>{item.name} - {item.price}zł </p>
               </div>
             ))}
+            {data?.service?.length > 5 ? <p>Jeszcze {data?.service?.length - 5} usług(i)</p> : null}
+
           </div>
         </div>
       </div>

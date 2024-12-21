@@ -42,6 +42,7 @@ function Workspace({ role, children }) {
         {children}
 
         <Toaster duration={3500} richColors />
+        
         <Modal />
       </div>
     </>

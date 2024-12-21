@@ -52,6 +52,9 @@ const useStore = create((set) => ({
 
   visitCountForMonth: 0,
   setVisitCountForMonth: (visitCount) => set({ visitCountForMonth: visitCount }),
+
+  searchActive: false,
+  setSearchActive: (status) => set({ searchActive: status }),
   // Profile state
   profileState: {
     id: 0,
