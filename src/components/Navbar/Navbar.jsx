@@ -5,7 +5,7 @@ import searchIco from '@assets/img/search.png'
 import bell from '@assets/img/bell.png'
 import grey from '@assets/img/grey.png'
 import useGetUserInfo from '@hooks/UserHooks/useGetUserInfo'
-import SearchResults from './searchResults'
+import SearchResults from './SearchResults'
 import { useForm } from 'react-hook-form'
 import useStore from '../../data/store'
 const BlurLayer = lazy(() => import('../Modals/BlurLayer/BlurLayer'))
