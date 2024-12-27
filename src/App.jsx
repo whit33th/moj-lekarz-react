@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect } from "react"
+import { lazy, Suspense, useCallback, useEffect } from "react"
 import { BrowserRouter as Router, useLocation } from "react-router-dom"
 import ScrollToTop from "./utils/scrollToTop"
 
@@ -19,9 +19,13 @@ function App() {
   const { checkIsAuth } = useIsAuth()
   const { role, isAuth } = useStore()
 
-  useEffect(() => {
+  const stableCheckIsAuth = useCallback(() => {
     checkIsAuth()
   }, [checkIsAuth])
+
+  useEffect(() => {
+    stableCheckIsAuth()
+  }, [stableCheckIsAuth]);
   console.log(isAuth, role)
 
   return (

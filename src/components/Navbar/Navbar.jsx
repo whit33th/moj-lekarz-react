@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, lazy } from 'react'
+import { useState, useRef, useEffect, lazy, useCallback } from 'react'
 import { NavLink } from 'react-router-dom'
 import styles from './Navbar.module.css'
 import searchIco from '@assets/img/search.png'
@@ -23,9 +23,12 @@ function Navbar() {
     const { register, watch } = useForm()
     let searchInput = watch('search')?.trim()
 
-    function toggleMessage() {
+    const toggleMessage = useCallback(() => {
         setIsMessageActive((prev) => !prev)
-    }
+    }, []);
+    const handleSearchClick = useCallback(() => {
+        setSearchActive(true)
+    }, [setSearchActive]);
     useEffect(() => {
         function handleClickOutside(event) {
             if (
@@ -66,12 +69,12 @@ function Navbar() {
                     className={styles.searchInput}
                     placeholder="Szukaj..."
                     type="text"
-                    onClick={() => setSearchActive(true)}
+                    onClick={handleSearchClick}
 
 
                     {...register('search')}
                 />
-                <SearchResults ref={searchResultsRef} formActive={searchActive} searchInputRef={searchInputRef} inputValue={searchInput} />
+                <SearchResults ref={searchResultsRef} formActive={searchActive} inputValue={searchInput} />
             </form>
 
             <div

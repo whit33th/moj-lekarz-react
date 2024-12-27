@@ -5,6 +5,8 @@ import { NavLink } from "react-router-dom"
 import img1 from "@assets/img/image1.svg"
 import img2 from "@assets/img/image2.svg"
 import { useNavigate } from "react-router-dom"
+import { pageConfig } from '../../../config/config'
+import QRCode from 'react-qr-code'
 
 const dataVisits = [
   {
@@ -51,7 +53,7 @@ function VisitsPageTwo({ isLoggedIn }) {
           <VisitsCardTwo data={item} key={item.id} />
         ))}
         <div className={styles.visitsBtnBlock}>
-          <NavLink to="/znajdz-lekarza" className={styles.visitsAddBtn}>
+          <NavLink to={pageConfig.patient.searchDoctor} className={styles.visitsAddBtn}>
             Dodaj wizytę <span></span>
           </NavLink>
         </div>
@@ -69,8 +71,9 @@ function VisitsPageTwo({ isLoggedIn }) {
             </a>
           </div>
           <div className={styles.qrBlock}>
-            <div className={styles.qr}></div>
-            { }
+            <div className={styles.qr}>
+              <QRCode value='https://mojlekarz.netlify.app' style={{ height: "100%", width: "100%" }}></QRCode>
+            </div>
 
             <p>Zeskanuj kod i pobierz</p>
           </div>

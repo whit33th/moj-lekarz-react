@@ -12,6 +12,7 @@ import TodayVisitItem from "../../../components/DoctorPage/Home/TodayVisitItem/T
 import useGetUserInfo from '@hooks/UserHooks/useGetUserInfo'
 import Skeleton from 'react-loading-skeleton'
 import SkeletonTodayVisitItem from '../../../components/DoctorPage/Home/TodayVisitItem/SkeletonTodayVisitItem'
+import { pageConfig } from '../../../config/config'
 function DoctorMain() {
 	const { todayDate, userId, selectedDate, selectedDateInWords, visitCountForMonth } = useStore()
 
@@ -97,7 +98,7 @@ function DoctorMain() {
 				<div className={`${styles.mainCard}`}>
 					<div className={`${styles.flex} ${styles.between}`}>
 						<p className={styles.titleCard}>Ostatnie wizyty</p>
-						<NavLink className={styles.black} to="/last-visits">
+						<NavLink className={styles.black} to={pageConfig.doctor.lastVisits}>
 							<div className={`${styles.flex} ${styles.center}`}>
 								<p className={styles.followLink}>Więcej</p>
 								<img className={styles.ico} src={follow} alt="Follow" />
@@ -130,7 +131,7 @@ function DoctorMain() {
 				<div className={`${styles.mainCard}`}>
 					<div className={`${styles.flex} ${styles.between}`}>
 						<p className={styles.titleCard}>Kalendarz</p>
-						<NavLink className={styles.black} to="/calendar">
+						<NavLink className={styles.black} to={pageConfig.doctor.calendar}>
 							<div className={`${styles.flex} ${styles.center}`}>
 								<p className={styles.followLink}>Otwórz</p>
 								<img className={styles.ico} src={follow} alt="Follow" />
@@ -149,7 +150,7 @@ function DoctorMain() {
 							<p className={styles.titleCard}> Wizyty {selectedDateInWords}</p>
 						)}
 
-						<NavLink className={styles.black} to="/todays-visits">
+						<NavLink className={styles.black} to={pageConfig.doctor.todaysVisits}>
 							<div className={`${styles.flex} ${styles.center}`}>
 								<p className={styles.followLink}>Zobacz wszystkie</p>
 								<img className={styles.ico} src={follow} alt="Follow" />

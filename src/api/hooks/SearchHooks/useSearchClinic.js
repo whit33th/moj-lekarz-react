@@ -7,7 +7,8 @@ export default function useSearchClinic({ query, page, limit }) {
 			queryKey: ['searchClinic', query, page, limit],
 			queryFn: () => searchService.searchClinic(query, page, limit),
 			select: (data) => data?.data || [],
-			enabled: !!query
+			enabled: !!query,
+			retry: false
 		}
 	)
 	return { data, isLoading, isError }

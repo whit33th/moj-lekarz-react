@@ -7,7 +7,8 @@ export default function useSearchPatient({ query, page, limit }) {
 			queryKey: ['searchPatient', query, page, limit],
 			queryFn: () => searchService.searchPatient(query, page, limit),
 			select: (data) => data?.data || [],
-			enabled: !!query
+			enabled: !!query,
+			retry: false
 		}
 	)
 	return { data, isLoading, isError }

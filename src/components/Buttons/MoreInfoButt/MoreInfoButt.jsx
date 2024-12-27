@@ -7,6 +7,7 @@ import useStore from "../../../data/store"
 import cross from "@assets/img/cross.png"
 import back from "@assets/img/back.png"
 import download from "@assets/img/material-symbols-light_download.svg"
+import { pageConfig } from '../../../config/config'
 const MoreInfoButtPatient = ({ id }) => {
   const {
     activeMoreInfoButtId,
@@ -168,7 +169,7 @@ const MoreInfoButtPatient = ({ id }) => {
       {isModalOpen && (
         <div ref={modalRef} className={styles.moreInfoModal}>
           <NavLink
-            to={`/patient-info/${patientId}`}
+            to={pageConfig.doctor.patientInfo.replace(":id", patientId)}
             className={styles.hoverOpacity}
           >
             <p style={{ fontWeight: "500" }}>Informacja</p>

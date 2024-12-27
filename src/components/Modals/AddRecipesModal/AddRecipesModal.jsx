@@ -17,7 +17,6 @@ function AddRecipesModal() {
   const { data: medicationList } = useGetMedication({})
   const { mutate } = usePostPrescriptions()
 
-  // Состояние для добавленных препаратов
   const [addedMedications, setAddedMedications] = useState([])
 
   const patientOptions = patientList?.map(patient => ({
@@ -36,7 +35,7 @@ function AddRecipesModal() {
 
   const addNewMedication = () => {
     const medication = getValues("medication")
-    // Проверяем, существует ли препарат в списке опций
+
     if (medication && medicationOptions.some(option => option.id === medication.id)) {
       if (!addedMedications.some(item => item.id === medication.id)) {
         setAddedMedications([...addedMedications, medication])
@@ -52,7 +51,8 @@ function AddRecipesModal() {
   const onSubmit = (data) => {
     const prescriptionData = {
       patientId: data.patient.id,
-      medications: addedMedications.map(med => med.id), 
+      medicationsIds: addedMedications.map(med => med.id), 
+      expirationDate: '2024-12-22'
     }
     mutate(prescriptionData)
     console.log(prescriptionData)

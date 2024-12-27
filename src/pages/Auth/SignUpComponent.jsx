@@ -6,6 +6,7 @@ import styles from "./AuthPage.module.css"
 import { NavLink } from "react-router-dom"
 
 import useRegistration from "@hooks/AuthHooks/useRegistration"
+import { pageConfig } from '../../config/config'
 
 function SignUpComponent() {
   const { register, handleSubmit, formState, watch } = useForm({
@@ -106,7 +107,7 @@ function SignUpComponent() {
                 Zgadzam się na przetwarzanie moich danych medycznych w celu
                 korzystania z usług przez MyLekarz.
                 <br />
-                <NavLink to="/policy/privacy">
+                <NavLink to={pageConfig.patient.policy.privacy}>
                   Dowiedz się więcej &#8594;
                 </NavLink>
               </p>

@@ -8,7 +8,7 @@ import SearchPatientsItem from './SearchItems/Patients'
 import SearchPrescriptionsItem from './SearchItems/Prescriptions'
 import Skeleton from 'react-loading-skeleton'
 
-export default function SearchResults({ ref, inputValue, formActive, searchInputRef }) {
+export default function SearchResults({ ref, inputValue, formActive }) {
 	const [debouncedInput, setDebouncedInput] = useState(inputValue)
 
 	useEffect(() => {
@@ -27,7 +27,7 @@ export default function SearchResults({ ref, inputValue, formActive, searchInput
 	})
 	const loading = loadingPatients || loadingPrescriptions
 
-	console.log(searchInputRef?.current?.value)
+	
 
 
 	return (

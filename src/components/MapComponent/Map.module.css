@@ -18,6 +18,11 @@
 
 .mapBlockRight {
   width: 51%;
+  overflow: visible;
+}
+
+.mapBlockRight svg {
+  overflow: visible;
 }
 
 .leftBtnblock {
@@ -29,7 +34,7 @@
   width: 214px;
   height: 49px;
   border-radius: 1000px;
-  background-color: #3E36B0;
+  background-color: #3e36b0;
   font-size: 1.05rem;
   font-weight: 500;
   line-height: 24.59px;
@@ -90,19 +95,19 @@ svg {
 @media (max-width: 624px) {
   .mapBlock {
     width: 100%;
-    flex-wrap: wrap;
+    
     padding: 30px 0;
     height: auto;
+    flex-direction: column !important;
 
   }
-  .mapBlockLeft{
-    width: 100%;
-
-  }
-  .mapBlockRight{
+  .mapBlockLeft {
     width: 100%;
   }
-  .mapBlockRight svg{
+  .mapBlockRight {
+    width: 100%;
+  }
+  .mapBlockRight svg {
     width: 100%;
     margin-top: -50px;
   }

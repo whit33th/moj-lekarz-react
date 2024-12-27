@@ -9,6 +9,7 @@ import useStore from "../../../data/store"
 import grey from "@assets/img/grey.png"
 import useGetFullInfo from './../../../api/hooks/DoctorHooks/useGetFullInfo'
 import Skeleton from 'react-loading-skeleton'
+import { pageConfig } from '../../../config/config'
 const reviewData = [{}, {}, {}, {}]
 
 function DoctorProfile() {
@@ -53,7 +54,7 @@ function DoctorProfile() {
             <p className={styles.profileType}>{doctor.specialty}</p>
           </div>
           <div className={styles.profileNameBtn}>
-            <NavLink to={`/znajdz-lekarza/zapis/${id}`}>Umów wizytę</NavLink>
+            <NavLink to={`${pageConfig.patient.searchDoctor}zapis/${id}`}>Umów wizytę</NavLink>
           </div>
         </div>
         <div className={styles.profileDescription}>

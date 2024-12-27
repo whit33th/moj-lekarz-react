@@ -7,7 +7,8 @@ export default function useSearchPost({ query, page, limit }) {
 			queryKey: ['searchPost', query, page, limit],
 			queryFn: () => searchService.searchPost(query, page, limit),
 			select: (data) => data?.data || [],
-			enabled: !!query
+			enabled: !!query,
+			retry: false
 		}
 	)
 	return { data, isLoading, isError }

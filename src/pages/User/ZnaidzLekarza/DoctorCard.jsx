@@ -6,6 +6,7 @@ import imgIcon2 from "@assets/img/Vector14.svg"
 import { NavLink } from "react-router-dom"
 import Skeleton from 'react-loading-skeleton'
 import grey from "@assets/img/grey.png"
+import { pageConfig } from '../../../config/config'
 
 function DoctorCard({ data, loading, selectedDate, addZapis }) {
   
@@ -23,7 +24,7 @@ function DoctorCard({ data, loading, selectedDate, addZapis }) {
     rating: Math.floor(data?.rating) || 0,
     specialty: data?.specialty || 'Brak',
     photo: data?.user?.photo || grey,
-    slots: data?.slots || [],
+    slots: data?.available_slots || [],
 
   }
   console.log(appointment.timeSlots)
@@ -105,7 +106,7 @@ function DoctorCard({ data, loading, selectedDate, addZapis }) {
                       onClick={() =>
                         addZapis(appointment.id, timeSlot, item.date, data)
                       }
-                      to={`/znajdz-lekarza/zapis/${appointment.id}/`}
+                      to={`${pageConfig.patient.searchDoctor}/${appointment.id}/`}
                       className={styles.doctorCardHoursItem}
                       key={index}
                     >

@@ -1,4 +1,4 @@
-.firstBlock{
+.firstBlock {
     width: 100%;
     height: auto;
     display: flex;
@@ -6,11 +6,13 @@
     justify-content: center;
     padding-bottom: 50px;
 }
-.firstBlockLeft{
+
+.firstBlockLeft {
     width: 40%;
 
 }
-.firstBlockLeft h1{
+
+.firstBlockLeft h1 {
     font-size: 2.2rem;
     font-weight: 600;
     line-height: 54.64px;
@@ -18,14 +20,16 @@
     margin-bottom: 22px;
 
 }
-.firstBlockLeft p{
+
+.firstBlockLeft p {
     font-size: 1.15rem;
     font-weight: 400;
     line-height: 24.59px;
     text-align: center;
 
 }
-.firstBlockLeftIcons{
+
+.firstBlockLeftIcons {
     width: 100%;
     height: auto;
     padding: 30px 10%;
@@ -33,26 +37,32 @@
     align-items: center;
     justify-content: center;
 }
-.firstBlockLeftIcons img{
+
+.firstBlockLeftIcons img {
     width: 70%;
     margin: 0 30px;
 }
-.qrBlock{
+
+.qrBlock {
     width: 100%;
     height: auto;
-    padding: 30px 0 ;
+    padding: 30px 0;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
 }
-.qr{
+
+.qr {
     width: 184px;
     height: 177px;
-    background-color: rgba(89, 89, 89, 1);
-
+    padding: 15px;
+    border-radius: 16px;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid #dcdcdc;
 }
-.qrBlock p{
+
+.qrBlock p {
     margin-top: 40px;
     font-size: 1rem;
     font-weight: 400;
@@ -61,42 +71,48 @@
     width: 100%;
 
 }
-.firstBlockRight{
+
+.firstBlockRight {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 40%;
     padding-left: 10%;
 }
+
 .firstBlockRight img {
     height: 90%;
 }
 
 
 
-.imageBlock{
+.imageBlock {
     width: 100%;
     display: grid;
     height: auto;
-    grid-template-columns: 1fr 1fr 1fr ;
+    grid-template-columns: 1fr 1fr 1fr;
     padding: 100px 15%;
     padding-top: 0;
     gap: 40px;
 }
-.itemImg img{
+
+.itemImg img {
     height: 240px;
 }
-.itemImg{
+
+.itemImg {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
-.itemText{
+
+.itemText {
     text-align: center;
     margin-top: -5px;
     width: 100%;
     padding: 0 15%;
 }
+
 .itemText p {
     font-size: 1.05rem;
     font-weight: 400;
@@ -104,39 +120,46 @@
     text-align: center;
 
 }
-.itemText p.itemTextTitle{
+
+.itemText p.itemTextTitle {
     font-size: 1.4rem;
     font-weight: 500;
     line-height: 27px;
     margin-bottom: 8px;
 }
+
 @media (max-width: 624px) {
-    .firstBlockRight{
+    .firstBlockRight {
         display: none;
     }
-    .firstBlock{
+
+    .firstBlock {
         padding: 70px 5%;
         padding-top: 150px;
     }
-    .firstBlockLeft{
+
+    .firstBlockLeft {
         width: 95%;
     }
-    .firstBlockLeft h1{
+
+    .firstBlockLeft h1 {
         font-size: 1.9rem;
         line-height: 42px;
         margin-bottom: 15px;
     }
-    .firstBlockLeftIcons{
+
+    .firstBlockLeftIcons {
         padding: 40px 0%;
     }
+
     .imageBlock {
         width: 100%;
         grid-template-columns: repeat(1, 1fr);
         padding: 30px 3%;
         gap: 13px;
     }
-    
-    .imageBlock > div{
+
+    .imageBlock>div {
         width: 100%;
         display: flex;
         align-items: center;
@@ -144,36 +167,42 @@
         flex-wrap: wrap;
         justify-content: center;
     }
-    .itemImg{
+
+    .itemImg {
         width: 60%;
         display: flex;
         justify-content: center;
         align-items: center;
     }
-    .itemImg img{
+
+    .itemImg img {
         width: 80%;
         height: auto;
     }
+
     .itemText {
         width: 60%;
 
     }
+
     .itemText {
         width: 60%;
         padding: 0;
 
     }
-    .itemText p.itemTextTitle{
+
+    .itemText p.itemTextTitle {
         font-size: 1.2rem;
     }
 }
 
 @media (min-width: 1024px) and (max-width: 1280px) {
-   .firstBlock{
+    .firstBlock {
         padding: 90px 4%;
-   }
-    .imageBlock{
+    }
+
+    .imageBlock {
         padding: 90px 10%;
     }
-    
+
 }

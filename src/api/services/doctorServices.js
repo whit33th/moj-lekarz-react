@@ -61,7 +61,8 @@ class DoctorServices {
 	async postPrescriptions(data) {
 		return await axios.post(`${this.URL}/api/prescriptions`, {
 			patientId: data.patientId,
-			medicationId: data.medicationId
+			medicationsIds: data.medicationsIds,
+			expirationDate: data.expirationDate
 		})
 	}
 	async postMedications(data) {

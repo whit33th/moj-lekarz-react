@@ -5,6 +5,7 @@ import phone from "@assets/img/foto.webp"
 import img3 from "@assets/img/Frame1.svg"
 import img4 from "@assets/img/Frame2.svg"
 import img5 from "@assets/img/Frame3.svg"
+import QRCode from 'react-qr-code'
 
 function MobileAppPage() {
   return (
@@ -25,8 +26,9 @@ function MobileAppPage() {
             </a>
           </div>
           <div className={styles.qrBlock}>
-            <div className={styles.qr}></div>
-            { }
+            <div className={styles.qr}>
+              <QRCode value='https://mojlekarz.netlify.app' style={{ height: "100%", width: "100%" }}></QRCode>
+            </div>
 
             <p>Zeskanuj kod i pobierz</p>
           </div>

@@ -31,7 +31,7 @@ function PatientInfo() {
     gender: isLoading ? "Ładowanie..." : patient?.patient?.user?.gender || "Brak",
     pesel: isLoading ? "Ładowanie..." : patient?.patient?.user?.pesel || "Brak",
     birthday: isLoading ? "Ładowanie..." : patient?.patient?.user?.birthday.slice(0, 10) || "Brak",
-    postCode: isLoading ? "Ładowanie..." : patient?.patient?.user?.post_code || "Brak",
+    postCode: isLoading ? "Ładowanie..." : patient?.patient?.user?.address?.post_index || "Brak",
     house: isLoading ? "Ładowanie..." : patient?.patient?.user?.address?.home || "Brak",
     flat: isLoading ? "Ładowanie..." : patient?.patient?.user?.address?.flat || "Brak",
     street: isLoading ? "Ładowanie..." : patient?.patient?.user?.address?.street || "Brak",

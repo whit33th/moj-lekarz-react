@@ -7,7 +7,8 @@ export default function useSearchPrescription({ query, page, limit }) {
 			queryKey: ['searchPrescription', query, page, limit],
 			queryFn: () => searchService.searchPrescription(query, page, limit),
 			select: (data) => data?.data || [],
-			enabled: !!query
+			enabled: !!query,
+			retry: false
 		}
 	)
 	return { data, isLoading, isError }

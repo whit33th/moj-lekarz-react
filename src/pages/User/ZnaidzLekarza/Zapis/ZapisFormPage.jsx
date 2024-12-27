@@ -10,6 +10,7 @@ import fileInputv2 from "@assets/img/tabler_file-filled.svg"
 import visitorImg2 from "@assets/img/pobierz.svg"
 
 import { NavLink } from "react-router-dom"
+import { pageConfig } from '../../../../config/config'
 
 function ZapisFormPage(props) {
   const [nameInput, setNameInput] = useState("")
@@ -192,7 +193,7 @@ function ZapisFormPage(props) {
             {" "}
             <span>*</span> Zgadzam się, żeby MyLekarz przetwarzał moje dane
             medyczne w celu korzystania z usług.
-            <NavLink to="/policy/privacy">Dowiedz się więcej &#8594;</NavLink>
+            <NavLink to={pageConfig.patient.policy.privacy}>Dowiedz się więcej &#8594;</NavLink>
           </p>
         </label>
         <label className={styles.checkboxContainer}>
@@ -212,9 +213,9 @@ function ZapisFormPage(props) {
         </label>
         <p>
           Umawiając wizytę, akceptujesz nasz
-          <NavLink to="/policy/regulamin">regulamin i</NavLink> potwierdzasz, że
-          rozumiesz naszą
-          <NavLink to="/policy/regulamin">
+          <NavLink to={pageConfig.patient.policy.regulations} >regulamin i</NavLink> potwierdzasz,
+          że rozumiesz naszą
+          <NavLink to={pageConfig.patient.policy.regulations}>
             politykę przetwarzania danych osobowych.
           </NavLink>
         </p>

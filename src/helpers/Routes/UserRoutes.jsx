@@ -55,6 +55,8 @@ function UserRoutes() {
         path="/znajdz-lekarza-version2/"
         element={<ZnajdzLekarzaVersion2 />}
       />
+      
+      
       <Route path={pageConfig.patient.policy.regulations} element={<PolicyRegulamin />} />
       <Route path={pageConfig.patient.policy.personalData} element={<PolicyPersonalData />} />
       <Route path={pageConfig.patient.policy.cookies} element={<PolicyCookies />} />

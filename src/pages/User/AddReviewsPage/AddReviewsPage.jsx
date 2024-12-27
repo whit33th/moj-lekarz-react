@@ -7,6 +7,7 @@ import imgType from "@assets/Vector14.svg"
 import phoneImg from "@assets/ph_phone-light.svg"
 import StarsReview from "../../components/StarsReview"
 import { useNavigate } from "react-router-dom"
+import { pageConfig } from '../../../config/config'
 
 const feedbackOptions = [
   "Profesjonalne podejście",
@@ -209,7 +210,7 @@ function AddReviewsPage({ isLoggedIn }) {
           <div className={styles.thanksPageContent}>
             <h1>Dziękujemy za Twoją opinię!</h1>
             <p>Po weryfikacji recenzja zostanie opublikowana</p>
-            <NavLink to={"/"}>Wróć na główną stronę</NavLink>
+            <NavLink to={pageConfig.home}>Wróć na główną stronę</NavLink>
             <NavLink to={"/visits"}>Przejdź do Moich wizyt</NavLink>
           </div>
         </div>

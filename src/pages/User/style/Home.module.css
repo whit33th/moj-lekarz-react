@@ -11,7 +11,12 @@
   justify-content: center;
   align-items: center;
 }
-
+.formCalendarContainer {
+  flex: 1; width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
 .calendar {
   width: 100%;
   height: 100%;
@@ -66,8 +71,9 @@
 
 .dropdownContainer {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  gap: 4px;
+
   position: relative;
   width: 100%;
   margin-bottom: 15px;
@@ -143,20 +149,15 @@
 }
 
 .formCalendar {
-  width: 48%;
+  width: 100%;
   height: 50px;
   border-radius: 16px;
   box-shadow: 0px 0px 50px 0px #0000001a;
   background: #fff;
   display: flex;
-  align-items: center;
-  justify-content: center;
+ 
   position: relative;
-
 }
-
-
-
 
 .datePicker {
   width: 100%;
@@ -380,7 +381,7 @@
     display: none;
   }
 
-  .howItWorksImageBlock>div {
+  .howItWorksImageBlock > div {
     width: 100%;
     display: flex;
     align-items: center;

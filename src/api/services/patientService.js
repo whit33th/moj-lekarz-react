@@ -11,8 +11,8 @@ class PatientService {
 		)
 	}
 
-	async searchAppointments(city, specialty, date, visitType, limit, page) {
-		let url = `${this.URL}/api/appointments?`
+	async availableSlots(city, specialty, date, visitType, limit, page) {
+		let url = `${this.URL}/api/schedules/available-slots?`
 		city && (url += `city=${city}`)
 		specialty && (url += `&specialty=${specialty}`)
 		date && (url += `&date=${date}`)

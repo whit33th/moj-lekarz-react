@@ -29,7 +29,7 @@ function AddRecipesModalForSelectedUser({ patientId, name }) {
   })
   const addNewMedication = () => {
     const medication = getValues("medication")
-    // Проверяем, существует ли препарат в списке опций
+
     if (medication && medicationOptions.some(option => option.id === medication.id)) {
       if (!addedMedications.some(item => item.id === medication.id)) {
         setAddedMedications([...addedMedications, medication])
@@ -43,10 +43,11 @@ function AddRecipesModalForSelectedUser({ patientId, name }) {
   const onSubmit = () => {
     const prescriptionData = {
       patientId: patientId,
-      medications: addedMedications.map(med => med.id), 
+      medicationsIds: addedMedications.map(med => med.id),
+      expirationDate: '2024-12-22'
     }
     mutate(prescriptionData)
-    console.log(prescriptionData)
+
   }
   const removeMedication = (id) => {
     setAddedMedications(addedMedications.filter(med => med.id !== id))

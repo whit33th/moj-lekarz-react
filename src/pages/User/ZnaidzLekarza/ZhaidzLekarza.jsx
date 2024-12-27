@@ -1,120 +1,155 @@
-import { useState } from "react"
-import styles from "./style/ZhaidzLekarza.module.css"
-import DoctorCard from "./DoctorCard"
-import DropdownStas from '../../../components/Dropdown/DropdownStas'
-import { useForm } from 'react-hook-form'
-import useSearchAppointments from '@hooks/PatientHooks/useSearchAppointments'
-import DoctorCardSkeleton from './DoctorCardSkeleton'
-import Pagination from './../../../components/UI/Pagination/Pagination'
+import { useEffect, useState } from "react";
+import styles from "./style/ZhaidzLekarza.module.css";
+import DoctorCard from "./DoctorCard";
+import DropdownStas from "../../../components/Dropdown/DropdownStas";
+import { get, useForm } from "react-hook-form";
+
+import DoctorCardSkeleton from "./DoctorCardSkeleton";
+import Pagination from "./../../../components/UI/Pagination/Pagination";
+import { useCities } from "../../../api/hooks/GeneralHooks/useCitys";
+import InputDropdownStas from "../../../components/Dropdown/InputDropdownStas";
+import useAvailableSlots from "../../../api/hooks/PatientHooks/useAvailableSlots";
+import InputError from "../../../components/UI/InputError/InputError";
 
 const arraySelectOptions = {
   select1: ["Ortopeda", "Logopeda", "Chirurg", "Kardiolog", "Ginekolog"],
-  select2: ["Poznan", "Warszawa", "Wroclaw"],
-  select3: ["Konsultacja", "Badanie"],
-}
+  select2: ["Konsultacja", "Badanie"],
+};
 
+function ZnajdzLekarza() {
+  const [page, setPage] = useState(1);
+  const { control, register, handleSubmit, getValues, formState } = useForm({});
 
-function ZnajdzLekarza(props) {
-  const doctorCard = props.doctorCard
-  const [selectedDate, setSelectedDate] = useState(null)
-  const [state, setState] = useState(doctorCard)
-  const { control, register, handleSubmit, getValues } = useForm({
-  })
-
-
-  const [page, setPage] = useState(1)
-  const { data: fullData, isLoading } = useSearchAppointments({
-    // specialty: 'Assistant',
-    // date: '2025-07-10',
-    select: (data) => data?.data,
+  const [city, setCity] = useState(getValues("city"));
+  const [specialty, setSpecialty] = useState(null);
+  const [date, setDate] = useState(null);
+  const [visitType, setVisitType] = useState(null);
+  const { data: fullData, isLoading } = useAvailableSlots({
+    // specialty: getValues('specialty'),
+    // date: getValues('date'),
+    // type: getValues('type'),
+    city: city,
     limit: 10,
-    page: page
-  })
-  const data = fullData?.slots || []
+    page: page,
+  });
+  useEffect(() => {
+    onSubmit();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  const totalPages = fullData?.pages || null
+  const totalCount = fullData?.totalCount || null;
+  const data = fullData?.slots || [];
+  const totalPages = fullData?.pages || null;
 
+  const { data: cities } = useCities();
 
-
-
-
-  const clickFilterBtn = () => {
-    const filteredDoctors = doctorCard.filter((doctor) => {
-      const matchesType = selectedOption1
-        ? doctor.type === selectedOption1
-        : true
-      const matchesCity = selectedOption2
-        ? doctor.address.city === selectedOption2
-        : true
-
-      const matchesDate = selectedDate
-        ? doctor.dates.some(
-          (dateObj) =>
-            dateObj.date === selectedDate.toLocaleDateString("pl-PL")
-        )
-        : true
-      return matchesCity && matchesType && matchesDate
-    })
-    setState(filteredDoctors)
+  function onSubmit() {
+    setCity(getValues("city"));
   }
+
   return (
     <div className={styles.zhaidzLekarza}>
       <div className={styles.filterBlock}>
         <div className={styles.filterBlockContent}>
           <h1>Umów się na wizytę</h1>
-          <div className={styles.filterBlockContentSelects}>
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className={styles.filterBlockContentSelects}
+          >
             <div className={styles.mainFormIntupsBlock}>
               <div className={styles.dropdownContainer}>
-
-                <DropdownStas control={control} name={"specialty"} options={arraySelectOptions.select1} placeholder={"Wybierz specjalizacje"} searchParamsName={"specialty"} />
-
+                <InputDropdownStas
+                  control={control}
+                  options={arraySelectOptions.select1}
+                  placeholder={"Wybierz specjalizacje"}
+                  searchParamsName={"specialty"}
+                  seeOptions
+                  object={false}
+                  {...register("specialty", { required: "Specjalizacja jest wymagana" })}
+                />
+                <InputError errorField="specialty" formState={formState} />
               </div>
 
               <div className={styles.dropdownContainer}>
-                <DropdownStas control={control} name={"city"} options={arraySelectOptions.select2} placeholder={"Wybierz miasto"} searchParamsName={"city"} />
+                <InputDropdownStas
+                  control={control}
+                  options={cities || ["Ladowanie"]}
+                  placeholder={"Wybierz miasto"}
+                  searchParamsName={"city"}
+                  object={false}
+                  seeOptions
+                  {...register("city", { required: "Miasto jest wymagane" })}
+                />
+                <InputError errorField="city" formState={formState} />
               </div>
 
-              <div className={styles.formCalendar}>
-                <input type="date" placeholder="Data wizyty" className={styles.calendar} {...register("date")} defaultValue={getValues("date")} />
+              <div className={styles.formCalendarContainer}>
+                <div className={styles.formCalendar}>
+                  <input
+                    type="date"
+                    placeholder="Data wizyty"
+                    className={styles.calendar}
+                    {...register("date", { required: "Data jest wymagana" })}
+                    defaultValue={getValues("date")}
+                  />
+                </div>
+                <InputError errorField="date" formState={formState} />
               </div>
 
               <div className={`${styles.dropdownContainer} ${styles.litle}`}>
-                <DropdownStas control={control} name={"type"} options={arraySelectOptions.select3} placeholder={"Typ wizyty"} searchParamsName={"type"} />
+                <InputDropdownStas
+                  control={control}
+                  options={arraySelectOptions.select2}
+                  placeholder={"Typ wizyty"}
+                  searchParamsName={"type"}
+                  seeOptions
+                  object={false}
+                  {...register("type", { required: false })}
+                />
+                <InputError errorField="type" formState={formState} />
               </div>
             </div>
             <div className={styles.filterBtnBlock}>
-              <button onClick={clickFilterBtn}>Szukaj terminu</button>
+              <button>Szukaj terminu</button>
             </div>
-          </div>
+          </form>
         </div>
       </div>
 
       <div className={styles.zhaidzLekarzaContentBlock}>
         <div className={styles.zhaidzLekarzaContentTitle}>
-          <h2>Wybierz spośród {totalPages} dostępnych specjalistów</h2>
+          <h2>Wybierz spośród {totalCount} dostępnych specjalistów</h2>
           <button>Zobacz na mapę</button>
         </div>
       </div>
       <div className={styles.doctorsCards}>
-        {isLoading ? <DoctorCardSkeleton count={3} /> : data?.map((item) => (
-          <DoctorCard
-            data={item}
-            key={item.doctor_id}
-            // selectedDate={selectedDate}
-            // addZapis={props.addZapis}
-            loading={isLoading}
-          />
-        ))}
-        {state.length == 0 && (
+        {isLoading ? (
+          <DoctorCardSkeleton count={3} />
+        ) : (
+          data?.map((item) => (
+            <DoctorCard
+              data={item}
+              key={item.doctor_id}
+              // selectedDate={selectedDate}
+              // addZapis={props.addZapis}
+              loading={isLoading}
+            />
+          ))
+        )}
+        {data.length == 0 && (
           <div className={styles.nonDoctorCardBlock}>
             <h1>Brak dostępnych terminów</h1>
           </div>
         )}
-        <Pagination total={totalPages} value={page} onChange={setPage} isLoading={isLoading} />
+        <Pagination
+          total={totalPages}
+          value={page}
+          onChange={setPage}
+          isLoading={isLoading}
+        />
       </div>
     </div>
-  )
+  );
 }
 
-
-export default ZnajdzLekarza
+export default ZnajdzLekarza;

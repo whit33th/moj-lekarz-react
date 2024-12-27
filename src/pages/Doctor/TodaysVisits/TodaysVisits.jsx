@@ -9,6 +9,7 @@ import useGetDoctorAppointment from '@hooks/DoctorHooks/useGetDoctorAppointment'
 import useStore from '@data/store'
 import Pagination from '@components/UI/Pagination/Pagination'
 import { useState } from 'react'
+import { pageConfig } from '../../../config/config'
 
 function TodaysVisits() {
 
@@ -64,13 +65,13 @@ function TodaysVisits() {
   return (
     <div className="content">
       <div className={styles.calendarNavbar}>
-        
+
         <span className={styles.calendarNavbarDate}>
           {selectedDate !== todayDate ? 'Wizyty ' + selectedDateInWords : <span>Dzisiejsze wizyty </span>}
 
         </span>
 
-        <NavLink to={`/calendar?date=${selectedDate}`}>
+        <NavLink to={`${pageConfig.doctor.calendar}?date=${selectedDate}`}>
           <div className={`${styles.calendarNavbarButt} ${styles.itemsCenter}`}>
             <span className={styles.followLink}>Przejdź do kalendarza</span>
             <div className={styles.icoDiv}>

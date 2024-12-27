@@ -1,39 +1,41 @@
-import { useState, useEffect } from "react"
-import styles from "./VisitsPage.module.css"
-import VisitsCard from "./VisitsCard"
-import img1 from "@assets/img/image1.svg"
-import img2 from "@assets/img/image2.svg"
-import { NavLink, useNavigate } from "react-router-dom"
-import VisitsCardCompleted from "./VisitsCardCompleted"
-import useStore from '../../../data/store'
+import { useState, useEffect } from "react";
+import styles from "./VisitsPage.module.css";
+import VisitsCard from "./VisitsCard";
+import img1 from "@assets/img/image1.svg";
+import img2 from "@assets/img/image2.svg";
+import { NavLink, useNavigate } from "react-router-dom";
+import VisitsCardCompleted from "./VisitsCardCompleted";
+import useStore from "../../../data/store";
+import { pageConfig } from "../../../config/config";
+import QRCode from "react-qr-code";
 
-function VisitsPage({ isLoggedIn }) {
+function VisitsPage({ isLoggedIn = true }) {
   const { visitsState, deleteVisitById } = useStore((state) => ({
     visitsState: state.visitsState,
     deleteVisitById: state.deleteVisitById,
-  }))
+  }));
 
-  const [modalWindowStatus, setModalWindowStatus] = useState(false)
-  const [deleteItemId, setDeleteItemId] = useState(undefined)
-  const navigate = useNavigate()
+  const [modalWindowStatus, setModalWindowStatus] = useState(false);
+  const [deleteItemId, setDeleteItemId] = useState(undefined);
+  const navigate = useNavigate();
 
   const clickDeleteBtn = (id) => {
-    setModalWindowStatus(true)
-    setDeleteItemId(id)
-  }
+    setModalWindowStatus(true);
+    setDeleteItemId(id);
+  };
 
   const deleteFc = () => {
     if (deleteItemId !== undefined) {
-      deleteVisitById(deleteItemId)
+      deleteVisitById(deleteItemId);
     }
-    setModalWindowStatus(false)
-  }
+    setModalWindowStatus(false);
+  };
 
   useEffect(() => {
     if (!isLoggedIn) {
-      navigate("/auth/")
+      navigate("/auth/");
     }
-  }, [isLoggedIn, navigate])
+  }, [isLoggedIn, navigate]);
 
   return (
     <div className={styles.visitsPage}>
@@ -63,7 +65,7 @@ function VisitsPage({ isLoggedIn }) {
           <VisitsCard data={item} deleteFc={clickDeleteBtn} key={item.id} />
         ))}
         <div className={styles.newVisitsBtn}>
-          <NavLink to={"/znajdz-lekarza"}>
+          <NavLink to={pageConfig.patient.searchDoctor}>
             Dodaj wizytę <span>&#43;</span>
           </NavLink>
         </div>
@@ -85,12 +87,17 @@ function VisitsPage({ isLoggedIn }) {
           </a>
         </div>
         <div className={styles.qrBlock}>
-          <div className={styles.qr}></div>
+          <div className={styles.qr}>
+            <QRCode
+              value="https://mojlekarz.netlify.app"
+              style={{ height: "100%", width: "100%" }}
+            ></QRCode>
+          </div>
           <p>Zeskanuj kod i pobierz</p>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default VisitsPage
+export default VisitsPage;

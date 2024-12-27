@@ -2,7 +2,7 @@ import styles from "./SearchItems.module.css"
 import grey from '@assets/img/grey.png'
 import Medications from './Medications';
 function SearchPrescriptionsItem({ data }) {
-	console.log(data)
+
 
 	
 	return (

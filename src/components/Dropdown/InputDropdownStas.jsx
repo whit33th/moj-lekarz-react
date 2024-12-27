@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react"
-import styles from "./InputDropdownStas.module.css"
 import { useController } from "react-hook-form"
+import { useNavigate, useLocation } from "react-router-dom"
+import styles from "./InputDropdownStas.module.css"
 
 const InputDropdownStas = ({
   options,
@@ -9,46 +10,80 @@ const InputDropdownStas = ({
   control,
   name,
   disabled = false,
+  object = true,
+  searchParamsName,
+  valueOnSearchParams = true,
 }) => {
+  const location = useLocation()
+  const navigate = useNavigate()
+
+  const getInitialSearchValue = () => {
+    if (valueOnSearchParams && searchParamsName) {
+      return new URLSearchParams(location.search).get(searchParamsName) || ""
+    }
+    return ""
+  }
+
+  const initialSearchValue = getInitialSearchValue()
+  const [filteredOptions, setFilteredOptions] = useState(options)
+  const [isOpen, setIsOpen] = useState(false)
+  const dropdownRef = useRef(null)
+
   const {
-    field: { value, onChange },
+    field: { value = initialSearchValue, onChange },
   } = useController({ name, control })
 
-  const [isOpen, setIsOpen] = useState(false)
-  const [filteredOptions, setFilteredOptions] = useState(options)
+  useEffect(() => {
+    if (valueOnSearchParams && searchParamsName && initialSearchValue) {
+      onChange(initialSearchValue)
+    }
+  }, [initialSearchValue, onChange, valueOnSearchParams, searchParamsName])
 
   useEffect(() => {
     setFilteredOptions(options)
   }, [options])
-  
+
   const toggleDropdown = () => {
     setIsOpen((prev) => !prev)
   }
 
   const handleOptionClick = (option) => {
     if (option !== "Brak dopasowań") {
-      onChange(option) // update value using react-hook-form with the entire option (including ID)
+      onChange(option)
     }
     setIsOpen(false)
+
+    if (searchParamsName) {
+      const searchParams = new URLSearchParams(location.search)
+      searchParams.set(searchParamsName, object ? option.label : option)
+      navigate(`${location.pathname}?${searchParams.toString()}`, { replace: true })
+    }
   }
 
   const handleInputChange = (e) => {
     const inputValue = e.target.value
-    onChange(inputValue) // update value with input
+    onChange(object ? { label: inputValue } : inputValue)
+
+    if (searchParamsName) {
+      const searchParams = new URLSearchParams(location.search)
+      searchParams.set(searchParamsName, inputValue)
+      navigate(`${location.pathname}?${searchParams.toString()}`, { replace: true })
+    }
 
     if (inputValue.trim() === "") {
       setFilteredOptions(options)
     } else {
-      const filtered = options.filter((option) =>
-        option?.label?.toLowerCase().includes(inputValue.toLowerCase())
-      )
+      const filtered = options.filter((option) => {
+        if (object) {
+          return option?.label?.toLowerCase().includes(inputValue.toLowerCase())
+        }
+        return option.toLowerCase().includes(inputValue.toLowerCase())
+      })
       setFilteredOptions(filtered.length > 0 ? filtered : ["Brak dopasowań"])
     }
 
     setIsOpen(true)
   }
-
-  const dropdownRef = useRef(null)
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -65,25 +100,16 @@ const InputDropdownStas = ({
   }, [])
 
   const renderOption = (option) => {
-    if (typeof option === "string") {
-      return (
-        <li
-          key={option}
-          className={styles.dropdownMenuItem}
-          onClick={() => handleOptionClick(option)}
-        >
-          {option}
-        </li>
-      )
-    }
+    const label = object ? option.label : option
+    const key = object ? option.value : option
 
     return (
       <li
-        key={option.value}
+        key={key}
         className={styles.dropdownMenuItem}
         onClick={() => handleOptionClick(option)}
       >
-        {option.label}
+        {label}
       </li>
     )
   }
@@ -97,7 +123,7 @@ const InputDropdownStas = ({
         <input
           type="text"
           className={styles.dropdownInput}
-          value={value ? value.label : ""}
+          value={object ? (value ? value.label : "") : value || ""}
           placeholder={placeholder}
           onChange={handleInputChange}
           disabled={disabled}
@@ -110,7 +136,7 @@ const InputDropdownStas = ({
       </div>
       {seeOptions && isOpen && (
         <ul className={styles.dropdownMenu}>
-          {filteredOptions.map((option, index) => renderOption(option))}
+          {filteredOptions.map((option) => renderOption(option))}
         </ul>
       )}
     </div>

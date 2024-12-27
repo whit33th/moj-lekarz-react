@@ -2,6 +2,7 @@ import { Link } from "react-router-dom"
 import styles from "./style/NotFound.module.css"
 import stethoscope from "@assets/img/stethoscope.png"
 import home from "@assets/img/sidebar-home.png"
+import { pageConfig } from '../../config/config'
 
 export default function NotFound() {
   return (
@@ -20,7 +21,7 @@ export default function NotFound() {
               Nie martw się, wróćmy na stronę główną i spróbujmy jeszcze raz.
             </p>
           </div>
-          <Link replace={true} to="/" className={styles["back-button"]}>
+          <Link replace={true} to={pageConfig.home} className={styles["back-button"]}>
             <img height={16} className={styles.home} src={home} alt="" />
             Do strony głównej
           </Link>
