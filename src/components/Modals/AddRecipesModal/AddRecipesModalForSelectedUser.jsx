@@ -44,7 +44,9 @@ function AddRecipesModalForSelectedUser({ patientId, name }) {
     const prescriptionData = {
       patientId: patientId,
       medicationsIds: addedMedications.map(med => med.id),
-      expirationDate: '2025-06-12'
+      expirationDate: new Date(Date.now() + 359 * 24 * 60 * 60 * 1000)
+        .toISOString()
+        .split("T")[0],
     }
     mutate(prescriptionData)
 
