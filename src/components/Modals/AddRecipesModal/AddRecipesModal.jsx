@@ -47,18 +47,17 @@ function AddRecipesModal() {
     }
   }
 
-  // Функция отправки данных
+
   const onSubmit = (data) => {
     const prescriptionData = {
       patientId: data.patient.id,
       medicationsIds: addedMedications.map(med => med.id), 
-      expirationDate: '2024-12-22'
+      expirationDate: '2025-1-12'
     }
     mutate(prescriptionData)
     console.log(prescriptionData)
   }
 
-  // Удаление лекарства из списка
   const removeMedication = (id) => {
     setAddedMedications(addedMedications.filter(med => med.id !== id))
   }
@@ -94,7 +93,7 @@ function AddRecipesModal() {
           </button>
         </div>
 
-        {/* Рендер списка добавленных лекарств */}
+        
         <div style={addedMedications.length > 0 ? { display: 'flex' } : { display: 'none' }} className={styles.addedMedications}>
           {addedMedications.map((medication, index) => (
             <div key={index} className={styles.addedMedicationItem}>
