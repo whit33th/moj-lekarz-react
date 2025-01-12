@@ -1,32 +1,34 @@
-import styles from "./Recipes.module.css"
-import tablecss from "../../../components/Table/Table.module.css"
-import useStore from "../../../data/store"
-import AddRecipesModal from "../../../components/Modals/AddRecipesModal/AddRecipesModal"
-import Table from "../../../components/Table/Table"
-import useGetPrescriptions from '@hooks/DoctorHooks/useGetPrescriptions'
-import Pagination from '../../../components/UI/Pagination/Pagination'
-import { useState } from 'react'
+import styles from "./Recipes.module.css";
+import tablecss from "../../../components/Table/Table.module.css";
+import useStore from "../../../data/store";
+import AddRecipesModal from "../../../components/Modals/AddRecipesModal/AddRecipesModal";
+import Table from "../../../components/Table/Table";
+import useGetPrescriptions from "@hooks/DoctorHooks/useGetPrescriptions";
+import Pagination from "../../../components/UI/Pagination/Pagination";
+import { useState } from "react";
 
 function PatientList() {
-  const [page, setPage] = useState(1)
+  const [page, setPage] = useState(1);
   const { data, isLoading } = useGetPrescriptions({
     page: page,
     sort: "DESC",
-  })
+  });
 
-  const { setModalActive, setModalContent } = useStore()
-  const prescriptions = data?.prescriptions || []
-  const totalPages = data?.pages
-
+  const { setModalActive, setModalContent } = useStore();
+  const prescriptions = data?.prescriptions || [];
+  const totalPages = data?.pages;
 
   const tableData = prescriptions?.map((prescription) => ({
     img: prescription?.patient?.user?.photo || "zdrowie.png",
-    name: prescription?.patient?.user?.first_name + ' ' + prescription?.patient?.user?.last_name || 'Nieznane',
-    createdDate: prescription?.createdAt || 'Brak',
-    expirationDate: prescription?.expiration_date || 'Brak',
-    code: prescription?.code || 'Błąd',
-    medicationName: prescription?.medications?.name || 'Brak',
-  }))
+    name:
+      prescription?.patient?.user?.first_name +
+        " " +
+        prescription?.patient?.user?.last_name || "Nieznane",
+    createdDate: prescription?.createdAt || "Brak",
+    expirationDate: prescription?.expiration_date || "Brak",
+    code: prescription?.code || "Błąd",
+    medications: prescription?.medications || [],
+  }));
 
   const columns = [
     {
@@ -39,13 +41,23 @@ function PatientList() {
           <div className={styles.userInfo}>
             <p>{item.name}</p>
             <p>
-              {item.createdDate?.slice(0, 10)} - {item.expirationDate?.slice(0, 10)}
+              {item.createdDate?.slice(0, 10)} -{" "}
+              {item.expirationDate?.slice(0, 10)}
             </p>
           </div>
         </div>
       ),
     },
-    { header: "Info", render: (prescription) => <div><p>{prescription.medicationName}</p></div> },
+    {
+      header: "Info",
+      render: (prescription) => (
+        <div>
+          {prescription.medications?.map((medication, index) => (
+            <p key={index}>{medication.name}</p>
+          ))}
+        </div>
+      ),
+    },
     {
       header: (
         <button
@@ -64,11 +76,11 @@ function PatientList() {
         </div>
       ),
     },
-  ]
+  ];
 
   function handleOpenModal() {
-    setModalContent(<AddRecipesModal />)
-    setModalActive(true)
+    setModalContent(<AddRecipesModal />);
+    setModalActive(true);
   }
 
   return (
@@ -88,9 +100,14 @@ function PatientList() {
         together={true}
       />
 
-      <Pagination total={totalPages} value={page} onChange={setPage} isLoading={isLoading} />
+      <Pagination
+        total={totalPages}
+        value={page}
+        onChange={setPage}
+        isLoading={isLoading}
+      />
     </div>
-  )
+  );
 }
 
-export default PatientList
+export default PatientList;
