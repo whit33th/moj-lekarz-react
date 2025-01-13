@@ -161,6 +161,7 @@
 	font-size: 0.8rem;
 	font-weight: 600;
 	color: #333;
+	text-wrap: nowrap;
 }
 
 .medItemDosage {

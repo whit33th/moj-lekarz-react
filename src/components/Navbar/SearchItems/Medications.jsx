@@ -1,8 +1,11 @@
-import React, { useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import styles from './SearchItems.module.css'
 
 const Medications = ({ medications }) => {
-	const [visible, setVisible] = useState(false)
+	console.log(medications)
+
+	
+
 	const scrollRef = useRef(null)
 	const [isDragging, setIsDragging] = useState(false)
 	const [startX, setStartX] = useState(0)
@@ -41,11 +44,11 @@ const Medications = ({ medications }) => {
 			onMouseLeave={stopDrag}
 			onMouseMove={drag}
 		>
-			{Array.from({ length: 12 }).fill(0).map((_, index) => (
-				<div key={index} className={styles.medication}>
+			{medications.map((m, index) => (
+				<div key={m.PrescriptionMedications.prescription_id} className={styles.medication}>
 					<p className={styles.medItemNumber}>{index + 1}.</p>
-					<p className={styles.medItemName}>Aspirin</p>
-					<p className={styles.medItemDosage}>100g</p>
+					<p className={styles.medItemName}>{m.name}</p>
+					{/* <p className={styles.medItemDosage}>100g</p> */}
 				</div>
 			))}
 		</div>
