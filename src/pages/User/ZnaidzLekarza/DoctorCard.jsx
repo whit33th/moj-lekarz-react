@@ -27,7 +27,7 @@ function DoctorCard({ data, loading, selectedDate, addZapis }) {
     slots: data?.available_slots || [],
 
   }
-  console.log(appointment.timeSlots)
+  
   // const rating = parseInt(data.rating, 10);
 
   // const filteredDates = selectedDate

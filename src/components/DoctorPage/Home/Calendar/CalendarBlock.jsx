@@ -20,7 +20,7 @@ const CalendarBlock = () => {
   })
 
 
-  const appointments = useMemo(() => appointmentsData?.slots || [], [appointmentsData])
+  const appointments = useMemo(() => appointmentsData?.appointments || [], [appointmentsData])
 
 
   useEffect(() => {

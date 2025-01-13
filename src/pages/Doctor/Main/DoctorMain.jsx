@@ -30,8 +30,8 @@ function DoctorMain() {
 	}) || []
 
 
-	const fetchedAppointments = fetchedAppointmentsData?.slots || []
-	const fetchedAppointmentsToday = fetchedAppointmentsTodayData?.slots || []
+	const fetchedAppointments = fetchedAppointmentsData?.appointments || []
+	const fetchedAppointmentsToday = fetchedAppointmentsTodayData?.appointments || []
 
 	const user = {
 		first_name: userInfo?.first_name || '',

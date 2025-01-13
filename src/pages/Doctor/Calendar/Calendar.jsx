@@ -60,8 +60,9 @@ function Calendar() {
     dateFrom: startView,
     dateTo: endView,
   })
+  console.log(appointmentsData)
 
-  const appointments = useMemo(() => appointmentsData?.slots || [], [appointmentsData])
+  const appointments = useMemo(() => appointmentsData?.appointments || [], [appointmentsData])
 
 
  

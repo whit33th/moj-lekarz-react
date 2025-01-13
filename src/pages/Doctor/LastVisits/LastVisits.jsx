@@ -25,7 +25,7 @@ function LastVisits() {
   })
   const totalPages = data?.pages
 
-  const appointments = data?.slots || []
+  const appointments = data?.appointments || []
 
   console.log(startFilter, endFilter)
 

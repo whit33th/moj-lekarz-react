@@ -22,7 +22,7 @@ function TodaysVisits() {
     page: page
   })
 
-  const appointments = data?.slots || []
+  const appointments = data?.appointments || []
   const totalPages = data?.pages
 
   const tableData = appointments?.map((appointment) => ({
