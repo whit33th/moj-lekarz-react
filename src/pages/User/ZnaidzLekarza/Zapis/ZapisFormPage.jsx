@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import styles from "./ZapisFormPage.module.css";
 import imgName from "@assets/img/simple-line-i.svg";
@@ -8,13 +8,38 @@ import visitorImg from "@assets/img/Vector15.svg";
 import { pageConfig } from "../../../../config/config";
 import { useForm } from "react-hook-form";
 import usePostAppointment from "../../../../api/hooks/PatientHooks/usePostAppointment";
+import useGetUserInfo from "@api/hooks/UserHooks/useGetUserInfo";
 
 function ZapisFormPage() {
   const { state } = useLocation();
   const navigate = useNavigate();
+  const { data: user } = useGetUserInfo();
+  
+  const { register, handleSubmit, reset, getValues, formState: { errors } } = useForm({
+    defaultValues: {
+      firstName: '',
+      lastName: '',
+      phone: '',
+      pesel: '',
+      comment: '',
+      acceptTerms: false,
+    }
+  });
 
-  const { register, handleSubmit, errors } = useForm();
   const { mutate, isPending } = usePostAppointment();
+
+  useEffect(() => {
+    if (user) {
+      reset({
+        firstName: user.first_name,
+        lastName: user.last_name,
+        phone: user.phone,
+        pesel: user.pesel,
+        comment: "",
+        acceptTerms: false,
+      });
+    }
+  }, [user, reset]);
 
   // Add state validation
   if (!state) {
@@ -25,32 +50,14 @@ function ZapisFormPage() {
 
   const { doctor, clinic, appointment, visitDetails } = state;
 
-  console.log(appointment);
+  
   // Add validation for required data
   if ((!doctor || !clinic || !appointment, !visitDetails)) {
     console.log("Missing required data");
     navigate("/");
     return null;
   }
-
-  const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    phone: "",
-    pesel: "",
-    comment: "",
-    file: null,
-    acceptTerms: false,
-    acceptMarketing: false,
-  });
-
-  const handleInputChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: type === "checkbox" ? checked : value,
-    }));
-  };
+  
 
   const onSubmit = () => {
     const appointmentData = {
@@ -61,7 +68,7 @@ function ZapisFormPage() {
       timeSlot: appointment.startTime,
       firstVisit: visitDetails.isFirstVisit,
       visitType: visitDetails.type,
-      description: formData.comment,
+      description: getValues('comment'), // Получаем значение комментария
     };
 
     mutate(appointmentData, {
@@ -125,9 +132,7 @@ function ZapisFormPage() {
             </div>
             <hr style={{ margin: "20px 0" }} />
             <div className={styles.zapisPageLeftTimeBlock}>
-              <p>
-                {visitDetails.service}
-              </p>
+              <p>{visitDetails.service}</p>
             </div>
           </div>
 
@@ -139,45 +144,56 @@ function ZapisFormPage() {
                   <div>
                     <p>Imię</p>
                     <input
-                      type="text"
-                      name="firstName"
+                      disabled
+                      {...register("firstName", {
+                        required: "To pole jest wymagane",
+                        pattern: {
+                          value: /^[A-Za-zĄąĆćĘęŁłŃńÓóŚśŹźŻż\s-]+$/,
+                          message: "Nieprawidłowy format imienia"
+                        }
+                      })}
                       placeholder="Podaj swoje imię"
-                      value={formData.firstName}
-                      onChange={handleInputChange}
-                      required
                     />
                   </div>
                   <div>
                     <p>Nazwisko</p>
                     <input
-                      type="text"
-                      name="lastName"
+                      disabled
+                      {...register("lastName", {
+                        required: "To pole jest wymagane",
+                        pattern: {
+                          value: /^[A-Za-zĄąĆćĘęŁłŃńÓóŚśŹźŻż\s-]+$/,
+                          message: "Nieprawidłowy format nazwiska"
+                        }
+                      })}
                       placeholder="Podaj swoje nazwisko"
-                      value={formData.lastName}
-                      onChange={handleInputChange}
-                      required
                     />
                   </div>
                   <div>
                     <p>Telefon</p>
                     <input
-                      type="tel"
-                      name="phone"
+                      {...register("phone", {
+                        required: "To pole jest wymagane",
+                        pattern: {
+                          value: /^\+?[0-9]{9,12}$/,
+                          message: "Nieprawidłowy format numeru telefonu"
+                        }
+                      })}
                       placeholder="Podaj numer telefonu"
-                      value={formData.phone}
-                      onChange={handleInputChange}
-                      required
                     />
                   </div>
                   <div>
                     <p>Pesel</p>
                     <input
-                      type="text"
-                      name="pesel"
+                      disabled
+                      {...register("pesel", {
+                        required: "To pole jest wymagane",
+                        pattern: {
+                          value: /^[0-9]{11}$/,
+                          message: "Nieprawidłowy format PESEL"
+                        }
+                      })}
                       placeholder="Podaj numer pesel"
-                      value={formData.pesel}
-                      onChange={handleInputChange}
-                      required
                     />
                   </div>
                 </div>
@@ -185,26 +201,28 @@ function ZapisFormPage() {
                 <div className={styles.textareaBlock}>
                   <p>Komentarz</p>
                   <textarea
-                    name="comment"
+                    {...register("comment", {
+                      maxLength: {
+                        value: 500,
+                        message: "Komentarz nie może być dłuższy niż 500 znaków"
+                      }
+                    })}
                     placeholder="Wpisz komentarz"
-                    value={formData.comment}
-                    onChange={handleInputChange}
                   />
                 </div>
               </div>
             </div>
 
             <div className={styles.checkboxBlock}>
-              <label className={styles.checkboxContainer}>
+              <label className={`${styles.checkboxContainer} ${errors.acceptTerms ? styles.error : ''}`}>
                 <input
                   type="checkbox"
-                  name="acceptTerms"
-                  checked={formData.acceptTerms}
-                  onChange={handleInputChange}
-                  required
+                  {...register("acceptTerms", {
+                    required: true
+                  })}
                 />
                 <span className={styles.checkmark}></span>
-                <p>
+                <p className={errors.acceptTerms ? styles.errorText : ''}>
                   <span>*</span> Zgadzam się, żeby MyLekarz przetwarzał moje
                   dane medyczne w celu korzystania z usług.
                 </p>

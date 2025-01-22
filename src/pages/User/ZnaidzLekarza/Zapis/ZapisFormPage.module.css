@@ -397,6 +397,23 @@
 .btnBlock button {
   cursor: pointer;
 }
+
+.checkboxContainer.error .checkmark {
+    border-color: #ff4444;
+}
+
+.checkboxContainer.error p.errorText {
+    color: #ff4444;
+}
+
+.checkboxContainer.error span {
+    color: #ff4444;
+}
+
+.errorText {
+    color: #ff4444 !important;
+}
+
 @media (max-width: 624px) {
   .zapisFormPage {
     padding: 100px 3%;
