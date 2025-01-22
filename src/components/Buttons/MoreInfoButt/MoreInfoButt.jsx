@@ -26,10 +26,10 @@ const MoreInfoButtPatient = ({ id }) => {
   const closeModal = () => resetActiveMoreInfoButtId()
 
   const patientId = id || "unknown"
-  const openDocumentModal = () => {
-    setModalActive(true)
-    setModalContent(modalContent)
-  }
+  // const openDocumentModal = () => {
+  //   setModalActive(true)
+  //   setModalContent(modalContent)
+  // }
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
@@ -80,13 +80,13 @@ const MoreInfoButtPatient = ({ id }) => {
     link.remove()
   }
 
-  const files = [
-    { name: "Dokument 1.pdf", date: "12.08.2023" },
-    { name: "Dokument 2.pdf", date: "12.08.2023" },
-    { name: "Dokument 3.pdf", date: "12.08.2023" },
-    { name: "Dokument 4.pdf", date: "12.08.2023" },
-    { name: "Dokument 5.pdf", date: "12.08.2023" },
-  ]
+  // const files = [
+  //   { name: "Dokument 1.pdf", date: "12.08.2023" },
+  //   { name: "Dokument 2.pdf", date: "12.08.2023" },
+  //   { name: "Dokument 3.pdf", date: "12.08.2023" },
+  //   { name: "Dokument 4.pdf", date: "12.08.2023" },
+  //   { name: "Dokument 5.pdf", date: "12.08.2023" },
+  // ]
 
   const uploadFile = (
     <div className={styles.fileContainer}>
@@ -121,43 +121,43 @@ const MoreInfoButtPatient = ({ id }) => {
     </div>
   )
 
-  const modalContent = (
-    <div className={styles.fileContainer}>
-      <img
-        onClick={() => setModalActive(false)}
-        className={styles.cross}
-        src={cross}
-        alt="back"
-      />
-      <div className={styles.header}>
-        <h2>Wszystkie pliki</h2>
-        <button
-          onClick={() => setModalContent(uploadFile)}
-          className={styles.addFileButton}
-        >
-          Dodaj nowy plik
-        </button>
-      </div>
-      <ul className={styles.fileList}>
-        {files.map((file, index) => (
-          <li key={index} className={styles.fileItem}>
-            <div className={styles.fileIcon}></div>
-            <div className={styles.fileInfo}>
-              <p className={styles.fileName}>{file.name}</p>
-              <p className={styles.fileDate}>{file.date}</p>
-            </div>
-            <div className={styles.downloadIcon}>
-              <img
-                src={download}
-                onClick={() => handleDownloadPDF(file.name)}
-                width={15}
-              />
-            </div>
-          </li>
-        ))}
-      </ul>
-    </div>
-  )
+  // const modalContent = (
+  //   <div className={styles.fileContainer}>
+  //     <img
+  //       onClick={() => setModalActive(false)}
+  //       className={styles.cross}
+  //       src={cross}
+  //       alt="back"
+  //     />
+  //     <div className={styles.header}>
+  //       <h2>Wszystkie pliki</h2>
+  //       <button
+  //         onClick={() => setModalContent(uploadFile)}
+  //         className={styles.addFileButton}
+  //       >
+  //         Dodaj nowy plik
+  //       </button>
+  //     </div>
+  //     <ul className={styles.fileList}>
+  //       {files.map((file, index) => (
+  //         <li key={index} className={styles.fileItem}>
+  //           <div className={styles.fileIcon}></div>
+  //           <div className={styles.fileInfo}>
+  //             <p className={styles.fileName}>{file.name}</p>
+  //             <p className={styles.fileDate}>{file.date}</p>
+  //           </div>
+  //           <div className={styles.downloadIcon}>
+  //             <img
+  //               src={download}
+  //               onClick={() => handleDownloadPDF(file.name)}
+  //               width={15}
+  //             />
+  //           </div>
+  //         </li>
+  //       ))}
+  //     </ul>
+  //   </div>
+  // )
 
   return (
     <div
@@ -175,9 +175,7 @@ const MoreInfoButtPatient = ({ id }) => {
             <p style={{ fontWeight: "500" }}>Informacja</p>
           </NavLink>
 
-          <button onClick={openDocumentModal} className={styles.hoverOpacity}>
-            <p style={{ fontWeight: "500" }}>Dokumenty</p>
-          </button>
+          
         </div>
       )}
     </div>

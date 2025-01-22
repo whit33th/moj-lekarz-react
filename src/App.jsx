@@ -13,6 +13,8 @@ const DoctorRoutes = lazy(() => import("./helpers/Routes/DoctorRoutes"))
 import useIsAuth from '@hooks/AuthHooks/useIsAuth'
 import { SkeletonTheme } from 'react-loading-skeleton'
 import LoadingPage from './components/UI/Loading/LoadingPage'
+import { Toaster } from 'sonner';
+const Modal = lazy(() => import("@components/Modal/Modal"))
 
 function App() {
 
@@ -34,8 +36,8 @@ function App() {
         <ScrollToTop />
 
         <Suspense fallback={<LoadingPage/>}>
-          {role === "patient" && !isAuth ? (
-            <UserLayout>
+          {role === "patient" || !isAuth ? (
+            <UserLayout isLoggedIn={isAuth}>
               <UserRoutes isAuth={isAuth} />
             </UserLayout>
           ) : (
@@ -46,6 +48,9 @@ function App() {
                 
             </Workspace>
           )}
+          <Modal />
+          <Toaster duration={3500} richColors />
+          
         </Suspense>
 
       </Router>

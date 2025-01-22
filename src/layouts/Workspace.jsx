@@ -1,11 +1,10 @@
 import { lazy, useEffect, useState } from "react"
 import Navbar from "../components/Navbar/Navbar"
 import Sidebar from "../components/Sidebar/Sidebar"
-import { Toaster } from "sonner"
+
 import loop from "@assets/img/loop.mp4"
 import poster from "@assets/img/loopPoster.png"
 
-const Modal = lazy(() => import("../components/Modal/Modal"))
 
 function Workspace({ role, children }) {
   const [videoSrc, setVideoSrc] = useState(null)
@@ -41,9 +40,9 @@ function Workspace({ role, children }) {
 
         {children}
 
-        <Toaster duration={3500} richColors />
         
-        <Modal />
+        
+        
       </div>
     </>
   )

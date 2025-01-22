@@ -1,12 +1,12 @@
 
-import styles from './ResearchResultsPage.module.css'
+import styles from './DocumentsPage.module.css'
 import { useState } from 'react'
 import img from '@assets/img/Vector-21.svg'
 
 import useStore from '../../../data/store'
 
 
-function ResearchResultsPage() {
+function DocumentsPage() {
   const [btnState, setBtnState] = useState('Winiki badań')
   const { stateResearchResult } = useStore()
 
@@ -82,4 +82,4 @@ function ResearchResultsPage() {
   )
 }
 
-export default ResearchResultsPage
+export default DocumentsPage

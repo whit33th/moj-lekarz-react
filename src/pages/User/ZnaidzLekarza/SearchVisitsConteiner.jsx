@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import ZhaidzLekarza from "./ZhaidzLekarza";
+import ZhaidzLekarza from "./SearchVisits";
 import styles from "./style/ZnaidzLekarzaConteiner.module.css";
 
 import { Routes, Route } from "react-router-dom";
@@ -7,7 +7,7 @@ import ZapisConteiner from "./Zapis/ZapisConteiner";
 
 import useStore from "../../../data/store";
 
-function ZnajdzLekarzaContainer({ isLoggedIn }) {
+function SearchVisitsContainer({ isLoggedIn }) {
   const [zapisState, setZapisState] = useState({
     idDoctor: undefined,
     date: undefined,
@@ -55,4 +55,4 @@ function ZnajdzLekarzaContainer({ isLoggedIn }) {
   );
 }
 
-export default ZnajdzLekarzaContainer;
+export default SearchVisitsContainer;

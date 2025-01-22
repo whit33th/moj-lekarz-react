@@ -76,8 +76,12 @@ class PageConfig {
       privacy: "/policy/privacy",
     },
     howItWorks: "/how-it-works",
-    searchDoctor: "/search",
+    searchVisits: "/search",
+    confirmVisit: "/confirm-visit",
+    ZapisFormPage: "/zapis-form-page", // Проверьте, что путь совпадает с маршрутом
+    zapisDone: "/zapis-done",
     doctorVersion2: "/find-doctor-version2",
+    document
   };
 
 }

@@ -4,67 +4,7 @@
     display: flex;
 }
 
-.modalWindow{
-    width: 100%;
-    position: fixed;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.075);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    top: 0;
-    left: 0;
-    z-index: 22;
-    transition: 0.3s;
-}
-.modalWindowRow{
-    width: 408px;
-    height: auto;
-    padding: 20px 30px;
-    border-radius: 16px;
-    background-color: #fff;
 
-}
-.modalWindowRow h1{
-    font-size: 30px;
-    font-weight: 500;
-    line-height: 43.71px;
-    text-align: center;
-}
-.modalWindowBtn{
-    width: 100%;
-    display: flex;
-    margin-top: 15px;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-}
-.modalWindowBtn button{
-    width: 168px;
-    height: 46px;
-    border-radius: 1000px;
-    border: 1.5px solid #3E36B0;
-    cursor: pointer;
-    transition: 0.3s;
-
-}
-.modalWindowBtnBack{
-    background: #fff;
-    color: #3E36B0;
-}
-.modalWindowBtnYes{
-    background: #3E36B0;
-    color: #fff;
-}
-.modalWindowBtnBack:hover{
-    border: 1.5px solid #DE5B10;
-
-}
-.modalWindowBtnYes:hover{
-    background: #DE5B10;
-    border: 1px solid #DE5B10;
-
-}
 .visitsPageLeft{
     width: 40%;
     display: flex;

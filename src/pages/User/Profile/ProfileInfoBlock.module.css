@@ -32,7 +32,8 @@
 
 }
 .changeBlockLeft{
-    width: 49%;
+    flex: 1;
+   
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 25px 22px;
@@ -62,12 +63,13 @@
     width: 100%;
 }
 .changeBlockRight{
-    width: 43%;
+    flex: 1;
+    
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 25px 22px;
-    margin-left: 4%;
+    
     align-content: flex-start;
 }
 .changeBlockRight > .changeInputBlock{
@@ -80,18 +82,10 @@
     gap: 20px;
 
 }
-.changeInputBlockAddress > div:first-child{
-    width: 82%;
 
-}
-.changeInputBlockAddress > div:last-child{
-    
-    width: 18%;
-}
 
-.changeInputBlockAddress > div:last-child input , .changeInputBlockAddress > div:last-child p{
-    text-align: center;
-}
+
+
 .changeBtn{
     width: 28px;
     height: 28px;
@@ -106,6 +100,7 @@
 }
 .changeBlock {
     display: flex;
+    gap: 30px;
     padding: 30px 0;
     transition: max-height 0.5s ease, opacity 0.5s ease; /* Плавный переход */
     max-height: 0; /* Скрываем блок по умолчанию */
@@ -114,8 +109,9 @@
     flex-wrap: wrap;
 }
 
+
 .changeBlock.open {
-    max-height: 500px; /* Максимальная высота при открытом состоянии, измените при необходимости */
+    max-height: 3000px; /* Максимальная высота при открытом состоянии, измените при необходимости */
     opacity: 1; /* Полная непрозрачность */
 }
 .line{
@@ -125,8 +121,55 @@
     margin: 50px 0 ;
 }
 
+.error {
+  color: #ff0000;
+  font-size: 12px;
+  margin-top: 4px;
+}
 
+.submitButton {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
 
+.submitButton:hover {
+  background-color: #0056b3;
+}
+
+@media (max-width: 924px) {
+    .changeBlock{
+        flex-direction: column;
+        gap: 20px;
+    }
+    .changeBlockLeft {
+        grid-template-columns: 1fr;
+        width: 100%;
+    }
+
+    .changeBlockRight {
+        flex-direction: column;
+        width: 100%;
+        margin-left: 0;
+        margin-top: 25px;
+    }
+
+    .changeInputBlockAddress {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .changeInputBlock, .changeInputBlockAddress > div{
+        width: 100%;
+    }
+
+    .profileInfoBlock {
+        padding: 40px 5% 20px 5%;
+    }
+}
 
 @media (max-width: 624px) {
 
@@ -158,4 +201,81 @@
         text-align: left;
     }
     
+    .profileInfoBlock {
+        padding: 30px 4% 15px 4%;
+    }
+
+    .changeInputBlock input {
+        height: 40px;
+        font-size: 16px;
+        border-radius: 12px;
+    }
+
+    .changeInputBlock p {
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    .changeInputBlockAddress {
+        flex-direction: column;
+    }
+
+    .changeInputBlockAddress > div:first-child,
+    .changeInputBlockAddress > div:last-child {
+        width: 100%;
+    }
+
+    .profileInfoImgBlock .profileImg {
+        width: 150px;
+        height: 150px;
+    }
+
+    .profileInfoImgBlock p {
+        font-size: 18px;
+    }
+
+    .line {
+        margin: 30px 0;
+    }
+
+    .submitButton {
+        width: 100%;
+        margin-top: 25px;
+        padding: 12px;
+        font-size: 16px;
+        border-radius: 12px;
+    }
+
+    .changeBtn {
+        right: 20px;
+        top: 20px;
+    }
+}
+
+@media (max-width: 380px) {
+    .profileInfoBlock {
+        padding: 25px 3% 15px 3%;
+    }
+
+    .profileInfoImgBlock .profileImg {
+        width: 120px;
+        height: 120px;
+    }
+
+    .profileInfoImgBlock p {
+        font-size: 16px;
+    }
+
+    .changeInputBlock input {
+        height: 38px;
+        font-size: 14px;
+    }
+
+    .changeInputBlock p {
+        font-size: 14px;
+    }
+
+    .error {
+        font-size: 11px;
+    }
 }

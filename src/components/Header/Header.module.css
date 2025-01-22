@@ -33,6 +33,12 @@
   background-color: #fff;
 }
 
+.headerProfileBtn{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
 .headerBottomBlock a {
   text-decoration: none;
 }
@@ -126,6 +132,31 @@
 .headerSignBtnMobile {
   display: none;
 }
+
+.minimalistButton {
+  background: transparent;
+  border: 1px solid #3e36b0;
+  color: #3e36b0;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.minimalistButton:hover {
+  background: #3e36b0;
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(62, 54, 176, 0.2);
+}
+
+.minimalistButton:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 4px rgba(62, 54, 176, 0.2);
+}
+
 @media (max-width: 624px) {
   .header {
     width: 100%;

@@ -1,9 +1,11 @@
-import { useState } from 'react'
-import styles from './Profile.module.css'
-import ProfileInfoBlock from './ProfileInfoBlock'
-import doctorImg from '@assets/img/foto (1).png'
-import useStore from '../../../data/store'
-
+import { useState } from "react";
+import styles from "./Profile.module.css";
+import ProfileInfoBlock from "./ProfileInfoBlock";
+import doctorImg from "@assets/img/foto (1).png";
+import useStore from "../../../data/store";
+import { useForm } from "react-hook-form";
+import InputError from "../../../components/UI/InputError/InputError";
+import useChangePassword from "../../../api/hooks/UserHooks/useChangePassword";
 
 const dataVisitsList = [
   {
@@ -14,19 +16,29 @@ const dataVisitsList = [
     date: "12.06.2024 12:30",
     address: "Centrum NFZ, Wilda,Poznań",
   },
-]
+];
+
 function Profile() {
-  const [oldPassword, setOldPassword] = useState('')
-  const [newPassword, setNewPassword] = useState('')
-  const [repeatNewPassword, setRepeatNewPassword] = useState('')
-  const { profileState } = useStore()
-  const clickBtnFc = () => {
-    console.log('click')
-  }
+  
+  const { profileState } = useStore();
+  const { register, handleSubmit, formState, watch } = useForm({
+    mode: "onChange",
+  });
+
+  const {mutate} = useChangePassword()
+  
+  const onSubmit = (data) => {
+    
+    console.log(data);
+    if (data.newPassword === data.repeatNewPassword) {
+      mutate(data)
+    }
+  };
+
   return (
     <div className={styles.profilePage}>
       <ProfileInfoBlock data={profileState} />
-      <div className={styles.passwordBlock}>
+      <form className={styles.passwordBlock} onSubmit={handleSubmit(onSubmit)}>
         <h1>Zmiana hasła</h1>
         <div className={styles.passwordBlockContent}>
           <div>
@@ -34,31 +46,40 @@ function Profile() {
             <input
               type="password"
               placeholder="Wpisz stare hasło"
-              value={oldPassword}
-              onChange={(e) => setOldPassword(e.target.value)}
+              {...register("oldPassword", { required: "To pole jest wymagane" })}
             />
+             <InputError formState={formState} errorField={'oldPassword'}/>
+            
           </div>
           <div>
             <p>Nowe hasło</p>
             <input
-              type="text"
+              type="password"
               placeholder="Wpisz nowe hasło"
-              value={newPassword}
-              onChange={(e) => setNewPassword(e.target.value)}
+              {...register("newPassword", { 
+                required: "To pole jest wymagane",
+                minLength: { value: 8, message: "Hasło musi mieć co najmniej 8 znaków" }
+              })}
             />
+            
+              <InputError formState={formState} errorField={'newPassword'}/>
+            
           </div>
           <div>
             <p>Powtórz nowe hasło</p>
             <input
-              type="text"
+              type="password"
               placeholder="Powtórz nowe hasło"
-              value={repeatNewPassword}
-              onChange={(e) => setRepeatNewPassword(e.target.value)}
+              {...register("repeatNewPassword", {
+                required: "To pole jest wymagane",
+                validate: (value) => value === watch("newPassword") || "Hasła nie są takie same"
+              })}
             />
+             <InputError formState={formState} errorField={'repeatNewPassword'}/>
           </div>
-          <input type="button" value="Zmień hasło" onClick={clickBtnFc} />
+          <button type="submit"> Zmień hasło</button>
         </div>
-      </div>
+      </form>
       <div className={styles.visitsBlock}>
         <h1>Najbliższe wizyty</h1>
         <div className={styles.visitsList}>
@@ -87,6 +108,6 @@ function Profile() {
         </div>
       </div>
     </div>
-  )
+  );
 }
-export default Profile
+export default Profile;

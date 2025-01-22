@@ -68,7 +68,10 @@
   justify-content: space-between;
   padding-bottom: 10px;
 }
-
+.formCalendarBlock{
+  display: flex;
+  gap: 10px;
+}
 .dropdownContainer {
   display: flex;
   flex-direction: column;
@@ -417,5 +420,15 @@
     font-weight: 500;
     line-height: 20px;
     margin-bottom: 3px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .formCalendarBlock {
+    flex-direction: column;
+    width: 100%; 
+  }
+  .formCalendarBlock > * {
+    width: 100% !important; 
   }
 }

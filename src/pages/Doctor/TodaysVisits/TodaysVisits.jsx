@@ -71,14 +71,7 @@ function TodaysVisits() {
 
         </span>
 
-        <NavLink to={`${pageConfig.doctor.calendar}?date=${selectedDate}`}>
-          <div className={`${styles.calendarNavbarButt} ${styles.itemsCenter}`}>
-            <span className={styles.followLink}>Przejdź do kalendarza</span>
-            <div className={styles.icoDiv}>
-              <img src={follow} />
-            </div>
-          </div>
-        </NavLink>
+        
       </div>
 
       <Table

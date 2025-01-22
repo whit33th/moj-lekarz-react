@@ -28,6 +28,7 @@ class AuthServices {
   async sessionValid() {
     return await axios.get(`${this.URL}/api/protected`, {
       withCredentials: true,
+      
     })
   }
   async logout() {

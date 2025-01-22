@@ -16,25 +16,21 @@ import InputDropdownStas from "./../../components/Dropdown/InputDropdownStas";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useCities } from "../../api/hooks/GeneralHooks/useCitys";
-import InputError from '../../components/UI/InputError/InputError'
+import InputError from "../../components/UI/InputError/InputError";
+import useSpecialties from "../../api/hooks/GeneralHooks/useSpecialties";
 
 function Home() {
   const navigate = useNavigate();
   const { data: cities } = useCities();
+  const citiesOptions = cities?.map((c) => c.city) || ["Ladowanie"];
 
-  const { formState, handleSubmit, getValues, register, control} = useForm({});
+  const { formState, handleSubmit, getValues, register, control } = useForm({});
 
-  const specializations = [
-    { label: "Ortopeda", value: "Ortopeda" },
-    { label: "Logopeda", value: "Logopeda" },
-    { label: "Chirurg", value: "Chirurg" },
-    { label: "Kardiolog", value: "Kardiolog" },
-    { label: "Ginekolog", value: "Ginekolog" },
-  ];
+  const { data: specialties } = useSpecialties();
 
   const types = [
-    { label: "Konsultacja", value: "Konsultacja" },
-    { label: "Badanie", value: "Badanie" },
+    { label: "Prywatna", value: "prywatna" },
+    { label: "NFZ", value: "nfz" },
   ];
 
   const [mapsData, setMapsData] = useState({
@@ -72,13 +68,17 @@ function Home() {
           <img src={mainImg} alt="Main image" />
         </div>
         <div className={styles.homeFirstBlockRight}>
-          <form onSubmit={handleSubmit(handleSearch)} className={styles.mainFormBlock}>
+          <form
+            onSubmit={handleSubmit(handleSearch)}
+            className={styles.mainFormBlock}
+          >
             <h2>Umów się na wizytę</h2>
             <div className={styles.mainFormIntupsBlock}>
               <div className={styles.dropdownContainer}>
                 <InputDropdownStas
                   control={control}
-                  options={specializations}
+                  options={specialties?.map((s) => s.name) || ["Ladowanie"]}
+                  object={false}
                   placeholder={"Wybierz specjalizacje"}
                   seeOptions
                   {...register("specialty", {
@@ -91,7 +91,7 @@ function Home() {
               <div className={styles.dropdownContainer}>
                 <InputDropdownStas
                   control={control}
-                  options={cities || ["Ladowanie"]}
+                  options={citiesOptions || ["Ladowanie"]}
                   placeholder={"Wybierz miasto"}
                   seeOptions={true}
                   object={false}
@@ -102,31 +102,33 @@ function Home() {
                 <InputError formState={formState} errorField={"city"} />
               </div>
 
-              <div className={styles.formCalendarContainer}>
-                <div className={styles.formCalendar}>
-                  <input
-                    type="date"
-                    placeholder="Data wizyty"
-                    className={styles.calendar}
-                    {...register("date", {
-                      required: "Data jest wymagana",
+              <div className={styles.formCalendarBlock}>
+                <div className={styles.formCalendarContainer}>
+                  <div className={styles.formCalendar}>
+                    <input
+                      type="date"
+                      placeholder="Data wizyty"
+                      className={styles.calendar}
+                      {...register("date", {
+                        required: "Data jest wymagana",
+                      })}
+                    />
+                  </div>
+                  <InputError formState={formState} errorField={"date"} />
+                </div>
+
+                <div className={`${styles.dropdownContainer} ${styles.litle}`}>
+                  <InputDropdownStas
+                    control={control}
+                    options={types}
+                    placeholder={"Rodzaj wizyty"}
+                    seeOptions={true}
+                    {...register("type", {
+                      required: "Typ wizyty jest wymagany",
                     })}
                   />
+                  <InputError formState={formState} errorField={"type"} />
                 </div>
-                <InputError formState={formState} errorField={"date"} />
-              </div>
-
-              <div className={`${styles.dropdownContainer} ${styles.litle}`}>
-                <InputDropdownStas
-                  control={control}
-                  options={types}
-                  placeholder={"Rodzaj wizyty"}
-                  seeOptions={true}
-                  {...register("type", {
-                    required: "Typ wizyty jest wymagany",
-                  })}
-                />
-                <InputError formState={formState} errorField={"type"} />
               </div>
             </div>
             <div className={styles.mainFormBtn}>
@@ -140,10 +142,10 @@ function Home() {
         <h1>Jak to działą?</h1>
         <div className={styles.descriptionsText}>
           <p>
-            Serwis łączący w sobie wyszukiwarkę lekarzy z pełnym dostępem do Twoich danych
-            medycznych. Internetowe konto pacjenta, dzięki któremu masz dostęp do
-            wszystkich swoich danych medycznych.Umów wizytę, otrzymaj e-receptę lub
-            e-zwolnienie bez wychodzenia z domu.
+            Serwis łączący w sobie wyszukiwarkę lekarzy z pełnym dostępem do
+            Twoich danych medycznych. Internetowe konto pacjenta, dzięki któremu
+            masz dostęp do wszystkich swoich danych medycznych.Umów wizytę,
+            otrzymaj e-receptę lub e-zwolnienie bez wychodzenia z domu.
           </p>
         </div>
       </div>
@@ -155,7 +157,10 @@ function Home() {
           </div>
           <div className={styles.itemText}>
             <p className={styles.itemTextTitle}>Załóż konto</p>
-            <p>Utworzenie konta zapewnia dostęp do wszystkich funkcji i usług serwisu.</p>
+            <p>
+              Utworzenie konta zapewnia dostęp do wszystkich funkcji i usług
+              serwisu.
+            </p>
           </div>
         </div>
         <div className={styles.arrow}>

@@ -1,102 +1,112 @@
-import { useState } from "react"
-import styles from "./style/ClinicZapisPage.module.css"
-import { useNavigate } from "react-router-dom"
-import { useParams } from "react-router-dom"
-import BookingComponent from "./../../components/BookingComponent"
-import DropdownStas from '../../components/Dropdown/DropdownStas'
-import { useForm } from 'react-hook-form'
+import { useState } from "react";
+import styles from "./style/ClinicZapisPage.module.css";
+import { Link, useNavigate, useLocation, useParams } from "react-router-dom";
+import DropdownStas from "../../components/Dropdown/DropdownStas";
+import { useForm } from "react-hook-form";
+import AppointmentCard from "./AppointmentCard";
+import { pageConfig } from "../../config/config";
+import useGetDoctorServices from "../../api/hooks/ServicesHooks/useGetDoctorServices";
 
-const arraySelectOptions = {
-  select1: [
-    "Konsultacja ginekologiczna • 290,00 zł",
-    "Konsultacja ginekologiczna • 2090,00 zł",
-    "Konsultacja ginekologiczna • 2900,00 zł",
-  ],
-  select2: ["Prywatna", "Tokyo", "NYC"],
-}
 function ClinicZapisPage() {
-  const { id } = useParams()
-  const { control, handleSubmit, watch } = useForm({
+  const {id} = useParams();
+  const {data: services, isLoading} = useGetDoctorServices(id);
+  const [selectedServiceId, setSelectedServiceId] = useState(null);
 
-  })
-  const [isOpen1, setIsOpen1] = useState(false)
-  const [isOpen2, setIsOpen2] = useState(false)
-  const [timeValue, setTimeValue] = useState("")
-  const [dateValue, setDateValue] = useState("")
+  // Создаем простые строки для options, но сохраняем маппинг id
+  const servicesMap = {};
+  const visitTypeOptions = services?.map(item => {
+    const optionText = `${item.service.name}, ${item.service.price} zł`;
+    servicesMap[optionText] = item.service.id;
+    return optionText;
+  }) || [];
 
-  const [typWizyty, setTypWizyty] = useState("")
-  const [rodzajWizyty, setRodzajWizyty] = useState("")
-  const [selectedRadio, setSelectedRadio] = useState("")
+  // Добавляем обработчик выбора сервиса
+  const handleServiceSelect = (value) => {
+    setSelectedServiceId(servicesMap[value]);
+  };
 
-  const navigate = useNavigate()
+  const { state } = useLocation(); 
+  const { control, register, getValues } = useForm();
+
+  const [selectedRadio, setSelectedRadio] = useState("");
+  const [errors, setErrors] = useState({});
+
+  const navigate = useNavigate();
 
   const handleGoBack = () => {
-    navigate(-1)
+    navigate(-1);
+  };
+
+  if (!state) {
+    navigate(-1);
+    return null;
   }
 
-  const handleOptionClick = (option, setSelectedOption, setIsOpen) => {
-    setSelectedOption(option)
-    setIsOpen(false)
-  }
-  const visitTypeOptions = [
-    "Konsultacja ginekologiczna • 290,00 zł",
-    "Konsultacja ginekologiczna • 2900,00 zł",
-    "Konsultacja ginekologiczna • 2090,00 zł",
-    "Konsultacja ginekologiczna • 290,00 zł",
-    "Konsultacja ginekologiczna • 2900,00 zł",
-    "Konsultacja ginekologiczna • 2090,00 zł",
-  ]
-  const visitTypeOptions2 = [
-    'Prywatna','Publiczna'
-  ]
-  
-  
+  console.log(state)
+  const visitTypeOptions2 = ["Prywatna", "NFZ"];
 
-  const toggleDropdown = (isOpen, setIsOpen) => {
-    setIsOpen(!isOpen)
-  }
-  const zapisClickBtn = () => {
-    if (timeValue.length > 2) {
-      const newState = {
-        id: id,
-        date: dateValue,
-        time: timeValue,
-        typWizyty: typWizyty,
-        rodzajWizyty: rodzajWizyty,
-      }
-      localStorage.setItem("zapisStateClinic", JSON.stringify(newState))
+  const validateForm = () => {
+    const service = getValues("service");
+    const type = getValues("type");
+    const newErrors = {};
+
+    if (!service) {
+      newErrors.service = "Wybierz serwis";
     }
-    navigate(`/znajdz-lekarza/zapis/${id}`)
-  }
+    if (!type) {
+      newErrors.type = "Wybierz typ wizyty";
+    }
+    if (!selectedRadio) {
+      newErrors.radio = "Wybierz odpowiedź";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleContinue = (e) => {
+    if (!validateForm()) {
+      e.preventDefault();
+      return;
+    }
+  };
+
   return (
     <div className={styles.clinicZapisPage}>
       <div className={styles.leftBlock}>
-        <h1>Wybierz termin</h1>
-        <BookingComponent
-          setTimeValue={setTimeValue}
-          setDateValue={setDateValue}
-        />
+        <AppointmentCard state={state} />
       </div>
       <div className={styles.zapisPageRight}>
         <h1>Wybierz opcje wizyty</h1>
         <div className={styles.zapisPagePriceBlock}>
           <p>Typ wizyty</p>
           <div className={styles.dropdownContainer}>
-
             <DropdownStas
-              control={control} name={"."}
+              control={control}
+              placeholder={"Serwis"}
               options={visitTypeOptions}
-               />
-
+              {...register("service", {
+                required: true,
+                message: "Pole jest wymagane",
+                onChange: (e) => handleServiceSelect(e.target.value)
+              })}
+            />
+            {errors.service && <span className={styles.error}>{errors.service}</span>}
           </div>
         </div>
         <div className={styles.zapisPagePriceBlock}>
           <p>Rodzaj wizyty</p>
           <div className={styles.dropdownContainer}>
             <DropdownStas
-              control={control} name={".."}
+              control={control}
+              placeholder={"Typ wizyty"}
               options={visitTypeOptions2}
+              {...register("type", {
+                required: true,
+                message: "Pole jest wymagane",
+              })}
             />
+            {errors.type && <span className={styles.error}>{errors.type}</span>}
           </div>
         </div>
         <div className={styles.choiceBlock}>
@@ -105,7 +115,6 @@ function ClinicZapisPage() {
             <label>
               <input
                 type="radio"
-                name="choice"
                 checked={selectedRadio === "Tak"}
                 onChange={() => setSelectedRadio("Tak")}
               />
@@ -121,15 +130,35 @@ function ClinicZapisPage() {
               Nie
             </label>
           </div>
+          {errors.radio && <span className={styles.error}>{errors.radio}</span>}
         </div>
         <div className={styles.btnBlock}>
-          <button className={styles.btnBlockBack} onClick={handleGoBack}>
+          <button
+            type="button"
+            className={styles.btnBlockBack}
+            onClick={handleGoBack}
+          >
             Anuluj
           </button>
-          <button onClick={zapisClickBtn}>Kontynuj</button>
+          <Link
+            to={pageConfig.patient.ZapisFormPage}
+            state={{
+              ...state,
+              visitDetails: {
+                service: getValues("service"),
+                serviceId: selectedServiceId, // Теперь точно передаем ID
+                type: getValues("type"),
+                isFirstVisit: selectedRadio === "Tak",
+              },
+            }}
+            onClick={handleContinue}
+            className={styles.btnBlockContinue}
+          >
+            Kontynuj
+          </Link>
         </div>
       </div>
     </div>
-  )
+  );
 }
-export default ClinicZapisPage
+export default ClinicZapisPage;

@@ -53,7 +53,7 @@ function VisitsPageTwo({ isLoggedIn }) {
           <VisitsCardTwo data={item} key={item.id} />
         ))}
         <div className={styles.visitsBtnBlock}>
-          <NavLink to={pageConfig.patient.searchDoctor} className={styles.visitsAddBtn}>
+          <NavLink to={pageConfig.patient.searchVisits} className={styles.visitsAddBtn}>
             Dodaj wizytę <span></span>
           </NavLink>
         </div>

@@ -8,71 +8,63 @@ import VisitsCardCompleted from "./VisitsCardCompleted";
 import useStore from "../../../data/store";
 import { pageConfig } from "../../../config/config";
 import QRCode from "react-qr-code";
+import useGetPatientAppointments from "../../../api/hooks/PatientHooks/useGetPatientAppointment";
+import DeleteAppointmentModal from "../../../components/Modals/DeleteAppointment/DeleteAppointmentModal";
+import useDeleteAppointment from "./../../../api/hooks/PatientHooks/useDeleteAppontment";
 
 function VisitsPage({ isLoggedIn = true }) {
-  const { visitsState, deleteVisitById } = useStore((state) => ({
+  const { data: scheduledAppointments } = useGetPatientAppointments({
+    // startDate: "2021-01-01",
+    // endDate: "2021-12-31",
+    // limit: 10,
+    // page: 1,
+  });
+  const { mutate } = useDeleteAppointment();
+  const { visitsState } = useStore((state) => ({
     visitsState: state.visitsState,
-    deleteVisitById: state.deleteVisitById,
   }));
 
   const [modalWindowStatus, setModalWindowStatus] = useState(false);
-  const [deleteItemId, setDeleteItemId] = useState(undefined);
+
   const navigate = useNavigate();
 
-  const clickDeleteBtn = (id) => {
+  function clickDeleteBtn() {
     setModalWindowStatus(true);
-    setDeleteItemId(id);
-  };
+  }
 
-  const deleteFc = () => {
-    if (deleteItemId !== undefined) {
-      deleteVisitById(deleteItemId);
-    }
+  function deleteFc(id) {
+    mutate(id);
     setModalWindowStatus(false);
-  };
+  }
 
   useEffect(() => {
     if (!isLoggedIn) {
-      navigate("/auth/");
+      navigate(pageConfig.auth.login);
     }
   }, [isLoggedIn, navigate]);
 
   return (
     <div className={styles.visitsPage}>
-      <div
-        className={styles.modalWindow}
-        style={{ display: modalWindowStatus ? "flex" : "none" }}
-      >
-        <div className={styles.modalWindowRow}>
-          <h1>Czy na pewno chcesz anulować wizytę?</h1>
-          <div className={styles.modalWindowBtn}>
-            <button
-              className={styles.modalWindowBtnBack}
-              onClick={() => setModalWindowStatus(false)}
-            >
-              Nie
-            </button>
-            <button className={styles.modalWindowBtnYes} onClick={deleteFc}>
-              Tak
-            </button>
-          </div>
-        </div>
-      </div>
+      <DeleteAppointmentModal
+        modalWindowStatus={modalWindowStatus}
+        setModalWindowStatus={setModalWindowStatus}
+        deleteFc={deleteFc}
+      />
 
       <div className={styles.visitsPageLeft}>
         <h1>Zaplanowane wizyty</h1>
-        {visitsState.plannedVisits.map((item) => (
-          <VisitsCard data={item} deleteFc={clickDeleteBtn} key={item.id} />
+        {scheduledAppointments?.appointments?.map((i, index) => (
+          <VisitsCard data={i} deleteFc={clickDeleteBtn} key={index} />
         ))}
         <div className={styles.newVisitsBtn}>
-          <NavLink to={pageConfig.patient.searchDoctor}>
+          <NavLink to={pageConfig.patient.searchVisits}>
             Dodaj wizytę <span>&#43;</span>
           </NavLink>
         </div>
 
         <h1>Zrealizowane wizyty</h1>
-        {visitsState.completedVisits.map((item) => (
-          <VisitsCardCompleted data={item} key={item.id} />
+        {visitsState.completedVisits.map((i) => (
+          <VisitsCardCompleted data={i} key={i.id} />
         ))}
       </div>
       <div className={styles.visitsPageRight}>

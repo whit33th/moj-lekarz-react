@@ -1,34 +1,28 @@
 import { useEffect, useState } from "react";
 import styles from "./style/ZhaidzLekarza.module.css";
 import DoctorCard from "./DoctorCard";
-import DropdownStas from "../../../components/Dropdown/DropdownStas";
-import { get, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 
 import DoctorCardSkeleton from "./DoctorCardSkeleton";
-import Pagination from "./../../../components/UI/Pagination/Pagination";
+import Pagination from "../../../components/UI/Pagination/Pagination";
 import { useCities } from "../../../api/hooks/GeneralHooks/useCitys";
 import InputDropdownStas from "../../../components/Dropdown/InputDropdownStas";
 import useAvailableSlots from "../../../api/hooks/PatientHooks/useAvailableSlots";
 import InputError from "../../../components/UI/InputError/InputError";
+import useSpecialties from "../../../api/hooks/GeneralHooks/useSpecialties";
 
 const arraySelectOptions = {
-  select1: ["Ortopeda", "Logopeda", "Chirurg", "Kardiolog", "Ginekolog"],
   select2: ["Konsultacja", "Badanie"],
 };
 
-function ZnajdzLekarza() {
+function SearchVisits() {
   const [page, setPage] = useState(1);
   const { control, register, handleSubmit, getValues, formState } = useForm({});
-
-  const [city, setCity] = useState(getValues("city"));
-  const [specialty, setSpecialty] = useState(null);
-  const [date, setDate] = useState(null);
-  const [visitType, setVisitType] = useState(null);
   const { data: fullData, isLoading } = useAvailableSlots({
-    // specialty: getValues('specialty'),
-    // date: getValues('date'),
+    specialty: getValues('specialty'),
+    date: getValues('date'),
     // type: getValues('type'),
-    city: city,
+    city: getValues('city'),
     limit: 10,
     page: page,
   });
@@ -42,9 +36,17 @@ function ZnajdzLekarza() {
   const totalPages = fullData?.pages || null;
 
   const { data: cities } = useCities();
+  const citiesOptions = cities?.map((c) => (
+    c.city
+  )) || ["Ladowanie"];
 
+  const { data: specialties } = useSpecialties();
+
+
+  
   function onSubmit() {
-    setCity(getValues("city"));
+   // just for correct work
+   console.log(getValues('specialty'), getValues('date'), getValues('city'), getValues('type'));
   }
 
   return (
@@ -60,12 +62,12 @@ function ZnajdzLekarza() {
               <div className={styles.dropdownContainer}>
                 <InputDropdownStas
                   control={control}
-                  options={arraySelectOptions.select1}
+                  options={specialties?.map((s) => (s.name)) || ["Ladowanie"]}
                   placeholder={"Wybierz specjalizacje"}
                   searchParamsName={"specialty"}
                   seeOptions
                   object={false}
-                  {...register("specialty", { required: "Specjalizacja jest wymagana" })}
+                  {...register("specialty"/* , { required: "Specjalizacja jest wymagana" } */)}
                 />
                 <InputError errorField="specialty" formState={formState} />
               </div>
@@ -73,12 +75,12 @@ function ZnajdzLekarza() {
               <div className={styles.dropdownContainer}>
                 <InputDropdownStas
                   control={control}
-                  options={cities || ["Ladowanie"]}
+                  options={citiesOptions}
                   placeholder={"Wybierz miasto"}
                   searchParamsName={"city"}
                   object={false}
                   seeOptions
-                  {...register("city", { required: "Miasto jest wymagane" })}
+                  {...register("city"/* , { required: "Miasto jest wymagane" } */)}
                 />
                 <InputError errorField="city" formState={formState} />
               </div>
@@ -89,7 +91,7 @@ function ZnajdzLekarza() {
                     type="date"
                     placeholder="Data wizyty"
                     className={styles.calendar}
-                    {...register("date", { required: "Data jest wymagana" })}
+                    {...register("date"/* , { required: "Data jest wymagana" } */)}
                     defaultValue={getValues("date")}
                   />
                 </div>
@@ -152,4 +154,4 @@ function ZnajdzLekarza() {
   );
 }
 
-export default ZnajdzLekarza;
+export default SearchVisits;

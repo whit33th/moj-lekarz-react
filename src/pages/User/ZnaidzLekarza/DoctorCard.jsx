@@ -1,33 +1,35 @@
+import styles from "./style/DoctorCard.module.css";
+import starimg from "@assets/img/Star.svg";
+import imgIcon1 from "@assets/img/simple-line-i.svg";
+import imgIcon2 from "@assets/img/Vector14.svg";
+import { NavLink } from "react-router-dom";
+import Skeleton from "react-loading-skeleton";
+import grey from "@assets/img/grey.png";
+import { pageConfig } from "../../../config/config";
+import useStore from "../../../data/store";
 
-import styles from "./style/DoctorCard.module.css"
-import starimg from "@assets/img/Star.svg"
-import imgIcon1 from "@assets/img/simple-line-i.svg"
-import imgIcon2 from "@assets/img/Vector14.svg"
-import { NavLink } from "react-router-dom"
-import Skeleton from 'react-loading-skeleton'
-import grey from "@assets/img/grey.png"
-import { pageConfig } from '../../../config/config'
 
 function DoctorCard({ data, loading, selectedDate, addZapis }) {
-  
-
   const appointment = {
-    id: data?.doctor_id || 'Brak',
-    name: data?.user?.first_name + ' ' + data?.user?.last_name || 'Brak',
-    price: data?.service?.price || 'Brak',
-    description: data?.description || 'Brak',
-    street: data?.address?.street || 'Brak',
-    city: data?.address?.city || 'Brak',
-    home: data?.address?.home || 'Brak',
-    postCode: data?.address?.post_index || 'Brak',
-    service: data?.service?.name || 'Brak',
+    id: data?.doctor_id || "Brak",
+    clinicId: data?.clinic?.id || "Brak",
+    name: data?.user?.first_name + " " + data?.user?.last_name || "Brak",
+    price: data?.service?.price || "Brak",
+    description: data?.description || "Brak",
+    street: data?.address?.street || "Brak",
+    city: data?.address?.city || "Brak",
+    home: data?.address?.home || "Brak",
+    postCode: data?.address?.post_index || "Brak",
+    service: data?.service?.name || "Brak",
     rating: Math.floor(data?.rating) || 0,
-    specialty: data?.specialty || 'Brak',
+    specialty: data?.specialty || "Brak",
     photo: data?.user?.photo || grey,
     slots: data?.available_slots || [],
+    clinic: data?.clinic.name || "Brak",
+    phone: data?.user?.phone || "Brak",
+  };
+  console.log(appointment)
 
-  }
-  
   // const rating = parseInt(data.rating, 10);
 
   // const filteredDates = selectedDate
@@ -38,15 +40,19 @@ function DoctorCard({ data, loading, selectedDate, addZapis }) {
 
   // const displayedDates = filteredDates.slice(0, 2);
 
+  const {isAuth} = useStore();
+  console.log(isAuth)
   return (
     <div className={styles.doctorCard}>
       <div className={styles.doctorCardInfo}>
         <div className={styles.doctorCardInfoImgBlock}>
           <NavLink to={`/profileDoctor/${appointment.id}`}>
-            <img src={appointment.photo || grey} alt={'DoctorAvatar'} />
+            <img src={appointment.photo || grey} alt={"DoctorAvatar"} />
           </NavLink>
           <div>
-            <p className={styles.doctorCardInfoImgBlockName}>{appointment.name}</p>
+            <p className={styles.doctorCardInfoImgBlockName}>
+              {appointment.name}
+            </p>
             <p>{appointment.specialty}</p>
             <p>
               {[...Array(appointment.rating)].map((_, index) => (
@@ -61,34 +67,39 @@ function DoctorCard({ data, loading, selectedDate, addZapis }) {
           </div>
         </div>
         <div className={styles.doctorCardAddressBlock}>
-          <div>
+          <div className={styles.location} >
             <img src={imgIcon1} alt="address" />
-            <div>
-              <p>
+            <div >
+              <p >
                 {appointment.street}, {appointment.postCode}, {appointment.city}
               </p>
               <p className={styles.doctorCardAddressPlaceholder}>
-                Centrum Medyczny
+                Firma: {appointment.clinic}
               </p>
             </div>
           </div>
           <div className={styles.servicesContainer}>
-
             {data?.service?.slice(0, 5).map((item, index) => (
               <div className={styles.serviceItem} key={index}>
                 <img src={imgIcon2} alt="price" />
-                <p>{item.name} - {item.price}zł </p>
+                <p>
+                  {item.name} - {item.price}zł{" "}
+                </p>
               </div>
             ))}
-            {data?.service?.length > 5 ? <p>Jeszcze {data?.service?.length - 5} usług(i)</p> : null}
-
+            {data?.service?.length > 5 ? (
+              <p>Jeszcze {data?.service?.length - 5} usług(i)</p>
+            ) : null}
           </div>
         </div>
       </div>
       <div className={styles.doctorDescription}>
         <p>{appointment.description}</p>
         <div>
-          <NavLink style={{ color: "#3E36B0" }} to={`/profileDoctor/${appointment.id}`}>
+          <NavLink
+            style={{ color: "#3E36B0" }}
+            to={`/profileDoctor/${appointment.id}`}
+          >
             Zobacz więcej &#8594;
           </NavLink>
         </div>
@@ -102,16 +113,36 @@ function DoctorCard({ data, loading, selectedDate, addZapis }) {
                 <p style={{ fontWeight: "bold" }}>{item.date}</p>
                 <div className={styles.doctorCardHoursItems}>
                   {item?.slots?.map((timeSlot, index) => (
+                    isAuth ?
                     <NavLink
-                      onClick={() =>
-                        addZapis(appointment.id, timeSlot, item.date, data)
-                      }
-                      to={`${pageConfig.patient.searchDoctor}/${appointment.id}/`}
+                      to={`${pageConfig.patient.confirmVisit}/${appointment.id}`}
+                      state={{
+                        doctor: {
+                          id: appointment.id,
+                          
+                          name: appointment.name,
+                          specialty: appointment.specialty,
+                          photo: appointment.photo,
+                          phone: appointment.phone,
+                        },
+                        clinic: {
+                          name: appointment.clinic,
+                          address: `${appointment.street}, ${appointment.postCode}, ${appointment.city}`,
+                          id: appointment.clinicId,
+                        },
+                        appointment: {
+                          date: item.date,
+                          startTime: timeSlot,
+                          endTime: timeSlot.split(':')[0] + ':' + (parseInt(timeSlot.split(':')[1]) + 15),
+                          service: appointment.service
+                        }
+                      }}
                       className={styles.doctorCardHoursItem}
                       key={index}
                     >
                       {timeSlot}
                     </NavLink>
+                    : <NavLink to={pageConfig.login} className={styles.doctorCardHoursItem} key={index}>{timeSlot}</NavLink>
                   ))}
                 </div>
               </div>
@@ -122,7 +153,7 @@ function DoctorCard({ data, loading, selectedDate, addZapis }) {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default DoctorCard
+export default DoctorCard;

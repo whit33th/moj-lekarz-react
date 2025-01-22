@@ -57,6 +57,7 @@ function Settings() {
       first_name: data.firstName,
       last_name: data.lastName,
       birthday: data.birthDate,
+      gender: '',
       pesel: data.pesel,
       email: data.email,
       phone: data.tel,

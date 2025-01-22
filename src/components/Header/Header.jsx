@@ -1,21 +1,23 @@
-import { useState, useEffect } from 'react'
-import { NavLink, useLocation } from 'react-router-dom'
+import { useState, useEffect } from "react";
+import { NavLink, useLocation } from "react-router-dom";
 
-import styles from './Header.module.css'
-import logo from '@assets/img/logo.svg'
-import imgProfile from "@assets/img/Vector23.svg"
+import styles from "./Header.module.css";
+import logo from "@assets/img/logo.svg";
+import imgProfile from "@assets/img/Vector23.svg";
 
-import { pageConfig } from '../../config/config'
-
+import { pageConfig } from "../../config/config";
+import useLogout from "../../api/hooks/AuthHooks/useLogout";
+import exit from "@assets/img/exitIco.png";
 function Header({ isLoggedIn }) {
-  const location = useLocation()
-  const [mobileMenuState, setMobileMenuState] = useState(false)
+  const location = useLocation();
+  const [mobileMenuState, setMobileMenuState] = useState(false);
+  const { logout } = useLogout();
 
   useEffect(() => {
     if (mobileMenuState) {
-      setMobileMenuState(false)
+      setMobileMenuState(false);
     }
-  }, [location.pathname])
+  }, [location.pathname]);
 
   return (
     <header className={styles.header}>
@@ -27,31 +29,42 @@ function Header({ isLoggedIn }) {
           </NavLink>
         </div>
         <div
-          className={`${styles.headerNavigate} ${mobileMenuState ? styles.activeMobileMenu : styles.hiddenMobileMenu
-            }`}
+          className={`${styles.headerNavigate} ${
+            mobileMenuState ? styles.activeMobileMenu : styles.hiddenMobileMenu
+          }`}
         >
           <ul>
+            {!isLoggedIn && <li
+              className={
+                `${styles.headerNavigateItem} ` +
+                (location.pathname === pageConfig.patient.howItWorks
+                  ? styles.active
+                  : "")
+              }
+            >
+              <NavLink to={pageConfig.patient.howItWorks}>
+                Jak to działa
+              </NavLink>
+            </li>}
             <li
               className={
                 `${styles.headerNavigateItem} ` +
-                (location.pathname === pageConfig.patient.howItWorks ? styles.active : "")
+                (location.pathname === pageConfig.patient.searchVisits
+                  ? styles.active
+                  : "")
               }
             >
-              <NavLink to={pageConfig.patient.howItWorks}>Jak to działa</NavLink>
-            </li>
-            <li
-              className={
-                `${styles.headerNavigateItem} ` +
-                (location.pathname === pageConfig.patient.searchDoctor ? styles.active : "")
-              }
-            >
-              <NavLink to={pageConfig.patient.searchDoctor}>Znajdż lekarza</NavLink>
+              <NavLink to={pageConfig.patient.searchVisits}>
+                Znajdż lekarza
+              </NavLink>
             </li>
             {isLoggedIn && (
               <li
                 className={
                   `${styles.headerNavigateItem} ` +
-                  (location.pathname === pageConfig.patient.visits ? styles.active : "")
+                  (location.pathname === pageConfig.patient.visits
+                    ? styles.active
+                    : "")
                 }
               >
                 <NavLink to={pageConfig.patient.visits}>Moje wizyty</NavLink>
@@ -61,34 +74,33 @@ function Header({ isLoggedIn }) {
               <li
                 className={
                   `${styles.headerNavigateItem} ` +
-                  (location.pathname === pageConfig.patient.recipes ? styles.active : "")
+                  (location.pathname === pageConfig.patient.recipes
+                    ? styles.active
+                    : "")
                 }
               >
                 <NavLink to={pageConfig.patient.recipes}>Moje recepty</NavLink>
               </li>
             )}
-            {isLoggedIn && (
-              <li
-                className={
-                  `${styles.headerNavigateItem} ` +
-                  (location.pathname === pageConfig.patient.researchResults ? styles.active : "")
-                }
-              >
-                <NavLink to={pageConfig.patient.researchResults}>Dokumenty</NavLink>
-              </li>
-            )}
+            
             <li
               className={
                 `${styles.headerNavigateItem} ` +
-                (location.pathname === pageConfig.patient.mobileApp ? styles.active : "")
+                (location.pathname === pageConfig.patient.mobileApp
+                  ? styles.active
+                  : "")
               }
             >
-              <NavLink to={pageConfig.patient.mobileApp}>Aplikacja mobilna</NavLink>
+              <NavLink to={pageConfig.patient.mobileApp}>
+                Aplikacja mobilna
+              </NavLink>
             </li>
             <li
               className={
                 `${styles.headerNavigateItem} ` +
-                (location.pathname === pageConfig.patient.blog ? styles.active : "")
+                (location.pathname === pageConfig.patient.blog
+                  ? styles.active
+                  : "")
               }
             >
               <NavLink to={pageConfig.patient.blog}>Blog</NavLink>
@@ -97,7 +109,9 @@ function Header({ isLoggedIn }) {
               <li
                 className={
                   `${styles.headerNavigateItem} ` +
-                  (location.pathname === pageConfig.patient.firm ? styles.active : "")
+                  (location.pathname === pageConfig.patient.firm
+                    ? styles.active
+                    : "")
                 }
               >
                 <NavLink to={pageConfig.patient.firm}>Dla firm</NavLink>
@@ -115,11 +129,16 @@ function Header({ isLoggedIn }) {
           </ul>
         </div>
         {isLoggedIn ? (
-          <div className={styles.headerProfileBtn}>
-            <NavLink to={pageConfig.patient.profile}>
-              <img src={imgProfile} alt="profile" />
-            </NavLink>
-          </div>
+          <>
+            <div className={styles.headerProfileBtn}>
+              <NavLink to={pageConfig.patient.profile}>
+                <img src={imgProfile} alt="profile" />
+              </NavLink>
+              <button className={styles.minimalistButton} onClick={() => logout()}>
+                Wyloguj się
+              </button>
+            </div>
+          </>
         ) : (
           <div className={styles.headerSignBtn}>
             <NavLink to={pageConfig.login}>Zaloguj się</NavLink>
@@ -135,7 +154,7 @@ function Header({ isLoggedIn }) {
         </div>
       </div>
     </header>
-  )
+  );
 }
 
-export default Header
+export default Header;

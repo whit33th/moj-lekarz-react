@@ -7,6 +7,7 @@ import twitter from "@assets/img/twiter.svg"
 import phone from "@assets/img/Group4.svg"
 import arrow from "@assets/img/Vectorarrow.svg"
 import { NavLink, useLocation } from "react-router-dom"
+import { pageConfig } from "../../config/config"
 
 function Footer() {
   const location = useLocation()
@@ -53,17 +54,15 @@ function Footer() {
         <div className={styles.footerNavigateBlock}>
           <div className={styles.footerNavigateBlockTop}>
             <div className={styles.footerNavigateBlockTopMenu}>
-              <NavLink to="/">Jak to działa</NavLink>
+              <NavLink to={pageConfig.patient.howItWorks}>Jak to działa</NavLink>
               <div>/</div>
-              <NavLink to="/mobilna">Aplikacja mobilna</NavLink>
+              <NavLink to={pageConfig.patient.mobileApp}>Aplikacja mobilna</NavLink>
               <div>/</div>
-              <NavLink to="/blog">Blog</NavLink>
+              <NavLink to={pageConfig.patient.blog}>Blog</NavLink>
               <div>/</div>
-              <NavLink to="/firm">Dla firm</NavLink>
+              <NavLink to={pageConfig.patient.firm}>Dla firm</NavLink>
             </div>
-            <div className={styles.footerNavigateBlockTopBtn}>
-              <a href="#">Zaloguj się</a>
-            </div>
+            
           </div>
           <div className={styles.footerNavigateBlockBottom}>
             <div>
