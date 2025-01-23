@@ -1,4 +1,4 @@
-import axios from "axios"
+import axios from "axios";
 class AuthServices {
   URL = "https://doc-web-rose.vercel.app";
 
@@ -12,30 +12,24 @@ class AuthServices {
       {
         withCredentials: true,
       }
-    )
+    );
   }
   async registration(data) {
     return await axios.post(`${this.URL}/register`, {
-      userData: {
-        email: data.email,
-        password: data.password,
-      },
-      patientData: {
-        market_inf: data.checkbox,
-      },
-    })
+      email: data.email,
+      password: data.password,
+    });
   }
   async sessionValid() {
     return await axios.get(`${this.URL}/api/protected`, {
       withCredentials: true,
-      
-    })
+    });
   }
   async logout() {
     return await axios.get(`${this.URL}/logout`, {
       withCredentials: true,
-    })
+    });
   }
 }
 
-export const authService = new AuthServices()
+export const authService = new AuthServices();
