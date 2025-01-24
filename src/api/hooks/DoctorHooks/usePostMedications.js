@@ -13,7 +13,6 @@ function usePostMedications() {
 
 	})
 
-
 	useEffect(() => {
 		if (isError) {
 			toast.error('Cos poszło nie tak!')

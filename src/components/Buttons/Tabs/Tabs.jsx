@@ -3,20 +3,21 @@ import styles from "./Tabs.module.css"
 function Tabs({ buttons, activeTab, onTabClick, fullWidth = false }) {
   const buttonsArray = buttons.split(",").map((name) => name.trim())
 
-
-
   const handleTabClick = (name) => {
     onTabClick(name)
   }
 
+  const containerStyle = fullWidth ? { width: "100%" } : {}
+  const buttonStyle = fullWidth ? { width: "100%" } : {}
+
   return (
-    <div style={fullWidth && { width: "100%" }} className={styles.settingNavbarButt}>
+    <div className={styles.settingNavbarButt} style={containerStyle}>
       {buttonsArray.map((name) => (
         <button
-          style={fullWidth && { width: "100%" }}
           key={name}
           onClick={() => handleTabClick(name)}
-          className={activeTab === name ? styles.active : ""}
+          className={`${styles.tabButton} ${activeTab === name ? styles.active : ""}`}
+          style={buttonStyle}
         >
           {name}
         </button>

@@ -7,7 +7,6 @@ import { userItems } from "../../../helpers/userItemList";
 import { Link } from "react-router-dom";
 
 function Database() {
-  
   const [activeTab, setActiveTab] = useState("Pacjenci");
 
   const tableData1 = userItems.map((item) => ({
