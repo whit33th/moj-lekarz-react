@@ -5,7 +5,6 @@ import img from "@assets/img/Vector (22).svg";
 import useGetUserInfo from "@api/hooks/UserHooks/useGetUserInfo";
 import usePutUserInfo from "@api/hooks/UserHooks/usePutUserInfo";
 import grey from "@assets/img/grey.png";
-import BlueBorderBtn from "../../../components/Buttons/BlueBorderBtn/BlueBorderBtn";
 import BlueBtn from "../../../components/Buttons/BlueBtn/BlueBtn";
 
 function ProfileInfoBlock() {
@@ -40,7 +39,7 @@ function ProfileInfoBlock() {
       reset({
         firstName: user.first_name,
         lastName: user.last_name,
-        gender: user.gender,
+        gender: user.gender === "male" ? "mężczyzna" : "kobieta",
         pesel: user.pesel,
         phone: user.phone,
         email: user.email,
@@ -64,15 +63,15 @@ function ProfileInfoBlock() {
       first_name: data.firstName,
       last_name: data.lastName,
       pesel: data.pesel,
-      gender: data.gender,
+      gender: data.gender === "mężczyzna" ? "male" : "female",
       city: data.city,
       province: "",
       street: data.street,
       home: data.houseNumber,
       flat: data.apartmentNumber,
-      post_index: data.cityCode
+      post_index: data.cityCode,
     };
-    console.log('Submitting formData:', formData);
+    console.log("Submitting formData:", formData);
     mutate(formData);
   };
 
@@ -121,12 +120,16 @@ function ProfileInfoBlock() {
           </div>
           <div className={styles.changeInputBlock}>
             <p>Plec</p>
-            <input type="text" {...register("gender",{ pattern:
-              {
-                value: /^(mężczyzna|kobieta)$/i,
-                message: "Płeć może być tylko 'mężczyzna' lub 'kobieta'"
-              }
-            })} placeholder="mężczyzna albo kobieta" />
+            <input
+              type="text"
+              {...register("gender", {
+                pattern: {
+                  value: /^(mężczyzna|kobieta)$/i,
+                  message: "Płeć może być tylko 'mężczyzna' lub 'kobieta'",
+                },
+              })}
+              placeholder="mężczyzna albo kobieta"
+            />
             {errors.gender && (
               <span className={styles.error}>{errors.gender.message}</span>
             )}
@@ -200,7 +203,6 @@ function ProfileInfoBlock() {
                 pattern: { value: /^\d{5}$/, message: "Format: XXXXX" },
               })}
               placeholder="32712"
-              
               maxLength="5"
             />
             {errors.cityCode && (

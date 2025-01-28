@@ -6,10 +6,10 @@ import phoneImg from "@assets/img/ph_phone-light.svg";
 import closeImg from "@assets/img/Vector (33).svg";
 
 function VisitsCard({ data, deleteFc }) {
-  console.log(data);
+
 
   const appointment = {
-    id: data?.id || 1,
+    id: data?.id,
     doctorName:
       data?.doctor?.first_name + " " + data?.doctor?.last_name || "Brak",
     img: data?.doctor?.photo || "Brak",
@@ -27,6 +27,7 @@ function VisitsCard({ data, deleteFc }) {
     serviceName: data?.service?.name || "Brak",
     servicePrice: data?.service?.price + " zł" || "Brak",
   };
+  console.log(appointment.id);
 
   return (
     <div className={styles.visitsCard}>

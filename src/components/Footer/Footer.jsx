@@ -73,9 +73,9 @@ function Footer() {
                 <li>
                   <a href="#">Lekarze</a>
                 </li>
-                <li>
-                  <NavLink to="Search-clinic">Placówki medyczne</NavLink>
-                </li>
+                {/* <li>
+                  <NavLink to={pageConfig.patient.searchClinics}>Placówki medyczne (poka skip)</NavLink>
+                </li> */}
                 <li>
                   <a href="#">Usługi i zabiegi</a>
                 </li>

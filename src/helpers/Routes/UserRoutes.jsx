@@ -1,5 +1,4 @@
 import { Route, Routes } from "react-router-dom";
-import { useState } from "react";
 import { pageConfig } from "../../config/config";
 import Home from "../../pages/User/Home";
 import AuthPage from "../../pages/Auth/AuthPage";
@@ -42,8 +41,8 @@ function UserRoutes() {
       <Route path={pageConfig.patient.qA} element={<QAComponent />} />
       <Route path={pageConfig.patient.blog} element={<Blog />} />
       <Route path="/profileDoctor/:id" element={<DoctorProfile />} />
+      <Route path="/profileClinic/:id" element={<ProfileClinic />} />
       <Route path={pageConfig.patient.searchClinics} element={<SearchClinicPage />} />
-      <Route path="/profile-clinic/:id" element={<ProfileClinic />} />
       <Route path={pageConfig.patient.howItWorks} element={<HowItWorks />} />
       <Route path={pageConfig.patient.searchVisits} element={<SearchVisitsContainer />} />
       <Route path="/znajdz-lekarza-version2/" element={<ZnajdzLekarzaVersion2 />} />

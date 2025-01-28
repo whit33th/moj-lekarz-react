@@ -20,6 +20,7 @@ function VisitsPage({ isLoggedIn = true }) {
     // page: 1,
   });
   const { mutate } = useDeleteAppointment();
+  const [ deleteId, setDeleteId ] = useState();
   const { visitsState } = useStore((state) => ({
     visitsState: state.visitsState,
   }));
@@ -28,14 +29,16 @@ function VisitsPage({ isLoggedIn = true }) {
 
   const navigate = useNavigate();
 
-  function clickDeleteBtn() {
+  function clickDeleteBtn(id) {
+    setDeleteId(id);
     setModalWindowStatus(true);
   }
 
-  function deleteFc(id) {
-    mutate(id);
+  function deleteFc() {
+    mutate(deleteId);
     setModalWindowStatus(false);
   }
+  console.log(deleteId)
 
   useEffect(() => {
     if (!isLoggedIn) {

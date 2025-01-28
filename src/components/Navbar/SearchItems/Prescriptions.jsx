@@ -28,7 +28,7 @@ function SearchPrescriptionsItem({ data }) {
                       " " +
                       item?.patient?.user?.last_name}
                   </p>
-                  <p className={styles.code}>{item?.code}</p>
+                  <p className={styles.code}>{item?.code || 'Brak'}</p>
                 </div>
               </div>
               <Medications medications={item.medications} />

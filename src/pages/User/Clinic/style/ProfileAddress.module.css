@@ -1,12 +1,14 @@
 .addressBlock{
     width: 100%;
-    padding: 0 8%;
+    
     display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
     justify-content: space-between;
     margin-top: 50px;
 }
 .leftBlock{
-    width: 40%;
+    flex: 1;
     height: auto;
 }
 
@@ -24,6 +26,7 @@
 
 }
 .rightTextBlock{
+    text-wrap: nowrap;
     width: auto;
     margin-right: 20px;
 
@@ -32,17 +35,15 @@
     margin-right: 7px;
 }
 .rightBlock{
-    width: 50%;
+  
     display: flex;
     justify-content: flex-end;
     
 }
-.rightTimeBlock{
-    margin-right: 25px;
 
-}
 .timeItem{
-    display: flex;
+    display: grid;
+    grid-template-columns: auto auto;
     justify-content: end;
     flex-wrap: wrap;
     font-family: Manrope;

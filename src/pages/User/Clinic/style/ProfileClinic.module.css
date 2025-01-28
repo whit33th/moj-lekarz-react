@@ -46,6 +46,7 @@
     display: flex;
     justify-content: center;
     gap: 35px;
+    justify-items: center;
 }
 .clinicMenuBtn{
     height: 50px;

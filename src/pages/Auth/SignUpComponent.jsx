@@ -32,10 +32,10 @@ function SignUpComponent() {
               <p>Kontynuuj z Google</p>
               <img src={logoGoogle} alt="google" />
             </a>
-            <a className={styles.registerServiceItem}>
+            {/* <a className={styles.registerServiceItem}>
               <p>Kontynuuj z Apple</p>
               <img src={logoApple} alt="Apple" />
-            </a>
+            </a> */}
           </div>
           <div className={styles.lub}>
             <p>lub</p>

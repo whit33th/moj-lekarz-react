@@ -1,12 +1,11 @@
-import React from 'react'
-import styles from './style/ProfileClinicAbout.module.css'
+import styles from "./style/ProfileClinicAbout.module.css";
 
- function ProfileClinicAbout(props) {
+function ProfileClinicAbout({ description }) {
   return (
     <div className={styles.descriptionBlock}>
-      <p>{props.desctiption}</p>
+      <p>{description}</p>
     </div>
-  )
+  );
 }
 
-export default ProfileClinicAbout
+export default ProfileClinicAbout;

@@ -21,7 +21,7 @@ function Header({ isLoggedIn }) {
 
   return (
     <header className={styles.header}>
-      <div className={styles.headerTopBlock}>tryb dla słabowidzących</div>
+      {/* <div className={styles.headerTopBlock}>tryb dla słabowidzących</div> */}
       <div className={styles.headerBottomBlock}>
         <div className={styles.headerLogo}>
           <NavLink to="/">
@@ -58,6 +58,20 @@ function Header({ isLoggedIn }) {
                 Znajdż lekarza
               </NavLink>
             </li>
+            <li
+              className={
+                `${styles.headerNavigateItem} ` +
+                (location.pathname === pageConfig.patient.searchVisits
+                  ? styles.active
+                  : "")
+              }
+            >
+              <li>
+                  <NavLink to={pageConfig.patient.searchClinics}>Placówki medyczne</NavLink>
+                </li>
+            </li>
+
+
             {isLoggedIn && (
               <li
                 className={

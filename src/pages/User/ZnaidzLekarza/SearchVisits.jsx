@@ -11,18 +11,23 @@ import useAvailableSlots from "../../../api/hooks/PatientHooks/useAvailableSlots
 import InputError from "../../../components/UI/InputError/InputError";
 import useSpecialties from "../../../api/hooks/GeneralHooks/useSpecialties";
 
-const arraySelectOptions = {
-  select2: ["Konsultacja", "Badanie"],
-};
+const types = [
+  { label: "Prywatna", value: "prywatna" },
+  { label: "NFZ", value: "nfz" },
+];
 
 function SearchVisits() {
   const [page, setPage] = useState(1);
   const { control, register, handleSubmit, getValues, formState } = useForm({});
-  const { data: fullData, isLoading } = useAvailableSlots({
-    specialty: getValues('specialty'),
-    date: getValues('date'),
-    // type: getValues('type'),
-    city: getValues('city'),
+  const {
+    data: fullData,
+    isLoading,
+    refetch,
+  } = useAvailableSlots({
+    specialty: getValues("specialty"),
+    date: getValues("date"),
+    type: getValues("type"),
+    city: getValues("city"),
     limit: 10,
     page: page,
   });
@@ -36,17 +41,26 @@ function SearchVisits() {
   const totalPages = fullData?.pages || null;
 
   const { data: cities } = useCities();
-  const citiesOptions = cities?.map((c) => (
-    c.city
-  )) || ["Ladowanie"];
+  const [cityOptions, setCityOptions] = useState(["Ladowanie"]);
 
   const { data: specialties } = useSpecialties();
+  const [specialtyOptions, setSpecialtyOptions] = useState(["Ladowanie"]);
 
+  // Обновляем опции когда данные загружаются
+  useEffect(() => {
+    if (specialties) {
+      setSpecialtyOptions([...new Set(specialties.map((s) => s.name))]);
+    }
+  }, [specialties]);
+  useEffect(() => {
+    if (cities) {
+      setCityOptions([...new Set(cities.map((c) => c.city))]);
+    }
+  }, [cities]);
 
-  
   function onSubmit() {
-   // just for correct work
-   console.log(getValues('specialty'), getValues('date'), getValues('city'), getValues('type'));
+    refetch();
+    // just for correct work
   }
 
   return (
@@ -62,12 +76,14 @@ function SearchVisits() {
               <div className={styles.dropdownContainer}>
                 <InputDropdownStas
                   control={control}
-                  options={specialties?.map((s) => (s.name)) || ["Ladowanie"]}
+                  options={specialtyOptions}
                   placeholder={"Wybierz specjalizacje"}
                   searchParamsName={"specialty"}
                   seeOptions
                   object={false}
-                  {...register("specialty"/* , { required: "Specjalizacja jest wymagana" } */)}
+                  {...register(
+                    "specialty" /* , { required: "Specjalizacja jest wymagana" } */
+                  )}
                 />
                 <InputError errorField="specialty" formState={formState} />
               </div>
@@ -75,12 +91,14 @@ function SearchVisits() {
               <div className={styles.dropdownContainer}>
                 <InputDropdownStas
                   control={control}
-                  options={citiesOptions}
+                  options={cityOptions}
                   placeholder={"Wybierz miasto"}
                   searchParamsName={"city"}
                   object={false}
                   seeOptions
-                  {...register("city"/* , { required: "Miasto jest wymagane" } */)}
+                  {...register(
+                    "city" /* , { required: "Miasto jest wymagane" } */
+                  )}
                 />
                 <InputError errorField="city" formState={formState} />
               </div>
@@ -91,7 +109,9 @@ function SearchVisits() {
                     type="date"
                     placeholder="Data wizyty"
                     className={styles.calendar}
-                    {...register("date"/* , { required: "Data jest wymagana" } */)}
+                    {...register(
+                      "date" /* , { required: "Data jest wymagana" } */
+                    )}
                     defaultValue={getValues("date")}
                   />
                 </div>
@@ -101,7 +121,7 @@ function SearchVisits() {
               <div className={`${styles.dropdownContainer} ${styles.litle}`}>
                 <InputDropdownStas
                   control={control}
-                  options={arraySelectOptions.select2}
+                  options={types}
                   placeholder={"Typ wizyty"}
                   searchParamsName={"type"}
                   seeOptions

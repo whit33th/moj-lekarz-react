@@ -1,20 +1,37 @@
-import img from "@assets/img/tst,small,845x845-pad,1000x1000,f8f8f8.jpg"
-import styles from "./style/ReviewCard.module.css"
-import starimg from "@assets/img/Star.svg"
+import styles from "./style/ReviewCard.module.css";
+import starimg from "@assets/img/Star.svg";
+import grey from "@assets/img/grey.png";
 
-function ReviewCard(props) {
-  const rating = parseInt("5", 10)
+function ReviewCard(reviews) {
+  const review = {
+    rating: reviews?.reviews?.rating || 0,
+    name:
+      reviews?.reviews?.patient?.user?.first_name +
+        " " +
+        reviews?.reviews?.patient?.user?.last_name || "Brak",
+    photo: reviews?.reviews?.patient?.user?.photo || "",
+    date: reviews?.reviews?.createdAt.slice(0, 10) || "Brak",
+    comment: reviews?.reviews?.comment || "Brak",
+  };
+
+  const positiveFeedbacks = [
+    "Profesjonalne podejście",
+    "Dbałość o komfort pacjenta",
+  ];
+  const negativeFeedbacks = ["Zbyt krótka wizyta", "Ograniczona dostępność"];
 
   return (
     <div className={styles.reviewCard}>
       <div className={styles.userInfo}>
-        <img src={img} />
-        <div className={styles.reviewNameBlock}>
-          <p>Anna Kraskova</p>
-          <span>19.08.2022</span>
+        <div className={styles.header}>
+          <img src={review.photo || grey} />
+          <div className={styles.reviewNameBlock}>
+            <p> {review.name} </p>
+            <span>{review.date}</span>
+          </div>
         </div>
         <div className={styles.starsBlock}>
-          {[...Array(rating)].map((_, index) => (
+          {Array.from({ length: review.rating }).map((_, index) => (
             <img
               key={index}
               src={starimg}
@@ -24,14 +41,20 @@ function ReviewCard(props) {
           ))}
         </div>
       </div>
-      <div className={styles.userReviewText}>
-        { }
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Earum fugit
-        inventore quam minus perspiciatis quisquam autem necessitatibus
-        praesentium soluta consequatur sit harum, error porro. Quasi debitis
-        optio necessitatibus distinctio adipisci.
+      <div className={styles.service}>
+        {positiveFeedbacks.map((feedback, index) => (
+          <div key={index} className={styles.good}>
+            {feedback}
+          </div>
+        ))}
+        {negativeFeedbacks.map((feedback, index) => (
+          <div key={index} className={styles.bad}>
+            {feedback}
+          </div>
+        ))}
       </div>
+      <div className={styles.userReviewText}>{review.comment}</div>
     </div>
-  )
+  );
 }
-export default ReviewCard
+export default ReviewCard;

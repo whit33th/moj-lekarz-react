@@ -50,7 +50,7 @@
 
   & > a:hover p,
   button:hover p {
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #222222;
     transition: 0.3s;
     opacity: 0.7;
   }

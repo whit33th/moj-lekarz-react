@@ -48,10 +48,10 @@
 .sidebarLinks a:hover,
 .exit:hover {
   background: #7fd7ff;
-  color: black;
+  color: #222222;
 }
 .sidebarLinkDivActive span {
-  color: black;
+  color: #222222;
 }
 .sidebarLinkDiv span,
 .sidebarLinkDivActive span,
@@ -75,7 +75,7 @@
 
 .sidebarLinkDivActive {
   background-color: #b8e5f9;
-  color: black;
+  color: #222222;
 }
 
 .sidebarLinkDivActive img,

@@ -30,13 +30,13 @@
   border-radius: 16px;
   padding: 0 5px;
   background-color: #d2f1ff;
-  color: black;
+  color: #222222;
   font-size: 16px;
   text-align: center;
 }
 
 .calendarNavbarButt {
-  color: black;
+  color: #222222;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -53,13 +53,13 @@
 
 .calendarNavbarButt span {
   padding: 9px 20px;
-  color: black;
+  color: #222222;
   user-select: none;
   transition: 0.3s;
 }
 
 .calendarNavbarButt span.active {
-  color: black;
+  color: #222222;
   background: #a6def7;
   border-radius: 20px;
   transition: 0.3s;

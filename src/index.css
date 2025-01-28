@@ -1,4 +1,4 @@
-@import 'react-loading-skeleton/dist/skeleton.css';
+@import "react-loading-skeleton/dist/skeleton.css";
 
 @font-face {
   font-family: "Manrope", sans-serif;
@@ -10,11 +10,11 @@
 
 :root {
   --sx-color-primary: #3e36b0 !important;
-  --sx-color-primary-container: #A6DEF7 !important;
+  --sx-color-primary-container: #a6def7 !important;
   --sx-color-on-primary-container: #0d1a3b !important;
   --sx-color-neutral: #3e36b0 !important;
   --sx-color-neutral-variant: var(--sx-color-outline-variant) !important;
-  --sx-internal-color-text :  !important;
+  --sx-internal-color-text: !important;
   --sx-color-outline-variant: #c6d1fb !important;
 }
 
@@ -37,19 +37,19 @@
 }
 
 #root {
-
   width: 100%;
   min-height: 100dvh;
+  color: #222222;
 }
 
 * {
+  
   font-family: "Manrope", sans-serif;
 }
 
 body {
   -webkit-font-smoothing: antialiased;
   scroll-behavior: smooth;
-  font-family: "Manrope", sans-serif;
   margin: 0;
   padding: 0;
   width: 100%;
@@ -57,17 +57,12 @@ body {
   background: linear-gradient(to bottom, #ebf8ffc4, #e6f4ff);
 }
 
-input {
-  font-family: "Manrope", sans-serif;
-}
-
 .content {
   gap: 20px;
   display: flex;
   flex-direction: column;
-
 }
-.loop{
+.loop {
   width: 100%;
   height: auto;
   filter: invert(1);
@@ -121,7 +116,7 @@ main {
 }
 
 a {
-  color: black;
+  color: #222222;
   text-decoration: none;
   transition: 0.3s;
   opacity: 1;
@@ -236,8 +231,6 @@ button {
 .sx-react-calendar-wrapper {
   box-shadow: 0 0 50px 5px #00000014;
 }
-
-
 
 .sx__calendar,
 .sx__calendar-wrapper,

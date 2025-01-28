@@ -31,16 +31,29 @@ class PatientService {
     return await axios.get(url, { withCredentials: true });
   }
 
-  async getPatientPrescriptions(status, limit, page) {
-    let url = `${this.URL}/api/prescriptions?`;
-    
-    status && (url += `&status=${status}`);
+  async getPatientPrescriptions() {
+    let url = `${this.URL}/api/prescriptions`;
+
+   
+    return await axios.get(url, { withCredentials: true });
+  }
+
+  async getClinics(name, province, specialty, city, limit, page) {
+    let url = `${this.URL}/api/clinics?`;
+    name && (url += `&name=${name}`);
+    province && (url += `&province=${province}`);
+    specialty && (url += `&specialty=${specialty}`);
+    city && (url += `&city=${city}`);
     limit && (url += `&limit=${limit}`);
     page && (url += `&page=${page}`);
 
     return await axios.get(url, { withCredentials: true });
   }
-
+  async getClinicsById(clinicId) {
+    return await axios.get(`${this.URL}/api/clinics/${clinicId}`, {
+      withCredentials: true,
+    });
+  }
   async createVisit(data) {
     const payload = {
       doctorId: data.doctorId,

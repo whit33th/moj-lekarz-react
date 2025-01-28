@@ -1,13 +1,17 @@
 import { useForm } from "react-hook-form";
 import InputError from "../../../components/UI/InputError/InputError";
 import styles from "../AuthPage.module.css";
+import useForgotPassword from "../../../api/hooks/AuthHooks/useForgotPassword";
 function ForgotPasswordForm({ setIsForgotPassword }) {
   const { register, handleSubmit, formState } = useForm({
     mode: "onChange",
   });
 
+  const { mutate } = useForgotPassword();
+
   function onSubmit(data) {
-    console.log("Password Reset Data: ", data);
+    
+    mutate(data)
   }
 
   return (
@@ -17,7 +21,7 @@ function ForgotPasswordForm({ setIsForgotPassword }) {
         <input
           type="email"
           placeholder="Email..."
-          {...register("email-reset", {
+          {...register("email", {
             required: "Email jest wymagany",
             pattern: {
               value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
@@ -25,7 +29,7 @@ function ForgotPasswordForm({ setIsForgotPassword }) {
             },
           })}
         />
-        <InputError formState={formState} errorField={"email-reset"} />
+        <InputError formState={formState} errorField={"email"} />
       </div>
 
       <div className={styles.forgotPasswordBtnBlock}>

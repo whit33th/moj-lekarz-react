@@ -64,10 +64,10 @@ class PageConfig {
     qA: "/QA",
     blog: "/blog",
     visits: "/visits",
-    doctorProfile: "/doctor-profile/:id",
     researchResults: "/research-results",
     searchClinics: "/search-clinics",
-    clinicProfile: "/clinic-profile/:id",
+    clinicProfile: "/profileDoctor/:id",
+    doctorProfile: "/doctor-profile",
     firm: "/firm",
     policy: {
       regulations: "/policy/regulations",
@@ -81,9 +81,8 @@ class PageConfig {
     ZapisFormPage: "/zapis-form-page", // Проверьте, что путь совпадает с маршрутом
     zapisDone: "/zapis-done",
     doctorVersion2: "/find-doctor-version2",
-    document
+    document,
   };
-
 }
 
-export const pageConfig = new PageConfig()
+export const pageConfig = new PageConfig();

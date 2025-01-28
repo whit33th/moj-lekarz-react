@@ -14,19 +14,25 @@ function ZapisFormPage() {
   const { state } = useLocation();
   const navigate = useNavigate();
   const { data: user } = useGetUserInfo();
-  
-  const { register, handleSubmit, reset, getValues, formState: { errors } } = useForm({
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    getValues,
+    formState: { errors },
+  } = useForm({
     defaultValues: {
-      firstName: '',
-      lastName: '',
-      phone: '',
-      pesel: '',
-      comment: '',
+      firstName: "",
+      lastName: "",
+      phone: "",
+      pesel: "",
+      comment: "",
       acceptTerms: false,
-    }
+    },
   });
 
-  const { mutate, isPending } = usePostAppointment();
+  const { mutate, isPending, isSuccess } = usePostAppointment();
 
   useEffect(() => {
     if (user) {
@@ -50,14 +56,12 @@ function ZapisFormPage() {
 
   const { doctor, clinic, appointment, visitDetails } = state;
 
-  
   // Add validation for required data
   if ((!doctor || !clinic || !appointment, !visitDetails)) {
     console.log("Missing required data");
     navigate("/");
     return null;
   }
-  
 
   const onSubmit = () => {
     const appointmentData = {
@@ -67,14 +71,37 @@ function ZapisFormPage() {
       date: appointment.date,
       timeSlot: appointment.startTime,
       firstVisit: visitDetails.isFirstVisit,
-      visitType: visitDetails.type,
-      description: getValues('comment'), // Получаем значение комментария
+      visitType: visitDetails.type.toLowerCase(),
+      description: getValues("comment"), // Получаем значение комментария
     };
 
     mutate(appointmentData, {
       onSuccess: () => {
-        navigate("/zapis-done");
-      },
+        navigate(pageConfig.patient.zapisDone, {
+          state: {
+            formDataObj: {
+              comment: getValues("comment"),
+              file: null // если файлы не используются
+            },
+            doctor: {
+              name: doctor.name,
+              specialty: doctor.specialty,
+              phone: doctor.phone
+            },
+            clinic: {
+              name: clinic.name,
+              address: clinic.address
+            },
+            visitDetails: {
+              type: visitDetails.type,
+              service: visitDetails.service
+            },
+            date: appointment.date,
+            time: appointment.startTime,
+            endTime: appointment.endTime
+          }
+        });
+      }
     });
   };
 
@@ -149,8 +176,8 @@ function ZapisFormPage() {
                         required: "To pole jest wymagane",
                         pattern: {
                           value: /^[A-Za-zĄąĆćĘęŁłŃńÓóŚśŹźŻż\s-]+$/,
-                          message: "Nieprawidłowy format imienia"
-                        }
+                          message: "Nieprawidłowy format imienia",
+                        },
                       })}
                       placeholder="Podaj swoje imię"
                     />
@@ -163,8 +190,8 @@ function ZapisFormPage() {
                         required: "To pole jest wymagane",
                         pattern: {
                           value: /^[A-Za-zĄąĆćĘęŁłŃńÓóŚśŹźŻż\s-]+$/,
-                          message: "Nieprawidłowy format nazwiska"
-                        }
+                          message: "Nieprawidłowy format nazwiska",
+                        },
                       })}
                       placeholder="Podaj swoje nazwisko"
                     />
@@ -176,8 +203,8 @@ function ZapisFormPage() {
                         required: "To pole jest wymagane",
                         pattern: {
                           value: /^\+?[0-9]{9,12}$/,
-                          message: "Nieprawidłowy format numeru telefonu"
-                        }
+                          message: "Nieprawidłowy format numeru telefonu",
+                        },
                       })}
                       placeholder="Podaj numer telefonu"
                     />
@@ -190,8 +217,8 @@ function ZapisFormPage() {
                         required: "To pole jest wymagane",
                         pattern: {
                           value: /^[0-9]{11}$/,
-                          message: "Nieprawidłowy format PESEL"
-                        }
+                          message: "Nieprawidłowy format PESEL",
+                        },
                       })}
                       placeholder="Podaj numer pesel"
                     />
@@ -204,8 +231,9 @@ function ZapisFormPage() {
                     {...register("comment", {
                       maxLength: {
                         value: 500,
-                        message: "Komentarz nie może być dłuższy niż 500 znaków"
-                      }
+                        message:
+                          "Komentarz nie może być dłuższy niż 500 znaków",
+                      },
                     })}
                     placeholder="Wpisz komentarz"
                   />
@@ -214,20 +242,25 @@ function ZapisFormPage() {
             </div>
 
             <div className={styles.checkboxBlock}>
-              <label className={`${styles.checkboxContainer} ${errors.acceptTerms ? styles.error : ''}`}>
+              <label
+                className={`${styles.checkboxContainer} ${
+                  errors.acceptTerms ? styles.error : ""
+                }`}
+              >
                 <input
                   type="checkbox"
                   {...register("acceptTerms", {
-                    required: true
+                    required: true,
                   })}
                 />
                 <span className={styles.checkmark}></span>
-                <p className={errors.acceptTerms ? styles.errorText : ''}>
+                <p className={errors.acceptTerms ? styles.errorText : ""}>
                   <span>*</span> Zgadzam się, żeby MyLekarz przetwarzał moje
                   dane medyczne w celu korzystania z usług.
                 </p>
                 <Link
                   to={pageConfig.patient.policy.personalData}
+                  state={{page: '2'}}
                   style={{ color: "#3e36b0" }}
                 >
                   Dowiedz się więcej

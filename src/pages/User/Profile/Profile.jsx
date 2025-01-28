@@ -19,19 +19,16 @@ const dataVisitsList = [
 ];
 
 function Profile() {
-  
   const { profileState } = useStore();
   const { register, handleSubmit, formState, watch } = useForm({
     mode: "onChange",
   });
 
-  const {mutate} = useChangePassword()
-  
+  const { mutate } = useChangePassword();
+
   const onSubmit = (data) => {
-    
-    console.log(data);
     if (data.newPassword === data.repeatNewPassword) {
-      mutate(data)
+      mutate(data);
     }
   };
 
@@ -46,24 +43,27 @@ function Profile() {
             <input
               type="password"
               placeholder="Wpisz stare hasło"
-              {...register("oldPassword", { required: "To pole jest wymagane" })}
+              {...register("oldPassword", {
+                required: "To pole jest wymagane",
+              })}
             />
-             <InputError formState={formState} errorField={'oldPassword'}/>
-            
+            <InputError formState={formState} errorField={"oldPassword"} />
           </div>
           <div>
             <p>Nowe hasło</p>
             <input
               type="password"
               placeholder="Wpisz nowe hasło"
-              {...register("newPassword", { 
+              {...register("newPassword", {
                 required: "To pole jest wymagane",
-                minLength: { value: 8, message: "Hasło musi mieć co najmniej 8 znaków" }
+                minLength: {
+                  value: 8,
+                  message: "Hasło musi mieć co najmniej 8 znaków",
+                },
               })}
             />
-            
-              <InputError formState={formState} errorField={'newPassword'}/>
-            
+
+            <InputError formState={formState} errorField={"newPassword"} />
           </div>
           <div>
             <p>Powtórz nowe hasło</p>
@@ -72,15 +72,19 @@ function Profile() {
               placeholder="Powtórz nowe hasło"
               {...register("repeatNewPassword", {
                 required: "To pole jest wymagane",
-                validate: (value) => value === watch("newPassword") || "Hasła nie są takie same"
+                validate: (value) =>
+                  value === watch("newPassword") || "Hasła nie są takie same",
               })}
             />
-             <InputError formState={formState} errorField={'repeatNewPassword'}/>
+            <InputError
+              formState={formState}
+              errorField={"repeatNewPassword"}
+            />
           </div>
           <button type="submit"> Zmień hasło</button>
         </div>
       </form>
-      <div className={styles.visitsBlock}>
+      {/* <div className={styles.visitsBlock}>
         <h1>Najbliższe wizyty</h1>
         <div className={styles.visitsList}>
           {dataVisitsList.map((item) => (
@@ -106,7 +110,7 @@ function Profile() {
             </div>
           ))}
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

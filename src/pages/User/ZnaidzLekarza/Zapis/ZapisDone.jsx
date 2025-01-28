@@ -7,6 +7,7 @@ import visitorImg from '@assets/img/Vector15.svg'
 import downloadImg from '@assets/img/material-symbols-light_download.svg'
 import commentsImg from '@assets/img/iconamoon_comment-light.svg'
 import AppPromo from '../../../../components/AppPromo/AppPromo'
+import { pageConfig } from '../../../../config/config';
 
 
 
@@ -34,8 +35,8 @@ console.log(state)
                     <div>
                         <h1>Zarezerwowane!</h1>
                         <div className={styles.zapisDoneFirstBtnBlock}>
-                            <NavLink to={'/'}>Wróć na główną stronę</NavLink>
-                            <NavLink to={'/znajdz-lekarza/'}>Przejdż do kalendarza</NavLink>
+                            <NavLink to={pageConfig.home}>Wróć na główną stronę</NavLink>
+                            <NavLink to={pageConfig.patient.visits}>Zobacz swoje wizyty</NavLink>
 
                         </div>
                     </div>

@@ -15,7 +15,7 @@ function QAComponent() {
     <div className={styles.QAComponentBlock}>
       <h1>Jak przygotować się do badań?</h1>
       <div className={styles.questionBlock}>
-        <h1>Odpowiedzi na najczęściej zadawane pytania</h1>
+       
         <div className={styles.questionBlockItems}>
           {questionsData.map((item, index) => (
             <div

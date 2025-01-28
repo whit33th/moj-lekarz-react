@@ -16,7 +16,6 @@ function useLogout() {
     if (isSuccess) {
       window.location.reload();
       clearAllCookies();
-
       navigate("/");
     }
   }, [isSuccess, navigate]);

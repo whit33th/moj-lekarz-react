@@ -1,98 +1,96 @@
-import { useState } from "react"
-import { useForm, Controller } from "react-hook-form"
-import styles from "./style/SearchClinicPage.module.css"
-import ClinicCard from "./ClinicCard"
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import styles from "./style/SearchClinicPage.module.css";
+import ClinicCard from "./ClinicCard";
 
-import useStore from "../../../data/store"
-import DropdownStas from '../../../components/Dropdown/DropdownStas'
+import useGetClinics from "../../../api/hooks/ClinicHooks/useGetClinics";
+import useSpecialties from "../../../api/hooks/GeneralHooks/useSpecialties";
+import { useCities } from "../../../api/hooks/GeneralHooks/useCitys";
+import InputDropdownStas from "../../../components/Dropdown/InputDropdownStas";
+import useGetClinicSpecialties from "../../../api/hooks/GeneralHooks/SpecialtyHooks/useGetClinicSpecialties";
 
 const arraySelectOptions = {
   select1: ["name1", "name2", "name3"],
-  select2: ["ortoped", "logoped", "Kardiolog", "Ginekolog"],
-  select3: ["Poznań", "Tokyo", "Ala"],
-  select4: ["Publiczne", "Prywatne"],
-}
 
+  select4: ["NFZ", "Prywatne"],
+};
 
 function SearchClinicPage() {
-  
-  const { clinicCard } = useStore()
-  const [state, setState] = useState(clinicCard)
+  const { control, handleSubmit, watch, register } = useForm({
+    mode: "onChange",
+  });
+  const { data, refetch } = useGetClinics({
+    name: watch("name"),
+    specialty: watch("specialty"),
+    city: watch("city"),
+  });
 
-  const { control, handleSubmit, watch } = useForm({
+  const { data: cities } = useCities();
+  const [cityOptions, setCityOptions] = useState(["Ladowanie"]);
 
-  })
+  const { data: specialties } = useSpecialties();
+  const [specialtyOptions, setSpecialtyOptions] = useState(["Ladowanie"]);
 
-  const watchFields = watch()
+  const { data: clinicSpecialties } = useGetClinicSpecialties({});
 
-  const clickFilterBtn = () => {
-    const { select1, select2, select3, select4 } = watchFields
-    const filteredDoctors = clinicCard.filter((doctor) => {
-      const matchesName = select1 ? doctor.name === select1 : true
-      const matchesTypes = select2
-        ? doctor.types.some((type) => select2.includes(type))
-        : true
-      const matchesCity = select3 ? doctor.address.city === select3 : true
-      const publicType = select4 ? doctor.public === select4 : true
-      return matchesCity && matchesName && matchesTypes && publicType
-    })
-    setState(filteredDoctors)
-  }
+  useEffect(() => {
+    if (specialties) {
+      setSpecialtyOptions([...new Set(specialties.map((s) => s.name))]);
+    }
+  }, [specialties]);
+  useEffect(() => {
+    if (cities) {
+      setCityOptions([...new Set(cities.map((c) => c.city))]);
+    }
+  }, [cities]);
+
+  const onSubmit = () => {
+    refetch();
+  };
 
   return (
     <div className={styles.clinickPage}>
-      <h1>Wybierz spośród 5 324 dostępnych centrów medycznych</h1>
+      <h1>Wybierz spośród dostępnych centrów medycznych</h1>
       <div className={styles.filterBlockContentSelects}>
-        <form onSubmit={handleSubmit(clickFilterBtn)}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <div className={styles.mainFormIntupsBlock}>
             <div className={styles.dropdownContainer}>
-
-
-
-              <DropdownStas
-                name="select1"
+              <InputDropdownStas
+                name="name"
                 control={control}
-                options={arraySelectOptions.select1}
+                // options={arraySelectOptions.select1}
+                // seeOptions
+                object={false}
                 placeholder={"Wybierz centrum medyczny"}
-                
+                {...register("name")}
               />
-
-
+              {/* <InputError errorField="name" formState={formState} /> */}
             </div>
 
             <div className={styles.dropdownContainer}>
-
-              <DropdownStas
-                name="select2"
+              <InputDropdownStas
+                name="specialty"
                 control={control}
-                options={arraySelectOptions.select2}
+                options={specialtyOptions}
+                seeOptions
+                object={false}
                 placeholder={"Wybierz specjalizacje"}
+                {...register("specialty")}
               />
-
+              {/* <InputError errorField="specialty" formState={formState} /> */}
             </div>
 
             <div className={`${styles.dropdownContainer} ${styles.litle}`}>
-
-              <DropdownStas
-                name="select3"
+              <InputDropdownStas
+                name="city"
                 control={control}
-                options={arraySelectOptions.select3}
+                options={cityOptions}
+                seeOptions
+                object={false}
                 placeholder={"Wybierz miasto"}
+                {...register("city")}
               />
-
-
-            </div>
-
-            <div className={`${styles.dropdownContainer} ${styles.litle}`}>
-
-              <DropdownStas
-                name="select4"
-                control={control}
-
-                options={arraySelectOptions.select4}
-                placeholder={"Rodzaj wizyty"}
-              />
-
+              {/* <InputError errorField="city" formState={formState} /> */}
             </div>
 
             <div className={styles.filterBtnBlock}>
@@ -102,17 +100,17 @@ function SearchClinicPage() {
         </form>
       </div>
       <div className={styles.clinicCardsBlock}>
-        {state.map((item) => (
-          <ClinicCard key={item.id} state={item} />
+        {data?.clinics?.map((c, index) => (
+          <ClinicCard key={index} data={c} />
         ))}
       </div>
-      {state.length === 0 && (
+      {data?.clinics?.length === 0 && (
         <div className={styles.nonCinicCardBlock}>
           <h1>Brak dostępnych placówek medycznych</h1>
         </div>
       )}
     </div>
-  )
+  );
 }
 
-export default SearchClinicPage
+export default SearchClinicPage;

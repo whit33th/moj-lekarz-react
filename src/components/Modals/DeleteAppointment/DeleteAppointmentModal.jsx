@@ -15,7 +15,7 @@ function DeleteAppointmentModal({ modalWindowStatus, setModalWindowStatus, delet
           >
             Nie
           </button>
-          <button className={styles.modalWindowBtnYes} onClick={() => deleteFc(1)}>
+          <button className={styles.modalWindowBtnYes} onClick={() => deleteFc()}>
             Tak
           </button>
         </div>

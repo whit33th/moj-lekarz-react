@@ -11,7 +11,7 @@
   background: transparent;
   border-radius: 100px;
   height: 45px;
-  border: 1px solid black;
+  border: 1px solid #222222;
 }
 
 .fillBlue {
@@ -32,7 +32,7 @@
 
 .infoNavbarButt span.active {
   background: #a6def7;
-  color: black;
+  color: #222222;
   transition: 0.3s ease;
 }
 
@@ -65,7 +65,7 @@
 }
 
 .calendarNavbarButt {
-  color: black;
+  color: #222222;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -82,13 +82,13 @@
 
 .calendarNavbarButt span {
   padding: 9px 20px;
-  color: black;
+  color: #222222;
   user-select: none;
   transition: 0.3s;
 }
 
 .calendarNavbarButt span.active {
-  color: black;
+  color: #222222;
   background: #a6def7;
   border-radius: 20px;
   transition: 0.3s;

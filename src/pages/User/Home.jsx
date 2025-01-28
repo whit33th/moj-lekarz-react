@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "react-datepicker/dist/react-datepicker.css";
 import styles from "./style/Home.module.css";
 import mainImg from "@assets/img/Frame364.svg";
@@ -21,6 +21,9 @@ import useSpecialties from "../../api/hooks/GeneralHooks/useSpecialties";
 
 function Home() {
   const navigate = useNavigate();
+
+  const [specialtyOptions, setSpecialtyOptions] = useState(["Ladowanie"]);
+
   const { data: cities } = useCities();
   const citiesOptions = cities?.map((c) => c.city) || ["Ladowanie"];
 
@@ -29,8 +32,8 @@ function Home() {
   const { data: specialties } = useSpecialties();
 
   const types = [
-    { label: "Prywatna", value: "prywatna" },
-    { label: "NFZ", value: "nfz" },
+    { label: "Prywatna", value: "Prywatna" },
+    { label: "NFZ", value: "NFZ" },
   ];
 
   const [mapsData, setMapsData] = useState({
@@ -61,6 +64,13 @@ function Home() {
     navigate(`/search?${searchParams.toString()}`);
   };
 
+  // Обновляем опции когда данные загружаются
+  useEffect(() => {
+    if (specialties) {
+      setSpecialtyOptions([...new Set(specialties.map((s) => s.name))]);
+    }
+  }, [specialties]);
+
   return (
     <div className={styles.home}>
       <div className={styles.homeFirstBlock}>
@@ -77,7 +87,7 @@ function Home() {
               <div className={styles.dropdownContainer}>
                 <InputDropdownStas
                   control={control}
-                  options={specialties?.map((s) => s.name) || ["Ladowanie"]}
+                  options={specialtyOptions|| ["Ladowanie"]}
                   object={false}
                   placeholder={"Wybierz specjalizacje"}
                   seeOptions

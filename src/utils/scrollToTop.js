@@ -1,13 +1,17 @@
-import { useEffect } from 'react'
-import { useLocation } from 'react-router-dom'
-
+import { useEffect, useRef } from "react";
+import { useLocation, useNavigationType } from "react-router-dom";
 
 export default function ScrollToTop() {
-	const {pathname} = useLocation();
+  const { pathname } = useLocation();
+  const navigationType = useNavigationType();
+  const prevPathRef = useRef(pathname);
 
-	useEffect(() => {
-		window.scrollTo(0,0);
-	}, [pathname]);
+  useEffect(() => {
+    if (navigationType === "PUSH") {
+      window.scrollTo(0, 0);
+    }
+    prevPathRef.current = pathname;
+  }, [pathname, navigationType]);
 
-	return null;
+  return null;
 }

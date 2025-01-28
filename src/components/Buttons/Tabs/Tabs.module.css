@@ -27,7 +27,7 @@
 }
 
 .settingNavbarButt button.active {
-  color: black;
+  color: #222222;
   background: #a6def7;
   border-radius: 20px;
   transition: 0.3s;

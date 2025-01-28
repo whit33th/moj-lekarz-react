@@ -4,6 +4,7 @@ import CountUp from '../CountUp'
 import img1 from '@assets/img/staticIcon1.svg'
 import img2 from '@assets/img/staticIcon2.svg'
 import img3 from '@assets/img/staticIcon3.svg'
+import { useGetClinicStats } from '../../api/hooks/GeneralHooks/Stats/useGetProvinceClinicNumber'
 
 
 const mapPaths = [
@@ -27,6 +28,9 @@ const mapPaths = [
 ]
 
 function Map(props) {
+
+  const {data} = useGetClinicStats()
+  console.log(data)
   const [selectedPathId, setSelectedPathId] = useState(props.data.id)
   const [tooltip, setTooltip] = useState({ visible: false, x: 0, y: 0, text: '' })
   const svgRef = useRef(null)
