@@ -10,6 +10,8 @@ const UserLayout = ({ children, activePage, setActivePage, isLoggedIn }) => {
   const shouldShowHeaderFooter = ![
     pageConfig.login,
     pageConfig.registration,
+    pageConfig.resetPassword,
+    
   ].some((path) => location.pathname.toLowerCase().startsWith(path));
   return (
     <>

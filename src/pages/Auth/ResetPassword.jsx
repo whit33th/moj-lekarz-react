@@ -1,52 +1,28 @@
-import { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
-import useResetPassword from "../../api/hooks/AuthHooks/useResetPassword";
-import { useForm } from "react-hook-form";
-import InputError from "../../components/UI/InputError/InputError";
+import { useNavigate } from "react-router-dom";
+import styles from "./AuthPage.module.css";
+import logo from "@assets/img/logo.svg";
+import ResetPasswordComponent from "./Components/ResetPasswordComponent";
+import useStore from "../../data/store";
+import { useEffect } from "react";
 
-export default function ResetPassword() {
-  const [searchParams] = useSearchParams();
-  const token = searchParams.get("token");
-  const { register, handleSubmit, formState } = useForm({
-    mode: "onChange",
-  });
-
-  const { mutate } = useResetPassword();
+function ResetPassword() {
+  const { isAuth } = useStore();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    if (!token) {
-      setMessage("Invalid or expired link.");
+    if (isAuth) {
+      navigate('/');
     }
-  }, [token]);
-
-  function onSubmit(data) {
-    const formData = {
-      newPassword: data.newPassword,
-      token: token,
-    }
-    mutate(formData);
-  }
+  }, [isAuth]);
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <h2>Reset Password</h2>
-      {token && (
-        <div>
-          <input
-            type="password"
-            placeholder="Nowe haslo"
-            {...register("newPassword", {
-              required: "Hasło jest wymagane",
-              minLength: {
-                value: 8,
-                message: "Minimalna długość to 8 znaków ",
-              },
-            })}
-          />
-          <InputError errorField={"newPassword"} formState={formState} />
-          <button>Reset Password</button>
-        </div>
-      )}
-    </form>
+    <div className={styles.authPage}>
+      <div className={styles.authPageContent}>
+        <img onClick={() => navigate("/")} src={logo} alt="Logo" className={styles.authLogo} />
+        <ResetPasswordComponent />
+      </div>
+    </div>
   );
 }
+
+export default ResetPassword;
