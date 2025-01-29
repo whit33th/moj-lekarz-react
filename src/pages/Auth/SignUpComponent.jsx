@@ -1,26 +1,25 @@
-import logoGoogle from "@assets/img/logos_google-icon.svg"
-import logoApple from "@assets/img/Group.svg"
-import InputError from "../../components/UI/InputError/InputError"
-import { useForm } from "react-hook-form"
-import styles from "./AuthPage.module.css"
-import { NavLink } from "react-router-dom"
+import logoGoogle from "@assets/img/logos_google-icon.svg";
+import logoApple from "@assets/img/Group.svg";
+import InputError from "../../components/UI/InputError/InputError";
+import { useForm } from "react-hook-form";
+import styles from "./AuthPage.module.css";
+import { Link, NavLink } from "react-router-dom";
 
-import useRegistration from "@hooks/AuthHooks/useRegistration"
-import { pageConfig } from '../../config/config'
+import useRegistration from "@hooks/AuthHooks/useRegistration";
+import { pageConfig } from "../../config/config";
 
 function SignUpComponent() {
   const { register, handleSubmit, formState, watch } = useForm({
     mode: "onChange",
-  })
-  const password = watch("password")
-  const checkbox = watch("checkbox")
+  });
+  const password = watch("password");
+  const checkbox = watch("checkbox");
 
-  const { mutate, isLoading, isError, isSuccess, error } = useRegistration()
+  const { mutate, isLoading, isError, isSuccess, error } = useRegistration();
 
   const onSubmit = (data) => {
-
-    mutate(data)
-  }
+    mutate(data);
+  };
 
   return (
     <div className={styles.signIn}>
@@ -28,10 +27,13 @@ function SignUpComponent() {
         <form onSubmit={handleSubmit(onSubmit)}>
           <h1>Załóż konto</h1>
           <div className={styles.registService}>
-            <a className={styles.registerServiceItem}>
+            <Link
+              to={"https://doc-web-rose.vercel.app/auth/google"}
+              className={styles.registerServiceItem}
+            >
               <p>Kontynuuj z Google</p>
               <img src={logoGoogle} alt="google" />
-            </a>
+            </Link>
             {/* <a className={styles.registerServiceItem}>
               <p>Kontynuuj z Apple</p>
               <img src={logoApple} alt="Apple" />
@@ -99,9 +101,11 @@ function SignUpComponent() {
                 })}
               />
               <span
-                className={`${styles.checkmark} ${checkbox ? styles.checked : ""
-                  } ${formState.errors["checkbox"]?.message ? styles.required : ""
-                  }`}
+                className={`${styles.checkmark} ${
+                  checkbox ? styles.checked : ""
+                } ${
+                  formState.errors["checkbox"]?.message ? styles.required : ""
+                }`}
               ></span>
               <p>
                 Zgadzam się na przetwarzanie moich danych medycznych w celu
@@ -115,14 +119,14 @@ function SignUpComponent() {
           </div>
 
           <div className={styles.registBtnBlock}>
-            <button onClick={() => { }}>Zarejestruj się</button>
+            <button onClick={() => {}}>Zarejestruj się</button>
           </div>
           {/* {isError && <p className={styles.error}>Błąd: {error.message}</p>}
           {isSuccess && <p className={styles.success}>Rejestracja udana!</p>} */}
         </form>
       </div>
     </div>
-  )
+  );
 }
 
-export default SignUpComponent
+export default SignUpComponent;
