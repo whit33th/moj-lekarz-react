@@ -12,6 +12,10 @@ function ReviewCard(reviews) {
     photo: reviews?.reviews?.patient?.user?.photo || "",
     date: reviews?.reviews?.createdAt.slice(0, 10) || "Brak",
     comment: reviews?.reviews?.comment || "Brak",
+    positiveTag: reviews?.reviews?.tags?.filter((tag) => tag.positive === true),
+    negativeTag: reviews?.reviews?.tags?.filter(
+      (tag) => tag.positive === false
+    ),
   };
 
   const positiveFeedbacks = [
@@ -26,8 +30,23 @@ function ReviewCard(reviews) {
         <div className={styles.header}>
           <img src={review.photo || grey} />
           <div className={styles.reviewNameBlock}>
-            <p> {review.name} </p>
-            <span>{review.date}</span>
+            <div>
+              <p> {review.name} </p>
+              <span>{review.date}</span>
+            </div>
+
+            <div className={styles.service}>
+              {review.positiveTag.map((t, index) => (
+                <div key={index} className={styles.good}>
+                  {t.name}
+                </div>
+              ))}
+              {review.negativeTag.map((t, index) => (
+                <div key={index} className={styles.bad}>
+                  {t.name}
+                </div>
+              ))}
+            </div>
           </div>
         </div>
         <div className={styles.starsBlock}>
@@ -41,18 +60,7 @@ function ReviewCard(reviews) {
           ))}
         </div>
       </div>
-      <div className={styles.service}>
-        {positiveFeedbacks.map((feedback, index) => (
-          <div key={index} className={styles.good}>
-            {feedback}
-          </div>
-        ))}
-        {negativeFeedbacks.map((feedback, index) => (
-          <div key={index} className={styles.bad}>
-            {feedback}
-          </div>
-        ))}
-      </div>
+
       <div className={styles.userReviewText}>{review.comment}</div>
     </div>
   );

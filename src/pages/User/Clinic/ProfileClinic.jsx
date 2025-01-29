@@ -22,7 +22,10 @@ function ProfileClinic() {
     photo: data?.photo || "",
     name: data?.name || "",
     role: data?.role || "",
-    rating: data?.rating % 1 >= 0.6 ? Math.ceil(data?.rating) : Math.floor(data?.rating) || 0,
+    rating:
+      data?.rating % 1 >= 0.6
+        ? Math.ceil(data?.rating)
+        : Math.floor(data?.rating) || 0,
     nip: data?.nip || "",
     nrLicense: data?.nr_license || "",
     email: data?.email || "",
@@ -54,7 +57,7 @@ function ProfileClinic() {
             <p>{clinic.name}</p>
           </div>
           <div className={styles.clinicStars}>
-            {Array.from({length: clinic.rating}).map((_, index) => (
+            {Array.from({ length: clinic.rating }).map((_, index) => (
               <img
                 key={index}
                 src={starimg}

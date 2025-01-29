@@ -26,6 +26,7 @@ import PolicyPrivacy from "../../pages/User/Policy/PolicyPrivacy";
 import ZapisFormPage from "./../../pages/User/ZnaidzLekarza/Zapis/ZapisFormPage";
 import ZapisDone from "../../pages/User/ZnaidzLekarza/Zapis/ZapisDone";
 import useStore from "../../data/store";
+import ResetPassword from "../../pages/Auth/ResetPassword";
 
 function UserRoutes() {
   const { isAuth } = useStore();
@@ -52,6 +53,7 @@ function UserRoutes() {
       <Route path={pageConfig.patient.policy.personalData} element={<PolicyPersonalData />} />
       <Route path={pageConfig.patient.policy.cookies} element={<PolicyCookies />} />
       <Route path={pageConfig.patient.policy.privacy} element={<PolicyPrivacy />} />
+      <Route path={pageConfig.resetPassword} element={<ResetPassword />} />
 
       {/* Protected */}
       {isAuth && (

@@ -1,75 +1,82 @@
-import axios from "axios"
-
-
+import axios from "axios";
 
 class DoctorServices {
-	URL = "https://doc-web-rose.vercel.app";
+  URL = "https://doc-web-rose.vercel.app";
 
-	async getShortInfo(id) {
-		return await axios.get(`${this.URL}/api/doctors/${id}/short`, {
-			withCredentials: true,
-		})
-	}
-	async getFullInfo({ id }) {
-		return await axios.get(`${this.URL}/api/doctors/${id}`, {
-			withCredentials: true,
-		})
-	}
-	async getMedication() {
-		return await axios.get(`${this.URL}/api/medications`, {
-			withCredentials: true,
-		})
-	}
-	async getAppointment(dateFrom, dateTo, limit, page, status) {
+  async getShortInfo(id) {
+    return await axios.get(`${this.URL}/api/doctors/${id}/short`, {
+      withCredentials: true,
+    });
+  }
+  async getFullInfo({ id }) {
+    return await axios.get(`${this.URL}/api/doctors/${id}`, {
+      withCredentials: true,
+    });
+  }
+  async getMedication() {
+    return await axios.get(`${this.URL}/api/medications`, {
+      withCredentials: true,
+    });
+  }
+  async getAppointment(dateFrom, dateTo, limit, page, status) {
+    let url = `${this.URL}/api/doctors/appointments?`;
 
-		let url = `${this.URL}/api/doctors/appointments?`
+    dateFrom && (url += `startDate=${dateFrom}`);
+    dateTo && (url += `&endDate=${dateTo}`);
+    limit && (url += `&limit=${limit}`);
+    page && (url += `&page=${page}`);
+    status && (url += `&status=${status}`);
 
-		dateFrom && (url += `startDate=${dateFrom}`)
-		dateTo && (url += `&endDate=${dateTo}`)
-		limit && (url += `&limit=${limit}`)
-		page && (url += `&page=${page}`)
-		status && (url += `&status=${status}`)
-		return await axios.get(url, {
-			withCredentials: true,
-		})
-	}
-	async getPatientsList(page, limit) {
-		let url = `${this.URL}/api/patients?sort=ASC`
+    return await axios.get(url, {
+      withCredentials: true,
+    });
+  }
+  async getAppointmentForUser(patientId, limit, page) {
+    let url = `${this.URL}/api/doctors/appointments?`;
 
-		limit && (url += `&limit=${limit}`)
-		page && (url += `&page=${page}`)
+    patientId && (url += `&patientId=${patientId}`);
+    limit && (url += `&limit=${limit}`);
+    page && (url += `&page=${page}`);
 
-		return await axios.get(url, {
-			withCredentials: true,
-		})
-	}
+    return await axios.get(url, {
+      withCredentials: true,
+    });
+  }
+  async getPatientsList(page, limit) {
+    let url = `${this.URL}/api/patients?sort=ASC`;
 
+    limit && (url += `&limit=${limit}`);
+    page && (url += `&page=${page}`);
 
-	async getPrescriptions( limit, page, sort) {
+    return await axios.get(url, {
+      withCredentials: true,
+    });
+  }
 
-		let url = `${this.URL}/api/prescriptions?`
+  async getPrescriptions(limit, page, sort) {
+    let url = `${this.URL}/api/prescriptions?`;
 
-		limit && (url += `limit=${limit}`)
-		page && (url += `&page=${page}`)
-		sort && (url += `&sort=${sort}`)
+    limit && (url += `limit=${limit}`);
+    page && (url += `&page=${page}`);
+    sort && (url += `&sort=${sort}`);
 
-		return await axios.get(url, {
-			withCredentials: true,
-		})
-	}
+    return await axios.get(url, {
+      withCredentials: true,
+    });
+  }
 
-	async postPrescriptions(data) {
-		return await axios.post(`${this.URL}/api/prescriptions`, {
-			patientId: data.patientId,
-			medicationsIds: data.medicationsIds,
-			expirationDate: data.expirationDate
-		})
-	}
-	async postMedications(data) {
-		return await axios.post(`${this.URL}/api/medications`, {
-			name: data.name
-		})
-	}
+  async postPrescriptions(data) {
+    return await axios.post(`${this.URL}/api/prescriptions`, {
+      patientId: data.patientId,
+      medicationsIds: data.medicationsIds,
+      expirationDate: data.expirationDate,
+    });
+  }
+  async postMedications(data) {
+    return await axios.post(`${this.URL}/api/medications`, {
+      name: data.name,
+    });
+  }
 }
 
-export const doctorServices = new DoctorServices()
+export const doctorServices = new DoctorServices();

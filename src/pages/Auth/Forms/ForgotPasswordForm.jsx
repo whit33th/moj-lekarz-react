@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import InputError from "../../../components/UI/InputError/InputError";
 import styles from "../AuthPage.module.css";
-import useForgotPassword from "../../../api/hooks/AuthHooks/useForgotPassword";
+import useForgotPassword from "../../../api/hooks/AuthHooks/useTokenLink";
 function ForgotPasswordForm({ setIsForgotPassword }) {
   const { register, handleSubmit, formState } = useForm({
     mode: "onChange",

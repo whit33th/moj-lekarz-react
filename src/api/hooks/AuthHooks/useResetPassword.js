@@ -3,10 +3,10 @@ import { authService } from "@services/authServices";
 import { toast } from "sonner";
 import { useEffect } from "react";
 
-function useForgotPassword() {
-  const { mutate, isLoading, isError, isSuccess, error } = useMutation({
-    mutationKey: ["forgotPassword"],
-    mutationFn: (data) => authService.forgotPassword(data),
+function useResetPassword() {
+  const { mutate, isError, isSuccess, error } = useMutation({
+    mutationKey: ["resetPassword"],
+    mutationFn: (data) => authService.resetPassword(data),
   });
 
   useEffect(() => {
@@ -21,7 +21,7 @@ function useForgotPassword() {
     }
   }, [isError]);
 
-  return { mutate, isLoading, isError, isSuccess, error };
+  return { mutate, isError, isSuccess, error };
 }
 
-export default useForgotPassword;
+export default useResetPassword;

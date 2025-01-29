@@ -5,6 +5,7 @@ class PageConfig {
   profile = "/profile";
   login = "/login";
   registration = "/registration";
+  resetPassword = "/reset-password"
   // Doctor routes
   doctor = {
     home: this.home,

@@ -1,49 +1,72 @@
-import { useState } from "react"
-import styles from "./PatientInfo.module.css"
-import useGetPatientInfo from '@hooks/DoctorHooks/useGetPatientInfo'
-import Skeleton from 'react-loading-skeleton'
-import { useNavigate, useParams } from "react-router-dom"
-import BlueBtn from "../../../components/Buttons/BlueBtn/BlueBtn"
-import PatientMoreInfoModal from "../../../components/Modals/PatientMoreInfoModal/PatientMoreInfoModal"
-import grey from "./../../../assets/img/grey.png"
-import useStore from "./../../../data/store"
+import { useState } from "react";
+import styles from "./PatientInfo.module.css";
+import useGetPatientInfo from "@hooks/DoctorHooks/useGetPatientInfo";
+import Skeleton from "react-loading-skeleton";
+import { useNavigate, useParams } from "react-router-dom";
+import BlueBtn from "../../../components/Buttons/BlueBtn/BlueBtn";
+import PatientMoreInfoModal from "../../../components/Modals/PatientMoreInfoModal/PatientMoreInfoModal";
+import grey from "./../../../assets/img/grey.png";
+import useStore from "./../../../data/store";
+import useGetAppointmentForUser from "../../../api/hooks/DoctorHooks/useGetAppointmentForUser";
 
 function PatientInfo() {
-  const { id } = useParams()
-  const [activeTab, setActiveTab] = useState("Uwagi")
+  const { id } = useParams();
+  const [activeTab, setActiveTab] = useState("Uwagi");
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  const { setModalActive, setModalContent } = useStore()
+  const { setModalActive, setModalContent } = useStore();
 
-  const { data: patient, isError, isLoading } = useGetPatientInfo(id)
-
+  const { data: patient, isError, isLoading } = useGetPatientInfo(id);
+  const { data: patientVisits } = useGetAppointmentForUser({ patientId: id });
 
   if (isError || typeof id !== "string") {
-    navigate("/no-patient")
+    navigate("/no-patient");
   }
 
-
   const patientInfo = {
-    name: isLoading ? "Ładowanie..." : patient?.patient?.user?.first_name || "Brak",
-    surname: isLoading ? "Ładowanie..." : patient?.patient?.user?.last_name || "Brak",
-    photo: isLoading ? "Ładowanie..." : patient?.patient?.user?.photo || "zdrowie.png",
-    gender: isLoading ? "Ładowanie..." : patient?.patient?.user?.gender || "Brak",
+    name: isLoading
+      ? "Ładowanie..."
+      : patient?.patient?.user?.first_name || "Brak",
+    surname: isLoading
+      ? "Ładowanie..."
+      : patient?.patient?.user?.last_name || "Brak",
+    photo: isLoading
+      ? "Ładowanie..."
+      : patient?.patient?.user?.photo || "zdrowie.png",
+    gender: isLoading
+      ? "Ładowanie..."
+      : patient?.patient?.user?.gender || "Brak",
     pesel: isLoading ? "Ładowanie..." : patient?.patient?.user?.pesel || "Brak",
-    birthday: isLoading ? "Ładowanie..." : patient?.patient?.user?.birthday.slice(0, 10) || "Brak",
-    postCode: isLoading ? "Ładowanie..." : patient?.patient?.user?.address?.post_index || "Brak",
-    house: isLoading ? "Ładowanie..." : patient?.patient?.user?.address?.home || "Brak",
-    flat: isLoading ? "Ładowanie..." : patient?.patient?.user?.address?.flat || "Brak",
-    street: isLoading ? "Ładowanie..." : patient?.patient?.user?.address?.street || "Brak",
-    city: isLoading ? "Ładowanie..." : patient?.patient?.user?.address?.city || "Brak",
-    height: isLoading ? "Ładowanie..." : patient?.patient?.user?.height || "Brak",
-    weight: isLoading ? "Ładowanie..." : patient?.patient?.user?.weight || "Brak",
+    birthday: isLoading
+      ? "Ładowanie..."
+      : patient?.patient?.user?.birthday.slice(0, 10) || "Brak",
+    postCode: isLoading
+      ? "Ładowanie..."
+      : patient?.patient?.user?.address?.post_index || "Brak",
+    house: isLoading
+      ? "Ładowanie..."
+      : patient?.patient?.user?.address?.home || "Brak",
+    flat: isLoading
+      ? "Ładowanie..."
+      : patient?.patient?.user?.address?.flat || "Brak",
+    street: isLoading
+      ? "Ładowanie..."
+      : patient?.patient?.user?.address?.street || "Brak",
+    city: isLoading
+      ? "Ładowanie..."
+      : patient?.patient?.user?.address?.city || "Brak",
+    height: isLoading
+      ? "Ładowanie..."
+      : patient?.patient?.user?.height || "Brak",
+    weight: isLoading
+      ? "Ładowanie..."
+      : patient?.patient?.user?.weight || "Brak",
     tel: isLoading ? "Ładowanie..." : patient?.patient?.user?.phone || "Brak",
     comments: patient?.patient?.user?.comments || null,
     history: patient?.patient?.user?.history || null,
     email: isLoading ? "Ładowanie..." : patient?.patient?.user?.email || "Brak",
-  }
-
+  };
 
   // const comments = patientInfo?.comments ? (
   //   patientInfo.comments.map((comment, index) => (
@@ -56,33 +79,41 @@ function PatientInfo() {
   //   <div>Brak uwag</div>
   // )
 
-  const history = patientInfo?.history ? (
-    patientInfo.history.map((visit, index) => (
-      <div key={index}>
-        <span>{visit.doctor}</span>
-        <span className={styles.grey}>{visit.name}</span>
-        <span>{visit.date}</span>
+  const history = patientVisits?.appointments ? (
+    patientVisits?.appointments.map((visit, index) => (
+      <div className={styles.visitsRecord} key={index}>
+        <span>{(index + 1 + '.')+ ' ' + visit.description}</span>
+        <span className={styles.grey}>{visit.service.name + ' ' + visit.service.price + ' zl' }</span>
+        <span>{visit.date + ' / ' + visit.start_time }</span>
       </div>
     ))
   ) : (
     <div>Brak historii wizyt</div>
-  )
+  );
 
   function handleTabClick(name) {
-    setActiveTab(name)
+    setActiveTab(name);
   }
 
   function handleModal() {
-    setModalActive(true)
-    setModalContent(<PatientMoreInfoModal patientInfo={patientInfo} />)
+    setModalActive(true);
+    setModalContent(<PatientMoreInfoModal patientInfo={patientInfo} />);
   }
 
   return (
     <div className={styles.profilDiv}>
       <div className={styles.topPhoto}>
         <img src={isLoading ? grey : patientInfo?.photo} alt="Profile" />
-        <h1 style={{ margin: "0" }}>{isLoading ? <Skeleton width={300} /> : patientInfo?.name + " " + patientInfo?.surname}</h1>
-        <p className={styles.grey}>{isLoading ? <Skeleton width={250} /> : patientInfo?.tel}</p>
+        <h1 style={{ margin: "0" }}>
+          {isLoading ? (
+            <Skeleton width={300} />
+          ) : (
+            patientInfo?.name + " " + patientInfo?.surname
+          )}
+        </h1>
+        <p className={styles.grey}>
+          {isLoading ? <Skeleton width={250} /> : patientInfo?.tel}
+        </p>
       </div>
       <div className={styles.hr}>
         <hr />
@@ -212,7 +243,6 @@ function PatientInfo() {
               </div>
             </div> */}
           </div>
-
         </div>
       </div>
       <div className={styles.hr}>
@@ -220,16 +250,15 @@ function PatientInfo() {
       </div>
       <div className={styles.rules}>
         <div className={styles.center}>
-
           {/* <Tabs buttons="Uwagi, Historia wizyt" activeTab={activeTab} onTabClick={handleTabClick} /> */}
 
-          <h1>Historia wizyt</h1>
+          {history && <h1>Historia wizyt</h1>}
         </div>
         {/* {activeTab === "Uwagi" && comments} */}
-        {activeTab === "Historia wizyt" && history}
+        {history}
       </div>
     </div>
-  )
+  );
 }
 
-export default PatientInfo
+export default PatientInfo;

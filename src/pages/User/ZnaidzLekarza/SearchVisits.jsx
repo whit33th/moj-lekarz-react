@@ -13,7 +13,7 @@ import useSpecialties from "../../../api/hooks/GeneralHooks/useSpecialties";
 
 const types = [
   { label: "Prywatna", value: "prywatna" },
-  { label: "NFZ", value: "nfz" },
+  { label: "NFZ", value: "NFZ" },
 ];
 
 function SearchVisits() {
@@ -26,7 +26,7 @@ function SearchVisits() {
   } = useAvailableSlots({
     specialty: getValues("specialty"),
     date: getValues("date"),
-    type: getValues("type"),
+    visitType: getValues("type"),
     city: getValues("city"),
     limit: 10,
     page: page,
@@ -125,7 +125,7 @@ function SearchVisits() {
                   placeholder={"Typ wizyty"}
                   searchParamsName={"type"}
                   seeOptions
-                  object={false}
+                  object={true}
                   {...register("type", { required: false })}
                 />
                 <InputError errorField="type" formState={formState} />

@@ -16,6 +16,14 @@
 .grey {
   color: #919191;
 }
+.visitsRecord{
+  display: grid !important;
+  grid-template-columns: repeat(3,3fr);
+  justify-items: center;
+  align-items: start !important
+  
+
+}
 .mainInfo {
   gap: 20px;
   display: flex;
@@ -123,4 +131,69 @@
   gap: 20px;
   width: 100%;
 }
+
+@media screen and (max-width: 768px) {
+  .topPhoto {
+    padding: 24px;
+  }
+
+  .topPhoto img {
+    width: 160px;
+  }
+
+  .visitsRecord {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .mainInfo {
+    padding: 25px;
+  }
+
+  .oneThird {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .rules {
+    padding: 15px 25px 25px 25px;
+  }
+
+  .rules div {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .allergy {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .settingNavbarButt button {
+    width: 150px;
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .topPhoto {
+    padding: 16px;
+  }
+
+  .topPhoto img {
+    width: 120px;
+  }
+
+  .mainInfo {
+    padding: 15px;
+  }
+
+  .settingNavbarButt button {
+    width: 120px;
+    font-size: 12px;
+  }
+}
+
+
 

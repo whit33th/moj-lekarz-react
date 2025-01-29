@@ -20,21 +20,32 @@ class AuthServices {
       password: data.password,
     });
   }
-  async google(data) {
-    return await axios.post(`${this.URL}/register`, {
-      email: data.email,
-      password: data.password,
-    });
+  async google() {
+    const callbackUrl = `${this.URL}/auth/google/callback`;
+    window.location.href = "http://localhost:5173/auth/google";
   }
   async sessionValid() {
     return await axios.get(`${this.URL}/api/protected`, {
       withCredentials: true,
     });
   }
-  async forgotPassword(data) {
-    return await axios.post(`${this.URL}/forgot-password`, {email: data?.email}, {
-      withCredentials: true,
-    });
+  async tokenLink(data) {
+    return await axios.post(
+      `${this.URL}/forgot-password`,
+      { email: data?.email },
+      {
+        withCredentials: true,
+      }
+    );
+  }
+  async resetPassword(data) {
+    return await axios.post(
+      `${this.URL}/set-password`,
+      { token: data.token, newPassword: data.newPassword },
+      {
+        withCredentials: true,
+      }
+    );
   }
 
   async logout() {
