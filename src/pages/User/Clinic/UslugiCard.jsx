@@ -4,24 +4,22 @@ import { NavLink } from "react-router-dom";
 function UslugiCard({ services }) {
   return (
     <div className={styles.uslugiBlock}>
-      <div className={styles.column}>
-        {services?.map((service) => (
-          <div className={styles.uslugiItem} key={service.id}>
-            <div className={styles.titleBlock}>
-              <div className={styles.uslugiTypeItem}>
-                <div>
-                  {service.name} - {service.price} zł
-                </div>
-                <div>
-                  <NavLink to={`/appointment/${service.id}`}>
-                    Umów się na wizytę &#8594;
-                  </NavLink>
-                </div>
+      {services?.map((service) => (
+        <div className={styles.uslugiItem} key={service.id}>
+          <div className={styles.titleBlock}>
+            <div className={styles.uslugiTypeItem}>
+              <div>
+                {service.name} - {service.price} zł
+              </div>
+              <div>
+                <NavLink to={`/appointment/${service.id}`}>
+                  Umów się na wizytę &#8594;
+                </NavLink>
               </div>
             </div>
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
     </div>
   );
 }

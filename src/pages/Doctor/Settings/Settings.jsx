@@ -35,6 +35,14 @@ function Settings() {
   const { mutate} = usePostUpdateImg()
 
   useEffect(() => {
+    const formatPostcode = (postcode) => {
+      if (!postcode) return '';
+      // Remove any non-digits
+      const cleanPostcode = postcode.replace(/\D/g, '');
+      // Format as XX-XXX
+      return cleanPostcode.replace(/^(\d{2})(\d{3})$/, '$1-$2');
+    };
+
     reset({
       firstName: isLoading ? 'Ładowanie...' : user?.first_name || 'Brak',
       lastName: isLoading ? 'Ładowanie...' : user?.last_name || 'Brak',
@@ -47,7 +55,7 @@ function Settings() {
       street: isLoading ? 'Ładowanie...' : user?.address?.street || 'Brak',
       house: isLoading ? 'Ładowanie...' : user?.address?.home || 'Brak',
       flat: isLoading ? 'Ładowanie...' : user?.address?.flat || 'Brak',
-      postCode: isLoading ? 'Ładowanie...' : user?.address?.post_index || 'Brak',
+      postCode: isLoading ? 'Ładowanie...' : formatPostcode(user?.address?.post_index) || 'Brak',
     })
   }, [user, reset, isLoading])
 
@@ -130,7 +138,7 @@ function Settings() {
                 placeholder="Dariusz"
                 {...register('firstName', {
                   pattern: {
-                    value: /^[a-zA-Z]+$/,
+                    value: /^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ]+$/,
                     message: "Tylko litery",
                   }
                 })}
@@ -143,7 +151,7 @@ function Settings() {
                 placeholder="Adamek"
                 {...register('lastName', {
                   pattern: {
-                    value: /^[a-zA-Z]+$/,
+                    value: /^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ]+$/,
                     message: "Tylko litery",
                   }
                 })}
@@ -157,7 +165,7 @@ function Settings() {
               <input type="text" placeholder="Warszawa"
                 {...register('city', {
                   pattern: {
-                    value: /^[a-zA-Z]+$/,
+                    value: /^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ\s-]+$/,
                     message: "Tylko litery",
                   }
                 })}
@@ -200,7 +208,7 @@ function Settings() {
                 {
                 ...register('street', {
                   pattern: {
-                    value: /^[\p{L}\s]+$/u,
+                    value: /^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ\s.]+$/,
                     message: "Tylko litery",
                   }
                 })
@@ -348,14 +356,14 @@ function Settings() {
   return (
 
     <div className="content">
-      <Tabs fullWidth buttons="Dane podstawowe,Dane dodatkowe,Czas pracy,Wnioski" activeTab={activeTab} onTabClick={handleTabClick} />
+      <Tabs fullWidth buttons="Dane podstawowe,Dane dodatkowe,Czas pracy" activeTab={activeTab} onTabClick={handleTabClick} />
 
 
       {activeTab === "Dane podstawowe" && settingData}
 
       {activeTab === "Dane dodatkowe" && <AdditionalData description={user?.description} />}
       {activeTab === "Czas pracy" && workTime}
-      {activeTab === "Wnioski" && <Conclusions />}
+      {/* {activeTab === "Wnioski" && <Conclusions />} */}
     </div>
   )
 }

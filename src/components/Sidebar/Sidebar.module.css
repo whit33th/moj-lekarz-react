@@ -114,6 +114,129 @@
 
 @media screen and (max-width: 920px) {
   .sidebar {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 70px;
+    padding: 0 20px;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+  }
+
+  .sidebarLinks {
+    display: none;
+    position: fixed;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 70px);
+    background: #3e36b0;
+    padding: 20px 0;
+    z-index: 999;
+    overflow-y: auto;
+  }
+
+  .sidebarLinks.active {
+    display: flex;
+  }
+
+  .sidebarLinks a,
+  .exit {
+    padding: 15px 20px;
+    /* width: 100%; */
+  }
+
+  .sidebarLinkDiv span,
+  .sidebarLinkDivActive span,
+  .exit span {
+    display: block;
+  }
+
+  .logo {
+    margin: 0;
+  }
+
+  .logo img {
+    width: 40px;
+  }
+
+  .mobileMenuBtn {
+    display: block;
+    cursor: pointer;
+    width: 30px;
+    height: 20px;
+    position: relative;
+  }
+
+  .mobileMenuBtn span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: white;
+    position: absolute;
+    transition: 0.3s;
+  }
+
+  .mobileMenuBtn span:nth-child(1) { top: 0; }
+  .mobileMenuBtn span:nth-child(2) { top: 9px; }
+  .mobileMenuBtn span:nth-child(3) { top: 18px; }
+
+  .mobileMenuBtn.active span:nth-child(1) {
+    transform: rotate(45deg);
+    top: 9px;
+  }
+
+  .mobileMenuBtn.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .mobileMenuBtn.active span:nth-child(3) {
+    transform: rotate(-45deg);
+    top: 9px;
+  }
+
+  .mobileSearch {
+    display: flex;
+    align-items: center;
+    background: white;
+    border-radius: 8px;
+    padding: 8px 16px;
+    width: 40%;
+    margin: 0 20px;
+  }
+
+  .mobileSearch img {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+  }
+
+  .mobileSearch input {
+    border: none;
+    width: 100%;
+    font-size: 14px;
+  }
+
+  .searchResults {
+    position: absolute;
+    top: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-height: 80vh;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    overflow-y: auto;
     display: none;
   }
+
+  .searchResults.active {
+    display: block;
+  }
+}
+
+.mobileSearch {
+  display: none;
 }

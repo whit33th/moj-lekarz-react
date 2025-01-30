@@ -7,16 +7,6 @@ import { useForm } from "react-hook-form";
 import InputError from "../../../components/UI/InputError/InputError";
 import useChangePassword from "../../../api/hooks/UserHooks/useChangePassword";
 
-const dataVisitsList = [
-  {
-    id: 8878,
-    doctorName: "Jakub Bukalski ",
-    doctorImg: doctorImg,
-    doctorType: "Ortapeda ",
-    date: "12.06.2024 12:30",
-    address: "Centrum NFZ, Wilda,Poznań",
-  },
-];
 
 function Profile() {
   const { profileState } = useStore();
@@ -45,6 +35,10 @@ function Profile() {
               placeholder="Wpisz stare hasło"
               {...register("oldPassword", {
                 required: "To pole jest wymagane",
+                pattern: {
+                  value: /^[A-Za-zĄąĆćĘęŁłŃńÓóŚśŹźŻż\d!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/,
+                  message: "Nieprawidłowy format hasła"
+                }
               })}
             />
             <InputError formState={formState} errorField={"oldPassword"} />
@@ -60,6 +54,10 @@ function Profile() {
                   value: 8,
                   message: "Hasło musi mieć co najmniej 8 znaków",
                 },
+                pattern: {
+                  value: /^[A-Za-zĄąĆćĘęŁłŃńÓóŚśŹźŻż\d!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/,
+                  message: "Nieprawidłowy format hasła"
+                }
               })}
             />
 
@@ -74,6 +72,10 @@ function Profile() {
                 required: "To pole jest wymagane",
                 validate: (value) =>
                   value === watch("newPassword") || "Hasła nie są takie same",
+                pattern: {
+                  value: /^[A-Za-zĄąĆćĘęŁłŃńÓóŚśŹźŻż\d!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/,
+                  message: "Nieprawidłowy format hasła"
+                }
               })}
             />
             <InputError

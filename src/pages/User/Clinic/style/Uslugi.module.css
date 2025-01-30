@@ -1,7 +1,8 @@
 .uslugiBlock {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(425px, 1fr));
   gap: 20px;
+  width: 100%;
 }
 
 .column {
@@ -23,11 +24,7 @@
   overflow: hidden;
   cursor: pointer;
 }
-.titleBlock {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+
 
 .active {
   border-radius: 20px;
@@ -39,9 +36,10 @@
 }
 
 .uslugiTypeItem {
+  gap: 10px;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 10px;
+  
 }
 
 .titleBlock span {
@@ -62,7 +60,6 @@
 
 @media (max-width: 624px) {
   .uslugiBlock {
-    display: grid;
     grid-template-columns: 1fr;
     gap: 20px;
   }

@@ -5,7 +5,6 @@ import Sidebar from "../components/Sidebar/Sidebar"
 import loop from "@assets/img/loop.mp4"
 import poster from "@assets/img/loopPoster.png"
 
-
 function Workspace({ role, children }) {
   const [videoSrc, setVideoSrc] = useState(null)
 
@@ -24,8 +23,10 @@ function Workspace({ role, children }) {
   return (
     <>
       <Sidebar role={role} />
-      <div style={{ position: "relative" }} className="container">
-        <Navbar />
+      <div className="container">
+        <div className="desktop-only">
+          <Navbar />
+        </div>
         <video
           poster={poster}
           className="loop"
@@ -39,10 +40,6 @@ function Workspace({ role, children }) {
         </video>
 
         {children}
-
-        
-        
-        
       </div>
     </>
   )

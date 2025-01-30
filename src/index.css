@@ -179,16 +179,14 @@ button {
 .container {
   margin-left: 220px;
   width: calc(100% - 220px);
-  /* Основное пространство */
   min-height: 100dvh;
   padding: 40px 80px;
-  background: #f9f9f9;
+  background: linear-gradient(to bottom, #ebf8ffc4, #e6f4ff);
   overflow-y: auto;
   display: flex;
   flex-direction: column;
   gap: 20px;
-  transition: margin-left 0.3s ease, width 0.3s ease;
-  background: linear-gradient(to bottom, #ebf8ffc4, #e6f4ff);
+  transition: all 0.3s ease;
 }
 
 .react-datepicker-popper {
@@ -211,6 +209,11 @@ button {
   .container {
     margin-left: 0;
     width: 100%;
+    padding: 90px 20px 20px;
+  }
+
+  .desktop-only {
+    display: none;
   }
 }
 
