@@ -15,7 +15,7 @@ function PatientList() {
   });
 
   const { setModalActive, setModalContent } = useStore();
-  const prescriptions = data?.prescriptions || [];
+  const prescriptions = data?.active || [];
   const totalPages = data?.pages;
 
   const tableData = prescriptions?.map((prescription) => ({

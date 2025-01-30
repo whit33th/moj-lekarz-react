@@ -92,7 +92,7 @@ function Profil() {
               <p>Zatrudniony</p>
               <p className={styles.grey}>{doctor.hired}</p>
             </div>
-            <div className={styles.vacationsDay}>
+            {/* <div className={styles.vacationsDay}>
               <p>Dostępne dni urlopowe</p>
               <p className={`${styles.grey} ${styles.smCountNumber}`}>27 dni</p>
               <button
@@ -102,7 +102,7 @@ function Profil() {
               >
                 {vacationStatus ? "Już zaplanowany" : "Zaplanuj wakacje"}
               </button>
-            </div>
+            </div> */}
           </div>
         )}
       </div>
