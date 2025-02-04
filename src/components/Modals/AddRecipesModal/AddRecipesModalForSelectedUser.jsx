@@ -41,6 +41,10 @@ function AddRecipesModalForSelectedUser({ patientId, name }) {
     }
   }
   const onSubmit = () => {
+    if (addedMedications.length === 0) {
+      toast.error("Nie wybrano żadnego leku");
+      return;
+    }
     const prescriptionData = {
       patientId: patientId,
       medicationsIds: addedMedications.map(med => med.id),
