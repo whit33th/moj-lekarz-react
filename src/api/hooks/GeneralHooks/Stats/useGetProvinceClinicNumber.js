@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import { generalService } from "../../../services/generalService";
 
-export function useGetClinicStats() {
+export function useGetClinicProvinceStats() {
   const { data } = useQuery({
-    queryKey: ["clinicStats"],
-    queryFn: () => generalService.getClinicStats(),
+    queryKey: ["clinicProvinceStats"],
+    queryFn: () => generalService.getClinicProvinceStats(),
     select: (data) => data?.data || [],
     staleTime: 300 * 1000,
     gcTime: 300 * 1000,

@@ -1,50 +1,57 @@
-import { useState } from "react"
-import styles from "../GraphManagement/GraphManagement.module.css"
-import Search from "../../../components/UI/Search/Search"
-import avatar from "@assets/img/profil.webp"
+import { useState, useEffect } from "react";
+import styles from "../GraphManagement/GraphManagement.module.css";
+import Search from "../../../components/UI/Search/Search";
+import useGetPatientsList from "../../../api/hooks/DoctorHooks/useGetPatientsList";
 
 function Patients() {
-  const [searchTerm, setSearchTerm] = useState("")
+  const [searchTerm, setSearchTerm] = useState("");
+  const { data, isLoading } = useGetPatientsList({});
 
-  const allPatients = Array.from({ length: 25 }, (_, i) => ({
-    id: `user-${i + 1}`,
-    name: i % 2 === 0 ? "Jan Bukalski" : "Dmitry Shak",
-    phone: i % 2 === 0 ? "456-029-485" : "333-412-666",
-  }))
+  // Преобразуем данные API в удобный формат
+  const allPatients = data?.map((item) => ({
+    id: item.id,
+    name: `${item.patient.user.first_name} ${item.patient.user.last_name}`,
+    phone: item.patient.user.address?.city || "Нет данных",
+    photo: item.patient.user.photo,
+  })) || [];
 
+  // Фильтрация пациентов по имени и городу
   const filteredPatients = allPatients.filter(
-    (item) =>
-      item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      item.phone.includes(searchTerm)
-  )
+    (patient) =>
+      patient.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      patient.phone.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
-  const hasData = filteredPatients.length > 0
+  // Пока загружаются данные — показываем лоадер
+  if (isLoading) {
+    return <div className={styles.loading}>Загрузка данных...</div>;
+  }
 
   return (
     <div className={styles.container}>
       <div className={styles.header}>
         <Search
-          placeholder={"Szukaj pacjenta..."}
+          placeholder="Szukaj pacjenta..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
       </div>
 
       <div
-        style={{ columns: hasData ? 2 : 1 }}
+        style={{ columns: filteredPatients.length ? 2 : 1 }}
         className={styles.tableContainer}
       >
-        {hasData ? (
+        {filteredPatients.length > 0 ? (
           <div className={styles.column}>
-            {filteredPatients.map((item, index) => (
+            {filteredPatients.map((patient, index) => (
               <div
-                key={item.id}
+                key={patient.id}
                 className={index % 2 === 0 ? styles.row : styles.rowAlt}
               >
-                <img src={avatar} alt="" />
+                <img src={patient.photo} alt={patient.name} />
                 <div className={styles.info}>
-                  <div className={styles.name}>{item.name}</div>
-                  <div className={styles.phone}>{item.phone}</div>
+                  <div className={styles.name}>{patient.name}</div>
+                  <div className={styles.phone}>{patient.phone}</div>
                 </div>
               </div>
             ))}
@@ -54,7 +61,7 @@ function Patients() {
         )}
       </div>
     </div>
-  )
+  );
 }
 
-export default Patients
+export default Patients;

@@ -38,13 +38,13 @@ function DoctorProfile() {
   const { data: reviews } = useGetDoctorReviews({
     doctorId: id,
   });
-  console.log(reviews);
+
 
   useEffect(() => {
     const doctor = doctorCard.find((item) => item.id == id);
     setDoctorInfo(doctor || null);
   }, [id, doctorCard]);
-  console.log(doctorInfo);
+ 
   return (
     <div className={styles.doctorProfile}>
       <div className={styles.doctorProfileRow}>
@@ -88,7 +88,7 @@ function DoctorProfile() {
           </div>
           <div className={styles.review}>
             {reviews?.reviews.map((data, index) => (
-              <ReviewCard key={index} data={data} />
+              <ReviewCard key={index} reviews={data} />
             ))}
           </div>
         </div>

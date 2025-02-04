@@ -6,11 +6,15 @@ import useGetUserInfo from "@api/hooks/UserHooks/useGetUserInfo";
 import usePutUserInfo from "@api/hooks/UserHooks/usePutUserInfo";
 import grey from "@assets/img/grey.png";
 import BlueBtn from "../../../components/Buttons/BlueBtn/BlueBtn";
+import usePostUpdateImg from '@hooks/UserHooks/usePostUpdateImg';
 
 function ProfileInfoBlock() {
   const { data: user } = useGetUserInfo();
   const { mutate } = usePutUserInfo();
   const [stateChangeBlock, setStateChangeBlock] = useState(false);
+  const [selectedImg, setSelectedImg] = useState(null);
+  const [fileForUpload, setFileForUpload] = useState(null);
+  const { mutate: uploadImage } = usePostUpdateImg();
 
   const {
     register,
@@ -75,12 +79,47 @@ function ProfileInfoBlock() {
     mutate(formData);
   };
 
+  const handleImgChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      setFileForUpload(file);
+      const objectUrl = URL.createObjectURL(file);
+      setSelectedImg(objectUrl);
+    }
+  };
+
+  const handleUploadImage = () => {
+    if (fileForUpload) {
+      const formData = new FormData();
+      formData.set('image', fileForUpload);
+      uploadImage(formData);
+      setFileForUpload(null);
+    }
+  };
+
   return (
     <div className={styles.profileInfoBlock}>
       <div className={styles.profileInfoImgBlock}>
         <div className={styles.profileImg}>
-          <img src={user?.photo || grey} />
+          <label htmlFor="imageInput">
+            <img src={selectedImg || user?.photo || grey} alt="Profile" />
+          </label>
+          <input
+            id="imageInput"
+            type="file"
+            accept="image/*"
+            onChange={handleImgChange}
+            style={{ display: 'none' }}
+          />
         </div>
+        {fileForUpload && (
+          <button 
+            className={styles.updatePhotoBtn}
+            onClick={handleUploadImage}
+          >
+            Aktualizuj zdjęcie
+          </button>
+        )}
         <p>
           {user?.first_name} {user?.last_name}
         </p>

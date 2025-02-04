@@ -56,8 +56,13 @@ class GeneralService {
       withCredentials: true,
     });
   }
-  async getClinicStats() {
+  async getClinicProvinceStats() {
     return await axios.get(`${this.URL}/api/statistics/province`, {
+      withCredentials: true,
+    });
+  }
+  async getClinicStats() {
+    return await axios.get(`${this.URL}/api/clinics/statistics`, {
       withCredentials: true,
     });
   }

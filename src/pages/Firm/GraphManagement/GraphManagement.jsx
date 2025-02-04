@@ -5,7 +5,8 @@ import Search from "../../../components/UI/Search/Search";
 import BlueBtn from "../../../components/Buttons/BlueBtn/BlueBtn";
 
 import { useNavigate } from "react-router-dom";
-import { useForm } from 'react-hook-form'
+import { useForm } from "react-hook-form";
+import InputDropdownStas from "../../../components/Dropdown/InputDropdownStas";
 
 function GraphManagement() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -46,9 +47,9 @@ function GraphManagement() {
 
   const hasData = filteredPatients.length > 0;
 
-  const { control, handleSubmit, watch } = useForm({
-
-  })
+  const { control, handleSubmit, register } = useForm({
+    mode: "onChange",
+  });
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -59,7 +60,14 @@ function GraphManagement() {
         />
 
         <div className={styles.specializationField}>
-          <DropdownStas options={options} placeholder={options[0]} />
+          <InputDropdownStas
+            seeOptions
+            object={false}
+            control={control}
+            options={options}
+            placeholder={options[0]}
+            {...register("zxc", {})}
+          />
         </div>
 
         <BlueBtn cb={handleNextClick}>Wybierz i przejdź dalej</BlueBtn>

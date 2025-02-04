@@ -1,153 +1,191 @@
-import { NavLink } from "react-router-dom"
+import { NavLink } from "react-router-dom";
+import { useForm } from "react-hook-form";
 
-import follow from "@assets/img/follow.png"
-import editPan from "@assets/img/editPen.png"
+import follow from "@assets/img/follow.png";
+import editPan from "@assets/img/editPen.png";
 
-import BestWorkerItem from "../../../components/FirmPage/VisitItem/BestWorkerItem"
-import { userItems } from "../../../helpers/userItemList"
+import BestWorkerItem from "../../../components/FirmPage/VisitItem/BestWorkerItem";
+import { userItems } from "../../../helpers/userItemList";
 
-import styles from "./FirmManagement.module.css"
-import Review from "../../../components/FirmPage/Review/Review"
-import useStore from "./../../../data/store"
-import Choice from "../../../components/Modal/Choice"
+import styles from "./FirmManagement.module.css";
+import Review from "../../../components/FirmPage/Review/Review";
+import useStore from "../../../data/store";
+import Choice from "../../../components/Modal/Choice";
 
-import profil from "@assets/img/profil.webp"
-import ReviewCard from "../../../components/FirmPage/Review/ReviewCard"
+import profil from "@assets/img/profil.webp";
+import ReviewCard from "../../../components/FirmPage/Review/ReviewCard";
 
-import Dropdown from "../../../components/Dropdown/Dropdown"
-import exit from "@assets/img/cross.png"
-import BlueBtn from "../../../components/Buttons/BlueBtn/BlueBtn"
+import Dropdown from "../../../components/Dropdown/Dropdown";
+import exit from "@assets/img/cross.png";
+import BlueBtn from "../../../components/Buttons/BlueBtn/BlueBtn";
+import useGetUserInfo from "../../../api/hooks/UserHooks/useGetUserInfo";
 
 function FirmManagement() {
-  const { setModalActive, setModalContent } = useStore()
+  const { setModalActive, setModalContent } = useStore();
+  const { data, isLoading } = useGetUserInfo();
+  const { register, reset, handleSubmit } = useForm();
+
+  const formatTimetables = (timetables) => {
+    if (!timetables || timetables.length === 0) {
+      return Array(7).fill({ day: "Brak danych", hours: "Zamknięte" });
+    }
+
+    const daysOfWeek = [
+      "Poniedziałek",
+      "Wtorek",
+      "Środa",
+      "Czwartek",
+      "Piątek",
+      "Sobota",
+      "Niedziela",
+    ];
+
+    return daysOfWeek.map((day, index) => {
+      const daySchedule = timetables.find((t) => t.day_of_week === index + 1);
+      return {
+        day,
+        hours:
+          daySchedule.start_time && daySchedule.end_time
+            ? `${daySchedule.start_time?.slice(
+                0,
+                5
+              )}-${daySchedule.end_time?.slice(0, 5)}`
+            : "Zamknięte",
+      };
+    });
+  };
+
+  const WorkingHoursGrid = ({ timetables }) => (
+    <div className={styles.workingHoursGrid}>
+      {formatTimetables(timetables).map((schedule, index) => (
+        <p key={index} className={styles.scheduleItem}>
+          {`${schedule.day}: ${schedule.hours}`}
+        </p>
+      ))}
+    </div>
+  );
+
+  const clinic = {
+    name: isLoading ? "Ładowanie..." : data?.name || "Brak",
+    nip: isLoading ? "Ładowanie..." : data?.nip || "Brak",
+    license: isLoading ? "Ładowanie..." : data?.nr_license || "Brak",
+    photo: isLoading ? profil : data?.photo || profil,
+    tel: isLoading ? "Ładowanie..." : data?.phone || "Brak",
+    email: isLoading ? "Ładowanie..." : data?.email || "Brak",
+    description: isLoading ? "Ładowanie..." : data?.description || "Brak",
+    city: isLoading ? "Ładowanie..." : data?.address?.city || "Brak",
+    province: isLoading ? "Ładowanie..." : data?.address?.province || "Brak",
+    street: isLoading ? "Ładowanie..." : data?.address?.street || "Brak",
+    house: isLoading ? "Ładowanie..." : data?.address?.home || "Brak",
+    flat: isLoading ? "Ładowanie..." : data?.address?.flat || "Brak",
+    postIndex: isLoading ? "Ładowanie..." : data?.address?.post_index || "Brak",
+  };
+
+  const onSubmit = (formData) => {
+    console.log(formData);
+    setModalActive(false);
+  };
 
   function openMainModal() {
-    setModalActive(true)
-    setModalContent(ModalContentEdit)
+    reset({
+      firm: clinic.name,
+      nip: clinic.nip,
+      license: clinic.license,
+      city: clinic.city,
+      province: clinic.province,
+      street: clinic.street,
+      house: clinic.house,
+      flat: clinic.flat,           // добавлено
+      email: clinic.email,
+      tel: clinic.tel,
+      postIndex: clinic.postIndex,
+      description: clinic.description  // добавлено
+    });
+    setModalActive(true);
+    setModalContent(ModalContentEdit);
   }
+
   const ModalContentEdit = (
     <div>
-      <form className={styles.form}>
+      <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
         <img onClick={() => setModalActive(false)} src={exit} alt="cross" />
         <div className={styles.row}>
           <div className={styles.column}>
             <label className={styles.label}>Nazwa firmy</label>
-            <input
-              type="text"
-              name="firm"
-              defaultValue="Gabinet lekarski Iwona Las"
-              className={styles.input}
-            />
+            <input type="text" className={styles.input} {...register("firm")} />
           </div>
           <div className={styles.column}>
             <label className={styles.label}>NIP</label>
             <input
               type="text"
-              name="nip"
-              defaultValue="21344059222321"
               className={styles.input}
               disabled
+              {...register("nip")}
             />
           </div>
         </div>
         <div className={styles.row}>
           <div className={styles.column}>
-            <label className={styles.label}>Data rejestracji</label>
-            <input
-              type="date"
-              name="house"
-              defaultValue="2001-09-11"
-              className={styles.input}
-            />
+            <label className={styles.label}>Licencja</label>
+            <input type="text" className={styles.input} {...register("license")} />
           </div>
           <div className={styles.column}>
-            <label className={styles.label}>Numer licencji</label>
-            <input
-              type="text"
-              name="license"
-              defaultValue="12236897654632"
-              className={styles.input}
-            />
+            <label className={styles.label}>Email</label>
+            <input type="email" className={styles.input} {...register("email")} />
           </div>
         </div>
         <div className={styles.row}>
           <div className={styles.column}>
             <label className={styles.label}>Miasto</label>
+            <input type="text" className={styles.input} {...register("city")} />
+          </div>
+          <div className={styles.column}>
+            <label className={styles.label}>Województwo</label>
             <input
               type="text"
-              name="city"
-              defaultValue="Wrocław"
               className={styles.input}
+              {...register("province")}
             />
           </div>
+        </div>
+        <div className={styles.row}>
           <div className={styles.column}>
             <label className={styles.label}>Ulica</label>
-            <input
-              type="text"
-              name="street"
-              defaultValue="ul. Szylinga"
-              className={styles.input}
-            />
+            <input type="text" className={styles.input} {...register("street")} />
+          </div>
+          <div className={styles.column}>
+            <label className={styles.label}>Nr domu</label>
+            <input type="text" className={styles.input} {...register("house")} />
           </div>
         </div>
         <div className={styles.row}>
           <div className={styles.column}>
-            <label className={styles.label}>Nr. Domu</label>
-            <input
-              type="text"
-              name="house"
-              defaultValue="131"
-              className={styles.input}
-            />
-          </div>
-          <div className={styles.column}>
-            <label className={styles.label}>Kod pocztowy</label>
-            <input
-              type="text"
-              name="post"
-              defaultValue="64-732"
-              className={styles.input}
-            />
-          </div>
-        </div>
-        <div className={styles.row}>
-          <div className={styles.column}>
-            <label className={styles.label}>Adres korespondencji</label>
-            <input
-              type="text"
-              name="street"
-              defaultValue="ul. Szamarzewskiego"
-              className={styles.input}
-            />
-          </div>
-        </div>
-        <div className={styles.row}>
-          <div className={styles.column}>
-            <label className={styles.label}>Email</label>
-            <input
-              type="email"
-              name="email"
-              defaultValue="Glekwona@wp.pl"
-              className={styles.input}
-            />
+            <label className={styles.label}>Nr mieszkania</label>
+            <input type="text" className={styles.input} {...register("flat")} />
           </div>
           <div className={styles.column}>
             <label className={styles.label}>Telefon</label>
-            <input
-              type="tel"
-              name="tel"
-              defaultValue="512495333"
-              className={styles.input}
-            />
+            <input type="tel" className={styles.input} {...register("tel")} />
           </div>
         </div>
+        <div className={styles.row}>
+          <div className={styles.column}>
+            <label className={styles.label}>Kod pocztowy</label>
+            <input type="text" className={styles.input} {...register("postIndex")} />
+          </div>
+          <div className={styles.column}>
+            <label className={styles.label}>Opis</label>
+            <textarea  className={styles.input} {...register("description")} />
+          </div>
+        </div>
+        <div className={styles.choice}>
+          <div></div>
+          <BlueBtn type="submit">Aktualizuj</BlueBtn>
+        </div>
       </form>
-      <div className={styles.choice}>
-        <div></div>
-        <BlueBtn cb={() => setModalActive(false)}>Aktualizuj</BlueBtn>
-      </div>
     </div>
-  )
+  );
+
   const reviews = [
     {
       name: "Daniel Novikov",
@@ -198,21 +236,7 @@ function FirmManagement() {
       rating: 1,
       image: profil,
     },
-    {
-      name: "Daniel Novikov",
-      date: "06.02.2024",
-      text: "Ola lubi wszystkie przedmioty. Wie, że nauka jest ważna. Najmilej spędza czas na lekcjach o przyrodzie – Ola bardzo lubi zwierzęta. W klasie Oli mieszka chomik. Wszystkie dzieci dbają o niego. Przynoszą mu jedzenie i głaszczą. Ola nie ma własnego zwierzęcia, więc chomik to kolejny powód dla którego lubi chodzić do szkoły.",
-      rating: 1,
-      image: profil,
-    },
-    {
-      name: "Daniel Novikov",
-      date: "06.02.2024",
-      text: "Ola lubi wszystkie przedmioty. Wie, że nauka jest ważna. Najmilej spędza czas na lekcjach o przyrodzie – Ola bardzo lubi zwierzęta. W klasie Oli mieszka chomik. Wszystkie dzieci dbają o niego. Przynoszą mu jedzenie i głaszczą. Ola nie ma własnego zwierzęcia, więc chomik to kolejny powód dla którego lubi chodzić do szkoły.",
-      rating: 1,
-      image: profil,
-    },
-  ]
+  ];
 
   const modalContentComments = (
     <div className={styles.mainContainer}>
@@ -246,7 +270,7 @@ function FirmManagement() {
         ))}
       </div>
     </div>
-  )
+  );
   return (
     <div className="content">
       <div className={styles.topLayer}>
@@ -257,29 +281,27 @@ function FirmManagement() {
             onClick={openMainModal}
             className={styles.pen}
             src={editPan}
-            alt=""
+            alt="edit"
           />
           <div>
-            <p className={styles.title}>Gabinety lekarszkie Iwona Las</p>
-            <p className={styles.grey}>Wrocław ul. Szylinga 17 60-131</p>
+            <p className={styles.title}>{clinic.name}</p>
+            <p
+              className={styles.grey}
+            >{`${clinic.city}, ${clinic.province}, ${clinic.street} ${clinic.house}`}</p>
           </div>
-
           <div className={styles.officeTime}>
-            <p>Pn-Pt: 09:00-18:00</p>
-            <p>Sobota: 10:00-13:00 </p>
+            <WorkingHoursGrid timetables={data?.timetables} />
           </div>
         </div>
 
-        <div className={`${styles.mainCard} ${styles.officeInfo} `}>
+        <div className={`${styles.mainCard} ${styles.officeInfo}`}>
           <div>
             <p className={styles.title}>Punkt rejestracji</p>
-            <p className={styles.grey}>512-495-333</p>
-            <p className={styles.grey}>512-495-333</p>
+            <p className={styles.grey}>{clinic.tel}</p>
           </div>
-
           <div>
             <p className={styles.title}>Email</p>
-            <p className={styles.grey}>GlekIwona@wp.pl</p>
+            <p className={styles.grey}>{clinic.email}</p>
           </div>
         </div>
       </div>
@@ -290,8 +312,8 @@ function FirmManagement() {
             <p className={styles.titleCard}>Komentarze</p>
             <button
               onClick={() => {
-                setModalActive(true)
-                setModalContent(modalContentComments)
+                setModalActive(true);
+                setModalContent(modalContentComments);
               }}
               className={styles.transparentBtn}
             >
@@ -328,18 +350,18 @@ function FirmManagement() {
           <div className={styles.history}>
             {userItems.slice(-5).map((userItem, index) => (
               <BestWorkerItem
+                key={index}
                 name={userItem.name}
                 img={userItem.img}
                 date={userItem.date}
                 time={userItem.time}
-                key={index}
               />
             ))}
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default FirmManagement
+export default FirmManagement;

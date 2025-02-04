@@ -1,7 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import { pageConfig } from "../../config/config";
 import FirmMain from "../../pages/Firm/Main/FirmMain";
-import Calendar from "../../pages/Doctor/Calendar/Calendar";
 import GraphManagement from "../../pages/Firm/GraphManagement/GraphManagement";
 import SelectedGraph from "../../pages/Firm/GraphManagement/SelectedGraph";
 import Workers from "../../pages/Firm/Workers/Workers";
@@ -13,6 +12,7 @@ import WorkersInfo from "../../pages/Firm/Workers/WorkersInfo";
 import Patients from "../../pages/Firm/Patients/Patients";
 import NotFound from "../../pages/User/NotFound";
 import AuthPage from "../../pages/Auth/AuthPage";
+import CalendarClinic from "../../pages/Doctor/Calendar/CalendarClinic";
 
 function FirmRoutes() {
   return (
@@ -22,7 +22,7 @@ function FirmRoutes() {
       <Route path="/*" element={<NotFound />} />
       
         <Route path={pageConfig.firm.home} element={<FirmMain />} />
-        <Route path={pageConfig.firm.calendar} element={<Calendar />} />
+        <Route path={pageConfig.firm.calendar} element={<CalendarClinic />} />
         <Route path={pageConfig.firm.graph} element={<GraphManagement />} />
         <Route path={pageConfig.firm.graphManage} element={<SelectedGraph />} />
         <Route path={pageConfig.firm.workers} element={<Workers />} />

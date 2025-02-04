@@ -6,15 +6,32 @@ import useStore from "../../../data/store";
 import { useForm } from "react-hook-form";
 import InputError from "../../../components/UI/InputError/InputError";
 import useChangePassword from "../../../api/hooks/UserHooks/useChangePassword";
-
+import usePostUpdateImg from '@hooks/UserHooks/usePostUpdateImg';
+import grey from "@assets/img/grey.png";
 
 function Profile() {
   const { profileState } = useStore();
+  const [selectedImg, setSelectedImg] = useState(null);
+  const [fileForUpload, setFileForUpload] = useState(null);
   const { register, handleSubmit, formState, watch } = useForm({
     mode: "onChange",
   });
 
   const { mutate } = useChangePassword();
+  const { mutate: uploadImage } = usePostUpdateImg();
+
+  const handleImgChange = (event) => {
+    const file = event.target.files[0];
+    setFileForUpload(file);
+    if (file) {
+      const objectUrl = URL.createObjectURL(file);
+      setSelectedImg(objectUrl);
+      
+      const formData = new FormData();
+      formData.set('image', file);
+      uploadImage(formData);
+    }
+  };
 
   const onSubmit = (data) => {
     if (data.newPassword === data.repeatNewPassword) {
@@ -24,7 +41,11 @@ function Profile() {
 
   return (
     <div className={styles.profilePage}>
-      <ProfileInfoBlock data={profileState} />
+      <ProfileInfoBlock 
+        data={profileState} 
+        selectedImg={selectedImg || profileState?.photo || grey}
+        onImageChange={handleImgChange}
+      />
       <form className={styles.passwordBlock} onSubmit={handleSubmit(onSubmit)}>
         <h1>Zmiana hasła</h1>
         <div className={styles.passwordBlockContent}>

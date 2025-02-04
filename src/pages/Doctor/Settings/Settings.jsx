@@ -46,7 +46,7 @@ function Settings() {
     reset({
       firstName: isLoading ? 'Ładowanie...' : user?.first_name || 'Brak',
       lastName: isLoading ? 'Ładowanie...' : user?.last_name || 'Brak',
-      birthDate: isLoading ? '2000-01-01' : user?.birthday.slice(0, 10),
+      birthDate: isLoading ? '2000-01-01' : user?.birthday?.slice(0, 10),
       pesel: isLoading ? 'Ładowanie...' : user?.pesel || 'Brak',
       tel: isLoading ? 'Ładowanie...' : user?.phone || 'Brak',
       email: isLoading ? 'Ładowanie...' : user?.email || 'Brak',

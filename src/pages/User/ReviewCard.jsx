@@ -2,47 +2,31 @@ import styles from "./style/ReviewCard.module.css";
 import starimg from "@assets/img/Star.svg";
 import grey from "@assets/img/grey.png";
 
-function ReviewCard(reviews) {
+function ReviewCard({ reviews }) {
   const review = {
-    rating: reviews?.reviews?.rating || 0,
-    name:
-      reviews?.reviews?.patient?.user?.first_name +
-        " " +
-        reviews?.reviews?.patient?.user?.last_name || "Brak",
-    photo: reviews?.reviews?.patient?.user?.photo || "",
-    date: reviews?.reviews?.createdAt.slice(0, 10) || "Brak",
-    comment: reviews?.reviews?.comment || "Brak",
-    positiveTag: reviews?.reviews?.tags?.filter((tag) => tag.positive === true),
-    negativeTag: reviews?.reviews?.tags?.filter(
-      (tag) => tag.positive === false
-    ),
+    rating: reviews?.rating || 0,
+    name: `${reviews?.patient?.user?.first_name || "Brak"} ${reviews?.patient?.user?.last_name || ""}`.trim(),
+    photo: reviews?.patient?.user?.photo || grey,
+    date: "Brak", // Дата отсутствует в API, временно ставим "Brak"
+    comment: reviews?.comment || "Brak",
+    tags: reviews?.tags || [],
   };
-
-  const positiveFeedbacks = [
-    "Profesjonalne podejście",
-    "Dbałość o komfort pacjenta",
-  ];
-  const negativeFeedbacks = ["Zbyt krótka wizyta", "Ograniczona dostępność"];
+  console.log(reviews?.reviews)
 
   return (
     <div className={styles.reviewCard}>
       <div className={styles.userInfo}>
         <div className={styles.header}>
-          <img src={review.photo || grey} />
+          <img src={review.photo} alt="User Avatar" />
           <div className={styles.reviewNameBlock}>
             <div>
-              <p> {review.name} </p>
+              <p>{review.name}</p>
               <span>{review.date}</span>
             </div>
 
             <div className={styles.service}>
-              {review.positiveTag.map((t, index) => (
+              {review.tags.map((t, index) => (
                 <div key={index} className={styles.good}>
-                  {t.name}
-                </div>
-              ))}
-              {review.negativeTag.map((t, index) => (
-                <div key={index} className={styles.bad}>
                   {t.name}
                 </div>
               ))}
@@ -65,4 +49,5 @@ function ReviewCard(reviews) {
     </div>
   );
 }
+
 export default ReviewCard;

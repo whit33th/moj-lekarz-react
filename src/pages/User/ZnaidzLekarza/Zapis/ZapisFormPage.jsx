@@ -71,7 +71,7 @@ function ZapisFormPage() {
       date: appointment.date,
       timeSlot: appointment.startTime,
       firstVisit: visitDetails.isFirstVisit,
-      visitType: visitDetails.type.toLowerCase(),
+      visitType: visitDetails.type,
       description: getValues("comment"), // Получаем значение комментария
     };
 
