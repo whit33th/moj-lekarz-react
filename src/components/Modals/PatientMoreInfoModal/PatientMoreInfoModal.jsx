@@ -186,13 +186,13 @@ function PatientMoreInfoModal({ patientInfo }) {
           </div>
         </div> */}
       </div>
-      <div className={styles.actionButtons}>
+      {/* <div className={styles.actionButtons}>
         <Choice
           cb1={() => setModalActive(false)}
           choice1={"Anuluj"}
           choice2={"Aktualizuj"}
         ></Choice>
-      </div>
+      </div> */}
     </div>
   )
 }

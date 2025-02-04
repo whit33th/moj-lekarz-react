@@ -52,6 +52,9 @@ function AddRecipesModal() {
   };
 
   const onSubmit = (data) => {
+    
+   
+
     if (addedMedications.length === 0) {
       toast.error("Nie wybrano żadnego leku");
       return;
@@ -60,12 +63,12 @@ function AddRecipesModal() {
     const prescriptionData = {
       patientId: data.patient.id,
       medicationsIds: addedMedications.map((med) => med.id),
-
       expirationDate: new Date(Date.now() + 359 * 24 * 60 * 60 * 1000)
         .toISOString()
         .split("T")[0],
     };
     mutate(prescriptionData);
+    setModalActive(false); // добавим закрытие модального окна после успешного добавления
     console.log(prescriptionData);
   };
 

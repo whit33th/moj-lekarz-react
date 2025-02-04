@@ -11,7 +11,7 @@ import useGetAppointmentForUser from "../../../api/hooks/DoctorHooks/useGetAppoi
 
 function PatientInfo() {
   const { id } = useParams();
-  const [activeTab, setActiveTab] = useState("Uwagi");
+ 
 
   const navigate = useNavigate();
 
@@ -91,9 +91,7 @@ function PatientInfo() {
     <div>Brak historii wizyt</div>
   );
 
-  function handleTabClick(name) {
-    setActiveTab(name);
-  }
+ 
 
   function handleModal() {
     setModalActive(true);

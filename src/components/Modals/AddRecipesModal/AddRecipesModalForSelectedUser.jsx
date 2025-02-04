@@ -41,6 +41,7 @@ function AddRecipesModalForSelectedUser({ patientId, name }) {
     }
   }
   const onSubmit = () => {
+    
     if (addedMedications.length === 0) {
       toast.error("Nie wybrano żadnego leku");
       return;
