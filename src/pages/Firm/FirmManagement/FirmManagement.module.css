@@ -50,6 +50,8 @@
   gap: 10px;
   display: flex;
   flex-direction: column;
+  flex: 1;
+  min-height: 200px; /* Минимальная высота для контейнера */
 }
 .mainCard {
   background-color: white;
@@ -60,6 +62,7 @@
   width: 50%;
   flex-direction: column;
   position: relative;
+  min-height: 300px; /* Минимальная высота для карточки */
 }
 
 .robotImage {
@@ -249,6 +252,9 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+  height: 100%;
+  flex: 1;
+  min-height: 200px; /* Минимальная высота для контейнера */
 }
 
 .cardsContainer {
@@ -318,7 +324,34 @@
   align-items: stretch;
 }
 
+.noVisits {
+  width: 100%;
+  text-align: center;
+  padding: 20px;
+  color: #9CA3AF;
+}
+
 /* Удалите или закомментируйте старые стили .daySchedule, .dayName, .dayHours если они есть */
+
+.emptyState {
+  background-color: #F3F4F6;
+  border-radius: 12px;
+  padding: 40px 20px;
+  text-align: center;
+  width: 100%;
+  margin: 10px 0;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px; /* Такая же минимальная высота как у родителя */
+}
+
+.emptyState p {
+  color: #9CA3AF;
+  font-size: 16px;
+  margin: 0;
+}
 
 @media screen and (max-width: 920px) {
   .biggerCard {

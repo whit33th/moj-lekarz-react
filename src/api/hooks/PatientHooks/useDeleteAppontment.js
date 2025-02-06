@@ -4,11 +4,11 @@ import { useEffect } from "react";
 import { toast } from "sonner";
 import { patientService } from "../../services/patientService";
 
-function useDeleteAppointment(id) {
+function useDeleteAppointment() {
   const queryClient = useQueryClient();
 
   const { mutate, isSuccess, isError } = useMutation({
-    mutationFn: () => patientService.deleteVisit(id),
+    mutationFn: (id) => patientService.deleteVisit(id),
     mutationKey: "deletePatientVisit",
     retry: 0,
   });

@@ -43,7 +43,7 @@ function ClinicZapisPage() {
   }
 
   console.log(state)
-  const visitTypeOptions2 = ["Prywatna", "NFZ"];
+  const visitTypeOptions2 = ["prywatna", "NFZ"];
 
   const validateForm = () => {
     const service = getValues("service");
@@ -69,6 +69,42 @@ function ClinicZapisPage() {
       e.preventDefault();
       return;
     }
+  };
+
+  // Add this new function before the return statement
+  const handleLinkClick = (e) => {
+    if (!validateForm()) {
+      e.preventDefault();
+      return;
+    }
+
+    // Get current form values
+    const currentService = getValues("service");
+    const currentType = getValues("type");
+
+    // Only proceed if we have all required values
+    if (!currentService || !currentType || !selectedServiceId) {
+      e.preventDefault();
+      setErrors({
+        ...errors,
+        form: "Please fill in all required fields"
+      });
+      return;
+    }
+
+    // Update state with current values
+    const visitDetails = {
+      service: currentService,
+      serviceId: selectedServiceId,
+      type: currentType,
+      isFirstVisit: selectedRadio === "Tak"
+    };
+
+    // Replace the existing Link state with the new state
+    e.currentTarget.state = {
+      ...state,
+      visitDetails
+    };
   };
 
   return (
@@ -151,7 +187,7 @@ function ClinicZapisPage() {
                 isFirstVisit: selectedRadio === "Tak",
               },
             }}
-            onClick={handleContinue}
+            onClick={handleLinkClick}  // Use the new handler
             className={styles.btnBlockContinue}
           >
             Kontynuj

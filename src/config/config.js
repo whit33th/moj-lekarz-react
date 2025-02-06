@@ -48,7 +48,7 @@ class PageConfig {
     management: "/management",
     notifications: "/notifications",
     chat: "/chat",
-    workersInfo: "/workers/id",
+    workersInfo: "/workers/:id",
     patient: "/patients",
   };
 

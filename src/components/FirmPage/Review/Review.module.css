@@ -25,9 +25,10 @@
   align-items: center;
 }
 .reviewText {
-  color: #333;
+  color: #2B2B2B;
   font-size: 14px;
-  margin: 5px 0;
+  line-height: 1.5;
+  margin-left: 55px;
 }
 .moreLink {
   text-align: end;
@@ -46,5 +47,50 @@
   display: flex;
   align-items: flex-start;
   gap: 20px;
-	
+}
+.reviewItem {
+  padding: 15px;
+  border-bottom: 1px solid #E8E8E8;
+}
+.userBlock {
+  display: flex;
+  
+  align-items: flex-start;
+  gap: 15px;
+  margin-bottom: 10px;
+}
+.userBlock img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.userBlock div p {
+  font-weight: 500;
+  margin: 0;
+}
+.userBlock div span {
+  color: #717171;
+  font-size: 14px;
+}
+.starsBlock {
+  display: flex;
+  gap: 5px;
+  margin-left: auto;
+}
+.starsBlock img {
+  width: 15px;
+  height: 15px;
+}
+.expandButton {
+  background: none;
+  border: none;
+  color: #0066CC;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 10px;
+  font-size: 14px;
+}
+.expandButton:hover {
+  text-decoration: underline;
 }

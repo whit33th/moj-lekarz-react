@@ -12,8 +12,9 @@ import { toast } from "sonner"
 import { useNavigate } from "react-router-dom"
 import clip from "@assets/img/clip.png"
 import { useForm } from 'react-hook-form'
+import { pageConfig } from "../../../config/config"
 
-const MoreInfoButtPatient = ({ id }) => {
+const MoreInfoButtFirm = ({ id }) => {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const { setModalActive, setModalContent } = useStore()
   const navigate = useNavigate()
@@ -163,7 +164,7 @@ const MoreInfoButtPatient = ({ id }) => {
     </div>
   )
   const handleNavigate = () => {
-    navigate("/workers/id")
+    navigate(`${pageConfig.firm.workersInfo.slice(0,9)}${id}`)  // Changed to use template literal with actual id
   }
   const openNotificationModal = () => {
     setModalActive(true)
@@ -181,7 +182,10 @@ const MoreInfoButtPatient = ({ id }) => {
       <img src={moreInfo} alt="More Info" />
       {isModalOpen && (
         <div className={styles.moreInfoModal}>
-          <button onClick={handleNavigate} className={styles.hoverOpacity}>
+          <button onClick={(e) => {
+            e.stopPropagation();  // Prevent event bubbling
+            handleNavigate();
+          }} className={styles.hoverOpacity}>
             <p style={{ fontWeight: "500" }}>Informacja</p>
           </button>
 
@@ -197,4 +201,4 @@ const MoreInfoButtPatient = ({ id }) => {
   )
 }
 
-export default MoreInfoButtPatient
+export default MoreInfoButtFirm

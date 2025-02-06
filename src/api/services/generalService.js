@@ -47,7 +47,7 @@ class GeneralService {
   async getClinicReviews(clinicId, sortDate, sortRating, page = 1, limit = 10) {
     let url = `${this.URL}/api/clinics/${clinicId}/reviews?`;
 
-    sortDate && (url += `sortDate=${sortRating}&`);
+    sortDate && (url += `sortDate=${sortDate}&`);
     sortRating && (url += `sortRating=${sortRating}`);
     limit && (url += `limit=${limit}&`);
     page && (url += `page=${page}`);

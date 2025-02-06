@@ -34,7 +34,6 @@ class PatientService {
   async getPatientPrescriptions() {
     let url = `${this.URL}/api/prescriptions`;
 
-   
     return await axios.get(url, { withCredentials: true });
   }
 
@@ -70,7 +69,7 @@ class PatientService {
     });
   }
   async deleteVisit(id) {
-    return await axios.delete(`${this.URL}/api/appointments/${id}`, {
+    return await axios.delete(`${this.URL}/api/patients/appointments/${id}`, {
       withCredentials: true,
     });
   }

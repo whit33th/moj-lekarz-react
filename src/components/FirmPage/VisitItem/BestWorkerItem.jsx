@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom'
 import star from "@assets/img/star.png"
 import styles from './BestWorkerItem.module.css'
 
-function VisitItem({ img, name, position, rating = '5.0', index }) {
+function VisitItem({ img, name, position, rating, index,specialty }) {
   return (
     <NavLink key={index} to="/workers/id" className={styles.black}>
       <div className={`${styles.record} ${styles.center} ${styles.between}`}>
@@ -12,7 +12,7 @@ function VisitItem({ img, name, position, rating = '5.0', index }) {
             className={`${styles.nameSection} ${styles.flexColumn} ${styles.evenly}`}
           >
             <p className={styles.name}>{name}</p>
-            <p className={`${styles.date} ${styles.grey}`}>{position}</p>
+            <p className={`${styles.date} ${styles.grey}`}>{specialty}</p>
           </div>
         </div>
         <div className={styles.rating}>

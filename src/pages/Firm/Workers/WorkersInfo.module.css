@@ -36,8 +36,8 @@
 }
 
 .infoGrid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  display: flex;
+  flex-direction: column;
   gap: 20px;
 }
 
@@ -63,9 +63,10 @@
 
 .addressGrid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
 }
+
 .rating {
   display: flex;
   gap: 10px;
@@ -164,9 +165,70 @@
   .editButton {
     width: 100%;
   }
+
+  .container {
+    padding: 15px;
+  }
+
+  .infoRow {
+    grid-template-columns: 1fr !important;
+  }
+
+  .addressGrid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .visitsSection,
+  .positionSection {
+    width: 100%;
+  }
+
+  .buttonGroup {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .profileImage {
+    width: 150px;
+    height: 150px;
+  }
+
+  .infoGroup {
+    width: 100%;
+  }
+
+  .visitType {
+    padding: 10px;
+  }
+
+  .returnButton {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .profileName {
+    font-size: 24px;
+  }
+
+  .title {
+    font-size: 20px;
+  }
 }
 .actions {
   display: flex;
   flex-direction: row;
+  gap: 20px;
+}
+
+.descriptionSection {
+  margin-top: 20px;
+  width: 100%;
+}
+
+.infoRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 20px;
 }

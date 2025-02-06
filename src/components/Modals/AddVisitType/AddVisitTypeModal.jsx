@@ -1,20 +1,24 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./AddVisitType.module.css";
 import Choice from "../../Modal/Choice";
 import useStore from "../../../data/store";
-function AddVisitTypeModal({ onClick }) {
-  const [visitTypes, setVisitTypes] = useState([
-    { id: "1", name: "Konsultacja ortopedyczna", price: 220.0, checked: true },
-    { id: "2", name: "Badanie kontrolne", price: 220.0, checked: false },
-    {
-      id: "3",
-      name: "Przepisanie i korekta leczenia",
-      price: 220.0,
-      checked: false,
-    },
-    { id: "4", name: "Kontrola po operacji", price: 0.0, checked: true },
-    { id: "5", name: "Wizyta rehabilitacyjna", price: 110.0, checked: true },
-  ]);
+
+function AddVisitTypeModal({ onClick, allServices, existingServices }) {
+  const [visitTypes, setVisitTypes] = useState([]);
+  const { setModalActive } = useStore();
+
+  useEffect(() => {
+    if (allServices?.length) {
+      setVisitTypes(
+        allServices.map(service => ({
+          id: service.id,
+          name: service.name,
+          price: parseFloat(service.price),
+          checked: existingServices.find(es => es.id === service.id) ? true : false
+        }))
+      );
+    }
+  }, [allServices, existingServices]);
 
   const handleCheckboxChange = (id) => {
     setVisitTypes((prevVisitTypes) =>
@@ -23,7 +27,6 @@ function AddVisitTypeModal({ onClick }) {
       )
     );
   };
-  const { setModalActive } = useStore();
 
   return (
     <div className={styles.Container}>
@@ -46,7 +49,7 @@ function AddVisitTypeModal({ onClick }) {
         choice1={"Anuluj"}
         choice2={"Dodaj"}
         cb1={() => setModalActive(false)}
-        cb2={onClick}
+        cb2={() => onClick(visitTypes.filter(type => type.checked))}
       />
     </div>
   );

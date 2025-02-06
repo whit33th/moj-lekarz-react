@@ -16,10 +16,15 @@ import CalendarBlockClinic from "../../../components/DoctorPage/Home/Calendar/Ca
 import useGetAppointmentClinic from "./../../../api/hooks/ClinicHooks/useGetAppointmentClinic";
 import { useGetClinicProvinceStats } from "./../../../api/hooks/GeneralHooks/Stats/useGetProvinceClinicNumber";
 import useClinicStats from "../../../api/hooks/GeneralHooks/Stats/clinicStats";
+import useGetWorkersList from "../../../api/hooks/ClinicHooks/useGetWorkersList";
+import grey from "@assets/img/grey.png";
 
 function DoctorMain() {
   const { data, isLoading } = useGetUserInfo({});
   const { data: stats } = useClinicStats();
+  const { data: workersData } = useGetWorkersList({ clinicId: data?.id,
+    ratingSort: 'desc'
+   });
 
   const today = new Date();
   const tomorrow = new Date(today);
@@ -57,7 +62,10 @@ function DoctorMain() {
   };
 
   const history = () => (
-    <div className={styles.history}>
+    <div
+      style={{ justifyContent: "center", gap: "30px" }}
+      className={styles.history}
+    >
       <div className={styles.meeting}>
         <div>
           <img src={pointed} alt="" />
@@ -133,12 +141,15 @@ function DoctorMain() {
               </p>
               <div className={styles.center}>
                 <p className={`${styles.biggerCard} ${styles.smCountNumber}`}>
-                  {stats?.countPatients?.totalCount || 'Brak'}
+                  {stats?.countPatients?.totalCount || "Brak"}
                 </p>
                 <div
                   className={`${styles.graph} ${styles.tCenter} ${styles.smBack} ${styles.flex} ${styles.itemsCenter}`}
                 >
-                  <p>{stats?.countPatients?.percentageChange + '%' || 'Brak'}</p>
+                  <p>
+                    {stats?.countPatients?.percentageChange?.toFixed(0) + "%" ||
+                      "Brak"}
+                  </p>
                   <img
                     src={graphDown}
                     alt="Graph Down"
@@ -155,12 +166,16 @@ function DoctorMain() {
               </p>
               <div className={styles.center}>
                 <p className={`${styles.biggerCard} ${styles.smCountNumber}`}>
-                {stats?.averageRating?.currentRating || 'Brak'}
+                  {Math.round(stats?.averageRating?.currentRating) || "Brak"}
                 </p>
                 <div
                   className={`${styles.graph} ${styles.tCenter} ${styles.smBack} ${styles.flex} ${styles.itemsCenter}`}
                 >
-                  <p> {stats?.averageRating?.percentageChange + '%' || 'Brak'}</p>
+                  <p>
+                    {" "}
+                    {stats?.averageRating?.percentageChange?.toFixed(0) + "%" ||
+                      "Brak"}
+                  </p>
                   <img
                     src={graphUp}
                     alt="Graph Up"
@@ -202,15 +217,21 @@ function DoctorMain() {
           </div>
 
           <div className={styles.history}>
-            {userItems.slice(-5).map((userItem, index) => (
-              <BestWorkerItem
-                name={userItem.name}
-                img={userItem.img}
-                position={userItem.position}
-                time={userItem.time}
-                key={index}
-              />
-            ))}
+            {(!workersData?.doctors || workersData.doctors.length === 0) ? (
+              <div className={styles.emptyState}>
+                <p>Nie ma dostępnych pracowników</p>
+              </div>
+            ) : (
+              workersData.doctors.slice(0, 5).map((doctor, index) => (
+                <BestWorkerItem
+                  key={index}
+                  name={`${doctor.user.first_name} ${doctor.user.last_name}`}
+                  img={doctor.user.photo || grey}
+                  specialty={doctor.specialty.name}
+                  rating={doctor.rating}
+                />
+              ))
+            )}
           </div>
         </div>
       </div>

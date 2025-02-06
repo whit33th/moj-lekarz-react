@@ -1,27 +1,34 @@
-import styles from "./Workers.module.css"
-import tablecss from "../../../components/Table/Table.module.css"
-import plus from "@assets/img/plus.png"
-import filters from "@assets/img/filters.png"
-import { userItems } from "../../../helpers/userItemList"
-import { useState } from "react"
-import Dropdown from "../../../components/Dropdown/Dropdown"
-import Table from "./../../../components/Table/Table"
-import MoreInfoButtPatient from "../../../components/Buttons/MoreInfoButt/MoreInfoButtFirm"
-import useStore from "../../../data/store"
-import AddWorkersModal from "../../../components/Modals/AddWorkersModal/AddWorkersModal"
-import Tabs from "../../../components/Buttons/Tabs/Tabs"
-import AddSpecializationModal from "../../../components/Modals/AddSpecializationModal/AddSpecializationModal"
+import styles from "./Workers.module.css";
+import tablecss from "../../../components/Table/Table.module.css";
+import plus from "@assets/img/plus.png";
+import filters from "@assets/img/filters.png";
+import { useState } from "react";
+import Dropdown from "../../../components/Dropdown/Dropdown";
+import Table from "./../../../components/Table/Table";
+import MoreInfoButtFirm from "../../../components/Buttons/MoreInfoButt/MoreInfoButtFirm";
+import useStore from "../../../data/store";
+import AddWorkersModal from "../../../components/Modals/AddWorkersModal/AddWorkersModal";
+import Tabs from "../../../components/Buttons/Tabs/Tabs";
+import AddSpecializationModal from "../../../components/Modals/AddSpecializationModal/AddSpecializationModal";
+import useGetWorkersList from "../../../api/hooks/ClinicHooks/useGetWorkersList";
+import useGetUserInfo from "../../../api/hooks/UserHooks/useGetUserInfo";
+import grey from '@assets/img/grey.png'
 
 function Workers() {
-  const [activeTab, setActiveTab] = useState("Lista pracowników")
-  const { setModalActive, setModalContent } = useStore()
-  const [specializations, setSpecializations] = useState([])
-  const tableData = userItems.map((item) => ({
-    img: item.img,
-    name: item.name,
-    id: item.id,
-    gender: item.gender,
-  }))
+  const [activeTab, setActiveTab] = useState("Lista pracowników");
+  const { setModalActive, setModalContent } = useStore();
+  const [specializations, setSpecializations] = useState([]);
+  const { data: clinic } = useGetUserInfo();
+  const { data } = useGetWorkersList({ clinicId: clinic?.id });
+
+  // Map API data to table format
+  const tableData = data?.doctors?.map((doctor) => ({
+    img: grey,
+    name: `${doctor.user.first_name} ${doctor.user.last_name}`,
+    id: doctor.id,
+    gender: doctor.user.gender,
+    specialty: doctor.specialty.name
+  })) || [];
 
   const columns = [
     {
@@ -37,6 +44,7 @@ function Workers() {
     },
     { header: "ID", dataKey: "id" },
     { header: "Płeć", dataKey: "gender" },
+    { header: "Specjalizacja", dataKey: "specialty" },
     {
       header: (
         <img
@@ -47,44 +55,43 @@ function Workers() {
         />
       ),
       render: (item) => (
-        <MoreInfoButtPatient
+        <MoreInfoButtFirm
           id={item.id}
           onClick={() => console.log(item.id)}
           label="More Info"
         />
       ),
     },
-  ]
+  ];
 
   function handleActiveTab(tab) {
-    setActiveTab(tab)
+    setActiveTab(tab);
   }
 
   function handleAddWorkersModal() {
-    setModalActive(true)
-    setModalContent(<AddWorkersModal />)
+    setModalActive(true);
+    setModalContent(<AddWorkersModal />);
   }
 
   function handleModal() {
-    setModalActive(true)
+    setModalActive(true);
     setModalContent(
       <AddSpecializationModal onAddSpecialization={handleAddSpecialization} />
-    )
+    );
   }
 
   function handleAddSpecialization(newSpecialization) {
-    setSpecializations([...specializations, newSpecialization])
+    setSpecializations([...specializations, newSpecialization]);
   }
 
   return (
     <div className="content">
       <div className={styles.calendarNavbar}>
-
         <Tabs
           onTabClick={handleActiveTab}
           buttons={"Lista pracowników, Zarządzanie"}
           activeTab={activeTab}
-          storageKey='WorkersNavbar'
+          storageKey="WorkersNavbar"
         />
         <Dropdown
           defaultOption="Filtruj"
@@ -133,7 +140,7 @@ function Workers() {
         </>
       )}
     </div>
-  )
+  );
 }
 
-export default Workers
+export default Workers;

@@ -62,6 +62,7 @@ function ZapisFormPage() {
     navigate("/");
     return null;
   }
+  console.log(visitDetails.type)
 
   const onSubmit = () => {
     const appointmentData = {

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import styles from "./GraphManagement.module.css";
 import DropdownStas from "../../../components/Dropdown/DropdownStas";
 import Search from "../../../components/UI/Search/Search";
@@ -7,10 +7,16 @@ import BlueBtn from "../../../components/Buttons/BlueBtn/BlueBtn";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import InputDropdownStas from "../../../components/Dropdown/InputDropdownStas";
+import useGetWorkersList from "../../../api/hooks/ClinicHooks/useGetWorkersList";
+import useGetUserInfo from "../../../api/hooks/UserHooks/useGetUserInfo";
+import useGetClinicServices from "../../../api/hooks/ServicesHooks/useGetClinicServices";
 
 function GraphManagement() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedUsers, setSelectedUsers] = useState([]);
+  const { data: clinic } = useGetUserInfo();
+  const { data: workersData } = useGetWorkersList({ clinicId: clinic?.id });
+  const { data: specialties } = useGetClinicServices({ clinicId: clinic?.id });
 
   const handleUserSelect = (user) => {
     setSelectedUsers((prevSelected) =>
@@ -20,19 +26,21 @@ function GraphManagement() {
     );
   };
 
-  const allPatients = Array.from({ length: 25 }, (_, i) => ({
-    id: `user-${i + 1}`,
-    name: i % 2 === 0 ? "Jan Bukalski" : "Dmitry Shak",
-    phone: i % 2 === 0 ? "456-029-485" : "333-412-666",
-  }));
+  const specialtyOptions = useMemo(() => {
+    if (!specialties?.length) return [];
+    return specialties.map((spec) => ({
+      label: spec.name || "",
+      value: spec.id,
+    }));
+  }, [specialties]);
 
-  const options = ["Dentysta", "Psychotherapist", "Antroherapist"];
-
-  const filteredPatients = allPatients.filter(
-    (item) =>
-      item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      item.phone.includes(searchTerm)
-  );
+  const filteredDoctors =
+    workersData?.doctors?.filter(
+      (doctor) =>
+        doctor.user.first_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        doctor.user.last_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        doctor.specialty.name.toLowerCase().includes(searchTerm.toLowerCase())
+    ) || [];
 
   const navigate = useNavigate();
 
@@ -45,7 +53,7 @@ function GraphManagement() {
     }
   }
 
-  const hasData = filteredPatients.length > 0;
+  const hasData = filteredDoctors.length > 0;
 
   const { control, handleSubmit, register } = useForm({
     mode: "onChange",
@@ -62,10 +70,10 @@ function GraphManagement() {
         <div className={styles.specializationField}>
           <InputDropdownStas
             seeOptions
-            object={false}
+            object={true}
             control={control}
-            options={options}
-            placeholder={options[0]}
+            options={specialtyOptions}
+            placeholder="Wybierz specjalizacje"
             {...register("zxc", {})}
           />
         </div>
@@ -80,22 +88,24 @@ function GraphManagement() {
       >
         {hasData ? (
           <div className={styles.column}>
-            {filteredPatients.map((item, index) => (
+            {filteredDoctors.map((doctor, index) => (
               <div
-                key={item.id}
+                key={doctor.id}
                 className={index % 2 === 0 ? styles.row : styles.rowAlt}
               >
                 <label className={styles.checkboxContainer}>
                   <input
                     type="checkbox"
-                    checked={selectedUsers.some((u) => u.id === item.id)}
-                    onChange={() => handleUserSelect(item)}
+                    checked={selectedUsers.some((u) => u.id === doctor.id)}
+                    onChange={() => handleUserSelect(doctor)}
                   />
                   <span className={styles.checkmark}></span>
                 </label>
                 <div className={styles.info}>
-                  <div className={styles.name}>{item.name}</div>
-                  <div className={styles.phone}>{item.phone}</div>
+                  <div className={styles.name}>
+                    {`${doctor.user.first_name} ${doctor.user.last_name}`}
+                  </div>
+                  <div className={styles.phone}>{doctor.specialty.name}</div>
                 </div>
               </div>
             ))}

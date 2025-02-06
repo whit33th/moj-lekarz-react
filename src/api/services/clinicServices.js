@@ -78,6 +78,38 @@ class ClinicServices {
       name: data.name,
     });
   }
+
+  async getWorkersByClinicId(
+    clinicId,
+    { gender, sort, ratingSort, limit, page } = {}
+  ) {
+    let url = `${this.URL}/api/clinics/${clinicId}/doctors?`;
+
+    gender && (url += `gender=${gender}&`);
+    sort && (url += `sort=${sort}&`);
+    ratingSort && (url += `ratingSort=${ratingSort}&`);
+    limit && (url += `limit=${limit}&`);
+    page && (url += `page=${page}`);
+
+    return await axios.get(url, {
+      withCredentials: true,
+    });
+  }
+
+  async putDoctorInfo(doctorId, data) {
+    return await axios.put(
+      `${this.URL}api/clinics/doctors/${doctorId}`,
+      {
+        userData: data.userData,
+        addressData: data.addressData,
+        doctorData: data.doctorData,
+        // servicesIds: data.servicesIds
+      },
+      {
+        withCredentials: true,
+      }
+    );
+  }
 }
 
 export const clinicServices = new ClinicServices();

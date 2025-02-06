@@ -1,29 +1,30 @@
 import { NavLink } from "react-router-dom";
 import { useForm } from "react-hook-form";
-
 import follow from "@assets/img/follow.png";
 import editPan from "@assets/img/editPen.png";
-
 import BestWorkerItem from "../../../components/FirmPage/VisitItem/BestWorkerItem";
 import { userItems } from "../../../helpers/userItemList";
-
 import styles from "./FirmManagement.module.css";
 import Review from "../../../components/FirmPage/Review/Review";
 import useStore from "../../../data/store";
-import Choice from "../../../components/Modal/Choice";
-
 import profil from "@assets/img/profil.webp";
 import ReviewCard from "../../../components/FirmPage/Review/ReviewCard";
-
 import Dropdown from "../../../components/Dropdown/Dropdown";
 import exit from "@assets/img/cross.png";
 import BlueBtn from "../../../components/Buttons/BlueBtn/BlueBtn";
 import useGetUserInfo from "../../../api/hooks/UserHooks/useGetUserInfo";
+import useGetClinicReviews from "./../../../api/hooks/GeneralHooks/ReviewsHooks/useGetClinicReviews";
+import usePutUserInfo from "@api/hooks/UserHooks/usePutUserInfo";
+import useGetWorkersList from "../../../api/hooks/ClinicHooks/useGetWorkersList";
+import grey from "@assets/img/grey.png";
 
 function FirmManagement() {
   const { setModalActive, setModalContent } = useStore();
   const { data, isLoading } = useGetUserInfo();
   const { register, reset, handleSubmit } = useForm();
+  const { data: workersData } = useGetWorkersList({
+    clinicId: data?.id
+  });
 
   const formatTimetables = (timetables) => {
     if (!timetables || timetables.length === 0) {
@@ -66,6 +67,7 @@ function FirmManagement() {
   );
 
   const clinic = {
+    id: data?.id,
     name: isLoading ? "Ładowanie..." : data?.name || "Brak",
     nip: isLoading ? "Ładowanie..." : data?.nip || "Brak",
     license: isLoading ? "Ładowanie..." : data?.nr_license || "Brak",
@@ -80,10 +82,34 @@ function FirmManagement() {
     flat: isLoading ? "Ładowanie..." : data?.address?.flat || "Brak",
     postIndex: isLoading ? "Ładowanie..." : data?.address?.post_index || "Brak",
   };
+  const { mutate } = usePutUserInfo();
 
   const onSubmit = (formData) => {
-    console.log(formData);
-    setModalActive(false);
+    const formattedData = {
+      userData: {
+        email: formData.email,
+        phone: formData.tel,
+        first_name: "z", // These fields are not in the form
+        last_name: "z", // but required by the API
+        birthday: "01-01-2000",
+        pesel: "12312312312",
+        gender: "male",
+        name: formData.firm,
+        nip: formData.nip,
+        nr_license: formData.license,
+        description: formData.description || "",
+      },
+      addressData: {
+        city: formData.city,
+        province: formData.province || "",
+        street: formData.street,
+        home: formData.house,
+        flat: formData.flat,
+        post_index: formData.postIndex,
+      },
+    };
+
+    mutate(formattedData);
   };
 
   function openMainModal() {
@@ -95,11 +121,11 @@ function FirmManagement() {
       province: clinic.province,
       street: clinic.street,
       house: clinic.house,
-      flat: clinic.flat,           // добавлено
+      flat: clinic.flat, // добавлено
       email: clinic.email,
       tel: clinic.tel,
       postIndex: clinic.postIndex,
-      description: clinic.description  // добавлено
+      description: clinic.description, // добавлено
     });
     setModalActive(true);
     setModalContent(ModalContentEdit);
@@ -127,11 +153,19 @@ function FirmManagement() {
         <div className={styles.row}>
           <div className={styles.column}>
             <label className={styles.label}>Licencja</label>
-            <input type="text" className={styles.input} {...register("license")} />
+            <input
+              type="text"
+              className={styles.input}
+              {...register("license")}
+            />
           </div>
           <div className={styles.column}>
             <label className={styles.label}>Email</label>
-            <input type="email" className={styles.input} {...register("email")} />
+            <input
+              type="email"
+              className={styles.input}
+              {...register("email")}
+            />
           </div>
         </div>
         <div className={styles.row}>
@@ -151,11 +185,19 @@ function FirmManagement() {
         <div className={styles.row}>
           <div className={styles.column}>
             <label className={styles.label}>Ulica</label>
-            <input type="text" className={styles.input} {...register("street")} />
+            <input
+              type="text"
+              className={styles.input}
+              {...register("street")}
+            />
           </div>
           <div className={styles.column}>
             <label className={styles.label}>Nr domu</label>
-            <input type="text" className={styles.input} {...register("house")} />
+            <input
+              type="text"
+              className={styles.input}
+              {...register("house")}
+            />
           </div>
         </div>
         <div className={styles.row}>
@@ -171,11 +213,15 @@ function FirmManagement() {
         <div className={styles.row}>
           <div className={styles.column}>
             <label className={styles.label}>Kod pocztowy</label>
-            <input type="text" className={styles.input} {...register("postIndex")} />
+            <input
+              type="text"
+              className={styles.input}
+              {...register("postIndex")}
+            />
           </div>
           <div className={styles.column}>
             <label className={styles.label}>Opis</label>
-            <textarea  className={styles.input} {...register("description")} />
+            <textarea className={styles.input} {...register("description")} />
           </div>
         </div>
         <div className={styles.choice}>
@@ -186,57 +232,7 @@ function FirmManagement() {
     </div>
   );
 
-  const reviews = [
-    {
-      name: "Daniel Novikov",
-      date: "06.02.2024",
-      text: "Ola szykuje się do szkoły. Jest już w piątej klasie. Dawniej obawiała się szkoły, teraz bardzo lubi tam chodzić. W szkole nie tylko uczy się ciekawych rzeczy – spotyka też swoich kolegów i koleżanki. Najbardziej lubi spędzać czas ze swoimi przyjaciółmi z klasy – są to Monika i Michał.",
-      rating: 2,
-      image: profil,
-    },
-    {
-      name: "Daniel Novikov",
-      date: "06.02.2024",
-      text: "Bravo.",
-      rating: 3,
-      image: profil,
-    },
-    {
-      name: "Daniel Novikov",
-      date: "06.02.2024",
-      text: "Git",
-      rating: 5,
-      image: profil,
-    },
-    {
-      name: "Daniel Novikov",
-      date: "06.02.2024",
-      text: "Ola lubi wszystkie przedmioty. Wie, że nauka jest ważna. Najmilej spędza czas na lekcjach o przyrodzie – Ola bardzo lubi zwierzęta. W klasie Oli mieszka chomik. Wszystkie dzieci dbają o niego. Przynoszą mu jedzenie i głaszczą. Ola nie ma własnego zwierzęcia, więc chomik to kolejny powód dla którego lubi chodzić do szkoły.",
-      rating: 1,
-      image: profil,
-    },
-    {
-      name: "Daniel Novikov",
-      date: "06.02.2024",
-      text: "Ola lubi wszystkie przedmioty. Wie, że nauka jest ważna. Najmilej spędza czas na lekcjach o przyrodzie – Ola bardzo lubi zwierzęta. W klasie Oli mieszka chomik. Wszystkie dzieci dbają o niego. Przynoszą mu jedzenie i głaszczą. Ola nie ma własnego zwierzęcia, więc chomik to kolejny powód dla którego lubi chodzić do szkoły.",
-      rating: 1,
-      image: profil,
-    },
-    {
-      name: "Daniel Novikov",
-      date: "06.02.2024",
-      text: "Ola lubi wszystkie przedmioty. Wie, że nauka jest ważna. Najmilej spędza czas na lekcjach o przyrodzie – Ola bardzo lubi zwierzęta. W klasie Oli mieszka chomik. Wszystkie dzieci dbają o niego. Przynoszą mu jedzenie i głaszczą. Ola nie ma własnego zwierzęcia, więc chomik to kolejny powód dla którego lubi chodzić do szkoły.",
-      rating: 1,
-      image: profil,
-    },
-    {
-      name: "Daniel Novikov",
-      date: "06.02.2024",
-      text: "Ola lubi wszystkie przedmioty. Wie, że nauka jest ważna. Najmilej spędza czas na lekcjach o przyrodzie – Ola bardzo lubi zwierzęta. W klasie Oli mieszka chomik. Wszystkie dzieci dbają o niego. Przynoszą mu jedzenie i głaszczą. Ola nie ma własnego zwierzęcia, więc chomik to kolejny powód dla którego lubi chodzić do szkoły.",
-      rating: 1,
-      image: profil,
-    },
-  ];
+  const { data: reviewsData } = useGetClinicReviews({ clinicId: 142 });
 
   const modalContentComments = (
     <div className={styles.mainContainer}>
@@ -258,16 +254,13 @@ function FirmManagement() {
         <img onClick={() => setModalActive(false)} src={exit} alt="cross" />
       </div>
       <div className={styles.cardsContainer}>
-        {reviews.map((review, index) => (
-          <ReviewCard
-            key={index}
-            name={review.name}
-            date={review.date}
-            text={review.text}
-            rating={review.rating}
-            image={review.image}
-          />
-        ))}
+        {reviewsData?.reviews?.length > 0 ? (
+          reviewsData.reviews.map((review, index) => (
+            <ReviewCard key={index} review={review} />
+          ))
+        ) : (
+          <p className={styles.noReviews}>Brak komentarzy</p>
+        )}
       </div>
     </div>
   );
@@ -324,15 +317,15 @@ function FirmManagement() {
             </button>
           </div>
           <div className={styles.reviews}>
-            {userItems.slice(-3).map((u, index) => (
-              <Review
-                key={index}
-                name={u.name}
-                date={u.date}
-                info={u.info}
-                img={u.img}
-              />
-            ))}
+            {(!reviewsData?.reviews || reviewsData.reviews.length === 0) ? (
+              <div className={styles.emptyState}>
+                <p>Nie ma komentarzy</p>
+              </div>
+            ) : (
+              reviewsData.reviews.slice(0, 3).map((review, index) => (
+                <Review key={index} review={review} />
+              ))
+            )}
           </div>
         </div>
 
@@ -348,15 +341,21 @@ function FirmManagement() {
           </div>
 
           <div className={styles.history}>
-            {userItems.slice(-5).map((userItem, index) => (
-              <BestWorkerItem
-                key={index}
-                name={userItem.name}
-                img={userItem.img}
-                date={userItem.date}
-                time={userItem.time}
-              />
-            ))}
+            {(!workersData?.doctors || workersData.doctors.length === 0) ? (
+              <div className={styles.emptyState}>
+                <p>Nie ma dostępnych lekarzy</p>
+              </div>
+            ) : (
+              workersData.doctors.slice(0, 5).map((doctor, index) => (
+                <BestWorkerItem
+                  key={index}
+                  name={`${doctor.user.first_name} ${doctor.user.last_name}`}
+                  img={doctor.user.photo || grey}
+                  specialty={doctor.specialty.name}
+                  rating={doctor.rating}
+                />
+              ))
+            )}
           </div>
         </div>
       </div>
