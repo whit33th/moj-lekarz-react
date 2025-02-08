@@ -1,47 +1,69 @@
-import { useState } from "react"
-import Choice from "../../../components/Modal/Choice"
-import styles from "./AddFirm.module.css"
-import avatar from "@assets/img/profil.webp"
-import plus from "@assets/img/plus.png"
-import DropdownStas from "./../../../components/Dropdown/DropdownStas"
-import useStore from "../../../data/store"
-import AddVisitTypeModal from "../../../components/Modals/AddVisitType/AddVisitTypeModal"
-import BlueBorderBtn from "../../../components/Buttons/BlueBorderBtn/BlueBorderBtn"
-import RedBorderBtn from "../../../components/Buttons/RedBorderBtn/RedBorderBtn"
-import { toast } from "sonner"
-import { useForm } from 'react-hook-form'
+import { useState, useEffect } from "react";
+import Choice from "../../../components/Modal/Choice";
+import styles from "./AddFirm.module.css";
+import grey from "@assets/img/grey.png";
+import DropdownStas from "./../../../components/Dropdown/DropdownStas";
+import useStore from "../../../data/store";
+import BlueBorderBtn from "../../../components/Buttons/BlueBorderBtn/BlueBorderBtn";
+import RedBorderBtn from "../../../components/Buttons/RedBorderBtn/RedBorderBtn";
+import { toast } from "sonner";
+import { useForm } from "react-hook-form";
+import usePostClinic from "../../../api/hooks/ClinicHooks/usePostClinic";
+import BlueBtn from "../../../components/Buttons/BlueBtn/BlueBtn";
 
 export default function AddFirm() {
-  const { setModalActive, setModalContent } = useStore()
-  const option = [
-    "Usunięcie z powodu nieobecności",
-    "Usunięcie z powodu rozwiązania umowy",
-    "Usunięcie z powodu zaniedbania",
-    "Kalendarz nullam non iaculis massa",
-    "Nunc kalendarz aliquam metus",
-  ]
-  const [visitTypes, setVisitTypes] = useState([
-    { id: "1", name: "Konsultacja ortopedyczna", price: 220.0, checked: true },
-    { id: "2", name: "Kontrola po operacji", price: 0.0, checked: true },
-  ])
+  const { setModalActive, setModalContent } = useStore();
+  const [selectedTypes, setSelectedTypes] = useState([]);
+  const { mutate, isPending } = usePostClinic();
 
-  function handleModal() {
-    setModalActive(true)
-    setModalContent(<AddVisitTypeModal onClick={addVisitType} />)
-  }
-  const { control, handleSubmit, watch } = useForm({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    control,
+    watch,
+  } = useForm({
+    mode: 'onChange',
+    defaultValues: {
+      name: "",
+      province: "",
+      city: "",
+      post_index: "",
+      street: "",
+      home: "",
+      nip: "",
+      phone: "",
+      email: "",
+      type_visits: [],
+      visit_type: "",
+    },
+  });
 
-  })
+  // Watch for changes in visit_type
+  const visitType = watch("visit_type");
 
-  function addVisitType(newVisitType) {
-    setVisitTypes((prevVisitTypes) => [...prevVisitTypes, newVisitType])
-  }
+  // Effect to handle visit type changes
+  useEffect(() => {
+    if (visitType && !selectedTypes.includes(visitType)) {
+      if (selectedTypes.length < 2) {
+        setSelectedTypes((prev) => [...prev, visitType]);
+      } else {
+        toast.error("Możesz wybrać maksymalnie 2 typy wizyt");
+      }
+    }
+  }, [visitType]);
 
-  function handleDeleteVisitType(id) {
-    setVisitTypes((prevVisitTypes) =>
-      prevVisitTypes.filter((type) => type.id !== id)
-    )
-  }
+  const visitTypeOptions = ["NFZ", "Prywatna"].filter(
+    (option) => !selectedTypes.includes(option)
+  );
+
+  const onSubmit = (data) => {
+    const formData = {
+      ...data,
+      type_visits: selectedTypes,
+    };
+    mutate(formData);
+  };
 
   const editModal = (
     <div>
@@ -59,15 +81,11 @@ export default function AddFirm() {
         </RedBorderBtn>
       </div>
     </div>
-  )
-  function handleEditModal() {
-    setModalActive(true)
-    setModalContent(editModal)
-  }
+  );
 
   function deleteAccountStatus() {
-    toast.success("Profil został usunięty")
-    setModalActive(false)
+    toast.success("Profil został usunięty");
+    setModalActive(false);
   }
   const modalContentDeleteAccount = (
     <>
@@ -78,8 +96,17 @@ export default function AddFirm() {
           gap: "20px",
         }}
       >
-        <DropdownStas control={control} name={"."} placeholder={"Jakub Witold Jagoda"} />
-        <DropdownStas control={control} name={".."} placeholder={"Wpisz tekst"} options={option} />
+        <DropdownStas
+          control={control}
+          name={"."}
+          placeholder={"Jakub Witold Jagoda"}
+        />
+        <DropdownStas
+          control={control}
+          name={".."}
+          placeholder={"Wpisz tekst"}
+          options={["NFZ", " Prywatna"]}
+        />
         <Choice
           choice1={"Anuluj"}
           choice2={"Usuń"}
@@ -88,7 +115,7 @@ export default function AddFirm() {
         ></Choice>
       </div>
     </>
-  )
+  );
   const acceptDeleting = (
     <div>
       <h1 style={{ textAlign: "center" }}>
@@ -101,98 +128,239 @@ export default function AddFirm() {
         <RedBorderBtn cb={deleteAccountStatus}>Tak</RedBorderBtn>
       </div>
     </div>
-  )
-  function handleDelete() {
-    setModalActive(true)
-    setModalContent(modalContentDeleteAccount)
-  }
+  );
+
+  const removeVisitType = (typeToRemove) => {
+    setSelectedTypes((prev) => prev.filter((type) => type !== typeToRemove));
+  };
+
+  const getDropdownPlaceholder = () => {
+    if (selectedTypes.length === 0) return "Wybierz typ wizyty";
+    return selectedTypes.join(" + ");
+  };
 
   return (
     <div className={styles.container}>
       <div className={styles.background}>
-        <div className={styles.profileSection}>
-          <img className={styles.profileImage} src={avatar} alt="Profile" />
-        </div>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className={styles.profileSection}>
+            <img className={styles.profileImage} src={grey} alt="Profile" />
+          </div>
 
-        <div>
+          <div>
+            <div className={styles.infoGridTwo}>
+              <div className={styles.infoGroup}>
+                <label>Nazwa firmy</label>
+                <input
+                  {...register("name", {
+                    required: "Nazwa firmy jest wymagana",
+                  })}
+                  placeholder="Wpisz nazwę"
+                />
+                {errors.name && (
+                  <span className={styles.error}>{errors.name.message}</span>
+                )}
+              </div>
+
+              <div className={styles.infoGroup}>
+                <label>Województwo</label>
+                <input
+                  {...register("province", {
+                    required: "Województwo jest wymagane",
+                  })}
+                  placeholder="Wielkopolskie"
+                />
+                {errors.province && (
+                  <span className={styles.error}>
+                    {errors.province.message}
+                  </span>
+                )}
+              </div>
+            </div>
+
+            <div className={styles.infoGrid}>
+              <div className={styles.infoGroup}>
+                <label>Miasto</label>
+                <input
+                  {...register("city", { required: "Miasto jest wymagane" })}
+                  placeholder="Poznań"
+                />
+                {errors.city && (
+                  <span className={styles.error}>{errors.city.message}</span>
+                )}
+              </div>
+
+              <div className={styles.infoGroup}>
+                <label>Kod pocztowy</label>
+                <input
+                  {...register("post_index", {
+                    required: "Kod pocztowy jest wymagany",
+                    pattern: {
+                      value: /^\d{5}$/,
+                      message: "Nieprawidłowy format kodu pocztowego: XXXXX",
+                    },
+                  })}
+                  placeholder="61-714"
+                />
+                {errors.post_index && (
+                  <span className={styles.error}>
+                    {errors.post_index.message}
+                  </span>
+                )}
+              </div>
+
+              <div className={styles.infoGroup}>
+                <label>Ulica</label>
+                <input
+                  {...register("street", { required: "Ulica jest wymagana" })}
+                  placeholder="Wpisz nazwę ulicy"
+                />
+                {errors.street && (
+                  <span className={styles.error}>{errors.street.message}</span>
+                )}
+              </div>
+
+              <div className={styles.infoGroup}>
+                <label>Numer budynku</label>
+                <input
+                  {...register("home", {
+                    required: "Numer budynku jest wymagany",
+                  })}
+                  placeholder="Wpisz numer budynku"
+                />
+                {errors.home && (
+                  <span className={styles.error}>{errors.home.message}</span>
+                )}
+              </div>
+
+              <div className={styles.infoGroup}>
+                <label>Numer NIP</label>
+                <input
+                  {...register("nip", {
+                    required: "NIP jest wymagany",
+                    pattern: {
+                      value: /^\d{10}$/,
+                      message: "NIP musi składać się z 10 cyfr",
+                    },
+                  })}
+                  placeholder="Wpisz numer NIP"
+                />
+                {errors.nip && (
+                  <span className={styles.error}>{errors.nip.message}</span>
+                )}
+              </div>
+              <div className={styles.infoGroup}>
+                <label>Numer licencji</label>
+                <input
+                  {...register("nr_license", {
+                    required: "Numer licencji jest wymagany",
+                    pattern: {
+                      value: /^\d{10}$/,
+                      message: "Numer licencji musi składać się z 10 cyfr",
+                    },
+                  })}
+                  placeholder="Wpisz numer licencji"
+                />
+                {errors.nr_license && (
+                  <span className={styles.error}>
+                    {errors.nr_license.message}
+                  </span>
+                )}
+              </div>
+
+              <div className={styles.infoGroup}>
+                <label>Telefon</label>
+                <input
+                  {...register("phone", {
+                    required: "Telefon jest wymagany",
+                    pattern: {
+                      value: /^\d{9}$/,
+                      message: "Nieprawidłowy format numeru telefonu",
+                    },
+                  })}
+                  placeholder="555666777"
+                />
+                {errors.phone && (
+                  <span className={styles.error}>{errors.phone.message}</span>
+                )}
+              </div>
+
+              <div className={styles.infoGroup}>
+                <label>Email</label>
+                <input
+                  {...register("email", {
+                    required: "Email jest wymagany",
+                    pattern: {
+                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                      message: "Nieprawidłowy format email",
+                    },
+                  })}
+                  placeholder="email@example.com"
+                />
+                {errors.email && (
+                  <span className={styles.error}>{errors.email.message}</span>
+                )}
+              </div>
+
+              <div className={styles.infoGroup}>
+                <label>Hasło</label>
+                <input
+                  type="password"
+                  {...register("password", {
+                    required: "Hasło jest wymagane",
+                    minLength: {
+                      value: 8,
+                      message: "Hasło musi mieć minimum 8 znaków"
+                    },
+                    
+                  })}
+                  placeholder="Wprowadź hasło"
+                />
+                {errors.password && (
+                  <span className={styles.error}>{errors.password.message}</span>
+                )}
+              </div>
+            </div>
+          </div>
+
           <div className={styles.infoGridTwo}>
             <div className={styles.infoGroup}>
-              <label>Nazwa firmy</label>
-              <input type="text" placeholder="Wpisz nazwę" />
-            </div>
-
-            <div className={styles.infoGroup}>
-              <label>Województwo</label>
-              <input type="text" placeholder="Wielkopolskie" />
-            </div>
-          </div>
-          <div className={styles.infoGrid}>
-            <div className={styles.infoGroup}>
-              <label>Miasto</label>
-              <input type="text" placeholder="Poznań" />
-            </div>
-
-            <div className={styles.infoGroup}>
-              <label>Kod pocztowy</label>
-              <input type="text" placeholder="61-714" />
-            </div>
-
-            <div className={styles.infoGroup}>
-              <label>Ulica</label>
-              <input type="text" placeholder="Wpisz nazwę ulicy" />
-            </div>
-
-            <div className={styles.infoGroup}>
-              <label>Numer budynku</label>
-              <input type="text" placeholder="Wpisz numer budynku" />
-            </div>
-
-            <div className={styles.infoGroup}>
-              <label>Numer NIP</label>
-              <input type="text" placeholder="Wpisz numer NIP" />
-            </div>
-            <div className={styles.infoGroup}>
-              <label>Telefon</label>
-              <input type="tel" placeholder="555 666 777" />
-            </div>
-            <div className={styles.infoGroup}>
-              <label>Email</label>
-              <input type="email" placeholder="dariusz@gmail.com " />
-            </div>
-          </div>
-        </div>
-
-        <div className={styles.infoGridTwo}>
-          <div className={styles.infoGroup}>
-            <label>Typy wizyt</label>
-            <div className={styles.dropdown}>
+              <label>Typy wizyt</label>
               <DropdownStas
-                control={control} name={"..."}
-                placeholder={"Wybierz typ wizyty"}
-                options={["Typ nr.1", "Typ nr.2"]}
+                options={visitTypeOptions}
+                control={control}
+                name="visit_type"
+                placeholder={getDropdownPlaceholder()}
+                disabled={selectedTypes.length >= 2}
               />
             </div>
           </div>
-          <div className={styles.infoGroup}>
-            <label>Maksymalna liczba specjalizacji</label>
-            <input type="email" placeholder="Typy wizyt" />
-          </div>
-        </div>
 
-        <button onClick={handleModal} className={styles.addVisit}>
-          Dodaj typ
-          <img src={plus} alt="Add visit type" />
-        </button>
+          {selectedTypes.length > 0 && (
+            <div className={styles.selectedTypesContainer}>
+              <label>Wybrane typy:</label>
+              <div className={styles.selectedTypes}>
+                {selectedTypes.map((type) => (
+                  <div key={type} className={styles.typeChip}>
+                    <span>{type}</span>
+                    <button
+                      type="button"
+                      onClick={() => removeVisitType(type)}
+                      className={styles.removeTypeBtn}
+                    >
+                      ×
+                    </button>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
 
-        <div className={styles.buttonGroup}>
-          <Choice
-            choice1={"Usuń"}
-            choice2={"Edytuj"}
-            cb1={handleDelete}
-            cb2={handleEditModal}
-          />
-        </div>
+          <BlueBtn disabled={isPending}>
+            {isPending ? "Zapisywanie..." : "Dodaj firmę"}
+          </BlueBtn>
+        </form>
       </div>
     </div>
-  )
+  );
 }

@@ -8,23 +8,24 @@ import pointed from "@assets/img/pointed.png";
 import unpointed from "@assets/img/unpointed.png";
 
 import BestWorkerItem from "../../../components/FirmPage/VisitItem/BestWorkerItem";
-import { userItems } from "../../../helpers/userItemList";
 
 import styles from "./FirmMain.module.css";
 import useGetUserInfo from "@api/hooks/UserHooks/useGetUserInfo";
 import CalendarBlockClinic from "../../../components/DoctorPage/Home/Calendar/CalendarBlockClinic";
 import useGetAppointmentClinic from "./../../../api/hooks/ClinicHooks/useGetAppointmentClinic";
-import { useGetClinicProvinceStats } from "./../../../api/hooks/GeneralHooks/Stats/useGetProvinceClinicNumber";
 import useClinicStats from "../../../api/hooks/GeneralHooks/Stats/clinicStats";
 import useGetWorkersList from "../../../api/hooks/ClinicHooks/useGetWorkersList";
 import grey from "@assets/img/grey.png";
+import SkeletonTodayVisitItem from "../../../components/DoctorPage/Home/TodayVisitItem/SkeletonTodayVisitItem";
+import StatCardSkeleton from "../../../components/FirmPage/StatCard/StatCardSkeleton";
 
 function DoctorMain() {
   const { data, isLoading } = useGetUserInfo({});
   const { data: stats } = useClinicStats();
-  const { data: workersData } = useGetWorkersList({ clinicId: data?.id,
-    ratingSort: 'desc'
-   });
+  const { data: workersData } = useGetWorkersList({
+    clinicId: data?.id,
+    ratingSort: "desc",
+  });
 
   const today = new Date();
   const tomorrow = new Date(today);
@@ -135,55 +136,72 @@ function DoctorMain() {
           </div>
 
           <div className={styles.botCards}>
-            <div className={`${styles.visitStats} ${styles.card}`}>
-              <p>
-                Całkowita liczba <br /> pacjentów
-              </p>
-              <div className={styles.center}>
-                <p className={`${styles.biggerCard} ${styles.smCountNumber}`}>
-                  {stats?.countPatients?.totalCount || "Brak"}
-                </p>
-                <div
-                  className={`${styles.graph} ${styles.tCenter} ${styles.smBack} ${styles.flex} ${styles.itemsCenter}`}
-                >
+            {!stats ? (
+              <>
+                <StatCardSkeleton />
+                <StatCardSkeleton />
+              </>
+            ) : (
+              <>
+                <div className={`${styles.visitStats} ${styles.card}`}>
                   <p>
-                    {stats?.countPatients?.percentageChange?.toFixed(0) + "%" ||
-                      "Brak"}
+                    Całkowita liczba <br /> pacjentów
                   </p>
-                  <img
-                    src={graphDown}
-                    alt="Graph Down"
-                    className={styles.graphIcon}
-                  />
+                  <div className={styles.center}>
+                    <p
+                      className={`${styles.biggerCard} ${styles.smCountNumber}`}
+                    >
+                      {stats?.countPatients?.totalCount || "Brak"}
+                    </p>
+                    {stats?.countPatients?.percentageChange !== undefined && (
+                      <div
+                        className={`${styles.graph} ${styles.tCenter} ${styles.smBack} ${styles.flex} ${styles.itemsCenter}`}
+                      >
+                        <p>
+                          {stats.countPatients.percentageChange.toFixed(0) +
+                            "%"}
+                        </p>
+                        <img
+                          src={graphDown}
+                          alt="Graph Down"
+                          className={styles.graphIcon}
+                        />
+                      </div>
+                    )}
+                  </div>
                 </div>
-              </div>
-            </div>
 
-            <div className={`${styles.visitStats} ${styles.card}`}>
-              <p>
-                Średnia ocena
-                <br /> pacjenta
-              </p>
-              <div className={styles.center}>
-                <p className={`${styles.biggerCard} ${styles.smCountNumber}`}>
-                  {Math.round(stats?.averageRating?.currentRating) || "Brak"}
-                </p>
-                <div
-                  className={`${styles.graph} ${styles.tCenter} ${styles.smBack} ${styles.flex} ${styles.itemsCenter}`}
-                >
+                <div className={`${styles.visitStats} ${styles.card}`}>
                   <p>
-                    {" "}
-                    {stats?.averageRating?.percentageChange?.toFixed(0) + "%" ||
-                      "Brak"}
+                    Średnia ocena
+                    <br /> pacjenta
                   </p>
-                  <img
-                    src={graphUp}
-                    alt="Graph Up"
-                    className={styles.graphIcon}
-                  />
+                  <div className={styles.center}>
+                    <p
+                      className={`${styles.biggerCard} ${styles.smCountNumber}`}
+                    >
+                      {Math.round(stats?.averageRating?.currentRating) ||
+                        "Brak"}
+                    </p>
+                    {stats?.averageRating?.percentageChange !== undefined && (
+                      <div
+                        className={`${styles.graph} ${styles.tCenter} ${styles.smBack} ${styles.flex} ${styles.itemsCenter}`}
+                      >
+                        <p>
+                          {stats.averageRating.percentageChange.toFixed(0) +
+                            "%"}
+                        </p>
+                        <img
+                          src={graphUp}
+                          alt="Graph Up"
+                          className={styles.graphIcon}
+                        />
+                      </div>
+                    )}
+                  </div>
                 </div>
-              </div>
-            </div>
+              </>
+            )}
           </div>
         </div>
 
@@ -208,29 +226,30 @@ function DoctorMain() {
         <div className={`${styles.mainCard} ${styles.biggerCard}`}>
           <div className={`${styles.flex} ${styles.between}`}>
             <p className={styles.titleCard}>Lista najlepszych pracowników</p>
-            <NavLink className={styles.black} to="/">
-              <div className={`${styles.flex} ${styles.center}`}>
-                <p className={styles.followLink}>Zobacz wszystkie</p>
-                <img className={styles.ico} src={follow} alt="Follow" />
-              </div>
-            </NavLink>
           </div>
 
           <div className={styles.history}>
-            {(!workersData?.doctors || workersData.doctors.length === 0) ? (
-              <div className={styles.emptyState}>
-                <p>Nie ma dostępnych pracowników</p>
-              </div>
+            {workersData?.doctors && !isLoading ? (
+              !workersData.doctors || workersData.doctors.length === 0 ? (
+                <div className={styles.emptyState}>
+                  <p>Nie ma dostępnych pracowników</p>
+                </div>
+              ) : (
+                workersData.doctors
+                  .slice(0, 5)
+                  .map((doctor) => (
+                    <BestWorkerItem
+                      key={doctor.id}
+                      id={doctor.id}
+                      name={`${doctor.user.first_name} ${doctor.user.last_name}`}
+                      img={doctor.user.photo || grey}
+                      specialty={doctor.specialty.name}
+                      rating={doctor.rating}
+                    />
+                  ))
+              )
             ) : (
-              workersData.doctors.slice(0, 5).map((doctor, index) => (
-                <BestWorkerItem
-                  key={index}
-                  name={`${doctor.user.first_name} ${doctor.user.last_name}`}
-                  img={doctor.user.photo || grey}
-                  specialty={doctor.specialty.name}
-                  rating={doctor.rating}
-                />
-              ))
+              <SkeletonTodayVisitItem count={5} />
             )}
           </div>
         </div>

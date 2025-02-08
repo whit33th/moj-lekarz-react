@@ -5,7 +5,7 @@ class PageConfig {
   profile = "/profile";
   login = "/login";
   registration = "/registration";
-  resetPassword = "/reset-password"
+  resetPassword = "/reset-password";
   // Doctor routes
   doctor = {
     home: this.home,
@@ -34,6 +34,7 @@ class PageConfig {
     chat: "/chat",
     addFirm: "/add-firm",
     statistic: "/statistic",
+    blogs: "/blogs",
   };
 
   // Firm routes

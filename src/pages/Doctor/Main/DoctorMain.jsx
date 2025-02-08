@@ -13,6 +13,9 @@ import useGetUserInfo from '@hooks/UserHooks/useGetUserInfo'
 import Skeleton from 'react-loading-skeleton'
 import SkeletonTodayVisitItem from '../../../components/DoctorPage/Home/TodayVisitItem/SkeletonTodayVisitItem'
 import { pageConfig } from '../../../config/config'
+import StatCardSkeleton from '../../../components/FirmPage/StatCard/StatCardSkeleton';
+import useDoctorStats from '../../../api/hooks/GeneralHooks/Stats/doctorStats';
+
 function DoctorMain() {
 	const { todayDate, userId, selectedDate, selectedDateInWords, visitCountForMonth } = useStore()
 
@@ -29,6 +32,7 @@ function DoctorMain() {
 		dateTo: selectedDate,
 	}) || []
 
+	const { data: stats, isLoading: isStatsLoading } = useDoctorStats();
 
 	const fetchedAppointments = fetchedAppointmentsData?.appointments || []
 	const fetchedAppointmentsToday = fetchedAppointmentsTodayData?.appointments || []
@@ -42,57 +46,68 @@ function DoctorMain() {
 
 	return (
 		<div className="content">
-
-
-
-
-
 			<h1 className={styles.greeting}>
 				{isUserInfoLoading ? <Skeleton width={220} /> : `Witaj ${user.first_name}! `}
 			</h1>
-
 
 			<div className={styles.topLayer}>
 				<div className={`${styles.visits} ${styles.mainCard} ${styles.biggerCard}`}>
 					<img id="robot" src={robot} alt="Robot" className={styles.robotImage} />
 
-
 					<div className={`${styles.visitCount} ${styles.twoSide}`}>
 						<p className={styles.titleCard}> {selectedDate !== todayDate ? "Wizyty " + selectedDateInWords : 'Dzisiejsze wizyty'}</p>
-						<p className={styles.countNumber}>{isAppointmentsTodayLoading ? <Skeleton width={50} /> : user.todayVisitCount}</p>
+						<p className={styles.countNumber}>
+							{isAppointmentsTodayLoading ? <Skeleton width={50} /> : user.todayVisitCount}
+						</p>
 					</div>
 
-
 					<div className={styles.botCards}>
-						<div className={`${styles.visitStats} ${styles.card}`}>
-							<p>Całkowita liczba pacjentów</p>
-							<div className={styles.center}>
-								<p className={`${styles.biggerCard} ${styles.smCountNumber}`}>124</p>
-								<div
-									className={`${styles.graph} ${styles.tCenter} ${styles.smBack} ${styles.flex} ${styles.itemsCenter}`}
-								>
-									<p>12%</p>
-									<img src={graphDown} alt="Graph Down" className={styles.graphIcon} />
+						{isStatsLoading ? (
+							<>
+								<StatCardSkeleton />
+								<StatCardSkeleton />
+							</>
+						) : (
+							<>
+								<div className={`${styles.visitStats} ${styles.card}`}>
+									<p>Całkowita liczba pacjentów</p>
+									<div className={styles.center}>
+										<p className={`${styles.biggerCard} ${styles.smCountNumber}`}>
+											{stats?.countPatients?.totalCount || "0"}
+										</p>
+										{stats?.countPatients?.percentageChange !== undefined && (
+											<div className={`${styles.graph} ${styles.tCenter} ${styles.smBack} ${styles.flex} ${styles.itemsCenter}`}>
+												<p>{stats.countPatients.percentageChange.toFixed(0) + "%"}</p>
+												<img
+													src={stats.countPatients.percentageChange >= 0 ? graphUp : graphDown}
+													alt="Graph"
+													className={styles.graphIcon}
+												/>
+											</div>
+										)}
+									</div>
 								</div>
-							</div>
-						</div>
 
-
-						<div className={`${styles.visitStats} ${styles.card}`}>
-							<p>Wizyt w całym miesiącu</p>
-							<div className={styles.center}>
-								<p className={`${styles.biggerCard} ${styles.smCountNumber}`}>
-									{user.visitsAllTime}
-								</p>
-								<div
-									className={`${styles.graph} ${styles.tCenter} ${styles.smBack} ${styles.flex} ${styles.itemsCenter}`}
-								>
-									<p>32%</p>
-									<img src={graphUp} alt="Graph Up" className={styles.graphIcon} />
+								<div className={`${styles.visitStats} ${styles.card}`}>
+									<p>Wizyt w całym miesiącu</p>
+									<div className={styles.center}>
+										<p className={`${styles.biggerCard} ${styles.smCountNumber}`}>
+											{stats?.countAppointments?.totalCount || "0"}
+										</p>
+										{stats?.countAppointments?.percentageChange !== undefined && (
+											<div className={`${styles.graph} ${styles.tCenter} ${styles.smBack} ${styles.flex} ${styles.itemsCenter}`}>
+												<p>{stats.countAppointments.percentageChange.toFixed(0) + "%"}</p>
+												<img
+													src={stats.countAppointments.percentageChange >= 0 ? graphUp : graphDown}
+													alt="Graph"
+													className={styles.graphIcon}
+												/>
+											</div>
+										)}
+									</div>
 								</div>
-							</div>
-						</div>
-
+							</>
+						)}
 					</div>
 				</div>
 				<div className={`${styles.mainCard}`}>

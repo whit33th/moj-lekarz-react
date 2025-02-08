@@ -4,10 +4,11 @@ import useSearchPrescription from "./../../api/hooks/SearchHooks/useSearchPrescr
 import useSearchPatient from "./../../api/hooks/SearchHooks/useSearchPatient";
 
 import SearchPatientsItem from "./SearchItems/Patients";
-
+import SearchDoctorsItem from "./SearchItems/Doctors";
 import SearchPrescriptionsItem from "./SearchItems/Prescriptions";
 import Skeleton from "react-loading-skeleton";
 import useStore from "../../data/store";
+import useSearchDoctor from "../../api/hooks/SearchHooks/useSearchDoctor";
 
 export default function SearchResults({ ref, inputValue, formActive }) {
   const { role } = useStore();
@@ -30,7 +31,10 @@ export default function SearchResults({ ref, inputValue, formActive }) {
     useSearchPrescription({
       query: debouncedInput,
     });
-  const loading = loadingPatients || loadingPrescriptions;
+  const { data: searchDoctors, isLoading: loadingDoctors } = useSearchDoctor({
+    query: debouncedInput,
+  });
+  const loading = loadingPatients || loadingPrescriptions || loadingDoctors;
 
   return (
     <>
@@ -56,7 +60,11 @@ export default function SearchResults({ ref, inputValue, formActive }) {
           ))
         ) : (
           <>
-            <SearchPatientsItem data={searchPatients} />
+            {role !== "doctor" && (
+              <SearchDoctorsItem  data={searchDoctors} />
+            )}
+            <SearchPatientsItem role={role} data={searchPatients} />
+
             {role === "doctor" && (
               <SearchPrescriptionsItem data={searchPrescriptions} />
             )}

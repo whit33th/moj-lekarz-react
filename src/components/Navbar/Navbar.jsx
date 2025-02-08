@@ -83,11 +83,11 @@ function Navbar() {
                 className={styles.messages}
                 ref={messagesRef} // Добавляем ссылку для блока сообщений
             >
-                <button className={styles.notification} >
+                {/* <button className={styles.notification} >
                     <img className={styles.bell} src={bell} alt="bell" />
-                </button>
+                </button> */}
 
-                <div
+                {/* <div
                     style={isMessageActive ? { display: 'block' } : { display: 'none' }}
                     className={styles.incomingMessages}
                 >
@@ -99,7 +99,7 @@ function Navbar() {
                         <p>Masz nową wiadomość</p>
                         <button className={styles.buttDef}>Zobacz</button>
                     </div>
-                </div>
+                </div> */}
             </div>
 
             <NavLink to="/profile">

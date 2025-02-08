@@ -3,7 +3,7 @@ import styles from "./SearchItems.module.css";
 import grey from "@assets/img/grey.png";
 import { pageConfig } from "../../../config/config";
 import useStore from "../../../data/store";
-function SearchPatientsItem({ data }) {
+function SearchPatientsItem({ data,role }) {
   const { setSearchActive } = useStore();
 
   return (
@@ -21,8 +21,9 @@ function SearchPatientsItem({ data }) {
         ) : (
           data?.patients?.map((patient, index) => (
             <NavLink
-              to={pageConfig.doctor.patientInfo.slice(0, 13) + "/" + patient.id}
-			  onClick={() => setSearchActive(false)}
+
+              to={role !== 'doctor' ? null : (pageConfig.doctor.patientInfo.slice(0, 13) + "/" + patient.id) }
+              onClick={() => setSearchActive(false)}
               key={index}
               className={`${styles.searchItemContent} ${styles.borders}`}
             >

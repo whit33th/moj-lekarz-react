@@ -3,7 +3,6 @@ import grey from "@assets/img/grey.png";
 import styles from "./Profil.module.css";
 import { useState } from "react";
 
-import useGetFullInfo from "@hooks/DoctorHooks/useGetFullInfo";
 import useGetUserInfo from "@hooks/UserHooks/useGetUserInfo";
 import Skeleton from "react-loading-skeleton";
 import useStore from "@data/store";
@@ -11,7 +10,7 @@ import useStore from "@data/store";
 function Profil() {
   const { role } = useStore();
   const [vacationStatus, setVacationStatus] = useState(false);
-  const { userId } = useStore();
+
   function handleVacationStatus() {
     setVacationStatus(!vacationStatus);
   }
@@ -40,15 +39,20 @@ function Profil() {
         </h1>
         <p>{isLoading ? <Skeleton width={150} /> : doctor.specialty}</p>
         <br />
-        <p className={styles.grey}>
-          {isLoading ? <Skeleton width={350} /> : doctor.clinic}
-        </p>
+        {role !== "admin" && (
+          <p className={styles.grey}>
+            {isLoading ? <Skeleton width={350} /> : doctor.clinic}
+          </p>
+        )}
       </div>
       <div className={styles.hr}>
         <hr />
       </div>
       <div className={styles.profilInfo}>
-        <div className={styles.mainInfo} style={role !== "doctor" ? { width: "100%" } : {}}>
+        <div
+          className={styles.mainInfo}
+          style={role !== "doctor" ? { width: "100%" } : {}}
+        >
           {/* <div className={styles.halfRow}>
             <div>
               <label htmlFor="name">Imię</label>
@@ -64,7 +68,7 @@ function Profil() {
               />
             </div>
           </div> */}
-          <div className={styles.halfRow} >
+          <div className={styles.halfRow}>
             <div>
               <label htmlFor="postalCode">PESEL</label>
               <input type="text" id="PESEL" name="PESEL" value={doctor.pesel} />

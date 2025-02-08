@@ -1,39 +1,74 @@
-import styles from "./ReviewModal.module.css"
-import avatar from "@assets/img/profil.webp"
-import RedBorderBtn from "../../Buttons/RedBorderBtn/RedBorderBtn"
-import BlueBorderBtn from "../../Buttons/BlueBorderBtn/BlueBorderBtn"
-import BlueBtn from "../../Buttons/BlueBtn/BlueBtn"
-import { useState } from "react"
-import InputDropdownStas from "../../Dropdown/InputDropdownStas"
+import styles from "./ReviewModal.module.css";
+import avatar from "@assets/img/profil.webp";
+import RedBorderBtn from "../../Buttons/RedBorderBtn/RedBorderBtn";
+import BlueBorderBtn from "../../Buttons/BlueBorderBtn/BlueBorderBtn";
+import BlueBtn from "../../Buttons/BlueBtn/BlueBtn";
+import { useState } from "react";
+import InputDropdownStas from "../../Dropdown/InputDropdownStas";
+import useDeleteReviews from "../../../api/hooks/GeneralHooks/ReviewsHooks/useDeleteReviews";
+import usePatchReviews from "../../../api/hooks/GeneralHooks/ReviewsHooks/usePatchReviews";
 
-import star from "@assets/img/Star.svg"
-import starGrey from "@assets/img/Star 6.svg"
-import { useForm } from 'react-hook-form'
+import star from "@assets/img/Star.svg";
+import starGrey from "@assets/img/Star 6.svg";
+import { useForm } from "react-hook-form";
+import useStore from "../../../data/store";
 
-const ModerationModal = ({ name, date, text, rating }) => {
-  const [RefuseBtn, setRefuseBtn] = useState(false)
-  const [selectedOption, setSelectedOption] = useState("")
+const ModerationModal = ({ id, name, date, text, rating, avatar, tags }) => {
+  console.log(id);
+  const [RefuseBtn, setRefuseBtn] = useState(false);
+  const [selectedOption, setSelectedOption] = useState("");
+  const { setModalActive } = useStore();
+  const { mutate: deleteReview } = useDeleteReviews();
+  const { mutate: acceptReview } = usePatchReviews();
+  const reasons = [
+    "Niedozwolona zawartość",
+    "Spam",
+    "Konflikt interesów",
+    "Obsceniczny język",
+    "Zastraszanie lub nękanie",
+    "Mowa dyskryminacji lub nienawiści",
+    "Dane osobowe i informacje",
+    "Bezużyteczne",
+  ];
 
   const positiveFeedbacks = [
     "Profesjonalne podejście",
     "Dbałość o komfort pacjenta",
-  ]
-  const negativeFeedbacks = ["Zbyt krótka wizyta", "Ograniczona dostępność"]
+  ];
+  const negativeFeedbacks = ["Zbyt krótka wizyta", "Ograniczona dostępność"];
 
   function toggleRefuse() {
-    setRefuseBtn(!RefuseBtn)
+    setRefuseBtn(!RefuseBtn);
   }
-  const { control, handleSubmit, watch } = useForm({
-
-  })
+  const { control, register, getValues, handleSubmit, watch } = useForm({});
   const handleOptionSelect = (option) => {
-    setSelectedOption(option)
-  }
+    setSelectedOption(option);
+  };
+
+  const handleDelete = () => {
+    console.log(getValues('reason'))
+    if (getValues('reason')) {
+      deleteReview(id);
+      
+    }
+  };
+
+  const handleAccept = () => {
+    acceptReview(id);
+  };
 
   return (
     <div className={styles.card}>
       <div className={styles.header}>
-        <img src={avatar} alt="Avatar" className={styles.avatar} />
+        <img
+          src={avatar}
+          alt="Avatar"
+          className={styles.avatar}
+          onError={(e) => {
+            e.target.onerror = null;
+            e.target.src = "/path/to/default/avatar.png";
+          }}
+        />
         <div className={styles.headerInfo}>
           <div className={styles.gap}>
             <div className={styles.topHeader}>
@@ -55,16 +90,19 @@ const ModerationModal = ({ name, date, text, rating }) => {
           </div>
 
           <div className={styles.service}>
-            {positiveFeedbacks.map((feedback, index) => (
-              <div key={index} className={styles.good}>
-                {feedback}
-              </div>
-            ))}
-            {negativeFeedbacks.map((feedback, index) => (
-              <div key={index} className={styles.bad}>
-                {feedback}
-              </div>
-            ))}
+            {tags &&
+              tags.map((tag, index) => (
+                <div
+                  key={index}
+                  className={
+                    tag.includes("Bad") || tag.includes("Un")
+                      ? styles.bad
+                      : styles.good
+                  }
+                >
+                  {tag}
+                </div>
+              ))}
           </div>
         </div>
       </div>
@@ -76,7 +114,7 @@ const ModerationModal = ({ name, date, text, rating }) => {
           <RedBorderBtn cb={toggleRefuse}>Odmowa</RedBorderBtn>
         )}
 
-        <BlueBtn>Akceptacja</BlueBtn>
+        <BlueBtn cb={handleAccept}>Akceptacja</BlueBtn>
       </div>
       <div className={styles.refuseReason}>
         {RefuseBtn && (
@@ -85,21 +123,28 @@ const ModerationModal = ({ name, date, text, rating }) => {
             <div className={styles.choice}>
               <div style={{ width: "100%" }}>
                 <InputDropdownStas
-                  control={control} name={"."}
-                  options={["Option 1", "Option 2", "Option 3"]}
+                  control={control}
+                  name={"."}
+                  options={reasons}
+                  seeOptions
                   selectedOption={selectedOption}
+                  object={false}
                   onOptionSelect={handleOptionSelect}
                   placeholder={"Wybierz powód"}
+                  {...register("reason", {
+                    required: { message: "Pole wymagane" },
+                  })}
                 />
               </div>
-
-              <BlueBtn>Wyślij</BlueBtn>
+              <BlueBtn cb={handleDelete} disabled={!selectedOption}>
+                Wyślij
+              </BlueBtn>
             </div>
           </>
         )}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ModerationModal
+export default ModerationModal;

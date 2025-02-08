@@ -1,9 +1,16 @@
-import styles from './Textarea.module.css'
+import { forwardRef } from "react";
+import styles from "./Textarea.module.css";
 
-function Textarea({placeholder}) {
-	return (
-		<textarea placeholder={placeholder} className={styles.textarea} ></textarea>
-	)
-}
+const Textarea = forwardRef(({ resize = true, ...props }, ref) => {
+  return (
+    <textarea
+      ref={ref}
+      className={`${styles.textarea} ${!resize ? styles.noresize : ""}`}
+      {...props}
+    />
+  );
+});
 
-export default Textarea
+Textarea.displayName = "Textarea";
+
+export default Textarea;

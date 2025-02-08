@@ -11,7 +11,7 @@ import AddFirm from "../../pages/Admin/AddFirm/AddFirm"
 import Statistic from "../../pages/Admin/Statistic/Statistic"
 import Settings from "./../../pages/Admin/Settings/Settings"
 import NotFound from "../../pages/User/NotFound"
-import AuthPage from "../../pages/Auth/AuthPage"
+import Blogs from "../../pages/Admin/Blogs/Blogs"
 
 function AdminRoutes() {
   return (
@@ -27,9 +27,10 @@ function AdminRoutes() {
       <Route path={pageConfig.admin.profile} element={<Profil />} />
       <Route path={pageConfig.admin.settings} element={<Settings />} />
       <Route path={pageConfig.admin.reviews} element={<ReviewPage />} />
-      <Route path={pageConfig.admin.chat} element={<Notifications />} />
+      {/* <Route path={pageConfig.admin.chat} element={<Notifications />} /> */}
       <Route path={pageConfig.admin.addFirm} element={<AddFirm />} />
-      <Route path={pageConfig.admin.statistic} element={<Statistic />} />
+      <Route path={pageConfig.admin.blogs} element={<Blogs />} />
+      {/* <Route path={pageConfig.admin.statistic} element={<Statistic />} /> */}
 
     </Routes>
   )

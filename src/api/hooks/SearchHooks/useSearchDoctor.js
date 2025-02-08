@@ -7,7 +7,7 @@ export default function useSearchDoctor({ query, page, limit }) {
 			queryKey: ['searchDoctor', query, page, limit],
 			queryFn: () => searchService.searchDoctor(query, page, limit),
 			select: (data) => data?.data || [],
-			enabled: !!query,
+			enabled: !!query ,
 			retry: false
 		}
 	)

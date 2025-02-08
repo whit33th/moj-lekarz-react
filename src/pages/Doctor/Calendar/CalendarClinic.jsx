@@ -225,7 +225,7 @@ function CalendarClinic() {
           styles.calendarContainer
         }`}
       >
-        <ScheduleXCalendar calendarApp={calendar} />
+        <ScheduleXCalendar  calendarApp={calendar} />
       </div>
     </div>
   );

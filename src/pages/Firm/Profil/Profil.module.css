@@ -1,0 +1,156 @@
+.profile-container {
+  padding: 2rem;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 0 50px 5px #00000014;
+  border-radius: 16px;
+}
+
+.profile-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.image-upload {
+  position: relative;
+  cursor: pointer;
+}
+
+.profile-image {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  margin: 10px;
+  object-fit: cover;
+  transition: opacity 0.3s;
+}
+
+.profile-image:hover {
+  opacity: 0.8;
+}
+
+.profile-header h1 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.specialization {
+  color: #666;
+  font-size: 1.1rem;
+}
+
+.profile-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.form-section {
+  padding-right: 2rem;
+  border-right: 1px solid #eee;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-section label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #333;
+  font-weight: 500;
+}
+
+.form-section input {
+  height: 40px;
+  border-radius: 16px;
+  padding: 10px 15px;
+  border: none;
+  box-shadow: 0 0 45px 5px #00000014;
+  width: 100%;
+}
+
+.form-section input:read-only {
+  background-color: #f0f0f0;
+}
+
+.schedule-section{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  
+}
+
+.schedule-section h2 {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.schedule-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+.day {
+  font-weight: 500;
+  color: #333;
+}
+
+.hours {
+  color: #666;
+}
+
+.edit-button {
+  background-color: #5850ec;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 1.5rem;
+  transition: background-color 0.2s;
+}
+
+.edit-button:hover {
+  background-color: #4338ca;
+}
+
+@media (max-width: 768px) {
+  .profile-content {
+    grid-template-columns: 1fr;
+  }
+
+  .form-section {
+    padding-right: 0;
+    border-right: none;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 2rem;
+  }
+
+  .schedule-section {
+    padding-left: 0;
+    padding-top: 2rem;
+  }
+  .profile-image {
+    width: 175px;
+    height: 175px;
+  }
+}
+

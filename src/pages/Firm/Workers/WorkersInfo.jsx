@@ -5,7 +5,6 @@ import plus from "@assets/img/plus.png";
 import bucket from "@assets/img/bucketBlue.png";
 import InputDropdownStas from "@components/Dropdown/InputDropdownStas";
 import { useNavigate, useParams } from "react-router-dom";
-import { pageConfig } from "../../../config/config";
 import useStore from "../../../data/store";
 import AddVisitTypeModal from "../../../components/Modals/AddVisitType/AddVisitTypeModal";
 import BlueBorderBtn from "../../../components/Buttons/BlueBorderBtn/BlueBorderBtn";
@@ -106,27 +105,16 @@ export default function WorkersInfo() {
   const onSubmit = (formData) => {
     const updateData = {
       doctorId: id,
-      userData: {
-        email: formData.email,
-        phone: formData.phone
-      },
-      addressData: {
-        city: formData.city,
-        province: formData.province,
-        street: formData.street,
-        home: formData.home,
-        flat: formData.flat,
-        post_index: formData.postIndex
-      },
-      doctorData: {
-        hired_at: doctor.hired_at,
-        description: formData.description
-        // specialty_id:
-        //   typeof formData.position === "object"
-        //     ? formData.position.value
-        //     : doctor.specialty.id,
-      }
-      // servicesIds: visitTypes.map((type) => parseInt(type.id)),
+      email: formData.email,
+      phone: formData.phone,
+      city: formData.city,
+      province: formData.province,
+      street: formData.street,
+      home: formData.home,
+      flat: formData.flat,
+      postIndex: formData.postIndex,
+      hired_at: doctor?.hired_at,
+      description: formData.description,
     };
 
     mutate(updateData);
@@ -204,7 +192,7 @@ export default function WorkersInfo() {
   return (
     <div className={styles.container}>
       <button
-        onClick={() => navigate(pageConfig.firm.workers)}
+        onClick={() => navigate(-1)}
         className={styles.returnButton}
       >
         Powrót

@@ -9,14 +9,15 @@ import { useForm } from "react-hook-form";
 import InputDropdownStas from "../../../components/Dropdown/InputDropdownStas";
 import useGetWorkersList from "../../../api/hooks/ClinicHooks/useGetWorkersList";
 import useGetUserInfo from "../../../api/hooks/UserHooks/useGetUserInfo";
-import useGetClinicServices from "../../../api/hooks/ServicesHooks/useGetClinicServices";
+
+import useGetClinicSpecialties from "../../../api/hooks/GeneralHooks/SpecialtyHooks/useGetClinicSpecialties";
 
 function GraphManagement() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedUsers, setSelectedUsers] = useState([]);
   const { data: clinic } = useGetUserInfo();
   const { data: workersData } = useGetWorkersList({ clinicId: clinic?.id });
-  const { data: specialties } = useGetClinicServices({ clinicId: clinic?.id });
+  const { data: specialties } = useGetClinicSpecialties({ clinicId: clinic?.id });
 
   const handleUserSelect = (user) => {
     setSelectedUsers((prevSelected) =>

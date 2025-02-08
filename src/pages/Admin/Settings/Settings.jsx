@@ -1,168 +1,212 @@
-import { useState } from "react"
-import styles from "./styles.module.css"
-import photo from "@assets/img/profil.webp"
-import Calendar from "../../../components/DoctorPage/Home/Calendar/CalendarBlock"
-
-import DropdownStas from "../../../components/Dropdown/DropdownStas"
-import Tabs from "../../../components/Buttons/Tabs/Tabs"
-import { useForm } from 'react-hook-form'
+import { useEffect, useState } from "react";
+import styles from "./styles.module.css";
+import grey from "@assets/img/grey.png";
+import useGetUserInfo from "@hooks/UserHooks/useGetUserInfo";
+import usePostUpdateImg from "@hooks/UserHooks/usePostUpdateImg";
+import { useForm } from "react-hook-form";
+import usePutUserInfo from "../../../api/hooks/UserHooks/usePutUserInfo";
+import InputError from "../../../components/UI/InputError/InputError";
+import BlueBtn from "../../../components/Buttons/BlueBtn/BlueBtn";
 
 function Settings() {
-  const [activeTab, setActiveTab] = useState("Dane podstawowe")
-  const [selectedName, setSelectedName] = useState("Dariusz Adamek")
-  const [selectedReason, setSelectedReason] = useState("Wybierz")
 
-  const option1 = [
-    "Dariusz Adamek",
-    "Option 1",
-    "Option 2",
-    "Dariusz Adamek",
-    "Option 1",
-    "Option 2",
-    "Dariusz Adamek",
-    "Option 1",
-    "Option 2",
-    "Option 3",
-  ]
-  const option2 = ["Wybierz", "Option 1", "Option 2", "Option 3"]
-  const Buttons = [
-    "Dane podstawowe",
-    "Dane dodatkowe",
-    "Czas pracy",
-    "Wnioski",
-  ]
+  const [selectedImg, setSelectedImg] = useState(null);
+  const [fileForUpload, setFileForUpload] = useState(null);
 
-  function handleTabClick(name) {
-    setActiveTab(name)
+  const { register, formState, handleSubmit, reset } = useForm({
+    mode: "onChange",
+  });
+
+  const {
+    register: imgRegister,
+    formState: imgFormState,
+    handleSubmit: handleImgSubmit,
+  } = useForm({
+    mode: "onChange",
+  });
+
+  const { data: user, isLoading } = useGetUserInfo() || [];
+  const { mutate } = usePostUpdateImg();
+  const { mutate: mutateUserInfo } = usePutUserInfo();
+
+  useEffect(() => {
+    reset({
+      name: isLoading ? "Ładowanie..." : user?.first_name || "Brak",
+      surname: isLoading ? "Ładowanie..." : user?.last_name || "Brak",
+      date: isLoading ? "2000-01-01" : user?.birthday?.slice(0, 10),
+      pesel: isLoading ? "Ładowanie..." : user?.pesel || "Brak",
+      tel: isLoading ? "Ładowanie..." : user?.phone || "Brak",
+      email: isLoading ? "Ładowanie..." : user?.email || "Brak",
+    });
+  }, [user, reset, isLoading]);
+
+
+
+  function onSubmit(data) {
+    const formData = {
+      first_name: data.name,
+      last_name: data.surname,
+      birthday: data.date,
+      pesel: data.pesel,
+      email: data.email,
+      phone: data.tel,
+    };
+    mutateUserInfo(formData);
   }
-  const { control, handleSubmit, watch } = useForm({
 
-  })
+  function changeImg() {
+    const formData = new FormData();
+    formData.set("image", fileForUpload);
+    mutate(formData);
+  }
 
+  useEffect(() => {
+    setSelectedImg(isLoading || !user ? grey : user?.photo);
+  }, [isLoading, user]);
 
-
-  const workTime = (
-    <div className={styles.workTime}>
-      <div className={styles.shadow}>
-        <Calendar />
-      </div>
-
-      <div className={styles.workSchedule}>
-        <p>
-          Grafik pracy:
-          <span className={styles.blueBack}>18:00 - 20:00</span>{" "}
-        </p>
-        <p>
-          Sala:
-          <span className={styles.blueBack}>203</span>{" "}
-        </p>
-        <p>
-          Godziny pracy:
-          <span className={styles.blueBack}>132</span>{" "}
-        </p>
-      </div>
-    </div>
-  )
+  function handleImgChange(event) {
+    const file = event.target.files[0];
+    setFileForUpload(file);
+    if (file) {
+      const objectUrl = URL.createObjectURL(file);
+      setSelectedImg(objectUrl);
+    }
+  }
 
   const settingData = (
     <div className={styles.settingData}>
       <div className={styles.settingInfo}>
-        <div className={styles.halfRow}>
-          <div>
-            <label htmlFor="name">Imię</label>
-            <input type="text" id="name" name="name" placeholder="Pawel" />
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className={styles.halfRow}>
+            <div>
+              <label htmlFor="name">Imię</label>
+              <input
+                type="text"
+                placeholder="Pawel"
+                {...register("name", {
+                  pattern: {
+                    value: /^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ]+$/,
+                    message: "Tylko litery",
+                  },
+                })}
+              />
+              <InputError formState={formState} errorField={"name"} />
+            </div>
+            <div>
+              <label htmlFor="surname">Nazwisko</label>
+              <input
+                placeholder="Nowik"
+                {...register("surname", {
+                  pattern: {
+                    value: /^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ]+$/,
+                    message: "Tylko litery",
+                  },
+                })}
+              />
+              <InputError formState={formState} errorField={"surname"} />
+            </div>
           </div>
-          <div>
-            <label htmlFor="surname">Nazwisko</label>
-            <input
-              type="text"
-              id="surname"
-              name="surname"
-              placeholder="Nowik"
-            />
-          </div>
-        </div>
 
-        <div className={styles.halfRow}>
-          <div>
-            <label htmlFor="date">Data urodzenia</label>
-            <input
-              type="date"
-              id="date"
-              name="flat"
-              value="2002-12-21"
-            />
+          <div className={styles.halfRow}>
+            <div>
+              <label htmlFor="date">Data urodzenia</label>
+              <input type="date" {...register("date")} />
+              <InputError formState={formState} errorField={"date"} />
+            </div>
+            <div>
+              <label htmlFor="pesel">Pesel</label>
+              <input
+                placeholder="03248891023"
+                {...register("pesel", {
+                  pattern: {
+                    value: /^[0-9]+$/,
+                    message: "Tylko cyfry",
+                  },
+                  minLength: {
+                    value: 11,
+                    message: "Minimum 11 cyfr",
+                  },
+                  maxLength: {
+                    value: 11,
+                    message: "Maksymalnie 11 cyfr",
+                  },
+                })}
+              />
+              <InputError formState={formState} errorField={"pesel"} />
+            </div>
           </div>
-          <div>
-            <label htmlFor="pesel">Pesel</label>
-            <input
-              type="text"
-              id="pesel"
-              name="pesel"
-              placeholder="03248891023"
-            />
+          <div className={styles.halfRow}>
+            <div>
+              <label htmlFor="tel">Telefon</label>
+              <input
+                placeholder="777 777 777"
+                {...register("tel", {
+                  pattern: {
+                    value: /^[0-9/+]+$/,
+                    message: "Tylko cyfry",
+                  },
+                  minLength: {
+                    value: 9,
+                    message: "Minimum 9 cyfr",
+                  },
+                })}
+              />
+              <InputError formState={formState} errorField={"tel"} />
+            </div>
+            <div>
+              <label htmlFor="email">Email</label>
+              <input
+                placeholder="pavel@gmail.com"
+                {...register("email", {
+                  pattern: {
+                    value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
+                    message: "Błędny email",
+                  },
+                })}
+              />
+              <InputError formState={formState} errorField={"email"} />
+            </div>
           </div>
-        </div>
-        <div className={styles.halfRow}>
-          <div>
-            <label htmlFor="tel">Telefon</label>
-            <input type="tel" id="tel" name="tel" placeholder="777 777 777" />
-          </div>
-          <div>
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              placeholder="pavel@gmail.com"
-            />
-          </div>
-        </div>
 
-        <button>Zapisz zmiany</button>
+          <button>Zapisz zmiany</button>
+        </form>
       </div>
       <div className={`${styles.settingImg}`}>
         <div className={styles.photo}>
-          <img src={photo} alt="" />
+          <img src={selectedImg} alt="" />
         </div>
-        <div className={styles.imgPanel}>
-          <button className={styles.lightButt}>Zobacz</button>
-          <button className={styles.blueButt}>Zmień</button>
-        </div>
+        <form
+          encType="multipart/form-data"
+          className={styles.formImg}
+          onSubmit={handleImgSubmit(changeImg)}
+        >
+          <div>
+            <label htmlFor="fileUpload" className={styles.customButton}>
+              Wybierz zdjęcie
+            </label>
+            <input
+              className={styles.inputFileHidden}
+              type="file"
+              accept="image/*"
+              {...imgRegister("photo", {
+                required: "Wybierz zdjęcie",
+                onChange: handleImgChange,
+              })}
+              id="fileUpload"
+            />
+            <InputError formState={imgFormState} errorField={"photo"} />
+          </div>
+          <div>
+            <BlueBtn>Zapisz</BlueBtn>
+          </div>
+        </form>
       </div>
     </div>
-  )
+  );
 
-  const additionalData = (
-    <>
-      <textarea
-        className={styles.textarea}
-        placeholder="Wpisz tekst"
-      ></textarea>
-      <button
-        style={{ width: "200px", marginLeft: "calc(100% - 200px)" }}
-        className={styles.blueButt}
-      >
-        Zapisz zmiany
-      </button>
-    </>
-  )
+ 
 
-  return (
-    <div className="content">
-      <Tabs
-        buttons="Dane podstawowe, Dane dodatkowe"
-        activeTab={activeTab}
-        onTabClick={handleTabClick}
-        storageKey="SettingAdminNavbar"
-      />
-
-
-      {activeTab === "Dane podstawowe" && settingData}
-      {activeTab === "Dane dodatkowe" && additionalData}
-
-    </div>
-  )
+  return <div className="content">{settingData}</div>;
 }
 
-export default Settings
+export default Settings;

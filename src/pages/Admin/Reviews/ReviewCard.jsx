@@ -7,25 +7,27 @@ import BlueBtn from "../../../components/Buttons/BlueBtn/BlueBtn"
 import ReviewModal from "../../../components/Modals/ReviewModal/ReviewModal"
 import star from "@assets/img/Star.svg"
 import starGrey from "@assets/img/Star 6.svg"
-const ReviewCard = ({ name, date, text, rating }) => {
+const ReviewCard = ({ id, name, date, text, rating, avatar, tags }) => {
   const { setModalActive, setModalContent } = useStore()
-
-  const positiveFeedbacks = [
-    "Profesjonalne podejście",
-    "Dbałość o komfort pacjenta",
-  ]
-  const negativeFeedbacks = ["Zbyt krótka wizyta", "Ograniczona dostępność"]
 
   function handleModal() {
     setModalActive(true)
     setModalContent(
-      <ReviewModal name={name} date={date} text={text} rating={rating} />
+      <ReviewModal 
+        id={id}
+        name={name} 
+        date={date} 
+        text={text} 
+        rating={rating}
+        avatar={avatar}
+        tags={tags}
+      />
     )
   }
   return (
     <div className={styles.card}>
       <div className={styles.header}>
-        <img src={avatar} alt="Avatar" className={styles.avatar} />
+        <img src={avatar || avatar} alt="Avatar" className={styles.avatar} />
         <div className={styles.headerInfo}>
           <div className={styles.gap}>
             <div className={styles.topHeader}>
@@ -47,14 +49,9 @@ const ReviewCard = ({ name, date, text, rating }) => {
           </div>
 
           <div className={styles.service}>
-            {positiveFeedbacks.map((feedback, index) => (
-              <div key={index} className={styles.good}>
-                {feedback}
-              </div>
-            ))}
-            {negativeFeedbacks.map((feedback, index) => (
-              <div key={index} className={styles.bad}>
-                {feedback}
+            {tags && tags.map((tag, index) => (
+              <div key={index} className={tag.includes("Bad") || tag.includes("Un") ? styles.bad : styles.good}>
+                {tag}
               </div>
             ))}
           </div>

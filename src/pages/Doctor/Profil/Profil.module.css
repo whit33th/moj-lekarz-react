@@ -1,7 +1,7 @@
 .shadow {
   box-shadow: 0 0 50px 5px #00000014;
   transition: 0.3s;
-  border-radius: 20px;
+  border-radius: 16px;
 }
 .profilDiv {
   background-color: white;

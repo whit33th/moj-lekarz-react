@@ -1,0 +1,145 @@
+.tableContainer {
+  border: 1px solid #e0e0e0;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.searchContainer {
+  position: relative;
+  width: 300px;
+}
+
+.addButtonWrapper {
+  min-width: auto;
+}
+
+.addButtonWrapper button {
+  padding: 0.75rem 1.5rem;
+  min-width: 100px;
+}
+
+.tableWrapper {
+  border-radius: 0 0 20px 20px;
+}
+
+.tableRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 1.5rem;
+  border-bottom: 1px solid #e0e0e0;
+  gap: 2rem;
+  background-color: white;
+}
+
+.tableRow span.react-loading-skeleton {
+  border-radius: 8px;
+}
+
+.tableRow:nth-child(odd) {
+  background-color: #f3f3f3;
+}
+
+.tableRow:last-child {
+  border-bottom: none;
+  border-radius: 0 0 20px 20px;
+}
+
+.mainContent {
+  display: flex;
+  gap: 1.5rem;
+  flex: 1;
+}
+
+.articleImage {
+  width: 270px;
+  height: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.articleContent {
+  flex: 1;
+}
+
+.articleHeader {
+  margin-bottom: 0.5rem;
+}
+
+.articleHeader h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  color: #333;
+}
+
+.articleDate {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.articleMeta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.articleCategory {
+  color: #666;
+  font-size: 0.85em;
+}
+
+.articleDescription {
+  margin: 0;
+  color: #555;
+  line-height: 1.5;
+}
+
+.actionButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  min-width: 120px;
+}
+
+.actionButtons button {
+  width: 100%;
+  padding: 0.5rem 1rem;
+}
+
+@media (max-width: 768px) {
+  .tableContainer {
+    padding: 1rem;
+  }
+
+  .searchContainer {
+    max-width: 100%;
+  }
+
+  .tableRow {
+    flex-direction: column;
+  }
+
+  .mainContent {
+    flex-direction: column;
+  }
+
+  .articleImage {
+    width: 100%;
+    height: 200px;
+  }
+
+  .actionButtons {
+    flex-direction: row;
+    width: 100%;
+  }
+}

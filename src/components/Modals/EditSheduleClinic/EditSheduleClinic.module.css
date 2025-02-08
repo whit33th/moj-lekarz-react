@@ -1,0 +1,76 @@
+.schedule-editor {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  
+  .schedule-editor h1 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 1.5rem;
+    font-weight: normal;
+  }
+  
+  .schedule-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .time-row {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .time-row label {
+    font-size: 1.1rem;
+    color: #333;
+  }
+  
+  .time-inputs {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+  
+  .time-input-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .time-input-group span {
+    color: #666;
+    font-size: 1rem;
+  }
+  
+  .time-input-group input {
+    width: 80px;
+    padding: 0.5rem;
+    border: 1px solid #3e36b0;
+    border-radius: 4px;
+    font-size: 1rem;
+    text-align: center;
+  }
+  
+  .time-input-group input[type="time"]::-webkit-calendar-picker-indicator {
+    display: none;
+    timeline-scope: 1;
+  }
+
+  .time-input-group input[type="time"] {
+    min-width: fit-content;
+    -moz-appearance: textfield;
+    -webkit-appearance: textfield;
+    appearance: textfield;
+  }
+
+  @media (max-width: 600px) {
+    .time-row {
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+    }
+  }
+

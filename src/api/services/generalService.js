@@ -56,6 +56,15 @@ class GeneralService {
       withCredentials: true,
     });
   }
+  async getAdminReviews(status) {
+    let url = `${this.URL}/api/admins/reviews?`;
+
+    status && (url += `status=${status}&`);
+
+    return await axios.get(url, {
+      withCredentials: true,
+    });
+  }
   async getClinicProvinceStats() {
     return await axios.get(`${this.URL}/api/statistics/province`, {
       withCredentials: true,
@@ -65,6 +74,78 @@ class GeneralService {
     return await axios.get(`${this.URL}/api/clinics/statistics`, {
       withCredentials: true,
     });
+  }
+  async getDoctorStats() {
+    return await axios.get(`${this.URL}/api/doctors/statistics`, {
+      withCredentials: true,
+    });
+  }
+  async getAdminStats() {
+    return await axios.get(`${this.URL}/api/admins/statistics`, {
+      withCredentials: true,
+    });
+  }
+  async putSchedules(id, data) {
+    return await axios.put(
+      `${this.URL}/api/schedules/${id}`,
+      {
+        date: data.date,
+        start_time: data.start_time,
+        end_time: data.end_time,
+      },
+      {
+        withCredentials: true,
+      }
+    );
+  }
+  async postPosts(id, data) {
+    return await axios.post(
+      `${this.URL}/api/posts/categories/${id}`,
+      {
+        photo: data.photo,
+        title: data.title,
+        content: data.content,
+      },
+      {
+        withCredentials: true,
+      }
+    );
+  }
+  async deletePosts(id) {
+    return await axios.delete(`${this.URL}/api/posts/${id}`, {
+      withCredentials: true,
+    });
+  }
+
+  async putPosts(id, data) {
+    return await axios.put(
+      `${this.URL}/api/posts/${id}`,
+      {
+        photo: data.photo,
+        title: data.title,
+        content: data.content,
+      },
+      {
+        withCredentials: true,
+      }
+    );
+  }
+  async deleteReview(id) {
+    return await axios.delete(`${this.URL}/api/admins/reviews/${id}`, {
+      withCredentials: true,
+    });
+  }
+  async acceptReview(id) {
+    return await axios.patch(
+      `${this.URL}/api/admins/reviews/${id}/moderate`,
+      {
+        status: "approved",
+        moderationComment: "Nice comment",
+      },
+      {
+        withCredentials: true,
+      }
+    );
   }
 }
 

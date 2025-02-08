@@ -42,12 +42,12 @@ const sbLinks = [
     img: recept,
     url: "/recipes",
   },
-  {
-    role: "doctor",
-    title: "Wiadomości",
-    img: notifications,
-    url: "/notifications",
-  },
+  // {
+  //   role: "doctor",
+  //   title: "Wiadomości",
+  //   img: notifications,
+  //   url: "/notifications",
+  // },
   {
     role: "doctor",
     title: "Ustawienia",
@@ -94,18 +94,12 @@ const sbLinks = [
     url: "/management",
   },
 
-  {
-    role: "clinic",
-    title: "Wiadomości",
-    img: notifications,
-    url: pageConfig.firm.notifications,
-  },
-  {
-    role: "clinic",
-    title: "Ustawienia",
-    img: settings,
-    url: pageConfig.firm.settings,
-  },
+  // {
+  //   role: "clinic",
+  //   title: "Wiadomości",
+  //   img: notifications,
+  //   url: pageConfig.firm.notifications,
+  // },
 
   //adminLinks
   {
@@ -139,24 +133,24 @@ const sbLinks = [
     url: "/reviews",
   },
 
-  {
-    role: "admin",
-    title: "Statystyki",
-    img: stats,
-    url: "/statistic",
-  },
+  // {
+  //   role: "admin",
+  //   title: "Statystyki",
+  //   img: stats,
+  //   url: "/statistic",
+  // },
   {
     role: "admin",
     title: "Nowości",
     img: news,
-    url: "/news",
+    url: "/blogs",
   },
-  {
-    role: "admin",
-    title: "Czat",
-    img: chat,
-    url: "/chat",
-  },
+  // {
+  //   role: "admin",
+  //   title: "Czat",
+  //   img: chat,
+  //   url: "/chat",
+  // },
   {
     role: "admin",
     title: "Ustawienia",

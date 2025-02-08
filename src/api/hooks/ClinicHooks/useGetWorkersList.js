@@ -10,7 +10,7 @@ function useGetWorkersList({
   page = 1,
   select,
 }) {
-  const { data, isLoading, refetch } = useQuery({
+  const { data, isLoading, error, refetch } = useQuery({
     queryKey: ["workersList", clinicId, gender, sort, ratingSort, limit, page],
     queryFn: () =>
       clinicServices.getWorkersByClinicId(clinicId, {
@@ -24,7 +24,12 @@ function useGetWorkersList({
     staleTime: 60 * 1000,
     gcTime: 60 * 1000,
   });
-  return { data, isLoading, refetch };
+  return {
+    data,
+    isLoading,
+    error,
+    refetch
+  };
 }
 
 export default useGetWorkersList;

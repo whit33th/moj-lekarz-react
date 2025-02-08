@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { generalService } from "../../../services/generalService";
 
 export default function useClinicStats() {
-  const { data } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ["clinicStats"],
     queryFn: () => generalService.getClinicStats(),
     select: (data) => data?.data || [],
@@ -10,5 +10,5 @@ export default function useClinicStats() {
     gcTime: 300 * 1000,
   });
 
-  return { data };
+  return { data, isLoading };
 }

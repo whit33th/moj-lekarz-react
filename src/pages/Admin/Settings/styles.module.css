@@ -92,7 +92,9 @@ input[type="date"] {
 .photo img {
   border-radius: 20px 20px 0 0;
   height: auto;
-  width: -webkit-fill-available;
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
   margin-bottom: 20px;
 }
 
@@ -116,6 +118,7 @@ input[type="date"] {
   border: 1px solid #3e36b0;
   border-radius: 100px;
   padding: 16px;
+  cursor: pointer;
 }
 
 .blueButt {
@@ -125,6 +128,8 @@ input[type="date"] {
   border: none;
   border-radius: 100px;
   padding: 16px;
+  cursor: pointer;
+  text-align: center;
 }
 
 .imgPanel {
@@ -203,6 +208,39 @@ input[type="date"] {
   outline: none;
   color: #858585;
   font-size: 16px;
+}
+
+.inputFileHidden {
+  display: none;
+}
+
+.formImg {
+  display: flex;
+  gap: 20px;
+}
+
+.formImg > div {
+  flex: 1;
+}
+
+.customButton {
+  border: 1px solid #3e36b0;
+  color: #3e36b0;
+  width: 100%;
+  height: 45px;
+  border-radius: 100px;
+  background: transparent;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  cursor: pointer;
+  text-align: center;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.customButton:hover {
+  opacity: 0.8;
 }
 
 @media screen and (max-width: 920px) {

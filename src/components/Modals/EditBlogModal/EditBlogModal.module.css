@@ -1,0 +1,25 @@
+.inputGroup > textarea{
+    width: 100%;
+  }
+  
+  .container, .inputGroup{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .inputGroup{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .buttonGroup{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .errorMessage {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+  }

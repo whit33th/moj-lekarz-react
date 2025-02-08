@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import users from "@assets/img/users.png"
 import graphUp from "@assets/img/graph-up.png"
 import graphDown from "@assets/img/graph-down.png"
@@ -14,8 +15,13 @@ import useStore from "./../../../data/store"
 import Textarea from "../../../components/UI/TextArea/Textarea"
 import BlueBtn from "./../../../components/Buttons/BlueBtn/BlueBtn"
 import { useState } from "react"
+import useAdminStats from "../../../api/hooks/GeneralHooks/Stats/adminStats"
+import { format } from "date-fns"
+import { StatCardSkeleton, TableSkeleton, ChartSkeleton } from '../../../components/Skeletons/AdminSkeletons'
+import Skeleton from "react-loading-skeleton"
 
-function AdminMain() {
+function AdminMainContent() {
+  const stats = useAdminStats()
   const { setModalActive, setModalContent } = useStore()
   const [notes, setNotes] = useState(
     Array.from({ length: 4 }, (_, i) => ({
@@ -38,6 +44,26 @@ function AdminMain() {
   function deleteNote(id) {
     setNotes((prevNotes) => prevNotes.filter((note) => note.id !== id))
   }
+
+
+  if (!stats?.countUser) {
+    return null;
+  }
+
+  const {
+    countUser: {
+      totalPatient,
+      percentagePatient,
+      totalClinic,
+      percentageClinics,
+      totalDoctor,
+      percentageDoctors,
+      totalAppointment,
+      percentageAppointments,
+    },
+    statisticUser: { newPatients, newClinics },
+  } = stats;
+
   return (
     <div className={styles.content}>
       <h1 className={styles.witaj}>Witamy, Tomasz!</h1>
@@ -48,12 +74,12 @@ function AdminMain() {
             <div
               className={`${styles.graph} ${styles.percentage} ${styles.tCenter} ${styles.smBack} ${styles.flex} ${styles.itemsCenter}`}
             >
-              <p>12%</p>
-              <img src={graphDown} alt="" />
+              <p>{percentagePatient.toFixed(2)}%</p>
+              <img src={percentagePatient >= 0 ? graphUp : graphDown} alt="" />
             </div>
           </div>
           <div className={styles.cardContent}>
-            <span className={styles.count}>124</span>
+            <span className={styles.count}>{totalPatient}</span>
             <span className={styles.label}>Całkowita liczba użytkowników</span>
           </div>
         </div>
@@ -63,12 +89,12 @@ function AdminMain() {
             <div
               className={`${styles.graph} ${styles.percentage} ${styles.tCenter} ${styles.smBack} ${styles.flex} ${styles.itemsCenter}`}
             >
-              <p>12%</p>
-              <img src={graphUp} alt="" />
+              <p>{percentageClinics.toFixed(2)}%</p>
+              <img src={percentageClinics >= 0 ? graphUp : graphDown} alt="" />
             </div>
           </div>
           <div className={styles.cardContent}>
-            <span className={styles.count}>124</span>
+            <span className={styles.count}>{totalClinic}</span>
             <span className={styles.label}>Całkowita liczba firm</span>
           </div>
         </div>
@@ -78,12 +104,12 @@ function AdminMain() {
             <div
               className={`${styles.graph} ${styles.percentage} ${styles.tCenter} ${styles.smBack} ${styles.flex} ${styles.itemsCenter}`}
             >
-              <p>12%</p>
-              <img src={graphUp} alt="" />
+              <p>{percentageDoctors.toFixed(2)}%</p>
+              <img src={percentageDoctors >= 0 ? graphUp : graphDown} alt="" />
             </div>
           </div>
           <div className={styles.cardContent}>
-            <span className={styles.count}>124</span>
+            <span className={styles.count}>{totalDoctor}</span>
             <span className={styles.label}>Całkowita liczba lekarzy</span>
           </div>
         </div>
@@ -93,12 +119,12 @@ function AdminMain() {
             <div
               className={`${styles.graph} ${styles.percentage} ${styles.tCenter} ${styles.smBack} ${styles.flex} ${styles.itemsCenter}`}
             >
-              <p>12%</p>
-              <img src={graphUp} alt="" />
+              <p>{percentageAppointments.toFixed(2)}%</p>
+              <img src={percentageAppointments >= 0 ? graphUp : graphDown} alt="" />
             </div>
           </div>
           <div className={styles.cardContent}>
-            <span className={styles.count}>124</span>
+            <span className={styles.count}>{totalAppointment}</span>
             <span className={styles.label}>
               Całkowita liczba zarejestrowanych wizyt
             </span>
@@ -117,26 +143,13 @@ function AdminMain() {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>Jan Bukalski</td>
-                <td>456-722-512</td>
-                <td>01.06.2024</td>
-              </tr>
-              <tr>
-                <td>Jan Bukalski</td>
-                <td>456-722-512</td>
-                <td>01.06.2024</td>
-              </tr>
-              <tr>
-                <td>Jan Bukalski</td>
-                <td>456-722-512</td>
-                <td>01.06.2024</td>
-              </tr>
-              <tr>
-                <td>Jan Bukalski</td>
-                <td>456-722-512</td>
-                <td>01.06.2024</td>
-              </tr>
+              {newPatients?.slice(-5)?.map((patient) => (
+                <tr key={patient.id}>
+                  <td>{`${patient.user.first_name} ${patient.user.last_name}`}</td>
+                  <td>{patient.id}</td>
+                  <td>{format(new Date(patient.createdAt), 'dd.MM.yyyy')}</td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
@@ -150,22 +163,12 @@ function AdminMain() {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>Allecou Dent</td>
-                <td>01.06.2024</td>
-              </tr>
-              <tr>
-                <td>Dzielnica rodzica</td>
-                <td>01.06.2024</td>
-              </tr>
-              <tr>
-                <td>Allecou Dent</td>
-                <td>01.06.2024</td>
-              </tr>
-              <tr>
-                <td>Dzielnica rodzica</td>
-                <td>01.06.2024</td>
-              </tr>
+              {newClinics?.slice(-5)?.map((clinic, index) => (
+                <tr key={index}>
+                  <td>{clinic.name}</td>
+                  <td>{format(new Date(clinic.createdAt), 'dd.MM.yyyy')}</td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
@@ -224,4 +227,46 @@ function AdminMain() {
   )
 }
 
-export default AdminMain
+function AdminMain() {
+  return (
+    <Suspense
+      fallback={
+        <div className={styles.content}>
+          <h1 className={styles.witaj}>
+            <Skeleton width={200} />
+          </h1>
+          <div className={styles.dashboardFour}>
+            {Array(4).fill(0).map((_, idx) => (
+              <StatCardSkeleton key={idx} />
+            ))}
+          </div>
+          <div className={styles.dashboardTwo}>
+            <TableSkeleton />
+            <TableSkeleton />
+          </div>
+          <div className={styles.dashboardTwo}>
+            <div className={styles.statsCard}>
+              <Skeleton width={120} />
+              <div className={styles.charts}>
+                <ChartSkeleton />
+                <ChartSkeleton />
+              </div>
+            </div>
+            <div className={styles.notesCard}>
+              <Skeleton width={120} />
+              <div style={{ marginTop: '1rem' }}>
+                {Array(4).fill(0).map((_, idx) => (
+                  <Skeleton key={idx} height={40} style={{ marginBottom: '0.5rem' }} />
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+    >
+      <AdminMainContent />
+    </Suspense>
+  );
+}
+
+export default AdminMain;

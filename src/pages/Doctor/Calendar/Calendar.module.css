@@ -5,6 +5,7 @@
   padding: 5px;
 }
 
+
 .dayCellMonth {
   width: 60px;
   flex-grow: 1;
@@ -27,9 +28,9 @@
   flex-grow: 1;
   height: 100px;
 }
-.loading{
+.loading {
   opacity: 0.5;
-  transform: translateY(-10px); ;
+  transform: translateY(-10px);
   filter: grayscale(1);
 }
 
@@ -92,9 +93,10 @@
   flex-direction: column;
   width: 100%;
 
-  transition: 1s ;
+  transition: 1s;
   border-radius: 20px;
 }
+
 
 .headerRow {
   display: flex;
@@ -193,8 +195,6 @@
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto auto;
   gap: 1rem;
-    
-  
 }
 
 .searchGroup {

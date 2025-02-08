@@ -1,49 +1,83 @@
 import React, { useState } from "react";
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 import ModerationCard from "./ModerationCard";
 import styles from "./ReviewPage.module.css";
 import Tabs from "../../../components/Buttons/Tabs/Tabs";
 import ReviewCard from "./ReviewCard";
-
-const reviews = [
-  {
-    name: "La Fontaine",
-    date: "06.02.2024",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam volutpat eros ligula.  Vivamus posuere, lacus non dapibus laoreet, elit ligula laoreet metus, eu ultricies sem purus eget magna. Donec consectetur mi nec pharetra pharetra Suspendisse sit amet arcu ac elit lacinia cursus. Aliquam erat volutpat. Maecenas ut leo elit. Sed cursus nisi sed massa aliquam, eget tincidunt dolor posuer",
-    rating: 5,
-  },
-  {
-    name: "Jan Reno",
-    date: "06.02.2024",
-    rating: 4,
-  },
-  {
-    name: "Honoré de Balzac",
-    date: "06.02.2024",
-    text: "SCAM ♥",
-  },
-  {
-    name: "Charles de Gaulle",
-    date: "06.02.2024",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vulputate dolor sit amet, ultrices nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vulputate dolor sit amet, ultrices nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vulputate dolor sit amet, ultrices nunc.",
-    rating: 5,
-  },
-  {
-    name: "Gérard de Sole",
-    date: "06.02.2024",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vulputate dolor sit amet, ultrices nunc.",
-    rating: 4,
-  },
-];
+import useGetAdminReviews from "../../../api/hooks/GeneralHooks/ReviewsHooks/useGetAdminReviews";
 
 function ReviewPage() {
   const [activeTab, setActiveTab] = useState("Moderacja");
+  
+  const { data: uncompletedReviews, isLoading: loadingUncompleted } = useGetAdminReviews({
+    status: "uncompleted",  // Make sure this matches your API's expected value
+    limit: 10,
+    page: 1
+  });
 
-  const evenReviews = reviews.filter((_, index) => index % 2 === 0);
-  const oddReviews = reviews.filter((_, index) => index % 2 !== 0);
+  const { data: completedReviews, isLoading: loadingCompleted } = useGetAdminReviews({
+    status: "completed",  // Make sure this matches your API's expected value
+    limit: 10,
+    page: 1
+  });
 
   function handleTabClick(name) {
     setActiveTab(name);
   }
+
+  const SkeletonCard = () => (
+    <div className={styles.skeletonCard}>
+      <div className={styles.skeletonHeader}>
+        <Skeleton circle width={40} height={40} />
+        <div className={styles.skeletonInfo}>
+          <Skeleton width={150} />
+          <Skeleton width={100} />
+        </div>
+      </div>
+      <Skeleton count={3} />
+      <div className={styles.skeletonTags}>
+        <Skeleton width={60} />
+        <Skeleton width={80} />
+      </div>
+    </div>
+  );
+
+  const renderSkeletonColumn = () => (
+    Array(3).fill().map((_, index) => (
+      <SkeletonCard key={index} />
+    ))
+  );
+
+  const formatReviews = (reviews) => {
+    if (!reviews?.reviews) return [[], []];
+    const evenColumn = [];
+    const oddColumn = [];
+    
+    reviews.reviews.forEach((review, index) => {
+      const formattedReview = {
+        id: review.id,
+        name: `${review.patient.user.first_name} ${review.patient.user.last_name}`,
+        date: new Date(review.createdAt).toLocaleDateString(),
+        text: review.comment,
+        rating: review.rating,
+        avatar: review.patient.user.photo,
+        tags: review.tags.map(tag => tag.name)
+      };
+      
+      if (index % 2 === 0) {
+        evenColumn.push(formattedReview);
+      } else {
+        oddColumn.push(formattedReview);
+      }
+    });
+    
+    return [evenColumn, oddColumn];
+  };
+
+  const [evenUncompleted, oddUncompleted] = formatReviews(uncompletedReviews);
+  const [evenCompleted, oddCompleted] = formatReviews(completedReviews);
+
   return (
     <>
       <Tabs
@@ -54,46 +88,38 @@ function ReviewPage() {
       />
       <div className={styles.cardsContainer}>
         <div className={styles.column}>
-          {activeTab === "Moderacja" &&
-            evenReviews.map((review, index) => (
+          {activeTab === "Moderacja" && loadingUncompleted && renderSkeletonColumn()}
+          {activeTab === "Moderacja" && !loadingUncompleted &&
+            evenUncompleted?.map((review) => (
               <ModerationCard
-                key={`even-${index}`}
-                name={review.name}
-                date={review.date}
-                text={review.text}
-                rating={review.rating}
+                key={review.id}
+                {...review}
               />
             ))}
-          {activeTab === "Opinia" &&
-            evenReviews.map((review, index) => (
+          {activeTab === "Opinia" && loadingCompleted && renderSkeletonColumn()}
+          {activeTab === "Opinia" && !loadingCompleted &&
+            evenCompleted?.map((review) => (
               <ReviewCard
-                key={`even-${index}`}
-                name={review.name}
-                date={review.date}
-                text={review.text}
-                rating={review.rating}
+                key={review.id}
+                {...review}
               />
             ))}
         </div>
         <div className={styles.column}>
-          {activeTab === "Moderacja" &&
-            oddReviews.map((review, index) => (
+          {activeTab === "Moderacja" && loadingUncompleted && renderSkeletonColumn()}
+          {activeTab === "Moderacja" && !loadingUncompleted &&
+            oddUncompleted?.map((review) => (
               <ModerationCard
-                key={`even-${index}`}
-                name={review.name}
-                date={review.date}
-                text={review.text}
-                rating={review.rating}
+                key={review.id}
+                {...review}
               />
             ))}
-          {activeTab === "Opinia" &&
-            oddReviews.map((review, index) => (
+          {activeTab === "Opinia" && loadingCompleted && renderSkeletonColumn()}
+          {activeTab === "Opinia" && !loadingCompleted &&
+            oddCompleted?.map((review) => (
               <ReviewCard
-                key={`even-${index}`}
-                name={review.name}
-                date={review.date}
-                text={review.text}
-                rating={review.rating}
+                key={review.id}
+                {...review}
               />
             ))}
         </div>

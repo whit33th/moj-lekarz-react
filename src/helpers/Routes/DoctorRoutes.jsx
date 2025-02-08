@@ -26,10 +26,10 @@ function DoctorRoutes({ isAuth }) {
       <Route path={pageConfig.doctor.list} element={<PatientList />} />
       <Route path={pageConfig.doctor.patientInfo} element={<PatientInfo />} />
       <Route path={pageConfig.doctor.recipes} element={<Recipes />} />
-      <Route
+      {/* <Route
         path={pageConfig.doctor.notifications}
         element={<Notifications />}
-      />
+      /> */}
       <Route path={pageConfig.doctor.settings} element={<SettingsAdmin />} />
       <Route path={pageConfig.doctor.lastVisits} element={<LastVisits />} />
       <Route

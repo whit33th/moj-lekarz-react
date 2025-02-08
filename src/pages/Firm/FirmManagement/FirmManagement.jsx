@@ -17,13 +17,15 @@ import useGetClinicReviews from "./../../../api/hooks/GeneralHooks/ReviewsHooks/
 import usePutUserInfo from "@api/hooks/UserHooks/usePutUserInfo";
 import useGetWorkersList from "../../../api/hooks/ClinicHooks/useGetWorkersList";
 import grey from "@assets/img/grey.png";
+import SkeletonTodayVisitItem from "../../../components/DoctorPage/Home/TodayVisitItem/SkeletonTodayVisitItem";
+import { pageConfig } from "../../../config/config";
 
 function FirmManagement() {
   const { setModalActive, setModalContent } = useStore();
   const { data, isLoading } = useGetUserInfo();
   const { register, reset, handleSubmit } = useForm();
   const { data: workersData } = useGetWorkersList({
-    clinicId: data?.id
+    clinicId: data?.id,
   });
 
   const formatTimetables = (timetables) => {
@@ -82,155 +84,10 @@ function FirmManagement() {
     flat: isLoading ? "Ładowanie..." : data?.address?.flat || "Brak",
     postIndex: isLoading ? "Ładowanie..." : data?.address?.post_index || "Brak",
   };
-  const { mutate } = usePutUserInfo();
 
-  const onSubmit = (formData) => {
-    const formattedData = {
-      userData: {
-        email: formData.email,
-        phone: formData.tel,
-        first_name: "z", // These fields are not in the form
-        last_name: "z", // but required by the API
-        birthday: "01-01-2000",
-        pesel: "12312312312",
-        gender: "male",
-        name: formData.firm,
-        nip: formData.nip,
-        nr_license: formData.license,
-        description: formData.description || "",
-      },
-      addressData: {
-        city: formData.city,
-        province: formData.province || "",
-        street: formData.street,
-        home: formData.house,
-        flat: formData.flat,
-        post_index: formData.postIndex,
-      },
-    };
+  
 
-    mutate(formattedData);
-  };
-
-  function openMainModal() {
-    reset({
-      firm: clinic.name,
-      nip: clinic.nip,
-      license: clinic.license,
-      city: clinic.city,
-      province: clinic.province,
-      street: clinic.street,
-      house: clinic.house,
-      flat: clinic.flat, // добавлено
-      email: clinic.email,
-      tel: clinic.tel,
-      postIndex: clinic.postIndex,
-      description: clinic.description, // добавлено
-    });
-    setModalActive(true);
-    setModalContent(ModalContentEdit);
-  }
-
-  const ModalContentEdit = (
-    <div>
-      <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-        <img onClick={() => setModalActive(false)} src={exit} alt="cross" />
-        <div className={styles.row}>
-          <div className={styles.column}>
-            <label className={styles.label}>Nazwa firmy</label>
-            <input type="text" className={styles.input} {...register("firm")} />
-          </div>
-          <div className={styles.column}>
-            <label className={styles.label}>NIP</label>
-            <input
-              type="text"
-              className={styles.input}
-              disabled
-              {...register("nip")}
-            />
-          </div>
-        </div>
-        <div className={styles.row}>
-          <div className={styles.column}>
-            <label className={styles.label}>Licencja</label>
-            <input
-              type="text"
-              className={styles.input}
-              {...register("license")}
-            />
-          </div>
-          <div className={styles.column}>
-            <label className={styles.label}>Email</label>
-            <input
-              type="email"
-              className={styles.input}
-              {...register("email")}
-            />
-          </div>
-        </div>
-        <div className={styles.row}>
-          <div className={styles.column}>
-            <label className={styles.label}>Miasto</label>
-            <input type="text" className={styles.input} {...register("city")} />
-          </div>
-          <div className={styles.column}>
-            <label className={styles.label}>Województwo</label>
-            <input
-              type="text"
-              className={styles.input}
-              {...register("province")}
-            />
-          </div>
-        </div>
-        <div className={styles.row}>
-          <div className={styles.column}>
-            <label className={styles.label}>Ulica</label>
-            <input
-              type="text"
-              className={styles.input}
-              {...register("street")}
-            />
-          </div>
-          <div className={styles.column}>
-            <label className={styles.label}>Nr domu</label>
-            <input
-              type="text"
-              className={styles.input}
-              {...register("house")}
-            />
-          </div>
-        </div>
-        <div className={styles.row}>
-          <div className={styles.column}>
-            <label className={styles.label}>Nr mieszkania</label>
-            <input type="text" className={styles.input} {...register("flat")} />
-          </div>
-          <div className={styles.column}>
-            <label className={styles.label}>Telefon</label>
-            <input type="tel" className={styles.input} {...register("tel")} />
-          </div>
-        </div>
-        <div className={styles.row}>
-          <div className={styles.column}>
-            <label className={styles.label}>Kod pocztowy</label>
-            <input
-              type="text"
-              className={styles.input}
-              {...register("postIndex")}
-            />
-          </div>
-          <div className={styles.column}>
-            <label className={styles.label}>Opis</label>
-            <textarea className={styles.input} {...register("description")} />
-          </div>
-        </div>
-        <div className={styles.choice}>
-          <div></div>
-          <BlueBtn type="submit">Aktualizuj</BlueBtn>
-        </div>
-      </form>
-    </div>
-  );
+  
 
   const { data: reviewsData } = useGetClinicReviews({ clinicId: 142 });
 
@@ -270,12 +127,7 @@ function FirmManagement() {
         <div
           className={`${styles.officeInfo} ${styles.mainCard} ${styles.biggerCard} ${styles.editDiv}`}
         >
-          <img
-            onClick={openMainModal}
-            className={styles.pen}
-            src={editPan}
-            alt="edit"
-          />
+          
           <div>
             <p className={styles.title}>{clinic.name}</p>
             <p
@@ -303,28 +155,36 @@ function FirmManagement() {
         <div className={`${styles.mainCard}`}>
           <div className={`${styles.flex} ${styles.between}`}>
             <p className={styles.titleCard}>Komentarze</p>
-            <button
-              onClick={() => {
-                setModalActive(true);
-                setModalContent(modalContentComments);
-              }}
-              className={styles.transparentBtn}
-            >
-              <div className={`${styles.flex} ${styles.center}`}>
-                <p className={styles.followLink}>Otwórz</p>
-                <img className={styles.ico} src={follow} alt="Follow" />
-              </div>
-            </button>
+            {reviewsData?.reviews?.length > 0 && (
+              <button
+                onClick={() => {
+                  setModalActive(true);
+                  setModalContent(modalContentComments);
+                }}
+                className={styles.transparentBtn}
+              >
+                <div className={`${styles.flex} ${styles.center}`}>
+                  <p className={styles.followLink}>Otwórz</p>
+                  <img className={styles.ico} src={follow} alt="Follow" />
+                </div>
+              </button>
+            )}
           </div>
           <div className={styles.reviews}>
-            {(!reviewsData?.reviews || reviewsData.reviews.length === 0) ? (
-              <div className={styles.emptyState}>
-                <p>Nie ma komentarzy</p>
-              </div>
+            {reviewsData?.reviews && !isLoading ? (
+              !reviewsData.reviews || reviewsData.reviews.length === 0 ? (
+                <div className={styles.emptyState}>
+                  <p>Nie ma komentarzy</p>
+                </div>
+              ) : (
+                reviewsData.reviews
+                  .slice(0, 3)
+                  .map((review, index) => (
+                    <Review key={index} review={review} />
+                  ))
+              )
             ) : (
-              reviewsData.reviews.slice(0, 3).map((review, index) => (
-                <Review key={index} review={review} />
-              ))
+              <SkeletonTodayVisitItem count={3} />
             )}
           </div>
         </div>
@@ -332,29 +192,38 @@ function FirmManagement() {
         <div className={`${styles.mainCard} ${styles.biggerCard}`}>
           <div className={`${styles.flex} ${styles.between}`}>
             <p className={styles.titleCard}>Dostępne lekarzy</p>
-            <NavLink className={styles.black} to="/">
-              <div className={`${styles.flex} ${styles.center}`}>
-                <p className={styles.followLink}>Otwórz</p>
-                <img className={styles.ico} src={follow} alt="Follow" />
-              </div>
-            </NavLink>
+            {workersData?.doctors?.length > 0 && (
+              <NavLink className={styles.black} to={pageConfig.firm.workers}>
+                <div className={`${styles.flex} ${styles.center}`}>
+                  <p className={styles.followLink}>Otwórz</p>
+                  <img className={styles.ico} src={follow} alt="Follow" />
+                </div>
+              </NavLink>
+            )}
           </div>
 
           <div className={styles.history}>
-            {(!workersData?.doctors || workersData.doctors.length === 0) ? (
-              <div className={styles.emptyState}>
-                <p>Nie ma dostępnych lekarzy</p>
-              </div>
+            {workersData?.doctors && !isLoading ? (
+              !workersData.doctors || workersData.doctors.length === 0 ? (
+                <div className={styles.emptyState}>
+                  <p>Nie ma dostępnych lekarzy</p>
+                </div>
+              ) : (
+                workersData.doctors
+                  .slice(0, 5)
+                  .map((doctor, index) => (
+                    <BestWorkerItem
+                      key={index}
+                      id={doctor?.id}
+                      name={`${doctor.user.first_name} ${doctor.user.last_name}`}
+                      img={doctor.user.photo || grey}
+                      specialty={doctor.specialty.name}
+                      rating={doctor.rating}
+                    />
+                  ))
+              )
             ) : (
-              workersData.doctors.slice(0, 5).map((doctor, index) => (
-                <BestWorkerItem
-                  key={index}
-                  name={`${doctor.user.first_name} ${doctor.user.last_name}`}
-                  img={doctor.user.photo || grey}
-                  specialty={doctor.specialty.name}
-                  rating={doctor.rating}
-                />
-              ))
+              <SkeletonTodayVisitItem count={5} />
             )}
           </div>
         </div>

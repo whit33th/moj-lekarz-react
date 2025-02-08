@@ -1,10 +1,11 @@
-import { NavLink } from 'react-router-dom'
-import star from "@assets/img/star.png"
-import styles from './BestWorkerItem.module.css'
+import { NavLink } from "react-router-dom";
+import star from "@assets/img/star.png";
+import styles from "./BestWorkerItem.module.css";
+import { pageConfig } from "../../../config/config";
 
-function VisitItem({ img, name, position, rating, index,specialty }) {
+function VisitItem({ id, img, name, position, rating, index, specialty }) {
   return (
-    <NavLink key={index} to="/workers/id" className={styles.black}>
+    <NavLink key={index} to={pageConfig.firm.workersInfo.slice(0,9)+id} className={styles.black}>
       <div className={`${styles.record} ${styles.center} ${styles.between}`}>
         <div className={styles.flex}>
           <img className={styles.round} src={img} alt="" />
@@ -21,7 +22,7 @@ function VisitItem({ img, name, position, rating, index,specialty }) {
         </div>
       </div>
     </NavLink>
-  )
+  );
 }
 
-export default VisitItem
+export default VisitItem;

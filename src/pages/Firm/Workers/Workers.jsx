@@ -12,7 +12,7 @@ import Tabs from "../../../components/Buttons/Tabs/Tabs";
 import AddSpecializationModal from "../../../components/Modals/AddSpecializationModal/AddSpecializationModal";
 import useGetWorkersList from "../../../api/hooks/ClinicHooks/useGetWorkersList";
 import useGetUserInfo from "../../../api/hooks/UserHooks/useGetUserInfo";
-import grey from '@assets/img/grey.png'
+import grey from "@assets/img/grey.png";
 
 function Workers() {
   const [activeTab, setActiveTab] = useState("Lista pracowników");
@@ -22,13 +22,14 @@ function Workers() {
   const { data } = useGetWorkersList({ clinicId: clinic?.id });
 
   // Map API data to table format
-  const tableData = data?.doctors?.map((doctor) => ({
-    img: grey,
-    name: `${doctor.user.first_name} ${doctor.user.last_name}`,
-    id: doctor.id,
-    gender: doctor.user.gender,
-    specialty: doctor.specialty.name
-  })) || [];
+  const tableData =
+    data?.doctors?.map((doctor) => ({
+      img: doctor.user.photo || grey,
+      name: `${doctor.user.first_name} ${doctor.user.last_name}`,
+      id: doctor.id,
+      gender: doctor.user.gender,
+      specialty: doctor.specialty.name,
+    })) || [];
 
   const columns = [
     {

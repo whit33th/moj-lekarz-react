@@ -189,12 +189,12 @@ const MoreInfoButtFirm = ({ id }) => {
             <p style={{ fontWeight: "500" }}>Informacja</p>
           </button>
 
-          <button
+          {/* <button
             onClick={openNotificationModal}
             className={styles.hoverOpacity}
           >
             <p style={{ fontWeight: "500" }}>Wiadomość</p>
-          </button>
+          </button> */}
         </div>
       )}
     </div>

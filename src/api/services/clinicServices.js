@@ -53,7 +53,6 @@ class ClinicServices {
       withCredentials: true,
     });
   }
-
   async getPrescriptions(limit, page, sort) {
     let url = `${this.URL}/api/prescriptions?`;
 
@@ -65,7 +64,6 @@ class ClinicServices {
       withCredentials: true,
     });
   }
-
   async postPrescriptions(data) {
     return await axios.post(`${this.URL}/api/prescriptions`, {
       patientId: data.patientId,
@@ -78,7 +76,6 @@ class ClinicServices {
       name: data.name,
     });
   }
-
   async getWorkersByClinicId(
     clinicId,
     { gender, sort, ratingSort, limit, page } = {}
@@ -95,15 +92,92 @@ class ClinicServices {
       withCredentials: true,
     });
   }
-
   async putDoctorInfo(doctorId, data) {
+    const userData = {};
+    const addressData = {};
+    const doctorData = {};
+
+    if (data.email) userData.email = data.email;
+    if (data.phone) userData.phone = data.phone;
+
+    if (data.city) addressData.city = data.city;
+    if (data.province) addressData.province = data.province;
+    if (data.street) addressData.street = data.street;
+    if (data.home) addressData.home = data.home;
+    if (data.flat) addressData.flat = data.flat;
+    if (data.postIndex) addressData.post_index = data.postIndex;
+
+    if (data.hired_at) doctorData.hired_at = data.hired_at;
+    if (data.description) doctorData.description = data.description;
+
     return await axios.put(
-      `${this.URL}api/clinics/doctors/${doctorId}`,
+      `${this.URL}/api/clinics/doctors/${doctorId}`,
       {
-        userData: data.userData,
-        addressData: data.addressData,
-        doctorData: data.doctorData,
-        // servicesIds: data.servicesIds
+        userData,
+        addressData,
+        doctorData,
+      },
+      {
+        withCredentials: true,
+      }
+    );
+  }
+  async putClinicInfo(data) {
+    const clinicData = {};
+    const addressData = {};
+
+    if (data.name) clinicData.name = data.name;
+    if (data.nip) clinicData.nip = data.nip;
+    if (data.nr_license) clinicData.nr_license = data.nr_license;
+    if (data.email) clinicData.email = data.email;
+    if (data.phone) clinicData.phone = data.phone;
+    if (data.password) clinicData.password = data.password;
+    if (data.description) clinicData.description = data.description;
+
+    if (data.city) addressData.city = data.city;
+    if (data.street) addressData.street = data.street;
+    if (data.province) addressData.province = data.province;
+    if (data.home) addressData.home = data.home;
+    if (data.flat) addressData.flat = data.flat;
+    if (data.post_index) addressData.post_index = data.post_index;
+
+    return await axios.put(
+      `${this.URL}/api/clinics`,
+      {
+        clinicData,
+        addressData,
+      },
+      {
+        withCredentials: true,
+      }
+    );
+  }
+  async postClinic(data) {
+    const clinicData = {};
+    const addressData = {};
+
+    if (data.name) clinicData.name = data.name;
+    if (data.nip) clinicData.nip = data.nip;
+    if (data.nr_license) clinicData.nr_license = data.nr_license;
+    if (data.email) clinicData.email = data.email;
+    if (data.phone) clinicData.phone = data.phone;
+    if (data.password) clinicData.password = data.password;
+    if (data.description) clinicData.description = data.description;
+    if (data.type_visits) clinicData.type_visits = data.type_visits;
+
+    if (data.city) addressData.city = data.city;
+    if (data.street) addressData.street = data.street;
+    if (data.province) addressData.province = data.province;
+    if (data.home) addressData.home = data.home;
+    if (data.flat) addressData.flat = data.flat;
+    if (data.post_index) addressData.post_index = data.post_index;
+    
+
+    return await axios.post(
+      `${this.URL}/api/clinics`,
+      {
+        clinicData,
+        addressData,
       },
       {
         withCredentials: true,
