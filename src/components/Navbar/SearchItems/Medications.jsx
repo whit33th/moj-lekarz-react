@@ -44,7 +44,7 @@ const Medications = ({ medications }) => {
 			onMouseLeave={stopDrag}
 			onMouseMove={drag}
 		>
-			{medications.map((m, index) => (
+			{medications?.slice(-10).map((m, index) => (
 				<div key={m.PrescriptionMedications.prescription_id} className={styles.medication}>
 					<p className={styles.medItemNumber}>{index + 1}.</p>
 					<p className={styles.medItemName}>{m.name}</p>

@@ -19,7 +19,7 @@ function SearchDoctorsItem({ data }) {
             Nie znaleziono lekarzy
           </div>
         ) : (
-          data.doctors.map((doctor, index) => (
+          data?.doctors?.slice(-10).map((doctor, index) => (
             <NavLink
               to={pageConfig.firm.workersInfo.slice(0, 9) + doctor.id}
               onClick={() => setSearchActive(false)}

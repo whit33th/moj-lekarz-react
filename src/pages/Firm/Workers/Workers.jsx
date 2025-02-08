@@ -19,7 +19,7 @@ function Workers() {
   const { setModalActive, setModalContent } = useStore();
   const [specializations, setSpecializations] = useState([]);
   const { data: clinic } = useGetUserInfo();
-  const { data } = useGetWorkersList({ clinicId: clinic?.id });
+  const { data, isLoading } = useGetWorkersList({ clinicId: clinic?.id });
 
   // Map API data to table format
   const tableData =
@@ -105,10 +105,12 @@ function Workers() {
       </div>
       {activeTab === "Lista pracowników" ? (
         <Table
+          loading={isLoading}
           columns={columns}
           data={tableData}
           showImage={true}
           together={true}
+          inputPlaceholder="Szukaj pracownika..."
         />
       ) : (
         <>

@@ -2,6 +2,24 @@ import { useState, useEffect } from "react";
 import styles from "../GraphManagement/GraphManagement.module.css";
 import Search from "../../../components/UI/Search/Search";
 import useGetPatientsList from "../../../api/hooks/DoctorHooks/useGetPatientsList";
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
+
+function PatientSkeleton() {
+  return (
+    <div className={styles.row}>
+      <Skeleton circle width={50} height={50} />
+      <div className={styles.info}>
+        <div className={styles.name}>
+          <Skeleton width={150} />
+        </div>
+        <div className={styles.phone}>
+          <Skeleton width={100} />
+        </div>
+      </div>
+    </div>
+  );
+}
 
 function Patients() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -22,9 +40,26 @@ function Patients() {
       patient.phone.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  // Пока загружаются данные — показываем лоадер
   if (isLoading) {
-    return <div className={styles.loading}>Загрузка данных...</div>;
+    return (
+      <div className={styles.container}>
+        <div className={styles.header}>
+          <Search
+            placeholder="Szukaj pacjenta..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            disabled={true}
+          />
+        </div>
+        <div className={styles.tableContainer}>
+          <div className={styles.column}>
+            {[...Array(6)].map((_, index) => (
+              <PatientSkeleton key={index} />
+            ))}
+          </div>
+        </div>
+      </div>
+    );
   }
 
   return (

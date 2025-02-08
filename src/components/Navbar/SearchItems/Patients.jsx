@@ -19,7 +19,7 @@ function SearchPatientsItem({ data,role }) {
             Nie znaleziono pacjentów{" "}
           </div>
         ) : (
-          data?.patients?.map((patient, index) => (
+          data?.patients?.slice(-10).map((patient, index) => (
             <NavLink
 
               to={role !== 'doctor' ? null : (pageConfig.doctor.patientInfo.slice(0, 13) + "/" + patient.id) }

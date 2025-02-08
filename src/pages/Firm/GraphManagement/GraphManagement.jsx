@@ -1,4 +1,6 @@
 import { useState, useMemo } from "react";
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 import styles from "./GraphManagement.module.css";
 import DropdownStas from "../../../components/Dropdown/DropdownStas";
 import Search from "../../../components/UI/Search/Search";
@@ -16,8 +18,8 @@ function GraphManagement() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedUsers, setSelectedUsers] = useState([]);
   const { data: clinic } = useGetUserInfo();
-  const { data: workersData } = useGetWorkersList({ clinicId: clinic?.id });
-  const { data: specialties } = useGetClinicSpecialties({ clinicId: clinic?.id });
+  const { data: workersData, isLoading: isWorkersLoading } = useGetWorkersList({ clinicId: clinic?.id });
+  const { data: specialties, isLoading: isSpecialtiesLoading } = useGetClinicSpecialties({ clinicId: clinic?.id });
 
   const handleUserSelect = (user) => {
     setSelectedUsers((prevSelected) =>
@@ -59,6 +61,27 @@ function GraphManagement() {
   const { control, handleSubmit, register } = useForm({
     mode: "onChange",
   });
+
+  const LoadingSkeleton = () => (
+    <div className={styles.column}>
+      {[1, 2, 3, 4, 5].map((index) => (
+        <div key={index} className={index % 2 === 0 ? styles.row : styles.rowAlt}>
+          <div className={styles.checkboxContainer}>
+            <Skeleton width={20} height={20} />
+          </div>
+          <div className={styles.info}>
+            <div className={styles.name}>
+              <Skeleton width={200} />
+            </div>
+            <div className={styles.phone}>
+              <Skeleton width={150} />
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -69,25 +92,27 @@ function GraphManagement() {
         />
 
         <div className={styles.specializationField}>
-          <InputDropdownStas
-            seeOptions
-            object={true}
-            control={control}
-            options={specialtyOptions}
-            placeholder="Wybierz specjalizacje"
-            {...register("zxc", {})}
-          />
+          {isSpecialtiesLoading ? (
+            <Skeleton width={200} height={38} />
+          ) : (
+            <InputDropdownStas
+              seeOptions
+              object={true}
+              control={control}
+              options={specialtyOptions}
+              placeholder="Wybierz specjalizacje"
+              {...register("zxc", {})}
+            />
+          )}
         </div>
 
         <BlueBtn cb={handleNextClick}>Wybierz i przejdź dalej</BlueBtn>
       </div>
 
-      {}
-      <div
-        style={{ columns: hasData ? 2 : 1 }}
-        className={styles.tableContainer}
-      >
-        {hasData ? (
+      <div style={{ columns: hasData ? 2 : 1 }} className={styles.tableContainer}>
+        {isWorkersLoading ? (
+          <LoadingSkeleton />
+        ) : hasData ? (
           <div className={styles.column}>
             {filteredDoctors.map((doctor, index) => (
               <div

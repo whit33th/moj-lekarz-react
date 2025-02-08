@@ -37,26 +37,26 @@ export default function WorkersInfo() {
   useEffect(() => {
     if (doctor) {
       reset({
-        firstName: doctor.user.first_name,
-        lastName: doctor.user.last_name,
-        email: doctor.user.email,
-        gender: doctor.user.gender === "male" ? "Mężczyzna" : "Kobieta",
-        city: doctor.user.address.city,
-        province: doctor.user.address.province,
-        street: doctor.user.address.street,
-        home: doctor.user.address.home,
-        flat: doctor.user.address.flat,
-        postIndex: doctor.user.address.post_index,
-        position: doctor.specialty.name,
-        description: doctor.description,
-        hiredAt: new Date(doctor.hired_at).toLocaleDateString(),
+        firstName: doctor?.user?.first_name,
+        lastName: doctor?.user?.last_name,
+        email: doctor?.user?.email,
+        gender: doctor?.user?.gender === "male" ? "Mężczyzna" : "Kobieta",
+        city: doctor?.user?.address?.city,
+        province: doctor?.user?.address?.province,
+        street: doctor?.user?.address?.street,
+        home: doctor?.user?.address?.home,
+        flat: doctor?.user?.address?.flat,
+        postIndex: doctor?.user?.address?.post_index,
+        position: doctor?.specialty?.name,
+        description: doctor?.description,
+        hiredAt: new Date(doctor?.hired_at).toLocaleDateString(),
       });
 
       setVisitTypes(
-        doctor.specialty.services.map((service) => ({
-          id: service.id.toString(),
-          name: service.name,
-          price: 0.0,
+        doctor?.specialty?.services?.map((service) => ({
+          id: service?.id?.toString(),
+          name: service?.name,
+          price: service?.price,
           checked: true,
         }))
       );
@@ -191,10 +191,7 @@ export default function WorkersInfo() {
 
   return (
     <div className={styles.container}>
-      <button
-        onClick={() => navigate(-1)}
-        className={styles.returnButton}
-      >
+      <button onClick={() => navigate(-1)} className={styles.returnButton}>
         Powrót
       </button>
 
@@ -203,11 +200,11 @@ export default function WorkersInfo() {
       <div className={styles.profileSection}>
         <img
           className={styles.profileImage}
-          src={doctor?.user.photo || grey}
+          src={doctor?.user?.photo || grey}
           alt="Profile"
         />
         <h1 className={styles.profileName}>
-          {doctor?.user.first_name} {doctor?.user.last_name}
+          {doctor?.user?.first_name} {doctor?.user?.last_name}
         </h1>
         <div className={styles.rating}>
           {Array.from({ length: 5 }).map((_, i) => (
@@ -323,7 +320,7 @@ export default function WorkersInfo() {
       </div>
 
       <div className={styles.visitsSection}>
-        {visitTypes.length > 0 && (
+        {visitTypes?.length > 0 && (
           <>
             <h3>Typy wizyt:</h3>
             {visitTypes.map((visit) => (
