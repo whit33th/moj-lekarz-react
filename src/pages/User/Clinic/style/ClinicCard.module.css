@@ -102,6 +102,16 @@
   color: #666;
 }
 
+.avatarSkeleton {
+  width: 100px !important;
+  height: 100px !important;
+  border-radius: 50% !important;
+}
+
+.specialtySkeleton {
+  margin: 0 5px;
+}
+
 @media (max-width: 624px) {
     .nameBlock{
         gap: 10px;

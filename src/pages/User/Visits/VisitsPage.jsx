@@ -11,14 +11,10 @@ import QRCode from "react-qr-code";
 import useGetPatientAppointments from "../../../api/hooks/PatientHooks/useGetPatientAppointment";
 import DeleteAppointmentModal from "../../../components/Modals/DeleteAppointment/DeleteAppointmentModal";
 import useDeleteAppointment from "./../../../api/hooks/PatientHooks/useDeleteAppontment";
+import VisitsCardSkeleton from "./VisitsCardSkeleton";
 
 function VisitsPage({ isLoggedIn = true }) {
-  const { data: scheduledAppointments } = useGetPatientAppointments({
-    // startDate: "2021-01-01",
-    // endDate: "2021-12-31",
-    // limit: 10,
-    // page: 1,
-  });
+  const { data: scheduledAppointments, isLoading } = useGetPatientAppointments({});
   const { mutate } = useDeleteAppointment();
   const [ deleteId, setDeleteId ] = useState();
   const { visitsState } = useStore((state) => ({
@@ -29,6 +25,14 @@ function VisitsPage({ isLoggedIn = true }) {
 
   const navigate = useNavigate();
 
+  // Filter active and completed appointments
+  const activeAppointments = scheduledAppointments?.appointments?.filter(
+    (appointment) => appointment.status === "active"
+  );
+  const completedAppointments = scheduledAppointments?.appointments?.filter(
+    (appointment) => appointment.status === "complete" || appointment.status === "completed"
+  );
+
   function clickDeleteBtn(id) {
     setDeleteId(id);
     setModalWindowStatus(true);
@@ -38,7 +42,6 @@ function VisitsPage({ isLoggedIn = true }) {
     mutate(deleteId);
     setModalWindowStatus(false);
   }
-  console.log(deleteId)
 
   useEffect(() => {
     if (!isLoggedIn) {
@@ -56,9 +59,17 @@ function VisitsPage({ isLoggedIn = true }) {
 
       <div className={styles.visitsPageLeft}>
         <h1>Zaplanowane wizyty</h1>
-        {scheduledAppointments?.appointments?.map((i, index) => (
-          <VisitsCard data={i} deleteFc={clickDeleteBtn} key={index} />
-        ))}
+        {isLoading ? (
+          <>
+            <VisitsCardSkeleton />
+            <VisitsCardSkeleton />
+            <VisitsCardSkeleton />
+          </>
+        ) : (
+          activeAppointments?.map((i, index) => (
+            <VisitsCard data={i} deleteFc={clickDeleteBtn} key={index} />
+          ))
+        )}
         <div className={styles.newVisitsBtn}>
           <NavLink to={pageConfig.patient.searchVisits}>
             Dodaj wizytę <span>&#43;</span>
@@ -66,9 +77,16 @@ function VisitsPage({ isLoggedIn = true }) {
         </div>
 
         <h1>Zrealizowane wizyty</h1>
-        {visitsState.completedVisits.map((i) => (
-          <VisitsCardCompleted data={i} key={i.id} />
-        ))}
+        {completedAppointments?.length > 0 ? (
+          completedAppointments.map((appointment, index) => (
+            <VisitsCardCompleted 
+              key={appointment.id || index} 
+              data={appointment}
+            />
+          ))
+        ) : (
+          <p>Brak zrealizowanych wizyt</p>
+        )}
       </div>
       <div className={styles.visitsPageRight}>
         <p>Bądź zawsze na bieżąco!</p>

@@ -50,8 +50,10 @@ function ClinicCard({ data }) {
           </div>
           <span>{clinic?.services?.specialty?.name}</span>
           <div className={styles.specialties}>
-            {clinic?.services?.slice(0, 8).map((s) => (
-              <span className={styles.serviceTag}>{s.name + " "}</span>
+            {clinic?.services?.slice(0, 5).map((s, index) => (
+              <span key={index} className={styles.serviceTag}>
+                {s.name + " "}
+              </span>
             ))}
           </div>
         </div>
