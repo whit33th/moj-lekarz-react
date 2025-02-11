@@ -8,14 +8,9 @@ function usePutDoctorInfo() {
   const { setModalActive } = useStore();
   const queryClient = useQueryClient();
 
-  const { mutate, isSuccess, isError,error } = useMutation({
+  const { mutate, isSuccess, isError, error } = useMutation({
     mutationKey: ["putDoctorInfo"],
-    mutationFn: (data) => clinicServices.putDoctorInfo(data.doctorId, {
-      userData: data.userData,
-      addressData: data.addressData,
-      doctorData: data.doctorData,
-      // servicesIds: data.servicesIds
-    }),
+    mutationFn: (data) => clinicServices.putDoctorInfo(data.doctorId, data),
   });
 
   useEffect(() => {

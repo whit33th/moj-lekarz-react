@@ -18,14 +18,30 @@ function GraphManagement() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedUsers, setSelectedUsers] = useState([]);
   const { data: clinic } = useGetUserInfo();
-  const { data: workersData, isLoading: isWorkersLoading } = useGetWorkersList({ clinicId: clinic?.id });
+  const { control, handleSubmit, register, watch } = useForm({
+    mode: "onChange",
+  });
+  
+  const selectedSpecialty = watch("specialty");
+  const specialtyId = selectedSpecialty?.value;
+
+  const { data: workersData, isLoading: isWorkersLoading } = useGetWorkersList({ 
+    clinicId: clinic?.id, 
+    specialtyId: specialtyId 
+  });
   const { data: specialties, isLoading: isSpecialtiesLoading } = useGetClinicSpecialties({ clinicId: clinic?.id });
 
-  const handleUserSelect = (user) => {
+  const handleUserSelect = (doctor) => {
+    const userInfo = {
+      id: doctor.id,
+      name: `${doctor.user.first_name} ${doctor.user.last_name}`,
+      phone: doctor.specialty.name
+    };
+    
     setSelectedUsers((prevSelected) =>
-      prevSelected.find((u) => u.id === user.id)
-        ? prevSelected.filter((u) => u.id !== user.id)
-        : [...prevSelected, user]
+      prevSelected.find((u) => u.id === doctor.id)
+        ? prevSelected.filter((u) => u.id !== doctor.id)
+        : [...prevSelected, userInfo]
     );
   };
 
@@ -58,9 +74,7 @@ function GraphManagement() {
 
   const hasData = filteredDoctors.length > 0;
 
-  const { control, handleSubmit, register } = useForm({
-    mode: "onChange",
-  });
+
 
   const LoadingSkeleton = () => (
     <div className={styles.column}>
@@ -101,7 +115,7 @@ function GraphManagement() {
               control={control}
               options={specialtyOptions}
               placeholder="Wybierz specjalizacje"
-              {...register("zxc", {})}
+              {...register("specialty", {})}
             />
           )}
         </div>

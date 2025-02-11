@@ -114,12 +114,12 @@ const sbLinks = [
     img: addingFirm,
     url: "/add-firm",
   },
-  {
-    role: "admin",
-    title: "Bazy Danych",
-    img: table,
-    url: "/database",
-  },
+  // {
+  //   role: "admin",
+  //   title: "Bazy Danych",
+  //   img: table,
+  //   url: "/database",
+  // },
   {
     role: "admin",
     title: "Raporty",

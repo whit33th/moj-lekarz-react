@@ -38,7 +38,7 @@ const ModerationCard = ({ id, name, date, text, rating, avatar, tags }) => {
           className={styles.avatar}
           onError={(e) => {
             e.target.onerror = null;
-            e.target.src = "/path/to/default/avatar.png"; // Add path to your default avatar
+            e.target.src = "/path/to/default/avatar.png"; 
           }}
         />
         <div className={styles.headerInfo}>

@@ -11,11 +11,11 @@ function UslugiCard({ services }) {
               <div>
                 {service.name} - {service.price} zł
               </div>
-              <div>
+              {/* <div>
                 <NavLink to={`/appointment/${service.id}`}>
                   Umów się na wizytę &#8594;
                 </NavLink>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

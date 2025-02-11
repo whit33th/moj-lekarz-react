@@ -25,7 +25,7 @@ function VisitsPage({ isLoggedIn = true }) {
 
   const navigate = useNavigate();
 
-  // Filter active and completed appointments
+
   const activeAppointments = scheduledAppointments?.appointments?.filter(
     (appointment) => appointment.status === "active"
   );

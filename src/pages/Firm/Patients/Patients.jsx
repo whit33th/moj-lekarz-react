@@ -25,7 +25,7 @@ function Patients() {
   const [searchTerm, setSearchTerm] = useState("");
   const { data, isLoading } = useGetPatientsList({});
 
-  // Преобразуем данные API в удобный формат
+
   const allPatients = data?.map((item) => ({
     id: item.id,
     name: `${item.patient.user.first_name} ${item.patient.user.last_name}`,
@@ -33,7 +33,7 @@ function Patients() {
     photo: item.patient.user.photo,
   })) || [];
 
-  // Фильтрация пациентов по имени и городу
+
   const filteredPatients = allPatients.filter(
     (patient) =>
       patient.name.toLowerCase().includes(searchTerm.toLowerCase()) ||

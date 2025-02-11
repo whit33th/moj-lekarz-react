@@ -21,7 +21,7 @@ function Sidebar({ role, children }) {
   function handleModal() {
     setModalActive(true)
     setModalContent(<ExitModal />)
-    setIsMobileMenuOpen(false) // Close mobile menu when clicking exit
+    setIsMobileMenuOpen(false) 
   }
 
   function toggleMobileMenu() {

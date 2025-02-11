@@ -40,7 +40,7 @@ export const TableSkeleton = ({ rows = 4 }) => (
 )
 
 export const ChartSkeleton = () => (
-  <div className={styles.chartSkeleton}>
-    <Skeleton height={200} />
+  <div style={{ width: '100%', height: '200px' }}>
+    <Skeleton height="100%" />
   </div>
 )

@@ -26,7 +26,7 @@ function PatientList() {
     name: `${patient.patient.user.first_name} ${patient.patient.user.last_name}`,
     id: patient.patient.id,
     gender: patient.patient.user.gender,
-  })) || []  // Если нет данных, возвращаем пустой массив
+  })) || []  
 
   const columns = [
     {

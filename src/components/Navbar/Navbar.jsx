@@ -81,7 +81,7 @@ function Navbar() {
                 onClick={toggleMessage}
                 id="messages"
                 className={styles.messages}
-                ref={messagesRef} // Добавляем ссылку для блока сообщений
+                ref={messagesRef}
             >
                 {/* <button className={styles.notification} >
                     <img className={styles.bell} src={bell} alt="bell" />

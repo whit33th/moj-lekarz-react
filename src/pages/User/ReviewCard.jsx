@@ -7,7 +7,7 @@ function ReviewCard({ reviews }) {
     rating: reviews?.rating || 0,
     name: `${reviews?.patient?.user?.first_name || "Brak"} ${reviews?.patient?.user?.last_name || ""}`.trim(),
     photo: reviews?.patient?.user?.photo || grey,
-    date: "Brak", // Дата отсутствует в API, временно ставим "Brak"
+    date: "Brak",
     comment: reviews?.comment || "Brak",
     tags: reviews?.tags || [],
   };

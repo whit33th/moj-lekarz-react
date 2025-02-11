@@ -18,7 +18,10 @@ function ClinicCard({ data }) {
     phone: data?.phone,
     description: data?.description,
     averageRating: data?.averageRating,
-    rating: data?.rating,
+    rating:
+      data?.rating % 1 >= 0.6
+        ? Math.ceil(data?.rating)
+        : Math.floor(data?.rating) || 0,
     services: data?.services,
     address: {
       city: data?.address?.city,

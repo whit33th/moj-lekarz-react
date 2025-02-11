@@ -5,13 +5,23 @@ function useGetWorkersList({
   clinicId,
   gender,
   sort = "asc",
+  specialtyId,
   ratingSort,
   limit = 10,
   page = 1,
   select,
 }) {
   const { data, isLoading, error, refetch } = useQuery({
-    queryKey: ["workersList", clinicId, gender, sort, ratingSort, limit, page],
+    queryKey: [
+      "workersList",
+      clinicId,
+      gender,
+      sort,
+      ratingSort,
+      limit,
+      page,
+      specialtyId,
+    ],
     queryFn: () =>
       clinicServices.getWorkersByClinicId(clinicId, {
         gender,
@@ -19,6 +29,7 @@ function useGetWorkersList({
         ratingSort,
         limit,
         page,
+        specialtyId,
       }),
     select: select || ((data) => data?.data || []),
     staleTime: 60 * 1000,
@@ -28,7 +39,7 @@ function useGetWorkersList({
     data,
     isLoading,
     error,
-    refetch
+    refetch,
   };
 }
 

@@ -11,7 +11,7 @@ function PatientList() {
   const [page, setPage] = useState(1);
   const { data, isLoading } = useGetPrescriptions({
     page: page,
-    sort: "DESC",
+    sort: "desc",
   });
 
   const { setModalActive, setModalContent } = useStore();

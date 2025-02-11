@@ -46,7 +46,7 @@ function SearchVisits() {
   const { data: specialties } = useSpecialties();
   const [specialtyOptions, setSpecialtyOptions] = useState(["Ladowanie"]);
 
-  // Обновляем опции когда данные загружаются
+  
   useEffect(() => {
     if (specialties) {
       setSpecialtyOptions([...new Set(specialties.map((s) => s.name))]);

@@ -56,10 +56,15 @@ class GeneralService {
       withCredentials: true,
     });
   }
-  async getAdminReviews(status) {
+  async getAdminReviews() {
     let url = `${this.URL}/api/admins/reviews?`;
 
-    status && (url += `status=${status}&`);
+    return await axios.get(url, {
+      withCredentials: true,
+    });
+  }
+  async getAdminModerateReviews() {
+    let url = `${this.URL}/api/admins/reviews/moderate?`;
 
     return await axios.get(url, {
       withCredentials: true,
@@ -85,6 +90,11 @@ class GeneralService {
       withCredentials: true,
     });
   }
+  async getAdminStatsDetails() {
+    return await axios.get(`${this.URL}/api/admins/statistics/details`, {
+      withCredentials: true,
+    });
+  }
   async putSchedules(id, data) {
     return await axios.put(
       `${this.URL}/api/schedules/${id}`,
@@ -96,6 +106,24 @@ class GeneralService {
       {
         withCredentials: true,
       }
+    );
+  }
+  async getSchedules(year, month, doctorIds) {
+    let url = `${this.URL}/api/schedules?`;
+
+    year && (url += `year=${year}&`);
+    month && (url += `month=${month}&`);
+    doctorIds && (url += `doctorIds=${doctorIds}`);
+
+    return await axios.get(url, {
+      withCredentials: true,
+    });
+  }
+  async putTimetable(timetablesData) {
+    return await axios.put(
+      `${this.URL}/api/clinics/timetable`,
+      { timetablesData },
+      { withCredentials: true }
     );
   }
   async postPosts(id, data) {
@@ -146,6 +174,28 @@ class GeneralService {
         withCredentials: true,
       }
     );
+  }
+
+  async getNotion() {
+    return await axios.get(`${this.URL}/api/notions`, {
+      withCredentials: true,
+    });
+  }
+  async postNotion(text) {
+    return await axios.post(
+      `${this.URL}/api/notions`,
+      {
+        content: text,
+      },
+      {
+        withCredentials: true,
+      }
+    );
+  }
+  async deleteNotion(notionId) {
+    return await axios.delete(`${this.URL}/api/notions/${notionId}`, {
+      withCredentials: true,
+    });
   }
 }
 

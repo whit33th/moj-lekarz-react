@@ -4,7 +4,7 @@ import starGrey from "@assets/img/Star 6.svg";
 import greyAvatar from "@assets/img/grey.png";
 
 function ReviewCard({ review }) {
-  // Формируем данные отзыва
+
   const formattedReview = {
     name: `${review?.patient?.user?.first_name || "Brak"} ${review?.patient?.user?.last_name || ""}`.trim(),
     date: review?.createdAt ? review.createdAt.slice(0, 10) : "Brak",

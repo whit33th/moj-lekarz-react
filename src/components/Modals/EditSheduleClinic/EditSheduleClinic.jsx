@@ -1,10 +1,12 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useForm, Controller } from "react-hook-form";
 import styles from "./EditSheduleClinic.module.css";
 import Choice from "../../Modal/Choice";
+import usePutTimetable from "../../../api/hooks/GeneralHooks/Schedules/usePutTimetable";
 
-function EditSheduleClinic({ initialSchedule, setModalActive }) {
+function EditSheduleClinic({ initialSchedule, setModalActive, userInfo }) {
   const defaultSchedule = {
     Poniedziałek: { from: "", to: "" },
     Wtorek: { from: "", to: "" },
@@ -15,63 +17,76 @@ function EditSheduleClinic({ initialSchedule, setModalActive }) {
     Niedziela: { from: "", to: "" },
   };
 
-  const [schedule, setSchedule] = useState(defaultSchedule);
+  const { register, handleSubmit, control, setValue } = useForm({
+    defaultValues: defaultSchedule,
+  });
+
+  const { mutate } = usePutTimetable();
 
   useEffect(() => {
     if (initialSchedule && Object.keys(initialSchedule).length > 0) {
-      setSchedule(initialSchedule);
+      Object.entries(initialSchedule).forEach(([day, times]) => {
+        setValue(`${day}.from`, times.from);
+        setValue(`${day}.to`, times.to);
+      });
     }
-  }, [initialSchedule]);
+  }, [initialSchedule, setValue]);
 
-  const handleTimeChange = (day, field, value) => {
-    setSchedule((prev) => ({
-      ...prev,
-      [day]: {
-        ...prev[day],
-        [field]: value,
-      },
-    }));
+  const onSubmit = (data) => {
+    const timetablesData = Object.entries(data).map(([day, times]) => {
+      const dayData = initialSchedule[day];
+      return {
+        id: dayData.id,
+        dayOfWeek: dayData.day_of_week,
+        startTime: times.from.length === 5 ? times.from + ":00" : times.from,
+        endTime: times.to.length === 5 ? times.to + ":00" : times.to,
+      };
+    });
+
+    mutate(timetablesData);
   };
 
   return (
     <div className={styles["schedule-editor"]}>
       <h1>Edytowanie grafiku pracy</h1>
-
-      <div className={styles["schedule-form"]}>
-        {Object.entries(schedule).map(([day, times]) => (
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className={styles["schedule-form"]}
+      >
+        {Object.entries(defaultSchedule).map(([day]) => (
           <div className={styles["time-row"]} key={day}>
             <label>{day}</label>
             <div className={styles["time-inputs"]}>
               <div className={styles["time-input-group"]}>
                 <span>od</span>
-                <input
-                  type="time"
-                  value={times?.from?.slice(0, 5)}
-                  onChange={(e) =>
-                    handleTimeChange(day, "from", e.target.value)
-                  }
-                  format="24h"
+                <Controller
+                  name={`${day}.from`}
+                  control={control}
+                  render={({ field }) => (
+                    <input type="time" {...field} format="24h" />
+                  )}
                 />
               </div>
               <div className={styles["time-input-group"]}>
                 <span>do</span>
-                <input
-                  type="time"
-                  value={times?.to?.slice(0, 5)}
-                  onChange={(e) => handleTimeChange(day, "to", e.target.value)}
-                  format="24h"
+                <Controller
+                  name={`${day}.to`}
+                  control={control}
+                  render={({ field }) => (
+                    <input type="time" {...field} format="24h" />
+                  )}
                 />
               </div>
             </div>
           </div>
         ))}
-      </div>
-      <Choice
-        choice1={"Anuluj"}
-        choice2={"Edytuj"}
-        cb1={() => setModalActive(false)}
-        cb2={() => {}}
-      />
+        <Choice
+          choice1={"Anuluj"}
+          choice2={"Edytuj"}
+          cb1={() => setModalActive(false)}
+          cb2={handleSubmit(onSubmit)}
+        />
+      </form>
     </div>
   );
 }

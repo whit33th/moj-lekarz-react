@@ -1,50 +1,64 @@
-import { Suspense } from 'react'
-import users from "@assets/img/users.png"
-import graphUp from "@assets/img/graph-up.png"
-import graphDown from "@assets/img/graph-down.png"
-import companies from "@assets/img/companies.png"
-import doctor from "@assets/img/doctor-s.png"
-import visits from "@assets/img/visits.png"
+import { Suspense, useRef } from "react";
+import users from "@assets/img/users.png";
+import graphUp from "@assets/img/graph-up.png";
+import graphDown from "@assets/img/graph-down.png";
+import companies from "@assets/img/companies.png";
+import doctor from "@assets/img/doctor-s.png";
+import visits from "@assets/img/visits.png";
 
-import plus from "@assets/img/plusBlack.png"
-import bucket from "@assets/img/bucket.png"
-import noteIco from "@assets/img/note.png"
-import styles from "./AdminMain.module.css"
-import AreaChartComp from "../../../components/Charts/AreaChart"
-import useStore from "./../../../data/store"
-import Textarea from "../../../components/UI/TextArea/Textarea"
-import BlueBtn from "./../../../components/Buttons/BlueBtn/BlueBtn"
-import { useState } from "react"
-import useAdminStats from "../../../api/hooks/GeneralHooks/Stats/adminStats"
-import { format } from "date-fns"
-import { StatCardSkeleton, TableSkeleton, ChartSkeleton } from '../../../components/Skeletons/AdminSkeletons'
-import Skeleton from "react-loading-skeleton"
+import plus from "@assets/img/plusBlack.png";
+import bucket from "@assets/img/bucket.png";
+import noteIco from "@assets/img/note.png";
+import styles from "./AdminMain.module.css";
+import AreaChartComp from "../../../components/Charts/AreaChart";
+import useStore from "./../../../data/store";
+import Textarea from "../../../components/UI/TextArea/Textarea";
+import BlueBtn from "./../../../components/Buttons/BlueBtn/BlueBtn";
+import useAdminStats from "../../../api/hooks/GeneralHooks/Stats/adminStats";
+import { format } from "date-fns";
+import {
+  StatCardSkeleton,
+  TableSkeleton,
+  ChartSkeleton,
+} from "../../../components/Skeletons/AdminSkeletons";
+import Skeleton from "react-loading-skeleton";
+import { useGetNotion } from "../../../api/hooks/GeneralHooks/Notion/useGetNotion";
+import usePostNotion from "../../../api/hooks/GeneralHooks/Notion/usePostNotion";
+import useDeleteNotion from "../../../api/hooks/GeneralHooks/Notion/useDeleteNotion";
+import { useStats5Months } from '../../../hooks/useStats5Months';
 
 function AdminMainContent() {
-  const stats = useAdminStats()
-  const { setModalActive, setModalContent } = useStore()
-  const [notes, setNotes] = useState(
-    Array.from({ length: 4 }, (_, i) => ({
-      id: i + 1,
-      text:
-        `Lorem ipsum dolor sit amet, consectetur adipiscing elit.` + (i + 1),
-    }))
-  )
+  const stats = useAdminStats();
+  const { setModalActive, setModalContent } = useStore();
+  const { data: notions } = useGetNotion();
+  const { mutate: deleteNotionMutation } = useDeleteNotion();
+
+  const { mutate: postNotionMutation } = usePostNotion();
+  const textRef = useRef(null);
+
+  const { data: statsData, chartConfig, isLoading: isStatsLoading } = useStats5Months();
+
   const NoteModal = (
     <>
       <h1>Dodanie notatki</h1>
-      <Textarea placeholder={"Wpisz temat"} />
-      <BlueBtn>Dodaj notatkę</BlueBtn>
+      <Textarea ref={textRef} placeholder={"Wpisz temat"} />
+      <BlueBtn
+        cb={() => {
+          console.log(textRef.current.value);
+          if (textRef.current.value.trim()) {
+            postNotionMutation(textRef.current.value.trim());
+          }
+        }}
+      >
+        Dodaj notatkę
+      </BlueBtn>
     </>
-  )
-  function handleAddNote() {
-    setModalActive(true)
-    setModalContent(NoteModal)
-  }
-  function deleteNote(id) {
-    setNotes((prevNotes) => prevNotes.filter((note) => note.id !== id))
-  }
+  );
 
+  function handleAddNote() {
+    setModalActive(true);
+    setModalContent(NoteModal);
+  }
 
   if (!stats?.countUser) {
     return null;
@@ -120,7 +134,10 @@ function AdminMainContent() {
               className={`${styles.graph} ${styles.percentage} ${styles.tCenter} ${styles.smBack} ${styles.flex} ${styles.itemsCenter}`}
             >
               <p>{percentageAppointments.toFixed(2)}%</p>
-              <img src={percentageAppointments >= 0 ? graphUp : graphDown} alt="" />
+              <img
+                src={percentageAppointments >= 0 ? graphUp : graphDown}
+                alt=""
+              />
             </div>
           </div>
           <div className={styles.cardContent}>
@@ -147,7 +164,7 @@ function AdminMainContent() {
                 <tr key={patient.id}>
                   <td>{`${patient.user.first_name} ${patient.user.last_name}`}</td>
                   <td>{patient.id}</td>
-                  <td>{format(new Date(patient.createdAt), 'dd.MM.yyyy')}</td>
+                  <td>{format(new Date(patient.createdAt), "dd.MM.yyyy")}</td>
                 </tr>
               ))}
             </tbody>
@@ -166,7 +183,7 @@ function AdminMainContent() {
               {newClinics?.slice(-5)?.map((clinic, index) => (
                 <tr key={index}>
                   <td>{clinic.name}</td>
-                  <td>{format(new Date(clinic.createdAt), 'dd.MM.yyyy')}</td>
+                  <td>{format(new Date(clinic.createdAt), "dd.MM.yyyy")}</td>
                 </tr>
               ))}
             </tbody>
@@ -180,13 +197,35 @@ function AdminMainContent() {
             <div className={styles.chart}>
               <p>Użytkownicy</p>
               <div className={styles.chartContent}>
-                <AreaChartComp />
+                {isStatsLoading ? (
+                  <ChartSkeleton />
+                ) : (
+                  statsData && (
+                    <AreaChartComp
+                      data={statsData}
+                      dataKey="patients"
+                      domain={chartConfig.domain}
+                      ticks={chartConfig.ticks}
+                    />
+                  )
+                )}
               </div>
             </div>
             <div className={styles.chartContent}>
               <p>Firmy</p>
               <div className={styles.chartContent}>
-                <AreaChartComp />
+                {isStatsLoading ? (
+                  <ChartSkeleton />
+                ) : (
+                  statsData && (
+                    <AreaChartComp
+                      data={statsData}
+                      dataKey="clinics"
+                      domain={chartConfig.domain}
+                      ticks={chartConfig.ticks}
+                    />
+                  )
+                )}
               </div>
             </div>
           </div>
@@ -204,15 +243,15 @@ function AdminMainContent() {
             </div>
           </div>
           <ul className={styles.notesList}>
-            {notes.map((note) => (
+            {notions?.slice(0, 5).map((note) => (
               <li key={note.id}>
-
-                <img className={styles.noteIco} src={noteIco} alt="" />
-                {note.text}
-
+                <div className={styles.noteContent}>
+                  <img className={styles.noteIco} src={noteIco} alt="" />
+                  {note.content}
+                </div>
                 <button className={styles.deleteNote}>
                   <img
-                    onClick={() => deleteNote(note.id)}
+                    onClick={() => deleteNotionMutation(note.id)}
                     className={styles.noteIco}
                     src={bucket}
                     alt=""
@@ -224,7 +263,7 @@ function AdminMainContent() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 function AdminMain() {
@@ -236,9 +275,11 @@ function AdminMain() {
             <Skeleton width={200} />
           </h1>
           <div className={styles.dashboardFour}>
-            {Array(4).fill(0).map((_, idx) => (
-              <StatCardSkeleton key={idx} />
-            ))}
+            {Array(4)
+              .fill(0)
+              .map((_, idx) => (
+                <StatCardSkeleton key={idx} />
+              ))}
           </div>
           <div className={styles.dashboardTwo}>
             <TableSkeleton />
@@ -254,10 +295,16 @@ function AdminMain() {
             </div>
             <div className={styles.notesCard}>
               <Skeleton width={120} />
-              <div style={{ marginTop: '1rem' }}>
-                {Array(4).fill(0).map((_, idx) => (
-                  <Skeleton key={idx} height={40} style={{ marginBottom: '0.5rem' }} />
-                ))}
+              <div style={{ marginTop: "1rem" }}>
+                {Array(4)
+                  .fill(0)
+                  .map((_, idx) => (
+                    <Skeleton
+                      key={idx}
+                      height={40}
+                      style={{ marginBottom: "0.5rem" }}
+                    />
+                  ))}
               </div>
             </div>
           </div>

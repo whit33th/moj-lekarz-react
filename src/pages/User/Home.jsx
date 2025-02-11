@@ -59,12 +59,12 @@ function Home() {
       }
     }
 
-    // Преобразуем в query строку
+    
     const searchParams = new URLSearchParams(queryParams);
     navigate(`/search?${searchParams.toString()}`);
   };
 
-  // Обновляем опции когда данные загружаются
+  
   useEffect(() => {
     if (specialties) {
       setSpecialtyOptions([...new Set(specialties.map((s) => s.name))]);

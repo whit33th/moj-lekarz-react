@@ -78,7 +78,7 @@ class ClinicServices {
   }
   async getWorkersByClinicId(
     clinicId,
-    { gender, sort, ratingSort, limit, page } = {}
+    { gender, sort, ratingSort, limit, page, specialtyId } = {}
   ) {
     let url = `${this.URL}/api/clinics/${clinicId}/doctors?`;
 
@@ -86,36 +86,22 @@ class ClinicServices {
     sort && (url += `sort=${sort}&`);
     ratingSort && (url += `ratingSort=${ratingSort}&`);
     limit && (url += `limit=${limit}&`);
-    page && (url += `page=${page}`);
+    page && (url += `page=${page}&`);
+    specialtyId && (url += `specialtyId=${specialtyId}&`);
 
     return await axios.get(url, {
       withCredentials: true,
     });
   }
   async putDoctorInfo(doctorId, data) {
-    const userData = {};
-    const addressData = {};
-    const doctorData = {};
-
-    if (data.email) userData.email = data.email;
-    if (data.phone) userData.phone = data.phone;
-
-    if (data.city) addressData.city = data.city;
-    if (data.province) addressData.province = data.province;
-    if (data.street) addressData.street = data.street;
-    if (data.home) addressData.home = data.home;
-    if (data.flat) addressData.flat = data.flat;
-    if (data.postIndex) addressData.post_index = data.postIndex;
-
-    if (data.hired_at) doctorData.hired_at = data.hired_at;
-    if (data.description) doctorData.description = data.description;
-
+    // Send the data exactly as received without any transformations
     return await axios.put(
       `${this.URL}/api/clinics/doctors/${doctorId}`,
       {
-        userData,
-        addressData,
-        doctorData,
+        userData: data.userData,
+        addressData: data.addressData,
+        doctorData: data.doctorData,
+        servicesIds: data.servicesIds,
       },
       {
         withCredentials: true,
@@ -171,7 +157,6 @@ class ClinicServices {
     if (data.home) addressData.home = data.home;
     if (data.flat) addressData.flat = data.flat;
     if (data.post_index) addressData.post_index = data.post_index;
-    
 
     return await axios.post(
       `${this.URL}/api/clinics`,
@@ -183,6 +168,15 @@ class ClinicServices {
         withCredentials: true,
       }
     );
+  }
+  async postSchedule(data) {
+    return await axios.post(`${this.URL}/api/clinics/schedules`, {
+      doctorsIds: data.doctorsIds,
+      interval: data.interval,
+      dates: data.dates,
+      start_time: data.start_time,
+      end_time: data.end_time,
+    });
   }
 }
 

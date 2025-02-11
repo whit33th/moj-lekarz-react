@@ -8,18 +8,10 @@ import {
   Tooltip,
 } from "recharts";
 
-const productSales = [
-  { name: "Jan", user: 30 },
-  { name: "Feb", user: 50 },
-  { name: "Mar", user: 20 },
-  { name: "Apr", user: 70 },
-  { name: "May", user: 100 },
-];
-
-const AreaChartComp = () => {
+const AreaChartComp = ({ data, dataKey, domain, ticks }) => {
   return (
     <ResponsiveContainer width="100%" height="100%">
-      <AreaChart data={productSales}>
+      <AreaChart data={data}>
         <defs>
           <linearGradient id="colorUser" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stopColor="#3E36B0" stopOpacity={0.9} />
@@ -28,8 +20,8 @@ const AreaChartComp = () => {
         </defs>
 
         <YAxis
-          domain={[0, 100]}
-          ticks={[0, 20, 40, 60, 80, 100]}
+          domain={domain}
+          ticks={ticks}
           tick={{ dx: -20, fill: "#888", fontSize: 12 }}
           axisLine={false}
           tickLine={false}
@@ -45,7 +37,7 @@ const AreaChartComp = () => {
 
         <Area
           type="monotone"
-          dataKey="user"
+          dataKey={dataKey}
           stroke="transparent"
           fill="url(#colorUser)"
           fillOpacity={1}
@@ -60,7 +52,7 @@ const CustomTooltip = ({ active, payload }) => {
     return (
       <div>
         <p>
-          <span className={styles.Tooltip}> {payload[0].value}%</span>
+          <span className={styles.Tooltip}>{payload[0].value}</span>
         </p>
       </div>
     );

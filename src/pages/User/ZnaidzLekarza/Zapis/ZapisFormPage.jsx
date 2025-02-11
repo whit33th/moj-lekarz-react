@@ -47,7 +47,6 @@ function ZapisFormPage() {
     }
   }, [user, reset]);
 
-  // Add state validation
   if (!state) {
     console.log("No state available");
     navigate("/");
@@ -56,13 +55,12 @@ function ZapisFormPage() {
 
   const { doctor, clinic, appointment, visitDetails } = state;
 
-  // Add validation for required data
   if ((!doctor || !clinic || !appointment, !visitDetails)) {
     console.log("Missing required data");
     navigate("/");
     return null;
   }
-  console.log(visitDetails.type)
+  console.log(visitDetails.type);
 
   const onSubmit = () => {
     const appointmentData = {
@@ -73,7 +71,7 @@ function ZapisFormPage() {
       timeSlot: appointment.startTime,
       firstVisit: visitDetails.isFirstVisit,
       visitType: visitDetails.type,
-      description: getValues("comment"), // Получаем значение комментария
+      description: getValues("comment"),
     };
 
     mutate(appointmentData, {
@@ -82,27 +80,27 @@ function ZapisFormPage() {
           state: {
             formDataObj: {
               comment: getValues("comment"),
-              file: null // если файлы не используются
+              file: null,
             },
             doctor: {
               name: doctor.name,
               specialty: doctor.specialty,
-              phone: doctor.phone
+              phone: doctor.phone,
             },
             clinic: {
               name: clinic.name,
-              address: clinic.address
+              address: clinic.address,
             },
             visitDetails: {
               type: visitDetails.type,
-              service: visitDetails.service
+              service: visitDetails.service,
             },
             date: appointment.date,
             time: appointment.startTime,
-            endTime: appointment.endTime
-          }
+            endTime: appointment.endTime,
+          },
         });
-      }
+      },
     });
   };
 
@@ -261,7 +259,7 @@ function ZapisFormPage() {
                 </p>
                 <Link
                   to={pageConfig.patient.policy.personalData}
-                  state={{page: '2'}}
+                  state={{ page: "2" }}
                   style={{ color: "#3e36b0" }}
                 >
                   Dowiedz się więcej

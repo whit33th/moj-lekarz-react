@@ -3,29 +3,37 @@ import styles from "./AddVisitType.module.css";
 import Choice from "../../Modal/Choice";
 import useStore from "../../../data/store";
 
-function AddVisitTypeModal({ onClick, allServices, existingServices }) {
+function AddVisitTypeModal({ onAddVisitType, allServices, existingServices }) {
   const [visitTypes, setVisitTypes] = useState([]);
   const { setModalActive } = useStore();
 
   useEffect(() => {
     if (allServices?.length) {
+      const existingServiceIds = existingServices.map(service => service.id);
+      
       setVisitTypes(
         allServices.map(service => ({
           id: service.id,
           name: service.name,
           price: parseFloat(service.price),
-          checked: existingServices.find(es => es.id === service.id) ? true : false
+          checked: existingServiceIds.includes(service.id)
         }))
       );
     }
   }, [allServices, existingServices]);
 
   const handleCheckboxChange = (id) => {
-    setVisitTypes((prevVisitTypes) =>
-      prevVisitTypes.map((type) =>
+    setVisitTypes(prevTypes =>
+      prevTypes.map(type =>
         type.id === id ? { ...type, checked: !type.checked } : type
       )
     );
+  };
+
+  const handleAdd = () => {
+    const selectedTypes = visitTypes.filter(type => type.checked);
+    onAddVisitType(selectedTypes);
+    setModalActive(false);
   };
 
   return (
@@ -49,7 +57,7 @@ function AddVisitTypeModal({ onClick, allServices, existingServices }) {
         choice1={"Anuluj"}
         choice2={"Dodaj"}
         cb1={() => setModalActive(false)}
-        cb2={() => onClick(visitTypes.filter(type => type.checked))}
+        cb2={handleAdd}
       />
     </div>
   );

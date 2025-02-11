@@ -32,7 +32,7 @@ const DropdownStas = ({
   const value = field.value
   const onChange = field.onChange
 
-  // Синхронизация значения с параметрами URL при загрузке страницы
+ 
   useEffect(() => {
     if (valueOnSearchParams && searchParamsName && initialSearchValue) {
       onChange(initialSearchValue)
@@ -49,7 +49,7 @@ const DropdownStas = ({
     onChange(option)
     setIsOpen(false)
 
-    // Если указан searchParamsName, обновляем параметры URL
+ 
     if (searchParamsName) {
       const searchParams = new URLSearchParams(location.search)
       searchParams.set(searchParamsName, option)
@@ -61,7 +61,7 @@ const DropdownStas = ({
     const newValue = event.target.value
     onChange(newValue)
 
-    // Если указан searchParamsName, обновляем параметры URL
+  
     if (searchParamsName) {
       const searchParams = new URLSearchParams(location.search)
       searchParams.set(searchParamsName, newValue)

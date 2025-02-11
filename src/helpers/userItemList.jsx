@@ -77,7 +77,7 @@ const userItems = [
     gender: "W",
     lastMessage: "52",
     info: "bla-bla-blaa..",
-    firmName: "CureAll", // Название фармацевтической компании
+    firmName: "CureAll", 
     position: "Dentysta",
   },
   {
@@ -100,7 +100,7 @@ const userItems = [
     gender: "W",
     lastMessage: "",
     info: "Lorem ipsum dolor sit amet, consectetur...",
-    firmName: "BioPharma", // Название фармацевтической компании
+    firmName: "BioPharma", 
     position: "Dentysta",
   },
 ]

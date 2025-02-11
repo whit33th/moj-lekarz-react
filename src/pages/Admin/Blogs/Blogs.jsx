@@ -12,8 +12,8 @@ import AddBlogModal from "../../../components/Modals/AddBlogModal/AddBlogModal";
 import EditBlogModal from "../../../components/Modals/EditBlogModal/EditBlogModal";
 import DeleteBlogModal from "../../../components/Modals/DeleteBlogModal/DeleteBlogModal";
 import useStore from "../../../data/store";
-import Skeleton from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css';
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 const BlogSkeleton = () => (
   <div className={styles.tableRow}>
@@ -24,14 +24,14 @@ const BlogSkeleton = () => (
           <Skeleton height={24} width={200} />
           <div className={styles.articleMeta}>
             <Skeleton height={16} width={80} />
-            <Skeleton height={16} width={100} style={{ marginLeft: '8px' }} />
+            <Skeleton height={16} width={100} style={{ marginLeft: "8px" }} />
           </div>
         </div>
-        <Skeleton count={3} height={16} style={{ marginTop: '8px' }} />
+        <Skeleton count={3} height={16} style={{ marginTop: "8px" }} />
       </div>
     </div>
     <div className={styles.actionButtons}>
-      <Skeleton height={35} width={80} style={{ marginRight: '8px' }} />
+      <Skeleton height={35} width={80} style={{ marginRight: "8px" }} />
       <Skeleton height={35} width={80} />
     </div>
   </div>
@@ -40,7 +40,7 @@ const BlogSkeleton = () => (
 function Blogs() {
   const [searchQuery, setSearchQuery] = useState("");
   const { setModalContent, setModalActive } = useStore();
-  const { data, isLoading } = useGetPosts(1, 10); // Add appropriate pagination parameters
+  const { data, isLoading } = useGetPosts(1, 10); 
   const { mutate: deleteBlog } = useDeletePosts();
 
   function handleAddModal() {
@@ -73,7 +73,7 @@ function Blogs() {
       posts.map((post) => ({
         id: post.id,
         title: post.title,
-        date: "01.06.2024", // You might want to add actual date to your API response
+        date: post.createdAt?.slice(0, 10),
         shortDescription: post.content,
         image: post.photo,
         category: post.category.name,
@@ -135,7 +135,9 @@ function Blogs() {
                     <div className={styles.articleHeader}>
                       <h2>{article.title}</h2>
                       <div className={styles.articleMeta}>
-                        <span className={styles.articleDate}>{article.date}</span>
+                        <span className={styles.articleDate}>
+                          {article.date}
+                        </span>
                         <span className={styles.articleCategory}>
                           • {article.category}
                         </span>

@@ -16,7 +16,7 @@ function AddRecipesModalForSelectedUser({ patientId, name }) {
   const { data: medicationList } = useGetMedication({})
   const { mutate } = usePostPrescriptions()
 
-  // Состояние для добавленных препаратов
+
   const [addedMedications, setAddedMedications] = useState([])
 
   const medicationOptions = medicationList?.map(medication => ({

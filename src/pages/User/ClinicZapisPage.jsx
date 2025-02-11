@@ -12,7 +12,7 @@ function ClinicZapisPage() {
   const {data: services, isLoading} = useGetDoctorServices(id);
   const [selectedServiceId, setSelectedServiceId] = useState(null);
 
-  // Создаем простые строки для options, но сохраняем маппинг id
+  
   const servicesMap = {};
   const visitTypeOptions = services?.map(item => {
     const optionText = `${item.service.name}, ${item.service.price} zł`;
@@ -20,7 +20,7 @@ function ClinicZapisPage() {
     return optionText;
   }) || [];
 
-  // Добавляем обработчик выбора сервиса
+  
   const handleServiceSelect = (value) => {
     setSelectedServiceId(servicesMap[value]);
   };
@@ -71,18 +71,18 @@ function ClinicZapisPage() {
     }
   };
 
-  // Add this new function before the return statement
+  
   const handleLinkClick = (e) => {
     if (!validateForm()) {
       e.preventDefault();
       return;
     }
 
-    // Get current form values
+   
     const currentService = getValues("service");
     const currentType = getValues("type");
 
-    // Only proceed if we have all required values
+    
     if (!currentService || !currentType || !selectedServiceId) {
       e.preventDefault();
       setErrors({
@@ -92,7 +92,7 @@ function ClinicZapisPage() {
       return;
     }
 
-    // Update state with current values
+    
     const visitDetails = {
       service: currentService,
       serviceId: selectedServiceId,
@@ -100,7 +100,7 @@ function ClinicZapisPage() {
       isFirstVisit: selectedRadio === "Tak"
     };
 
-    // Replace the existing Link state with the new state
+    
     e.currentTarget.state = {
       ...state,
       visitDetails
@@ -182,12 +182,12 @@ function ClinicZapisPage() {
               ...state,
               visitDetails: {
                 service: getValues("service"),
-                serviceId: selectedServiceId, // Теперь точно передаем ID
+                serviceId: selectedServiceId,
                 type: getValues("type"),
                 isFirstVisit: selectedRadio === "Tak",
               },
             }}
-            onClick={handleLinkClick}  // Use the new handler
+            onClick={handleLinkClick}
             className={styles.btnBlockContinue}
           >
             Kontynuj

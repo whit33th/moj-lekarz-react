@@ -25,9 +25,10 @@
   margin: 0;
 }
 .charts {
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: 1fr ;
   gap: 20px;
+  
 }
 .charts > div {
   height: 100%;
@@ -36,6 +37,7 @@
 .chartContent {
   width: 100%;
   height: 200px;
+
 }
 
 .charts p {
@@ -55,10 +57,15 @@
   gap: 20px;
   flex-direction: column;
 }
+.noteContent {
+  display: flex;
+  gap: 10px;
+}
 .notesList li {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+
+  align-items: flex-start;
   gap: 10px;
 }
 .iconAdmin {
@@ -211,18 +218,22 @@
 .noteIco {
   width: 18px;
   height: 18px;
+  cursor: pointer;
 }
 .deleteNote {
   background: none;
   border: none;
-  cursor: pointer;
+  cursor: default;
   font-size: 18px;
 }
 
+.chart {
+  width: 100%;
 
-/* Планшеты */
+}
+
+
 @media (max-width: 1024px) {
-  
   .dashboardFour {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -246,7 +257,6 @@
 }
 
 @media (max-width: 568px) {
-  
   .dashboardFour {
     grid-template-columns: repeat(1, 1fr);
   }

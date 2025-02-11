@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import styles from "./styles.module.css"; // Импортируем CSS-модуль
+import styles from "./styles.module.css";
 import usePutUserInfo from "../../../api/hooks/UserHooks/usePutUserInfo";
 
 function AdditionalData({ description }) {

@@ -164,7 +164,7 @@ const MoreInfoButtFirm = ({ id }) => {
     </div>
   )
   const handleNavigate = () => {
-    navigate(`${pageConfig.firm.workersInfo.slice(0,9)}${id}`)  // Changed to use template literal with actual id
+    navigate(`${pageConfig.firm.workersInfo.slice(0,9)}${id}`) 
   }
   const openNotificationModal = () => {
     setModalActive(true)
@@ -183,7 +183,7 @@ const MoreInfoButtFirm = ({ id }) => {
       {isModalOpen && (
         <div className={styles.moreInfoModal}>
           <button onClick={(e) => {
-            e.stopPropagation();  // Prevent event bubbling
+            e.stopPropagation();  
             handleNavigate();
           }} className={styles.hoverOpacity}>
             <p style={{ fontWeight: "500" }}>Informacja</p>

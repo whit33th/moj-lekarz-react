@@ -6,7 +6,7 @@ import ScrollToTop from "./../../../utils/scrollToTop";
 const Pagination = ({ total, isLoading, value, onChange }) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  // Определяем текущую страницу: приоритет отдаем `value`, если он передан
+  
   const currentPage = parseInt(searchParams.get("page") || "1", 10);
 
   if (total <= 1) {
@@ -36,13 +36,13 @@ const Pagination = ({ total, isLoading, value, onChange }) => {
     pageNumbers.push(i);
   }
 
-  // Функция для обработки смены страницы
+  
   const handlePageChange = (page) => {
     if (page < 1 || page > total) return;
     if (onChange) {
-      onChange(page); // Вызываем внешний обработчик, если он передан
+      onChange(page); 
     }
-    setSearchParams({ page: page.toString() }); // Обновляем URL
+    setSearchParams({ page: page.toString() }); 
 
     window.scrollTo(0, 0);
   };

@@ -11,14 +11,14 @@ function DocumentsPage() {
   const { stateResearchResult } = useStore()
 
   const handleDownload = (fileUrl) => {
-    // Создаем ссылку для скачивания файла
+    
     const link = document.createElement('a')
     link.href = fileUrl
-    link.download = "ResearchResults" // Имя файла, под которым будет загружен
+    link.download = "ResearchResults" 
     document.body.appendChild(link)
     link.click()
 
-    // Удаляем временную ссылку из DOM
+    
     document.body.removeChild(link)
   }
 

@@ -68,8 +68,7 @@ function AddRecipesModal() {
         .split("T")[0],
     };
     mutate(prescriptionData);
-    setModalActive(false); // добавим закрытие модального окна после успешного добавления
-    console.log(prescriptionData);
+    
   };
 
   const removeMedication = (id) => {

@@ -47,18 +47,21 @@ export default function WorkersInfo() {
         home: doctor?.user?.address?.home,
         flat: doctor?.user?.address?.flat,
         postIndex: doctor?.user?.address?.post_index,
-        position: doctor?.specialty?.name,
+        position: {
+          label: doctor?.specialty?.name,
+          value: doctor?.specialty?.id
+        },
         description: doctor?.description,
         hiredAt: new Date(doctor?.hired_at).toLocaleDateString(),
       });
 
       setVisitTypes(
-        doctor?.specialty?.services?.map((service) => ({
+        doctor?.services?.map((service) => ({
           id: service?.id?.toString(),
           name: service?.name,
-          price: service?.price,
+          price: parseFloat(service?.price),
           checked: true,
-        }))
+        })) || []
       );
     }
   }, [doctor, reset]);
@@ -81,7 +84,7 @@ export default function WorkersInfo() {
   }, [data]);
 
   function handleModal() {
-    const doctorServices = doctor?.specialty?.services || [];
+    const doctorServices = doctor?.services || [];
     setModalActive(true);
     setModalContent(
       <AddVisitTypeModal
@@ -92,31 +95,48 @@ export default function WorkersInfo() {
     );
   }
 
-  function addVisitType(newVisitType) {
-    setVisitTypes((prevVisitTypes) => [...prevVisitTypes, newVisitType]);
+  function addVisitType(selectedTypes) {
+    setVisitTypes(prevTypes => {
+      
+      const existingIds = prevTypes.map(type => type.id);
+      
+      
+      const newTypes = selectedTypes.filter(type => !existingIds.includes(type.id));
+      
+      return [...prevTypes, ...newTypes];
+    });
   }
 
   function handleDeleteVisitType(id) {
-    setVisitTypes((prevVisitTypes) =>
-      prevVisitTypes.filter((type) => type.id !== id)
-    );
+    setVisitTypes(prevTypes => prevTypes.filter(type => type.id !== id));
   }
 
   const onSubmit = (formData) => {
     const updateData = {
       doctorId: id,
-      email: formData.email,
-      phone: formData.phone,
-      city: formData.city,
-      province: formData.province,
-      street: formData.street,
-      home: formData.home,
-      flat: formData.flat,
-      postIndex: formData.postIndex,
-      hired_at: doctor?.hired_at,
-      description: formData.description,
+      userData: {
+        email: formData.email,
+        phone: formData.phone,
+        first_name: formData.firstName,
+        last_name: formData.lastName
+      },
+      addressData: {
+        city: formData.city,
+        province: formData.province,
+        street: formData.street,
+        home: parseInt(formData.home),  
+        flat: parseInt(formData.flat),  
+        post_index: formData.postIndex
+      },
+      doctorData: {
+        hired_at: doctor?.hired_at,  
+        description: formData.description,
+        specialty_id: parseInt(formData.position?.value)
+      },
+      servicesIds: visitTypes.map(type => parseInt(type.id))
     };
 
+    console.log('Sending data:', updateData);
     mutate(updateData);
   };
 

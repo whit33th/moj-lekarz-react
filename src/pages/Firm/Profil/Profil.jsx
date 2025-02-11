@@ -63,8 +63,10 @@ function ProfilFirm() {
 
     return timetables.reduce((acc, schedule) => {
       acc[daysMap[schedule.day_of_week]] = {
+        id: schedule.id,
         from: schedule.start_time ? schedule.start_time.substring(0, 5) : "",
         to: schedule.end_time ? schedule.end_time.substring(0, 5) : "",
+        day_of_week: schedule.day_of_week 
       };
       return acc;
     }, {});
@@ -129,7 +131,7 @@ function ProfilFirm() {
         <h1>{data?.name}</h1>
         {!specialtiesLoading ? (
           <p className={styles.specialization}>
-            {specialties?.length || "Brak"} specjalizacji
+            {specialties?.length  || "Brak"} specjalizacji
           </p>
         ) : (
           <Skeleton height={24} width={125} />

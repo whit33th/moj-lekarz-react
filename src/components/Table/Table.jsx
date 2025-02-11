@@ -6,7 +6,7 @@ import Skeleton from 'react-loading-skeleton'
 function Table({
   loading = false,
   columns,
-  data = [], // Устанавливаем пустой массив по умолчанию
+  data = [],
   buttonProps,
   together = true,
   showImage = true,

@@ -39,7 +39,7 @@ function AddBlogModal() {
     const file = event.target.files[0];
     if (file) {
       setSelectedImage(file);
-      setPhotoError(""); // Clear the error message when image is selected
+      setPhotoError("");  
     }
   };
 

@@ -21,7 +21,7 @@ function Workers() {
   const { data: clinic } = useGetUserInfo();
   const { data, isLoading } = useGetWorkersList({ clinicId: clinic?.id });
 
-  // Map API data to table format
+  
   const tableData =
     data?.doctors?.map((doctor) => ({
       img: doctor.user.photo || grey,

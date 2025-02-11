@@ -79,7 +79,7 @@ function Calendar() {
         eventModal: "zxc",
         description: appointment?.description + '🏷️' + appointment?.service?.price + "zł" || "",
 
-        location: 'Sala 4', // optional
+        // location: 'Sala 4', // optional
         title: appointment?.service?.name || "",
 
 

@@ -55,7 +55,6 @@ input[type="date"] {
 }
 
 .settingInfo form {
-
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -75,9 +74,8 @@ input[type="date"] {
   gap: 20px;
 }
 
-.formImg>div {
+.formImg > div {
   flex: 1;
-
 }
 
 .customButton {
@@ -192,7 +190,7 @@ input[type="date"] {
   padding: 20px;
   background-color: white;
 
-  >p {
+  > p {
     font-size: 1.4em;
   }
 }
@@ -214,32 +212,9 @@ input[type="date"] {
   gap: 20px;
 }
 
-.workTime>div {
+.workTime {
   flex: 1;
   padding: 20px;
-}
-
-.workSchedule {
-  background-color: white;
-  display: flex;
-  flex-direction: column;
-  box-shadow: 0 0 50px 5px #00000014;
-  padding: 20px;
-  border-radius: 20px;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 10px;
-  height: fit-content;
-}
-
-.workSchedule p {
-  padding: 6px 0;
-}
-
-.blueBack {
-  border-radius: 10px;
-  padding: 6px 10px;
-  background: #a6def7;
 }
 
 .conclusions {

@@ -13,7 +13,7 @@ import BlueBtn from "../../../components/Buttons/BlueBtn/BlueBtn";
 
 export default function AddFirm() {
   const { setModalActive, setModalContent } = useStore();
-  const [selectedTypes, setSelectedTypes] = useState([]);
+  
   const { mutate, isPending } = usePostClinic();
 
   const {
@@ -21,7 +21,7 @@ export default function AddFirm() {
     handleSubmit,
     formState: { errors },
     control,
-    watch,
+ 
   } = useForm({
     mode: 'onChange',
     defaultValues: {
@@ -34,35 +34,21 @@ export default function AddFirm() {
       nip: "",
       phone: "",
       email: "",
-      type_visits: [],
-      visit_type: "",
+      // type_visits: [],
+      // visit_type: "",
     },
   });
 
-  // Watch for changes in visit_type
-  const visitType = watch("visit_type");
-
-  // Effect to handle visit type changes
-  useEffect(() => {
-    if (visitType && !selectedTypes.includes(visitType)) {
-      if (selectedTypes.length < 2) {
-        setSelectedTypes((prev) => [...prev, visitType]);
-      } else {
-        toast.error("Możesz wybrać maksymalnie 2 typy wizyt");
-      }
-    }
-  }, [visitType]);
-
-  const visitTypeOptions = ["NFZ", "Prywatna"].filter(
-    (option) => !selectedTypes.includes(option)
-  );
+  // const visitTypeOptions = ["NFZ", "Prywatna"].filter(
+  //   (option) => !selectedTypes.includes(option)
+  // );
 
   const onSubmit = (data) => {
-    const formData = {
-      ...data,
-      type_visits: selectedTypes,
-    };
-    mutate(formData);
+    // const formData = {
+    //   ...data,
+    //   type_visits: selectedTypes,
+    // };
+    mutate(data);
   };
 
   const editModal = (
@@ -130,14 +116,14 @@ export default function AddFirm() {
     </div>
   );
 
-  const removeVisitType = (typeToRemove) => {
-    setSelectedTypes((prev) => prev.filter((type) => type !== typeToRemove));
-  };
+  // const removeVisitType = (typeToRemove) => {
+  //   setSelectedTypes((prev) => prev.filter((type) => type !== typeToRemove));
+  // };
 
-  const getDropdownPlaceholder = () => {
-    if (selectedTypes.length === 0) return "Wybierz typ wizyty";
-    return selectedTypes.join(" + ");
-  };
+  // const getDropdownPlaceholder = () => {
+  //   if (selectedTypes.length === 0) return "Wybierz typ wizyty";
+  //   return selectedTypes.join(" + ");
+  // };
 
   return (
     <div className={styles.container}>
@@ -147,7 +133,7 @@ export default function AddFirm() {
             <img className={styles.profileImage} src={grey} alt="Profile" />
           </div>
 
-          <div>
+          <div className={styles.container}>
             <div className={styles.infoGridTwo}>
               <div className={styles.infoGroup}>
                 <label>Nazwa firmy</label>
@@ -255,11 +241,11 @@ export default function AddFirm() {
                   {...register("nr_license", {
                     required: "Numer licencji jest wymagany",
                     pattern: {
-                      value: /^\d{10}$/,
-                      message: "Numer licencji musi składać się z 10 cyfr",
+                      value: /^NR-\d{6}$/,
+                      message: "Format numeru licencji: NR-XXXXXX (gdzie X to cyfra)"
                     },
                   })}
-                  placeholder="Wpisz numer licencji"
+                  placeholder="NR-123456"
                 />
                 {errors.nr_license && (
                   <span className={styles.error}>
@@ -321,9 +307,12 @@ export default function AddFirm() {
                 )}
               </div>
             </div>
+            <BlueBtn disabled={isPending}>
+            {isPending ? "Zapisywanie..." : "Dodaj firmę"}
+          </BlueBtn>
           </div>
 
-          <div className={styles.infoGridTwo}>
+          {/* <div className={styles.infoGridTwo}>
             <div className={styles.infoGroup}>
               <label>Typy wizyt</label>
               <DropdownStas
@@ -354,11 +343,9 @@ export default function AddFirm() {
                 ))}
               </div>
             </div>
-          )}
+          )} */}
 
-          <BlueBtn disabled={isPending}>
-            {isPending ? "Zapisywanie..." : "Dodaj firmę"}
-          </BlueBtn>
+         
         </form>
       </div>
     </div>
