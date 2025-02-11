@@ -12,8 +12,8 @@ function AppPromo() {
           <h1>Zadbaj o swoje zdrowie z naszą aplikacją!</h1>
           <p>Nie zapominaj o przjęciu leków i wizytach! Nasza aplikacja jest tutaj, aby Cię wspierać. Pobierz teraz!</p>
           <div className={styles.appPromoIcons}>
-            <a href="#"><img src={img2} /></a>
-            <a href="#"><img src={img1} /></a>
+            <a target='_blank' href="https://www.apple.com/pl/app-store"><img src={img2} /></a>
+            <a target='_blank'  href="https://play.google.com/store"><img src={img1} /></a>
           </div>
         </div>
         <div className={styles.appPromoContentRight}>

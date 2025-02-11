@@ -2,15 +2,54 @@
 <html lang="pl">
   <head>
     <meta charset="UTF-8" />
-    <link rel="shortcut icon" href="./src/assets/img/logoonly.png" type="image/x-icon">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
-    <!-- <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'> -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Moj Lekarz</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Moj Lekarz - Twoja platforma do rezerwacji wizyt lekarskich online. Znajdź najlepszych specjalistów w Twojej okolicy." />
+    <meta name="keywords" content="lekarz, przychodnia, wizyty lekarskie, rezerwacja online, specjaliści, opieka medyczna" />
+    <meta name="author" content="Moj Lekarz" />
+    <meta name="robots" content="index, follow" />
+    
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content="Moj Lekarz - Rezerwacja Wizyt Lekarskich Online" />
+    <meta property="og:description" content="Znajdź i umów się na wizytę u specjalisty w prosty sposób." />
+    <meta property="og:image" content="./src/assets/img/logoonly.png" />
+    <meta property="og:url" content="https://mojlekarz.netlify.app/" />
+    <meta property="og:type" content="website" />
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary" /> <!-- Changed to "summary" -->
+    <meta name="twitter:site" content="@mojlekarz" /> <!-- Added site username -->
+    <meta name="twitter:creator" content="@mojlekarz" /> <!-- Added creator username -->
+    <meta name="twitter:title" content="Moj Lekarz - Rezerwacja Wizyt Lekarskich Online" />
+    <meta name="twitter:description" content="Znajdź i umów się na wizytę u specjalisty w prosty sposób." />
+    <meta name="twitter:image" content="./src/assets/img/logoonly.png" />
+    
+    <link rel="shortcut icon" href="./src/assets/img/logoonly.png" type="image/x-icon">
+    <link rel="canonical" href="https://mojlekarz.netlify.app/" />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+    
+    <title>Moj Lekarz - Rezerwacja Wizyt Lekarskich Online</title>
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Moj Lekarz",
+        "description": "Platforma do rezerwacji wizyt lekarskich online",
+        "url": "https://mojlekarz.netlify.app/",
+        "logo": "./src/assets/img/logoonly.png",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "555 555 555",
+          "contactType": "customer service"
+        }
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
-    <script  type="module" src="/src/main.jsx"></script>
+    <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

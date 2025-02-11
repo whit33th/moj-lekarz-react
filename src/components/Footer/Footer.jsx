@@ -1,30 +1,30 @@
-import React from "react"
-import styles from "./Footer.module.css"
-import facebook from "@assets/img/facebook.svg"
-import whatsapp from "@assets/img/whatsapp.svg"
-import instagram from "@assets/img/mage_instagram-circle.svg"
-import twitter from "@assets/img/twiter.svg"
-import phone from "@assets/img/Group4.svg"
-import arrow from "@assets/img/Vectorarrow.svg"
-import { NavLink, useLocation } from "react-router-dom"
-import { pageConfig } from "../../config/config"
+import React from "react";
+import styles from "./Footer.module.css";
+import facebook from "@assets/img/facebook.svg";
+import whatsapp from "@assets/img/whatsapp.svg";
+import instagram from "@assets/img/mage_instagram-circle.svg";
+import twitter from "@assets/img/twiter.svg";
+import phone from "@assets/img/Group4.svg";
+import arrow from "@assets/img/Vectorarrow.svg";
+import { NavLink, useLocation } from "react-router-dom";
+import { pageConfig } from "../../config/config";
 
 function Footer() {
-  const location = useLocation()
+  const location = useLocation();
 
   React.useEffect(() => {
-    const hash = location.hash
+    const hash = location.hash;
     if (hash) {
-      const element = document.querySelector(hash)
+      const element = document.querySelector(hash);
       if (element) {
-        element.scrollIntoView({ behavior: "smooth" })
+        element.scrollIntoView({ behavior: "smooth" });
       }
     }
-  }, [location])
+  }, [location]);
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" })
-  }
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
     <footer className={styles.footer}>
@@ -54,15 +54,18 @@ function Footer() {
         <div className={styles.footerNavigateBlock}>
           <div className={styles.footerNavigateBlockTop}>
             <div className={styles.footerNavigateBlockTopMenu}>
-              <NavLink to={pageConfig.patient.howItWorks}>Jak to działa</NavLink>
+              <NavLink to={pageConfig.patient.howItWorks}>
+                Jak to działa
+              </NavLink>
               <div>/</div>
-              <NavLink to={pageConfig.patient.mobileApp}>Aplikacja mobilna</NavLink>
+              <NavLink to={pageConfig.patient.mobileApp}>
+                Aplikacja mobilna
+              </NavLink>
               <div>/</div>
               <NavLink to={pageConfig.patient.blog}>Blog</NavLink>
               <div>/</div>
               <NavLink to={pageConfig.patient.firm}>Dla firm</NavLink>
             </div>
-            
           </div>
           <div className={styles.footerNavigateBlockBottom}>
             <div>
@@ -73,9 +76,7 @@ function Footer() {
                 <li>
                   <a href="#">Lekarze</a>
                 </li>
-                {/* <li>
-                  <NavLink to={pageConfig.patient.searchClinics}>Placówki medyczne (poka skip)</NavLink>
-                </li> */}
+
                 <li>
                   <a href="#">Usługi i zabiegi</a>
                 </li>
@@ -109,19 +110,19 @@ function Footer() {
       </div>
 
       <div className={styles.footerBottom}>
-        <div>© 2024 MyLekarz. Wszelkie prawa są zastrzeżone</div>
+        <div>© 2025 MójLekarz. Wszelkie prawa są zastrzeżone</div>
         <div className={styles.footerSocialNetwork}>
-          <a href="#">
+          <a target="_blank" href="https://www.facebook.com/">
             <img src={facebook} alt="facebook" />
           </a>
-          <a href="#">
+          <a target="_blank" href="https://www.whatsapp.com/">
             <img src={whatsapp} alt="whatsapp" />
           </a>
-          <a href="#">
+          <a target="_blank" href="https://www.instagram.com/">
             <img src={instagram} alt="instagram" className={styles.instaIcon} />
           </a>
-          <a href="#">
-            <img src={twitter} alt="twitter" />
+          <a target="_blank" href="https://x.com/">
+            <img src={twitter} alt="twitter/x" />
           </a>
         </div>
         <div className={styles.politykaNavigate}>
@@ -130,7 +131,7 @@ function Footer() {
         </div>
       </div>
     </footer>
-  )
+  );
 }
 
-export default Footer
+export default Footer;

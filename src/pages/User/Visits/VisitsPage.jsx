@@ -14,9 +14,11 @@ import useDeleteAppointment from "./../../../api/hooks/PatientHooks/useDeleteApp
 import VisitsCardSkeleton from "./VisitsCardSkeleton";
 
 function VisitsPage({ isLoggedIn = true }) {
-  const { data: scheduledAppointments, isLoading } = useGetPatientAppointments({});
+  const { data: scheduledAppointments, isLoading } = useGetPatientAppointments(
+    {}
+  );
   const { mutate } = useDeleteAppointment();
-  const [ deleteId, setDeleteId ] = useState();
+  const [deleteId, setDeleteId] = useState();
   const { visitsState } = useStore((state) => ({
     visitsState: state.visitsState,
   }));
@@ -25,12 +27,12 @@ function VisitsPage({ isLoggedIn = true }) {
 
   const navigate = useNavigate();
 
-
   const activeAppointments = scheduledAppointments?.appointments?.filter(
     (appointment) => appointment.status === "active"
   );
   const completedAppointments = scheduledAppointments?.appointments?.filter(
-    (appointment) => appointment.status === "complete" || appointment.status === "completed"
+    (appointment) =>
+      appointment.status === "complete" || appointment.status === "completed"
   );
 
   function clickDeleteBtn(id) {
@@ -79,8 +81,8 @@ function VisitsPage({ isLoggedIn = true }) {
         <h1>Zrealizowane wizyty</h1>
         {completedAppointments?.length > 0 ? (
           completedAppointments.map((appointment, index) => (
-            <VisitsCardCompleted 
-              key={appointment.id || index} 
+            <VisitsCardCompleted
+              key={appointment.id || index}
               data={appointment}
             />
           ))
@@ -92,11 +94,11 @@ function VisitsPage({ isLoggedIn = true }) {
         <p>Bądź zawsze na bieżąco!</p>
         <p>Pobierz aplikację mobilną z planem wizyt od MyLekarz!</p>
         <div className={styles.visitsPageRightIcons}>
-          <a href="#">
-            <img src={img2} alt="MyLekarz" />
+          <a target="_blank" href="https://www.apple.com/pl/app-store">
+            <img src={img2} />
           </a>
-          <a href="#">
-            <img src={img1} alt="MyLekarz" />
+          <a target="_blank" href="https://play.google.com/store">
+            <img src={img1} />
           </a>
         </div>
         <div className={styles.qrBlock}>

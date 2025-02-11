@@ -75,7 +75,7 @@ function Home() {
     <div className={styles.home}>
       <div className={styles.homeFirstBlock}>
         <div className={styles.homeFirstBlockLeft}>
-          <img src={mainImg} alt="Main image" />
+          <img src={mainImg} alt="Lekarz konsultujący pacjenta w gabinecie" />
         </div>
         <div className={styles.homeFirstBlockRight}>
           <form
@@ -163,7 +163,7 @@ function Home() {
       <div className={styles.howItWorksImageBlock}>
         <div className={styles.imagesBlockItem}>
           <div className={styles.itemImg}>
-            <img src={img1} />
+            <img src={img1} alt="Ikona rejestracji konta użytkownika" />
           </div>
           <div className={styles.itemText}>
             <p className={styles.itemTextTitle}>Załóż konto</p>
@@ -174,11 +174,11 @@ function Home() {
           </div>
         </div>
         <div className={styles.arrow}>
-          <img src={arrow} />
+          <img src={arrow} alt="Strzałka wskazująca następny krok" />
         </div>
         <div className={styles.imagesBlockItem}>
           <div className={styles.itemImg}>
-            <img src={img2} />
+            <img src={img2} alt="Ikona rejestracji wizyty lekarskiej" />
           </div>
           <div className={styles.itemText}>
             <p className={styles.itemTextTitle}>Zarejestruj swoją wizytę</p>
@@ -186,11 +186,11 @@ function Home() {
           </div>
         </div>
         <div className={styles.arrow}>
-          <img src={arrow} />
+          <img src={arrow} alt="Strzałka wskazująca następny krok" />
         </div>
         <div className={styles.imagesBlockItem}>
           <div className={styles.itemImg}>
-            <img src={img3} />
+            <img src={img3} alt="Ikona konsultacji lekarskiej" />
           </div>
           <div className={styles.itemText}>
             <p className={styles.itemTextTitle}>Konsultacja</p>
@@ -199,7 +199,7 @@ function Home() {
         </div>
       </div>
       <div className={styles.slideblock}>
-        <div className={styles.slideTitle}> Dlaczego MyLekarz?</div>
+        <div className={styles.slideTitle}> Dlaczego MójLekarz?</div>
         <SwiperSlider />
       </div>
 

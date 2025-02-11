@@ -94,7 +94,7 @@ function Firm() {
         </div>
       </div>
       <div className={styles.aboutMe}>
-        <h1>Dlaczego MyLekarz?</h1>
+        <h1>Dlaczego MójLekarz?</h1>
         <div className={styles.aboutMeItemConteiner}>
           <div className={styles.aboutMeItem}>
             <h2>1</h2>

@@ -78,7 +78,7 @@ function HowItWorks() {
       </div>
 
       <div className={styles.slideblock}>
-        <div className={styles.slideTitle}> Dlaczego MyLekarz?</div>
+        <div className={styles.slideTitle}> Dlaczego MójLekarz?</div>
         <SwiperSlider />
       </div>
       <div className={styles.formBlockConteiner}>

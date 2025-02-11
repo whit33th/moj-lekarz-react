@@ -61,14 +61,14 @@ function Header({ isLoggedIn }) {
             <li
               className={
                 `${styles.headerNavigateItem} ` +
-                (location.pathname === pageConfig.patient.searchVisits
+                (location.pathname === pageConfig.patient.searchClinics
                   ? styles.active
                   : "")
               }
             >
-              <li>
-                  <NavLink to={pageConfig.patient.searchClinics}>Placówki medyczne</NavLink>
-                </li>
+              <NavLink to={pageConfig.patient.searchClinics}>
+                Placówki medyczne
+              </NavLink>
             </li>
 
 

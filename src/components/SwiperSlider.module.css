@@ -1,7 +1,4 @@
-@font-face {
-  font-family: "Karla";
-  src: url(../assets/fonts/Karla-VariableFont_wght.ttf);
-}
+
 
 .slideTitle {
   text-align: center;
@@ -19,6 +16,7 @@
   flex-wrap: wrap;
 }
 .sliderItem {
+  user-select: none;
   width: 305px;
   height: 305px;
   border-radius: 20px;
@@ -37,7 +35,7 @@
   position: relative;
 }
 .sliderItem h3 {
-  font-family: "Karla", sans-serif;
+  
   font-size: 128px;
   font-weight: 500;
   line-height: 149.63px;

@@ -1,11 +1,11 @@
-import styles from "./style/MobileAppPage.module.css"
-import img1 from "@assets/img/image1.svg"
-import img2 from "@assets/img/image2.svg"
-import phone from "@assets/img/foto.webp"
-import img3 from "@assets/img/Frame1.svg"
-import img4 from "@assets/img/Frame2.svg"
-import img5 from "@assets/img/Frame3.svg"
-import QRCode from 'react-qr-code'
+import styles from "./style/MobileAppPage.module.css";
+import img1 from "@assets/img/image1.svg";
+import img2 from "@assets/img/image2.svg";
+import phone from "@assets/img/foto.webp";
+import img3 from "@assets/img/Frame1.svg";
+import img4 from "@assets/img/Frame2.svg";
+import img5 from "@assets/img/Frame3.svg";
+import QRCode from "react-qr-code";
 
 function MobileAppPage() {
   return (
@@ -18,16 +18,19 @@ function MobileAppPage() {
             tutaj, aby Cię wspierać. Pobierz teraz!
           </p>
           <div className={styles.firstBlockLeftIcons}>
-            <a href="#">
+            <a target="_blank" href="https://www.apple.com/pl/app-store">
               <img src={img2} />
             </a>
-            <a href="#">
+            <a target="_blank" href="https://play.google.com/store">
               <img src={img1} />
             </a>
           </div>
           <div className={styles.qrBlock}>
             <div className={styles.qr}>
-              <QRCode value='https://mojlekarz.netlify.app' style={{ height: "100%", width: "100%" }}></QRCode>
+              <QRCode
+                value="https://mojlekarz.netlify.app"
+                style={{ height: "100%", width: "100%" }}
+              ></QRCode>
             </div>
 
             <p>Zeskanuj kod i pobierz</p>
@@ -78,6 +81,6 @@ function MobileAppPage() {
         </div>
       </div>
     </div>
-  )
+  );
 }
-export default MobileAppPage
+export default MobileAppPage;
