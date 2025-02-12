@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "react-datepicker/dist/react-datepicker.css";
 import styles from "./style/Home.module.css";
-import mainImg from "@assets/img/Frame364.svg";
+import mainImg from '@assets/img/robot_svg/robor_main.png'
 import img1 from "@assets/img/Frame1.svg";
 import img2 from "@assets/img/Frame2.svg";
 import img3 from "@assets/img/Frame3.svg";
