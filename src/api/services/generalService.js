@@ -127,15 +127,19 @@ class GeneralService {
     );
   }
   async postPosts(id, data) {
+    const formData = new FormData();
+    formData.append('image', data.photo);
+    formData.append('title', data.title);
+    formData.append('content', data.content);
+
     return await axios.post(
       `${this.URL}/api/posts/categories/${id}`,
-      {
-        photo: data.photo,
-        title: data.title,
-        content: data.content,
-      },
+      formData,
       {
         withCredentials: true,
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
       }
     );
   }

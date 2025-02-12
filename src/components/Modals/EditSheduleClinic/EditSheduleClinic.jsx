@@ -17,6 +17,16 @@ function EditSheduleClinic({ initialSchedule, setModalActive, userInfo }) {
     Niedziela: { from: "", to: "" },
   };
 
+  const dayMapping = {
+    Poniedziałek: 1,
+    Wtorek: 2,
+    Środa: 3,
+    Czwartek: 4,
+    Piątek: 5,
+    Sobota: 6,
+    Niedziela: 7,
+  };
+
   const { register, handleSubmit, control, setValue } = useForm({
     defaultValues: defaultSchedule,
   });
@@ -34,13 +44,22 @@ function EditSheduleClinic({ initialSchedule, setModalActive, userInfo }) {
 
   const onSubmit = (data) => {
     const timetablesData = Object.entries(data).map(([day, times]) => {
-      const dayData = initialSchedule[day];
-      return {
-        id: dayData.id,
-        dayOfWeek: dayData.day_of_week,
-        startTime: times.from.length === 5 ? times.from + ":00" : times.from,
-        endTime: times.to.length === 5 ? times.to + ":00" : times.to,
-      };
+      if (initialSchedule && initialSchedule[day]) {
+        // Existing clinic case
+        return {
+          id: initialSchedule[day].id,
+          dayOfWeek: initialSchedule[day].day_of_week,
+          startTime: times.from.length === 5 ? times.from + ":00" : times.from,
+          endTime: times.to.length === 5 ? times.to + ":00" : times.to,
+        };
+      } else {
+        // New clinic case
+        return {
+          dayOfWeek: dayMapping[day],
+          startTime: times.from.length === 5 ? times.from + ":00" : times.from,
+          endTime: times.to.length === 5 ? times.to + ":00" : times.to,
+        };
+      }
     });
 
     mutate(timetablesData);

@@ -158,7 +158,7 @@ function DoctorMain() {
                         className={`${styles.graph} ${styles.tCenter} ${styles.smBack} ${styles.flex} ${styles.itemsCenter}`}
                       >
                         <p>
-                          {stats.countPatients.percentageChange.toFixed(0) +
+                          {stats.countPatients?.percentageChange?.toFixed(0) +
                             "%"}
                         </p>
                         <img
@@ -188,7 +188,7 @@ function DoctorMain() {
                         className={`${styles.graph} ${styles.tCenter} ${styles.smBack} ${styles.flex} ${styles.itemsCenter}`}
                       >
                         <p>
-                          {stats.averageRating.percentageChange.toFixed(0) +
+                          {stats.averageRating?.percentageChange?.toFixed(0) +
                             "%"}
                         </p>
                         <img

@@ -15,16 +15,15 @@ function AddBlogModal() {
   const [selectedImage, setSelectedImage] = useState(null);
   const [photoError, setPhotoError] = useState("");
   const { mutate, isPending } = usePostPosts();
-  
+
   const categories = [
-    { value: '1', label: 'Zdrowie' },
-    { value: '2', label: 'Lifestyle' },
-    { value: '3', label: 'Medycyna' }
+    { value: "1", label: "Zdrowie" },
+    { value: "2", label: "Lifestyle" },
+    { value: "3", label: "Medycyna" },
   ];
-  
+
   const { register, handleSubmit, control, formState } = useForm({
     mode: "onChange",
-    
   });
 
   const closeModal = () => {
@@ -39,7 +38,7 @@ function AddBlogModal() {
     const file = event.target.files[0];
     if (file) {
       setSelectedImage(file);
-      setPhotoError("");  
+      setPhotoError("");
     }
   };
 
@@ -48,16 +47,16 @@ function AddBlogModal() {
       setPhotoError("Proszę wybrać zdjęcie");
       return;
     }
-    
+
     const formData = {
       title: data.title.label,
       content: data.content,
-      photo: selectedImage,
+      photo: selectedImage,  // Now sending the actual file object
     };
 
     mutate({
       id: 262,
-      data: formData
+      data: formData,
     });
   };
 
@@ -91,7 +90,7 @@ function AddBlogModal() {
           options={categories}
           placeholder="Wybierz kategorię"
           {...register("category", {
-            required: "Kategoria jest wymagana"
+            required: "Kategoria jest wymagana",
           })}
         />
         <InputError errorField="category" formState={formState} />
@@ -117,15 +116,17 @@ function AddBlogModal() {
         <input
           type="file"
           ref={fileInputRef}
-          style={{ display: 'none' }}
+          style={{ display: "none" }}
           onChange={handleFileSelect}
           accept="image/*"
         />
         <div>
           <BlueBorderBtn cb={handleImageClick}>
-            {selectedImage ? 'Zmień obrazek' : 'Dodaj obrazek'}
+            {selectedImage ? "Zmień obrazek" : "Dodaj obrazek"}
           </BlueBorderBtn>
-          {photoError && <div className={styles.errorMessage}>{photoError}</div>}
+          {photoError && (
+            <div className={styles.errorMessage}>{photoError}</div>
+          )}
         </div>
         <Choice
           choice1="Anuluj"

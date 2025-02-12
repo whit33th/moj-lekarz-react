@@ -12,13 +12,13 @@ export default function usePostAppointment() {
   });
   useEffect(() => {
     if (isSuccess) {
-      toast.success("Plik został pomyślnie wysłany!");
-	
+      toast.success("Wizyta została pomyślnie umówiona!");
     }
   }, [isSuccess]);
+
   useEffect(() => {
     if (isError) {
-      toast.error("Wystąpił błąd podczas wysyłania pliku!");
+      toast.error("Wystąpił błąd podczas umawiania wizyty!");
     }
   }, [isError]);
 

@@ -4,21 +4,29 @@ import logo from "@assets/img/logo.svg";
 import ResetPasswordComponent from "./Components/ResetPasswordComponent";
 import useStore from "../../data/store";
 import { useEffect } from "react";
+import useLogout from "./../../api/hooks/AuthHooks/useLogout";
 
 function ResetPassword() {
   const { isAuth } = useStore();
+  const { logout } = useLogout();
   const navigate = useNavigate();
 
   useEffect(() => {
     if (isAuth) {
-      navigate('/');
+      logout();
+      
     }
-  }, [isAuth]);
+  }, [isAuth, logout]);
 
   return (
     <div className={styles.authPage}>
       <div className={styles.authPageContent}>
-        <img onClick={() => navigate("/")} src={logo} alt="Logo" className={styles.authLogo} />
+        <img
+          onClick={() => navigate("/")}
+          src={logo}
+          alt="Logo"
+          className={styles.authLogo}
+        />
         <ResetPasswordComponent />
       </div>
     </div>
