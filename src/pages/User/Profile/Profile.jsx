@@ -72,8 +72,8 @@ function Profile() {
               {...register("newPassword", {
                 required: "To pole jest wymagane",
                 minLength: {
-                  value: 8,
-                  message: "Hasło musi mieć co najmniej 8 znaków",
+                  value: 9,
+                  message: "Hasło musi mieć co najmniej 9 znaków",
                 },
                 pattern: {
                   value: /^[A-Za-zĄąĆćĘęŁłŃńÓóŚśŹźŻż\d!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/,

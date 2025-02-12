@@ -6,14 +6,14 @@ import InputError from "../../UI/InputError/InputError";
 import { useForm } from "react-hook-form";
 import useStore from "../../../data/store";
 import BlueBorderBtn from "./../../Buttons/BlueBorderBtn/BlueBorderBtn";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import usePutPosts from "../../../api/hooks/GeneralHooks/Posts/usePutPosts";
 import blueButtonStyles from "../../Buttons/BlueBorderBtn/BlueBorderBtn.module.css";
 
 function EditBlogModal({ post }) {
   const { setModalActive } = useStore();
   const fileInputRef = useRef(null);
-  const [selectedImage, setSelectedImage] = useState(post.image);
+  const [selectedImage, setSelectedImage] = useState(null);
   const [photoError, setPhotoError] = useState("");
   const { mutate, isPending } = usePutPosts();
   
@@ -31,6 +31,12 @@ function EditBlogModal({ post }) {
       category: { value: post.category, label: post.category }
     }
   });
+
+  useEffect(() => {
+    if (post.image) {
+      setSelectedImage(post.image);
+    }
+  }, [post.image]);
 
   const closeModal = () => {
     setModalActive(false);
@@ -57,7 +63,7 @@ function EditBlogModal({ post }) {
     const formData = {
       title: data.title.label,
       content: data.content,
-      photo: selectedImage,
+      photo: selectedImage instanceof File ? selectedImage : new File([selectedImage], 'image'),
     };
 
     mutate({

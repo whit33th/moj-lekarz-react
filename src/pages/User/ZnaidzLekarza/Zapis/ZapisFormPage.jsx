@@ -9,6 +9,7 @@ import { pageConfig } from "../../../../config/config";
 import { useForm } from "react-hook-form";
 import usePostAppointment from "../../../../api/hooks/PatientHooks/usePostAppointment";
 import useGetUserInfo from "@api/hooks/UserHooks/useGetUserInfo";
+import InputError from "../../../../components/UI/InputError/InputError";
 
 function ZapisFormPage() {
   const { state } = useLocation();
@@ -20,7 +21,7 @@ function ZapisFormPage() {
     handleSubmit,
     reset,
     getValues,
-    formState: { errors },
+    formState,
   } = useForm({
     defaultValues: {
       firstName: "",
@@ -170,7 +171,7 @@ function ZapisFormPage() {
                   <div>
                     <p>Imię</p>
                     <input
-                      disabled
+                      
                       {...register("firstName", {
                         required: "To pole jest wymagane",
                         pattern: {
@@ -180,11 +181,12 @@ function ZapisFormPage() {
                       })}
                       placeholder="Podaj swoje imię"
                     />
+                    <InputError errorField="firstName" formState={formState} />
                   </div>
                   <div>
                     <p>Nazwisko</p>
                     <input
-                      disabled
+                      
                       {...register("lastName", {
                         required: "To pole jest wymagane",
                         pattern: {
@@ -194,6 +196,7 @@ function ZapisFormPage() {
                       })}
                       placeholder="Podaj swoje nazwisko"
                     />
+                    <InputError errorField="lastName" formState={formState} />
                   </div>
                   <div>
                     <p>Telefon</p>
@@ -207,11 +210,12 @@ function ZapisFormPage() {
                       })}
                       placeholder="Podaj numer telefonu"
                     />
+                    <InputError errorField="phone" formState={formState} />
                   </div>
                   <div>
                     <p>Pesel</p>
                     <input
-                      disabled
+                      
                       {...register("pesel", {
                         required: "To pole jest wymagane",
                         pattern: {
@@ -221,6 +225,7 @@ function ZapisFormPage() {
                       })}
                       placeholder="Podaj numer pesel"
                     />
+                    <InputError errorField="pesel" formState={formState} />
                   </div>
                 </div>
 
@@ -243,7 +248,7 @@ function ZapisFormPage() {
             <div className={styles.checkboxBlock}>
               <label
                 className={`${styles.checkboxContainer} ${
-                  errors.acceptTerms ? styles.error : ""
+                  formState.acceptTerms ? styles.error : ""
                 }`}
               >
                 <input
@@ -253,7 +258,7 @@ function ZapisFormPage() {
                   })}
                 />
                 <span className={styles.checkmark}></span>
-                <p className={errors.acceptTerms ? styles.errorText : ""}>
+                <p className={formState.errors.acceptTerms ? styles.errorText : ""}>
                   <span>*</span> Zgadzam się, żeby MyLekarz przetwarzał moje
                   dane medyczne w celu korzystania z usług.
                 </p>

@@ -15,14 +15,14 @@ function useDeleteAppointment() {
 
   useEffect(() => {
     if (isSuccess) {
-      toast.success("Wizyta została usunięta");
+      toast.success("Wizyta zostala anulowana");
       queryClient.invalidateQueries("patientAppointments");
     }
   }, [isSuccess, queryClient]);
 
   useEffect(() => {
     if (isError) {
-      toast.error("Nie udało się usunąć wizyty");
+      toast.error("Nie udało się anulowac wizyty");
     }
   }, [isError]);
 

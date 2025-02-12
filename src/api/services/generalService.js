@@ -150,15 +150,19 @@ class GeneralService {
   }
 
   async putPosts(id, data) {
+    const formData = new FormData();
+    formData.append('image', data.photo);
+    formData.append('title', data.title);
+    formData.append('content', data.content);
+
     return await axios.put(
       `${this.URL}/api/posts/${id}`,
-      {
-        photo: data.photo,
-        title: data.title,
-        content: data.content,
-      },
+      formData,
       {
         withCredentials: true,
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
       }
     );
   }
