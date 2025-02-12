@@ -21,7 +21,6 @@ class AuthServices {
     });
   }
   async google() {
-    const callbackUrl = `${this.URL}/auth/google/callback`;
     window.location.href = "http://localhost:5173/auth/google";
   }
   async sessionValid() {

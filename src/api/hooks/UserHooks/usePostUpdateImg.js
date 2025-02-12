@@ -15,13 +15,13 @@ export default function usePostUpdateImg() {
 	useEffect(() => {
 		if (isSuccess) {
 			queryClient.invalidateQueries(['getUserInfo'])
-			toast.success("Plik został pomyślnie wysłany!")
+			toast.success("Zdjęcie zostało pomyślnie wysłane!")
 		}
 		if (isError) {
-			toast.error("Wystąpił błąd podczas wysyłania pliku!")
+			toast.error("Wystąpił błąd podczas wysyłania zdjęcia!")
 		}
 		if (isPending) {
-			toast.loading("Wysyłanie pliku...")
+			toast.loading("Wysyłanie zdjęcia...")
 		}
 		toast.dismiss()
 	}, [isPending, isError, isSuccess, queryClient])

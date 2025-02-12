@@ -8,7 +8,7 @@ import Skeleton from "react-loading-skeleton";
 import useStore from "@data/store";
 
 function Profil() {
-  const { role } = useStore();
+  const { role} = useStore();
   const [vacationStatus, setVacationStatus] = useState(false);
 
   function handleVacationStatus() {

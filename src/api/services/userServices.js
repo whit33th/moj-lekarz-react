@@ -8,7 +8,6 @@ class UserServices {
     });
   }
   async putInfo(formData) {
-    console.log(formData);
     const data = {
       userData: {
         email: formData.email,
@@ -17,7 +16,7 @@ class UserServices {
         last_name: formData.last_name,
         birthday: formData.birthday || "01-01-2000",
         pesel: formData.pesel || "",
-        gender: formData.gender || "male", 
+        gender: formData.gender || "male",
 
         name: formData.firm || "",
         nip: formData.nip || "",
@@ -54,6 +53,11 @@ class UserServices {
 
   async postImg(img) {
     return await axios.post(`${this.URL}/api/users/photo`, img, {
+      withCredentials: true,
+    });
+  }
+  async deleteAccount() {
+    return await axios.delete(`${this.URL}/api/users`, {
       withCredentials: true,
     });
   }

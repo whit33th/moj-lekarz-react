@@ -6,16 +6,22 @@ import useStore from "../../../data/store";
 import { useForm } from "react-hook-form";
 import InputError from "../../../components/UI/InputError/InputError";
 import useChangePassword from "../../../api/hooks/UserHooks/useChangePassword";
-import usePostUpdateImg from '@hooks/UserHooks/usePostUpdateImg';
+import usePostUpdateImg from "@hooks/UserHooks/usePostUpdateImg";
 import grey from "@assets/img/grey.png";
+import DeleteAccountModal from "../../../components/Modals/DeleteAccountModal/DeleteAccountModal";
+import BlueBtn from "../../../components/Buttons/BlueBtn/BlueBtn";
+import useDeleteAccount from "../../../api/hooks/UserHooks/useDeleteAccount";
 
 function Profile() {
   const { profileState } = useStore();
   const [selectedImg, setSelectedImg] = useState(null);
   const [fileForUpload, setFileForUpload] = useState(null);
+  const [modalWindowStatus, setModalWindowStatus] = useState(false);
   const { register, handleSubmit, formState, watch } = useForm({
     mode: "onChange",
   });
+
+  const { mutate: deleteAccount } = useDeleteAccount();
 
   const { mutate } = useChangePassword();
   const { mutate: uploadImage } = usePostUpdateImg();
@@ -26,11 +32,21 @@ function Profile() {
     if (file) {
       const objectUrl = URL.createObjectURL(file);
       setSelectedImg(objectUrl);
-      
+
       const formData = new FormData();
-      formData.set('image', file);
+      formData.set("image", file);
       uploadImage(formData);
     }
+  };
+
+  const handleDeleteAccount = () => {
+    setModalWindowStatus(true);
+  };
+
+  const deleteFc = () => {
+    deleteAccount();
+    console.log("Account deleted");
+    setModalWindowStatus(false);
   };
 
   const onSubmit = (data) => {
@@ -41,8 +57,13 @@ function Profile() {
 
   return (
     <div className={styles.profilePage}>
-      <ProfileInfoBlock 
-        data={profileState} 
+      <DeleteAccountModal
+        modalWindowStatus={modalWindowStatus}
+        setModalWindowStatus={setModalWindowStatus}
+        deleteFc={deleteFc}
+      />
+      <ProfileInfoBlock
+        data={profileState}
         selectedImg={selectedImg || profileState?.photo || grey}
         onImageChange={handleImgChange}
       />
@@ -57,9 +78,10 @@ function Profile() {
               {...register("oldPassword", {
                 required: "To pole jest wymagane",
                 pattern: {
-                  value: /^[A-Za-zĄąĆćĘęŁłŃńÓóŚśŹźŻż\d!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/,
-                  message: "Nieprawidłowy format hasła"
-                }
+                  value:
+                    /^[A-Za-zĄąĆćĘęŁłŃńÓóŚśŹźŻż\d!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/,
+                  message: "Nieprawidłowy format hasła",
+                },
               })}
             />
             <InputError formState={formState} errorField={"oldPassword"} />
@@ -76,9 +98,10 @@ function Profile() {
                   message: "Hasło musi mieć co najmniej 9 znaków",
                 },
                 pattern: {
-                  value: /^[A-Za-zĄąĆćĘęŁłŃńÓóŚśŹźŻż\d!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/,
-                  message: "Nieprawidłowy format hasła"
-                }
+                  value:
+                    /^[A-Za-zĄąĆćĘęŁłŃńÓóŚśŹźŻż\d!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/,
+                  message: "Nieprawidłowy format hasła",
+                },
               })}
             />
 
@@ -94,9 +117,10 @@ function Profile() {
                 validate: (value) =>
                   value === watch("newPassword") || "Hasła nie są takie same",
                 pattern: {
-                  value: /^[A-Za-zĄąĆćĘęŁłŃńÓóŚśŹźŻż\d!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/,
-                  message: "Nieprawidłowy format hasła"
-                }
+                  value:
+                    /^[A-Za-zĄąĆćĘęŁłŃńÓóŚśŹźŻż\d!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/,
+                  message: "Nieprawidłowy format hasła",
+                },
               })}
             />
             <InputError
@@ -107,6 +131,10 @@ function Profile() {
           <button type="submit"> Zmień hasło</button>
         </div>
       </form>
+      <div className={styles.deleteAccountBlock}>
+        <BlueBtn cb={handleDeleteAccount}>Usuń konto</BlueBtn>
+      </div>
+
       {/* <div className={styles.visitsBlock}>
         <h1>Najbliższe wizyty</h1>
         <div className={styles.visitsList}>

@@ -13,9 +13,13 @@ import AdditionalData from "./AdditionalData";
 import styles from "./styles.module.css";
 
 import CalendarBlockSchedules from "../../../components/DoctorPage/Home/Calendar/CalendarBlockSchedules";
+import useStore from "../../../data/store";
+import AddDoctorIconModal from "../../../components/Modals/AddDoctorIcon/AddDoctorIconModal";
 function Settings() {
+  const { setModalActive, setModalContent } = useStore();
   const [activeTab, setActiveTab] = useState("Dane podstawowe");
   const [selectedImg, setSelectedImg] = useState(null);
+  const [selectedIcon, setSelectedIcon] = useState(null);
   const [fileForUpload, setFileForUpload] = useState(null);
   const { register, formState, handleSubmit, reset } = useForm({
     mode: "onChange",
@@ -88,28 +92,60 @@ function Settings() {
     };
     mutateUserInfo(formData);
   }
-  function changeImg() {
-    const formData = new FormData();
 
-    formData.set("image", fileForUpload);
+  const urlToFile = async (url) => {
+    try {
+      const response = await fetch(url);
+      const blob = await response.blob();
+      return new File([blob], "icon.png", { type: "image/png" });
+    } catch (error) {
+      console.error("Error converting URL to File:", error);
+      return null;
+    }
+  };
 
-    console.log(formData);
-
-    mutate(formData);
-  }
-
-  useEffect(() => {
-    setSelectedImg(isLoading || !user ? grey : user?.photo);
-  }, [isLoading, user]);
   function handleImgChange(event) {
     const file = event.target.files[0];
-    setFileForUpload(file);
-    console.log(file);
     if (file) {
+      setFileForUpload(file);
+      setSelectedIcon(null);
       const objectUrl = URL.createObjectURL(file);
       setSelectedImg(objectUrl);
     }
   }
+
+  const handleIconSelect = (iconPath) => {
+    setSelectedIcon(iconPath);
+    setSelectedImg(null);
+    setFileForUpload(null);
+  };
+
+  async function changeImg() {
+    const formData = new FormData();
+
+    if (fileForUpload && !selectedIcon) {
+      formData.set("image", fileForUpload);
+    }
+
+    if (selectedIcon && !fileForUpload) {
+      const iconFile = await urlToFile(selectedIcon);
+      if (iconFile) {
+        formData.set("image", iconFile);
+      }
+    }
+
+    if (formData.has("image")) {
+      mutate(formData);
+    }
+  }
+
+  const handleSubmitForm = handleImgSubmit(async (data) => {
+    await changeImg();
+  });
+
+  useEffect(() => {
+    setSelectedImg(isLoading || !user ? grey : user?.photo);
+  }, [isLoading, user]);
   const workTime = (
     <div className={styles.workTime}>
       <div style={{ width: "100%" }} className={styles.shadow}>
@@ -117,6 +153,11 @@ function Settings() {
       </div>
     </div>
   );
+
+  function handleIconClick() {
+    setModalActive(true);
+    setModalContent(<AddDoctorIconModal onSelectIcon={handleIconSelect} />);
+  }
 
   const settingData = (
     <div className={styles.settingData}>
@@ -296,13 +337,12 @@ function Settings() {
       </div>
       <div className={`${styles.settingImg}`}>
         <div className={styles.photo}>
-          <img src={selectedImg} alt="" />
+          <img src={selectedIcon || selectedImg || grey} alt="" />
         </div>
-
         <form
           encType="multipart/form-data"
           className={styles.formImg}
-          onSubmit={handleImgSubmit(changeImg)}
+          onSubmit={handleSubmitForm}
         >
           <div>
             <label htmlFor="fileUpload" className={styles.customButton}>
@@ -313,7 +353,7 @@ function Settings() {
               type="file"
               accept="image/*"
               {...imgRegister("photo", {
-                required: "Wybierz zdjęcie",
+                required: false,
                 onChange: handleImgChange,
               })}
               id="fileUpload"
@@ -325,6 +365,13 @@ function Settings() {
             <BlueBtn>Zapisz</BlueBtn>{" "}
           </div>
         </form>
+        <button
+          onClick={handleIconClick}
+          className={styles.iconBtn}
+          type="button"
+        >
+          Wybierz ikonę
+        </button>
       </div>
     </div>
   );
