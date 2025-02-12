@@ -1,182 +1,171 @@
 .lastVisitsNavbarButt img {
-	width: 16px;
-	margin: 9px 0 9PX 20px;
+  width: 16px;
+  margin: 9px 0 9px 20px;
 }
 
 .lastVisitsNavbarButt span {
-	padding: 0 15px;
+  padding: 0 15px;
 }
 
 .navbar {
-
-
-	display: flex;
-	flex-direction: row;
-	gap: 20px;
-	align-items: center;
-	justify-content: space-between;
-
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: center;
+  justify-content: space-between;
 }
 
 #searchForm {
-	position: relative;
-	transition: 0.3s;
-
+  position: relative;
+  transition: 0.3s;
 }
 
 .search {
-	background-color: white;
-	display: flex;
-	flex-direction: row;
-	width: 100%;
-	box-shadow: 0 0 10px 5px #00000014;
-	align-items: center;
-	border-radius: 20px;
-	border: none;
-	position: relative;
-	z-index: 100;
-	transition: 0.3s;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  box-shadow: 0 0 10px 5px #00000014;
+  align-items: center;
+  border-radius: 20px;
+  border: none;
+  position: relative;
+  z-index: 100;
+  transition: 0.3s;
 }
 
 .messages {
-	position: relative;
+  position: relative;
 }
 
-
-
 .profile img {
-	background-color: white;
-	border-radius: 50%;
-	width: 48px;
-	height: 48px;
-	object-fit: cover;
+  background-color: #3e36b0;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
 }
 
 .search img {
-	margin: 0 10px 0 20px;
-	filter: invert(0.8);
-	padding: 0;
-	height: 20px;
-	width: 20px;
+  margin: 0 10px 0 20px;
+  filter: invert(0.8);
+  padding: 0;
+  height: 20px;
+  width: 20px;
 }
 
 .notification {
-	border: none;
-	padding: 0;
+  border: none;
+  padding: 0;
 
-	background: transparent;
+  background: transparent;
 }
 
 .bell {
-	width: 28px;
-	transition: 0.3s;
-	cursor: pointer;
+  width: 28px;
+  transition: 0.3s;
+  cursor: pointer;
 }
 
 .message:first-child {
-	border-radius: 16px 2px 0 0;
+  border-radius: 16px 2px 0 0;
 }
 
 .message:last-child {
-	border-radius: 0 0 16px 16px;
+  border-radius: 0 0 16px 16px;
 }
 
 .message {
-	font-size: 12px;
-	display: flex;
-	padding: 10px 20px;
-	border-left: 1px solid #eee;
-	border-right: 1px solid #eee;
-	border-bottom: 1px solid #eee;
-	cursor: default;
-	z-index: 99;
-	flex-direction: row;
-	align-content: center;
-	align-items: center;
-	justify-content: space-between;
-	gap: 30px;
-	position: relative;
-	background-color: white;
+  font-size: 12px;
+  display: flex;
+  padding: 10px 20px;
+  border-left: 1px solid #eee;
+  border-right: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  cursor: default;
+  z-index: 99;
+  flex-direction: row;
+  align-content: center;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  position: relative;
+  background-color: white;
 }
 
 .message p {
-	min-width: 100px;
+  min-width: 100px;
 }
 
 .message button {
-	
-	padding: 10px 15px;
-	font-size: 12px;
-	border-radius: 16px;
-	background: #A6DEF7;
-	color: #222222;
-	
-	border: none;
-	font-weight: bold;
+  padding: 10px 15px;
+  font-size: 12px;
+  border-radius: 16px;
+  background: #a6def7;
+  color: #222222;
+
+  border: none;
+  font-weight: bold;
 }
 
 button.buttDef {
-	width: 100%;
-	background: transparent;
-	border-radius: 100px;
+  width: 100%;
+  background: transparent;
+  border-radius: 100px;
 
-	border: 1px solid #222222;
+  border: 1px solid #222222;
 }
 
 .search input {
-	width: 100%;
-	border: none;
-	border-radius: 100px;
-	padding: 10px 0;
-
+  width: 100%;
+  border: none;
+  border-radius: 100px;
+  padding: 10px 0;
 }
 
 .transform {
-	border-radius: 20px 20px 0 0;
-	transition: 0.3s;
+  border-radius: 20px 20px 0 0;
+  transition: 0.3s;
 }
 
 .searchItem:last-child {
-	border-radius: 0 0 16px 16px;
-
+  border-radius: 0 0 16px 16px;
 }
 
-
-
 .searchResults {
-	background-color: white;
-	position: absolute;
-	top: 100%;
-	left: 0;
-	width: 100%;
-	display: none;
-	transition: 0.1s;
-	max-height: 65dvh;
-	overflow-y: auto;
+  background-color: white;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  display: none;
+  transition: 0.1s;
+  max-height: 65dvh;
+  overflow-y: auto;
 }
 
 .searchResults:last-child,
 .searchResults:last-child {
-	border-radius: 0 0 16px 16px !important;
+  border-radius: 0 0 16px 16px !important;
 }
 
 .searchResults.show {
-	display: block !important;
+  display: block !important;
 }
 
 .loading {
-	display: flex;
-	gap: 15px;
-	padding: 10px 20px;
-	align-items: center;
-	width: 100%;
+  display: flex;
+  gap: 15px;
+  padding: 10px 20px;
+  align-items: center;
+  width: 100%;
 }
 
 .bell:active {
-	scale: 0.9;
+  scale: 0.9;
 }
-.incomingMessages{
-	position: absolute;
-	top: 150%;
-	right: 50%;
+.incomingMessages {
+  position: absolute;
+  top: 150%;
+  right: 50%;
 }
