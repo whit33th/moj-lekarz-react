@@ -254,3 +254,7 @@ button {
 .sx__month-grid-cell {
   height: fit-content !important;
 }
+
+.mapboxgl-map{
+  border-radius: 16px;
+}

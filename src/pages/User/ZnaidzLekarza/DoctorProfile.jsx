@@ -11,6 +11,7 @@ import Skeleton from "react-loading-skeleton";
 import { pageConfig } from "../../../config/config";
 import useGetDoctorReviews from "../../../api/hooks/GeneralHooks/ReviewsHooks/useGetDoctorReviews";
 import ReviewCard from "../ReviewCard";
+import MapboxWithGeocoding from "../../../components/UI/Map/Map";
 
 function DoctorProfile() {
   const [doctorInfo, setDoctorInfo] = useState({});
@@ -39,12 +40,14 @@ function DoctorProfile() {
     doctorId: id,
   });
 
-
   useEffect(() => {
     const doctor = doctorCard.find((item) => item.id == id);
     setDoctorInfo(doctor || null);
   }, [id, doctorCard]);
- 
+
+  const hospitalAddress = `${data?.user?.address?.post_index} ${data?.user?.address?.city}, Polska`;
+
+  // const hospitalAddress = "sniadeckich 3, 60-773,Polska";
   return (
     <div className={styles.doctorProfile}>
       <div className={styles.doctorProfileRow}>
@@ -59,9 +62,9 @@ function DoctorProfile() {
             <p className={styles.profileType}>{doctor.specialty}</p>
           </div>
           <div className={styles.profileNameBtn}>
-            <NavLink to={`${pageConfig.patient.searchVisits}zapis/${id}`}>
+            {/* <NavLink to={`$zapis/${id}`}>
               Umów wizytę
-            </NavLink>
+            </NavLink> */}
           </div>
         </div>
         <div className={styles.profileDescription}>
@@ -69,21 +72,19 @@ function DoctorProfile() {
         </div>
       </div>
       <div className={styles.mapBlock}>
-        <iframe
-          src="https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY&q=Киев, Крещатик, 1"
-          style={{ border: 0 }}
-          allowFullScreen=""
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-        />
+        {!data ? (
+          <Skeleton height={500} />
+        ) : (
+          <MapboxWithGeocoding address={data?.user ? hospitalAddress : ""} />
+        )}
       </div>
       {reviews?.reviews.length > 0 && (
         <div>
           <div className={styles.titleBLock}>
-            <h2>Opinia o lekarze</h2>
+            <h2>Opinia o lekarzu</h2>
             <button>
               {" "}
-              <NavLink to={`/reviews/user/${0}`}>Zobacz wszyatkie</NavLink>{" "}
+              <NavLink to={`/reviews/user/${0}`}>Zobacz wszystkie</NavLink>{" "}
             </button>
           </div>
           <div className={styles.review}>
