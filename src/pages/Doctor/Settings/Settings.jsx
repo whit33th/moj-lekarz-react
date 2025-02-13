@@ -45,14 +45,6 @@ function Settings() {
   const { mutate } = usePostUpdateImg();
 
   useEffect(() => {
-    const formatPostcode = (postcode) => {
-      if (!postcode) return "";
-
-      const cleanPostcode = postcode.replace(/\D/g, "");
-
-      return cleanPostcode.replace(/^(\d{2})(\d{3})$/, "$1-$2");
-    };
-
     reset({
       firstName: isLoading ? "Ładowanie..." : user?.first_name || "Brak",
       lastName: isLoading ? "Ładowanie..." : user?.last_name || "Brak",
@@ -67,7 +59,7 @@ function Settings() {
       flat: isLoading ? "Ładowanie..." : user?.address?.flat || "Brak",
       postCode: isLoading
         ? "Ładowanie..."
-        : formatPostcode(user?.address?.post_index) || "Brak",
+        : user?.address?.post_index || "Brak",
     });
   }, [user, reset, isLoading]);
 
@@ -211,28 +203,19 @@ function Settings() {
               <label htmlFor="postCode">Kod posztowy</label>
               <input
                 type="text"
-                placeholder="61-232"
+                placeholder="61232"
                 {...register("postCode", {
                   pattern: {
-                    value: /^\d{2}-\d{3}$/,
-                    message:
-                      "Nieprawidłowy format kodu pocztowego (np. 61-232)",
+                    value: /^\d{5}$/,
+                    message: "Nieprawidłowy format kodu pocztowego (np. 61232)",
                   },
                   maxLength: {
-                    value: 6,
-                    message: "Maksymalnie 6 znaków",
+                    value: 5,
+                    message: "Maksymalnie 5 znaków",
                   },
                 })}
                 onInput={(e) => {
-                  const value = e.target.value.replace(/\D/g, "");
-                  if (value.length > 2) {
-                    e.target.value = `${value.slice(0, 2)}-${value.slice(
-                      2,
-                      5
-                    )}`;
-                  } else {
-                    e.target.value = value;
-                  }
+                  e.target.value = e.target.value.replace(/\D/g, "").slice(0, 5);
                 }}
               />
               <InputError formState={formState} errorField={"postCode"} />

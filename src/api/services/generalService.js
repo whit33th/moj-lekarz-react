@@ -128,9 +128,9 @@ class GeneralService {
   }
   async postPosts(id, data) {
     const formData = new FormData();
-    formData.append('image', data.photo);
-    formData.append('title', data.title);
-    formData.append('content', data.content);
+    formData.append("image", data.photo);
+    formData.append("title", data.title);
+    formData.append("content", data.content);
 
     return await axios.post(
       `${this.URL}/api/posts/categories/${id}`,
@@ -138,10 +138,23 @@ class GeneralService {
       {
         withCredentials: true,
         headers: {
-          'Content-Type': 'multipart/form-data',
+          "Content-Type": "multipart/form-data",
         },
       }
     );
+  }
+  async putPosts(id, data) {
+    const formData = new FormData();
+    formData.append("image", data.photo);
+    formData.append("title", data.title);
+    formData.append("content", data.content);
+
+    return await axios.put(`${this.URL}/api/posts/${id}`, formData, {
+      withCredentials: true,
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
   }
   async deletePosts(id) {
     return await axios.delete(`${this.URL}/api/posts/${id}`, {
@@ -149,23 +162,6 @@ class GeneralService {
     });
   }
 
-  async putPosts(id, data) {
-    const formData = new FormData();
-    formData.append('image', data.photo);
-    formData.append('title', data.title);
-    formData.append('content', data.content);
-
-    return await axios.put(
-      `${this.URL}/api/posts/${id}`,
-      formData,
-      {
-        withCredentials: true,
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      }
-    );
-  }
   async deleteReview(id) {
     return await axios.delete(`${this.URL}/api/admins/reviews/${id}`, {
       withCredentials: true,
@@ -186,6 +182,11 @@ class GeneralService {
 
   async getNotion() {
     return await axios.get(`${this.URL}/api/notions`, {
+      withCredentials: true,
+    });
+  }
+  async getCategories() {
+    return await axios.get(`${this.URL}/api/categories`, {
       withCredentials: true,
     });
   }

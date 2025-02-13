@@ -94,14 +94,7 @@ function Workers() {
           activeTab={activeTab}
           storageKey="WorkersNavbar"
         />
-        <Dropdown
-          defaultOption="Filtruj"
-          color={"#A6DEF7"}
-          options={["1", "2"]}
-          selectedOptionChanging={false}
-        >
-          <img src={filters} alt="" />
-        </Dropdown>
+        
       </div>
       {activeTab === "Lista pracowników" ? (
         <Table

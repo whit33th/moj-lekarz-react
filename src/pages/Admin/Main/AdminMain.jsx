@@ -161,10 +161,10 @@ function AdminMainContent() {
             </thead>
             <tbody>
               {newPatients?.slice(-5)?.map((patient) => (
-                <tr key={patient.id}>
-                  <td>{`${patient.user.first_name} ${patient.user.last_name}`}</td>
-                  <td>{patient.id}</td>
-                  <td>{format(new Date(patient.createdAt), "dd.MM.yyyy")}</td>
+                <tr key={patient?.id}>
+                  <td>{`${patient?.user?.first_name} ${patient?.user?.last_name}`}</td>
+                  <td>{patient?.id}</td>
+                  <td>{format(new Date(patient?.createdAt), "dd.MM.yyyy")}</td>
                 </tr>
               ))}
             </tbody>
@@ -182,8 +182,8 @@ function AdminMainContent() {
             <tbody>
               {newClinics?.slice(-5)?.map((clinic, index) => (
                 <tr key={index}>
-                  <td>{clinic.name}</td>
-                  <td>{format(new Date(clinic.createdAt), "dd.MM.yyyy")}</td>
+                  <td>{clinic?.name}</td>
+                  <td>{format(new Date(clinic?.createdAt), "dd.MM.yyyy")}</td>
                 </tr>
               ))}
             </tbody>
@@ -247,7 +247,7 @@ function AdminMainContent() {
               <li key={note.id}>
                 <div className={styles.noteContent}>
                   <img className={styles.noteIco} src={noteIco} alt="" />
-                  {note.content}
+                  {note?.content}
                 </div>
                 <button className={styles.deleteNote}>
                   <img

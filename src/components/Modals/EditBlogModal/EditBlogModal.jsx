@@ -5,10 +5,10 @@ import Choice from "../../Modal/Choice";
 import InputError from "../../UI/InputError/InputError";
 import { useForm } from "react-hook-form";
 import useStore from "../../../data/store";
-import BlueBorderBtn from "./../../Buttons/BlueBorderBtn/BlueBorderBtn";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useMemo } from "react";
 import usePutPosts from "../../../api/hooks/GeneralHooks/Posts/usePutPosts";
 import blueButtonStyles from "../../Buttons/BlueBorderBtn/BlueBorderBtn.module.css";
+import { useGetCategory } from "../../../api/hooks/GeneralHooks/Posts/useGetCategories";
 
 function EditBlogModal({ post }) {
   const { setModalActive } = useStore();
@@ -16,20 +16,24 @@ function EditBlogModal({ post }) {
   const [selectedImage, setSelectedImage] = useState(null);
   const [photoError, setPhotoError] = useState("");
   const { mutate, isPending } = usePutPosts();
-  
-  const categories = [
-    { value: '1', label: 'Zdrowie' },
-    { value: '2', label: 'Lifestyle' },
-    { value: '3', label: 'Medycyna' }
-  ];
-  
+  const { data: categoriesData, isLoading: categoriesLoading } =
+    useGetCategory();
+
+  const categories = useMemo(() => {
+    if (!categoriesData) return [];
+    return categoriesData.map((category) => ({
+      value: category.id.toString(),
+      label: category.name,
+    }));
+  }, [categoriesData]);
+
   const { register, handleSubmit, control, formState } = useForm({
     mode: "onChange",
     defaultValues: {
-      title: { value: post.id, label: post.title },
+      title: { value: post.title, label: post.title }, // Fixed: use title for both value and label
       content: post.shortDescription,
-      category: { value: post.category, label: post.category }
-    }
+      category: { value: post.categoryId?.toString(), label: post.category },
+    },
   });
 
   useEffect(() => {
@@ -55,20 +59,22 @@ function EditBlogModal({ post }) {
   };
 
   const onSubmit = (data) => {
-    if (!selectedImage) {
+    // Check photo only if user tried to change it (clicked the button)
+    if (fileInputRef.current && !selectedImage) {
       setPhotoError("Proszę wybrać zdjęcie");
       return;
     }
-    
+
     const formData = {
       title: data.title.label,
+      categoryId: parseInt(data.category.value),
       content: data.content,
-      photo: selectedImage instanceof File ? selectedImage : new File([selectedImage], 'image'),
+      photo: selectedImage, // Always send the photo, whether it's new or existing
     };
 
     mutate({
       id: post.id,
-      data: formData
+      data: formData,
     });
   };
 
@@ -94,20 +100,23 @@ function EditBlogModal({ post }) {
         <InputError errorField="title" formState={formState} />
       </div>
 
-      <div className={styles.inputGroup}>
+      {/* <div className={styles.inputGroup}>
         <label>Kategoria</label>
         <InputDropdownStas
           control={control}
           name="category"
           options={categories}
-          seeOptions    
-          placeholder="Wybierz kategorię"
+          placeholder={
+            categoriesLoading ? "Ładowanie kategorii..." : "Wybierz kategorię"
+          }
+          isLoading={categoriesLoading}
+          seeOptions
           {...register("category", {
-            required: "Kategoria jest wymagana"
+            required: "Kategoria jest wymagana",
           })}
         />
         <InputError errorField="category" formState={formState} />
-      </div>
+      </div> */}
 
       <div className={styles.inputGroup}>
         <label>Treść</label>
@@ -129,7 +138,7 @@ function EditBlogModal({ post }) {
         <input
           type="file"
           ref={fileInputRef}
-          style={{ display: 'none' }}
+          style={{ display: "none" }}
           onChange={handleFileSelect}
           accept="image/*"
         />
@@ -139,9 +148,11 @@ function EditBlogModal({ post }) {
             onClick={handleImageClick}
             className={blueButtonStyles.btn}
           >
-            {selectedImage ? 'Zmień obrazek' : 'Dodaj obrazek'}
+            {selectedImage ? "Zmień obrazek" : "Dodaj obrazek"}
           </button>
-          {photoError && <div className={styles.errorMessage}>{photoError}</div>}
+          {photoError && (
+            <div className={styles.errorMessage}>{photoError}</div>
+          )}
         </div>
         <Choice
           choice1="Anuluj"

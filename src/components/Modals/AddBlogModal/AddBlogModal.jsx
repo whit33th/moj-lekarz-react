@@ -5,9 +5,10 @@ import Choice from "../../Modal/Choice";
 import InputError from "../../UI/InputError/InputError";
 import { useForm } from "react-hook-form";
 import useStore from "../../../data/store";
-import BlueBorderBtn from "./../../Buttons/BlueBorderBtn/BlueBorderBtn";
-import { useRef, useState } from "react";
+import { useRef, useState, useMemo } from "react";
 import usePostPosts from "../../../api/hooks/GeneralHooks/Posts/usePostPosts";
+import { useGetCategory } from "../../../api/hooks/GeneralHooks/Posts/useGetCategories";
+import blueButtonStyles from "../../Buttons/BlueBorderBtn/BlueBorderBtn.module.css";
 
 function AddBlogModal() {
   const { setModalActive } = useStore();
@@ -15,12 +16,16 @@ function AddBlogModal() {
   const [selectedImage, setSelectedImage] = useState(null);
   const [photoError, setPhotoError] = useState("");
   const { mutate, isPending } = usePostPosts();
+  const { data: categoriesData, isLoading: categoriesLoading } =
+    useGetCategory();
 
-  const categories = [
-    { value: "1", label: "Zdrowie" },
-    { value: "2", label: "Lifestyle" },
-    { value: "3", label: "Medycyna" },
-  ];
+  const categories = useMemo(() => {
+    if (!categoriesData) return [];
+    return categoriesData.map((category) => ({
+      value: category.id.toString(),
+      label: category.name,
+    }));
+  }, [categoriesData]);
 
   const { register, handleSubmit, control, formState } = useForm({
     mode: "onChange",
@@ -50,12 +55,13 @@ function AddBlogModal() {
 
     const formData = {
       title: data.title.label,
+      categoryId: parseInt(data.category.value), // Send the category ID as a number
       content: data.content,
-      photo: selectedImage,  // Now sending the actual file object
+      photo: selectedImage,
     };
 
     mutate({
-      id: 262,
+      id: formData.categoryId,
       data: formData,
     });
   };
@@ -87,8 +93,12 @@ function AddBlogModal() {
         <InputDropdownStas
           control={control}
           name="category"
+          seeOptions
           options={categories}
-          placeholder="Wybierz kategorię"
+          placeholder={
+            categoriesLoading ? "Ładowanie kategorii..." : "Wybierz kategorię"
+          }
+          isLoading={categoriesLoading}
           {...register("category", {
             required: "Kategoria jest wymagana",
           })}
@@ -121,9 +131,13 @@ function AddBlogModal() {
           accept="image/*"
         />
         <div>
-          <BlueBorderBtn cb={handleImageClick}>
+          <button 
+            type="button" 
+            onClick={handleImageClick}
+            className={blueButtonStyles.btn}
+          >
             {selectedImage ? "Zmień obrazek" : "Dodaj obrazek"}
-          </BlueBorderBtn>
+          </button>
           {photoError && (
             <div className={styles.errorMessage}>{photoError}</div>
           )}

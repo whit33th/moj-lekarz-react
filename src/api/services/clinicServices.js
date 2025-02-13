@@ -169,6 +169,21 @@ class ClinicServices {
       }
     );
   }
+  async postDoctor(data) {
+    return await axios.post(
+      `${this.URL}/api/clinics/doctors`,
+      {
+        userData: data.userData,
+        addressData: data.addressData,
+        doctorData: data.doctorData,
+        specialtyId: data.specialtyId,
+        servicesIds: data.servicesIds
+      },
+      {
+        withCredentials: true,
+      }
+    );
+  }
   async postSchedule(data) {
     return await axios.post(`${this.URL}/api/clinics/schedules`, {
       doctorsIds: data.doctorsIds,
