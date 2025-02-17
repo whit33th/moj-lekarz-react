@@ -87,7 +87,7 @@ function PatientList() {
     <div className="content">
       <div className={styles.calendarNavbar}>
         <span className={styles.calendarNavbarDate}>
-          <span>Lista receptów</span>
+          <span>Lista recept</span>
         </span>
       </div>
 

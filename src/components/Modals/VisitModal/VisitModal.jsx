@@ -41,7 +41,7 @@ function VisitModal({ props }) {
           </div>
 
         </div>
-        <BlueBorderBtn cb={() => (setModalContent(<AddRecipesModalForSelectedUser patientId={props.patientId} name={props.firstName + " " + props.lastName} />), setModalActive(true))} >Lista receptur</BlueBorderBtn>
+        <BlueBorderBtn cb={() => (setModalContent(<AddRecipesModalForSelectedUser patientId={props.patientId} name={props.firstName + " " + props.lastName} />), setModalActive(true))} >Lista recept</BlueBorderBtn>
       </div>
 
       <div className={styles.employeeInfo}>

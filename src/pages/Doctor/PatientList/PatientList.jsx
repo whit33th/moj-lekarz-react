@@ -57,9 +57,9 @@ function PatientList() {
     <div className="content">
       <div className={styles.calendarNavbar}>
         <span className={styles.calendarNavbarDate}>
-          <span>Lista pacjentów</span>
+          <span>Lista pacept</span>
         </span>
-        <Dropdown
+        {/* <Dropdown
           defaultOption="Filtruj"
           selectedOptionChanging={false}
           color={"#A6DEF7"}
@@ -67,7 +67,7 @@ function PatientList() {
           type={"filter"}
         >
           <img src={filters} alt="" />
-        </Dropdown>
+        </Dropdown> */}
       </div>
 
       <Table

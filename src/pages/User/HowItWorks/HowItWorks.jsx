@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { motion } from "framer-motion"; // Add this import
 import styles from "./HowItWorks.module.css";
 import img1 from "@assets/img/Frame1.svg";
 import img2 from "@assets/img/Frame2.svg";
@@ -21,7 +22,13 @@ function HowItWorks() {
   const { control, handleSubmit, watch } = useForm({});
   return (
     <div className={styles.howItWorks}>
-      <div className={styles.descriptions}>
+      <motion.div
+        initial={{ opacity: 0, y: -10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        viewport={{ once: true, amount: 0.5 }}
+        className={styles.descriptions}
+      >
         <h1>Jak to działą?</h1>
         <div className={styles.descriptionsText}>
           <p>
@@ -32,14 +39,30 @@ function HowItWorks() {
           </p>
         </div>
         {!isAuth && (
-          <button>
-            <a href={pageConfig.registration}>Załóż konto</a>{" "}
-          </button>
+          <motion.button
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.3, delay: 0.2 }}
+          >
+            <a href={pageConfig.registration}>Załóż konto</a>
+          </motion.button>
         )}
-      </div>
+      </motion.div>
 
-      <div className={styles.howItWorksImageBlock}>
-        <div className={styles.imagesBlockItem}>
+      <motion.div
+        initial={{ opacity: 0, y: -10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        viewport={{ once: true, amount: 0.5 }}
+        className={styles.howItWorksImageBlock}
+      >
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          viewport={{ once: true, amount: 0.5 }}
+          className={styles.imagesBlockItem}
+        >
           <div className={styles.itemImg}>
             <img src={img1} />
           </div>
@@ -50,11 +73,23 @@ function HowItWorks() {
               serwisu.
             </p>
           </div>
-        </div>
-        <div className={styles.arrow}>
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          viewport={{ once: true, amount: 0.5 }}
+          className={styles.arrow}
+        >
           <img src={arrow} />
-        </div>
-        <div className={styles.imagesBlockItem}>
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          viewport={{ once: true, amount: 0.5 }}
+          className={styles.imagesBlockItem}
+        >
           <div className={styles.itemImg}>
             <img src={img2} />
           </div>
@@ -62,11 +97,23 @@ function HowItWorks() {
             <p className={styles.itemTextTitle}>Zarejestruj swoją wizytę</p>
             <p>Wybierz dowolnego lekarza, termin i zarejestruj wizytę.</p>
           </div>
-        </div>
-        <div className={styles.arrow}>
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          viewport={{ once: true, amount: 0.5 }}
+          className={styles.arrow}
+        >
           <img src={arrow} />
-        </div>
-        <div className={styles.imagesBlockItem}>
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.5 }}
+          viewport={{ once: true, amount: 0.5 }}
+          className={styles.imagesBlockItem}
+        >
           <div className={styles.itemImg}>
             <img src={img3} />
           </div>
@@ -74,14 +121,29 @@ function HowItWorks() {
             <p className={styles.itemTextTitle}>Konsultacja</p>
             <p>Gotowe! Lekarz już na Ciebie czeka.</p>
           </div>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
       <div className={styles.slideblock}>
-        <div className={styles.slideTitle}> Dlaczego MójLekarz?</div>
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true, amount: 0.5 }}
+          className={styles.slideTitle}
+        >
+          Dlaczego MójLekarz?
+        </motion.div>
         <SwiperSlider />
       </div>
-      <div className={styles.formBlockConteiner}>
+
+      <motion.div
+        initial={{ opacity: 0, y: -10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        viewport={{ once: true, amount: 0.5 }}
+        className={styles.formBlockConteiner}
+      >
         <div className={styles.formBlock}>
           <h1>Jesteś firmą?</h1>
           <p>Wypełnij formularz kontaktowy i zostań naszym partnerem!</p>
@@ -124,7 +186,7 @@ function HowItWorks() {
             <button>Wyślij</button>
           </div>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }

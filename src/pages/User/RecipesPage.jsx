@@ -57,7 +57,7 @@ export default function RecipesPage() {
       </div>
 
       <div className={styles.activeRecipes}>
-        <h1>Nieaktywne receptury</h1>
+        <h1>Nieaktywne recepty</h1>
         <div className={styles.recipesList}>
           {isLoading ? renderSkeletons() : (
             data?.inactive?.map((item) => (
