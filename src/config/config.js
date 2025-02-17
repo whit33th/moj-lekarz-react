@@ -74,7 +74,6 @@ class PageConfig {
     firm: "/firm",
     policy: {
       regulations: "/policy/regulations",
-      personalData: "/policy/personal-data",
       cookies: "/policy/cookies",
       privacy: "/policy/privacy",
     },

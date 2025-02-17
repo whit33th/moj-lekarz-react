@@ -10,7 +10,7 @@ import useGetClinicSpecialties from "../../../api/hooks/GeneralHooks/SpecialtyHo
 import Skeleton from "react-loading-skeleton";
 import useStore from "../../../data/store";
 import EditSheduleClinic from "../../../components/Modals/EditSheduleClinic/EditSheduleClinic";
-import usePostUpdateImg from '@hooks/UserHooks/usePostUpdateImg';
+import usePostUpdateImg from "@hooks/UserHooks/usePostUpdateImg";
 import grey from "@assets/img/grey.png";
 import usePutClinicInfo from "../../../api/hooks/ClinicHooks/usePutClinicInfo";
 import InputError from "../../../components/UI/InputError/InputError";
@@ -19,7 +19,7 @@ function ProfilFirm() {
   const [selectedImg, setSelectedImg] = useState(null);
   const { mutate: uploadImage } = usePostUpdateImg();
   const { mutate: updateClinicInfo, isPending } = usePutClinicInfo();
-  
+
   const { data, isLoading } = useGetUserInfo();
   const { data: specialties, isLoading: specialtiesLoading } =
     useGetClinicSpecialties({
@@ -29,7 +29,7 @@ function ProfilFirm() {
   const { setModalActive, setModalContent } = useStore();
 
   const { register, reset, handleSubmit, formState } = useForm({
-    mode: 'onChange'
+    mode: "onChange",
   });
 
   useEffect(() => {
@@ -67,7 +67,7 @@ function ProfilFirm() {
         id: schedule.id,
         from: schedule.start_time ? schedule.start_time.substring(0, 5) : "",
         to: schedule.end_time ? schedule.end_time.substring(0, 5) : "",
-        day_of_week: schedule.day_of_week 
+        day_of_week: schedule.day_of_week,
       };
       return acc;
     }, {});
@@ -77,7 +77,12 @@ function ProfilFirm() {
 
   function handleEditSheduleModal() {
     setModalActive(true);
-    setModalContent(<EditSheduleClinic setModalActive={setModalActive} initialSchedule={workHours} />);
+    setModalContent(
+      <EditSheduleClinic
+        setModalActive={setModalActive}
+        initialSchedule={workHours}
+      />
+    );
   }
 
   const handleImgChange = (event) => {
@@ -85,9 +90,9 @@ function ProfilFirm() {
     if (file) {
       const objectUrl = URL.createObjectURL(file);
       setSelectedImg(objectUrl);
-      
+
       const formData = new FormData();
-      formData.set('image', file);
+      formData.set("image", file);
       uploadImage(formData);
     }
   };
@@ -110,7 +115,7 @@ function ProfilFirm() {
   };
 
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
@@ -123,21 +128,21 @@ function ProfilFirm() {
             id="profileImage"
             accept="image/*"
             onChange={handleImgChange}
-            style={{ display: 'none' }}
+            style={{ display: "none" }}
           />
           <label htmlFor="profileImage">
             <img
               src={selectedImg || data?.photo || grey}
               alt="Profile"
               className={styles["profile-image"]}
-              style={{ cursor: 'pointer' }}
+              style={{ cursor: "pointer" }}
             />
           </label>
         </div>
         <h1>{data?.name}</h1>
         {!specialtiesLoading ? (
-          <p  className={styles.specialization}>
-            {specialties?.length  || "Brak"} specjalizacji
+          <p className={styles.specialization}>
+            {specialties?.length || "Brak"} specjalizacji
           </p>
         ) : (
           <Skeleton height={24} width={125} />
@@ -145,14 +150,17 @@ function ProfilFirm() {
       </div>
 
       <div className={styles["profile-content"]}>
-        <form className={styles["form-section"]} onSubmit={handleSubmit(onSubmit)}>
+        <form
+          className={styles["form-section"]}
+          onSubmit={handleSubmit(onSubmit)}
+        >
           <div className={styles["form-group"]}>
             <label>Województwo</label>
-            <input 
-              {...register("province", { 
+            <input
+              {...register("province", {
                 required: "Województwo jest wymagane",
-                minLength: { value: 2, message: "Minimum 2 znaki" }
-              })} 
+                minLength: { value: 2, message: "Minimum 2 znaki" },
+              })}
             />
             <InputError errorField="province" formState={formState} />
           </div>
@@ -160,21 +168,21 @@ function ProfilFirm() {
           <div className={styles["form-row"]}>
             <div className={styles["form-group"]}>
               <label>Miasto</label>
-              <input 
-                {...register("city", { 
+              <input
+                {...register("city", {
                   required: "Miasto jest wymagane",
-                  minLength: { value: 2, message: "Minimum 2 znaki" }
-                })} 
+                  minLength: { value: 2, message: "Minimum 2 znaki" },
+                })}
               />
               <InputError errorField="city" formState={formState} />
             </div>
             <div className={styles["form-group"]}>
               <label>Kod pocztowy</label>
-              <input 
-                {...register("post_index", { 
+              <input
+                {...register("post_index", {
                   required: "Kod pocztowy jest wymagany",
-                  pattern: { value: /^\d{5}$/, message: "Format: XXXXX" }
-                })} 
+                  pattern: { value: /^\d{5}$/, message: "Format: XXXXX" },
+                })}
               />
               <InputError errorField="post_index" formState={formState} />
             </div>
@@ -183,19 +191,19 @@ function ProfilFirm() {
           <div className={styles["form-row"]}>
             <div className={styles["form-group"]}>
               <label>Ulica</label>
-              <input 
-                {...register("street", { 
-                  required: "Ulica jest wymagana"
-                })} 
+              <input
+                {...register("street", {
+                  required: "Ulica jest wymagana",
+                })}
               />
               <InputError errorField="street" formState={formState} />
             </div>
             <div className={styles["form-group"]}>
               <label>Numer budynku</label>
-              <input 
-                {...register("home", { 
-                  required: "Numer budynku jest wymagany"
-                })} 
+              <input
+                {...register("home", {
+                  required: "Numer budynku jest wymagany",
+                })}
               />
               <InputError errorField="home" formState={formState} />
             </div>
@@ -204,20 +212,23 @@ function ProfilFirm() {
           <div className={styles["form-row"]}>
             <div className={styles["form-group"]}>
               <label>Numer NIP</label>
-              <input 
-                {...register("nip", { 
+              <input
+                {...register("nip", {
                   required: "NIP jest wymagany",
-                  pattern: { value: /^\d{10}$/, message: "NIP musi mieć 10 cyfr" }
-                })} 
+                  pattern: {
+                    value: /^\d{10}$/,
+                    message: "NIP musi mieć 10 cyfr",
+                  },
+                })}
               />
               <InputError errorField="nip" formState={formState} />
             </div>
             <div className={styles["form-group"]}>
               <label>Numer licencji</label>
-              <input 
-                {...register("nr_license", { 
-                  required: "Numer licencji jest wymagany"
-                })} 
+              <input
+                {...register("nr_license", {
+                  required: "Numer licencji jest wymagany",
+                })}
               />
               <InputError errorField="nr_license" formState={formState} />
             </div>
@@ -225,27 +236,29 @@ function ProfilFirm() {
 
           <div className={styles["form-group"]}>
             <label>Telefon</label>
-            <input 
-              {...register("phone", { 
-                required: "Telefon jest wymagany"
-              })} 
+            <input
+              readOnly
+              {...register("phone", {
+                
+              })}
             />
             <InputError errorField="phone" formState={formState} />
           </div>
 
           <div className={styles["form-group"]}>
             <label>Email</label>
-            <input 
-              {...register("email", { 
-                required: "Email jest wymagany",
-                pattern: { value: /^\S+@\S+\.\S+$/, message: "Nieprawidłowy format email" }
-              })} 
+            <input
+              readOnly
+              {...register("email", {
+               
+                
+              })}
             />
             <InputError errorField="email" formState={formState} />
           </div>
 
-          <BlueBtn 
-            type="submit" 
+          <BlueBtn
+            type="submit"
             className={styles["edit-button"]}
             disabled={isPending}
           >

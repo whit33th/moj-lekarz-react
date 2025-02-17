@@ -43,7 +43,7 @@ function ClinicCard({ data }) {
       className={styles.clinicCard}
     >
       <div className={styles.nameBlock}>
-        <img src={clinic.photo || grey}  alt="</div>clinic" />
+        <img src={clinic.photo || grey} alt="</div>clinic" />
         <div className={styles.nameBlockText}>
           <div className={styles.nameSection}>
             <p>{clinic.name}</p>
@@ -73,9 +73,9 @@ function ClinicCard({ data }) {
           <img src={imgIcon1} alt="address" />
           <div>
             <p>
-              {clinic.address?.street} {clinic.address?.city}
+              {clinic.address?.street}, {clinic.address?.postIndex}, {clinic.address?.city}
             </p>
-            <p className={styles.clinicplaceholder}>Centrum Medyczny</p>
+            
           </div>
         </div>
         {/* <div>

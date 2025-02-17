@@ -137,56 +137,7 @@ function HowItWorks() {
         <SwiperSlider />
       </div>
 
-      <motion.div
-        initial={{ opacity: 0, y: -10 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        viewport={{ once: true, amount: 0.5 }}
-        className={styles.formBlockConteiner}
-      >
-        <div className={styles.formBlock}>
-          <h1>Jesteś firmą?</h1>
-          <p>Wypełnij formularz kontaktowy i zostań naszym partnerem!</p>
-          <div className={styles.form}>
-            <input
-              type="text"
-              placeholder="Wpisz imię i nazwisko"
-              value={nameInputValue}
-              onChange={(e) => setNameInputValue(e.target.value)}
-            />
-            <div className={styles.dropdownContainer}>
-              <InputDropdownStas
-                control={control}
-                name={"."}
-                seeOptions
-                options={options}
-                placeholder={"Kim jestes?"}
-              />
-            </div>
-            <input
-              type="text"
-              placeholder="Wpisz emailu"
-              value={emailInputValue}
-              onChange={(e) => setEmailInputValue(e.target.value)}
-            />
-            <input
-              type="text"
-              placeholder="Wpisz numer telefonu"
-              value={phoneInputValue}
-              onChange={(e) => setPhoneInputValue(e.target.value)}
-            />
-            <textarea
-              name="text"
-              placeholder="Wiadomość"
-              value={textareaInputValue}
-              onChange={(e) => setTextareaInputValue(e.target.value)}
-            ></textarea>
-          </div>
-          <div className={styles.formBtn}>
-            <button>Wyślij</button>
-          </div>
-        </div>
-      </motion.div>
+      
     </div>
   );
 }

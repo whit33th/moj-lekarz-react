@@ -6,6 +6,8 @@ import img2 from "@assets/img/staticIcon2.svg";
 import img3 from "@assets/img/staticIcon3.svg";
 import { useGetClinicProvinceStats } from "../../api/hooks/GeneralHooks/Stats/useGetProvinceClinicNumber";
 import { motion } from "framer-motion";
+import { pageConfig } from "../../config/config";
+import { useNavigate } from "react-router-dom";
 
 const mapPaths = [
   {
@@ -107,6 +109,7 @@ const mapPaths = [
 ];
 
 function Map(props) {
+  const navigate = useNavigate();
   const { data } = useGetClinicProvinceStats();
   console.log(data);
   const [selectedPathId, setSelectedPathId] = useState(props.data.id);
@@ -162,23 +165,25 @@ function Map(props) {
       <div className={styles.mapBlockLeft}>
         <div className={styles.leftBtnblock}>
           <h1>Zebraliśmy dla Ciebie najlepszych specjalistów w całym kraju</h1>
-          <button>Umów się na wizytę</button>
+          <button onClick={() => navigate(pageConfig.patient.searchVisits)}>
+            Umów się na wizytę
+          </button>
         </div>
         <div className={styles.staticBlock}>
           <div className={styles.staticItem}>
             <img src={img1} alt="Doctors" />
             <CountUp endValue={props.data.doctors} duration={2000} />
-            <p>profesjonalnych lekarzy</p>
+            <p>Profesjonalnych lekarzy</p>
           </div>
           <div className={styles.staticItem}>
             <img src={img2} alt="Specializations" />
             <CountUp endValue={props.data.specializations} duration={2000} />
-            <p>specjalizacji lekarskich</p>
+            <p>Specjalizacji lekarskich</p>
           </div>
           <div className={styles.staticItem}>
             <img src={img3} alt="Locations" />
             <CountUp endValue={props.data.locations} duration={2000} />
-            <p>miejscowości, w których umówisz się na wizytę</p>
+            <p>Miejscowości, w których umówisz się na wizytę</p>
           </div>
         </div>
       </div>

@@ -58,10 +58,6 @@ function Footer() {
                 Jak to działa
               </NavLink>
               <div>/</div>
-              <NavLink to={pageConfig.patient.mobileApp}>
-                Aplikacja mobilna
-              </NavLink>
-              <div>/</div>
               <NavLink to={pageConfig.patient.blog}>Blog</NavLink>
               <div>/</div>
               <NavLink to={pageConfig.patient.firm}>Dla firm</NavLink>
@@ -77,13 +73,13 @@ function Footer() {
                 <li>
                   <NavLink to="/QA">Dla pacjentów</NavLink>
                 </li>
-                <li>
+                {/* <li>
                   <a href="#">Lekarze</a>
-                </li>
+                </li> */}
 
-                <li>
+                {/* <li>
                   <a href="#">Usługi i zabiegi</a>
-                </li>
+                </li> */}
                 <li>
                   <a href="#">Pomoc</a>
                 </li>
@@ -127,8 +123,15 @@ function Footer() {
           </a>
         </div>
         <div className={styles.politykaNavigate}>
-          <NavLink to="/policy/privacy">Polityka prywatności</NavLink>
-          <NavLink to="/policy/cookies">Polityka cookies</NavLink>
+          <NavLink to={pageConfig.patient.policy.cookies}>
+            Polityka cookies
+          </NavLink>
+          <NavLink to={pageConfig.patient.policy.privacy}>
+            Polityka prywatności
+          </NavLink>
+          <NavLink to={pageConfig.patient.policy.regulations}>
+            Regulamin
+          </NavLink>
         </div>
       </div>
     </footer>

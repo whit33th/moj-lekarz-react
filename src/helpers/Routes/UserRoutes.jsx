@@ -62,7 +62,7 @@ function UserRoutes() {
         element={<PolicyRegulamin />}
       />
       <Route
-        path={pageConfig.patient.policy.personalData}
+        path={pageConfig.patient.policy.privacy}
         element={<PolicyPersonalData />}
       />
       <Route

@@ -1,77 +1,75 @@
-import { useState, useCallback } from "react"
-import { motion } from "framer-motion"
-import styles from "./style/Firm.module.css"
+import { useState, useCallback } from "react";
+import { motion } from "framer-motion";
+import styles from "./style/Firm.module.css";
 
-import img5 from "@assets/img/Vector311.svg"
+import img5 from "@assets/img/Vector311.svg";
 
-import img7 from "@assets/img/Vector (25).svg"
-import img8 from "@assets/img/Vector (26).svg"
-import img9 from "@assets/img/Vector (27).svg"
-import img10 from "@assets/img/Vector (28).svg"
-import img11 from "@assets/img/Vector (29).svg"
-import img12 from "@assets/img/Vector (30).svg"
-import img13 from "@assets/img/Group (2).svg"
-import img14 from "@assets/img/Vectorprice.svg"
-import img15 from "@assets/img/ri_user-settings-line.svg"
-import img16 from "@assets/img/Vector77.svg"
-import img17 from "@assets/img/Vector78.svg"
-import img18 from "@assets/img/Vector79.svg"
-import img19 from "@assets/img/Vector80.svg"
-import img20 from "@assets/img/Vector81.svg"
-import img21 from "@assets/img/Group (3).svg"
-import vector from "@assets/img/Vector9.svg"
-import imgfirstBlock1 from "@assets/img/Group 5.svg"
-import imgfirstBlock2 from "@assets/img/Group 6.svg"
+import img7 from "@assets/img/Vector (25).svg";
+import img8 from "@assets/img/Vector (26).svg";
+import img9 from "@assets/img/Vector (27).svg";
+import img10 from "@assets/img/Vector (28).svg";
+import img11 from "@assets/img/Vector (29).svg";
+import img12 from "@assets/img/Vector (30).svg";
+import img13 from "@assets/img/Group (2).svg";
+import img14 from "@assets/img/Vectorprice.svg";
+import img15 from "@assets/img/ri_user-settings-line.svg";
+import img16 from "@assets/img/Vector77.svg";
+import img17 from "@assets/img/Vector78.svg";
+import img18 from "@assets/img/Vector79.svg";
+import img19 from "@assets/img/Vector80.svg";
+import img20 from "@assets/img/Vector81.svg";
+import img21 from "@assets/img/Group (3).svg";
+import vector from "@assets/img/Vector9.svg";
+import imgfirstBlock1 from "@assets/img/Group 5.svg";
+import imgfirstBlock2 from "@assets/img/Group 6.svg";
+import cloud from "@assets/img/cloud.png";
 
-import { sendFormData } from "../../helpers/apiService"
+import { sendFormData } from "../../helpers/apiService";
 
-import PartnersSlider from "./../../components/PartnersSlider"
-import InputDropdownStas from '../../components/Dropdown/InputDropdownStas'
-import { useForm } from 'react-hook-form'
+import PartnersSlider from "./../../components/PartnersSlider";
+import InputDropdownStas from "../../components/Dropdown/InputDropdownStas";
+import { useForm } from "react-hook-form";
 
 function Firm() {
-  const [nameInputValue, setNameInputValue] = useState("")
-  const [emailInputValue, setEmailInputValue] = useState("")
-  const [phoneInputValue, setPhoneInputValue] = useState("")
-  const [textareaInputValue, setTextareaInputValue] = useState("")
+  const [nameInputValue, setNameInputValue] = useState("");
+  const [emailInputValue, setEmailInputValue] = useState("");
+  const [phoneInputValue, setPhoneInputValue] = useState("");
+  const [textareaInputValue, setTextareaInputValue] = useState("");
 
-  const [priceSliderState, setPriceSliderState] = useState("Dla specjalistów")
+  const [priceSliderState, setPriceSliderState] = useState("Dla specjalistów");
 
-  const [questionOne, setQuestionOne] = useState(false)
-  const [questionTwo, setQuestionTwo] = useState(false)
-  const [questionThree, setQuestionThree] = useState(false)
+  const [questionOne, setQuestionOne] = useState(false);
+  const [questionTwo, setQuestionTwo] = useState(false);
+  const [questionThree, setQuestionThree] = useState(false);
 
-  const { control } = useForm({
+  const { control } = useForm({});
 
-  })
-
-
-  const options = ['Ortoped', 'Logoped', 'Surgeon']
+  const options = ["Ortoped", "Logoped", "Surgeon"];
 
   const handleSubmit = useCallback(
     async (event) => {
-      event.preventDefault()
+      event.preventDefault();
 
       const formData = {
         name: nameInputValue,
         email: emailInputValue,
         phone: phoneInputValue,
         message: textareaInputValue,
-      }
+      };
 
       try {
-        const result = await sendFormData(formData)
-        console.log("Form submitted successfully:", result)
+        const result = await sendFormData(formData);
+        console.log("Form submitted successfully:", result);
       } catch (error) {
-        console.error("Error submitting form:", error)
+        console.error("Error submitting form:", error);
       }
     },
     [nameInputValue, emailInputValue, phoneInputValue, textareaInputValue]
-  )
+  );
 
   return (
     <div className={styles.firm}>
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
@@ -91,7 +89,10 @@ function Firm() {
               standard swojej praktyki, ale także pokazujesz pacjentom,
               <br /> że jesteś na bieżąco z najnowszymi trendami w medycynie
             </p>
-            <button>Skontaktuj się z administratorem</button>
+
+            <a href="mailto:dhaurylkevich@edu.cdv.pl">
+              Skontaktuj się z administratorem
+            </a>
           </div>
           <div className={styles.firmInfoDescriptionright}>
             <img src={imgfirstBlock2} className={styles.firstBlockImgOne} />
@@ -99,7 +100,7 @@ function Firm() {
           </div>
         </div>
       </motion.div>
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: -10 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
@@ -135,7 +136,7 @@ function Firm() {
           </div>
         </div>
       </motion.div>
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: -10 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
@@ -170,10 +171,11 @@ function Firm() {
           </div>
           <div className={styles.sliderContent}>
             <div
-              className={`${styles.sliderContentOneBlock} ${priceSliderState !== "Dla specjalistów"
-                ? styles.hiddenPrice
-                : ""
-                }`}
+              className={`${styles.sliderContentOneBlock} ${
+                priceSliderState !== "Dla specjalistów"
+                  ? styles.hiddenPrice
+                  : ""
+              }`}
             >
               <div className={styles.priceTariffCard}>
                 <h1>Okres próbny przez 4 dni</h1>
@@ -227,7 +229,7 @@ function Firm() {
                 </ul>
               </div>
               <div className={styles.priceTariffCard}>
-                <h1>Plan "Standart"</h1>
+                <h1>Plan &quot;Standart&quot;</h1>
                 <p>
                   Zapewnij pacjentom wygodę – udostępnij rejestrację online i
                   przypominaj im o wizytach.
@@ -280,8 +282,9 @@ function Firm() {
             </div>
 
             <div
-              className={`${styles.sliderContentTwoBlock} ${priceSliderState !== "Dla płacówek" ? styles.hiddenPrice : ""
-                }`}
+              className={`${styles.sliderContentTwoBlock} ${
+                priceSliderState !== "Dla płacówek" ? styles.hiddenPrice : ""
+              }`}
             >
               <div className={styles.priceTariffCard}>
                 <h1>Okres próbny przez 4 dni</h1>
@@ -335,7 +338,7 @@ function Firm() {
                 </ul>
               </div>
               <div className={styles.priceTariffCard}>
-                <h1>Plan "Premium"</h1>
+                <h1>Plan &quot;Premium&quot;</h1>
                 <p>
                   Zapewnij pacjentom wygodę – udostępnij rejestrację online i
                   przypominaj im o wizytach.
@@ -390,7 +393,7 @@ function Firm() {
           </div>
         </div>
       </motion.div>
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: -10 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
@@ -398,7 +401,7 @@ function Firm() {
         className={styles.block3D}
       >
         <div className={styles.block3DLeft}>
-          <h1>3D</h1>
+          <img src={cloud} alt="cloud" />
         </div>
         <div className={styles.block3DRight}>
           <h2>Dostępny w chmurze</h2>
@@ -408,12 +411,9 @@ function Firm() {
             połączenie z internetem. Zapewniamy najwyższe standardy
             bezpieczeństwa i zgodność z wytycznymi RODO.
           </p>
-          <div className={styles.block3DRightBtn}>
-            <a href="#">Formuliarz kontaktowy</a>
-          </div>
         </div>
       </motion.div>
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: -10 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
@@ -422,14 +422,15 @@ function Firm() {
       >
         <h1 id="Partnerzy">Partnerzy</h1>
         <div className={styles.partnersIcons}>
-          { }
+          {}
           <PartnersSlider />
         </div>
         <div className={styles.partnersBtn}>
           <a href="#">Dołącz do nas</a>
         </div>
       </motion.div>
-      <motion.div 
+      <motion.div
+        id="Formuliarz-kontaktowy"
         initial={{ opacity: 0, y: -10 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
@@ -437,7 +438,7 @@ function Firm() {
         className={styles.formBlockConteiner}
       >
         <div className={styles.formBlock}>
-          <h1 id="Formuliarzkontaktowy">Jesteś firmą?</h1>
+          <h1>Jesteś firmą?</h1>
           <p>Wypełnij formularz kontaktowy i zostań naszym partnerem!</p>
           <form onSubmit={handleSubmit} className={styles.form}>
             <input
@@ -447,7 +448,13 @@ function Firm() {
               onChange={(e) => setNameInputValue(e.target.value)}
             />
             <div className={styles.dropdownContainer}>
-              <InputDropdownStas control={control} name={"."} seeOptions options={options} placeholder={'Kim jestes?'} />
+              <InputDropdownStas
+                control={control}
+                name={"."}
+                seeOptions
+                options={options}
+                placeholder={"Kim jestes?"}
+              />
             </div>
             <input
               type="text"
@@ -473,7 +480,7 @@ function Firm() {
           </form>
         </div>
       </motion.div>
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: -10 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
@@ -488,14 +495,13 @@ function Firm() {
           >
             <p>Jak mogę zarejestrować swoją firmę w serwisie MyLekarz?</p>
             <div
-              className={`${styles.questionBlockItemText} ${questionOne ? styles.show : ""
-                }`}
+              className={`${styles.questionBlockItemText} ${
+                questionOne ? styles.show : ""
+              }`}
             >
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Repudiandae distinctio enim consectetur delectus labore
-                doloremque, ex sed dolorem porro esse eius corrupti iste
-                nostrum? Explicabo reprehenderit ex perspiciatis pariatur illum!
+                Zarejestruj się, wypełniając formularz dostępny na stronie
+                głównej serwisu.
               </p>
             </div>
             <img
@@ -510,14 +516,13 @@ function Firm() {
           >
             <p>Jak działa kalendarz online?</p>
             <div
-              className={`${styles.questionBlockItemText} ${questionTwo ? styles.show : ""
-                }`}
+              className={`${styles.questionBlockItemText} ${
+                questionTwo ? styles.show : ""
+              }`}
             >
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Repudiandae distinctio enim consectetur delectus labore
-                doloremque, ex sed dolorem porro esse eius corrupti iste
-                nostrum? Explicabo reprehenderit ex perspiciatis pariatur illum!
+                Pozwala na umawianie wizyt oraz zarządzanie terminami w czasie
+                rzeczywistym.
               </p>
             </div>
             <img
@@ -532,15 +537,11 @@ function Firm() {
           >
             <p>Czy Elektroniczna Dokumentacja Medyczna jest bezpieczna?</p>
             <div
-              className={`${styles.questionBlockItemText} ${questionThree ? styles.show : ""
-                }`}
+              className={`${styles.questionBlockItemText} ${
+                questionThree ? styles.show : ""
+              }`}
             >
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Repudiandae distinctio enim consectetur delectus labore
-                doloremque, ex sed dolorem porro esse eius corrupti iste
-                nostrum? Explicabo reprehenderit ex perspiciatis pariatur illum!
-              </p>
+              <p>Tak, dane są szyfrowane i zgodne z przepisami RODO.</p>
             </div>
             <img
               src={vector}
@@ -551,7 +552,7 @@ function Firm() {
         </div>
       </motion.div>
     </div>
-  )
+  );
 }
 
-export default Firm
+export default Firm;
