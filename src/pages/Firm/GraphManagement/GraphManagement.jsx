@@ -1,10 +1,11 @@
 import { useState, useMemo } from "react";
-import Skeleton from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css';
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 import styles from "./GraphManagement.module.css";
 import DropdownStas from "../../../components/Dropdown/DropdownStas";
 import Search from "../../../components/UI/Search/Search";
 import BlueBtn from "../../../components/Buttons/BlueBtn/BlueBtn";
+import { motion } from "framer-motion";
 
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
@@ -21,23 +22,24 @@ function GraphManagement() {
   const { control, handleSubmit, register, watch } = useForm({
     mode: "onChange",
   });
-  
+
   const selectedSpecialty = watch("specialty");
   const specialtyId = selectedSpecialty?.value;
 
-  const { data: workersData, isLoading: isWorkersLoading } = useGetWorkersList({ 
-    clinicId: clinic?.id, 
-    specialtyId: specialtyId 
+  const { data: workersData, isLoading: isWorkersLoading } = useGetWorkersList({
+    clinicId: clinic?.id,
+    specialtyId: specialtyId,
   });
-  const { data: specialties, isLoading: isSpecialtiesLoading } = useGetClinicSpecialties({ clinicId: clinic?.id });
+  const { data: specialties, isLoading: isSpecialtiesLoading } =
+    useGetClinicSpecialties({ clinicId: clinic?.id });
 
   const handleUserSelect = (doctor) => {
     const userInfo = {
       id: doctor.id,
       name: `${doctor.user.first_name} ${doctor.user.last_name}`,
-      phone: doctor.specialty.name
+      phone: doctor.specialty.name,
     };
-    
+
     setSelectedUsers((prevSelected) =>
       prevSelected.find((u) => u.id === doctor.id)
         ? prevSelected.filter((u) => u.id !== doctor.id)
@@ -56,8 +58,12 @@ function GraphManagement() {
   const filteredDoctors =
     workersData?.doctors?.filter(
       (doctor) =>
-        doctor.user.first_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        doctor.user.last_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        doctor.user.first_name
+          .toLowerCase()
+          .includes(searchTerm.toLowerCase()) ||
+        doctor.user.last_name
+          .toLowerCase()
+          .includes(searchTerm.toLowerCase()) ||
         doctor.specialty.name.toLowerCase().includes(searchTerm.toLowerCase())
     ) || [];
 
@@ -74,12 +80,13 @@ function GraphManagement() {
 
   const hasData = filteredDoctors.length > 0;
 
-
-
   const LoadingSkeleton = () => (
     <div className={styles.column}>
       {[1, 2, 3, 4, 5].map((index) => (
-        <div key={index} className={index % 2 === 0 ? styles.row : styles.rowAlt}>
+        <div
+          key={index}
+          className={index % 2 === 0 ? styles.row : styles.rowAlt}
+        >
           <div className={styles.checkboxContainer}>
             <Skeleton width={20} height={20} />
           </div>
@@ -106,31 +113,33 @@ function GraphManagement() {
         />
 
         <div className={styles.specializationField}>
-          {isSpecialtiesLoading ? (
-            <Skeleton width={200} height={38} />
-          ) : (
-            <InputDropdownStas
-              seeOptions
-              object={true}
-              control={control}
-              options={specialtyOptions}
-              placeholder="Wybierz specjalizacje"
-              {...register("specialty", {})}
-            />
-          )}
+          <InputDropdownStas
+            seeOptions
+            object={true}
+            control={control}
+            options={specialtyOptions}
+            placeholder="Wybierz specjalizacje"
+            {...register("specialty", {})}
+          />
         </div>
 
         <BlueBtn cb={handleNextClick}>Wybierz i przejdź dalej</BlueBtn>
       </div>
 
-      <div style={{ columns: hasData ? 2 : 1 }} className={styles.tableContainer}>
+      <div
+        style={{ columns: hasData ? 2 : 1 }}
+        className={styles.tableContainer}
+      >
         {isWorkersLoading ? (
           <LoadingSkeleton />
         ) : hasData ? (
           <div className={styles.column}>
             {filteredDoctors.map((doctor, index) => (
-              <div
+              <motion.div
                 key={doctor.id}
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: index * 0.05 }}
                 className={index % 2 === 0 ? styles.row : styles.rowAlt}
               >
                 <label className={styles.checkboxContainer}>
@@ -147,11 +156,18 @@ function GraphManagement() {
                   </div>
                   <div className={styles.phone}>{doctor.specialty.name}</div>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         ) : (
-          <div className={styles.noDataMessage}>Brak danych</div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.3 }}
+            className={styles.noDataMessage}
+          >
+            Brak danych
+          </motion.div>
         )}
       </div>
     </div>

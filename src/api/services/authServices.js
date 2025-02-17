@@ -6,7 +6,7 @@ class AuthServices {
     return await axios.post(
       `${this.URL}/login`,
       {
-        loginParam: data.email,
+        loginParam: data.email.toLowerCase(),
         password: data.password,
       },
       {
@@ -16,7 +16,7 @@ class AuthServices {
   }
   async registration(data) {
     return await axios.post(`${this.URL}/register`, {
-      email: data.email,
+      email: data.email.toLowerCase(),
       password: data.password,
     });
   }

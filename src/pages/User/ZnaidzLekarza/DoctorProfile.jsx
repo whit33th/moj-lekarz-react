@@ -12,6 +12,7 @@ import { pageConfig } from "../../../config/config";
 import useGetDoctorReviews from "../../../api/hooks/GeneralHooks/ReviewsHooks/useGetDoctorReviews";
 import ReviewCard from "../ReviewCard";
 import MapboxWithGeocoding from "../../../components/UI/Map/Map";
+import { motion } from "framer-motion";
 
 function DoctorProfile() {
   const [doctorInfo, setDoctorInfo] = useState({});
@@ -45,12 +46,18 @@ function DoctorProfile() {
     setDoctorInfo(doctor || null);
   }, [id, doctorCard]);
 
-  const hospitalAddress = `${data?.user?.address?.post_index} ${data?.user?.address?.city}, Polska`;
+  const hospitalAddress = `${data?.user?.address?.street}, ${data?.user?.address?.post_index} ${data?.user?.address?.city}, Polska`;
 
-  // const hospitalAddress = "sniadeckich 3, 60-773,Polska";
+  // const hospitalAddress = "Lipka, 59047, Polska";
   return (
     <div className={styles.doctorProfile}>
-      <div className={styles.doctorProfileRow}>
+      <motion.div
+        initial={{ opacity: 0, y: -10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3 }}
+        viewport={{ once: true, amount: 0.2 }}
+        className={styles.doctorProfileRow}
+      >
         <div className={styles.profileNameBlock}>
           <div>
             <img src={doctor.img} alt=" " />
@@ -70,22 +77,28 @@ function DoctorProfile() {
         <div className={styles.profileDescription}>
           <p>{doctor.description}</p>
         </div>
-      </div>
-      <div className={styles.mapBlock}>
+      </motion.div>
+      <motion.div
+        initial={{ opacity: 0, y: -10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3 }}
+        viewport={{ once: true, amount: 0.2 }}
+        className={styles.mapBlock}
+      >
         {!data ? (
           <Skeleton height={500} />
         ) : (
           <MapboxWithGeocoding address={data?.user ? hospitalAddress : ""} />
         )}
-      </div>
+      </motion.div>
       {reviews?.reviews.length > 0 && (
         <div>
           <div className={styles.titleBLock}>
             <h2>Opinia o lekarzu</h2>
-            <button>
+            {/* <button>
               {" "}
               <NavLink to={`/reviews/user/${0}`}>Zobacz wszystkie</NavLink>{" "}
-            </button>
+            </button> */}
           </div>
           <div className={styles.review}>
             {reviews?.reviews.map((data, index) => (

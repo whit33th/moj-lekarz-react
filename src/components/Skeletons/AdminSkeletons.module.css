@@ -1,8 +1,8 @@
 .cardSkeleton {
   background: white;
   padding: 1rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  border-radius: 16px;
+  box-shadow: 0 0 50px 5px #00000014;;
 }
 
 .cardHeader {
@@ -21,7 +21,7 @@
 .tableSkeleton {
   background: white;
   padding: 1.5rem;
-  border-radius: 8px;
+  border-radius: 16px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 

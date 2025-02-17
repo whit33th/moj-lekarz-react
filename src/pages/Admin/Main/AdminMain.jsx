@@ -1,4 +1,5 @@
 import { Suspense, useRef } from "react";
+import { motion } from "framer-motion";
 import users from "@assets/img/users.png";
 import graphUp from "@assets/img/graph-up.png";
 import graphDown from "@assets/img/graph-down.png";
@@ -25,7 +26,7 @@ import Skeleton from "react-loading-skeleton";
 import { useGetNotion } from "../../../api/hooks/GeneralHooks/Notion/useGetNotion";
 import usePostNotion from "../../../api/hooks/GeneralHooks/Notion/usePostNotion";
 import useDeleteNotion from "../../../api/hooks/GeneralHooks/Notion/useDeleteNotion";
-import { useStats5Months } from '../../../hooks/useStats5Months';
+import { useStats5Months } from "../../../hooks/useStats5Months";
 
 function AdminMainContent() {
   const stats = useAdminStats();
@@ -36,7 +37,11 @@ function AdminMainContent() {
   const { mutate: postNotionMutation } = usePostNotion();
   const textRef = useRef(null);
 
-  const { data: statsData, chartConfig, isLoading: isStatsLoading } = useStats5Months();
+  const {
+    data: statsData,
+    chartConfig,
+    isLoading: isStatsLoading,
+  } = useStats5Months();
 
   const NoteModal = (
     <>
@@ -80,76 +85,76 @@ function AdminMainContent() {
 
   return (
     <div className={styles.content}>
-      <h1 className={styles.witaj}>Witamy, Tomasz!</h1>
+      <motion.h1
+        initial={{ opacity: 0, y: -7 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.35 }}
+        className={styles.witaj}
+      >
+        Witamy, Tomasz!
+      </motion.h1>
+
       <div className={styles.dashboardFour}>
-        <div className={styles.card}>
-          <div className={styles.cardHeader}>
-            <img className={styles.iconAdmin} src={users} alt="" />
-            <div
-              className={`${styles.graph} ${styles.percentage} ${styles.tCenter} ${styles.smBack} ${styles.flex} ${styles.itemsCenter}`}
-            >
-              <p>{percentagePatient.toFixed(2)}%</p>
-              <img src={percentagePatient >= 0 ? graphUp : graphDown} alt="" />
+        {/* Stats Cards with staggered animation */}
+        {[
+          {
+            img: users,
+            percent: percentagePatient,
+            total: totalPatient,
+            label: "Całkowita liczba użytkowników",
+          },
+          {
+            img: companies,
+            percent: percentageClinics,
+            total: totalClinic,
+            label: "Całkowita liczba firm",
+          },
+          {
+            img: doctor,
+            percent: percentageDoctors,
+            total: totalDoctor,
+            label: "Całkowita liczba lekarzy",
+          },
+          {
+            img: visits,
+            percent: percentageAppointments,
+            total: totalAppointment,
+            label: "Zarejestrowanych wizyt",
+          },
+        ].map((item, index) => (
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: index * 0.07 }}
+            className={styles.card}
+          >
+            {/* Card content remains the same */}
+            <div className={styles.cardHeader}>
+              <img className={styles.iconAdmin} src={item.img} alt="" />
+              <div
+                className={`${styles.graph} ${styles.percentage} ${styles.tCenter} ${styles.smBack} ${styles.flex} ${styles.itemsCenter}`}
+              >
+                <p>{item.percent.toFixed(2)}%</p>
+                <img src={item.percent >= 0 ? graphUp : graphDown} alt="" />
+              </div>
             </div>
-          </div>
-          <div className={styles.cardContent}>
-            <span className={styles.count}>{totalPatient}</span>
-            <span className={styles.label}>Całkowita liczba użytkowników</span>
-          </div>
-        </div>
-        <div className={styles.card}>
-          <div className={styles.cardHeader}>
-            <img className={styles.iconAdmin} src={companies} alt="" />
-            <div
-              className={`${styles.graph} ${styles.percentage} ${styles.tCenter} ${styles.smBack} ${styles.flex} ${styles.itemsCenter}`}
-            >
-              <p>{percentageClinics.toFixed(2)}%</p>
-              <img src={percentageClinics >= 0 ? graphUp : graphDown} alt="" />
+            <div className={styles.cardContent}>
+              <span className={styles.count}>{item.total}</span>
+              <span className={styles.label}>{item.label}</span>
             </div>
-          </div>
-          <div className={styles.cardContent}>
-            <span className={styles.count}>{totalClinic}</span>
-            <span className={styles.label}>Całkowita liczba firm</span>
-          </div>
-        </div>
-        <div className={styles.card}>
-          <div className={styles.cardHeader}>
-            <img className={styles.iconAdmin} src={doctor} alt="" />
-            <div
-              className={`${styles.graph} ${styles.percentage} ${styles.tCenter} ${styles.smBack} ${styles.flex} ${styles.itemsCenter}`}
-            >
-              <p>{percentageDoctors.toFixed(2)}%</p>
-              <img src={percentageDoctors >= 0 ? graphUp : graphDown} alt="" />
-            </div>
-          </div>
-          <div className={styles.cardContent}>
-            <span className={styles.count}>{totalDoctor}</span>
-            <span className={styles.label}>Całkowita liczba lekarzy</span>
-          </div>
-        </div>
-        <div className={styles.card}>
-          <div className={styles.cardHeader}>
-            <img className={styles.iconAdmin} src={visits} alt="" />
-            <div
-              className={`${styles.graph} ${styles.percentage} ${styles.tCenter} ${styles.smBack} ${styles.flex} ${styles.itemsCenter}`}
-            >
-              <p>{percentageAppointments.toFixed(2)}%</p>
-              <img
-                src={percentageAppointments >= 0 ? graphUp : graphDown}
-                alt=""
-              />
-            </div>
-          </div>
-          <div className={styles.cardContent}>
-            <span className={styles.count}>{totalAppointment}</span>
-            <span className={styles.label}>
-              Całkowita liczba zarejestrowanych wizyt
-            </span>
-          </div>
-        </div>
+          </motion.div>
+        ))}
       </div>
+
       <div className={styles.dashboardTwo}>
-        <div className={`${styles.tableCard} ${styles.newUser}`}>
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.28 }}
+          className={`${styles.tableCard} ${styles.newUser}`}
+        >
+          {/* New users table content */}
           <p className={styles.titleCard}>Nowe użytkownicy</p>
           <table>
             <thead>
@@ -169,8 +174,15 @@ function AdminMainContent() {
               ))}
             </tbody>
           </table>
-        </div>
-        <div className={`${styles.tableCard} ${styles.newCompanies}`}>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.35 }}
+          className={`${styles.tableCard} ${styles.newCompanies}`}
+        >
+          {/* New companies table content */}
           <p className={styles.titleCard}>Nowe firmy</p>
           <table>
             <thead>
@@ -188,10 +200,17 @@ function AdminMainContent() {
               ))}
             </tbody>
           </table>
-        </div>
+        </motion.div>
       </div>
+
       <div className={styles.dashboardTwo}>
-        <div className={styles.statsCard}>
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.42 }}
+          className={styles.statsCard}
+        >
+          {/* Stats card content */}
           <p className={styles.titleCard}>Statystyki</p>
           <div className={styles.charts}>
             <div className={styles.chart}>
@@ -229,8 +248,15 @@ function AdminMainContent() {
               </div>
             </div>
           </div>
-        </div>
-        <div className={styles.notesCard}>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.49 }}
+          className={styles.notesCard}
+        >
+          {/* Notes card content */}
           <div className={styles.notesHeader}>
             <p className={styles.titleCard}>Moje notatki</p>
 
@@ -260,7 +286,7 @@ function AdminMainContent() {
               </li>
             ))}
           </ul>
-        </div>
+        </motion.div>
       </div>
     </div>
   );

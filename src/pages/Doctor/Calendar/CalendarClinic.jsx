@@ -204,7 +204,7 @@ function CalendarClinic() {
             />
           )}
         />
-        <div className={styles.searchGroup}>
+        {/* <div className={styles.searchGroup}>
           <div className={styles.dropdownContainer} style={{ flex: 1 }}>
             <div className={styles.dropdown}>
               <input
@@ -217,7 +217,7 @@ function CalendarClinic() {
           <div style={{ flex: "1" }}>
             <BlueBtn cb={handleSubmit(onSubmit)}>Szukaj</BlueBtn>
           </div>
-        </div>
+        </div> */}
       </form>
 
       <div

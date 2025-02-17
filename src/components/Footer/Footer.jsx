@@ -65,6 +65,10 @@ function Footer() {
               <NavLink to={pageConfig.patient.blog}>Blog</NavLink>
               <div>/</div>
               <NavLink to={pageConfig.patient.firm}>Dla firm</NavLink>
+              <div>/</div>
+              <NavLink to={pageConfig.patient.mobileApp}>
+                Aplikacja mobilna
+              </NavLink>
             </div>
           </div>
           <div className={styles.footerNavigateBlockBottom}>
@@ -87,9 +91,6 @@ function Footer() {
             </div>
             <div>
               <ul>
-                <li>
-                  <NavLink to="/firm">Dla firm</NavLink>
-                </li>
                 <li>
                   <NavLink to="/firm#Formuliarz-kontaktowy">
                     Formuliarz kontaktowy

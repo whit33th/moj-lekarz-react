@@ -27,12 +27,12 @@ import ZapisFormPage from "./../../pages/User/ZnaidzLekarza/Zapis/ZapisFormPage"
 import ZapisDone from "../../pages/User/ZnaidzLekarza/Zapis/ZapisDone";
 import useStore from "../../data/store";
 import ResetPassword from "../../pages/Auth/ResetPassword";
+import DocumentsPage from "../../pages/User/ResearchResults/DocumentsPage";
 
 function UserRoutes() {
   const { isAuth } = useStore();
   return (
     <Routes>
-      
       <Route path={pageConfig.login} element={<AuthPage />} />
       <Route path={pageConfig.registration} element={<AuthPage />} />
       <Route path={pageConfig.patient.home} element={<Home />} />
@@ -43,16 +43,36 @@ function UserRoutes() {
       <Route path={pageConfig.patient.blog} element={<Blog />} />
       <Route path="/profileDoctor/:id" element={<DoctorProfile />} />
       <Route path="/profileClinic/:id" element={<ProfileClinic />} />
-      <Route path={pageConfig.patient.searchClinics} element={<SearchClinicPage />} />
+      <Route
+        path={pageConfig.patient.searchClinics}
+        element={<SearchClinicPage />}
+      />
       <Route path={pageConfig.patient.howItWorks} element={<HowItWorks />} />
-      <Route path={pageConfig.patient.searchVisits} element={<SearchVisitsContainer />} />
-      <Route path="/znajdz-lekarza-version2/" element={<ZnajdzLekarzaVersion2 />} />
-      
-      
-      <Route path={pageConfig.patient.policy.regulations} element={<PolicyRegulamin />} />
-      <Route path={pageConfig.patient.policy.personalData} element={<PolicyPersonalData />} />
-      <Route path={pageConfig.patient.policy.cookies} element={<PolicyCookies />} />
-      <Route path={pageConfig.patient.policy.privacy} element={<PolicyPrivacy />} />
+      <Route
+        path={pageConfig.patient.searchVisits}
+        element={<SearchVisitsContainer />}
+      />
+      <Route
+        path="/znajdz-lekarza-version2/"
+        element={<ZnajdzLekarzaVersion2 />}
+      />
+
+      <Route
+        path={pageConfig.patient.policy.regulations}
+        element={<PolicyRegulamin />}
+      />
+      <Route
+        path={pageConfig.patient.policy.personalData}
+        element={<PolicyPersonalData />}
+      />
+      <Route
+        path={pageConfig.patient.policy.cookies}
+        element={<PolicyCookies />}
+      />
+      <Route
+        path={pageConfig.patient.policy.privacy}
+        element={<PolicyPrivacy />}
+      />
       <Route path={pageConfig.resetPassword} element={<ResetPassword />} />
 
       {/* Protected */}
@@ -62,13 +82,22 @@ function UserRoutes() {
           <Route path="/visits" element={<VisitsPage />} />
           <Route path="/visits-version2" element={<VisitsPageTwo />} />
           <Route path={pageConfig.patient.profile} element={<Profile />} />
-          <Route path={`${pageConfig.patient.confirmVisit}/:id`} element={<ClinicZapisPage />} />
-          <Route path={pageConfig.patient.ZapisFormPage} element={<ZapisFormPage />} />
+          <Route
+            path={`${pageConfig.patient.confirmVisit}/:id`}
+            element={<ClinicZapisPage />}
+          />
+          <Route
+            path={pageConfig.patient.ZapisFormPage}
+            element={<ZapisFormPage />}
+          />
           <Route path={pageConfig.patient.zapisDone} element={<ZapisDone />} />
+          <Route
+            path={pageConfig.patient.documents}
+            element={<DocumentsPage />}
+          />
         </>
       )}
 
-     
       <Route path="/*" element={<NotFound />} />
     </Routes>
   );

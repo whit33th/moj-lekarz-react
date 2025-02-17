@@ -1,11 +1,9 @@
 .round {
   border-radius: 100px;
-  padding: 7px;
-
 }
 
 .record img {
-  width: 60px;
+  width: 50px;
 }
 .rating {
   font-weight: bold;
@@ -62,6 +60,7 @@ P {
 .flex {
 	display: flex;
 	flex-direction: row;
+  gap: 10px;
 }
 .center {
 	display: flex;

@@ -21,7 +21,6 @@ function Workers() {
   const { data: clinic } = useGetUserInfo();
   const { data, isLoading } = useGetWorkersList({ clinicId: clinic?.id });
 
-  
   const tableData =
     data?.doctors?.map((doctor) => ({
       img: doctor.user.photo || grey,
@@ -87,25 +86,24 @@ function Workers() {
 
   return (
     <div className="content">
-      <div className={styles.calendarNavbar}>
+      {/* <div className={styles.calendarNavbar}>
         <Tabs
           onTabClick={handleActiveTab}
           buttons={"Lista pracowników, Zarządzanie"}
           activeTab={activeTab}
           storageKey="WorkersNavbar"
         />
-        
-      </div>
-      {activeTab === "Lista pracowników" ? (
-        <Table
-          loading={isLoading}
-          columns={columns}
-          data={tableData}
-          showImage={true}
-          together={true}
-          inputPlaceholder="Szukaj pracownika..."
-        />
-      ) : (
+      </div> */}
+      {/* {activeTab === "Lista pracowników" ? ( */}
+      <Table
+        loading={isLoading}
+        columns={columns}
+        data={tableData}
+        showImage={true}
+        together={true}
+        inputPlaceholder="Szukaj pracownika..."
+      />
+      {/* ) : (
         <>
           <div>
             <h1 style={{ textAlign: "center" }}>
@@ -134,7 +132,7 @@ function Workers() {
             ))}
           </div>
         </>
-      )}
+      )} */}
     </div>
   );
 }

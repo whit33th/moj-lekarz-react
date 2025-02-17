@@ -6,9 +6,10 @@ import { useState } from "react";
 import useGetUserInfo from "@hooks/UserHooks/useGetUserInfo";
 import Skeleton from "react-loading-skeleton";
 import useStore from "@data/store";
+import { motion } from "framer-motion";
 
 function Profil() {
-  const { role} = useStore();
+  const { role } = useStore();
   const [vacationStatus, setVacationStatus] = useState(false);
 
   function handleVacationStatus() {
@@ -31,7 +32,12 @@ function Profil() {
   };
 
   return (
-    <div className={`${styles.profilDiv} ${styles.shadow}`}>
+    <motion.div
+      initial={{ opacity: 0, y: -10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className={`${styles.profilDiv} ${styles.shadow}`}
+    >
       <div className={styles.topPhoto}>
         <img src={doctor.img || grey} alt="Profil" />
         <h1 style={{ margin: 0 }}>
@@ -112,7 +118,7 @@ function Profil() {
       </div>
       {}
       {}
-    </div>
+    </motion.div>
   );
 }
 

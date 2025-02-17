@@ -8,6 +8,7 @@ import BlueBtn from "./../../../components/Buttons/BlueBtn/BlueBtn";
 import usePostSchedules from "../../../api/hooks/GeneralHooks/Schedules/usePostSchedules";
 import { toast } from "sonner";
 import { pageConfig } from "./../../../config/config";
+import { motion } from "framer-motion";
 
 function SelectedGraph() {
   const location = useLocation();
@@ -71,7 +72,12 @@ function SelectedGraph() {
 
   return (
     <div className={styles.handleContainer}>
-      <div className={styles.card}>
+      <motion.div 
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4 }}
+        className={styles.card}
+      >
         <CalendarBlockManager
           onDateSelect={handleDateSelect}
           selectedDates={selectedDates}
@@ -127,27 +133,49 @@ function SelectedGraph() {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
 
-      <div className={styles.card}>
+      <motion.div 
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4 }}
+        className={styles.card}
+      >
         {selectedUsers.length > 0 ? (
           <>
-            {selectedUsers.map((user) => (
-              <div className={styles.userRow} key={user.id}>
-                <span>{user.name}</span> <span>{user.phone}</span>
+            {selectedUsers.map((user, index) => (
+              <motion.div
+                key={user.id}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.3, delay: index * 0.1 }}
+                className={styles.userRow}
+              >
+                <span>{user.name}</span> 
+                <span>{user.phone}</span>
                 <div className={styles.btnDiv}>
                   <BlueBorderBtn cb={() => handleRemoveUser(user.id)}>
                     <img src={bucket} alt="Remove user" />
                   </BlueBorderBtn>
                 </div>
-              </div>
+              </motion.div>
             ))}
-            <BlueBtn cb={handleSave}>Zapisz i dodaj do kalendarza</BlueBtn>
+            <div
+              
+            >
+              <BlueBtn cb={handleSave}>Zapisz i dodaj do kalendarza</BlueBtn>
+            </div>
           </>
         ) : (
-          <p>No users selected</p>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.3 }}
+          >
+            No users selected
+          </motion.p>
         )}
-      </div>
+      </motion.div>
     </div>
   );
 }

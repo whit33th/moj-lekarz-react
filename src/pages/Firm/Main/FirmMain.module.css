@@ -25,7 +25,7 @@
 }
 .history {
   height: 100%;
-  gap: 10px;
+  gap: 15px;
   display: flex;
   flex-direction: column;
   flex: 1;

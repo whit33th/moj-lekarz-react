@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import { motion } from "framer-motion";
 
 import robot from "@assets/img/robot_svg/1.png";
 import graphUp from "@assets/img/graph-up.png";
@@ -117,7 +118,10 @@ function DoctorMain() {
   return (
     <div className="content">
       <div className={styles.topLayer}>
-        <div
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
           className={`${styles.visits} ${styles.mainCard} ${styles.biggerCard}`}
         >
           <img
@@ -143,33 +147,35 @@ function DoctorMain() {
               </>
             ) : (
               <>
-                <div className={`${styles.visitStats} ${styles.card}`}>
-                  <p>
-                    Całkowita liczba <br /> pacjentów
-                  </p>
-                  <div className={styles.center}>
-                    <p
-                      className={`${styles.biggerCard} ${styles.smCountNumber}`}
-                    >
-                      {stats?.countPatients?.totalCount || "Brak"}
+                {stats?.countPatients?.totalCount && (
+                  <div className={`${styles.visitStats} ${styles.card}`}>
+                    <p>
+                      Całkowita liczba <br /> pacjentów
                     </p>
-                    {stats?.countPatients?.percentageChange !== undefined && (
-                      <div
-                        className={`${styles.graph} ${styles.tCenter} ${styles.smBack} ${styles.flex} ${styles.itemsCenter}`}
+                    <div className={styles.center}>
+                      <p
+                        className={`${styles.biggerCard} ${styles.smCountNumber}`}
                       >
-                        <p>
-                          {stats.countPatients?.percentageChange?.toFixed(0) +
-                            "%"}
-                        </p>
-                        <img
-                          src={graphDown}
-                          alt="Graph Down"
-                          className={styles.graphIcon}
-                        />
-                      </div>
-                    )}
+                        {stats?.countPatients?.totalCount || "Brak"}
+                      </p>
+                      {stats?.countPatients?.percentageChange !== undefined && (
+                        <div
+                          className={`${styles.graph} ${styles.tCenter} ${styles.smBack} ${styles.flex} ${styles.itemsCenter}`}
+                        >
+                          <p>
+                            {stats.countPatients?.percentageChange?.toFixed(0) +
+                              "%"}
+                          </p>
+                          <img
+                            src={graphDown}
+                            alt="Graph Down"
+                            className={styles.graphIcon}
+                          />
+                        </div>
+                      )}
+                    </div>
                   </div>
-                </div>
+                )}
 
                 <div className={`${styles.visitStats} ${styles.card}`}>
                   <p>
@@ -183,13 +189,14 @@ function DoctorMain() {
                       {Math.round(stats?.averageRating?.currentRating) ||
                         "Brak"}
                     </p>
-                    {stats?.averageRating?.percentageChange !== undefined && (
+                    {stats?.averageRating?.percentageChange && (
                       <div
                         className={`${styles.graph} ${styles.tCenter} ${styles.smBack} ${styles.flex} ${styles.itemsCenter}`}
                       >
                         <p>
-                          {stats.averageRating?.percentageChange?.toFixed(0) +
-                            "%"}
+                          {`${stats.averageRating?.percentageChange?.toFixed(
+                            0
+                          )}` || "Brak"}
                         </p>
                         <img
                           src={graphUp}
@@ -203,13 +210,25 @@ function DoctorMain() {
               </>
             )}
           </div>
-        </div>
+        </motion.div>
 
-        <div className={`${styles.mainCard}`}>{history()}</div>
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.07 }}
+          className={`${styles.mainCard}`}
+        >
+          {history()}
+        </motion.div>
       </div>
 
       <div className={styles.botLayer}>
-        <div className={`${styles.mainCard}`}>
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.14 }}
+          className={`${styles.mainCard}`}
+        >
           <div className={`${styles.flex} ${styles.between}`}>
             <p className={styles.titleCard}>Kalendarz</p>
             <NavLink className={styles.black} to="/calendar">
@@ -221,9 +240,14 @@ function DoctorMain() {
           </div>
 
           <CalendarBlockClinic />
-        </div>
+        </motion.div>
 
-        <div className={`${styles.mainCard} ${styles.biggerCard}`}>
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.21 }}
+          className={`${styles.mainCard} ${styles.biggerCard}`}
+        >
           <div className={`${styles.flex} ${styles.between}`}>
             <p className={styles.titleCard}>Lista najlepszych pracowników</p>
           </div>
@@ -237,9 +261,10 @@ function DoctorMain() {
               ) : (
                 workersData.doctors
                   .slice(0, 5)
-                  .map((doctor) => (
+                  .map((doctor, index) => (
                     <BestWorkerItem
                       key={doctor.id}
+                      index={index}
                       id={doctor.id}
                       name={`${doctor.user.first_name} ${doctor.user.last_name}`}
                       img={doctor.user.photo || grey}
@@ -252,7 +277,7 @@ function DoctorMain() {
               <SkeletonTodayVisitItem count={5} />
             )}
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );

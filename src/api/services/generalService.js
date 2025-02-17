@@ -206,6 +206,33 @@ class GeneralService {
       withCredentials: true,
     });
   }
+
+  async postDocument(id, file) {
+    const formData = new FormData();
+    formData.append("file", file);
+    
+    return await axios.post(
+      `${this.URL}/api/doctors/documents/${id}`,
+      formData,
+      {
+        withCredentials: true,
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
+  }
+
+  async getDocumentsById(id) {
+    return await axios.get(`${this.URL}/api/doctors/documents/${id}`, {
+      withCredentials: true,
+    });
+  }
+  async getDocuments() {
+    return await axios.get(`${this.URL}/api/doctors/documents`, {
+      withCredentials: true,
+    });
+  }
 }
 
 export const generalService = new GeneralService();

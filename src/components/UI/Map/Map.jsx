@@ -19,7 +19,6 @@ marker.style.backgroundSize = "cover";
 marker.style.borderRadius = "50%";
 marker.style.border = "2px solid white";
 
-
 function MapContent({ address }) {
   const mapContainerRef = useRef(null);
   const [coordinates, setCoordinates] = useState(null);
@@ -75,7 +74,7 @@ function MapContent({ address }) {
   }, [coordinates]);
 
   if (isLoading) return <MapSkeleton />;
-  if (error) return <div>{error}</div>;
+  if (error) return;
 
   return (
     <div>

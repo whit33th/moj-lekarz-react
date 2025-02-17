@@ -14,11 +14,12 @@ import DeleteBlogModal from "../../../components/Modals/DeleteBlogModal/DeleteBl
 import useStore from "../../../data/store";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import { motion } from "framer-motion";
 
 const BlogSkeleton = () => (
   <div className={styles.tableRow}>
     <div className={styles.mainContent}>
-      <Skeleton height={150} width={200} />
+      <Skeleton height={150} width={270} />
       <div className={styles.articleContent}>
         <div className={styles.articleHeader}>
           <Skeleton height={24} width={200} />
@@ -40,7 +41,7 @@ const BlogSkeleton = () => (
 function Blogs() {
   const [searchQuery, setSearchQuery] = useState("");
   const { setModalContent, setModalActive } = useStore();
-  const { data, isLoading } = useGetPosts(1, 10); 
+  const { data, isLoading } = useGetPosts(1, 10);
   const { mutate: deleteBlog } = useDeletePosts();
 
   function handleAddModal() {
@@ -123,13 +124,21 @@ function Blogs() {
               <BlogSkeleton />
             </>
           ) : (
-            filteredArticles.map((article) => (
-              <div key={article.id} className={styles.tableRow}>
+            filteredArticles.map((article, index) => (
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true, amount: 0.2 }}
+                key={article.id}
+                className={styles.tableRow}
+              >
                 <div className={styles.mainContent}>
                   <img
                     src={article.image || grey}
                     alt={article.title}
                     className={styles.articleImage}
+                    loading="eager"
                   />
                   <div className={styles.articleContent}>
                     <div className={styles.articleHeader}>
@@ -154,7 +163,7 @@ function Blogs() {
                     Usuń
                   </BlueBorderBtn>
                 </div>
-              </div>
+              </motion.div>
             ))
           )}
         </div>

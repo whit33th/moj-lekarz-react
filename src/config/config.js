@@ -63,6 +63,7 @@ class PageConfig {
     firmInfo: "/firm/:id",
     mobileApp: "/mobile-app",
     recipes: "/recipes",
+    documents: "/documents",
     qA: "/QA",
     blog: "/blog",
     visits: "/visits",

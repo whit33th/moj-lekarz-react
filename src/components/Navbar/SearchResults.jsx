@@ -60,9 +60,7 @@ export default function SearchResults({ ref, inputValue, formActive }) {
           ))
         ) : (
           <>
-            {role !== "doctor" && (
-              <SearchDoctorsItem  data={searchDoctors} />
-            )}
+            {role !== "doctor" && <SearchDoctorsItem data={searchDoctors} />}
             <SearchPatientsItem role={role} data={searchPatients} />
 
             {role === "doctor" && (

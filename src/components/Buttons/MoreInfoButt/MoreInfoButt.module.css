@@ -18,14 +18,14 @@
   opacity: 0.8;
   transition: 0.3s;
 }
-.cross{
+.cross {
   width: 18px;
   height: 18px;
   position: absolute;
   top: 20px;
   right: 20px;
 }
-.back{
+.back {
   width: 18px;
   height: 18px;
   position: absolute;
@@ -68,6 +68,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 70px;
 }
 .header h2 {
   font-size: 20px;
@@ -147,11 +148,10 @@
   font-size: 100px;
   color: #a6def7;
 }
-.textareaDiv{
-  position: relative; 
+.textareaDiv {
+  position: relative;
 }
 .textarea {
-
   border-radius: 16px;
   padding: 15px;
   box-shadow: 0 0 10px 5px #00000014;
@@ -238,9 +238,9 @@
 
 .actions {
   display: flex;
-  
+
   justify-content: space-between;
-  
+
   gap: 20px;
 }
 
@@ -273,11 +273,10 @@
   margin-bottom: 40px;
   margin-top: 0;
 }
-.employeeInfo{
+.employeeInfo {
   display: flex;
   flex-direction: column;
   gap: 40px;
-
 }
 .topInfo {
   display: flex;
@@ -314,7 +313,7 @@
   font-size: small;
   color: grey;
 }
-.clip{
+.clip {
   width: 14px;
   height: auto;
   position: absolute;
@@ -323,10 +322,16 @@
   opacity: 1;
   transition: 0.3s;
 }
-.clip:hover{
+.clip:hover {
   opacity: 0.7;
 }
-.clip:active{
+.clip:active {
   scale: 0.9;
   opacity: 0.7;
+}
+
+@media screen and (max-width: 576px) {
+  .moreInfoModal button {
+    font-size: 12px !important;
+  }
 }

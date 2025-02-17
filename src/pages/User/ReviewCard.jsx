@@ -1,20 +1,29 @@
 import styles from "./style/ReviewCard.module.css";
 import starimg from "@assets/img/Star.svg";
 import grey from "@assets/img/grey.png";
+import { motion } from "framer-motion";
 
 function ReviewCard({ reviews }) {
   const review = {
     rating: reviews?.rating || 0,
-    name: `${reviews?.patient?.user?.first_name || "Brak"} ${reviews?.patient?.user?.last_name || ""}`.trim(),
+    name: `${reviews?.patient?.user?.first_name || "Brak"} ${
+      reviews?.patient?.user?.last_name || ""
+    }`.trim(),
     photo: reviews?.patient?.user?.photo || grey,
     date: "Brak",
     comment: reviews?.comment || "Brak",
     tags: reviews?.tags || [],
   };
-  console.log(reviews?.reviews)
+  console.log(reviews?.reviews);
 
   return (
-    <div className={styles.reviewCard}>
+    <motion.div
+      initial={{ opacity: 0, y: -10 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.3 }}
+      viewport={{ once: true, amount: 0.2 }}
+      className={styles.reviewCard}
+    >
       <div className={styles.userInfo}>
         <div className={styles.header}>
           <img src={review.photo} alt="User Avatar" />
@@ -46,7 +55,7 @@ function ReviewCard({ reviews }) {
       </div>
 
       <div className={styles.userReviewText}>{review.comment}</div>
-    </div>
+    </motion.div>
   );
 }
 

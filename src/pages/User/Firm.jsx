@@ -1,4 +1,5 @@
 import { useState, useCallback } from "react"
+import { motion } from "framer-motion"
 import styles from "./style/Firm.module.css"
 
 import img5 from "@assets/img/Vector311.svg"
@@ -70,7 +71,12 @@ function Firm() {
 
   return (
     <div className={styles.firm}>
-      <div className={styles.firmInfo}>
+      <motion.div 
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className={styles.firmInfo}
+      >
         <h1>System dla placówki medycznej</h1>
         <div className={styles.firmInfoDescription}>
           <div className={styles.firmInfoDescriptionLeft}>
@@ -92,8 +98,14 @@ function Firm() {
             <img src={imgfirstBlock1} className={styles.firstBlockImgTwo} />
           </div>
         </div>
-      </div>
-      <div className={styles.aboutMe}>
+      </motion.div>
+      <motion.div 
+        initial={{ opacity: 0, y: -10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        viewport={{ once: true, amount: 0.3 }}
+        className={styles.aboutMe}
+      >
         <h1>Dlaczego MójLekarz?</h1>
         <div className={styles.aboutMeItemConteiner}>
           <div className={styles.aboutMeItem}>
@@ -122,8 +134,14 @@ function Firm() {
             </p>
           </div>
         </div>
-      </div>
-      <div className={styles.priceSliderBlock}>
+      </motion.div>
+      <motion.div 
+        initial={{ opacity: 0, y: -10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        viewport={{ once: true, amount: 0.3 }}
+        className={styles.priceSliderBlock}
+      >
         <h1>
           {" "}
           <p>Otwórz nowe możliwości dla swojej firmy! </p>
@@ -371,8 +389,14 @@ function Firm() {
             </div>
           </div>
         </div>
-      </div>
-      <div className={styles.block3D}>
+      </motion.div>
+      <motion.div 
+        initial={{ opacity: 0, y: -10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        viewport={{ once: true, amount: 0.3 }}
+        className={styles.block3D}
+      >
         <div className={styles.block3DLeft}>
           <h1>3D</h1>
         </div>
@@ -388,8 +412,14 @@ function Firm() {
             <a href="#">Formuliarz kontaktowy</a>
           </div>
         </div>
-      </div>
-      <div className={styles.partners}>
+      </motion.div>
+      <motion.div 
+        initial={{ opacity: 0, y: -10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        viewport={{ once: true, amount: 0.3 }}
+        className={styles.partners}
+      >
         <h1 id="Partnerzy">Partnerzy</h1>
         <div className={styles.partnersIcons}>
           { }
@@ -398,8 +428,14 @@ function Firm() {
         <div className={styles.partnersBtn}>
           <a href="#">Dołącz do nas</a>
         </div>
-      </div>
-      <div className={styles.formBlockConteiner}>
+      </motion.div>
+      <motion.div 
+        initial={{ opacity: 0, y: -10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        viewport={{ once: true, amount: 0.3 }}
+        className={styles.formBlockConteiner}
+      >
         <div className={styles.formBlock}>
           <h1 id="Formuliarzkontaktowy">Jesteś firmą?</h1>
           <p>Wypełnij formularz kontaktowy i zostań naszym partnerem!</p>
@@ -436,8 +472,14 @@ function Firm() {
             </div>
           </form>
         </div>
-      </div>
-      <div className={styles.questionBlock}>
+      </motion.div>
+      <motion.div 
+        initial={{ opacity: 0, y: -10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        viewport={{ once: true, amount: 0.3 }}
+        className={styles.questionBlock}
+      >
         <h1>Odpowiedzi na najczęściej zadawane pytania</h1>
         <div className={styles.questionBlockItems}>
           <div
@@ -507,7 +549,7 @@ function Firm() {
             />
           </div>
         </div>
-      </div>
+      </motion.div>
     </div>
   )
 }

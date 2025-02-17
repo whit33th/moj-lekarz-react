@@ -24,17 +24,14 @@ function ReviewPage() {
   const SkeletonCard = () => (
     <div className={styles.skeletonCard}>
       <div className={styles.skeletonHeader}>
-        <Skeleton circle width={40} height={40} />
+        <Skeleton circle width={90} height={90} />
         <div className={styles.skeletonInfo}>
           <Skeleton width={150} />
           <Skeleton width={100} />
+          <Skeleton width={130} height={30} />
         </div>
       </div>
       <Skeleton count={3} />
-      <div className={styles.skeletonTags}>
-        <Skeleton width={60} />
-        <Skeleton width={80} />
-      </div>
     </div>
   );
 

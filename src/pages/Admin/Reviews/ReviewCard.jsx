@@ -7,6 +7,7 @@ import BlueBtn from "../../../components/Buttons/BlueBtn/BlueBtn"
 import ReviewModal from "../../../components/Modals/ReviewModal/ReviewModal"
 import star from "@assets/img/Star.svg"
 import starGrey from "@assets/img/Star 6.svg"
+import { motion } from 'framer-motion';
 const ReviewCard = ({ id, name, date, text, rating, avatar, tags }) => {
   const { setModalActive, setModalContent } = useStore()
 
@@ -25,7 +26,11 @@ const ReviewCard = ({ id, name, date, text, rating, avatar, tags }) => {
     )
   }
   return (
-    <div className={styles.card}>
+    <motion.div
+    initial={{ opacity: 0, y: -10 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.5 }}
+    viewport={{ once: true, amount: 0.2 }} className={styles.card}>
       <div className={styles.header}>
         <img src={avatar || avatar} alt="Avatar" className={styles.avatar} />
         <div className={styles.headerInfo}>
@@ -62,7 +67,7 @@ const ReviewCard = ({ id, name, date, text, rating, avatar, tags }) => {
         <div></div>
         <BlueBtn cb={handleModal}> Zobacz </BlueBtn>
       </div>
-    </div>
+    </motion.div>
   )
 }
 

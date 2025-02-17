@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "react-datepicker/dist/react-datepicker.css";
 import styles from "./style/Home.module.css";
-import mainImg from '@assets/img/robot_svg/robor_main.png'
+import mainImg from "@assets/img/robot_svg/robor_main.png";
 import img1 from "@assets/img/Frame1.svg";
 import img2 from "@assets/img/Frame2.svg";
 import img3 from "@assets/img/Frame3.svg";
@@ -18,6 +18,7 @@ import { useNavigate } from "react-router-dom";
 import { useCities } from "../../api/hooks/GeneralHooks/useCitys";
 import InputError from "../../components/UI/InputError/InputError";
 import useSpecialties from "../../api/hooks/GeneralHooks/useSpecialties";
+import { motion } from "framer-motion";
 
 function Home() {
   const navigate = useNavigate();
@@ -59,12 +60,10 @@ function Home() {
       }
     }
 
-    
     const searchParams = new URLSearchParams(queryParams);
     navigate(`/search?${searchParams.toString()}`);
   };
 
-  
   useEffect(() => {
     if (specialties) {
       setSpecialtyOptions([...new Set(specialties.map((s) => s.name))]);
@@ -74,20 +73,41 @@ function Home() {
   return (
     <div className={styles.home}>
       <div className={styles.homeFirstBlock}>
-        <div className={styles.homeFirstBlockLeft}>
-          <img src={mainImg} alt="Lekarz konsultujący pacjenta w gabinecie" />
-        </div>
-        <div className={styles.homeFirstBlockRight}>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 100 }}
+          className={styles.homeFirstBlockLeft}
+        >
+          <img
+            src={
+              "https://media.tenor.com/bnarFGvpLjkAAAAM/the-rock-the-rock-meme.gif" ||
+              mainImg
+            }
+            alt="Lekarz konsultujący pacjenta w gabinecie"
+          />
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className={styles.homeFirstBlockRight}
+        >
           <form
             onSubmit={handleSubmit(handleSearch)}
             className={styles.mainFormBlock}
           >
             <h2>Umów się na wizytę</h2>
             <div className={styles.mainFormIntupsBlock}>
-              <div className={styles.dropdownContainer}>
+              <motion.div
+                initial={{ opacity: 0, y: -5 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.1 }}
+                className={styles.dropdownContainer}
+              >
                 <InputDropdownStas
                   control={control}
-                  options={specialtyOptions|| ["Ladowanie"]}
+                  options={specialtyOptions || ["Ladowanie"]}
                   object={false}
                   placeholder={"Wybierz specjalizacje"}
                   seeOptions
@@ -96,9 +116,14 @@ function Home() {
                   })}
                 />
                 <InputError formState={formState} errorField={"specialty"} />
-              </div>
+              </motion.div>
 
-              <div className={styles.dropdownContainer}>
+              <motion.div
+                initial={{ opacity: 0, y: -5 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.2 }}
+                className={styles.dropdownContainer}
+              >
                 <InputDropdownStas
                   control={control}
                   options={citiesOptions || ["Ladowanie"]}
@@ -106,13 +131,18 @@ function Home() {
                   seeOptions={true}
                   object={false}
                   {...register("city", {
-                    required: "Miasto jest wymagane",
+                    // required: "Miasto jest wymagane",
                   })}
                 />
                 <InputError formState={formState} errorField={"city"} />
-              </div>
+              </motion.div>
 
-              <div className={styles.formCalendarBlock}>
+              <motion.div
+                initial={{ opacity: 0, y: -5 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.3 }}
+                className={styles.formCalendarBlock}
+              >
                 <div className={styles.formCalendarContainer}>
                   <div className={styles.formCalendar}>
                     <input
@@ -120,7 +150,7 @@ function Home() {
                       placeholder="Data wizyty"
                       className={styles.calendar}
                       {...register("date", {
-                        required: "Data jest wymagana",
+                        // required: "Data jest wymagana",
                       })}
                     />
                   </div>
@@ -134,21 +164,32 @@ function Home() {
                     placeholder={"Rodzaj wizyty"}
                     seeOptions={true}
                     {...register("type", {
-                      required: "Typ wizyty jest wymagany",
+                      // required: "Typ wizyty jest wymagany",
                     })}
                   />
                   <InputError formState={formState} errorField={"type"} />
                 </div>
-              </div>
+              </motion.div>
             </div>
-            <div className={styles.mainFormBtn}>
+            <motion.div
+              initial={{ opacity: 0, y: -5 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.4 }}
+              className={styles.mainFormBtn}
+            >
               <button type="submit">Szukaj terminu</button>
-            </div>
+            </motion.div>
           </form>
-        </div>
+        </motion.div>
       </div>
 
-      <div className={styles.descriptions}>
+      <motion.div
+        initial={{ opacity: 0, y: -10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        viewport={{ once: true, amount: 0.5 }}
+        className={styles.descriptions}
+      >
         <h1>Jak to działą?</h1>
         <div className={styles.descriptionsText}>
           <p>
@@ -158,10 +199,22 @@ function Home() {
             otrzymaj e-receptę lub e-zwolnienie bez wychodzenia z domu.
           </p>
         </div>
-      </div>
+      </motion.div>
 
-      <div className={styles.howItWorksImageBlock}>
-        <div className={styles.imagesBlockItem}>
+      <motion.div
+        initial={{ opacity: 0, y: -10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        viewport={{ once: true, amount: 0.5 }}
+        className={styles.howItWorksImageBlock}
+      >
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          viewport={{ once: true, amount: 0.5 }}
+          className={styles.imagesBlockItem}
+        >
           <div className={styles.itemImg}>
             <img src={img1} alt="Ikona rejestracji konta użytkownika" />
           </div>
@@ -172,11 +225,23 @@ function Home() {
               serwisu.
             </p>
           </div>
-        </div>
-        <div className={styles.arrow}>
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          viewport={{ once: true, amount: 0.5 }}
+          className={styles.arrow}
+        >
           <img src={arrow} alt="Strzałka wskazująca następny krok" />
-        </div>
-        <div className={styles.imagesBlockItem}>
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          viewport={{ once: true, amount: 0.5 }}
+          className={styles.imagesBlockItem}
+        >
           <div className={styles.itemImg}>
             <img src={img2} alt="Ikona rejestracji wizyty lekarskiej" />
           </div>
@@ -184,11 +249,23 @@ function Home() {
             <p className={styles.itemTextTitle}>Zarejestruj swoją wizytę</p>
             <p>Wybierz dowolnego lekarza, termin i zarejestruj wizytę.</p>
           </div>
-        </div>
-        <div className={styles.arrow}>
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          viewport={{ once: true, amount: 0.5 }}
+          className={styles.arrow}
+        >
           <img src={arrow} alt="Strzałka wskazująca następny krok" />
-        </div>
-        <div className={styles.imagesBlockItem}>
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.5 }}
+          viewport={{ once: true, amount: 0.5 }}
+          className={styles.imagesBlockItem}
+        >
           <div className={styles.itemImg}>
             <img src={img3} alt="Ikona konsultacji lekarskiej" />
           </div>
@@ -196,10 +273,19 @@ function Home() {
             <p className={styles.itemTextTitle}>Konsultacja</p>
             <p>Gotowe! Lekarz już na Ciebie czeka.</p>
           </div>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
       <div className={styles.slideblock}>
-        <div className={styles.slideTitle}> Dlaczego MójLekarz?</div>
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true, amount: 0.5 }}
+          className={styles.slideTitle}
+        >
+          {" "}
+          Dlaczego MójLekarz?
+        </motion.div>
         <SwiperSlider />
       </div>
 

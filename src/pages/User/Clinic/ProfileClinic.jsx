@@ -1,11 +1,14 @@
 import { useState } from "react";
+import { motion } from "framer-motion";
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 import starimg from "@assets/img/Star.svg";
 import styles from "./style/ProfileClinic.module.css";
 import UslugiCard from "./UslugiCard";
 import ProfileClinicAbout from "./ProfileClinicAbout";
 import ProfileAddress from "./ProfileAddress";
 import ProfileClinicReviews from "./ProfileClinicReviews";
-
+import grey from "@assets/img/grey.png";
 import { useParams } from "react-router-dom";
 import useGetClinicsById from "./../../../api/hooks/ClinicHooks/useGetClinicsById";
 import useGetClinicReviews from "../../../api/hooks/GeneralHooks/ReviewsHooks/useGetClinicReviews";
@@ -46,29 +49,68 @@ function ProfileClinic() {
 
   const [menuBtnActive, setMenuBtnActive] = useState("Usługi");
 
+  const isLoading = !data;
+
+  const SkeletonStars = () => (
+    <div style={{ display: 'flex', gap: '4px' }}>
+      {[1,2,3,4,5].map((_, idx) => (
+        <Skeleton key={idx} width={20} height={20} />
+      ))}
+    </div>
+  );
+
   return (
     <div className={styles.profileClinic}>
-      <div className={styles.profileClinicRow}>
-        <div className={styles.clinicNameBlock}>
+      <motion.div 
+        className={styles.profileClinicRow}
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        <motion.div 
+          className={styles.clinicNameBlock}
+          initial={{ opacity: 0, y: -10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true, amount: 0.2 }}
+        >
           <div className={styles.profileImg}>
-            <img src={clinic.photo} />
+            {isLoading ? (
+              <Skeleton circle width={150} height={150} />
+            ) : (
+              <img src={clinic.photo || grey} loading="eager" />
+            )}
           </div>
           <div>
-            <p>{clinic.name}</p>
+            {isLoading ? (
+              <Skeleton width={200} height={24} />
+            ) : (
+              <p>{clinic.name}</p>
+            )}
           </div>
           <div className={styles.clinicStars}>
-            {Array.from({ length: clinic.rating }).map((_, index) => (
-              <img
-                key={index}
-                src={starimg}
-                alt="star"
-                className={styles.imgNameBlockStar}
-              />
-            ))}
+            {isLoading ? (
+              <SkeletonStars />
+            ) : (
+              Array.from({ length: clinic.rating }).map((_, index) => (
+                <img
+                  key={index}
+                  src={starimg}
+                  alt="star"
+                  className={styles.imgNameBlockStar}
+                />
+              ))
+            )}
           </div>
-        </div>
+        </motion.div>
 
-        <div className={styles.clinicMenu}>
+        <motion.div 
+          className={styles.clinicMenu}
+          initial={{ opacity: 0, y: -10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3, delay: 0.1 }}
+          viewport={{ once: true, amount: 0.2 }}
+        >
           <button
             className={`${styles.clinicMenuBtn} ${
               menuBtnActive == "Usługi" ? styles.active : ""
@@ -101,21 +143,35 @@ function ProfileClinic() {
           >
             Opinia
           </button>
-        </div>
+        </motion.div>
 
-        <div className={styles.profileClinicContent}>
-          {menuBtnActive == "Usługi" && <UslugiCard services={services} />}
-          {menuBtnActive == "O nas" && (
-            <ProfileClinicAbout description={clinic.description} />
+        <motion.div 
+          className={styles.profileClinicContent}
+          initial={{ opacity: 0, y: -10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3, delay: 0.2 }}
+          viewport={{ once: true, amount: 0.2 }}
+        >
+          {isLoading ? (
+            <div style={{ padding: '20px' }}>
+              <Skeleton count={5} height={40} style={{ marginBottom: '10px' }} />
+            </div>
+          ) : (
+            <>
+              {menuBtnActive == "Usługi" && <UslugiCard services={services} />}
+              {menuBtnActive == "O nas" && (
+                <ProfileClinicAbout description={clinic.description} />
+              )}
+              {menuBtnActive == "Adresy" && (
+                <ProfileAddress data={clinic} graphics={""} />
+              )}
+              {menuBtnActive == "Opinia" && (
+                <ProfileClinicReviews reviews={reviews} />
+              )}
+            </>
           )}
-          {menuBtnActive == "Adresy" && (
-            <ProfileAddress data={clinic} graphics={""} />
-          )}
-          {menuBtnActive == "Opinia" && (
-            <ProfileClinicReviews reviews={reviews} />
-          )}
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </div>
   );
 }

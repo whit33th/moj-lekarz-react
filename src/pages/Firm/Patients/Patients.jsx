@@ -4,10 +4,14 @@ import Search from "../../../components/UI/Search/Search";
 import useGetPatientsList from "../../../api/hooks/DoctorHooks/useGetPatientsList";
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
+import { motion } from "framer-motion";
 
 function PatientSkeleton() {
   return (
-    <div className={styles.row}>
+    <div 
+     
+      className={styles.row}
+    >
       <Skeleton circle width={50} height={50} />
       <div className={styles.info}>
         <div className={styles.name}>
@@ -79,8 +83,11 @@ function Patients() {
         {filteredPatients.length > 0 ? (
           <div className={styles.column}>
             {filteredPatients.map((patient, index) => (
-              <div
+              <motion.div
                 key={patient.id}
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: index * 0.05 }}
                 className={index % 2 === 0 ? styles.row : styles.rowAlt}
               >
                 <img src={patient.photo} alt={patient.name} />
@@ -88,11 +95,18 @@ function Patients() {
                   <div className={styles.name}>{patient.name}</div>
                   <div className={styles.phone}>{patient.phone}</div>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         ) : (
-          <div className={styles.noDataMessage}>Brak danych</div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.3 }}
+            className={styles.noDataMessage}
+          >
+            Brak danych
+          </motion.div>
         )}
       </div>
     </div>

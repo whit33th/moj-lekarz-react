@@ -7,7 +7,7 @@ import Skeleton from "react-loading-skeleton";
 import grey from "@assets/img/grey.png";
 import { pageConfig } from "../../../config/config";
 import useStore from "../../../data/store";
-
+import { motion } from "framer-motion";
 
 function DoctorCard({ data, loading, selectedDate, addZapis }) {
   const appointment = {
@@ -16,10 +16,10 @@ function DoctorCard({ data, loading, selectedDate, addZapis }) {
     name: data?.user?.first_name + " " + data?.user?.last_name || "Brak",
     price: data?.service?.price || "Brak",
     description: data?.description || "Brak",
-    street: data?.address?.street || "Brak",
-    city: data?.address?.city || "Brak",
-    home: data?.address?.home || "Brak",
-    postCode: data?.address?.post_index || "Brak",
+    street: data?.clinic?.address?.street || "Brak",
+    city: data?.clinic?.address?.city || "Brak",
+    home: data?.clinic?.address?.home || "Brak",
+    postCode: data?.clinic?.address?.post_index || "Brak",
     service: data?.service?.name || "Brak",
     rating: Math.floor(data?.rating) || 0,
     specialty: data?.specialty || "Brak",
@@ -28,7 +28,7 @@ function DoctorCard({ data, loading, selectedDate, addZapis }) {
     clinic: data?.clinic.name || "Brak",
     phone: data?.user?.phone || "Brak",
   };
-  console.log(appointment)
+  console.log(appointment);
 
   // const rating = parseInt(data.rating, 10);
 
@@ -40,10 +40,16 @@ function DoctorCard({ data, loading, selectedDate, addZapis }) {
 
   // const displayedDates = filteredDates.slice(0, 2);
 
-  const {isAuth} = useStore();
-  console.log(isAuth)
+  const { isAuth } = useStore();
+  console.log(isAuth);
   return (
-    <div className={styles.doctorCard}>
+    <motion.div
+      initial={{ opacity: 0, y: -10 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.3 }}
+      viewport={{ once: true, amount: 0.2 }}
+      className={styles.doctorCard}
+    >
       <div className={styles.doctorCardInfo}>
         <div className={styles.doctorCardInfoImgBlock}>
           <NavLink to={`/profileDoctor/${appointment.id}`}>
@@ -67,10 +73,10 @@ function DoctorCard({ data, loading, selectedDate, addZapis }) {
           </div>
         </div>
         <div className={styles.doctorCardAddressBlock}>
-          <div className={styles.location} >
+          <div className={styles.location}>
             <img src={imgIcon1} alt="address" />
-            <div >
-              <p >
+            <div>
+              <p>
                 {appointment.street}, {appointment.postCode}, {appointment.city}
               </p>
               <p className={styles.doctorCardAddressPlaceholder}>
@@ -112,38 +118,49 @@ function DoctorCard({ data, loading, selectedDate, addZapis }) {
               <div className={styles.doctorCardTimeBlockItem} key={index}>
                 <p style={{ fontWeight: "bold" }}>{item.date}</p>
                 <div className={styles.doctorCardHoursItems}>
-                  {item?.slots?.map((timeSlot, index) => (
-                    isAuth ?
-                    <NavLink
-                      to={`${pageConfig.patient.confirmVisit}/${appointment.id}`}
-                      state={{
-                        doctor: {
-                          id: appointment.id,
-                          
-                          name: appointment.name,
-                          specialty: appointment.specialty,
-                          photo: appointment.photo,
-                          phone: appointment.phone,
-                        },
-                        clinic: {
-                          name: appointment.clinic,
-                          address: `${appointment.street}, ${appointment.postCode}, ${appointment.city}`,
-                          id: appointment.clinicId,
-                        },
-                        appointment: {
-                          date: item.date,
-                          startTime: timeSlot,
-                          endTime: timeSlot.split(':')[0] + ':' + (parseInt(timeSlot.split(':')[1]) + 15),
-                          service: appointment.service
-                        }
-                      }}
-                      className={styles.doctorCardHoursItem}
-                      key={index}
-                    >
-                      {timeSlot}
-                    </NavLink>
-                    : <NavLink to={pageConfig.login} className={styles.doctorCardHoursItem} key={index}>{timeSlot}</NavLink>
-                  ))}
+                  {item?.slots?.map((timeSlot, index) =>
+                    isAuth ? (
+                      <NavLink
+                        to={`${pageConfig.patient.confirmVisit}/${appointment.id}`}
+                        state={{
+                          doctor: {
+                            id: appointment.id,
+
+                            name: appointment.name,
+                            specialty: appointment.specialty,
+                            photo: appointment.photo,
+                            phone: appointment.phone,
+                          },
+                          clinic: {
+                            name: appointment.clinic,
+                            address: `${appointment.street}, ${appointment.postCode}, ${appointment.city}`,
+                            id: appointment.clinicId,
+                          },
+                          appointment: {
+                            date: item.date,
+                            startTime: timeSlot,
+                            endTime:
+                              timeSlot.split(":")[0] +
+                              ":" +
+                              (parseInt(timeSlot.split(":")[1]) + 15),
+                            service: appointment.service,
+                          },
+                        }}
+                        className={styles.doctorCardHoursItem}
+                        key={index}
+                      >
+                        {timeSlot}
+                      </NavLink>
+                    ) : (
+                      <NavLink
+                        to={pageConfig.login}
+                        className={styles.doctorCardHoursItem}
+                        key={index}
+                      >
+                        {timeSlot}
+                      </NavLink>
+                    )
+                  )}
                 </div>
               </div>
             ))
@@ -152,7 +169,7 @@ function DoctorCard({ data, loading, selectedDate, addZapis }) {
           )}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

@@ -2,12 +2,13 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import styles from "./style/SearchClinicPage.module.css";
 import ClinicCard from "./ClinicCard";
-import ClinicCardSkeleton from './ClinicCardSkeleton';
+import ClinicCardSkeleton from "./ClinicCardSkeleton";
 
 import useGetClinics from "../../../api/hooks/ClinicHooks/useGetClinics";
 import useSpecialties from "../../../api/hooks/GeneralHooks/useSpecialties";
 import { useCities } from "../../../api/hooks/GeneralHooks/useCitys";
 import InputDropdownStas from "../../../components/Dropdown/InputDropdownStas";
+import { motion } from "framer-motion";
 
 const arraySelectOptions = {
   select1: ["name1", "name2", "name3"],
@@ -19,7 +20,7 @@ function SearchClinicPage() {
   const { control, handleSubmit, watch, register } = useForm({
     mode: "onChange",
   });
-  const { data, refetch,isLoading } = useGetClinics({
+  const { data, refetch, isLoading } = useGetClinics({
     name: watch("name"),
     specialty: watch("specialty"),
     city: watch("city"),
@@ -30,7 +31,6 @@ function SearchClinicPage() {
 
   const { data: specialties } = useSpecialties();
   const [specialtyOptions, setSpecialtyOptions] = useState(["Ladowanie"]);
-
 
   useEffect(() => {
     if (specialties) {
@@ -49,11 +49,24 @@ function SearchClinicPage() {
 
   return (
     <div className={styles.clinickPage}>
-      <h1>Wybierz spośród dostępnych centrów medycznych</h1>
+      <motion.h1
+        initial={{ opacity: 0, y: -10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3 }}
+        viewport={{ once: true, amount: 0.2 }}
+      >
+        Wybierz spośród dostępnych centrów medycznych
+      </motion.h1>
       <div className={styles.filterBlockContentSelects}>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className={styles.mainFormIntupsBlock}>
-            <div className={styles.dropdownContainer}>
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              viewport={{ once: true, amount: 0.2 }}
+              className={styles.dropdownContainer}
+            >
               <InputDropdownStas
                 name="name"
                 control={control}
@@ -64,9 +77,15 @@ function SearchClinicPage() {
                 {...register("name")}
               />
               {/* <InputError errorField="name" formState={formState} /> */}
-            </div>
+            </motion.div>
 
-            <div className={styles.dropdownContainer}>
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              viewport={{ once: true, amount: 0.2 }}
+              className={styles.dropdownContainer}
+            >
               <InputDropdownStas
                 name="specialty"
                 control={control}
@@ -77,9 +96,15 @@ function SearchClinicPage() {
                 {...register("specialty")}
               />
               {/* <InputError errorField="specialty" formState={formState} /> */}
-            </div>
+            </motion.div>
 
-            <div className={`${styles.dropdownContainer} ${styles.litle}`}>
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              viewport={{ once: true, amount: 0.2 }}
+              className={`${styles.dropdownContainer} ${styles.litle}`}
+            >
               <InputDropdownStas
                 name="city"
                 control={control}
@@ -90,24 +115,22 @@ function SearchClinicPage() {
                 {...register("city")}
               />
               {/* <InputError errorField="city" formState={formState} /> */}
-            </div>
+            </motion.div>
 
-            <div className={styles.filterBtnBlock}>
+            {/* <div className={styles.filterBtnBlock}>
               <button type="submit">Szukaj terminu</button>
-            </div>
+            </div> */}
           </div>
         </form>
       </div>
       <div className={styles.clinicCardsBlock}>
-        {isLoading ? (
-          Array(3).fill(0).map((_, index) => (
-            <ClinicCardSkeleton key={index} />
-          ))
-        ) : (
-          data?.clinics?.map((c, index) => (
-            <ClinicCard key={index} data={c} />
-          ))
-        )}
+        {isLoading
+          ? Array(3)
+              .fill(0)
+              .map((_, index) => <ClinicCardSkeleton key={index} />)
+          : data?.clinics?.map((c, index) => (
+              <ClinicCard key={index} data={c} />
+            ))}
       </div>
       {!isLoading && data?.clinics?.length === 0 && (
         <div className={styles.nonCinicCardBlock}>

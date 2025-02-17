@@ -27,13 +27,13 @@ function Reports() {
   ]
   return (
     <>
-      <div className={styles.navbar}>
+      {/* <div className={styles.navbar}>
         <Dropdown
           options={["May 2024", "01.06.2024 - 1.07.2024"]}
           color={"#A6DEF7"}
           childrenLeft={<img src={calendar} />}
         />
-      </div>
+      </div> */}
       <Table columns={columns} data={tableData} />
     </>
   )

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { motion } from "framer-motion";
 import styles from "./Profil.module.css";
 import BlueBtn from "../../../components/Buttons/BlueBtn/BlueBtn";
 import useGetUserInfo from "../../../api/hooks/UserHooks/useGetUserInfo";
@@ -109,7 +110,12 @@ function ProfilFirm() {
   };
 
   return (
-    <div className={styles["profile-container"]}>
+    <motion.div 
+      initial={{ opacity: 0, y: -10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className={styles["profile-container"]}
+    >
       <div className={styles["profile-header"]}>
         <div className={styles["image-upload"]}>
           <input
@@ -130,7 +136,7 @@ function ProfilFirm() {
         </div>
         <h1>{data?.name}</h1>
         {!specialtiesLoading ? (
-          <p className={styles.specialization}>
+          <p  className={styles.specialization}>
             {specialties?.length  || "Brak"} specjalizacji
           </p>
         ) : (
@@ -269,7 +275,7 @@ function ProfilFirm() {
           </BlueBtn>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

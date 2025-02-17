@@ -34,18 +34,20 @@ function Header({ isLoggedIn }) {
           }`}
         >
           <ul>
-            {!isLoggedIn && <li
-              className={
-                `${styles.headerNavigateItem} ` +
-                (location.pathname === pageConfig.patient.howItWorks
-                  ? styles.active
-                  : "")
-              }
-            >
-              <NavLink to={pageConfig.patient.howItWorks}>
-                Jak to działa
-              </NavLink>
-            </li>}
+            {!isLoggedIn && (
+              <li
+                className={
+                  `${styles.headerNavigateItem} ` +
+                  (location.pathname === pageConfig.patient.howItWorks
+                    ? styles.active
+                    : "")
+                }
+              >
+                <NavLink to={pageConfig.patient.howItWorks}>
+                  Jak to działa
+                </NavLink>
+              </li>
+            )}
             <li
               className={
                 `${styles.headerNavigateItem} ` +
@@ -71,7 +73,6 @@ function Header({ isLoggedIn }) {
               </NavLink>
             </li>
 
-
             {isLoggedIn && (
               <li
                 className={
@@ -96,19 +97,19 @@ function Header({ isLoggedIn }) {
                 <NavLink to={pageConfig.patient.recipes}>Moje recepty</NavLink>
               </li>
             )}
-            
-            <li
-              className={
-                `${styles.headerNavigateItem} ` +
-                (location.pathname === pageConfig.patient.mobileApp
-                  ? styles.active
-                  : "")
-              }
-            >
-              <NavLink to={pageConfig.patient.mobileApp}>
-                Aplikacja mobilna
-              </NavLink>
-            </li>
+
+            {isLoggedIn && (
+              <li
+                className={
+                  `${styles.headerNavigateItem} ` +
+                  (location.pathname === pageConfig.patient.firm
+                    ? styles.active
+                    : "")
+                }
+              >
+                <NavLink to={pageConfig.patient.documents}>Documenty</NavLink>
+              </li>
+            )}
             <li
               className={
                 `${styles.headerNavigateItem} ` +
@@ -148,7 +149,10 @@ function Header({ isLoggedIn }) {
               <NavLink to={pageConfig.patient.profile}>
                 <img src={imgProfile} alt="profile" />
               </NavLink>
-              <button className={styles.minimalistButton} onClick={() => logout()}>
+              <button
+                className={styles.minimalistButton}
+                onClick={() => logout()}
+              >
                 Wyloguj się
               </button>
             </div>

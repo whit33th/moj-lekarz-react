@@ -10,6 +10,7 @@ import InputDropdownStas from "../../../components/Dropdown/InputDropdownStas";
 import useAvailableSlots from "../../../api/hooks/PatientHooks/useAvailableSlots";
 import InputError from "../../../components/UI/InputError/InputError";
 import useSpecialties from "../../../api/hooks/GeneralHooks/useSpecialties";
+import { motion } from "framer-motion";
 
 const types = [
   { label: "Prywatna", value: "prywatna" },
@@ -46,7 +47,6 @@ function SearchVisits() {
   const { data: specialties } = useSpecialties();
   const [specialtyOptions, setSpecialtyOptions] = useState(["Ladowanie"]);
 
-  
   useEffect(() => {
     if (specialties) {
       setSpecialtyOptions([...new Set(specialties.map((s) => s.name))]);
@@ -66,7 +66,12 @@ function SearchVisits() {
   return (
     <div className={styles.zhaidzLekarza}>
       <div className={styles.filterBlock}>
-        <div className={styles.filterBlockContent}>
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className={styles.filterBlockContent}
+        >
           <h1>Umów się na wizytę</h1>
           <form
             onSubmit={handleSubmit(onSubmit)}
@@ -131,17 +136,17 @@ function SearchVisits() {
                 <InputError errorField="type" formState={formState} />
               </div>
             </div>
-            <div className={styles.filterBtnBlock}>
+            {/* <div className={styles.filterBtnBlock}>
               <button>Szukaj terminu</button>
-            </div>
+            </div> */}
           </form>
-        </div>
+        </motion.div>
       </div>
 
       <div className={styles.zhaidzLekarzaContentBlock}>
         <div className={styles.zhaidzLekarzaContentTitle}>
           <h2>Wybierz spośród {totalCount} dostępnych specjalistów</h2>
-          <button>Zobacz na mapę</button>
+          {/* <button>Zobacz na mapę</button> */}
         </div>
       </div>
       <div className={styles.doctorsCards}>

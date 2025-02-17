@@ -19,6 +19,7 @@ import useGetWorkersList from "../../../api/hooks/ClinicHooks/useGetWorkersList"
 import grey from "@assets/img/grey.png";
 import SkeletonTodayVisitItem from "../../../components/DoctorPage/Home/TodayVisitItem/SkeletonTodayVisitItem";
 import { pageConfig } from "../../../config/config";
+import { motion } from "framer-motion";
 
 function FirmManagement() {
   const { setModalActive, setModalContent } = useStore();
@@ -85,10 +86,6 @@ function FirmManagement() {
     postIndex: isLoading ? "Ładowanie..." : data?.address?.post_index || "Brak",
   };
 
-  
-
-  
-
   const { data: reviewsData } = useGetClinicReviews({ clinicId: 142 });
 
   const modalContentComments = (
@@ -124,10 +121,12 @@ function FirmManagement() {
   return (
     <div className="content">
       <div className={styles.topLayer}>
-        <div
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
           className={`${styles.officeInfo} ${styles.mainCard} ${styles.biggerCard} ${styles.editDiv}`}
         >
-          
           <div>
             <p className={styles.title}>{clinic.name}</p>
             <p
@@ -137,9 +136,14 @@ function FirmManagement() {
           <div className={styles.officeTime}>
             <WorkingHoursGrid timetables={data?.timetables} />
           </div>
-        </div>
+        </motion.div>
 
-        <div className={`${styles.mainCard} ${styles.officeInfo}`}>
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className={`${styles.mainCard} ${styles.officeInfo}`}
+        >
           <div>
             <p className={styles.title}>Punkt rejestracji</p>
             <p className={styles.grey}>{clinic.tel}</p>
@@ -148,11 +152,16 @@ function FirmManagement() {
             <p className={styles.title}>Email</p>
             <p className={styles.grey}>{clinic.email}</p>
           </div>
-        </div>
+        </motion.div>
       </div>
 
       <div className={styles.botLayer}>
-        <div className={`${styles.mainCard}`}>
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className={`${styles.mainCard}`}
+        >
           <div className={`${styles.flex} ${styles.between}`}>
             <p className={styles.titleCard}>Komentarze</p>
             {reviewsData?.reviews?.length > 0 && (
@@ -173,23 +182,37 @@ function FirmManagement() {
           <div className={styles.reviews}>
             {reviewsData?.reviews && !isLoading ? (
               !reviewsData.reviews || reviewsData.reviews.length === 0 ? (
-                <div className={styles.emptyState}>
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  className={styles.emptyState}
+                >
                   <p>Nie ma komentarzy</p>
-                </div>
+                </motion.div>
               ) : (
-                reviewsData.reviews
-                  .slice(0, 3)
-                  .map((review, index) => (
-                    <Review key={index} review={review} />
-                  ))
+                reviewsData.reviews.slice(0, 3).map((review, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.3, delay: 0.3 + index * 0.1 }}
+                  >
+                    <Review review={review} />
+                  </motion.div>
+                ))
               )
             ) : (
               <SkeletonTodayVisitItem count={3} />
             )}
           </div>
-        </div>
+        </motion.div>
 
-        <div className={`${styles.mainCard} ${styles.biggerCard}`}>
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className={`${styles.mainCard} ${styles.biggerCard}`}
+        >
           <div className={`${styles.flex} ${styles.between}`}>
             <p className={styles.titleCard}>Dostępne lekarzy</p>
             {workersData?.doctors?.length > 0 && (
@@ -205,15 +228,20 @@ function FirmManagement() {
           <div className={styles.history}>
             {workersData?.doctors && !isLoading ? (
               !workersData.doctors || workersData.doctors.length === 0 ? (
-                <div className={styles.emptyState}>
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  className={styles.emptyState}
+                >
                   <p>Nie ma dostępnych lekarzy</p>
-                </div>
+                </motion.div>
               ) : (
                 workersData.doctors
                   .slice(0, 5)
                   .map((doctor, index) => (
                     <BestWorkerItem
-                      key={index}
+                      key={doctor?.id}
+                      index={index}
                       id={doctor?.id}
                       name={`${doctor.user.first_name} ${doctor.user.last_name}`}
                       img={doctor.user.photo || grey}
@@ -226,7 +254,7 @@ function FirmManagement() {
               <SkeletonTodayVisitItem count={5} />
             )}
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );

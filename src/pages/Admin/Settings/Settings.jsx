@@ -7,9 +7,9 @@ import { useForm } from "react-hook-form";
 import usePutUserInfo from "../../../api/hooks/UserHooks/usePutUserInfo";
 import InputError from "../../../components/UI/InputError/InputError";
 import BlueBtn from "../../../components/Buttons/BlueBtn/BlueBtn";
+import { motion } from "framer-motion";
 
 function Settings() {
-
   const [selectedImg, setSelectedImg] = useState(null);
   const [fileForUpload, setFileForUpload] = useState(null);
 
@@ -39,8 +39,6 @@ function Settings() {
       email: isLoading ? "Ładowanie..." : user?.email || "Brak",
     });
   }, [user, reset, isLoading]);
-
-
 
   function onSubmit(data) {
     const formData = {
@@ -74,7 +72,12 @@ function Settings() {
   }
 
   const settingData = (
-    <div className={styles.settingData}>
+    <motion.div
+      initial={{ opacity: 0, y: -10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className={styles.settingData}
+    >
       <div className={styles.settingInfo}>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className={styles.halfRow}>
@@ -201,10 +204,8 @@ function Settings() {
           </div>
         </form>
       </div>
-    </div>
+    </motion.div>
   );
-
- 
 
   return <div className="content">{settingData}</div>;
 }

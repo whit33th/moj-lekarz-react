@@ -5,6 +5,7 @@ import imgIcon1 from "@assets/img/simple-line-i.svg";
 import imgIcon2 from "@assets/img/Vector14.svg";
 import grey from "@assets/img/grey.png";
 import { pageConfig } from "../../../config/config";
+import { motion } from "framer-motion";
 
 function ClinicCard({ data }) {
   const clinic = {
@@ -34,9 +35,15 @@ function ClinicCard({ data }) {
   };
 
   return (
-    <div className={styles.clinicCard}>
+    <motion.div
+      initial={{ opacity: 0, y: -10 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.3 }}
+      viewport={{ once: true, amount: 0.2 }}
+      className={styles.clinicCard}
+    >
       <div className={styles.nameBlock}>
-        <img src={clinic.photo || grey} alt="</div>clinic" />
+        <img src={clinic.photo || grey}  alt="</div>clinic" />
         <div className={styles.nameBlockText}>
           <div className={styles.nameSection}>
             <p>{clinic.name}</p>
@@ -86,7 +93,7 @@ function ClinicCard({ data }) {
           Zobacz więcej &#8594;
         </NavLink>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

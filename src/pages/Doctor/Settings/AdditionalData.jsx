@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import styles from "./styles.module.css";
 import usePutUserInfo from "../../../api/hooks/UserHooks/usePutUserInfo";
+import { motion } from "framer-motion";
 
 function AdditionalData({ description }) {
   // const { register, handleSubmit } = useForm()
@@ -13,7 +14,10 @@ function AdditionalData({ description }) {
   // 	mutate(formData)
   // }
   return (
-    <form
+    <motion.form
+      initial={{ opacity: 0, y: -10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
       style={{
         width: "100%",
         display: "flex",
@@ -22,6 +26,7 @@ function AdditionalData({ description }) {
       }}
     >
       <textarea
+        readOnly
         value={description}
         className={styles.textarea}
         placeholder="Wpisz tekst"
@@ -34,7 +39,7 @@ function AdditionalData({ description }) {
 			>
 				Zapisz zmiany
 			</button> */}
-    </form>
+    </motion.form>
   );
 }
 

@@ -15,6 +15,7 @@ import styles from "./styles.module.css";
 import CalendarBlockSchedules from "../../../components/DoctorPage/Home/Calendar/CalendarBlockSchedules";
 import useStore from "../../../data/store";
 import AddDoctorIconModal from "../../../components/Modals/AddDoctorIcon/AddDoctorIconModal";
+import { motion } from "framer-motion";
 function Settings() {
   const { setModalActive, setModalContent } = useStore();
   const [activeTab, setActiveTab] = useState("Dane podstawowe");
@@ -139,11 +140,16 @@ function Settings() {
     setSelectedImg(isLoading || !user ? grey : user?.photo);
   }, [isLoading, user]);
   const workTime = (
-    <div className={styles.workTime}>
+    <motion.div
+      initial={{ opacity: 0, y: -10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className={styles.workTime}
+    >
       <div style={{ width: "100%" }} className={styles.shadow}>
         <CalendarBlockSchedules />
       </div>
-    </div>
+    </motion.div>
   );
 
   function handleIconClick() {
@@ -152,7 +158,12 @@ function Settings() {
   }
 
   const settingData = (
-    <div className={styles.settingData}>
+    <motion.div
+      initial={{ opacity: 0, y: -10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className={styles.settingData}
+    >
       <div className={styles.settingInfo}>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className={styles.halfRow}>
@@ -215,7 +226,9 @@ function Settings() {
                   },
                 })}
                 onInput={(e) => {
-                  e.target.value = e.target.value.replace(/\D/g, "").slice(0, 5);
+                  e.target.value = e.target.value
+                    .replace(/\D/g, "")
+                    .slice(0, 5);
                 }}
               />
               <InputError formState={formState} errorField={"postCode"} />
@@ -356,7 +369,7 @@ function Settings() {
           Wybierz ikonę
         </button>
       </div>
-    </div>
+    </motion.div>
   );
 
   return (

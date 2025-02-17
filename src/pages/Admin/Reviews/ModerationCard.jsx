@@ -1,28 +1,29 @@
-import styles from "./ReviewCard.module.css"
-import Choice from "../../../components/Modal/Choice"
-import useStore from "../../../data/store"
-import ModerationModal from "../../../components/Modals/ReviewModal/ModerationModal"
-import star from "@assets/img/Star.svg"
-import starGrey from "@assets/img/Star 6.svg"
+import styles from "./ReviewCard.module.css";
+import Choice from "../../../components/Modal/Choice";
+import useStore from "../../../data/store";
+import ModerationModal from "../../../components/Modals/ReviewModal/ModerationModal";
+import star from "@assets/img/Star.svg";
+import starGrey from "@assets/img/Star 6.svg";
 import usePatchReviews from "../../../api/hooks/GeneralHooks/ReviewsHooks/usePatchReviews";
+import { motion } from "framer-motion";
 
 const ModerationCard = ({ id, name, date, text, rating, avatar, tags }) => {
-  const { setModalActive, setModalContent } = useStore()
+  const { setModalActive, setModalContent } = useStore();
   const { mutate: acceptReview } = usePatchReviews();
 
   function handleModal() {
-    setModalActive(true)
+    setModalActive(true);
     setModalContent(
-      <ModerationModal 
+      <ModerationModal
         id={id}
-        name={name} 
-        date={date} 
-        text={text} 
+        name={name}
+        date={date}
+        text={text}
         rating={rating}
         avatar={avatar}
         tags={tags}
       />
-    )
+    );
   }
 
   function handleAccept() {
@@ -30,15 +31,21 @@ const ModerationCard = ({ id, name, date, text, rating, avatar, tags }) => {
   }
 
   return (
-    <div className={styles.card}>
+    <motion.div
+      initial={{ opacity: 0, y: -10 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      viewport={{ once: true, amount: 0.2 }}
+      className={styles.card}
+    >
       <div className={styles.header}>
-        <img 
-          src={avatar} 
-          alt="Avatar" 
+        <img
+          src={avatar}
+          alt="Avatar"
           className={styles.avatar}
           onError={(e) => {
             e.target.onerror = null;
-            e.target.src = "/path/to/default/avatar.png"; 
+            e.target.src = "/path/to/default/avatar.png";
           }}
         />
         <div className={styles.headerInfo}>
@@ -62,21 +69,31 @@ const ModerationCard = ({ id, name, date, text, rating, avatar, tags }) => {
           </div>
 
           <div className={styles.service}>
-            {tags && tags.map((tag, index) => (
-              <div 
-                key={index} 
-                className={tag.includes("Bad") || tag.includes("Un") ? styles.bad : styles.good}
-              >
-                {tag}
-              </div>
-            ))}
+            {tags &&
+              tags.map((tag, index) => (
+                <div
+                  key={index}
+                  className={
+                    tag.includes("Bad") || tag.includes("Un")
+                      ? styles.bad
+                      : styles.good
+                  }
+                >
+                  {tag}
+                </div>
+              ))}
           </div>
         </div>
       </div>
       {text && <p className={styles.text}>{text}</p>}
-      <Choice choice1={"Otwórz"} choice2={"Akceptuj"} cb1={handleModal} cb2={handleAccept} />
-    </div>
-  )
-}
+      <Choice
+        choice1={"Otwórz"}
+        choice2={"Akceptuj"}
+        cb1={handleModal}
+        cb2={handleAccept}
+      />
+    </motion.div>
+  );
+};
 
-export default ModerationCard
+export default ModerationCard;

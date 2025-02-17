@@ -1,7 +1,5 @@
-import { useState, useEffect } from "react";
 import Choice from "../../../components/Modal/Choice";
 import styles from "./AddFirm.module.css";
-import grey from "@assets/img/grey.png";
 import DropdownStas from "./../../../components/Dropdown/DropdownStas";
 import useStore from "../../../data/store";
 import BlueBorderBtn from "../../../components/Buttons/BlueBorderBtn/BlueBorderBtn";
@@ -10,10 +8,11 @@ import { toast } from "sonner";
 import { useForm } from "react-hook-form";
 import usePostClinic from "../../../api/hooks/ClinicHooks/usePostClinic";
 import BlueBtn from "../../../components/Buttons/BlueBtn/BlueBtn";
+import { motion } from 'framer-motion';
 
 export default function AddFirm() {
   const { setModalActive, setModalContent } = useStore();
-  
+
   const { mutate, isPending } = usePostClinic();
 
   const {
@@ -21,9 +20,8 @@ export default function AddFirm() {
     handleSubmit,
     formState: { errors },
     control,
- 
   } = useForm({
-    mode: 'onChange',
+    mode: "onChange",
     defaultValues: {
       name: "",
       province: "",
@@ -50,24 +48,6 @@ export default function AddFirm() {
     // };
     mutate(data);
   };
-
-  const editModal = (
-    <div>
-      <h1 style={{ textAlign: "center" }}>
-        Czy na pewno chcesz
-        <br /> edytować konto?
-      </h1>
-
-      <div className={styles.actions}>
-        <BlueBorderBtn cb={() => setModalActive(false)}>Nie</BlueBorderBtn>
-        <RedBorderBtn
-          cb={() => toast.success("Informacje o profilu zostały zmienione.")}
-        >
-          Tak
-        </RedBorderBtn>
-      </div>
-    </div>
-  );
 
   function deleteAccountStatus() {
     toast.success("Profil został usunięty");
@@ -126,13 +106,12 @@ export default function AddFirm() {
   // };
 
   return (
-    <div className={styles.container}>
+    <motion.div
+      initial={{ opacity: 0, y: -10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }} className={styles.container}>
       <div className={styles.background}>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className={styles.profileSection}>
-            <img className={styles.profileImage} src={grey} alt="Profile" />
-          </div>
-
           <div className={styles.container}>
             <div className={styles.infoGridTwo}>
               <div className={styles.infoGroup}>
@@ -242,7 +221,8 @@ export default function AddFirm() {
                     required: "Numer licencji jest wymagany",
                     pattern: {
                       value: /^NR-\d{6}$/,
-                      message: "Format numeru licencji: NR-XXXXXX (gdzie X to cyfra)"
+                      message:
+                        "Format numeru licencji: NR-XXXXXX (gdzie X to cyfra)",
                     },
                   })}
                   placeholder="NR-123456"
@@ -296,20 +276,21 @@ export default function AddFirm() {
                     required: "Hasło jest wymagane",
                     minLength: {
                       value: 8,
-                      message: "Hasło musi mieć minimum 8 znaków"
+                      message: "Hasło musi mieć minimum 8 znaków",
                     },
-                    
                   })}
                   placeholder="Wprowadź hasło"
                 />
                 {errors.password && (
-                  <span className={styles.error}>{errors.password.message}</span>
+                  <span className={styles.error}>
+                    {errors.password.message}
+                  </span>
                 )}
               </div>
             </div>
             <BlueBtn disabled={isPending}>
-            {isPending ? "Zapisywanie..." : "Dodaj firmę"}
-          </BlueBtn>
+              {isPending ? "Zapisywanie..." : "Dodaj firmę"}
+            </BlueBtn>
           </div>
 
           {/* <div className={styles.infoGridTwo}>
@@ -344,10 +325,8 @@ export default function AddFirm() {
               </div>
             </div>
           )} */}
-
-         
         </form>
       </div>
-    </div>
+    </motion.div>
   );
 }

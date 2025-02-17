@@ -20,7 +20,7 @@
 }
 .filterBlockContent {
   width: 85%;
-  min-height: 280px;
+  /* min-height: 280px; */
   background-color: #ffffff;
   border-radius: 20px;
   padding: 30px 60px;
@@ -193,7 +193,7 @@
 }
 .zhaidzLekarzaContentTitle {
   width: 100%;
-  padding: 50px 10px;
+  
   display: flex;
   justify-content: space-between;
   align-items: center;
