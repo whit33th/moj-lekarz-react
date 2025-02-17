@@ -270,7 +270,12 @@ function AdminMainContent() {
           </div>
           <ul className={styles.notesList}>
             {notions?.slice(0, 5).map((note) => (
-              <li key={note.id}>
+              <motion.li
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5 }}
+                key={note.id}
+              >
                 <div className={styles.noteContent}>
                   <img className={styles.noteIco} src={noteIco} alt="" />
                   {note?.content}
@@ -283,7 +288,7 @@ function AdminMainContent() {
                     alt=""
                   />
                 </button>
-              </li>
+              </motion.li>
             ))}
           </ul>
         </motion.div>
