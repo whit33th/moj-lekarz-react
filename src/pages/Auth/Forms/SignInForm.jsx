@@ -31,7 +31,7 @@ function SignInForm({ setIsForgotPassword }) {
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.signIninputBlock}>
           <div>
-            <div className={styles.registService}>
+            <div className={styles.registServiceSignIn}>
               <Link to={'https://doc-web-rose.vercel.app/auth/google'} className={styles.registerServiceItem}>
                 <p>Kontynuuj z Google</p>
                 <img src={logoGoogle} alt="google" />
@@ -63,8 +63,8 @@ function SignInForm({ setIsForgotPassword }) {
               {...register("password", {
                 required: "Hasło jest wymagane",
                 minLength: {
-                  value: 8,
-                  message: "Hasło musi mieć co najmniej 8 znaków",
+                  value: 9,
+                  message: "Hasło musi mieć co najmniej 9 znaków",
                 },
               })}
             />

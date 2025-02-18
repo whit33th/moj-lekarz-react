@@ -28,6 +28,7 @@ function SignUpComponent() {
           <h1>Załóż konto</h1>
           <div className={styles.registService}>
             <Link
+             
               to={"https://doc-web-rose.vercel.app/auth/google"}
               className={styles.registerServiceItem}
             >
@@ -65,8 +66,8 @@ function SignUpComponent() {
                 placeholder="Hasło..."
                 {...register("password", {
                   minLength: {
-                    value: 8,
-                    message: "Hasło musi mieć co najmniej 8 znaków",
+                    value: 9,
+                    message: "Hasło musi mieć co najmniej 9 znaków",
                   },
                 })}
               />

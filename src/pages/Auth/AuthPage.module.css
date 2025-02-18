@@ -6,7 +6,10 @@
   justify-content: center;
   background-color: #fff;
 }
-
+.authPageContent > img {
+  cursor: pointer;
+  margin: 10px;
+}
 .authPageContent {
   width: 50%;
   height: auto;
@@ -16,9 +19,7 @@
   flex-wrap: wrap;
 }
 
-
-
-.error{
+.error {
   color: red;
   text-align: center;
   font-size: 1em;
@@ -49,7 +50,6 @@
 }
 
 .signIn h1 {
-  ;
   font-size: 34.5px;
   font-weight: 700;
   line-height: 49.18px;
@@ -73,14 +73,13 @@
   outline: none;
   padding: 0 20px;
 
-  ;
   font-size: 17px;
   font-weight: 400;
   line-height: 24.59px;
   text-align: left;
 }
 
-.signIninputBlock>div {
+.signIninputBlock > div {
   margin-bottom: 12px;
 }
 
@@ -176,7 +175,6 @@
   outline: none;
   padding: 0 20px;
 
-  ;
   font-size: 17px;
   font-weight: 400;
   line-height: 24.59px;
@@ -212,7 +210,10 @@
 
 .registService {
   width: 100%;
-  padding: 15px 0px;
+  padding: 15px 35px;
+}
+.registServiceSignIn {
+  padding: 15px 0;
 }
 
 .registerServiceItem {
@@ -222,7 +223,7 @@
   height: 55px;
   border-radius: 1000px;
   background-color: #fff;
-  
+
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -307,10 +308,9 @@
   background-color: #f2f2f2;
   border-radius: 4px;
   background-color: #a6def7;
-
 }
 
-.checkboxContainer input:checked~.checkmark {
+.checkboxContainer input:checked ~ .checkmark {
   background-color: #3e36b0;
 }
 
@@ -320,7 +320,7 @@
   display: none;
 }
 
-.checkboxContainer input:checked~.checkmark:after {
+.checkboxContainer input:checked ~ .checkmark:after {
   display: block;
 }
 
@@ -361,7 +361,6 @@
 }
 
 @media (max-width: 624px) {
-  
   .authPageContent {
     width: 100%;
   }

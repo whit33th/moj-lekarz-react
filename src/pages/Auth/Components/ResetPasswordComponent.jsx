@@ -40,8 +40,8 @@ function ResetPasswordComponent() {
                 {...register("newPassword", {
                   required: "Hasło jest wymagane",
                   minLength: {
-                    value: 8,
-                    message: "Hasło musi mieć co najmniej 8 znaków",
+                    value: 9,
+                    message: "Hasło musi mieć co najmniej 9 znaków",
                   },
                 })}
               />

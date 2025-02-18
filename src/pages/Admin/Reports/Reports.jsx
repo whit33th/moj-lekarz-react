@@ -24,7 +24,7 @@ function Reports() {
   });
 
   const tableData = [{
-    name: "Statistics Report"
+    name: "Raport systemowy"
   }];
 
   const columns = [

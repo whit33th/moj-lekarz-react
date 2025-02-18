@@ -73,14 +73,9 @@ function Home() {
   return (
     <div className={styles.home}>
       <div className={styles.homeFirstBlock}>
-        <motion.div
-          initial={{ opacity: 1, scale: 0,rotate: 0 }}
-          animate={{ opacity: 1, scale: 1, rotate: 360*16 }}
-          transition={{ duration: 5 }}
-          className={styles.homeFirstBlockLeft}
-        >
+        <div className={styles.homeFirstBlockLeft}>
           <img src={mainImg} alt="Lekarz konsultujący pacjenta w gabinecie" />
-        </motion.div>
+        </div>
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
