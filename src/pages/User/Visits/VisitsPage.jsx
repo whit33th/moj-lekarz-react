@@ -12,6 +12,7 @@ import useGetPatientAppointments from "../../../api/hooks/PatientHooks/useGetPat
 import DeleteAppointmentModal from "../../../components/Modals/DeleteAppointment/DeleteAppointmentModal";
 import useDeleteAppointment from "./../../../api/hooks/PatientHooks/useDeleteAppontment";
 import VisitsCardSkeleton from "./VisitsCardSkeleton";
+import { motion } from "framer-motion";
 
 function VisitsPage({ isLoggedIn = true }) {
   const { data: scheduledAppointments, isLoading } = useGetPatientAppointments(
@@ -52,15 +53,31 @@ function VisitsPage({ isLoggedIn = true }) {
   }, [isLoggedIn, navigate]);
 
   return (
-    <div className={styles.visitsPage}>
+    <motion.div 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      className={styles.visitsPage}
+    >
       <DeleteAppointmentModal
         modalWindowStatus={modalWindowStatus}
         setModalWindowStatus={setModalWindowStatus}
         deleteFc={deleteFc}
       />
 
-      <div className={styles.visitsPageLeft}>
-        <h1>Zaplanowane wizyty</h1>
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+        className={styles.visitsPageLeft}
+      >
+        <motion.h1
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          Zaplanowane wizyty
+        </motion.h1>
         {isLoading ? (
           <>
             <VisitsCardSkeleton />
@@ -78,7 +95,13 @@ function VisitsPage({ isLoggedIn = true }) {
           </NavLink>
         </div>
 
-        <h1>Zrealizowane wizyty</h1>
+        <motion.h1
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          Zrealizowane wizyty
+        </motion.h1>
         {completedAppointments?.length > 0 ? (
           completedAppointments.map((appointment, index) => (
             <VisitsCardCompleted
@@ -89,8 +112,13 @@ function VisitsPage({ isLoggedIn = true }) {
         ) : (
           <p>Brak zrealizowanych wizyt</p>
         )}
-      </div>
-      <div className={styles.visitsPageRight}>
+      </motion.div>
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+        className={styles.visitsPageRight}
+      >
         <p>Bądź zawsze na bieżąco!</p>
         <p>Pobierz aplikację mobilną z planem wizyt od MyLekarz!</p>
         <div className={styles.visitsPageRightIcons}>
@@ -110,8 +138,8 @@ function VisitsPage({ isLoggedIn = true }) {
           </div>
           <p>Zeskanuj kod i pobierz</p>
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 }
 

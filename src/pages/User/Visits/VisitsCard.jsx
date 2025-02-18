@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 import styles from "./VisitsCard.module.css";
 import imgName from "@assets/img/simple-line-i.svg";
 import imgType from "@assets/img/Vector14.svg";
@@ -30,7 +31,13 @@ function VisitsCard({ data, deleteFc }) {
   console.log(appointment.id);
 
   return (
-    <div className={styles.visitsCard}>
+    <motion.div 
+      initial={{ opacity: 0, y: -20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.5 }}
+      className={styles.visitsCard}
+    >
       <div className={styles.visitsCardTimeBlock}>
         <p>{appointment.date}</p>
         <p className={styles.visitsCardTimeText}>{appointment.time}</p>
@@ -66,7 +73,7 @@ function VisitsCard({ data, deleteFc }) {
       >
         <img src={closeImg} alt="X" />
       </span>
-    </div>
+    </motion.div>
   );
 }
 export default VisitsCard;
