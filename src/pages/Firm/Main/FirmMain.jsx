@@ -158,21 +158,22 @@ function DoctorMain() {
                     >
                       {stats?.countPatients?.totalCount || "Brak"}
                     </p>
-                    {!isNaN(stats?.countPatients?.percentageChange) && (
-                      <div
-                        className={`${styles.graph} ${styles.tCenter} ${styles.smBack} ${styles.flex} ${styles.itemsCenter}`}
-                      >
-                        <p>
-                          {stats.countPatients?.percentageChange?.toFixed(0) +
-                            "%"}
-                        </p>
-                        <img
-                          src={graphDown}
-                          alt="Graph Down"
-                          className={styles.graphIcon}
-                        />
-                      </div>
-                    )}
+                    {!isNaN(stats?.countPatients?.percentageChange) &&
+                      stats?.countPatients?.percentageChange !== null && (
+                        <div
+                          className={`${styles.graph} ${styles.tCenter} ${styles.smBack} ${styles.flex} ${styles.itemsCenter}`}
+                        >
+                          <p>
+                            {stats.countPatients?.percentageChange?.toFixed(0) +
+                              "%"}
+                          </p>
+                          <img
+                            src={graphDown}
+                            alt="Graph Down"
+                            className={styles.graphIcon}
+                          />
+                        </div>
+                      )}
                   </div>
                 </div>
 
@@ -188,22 +189,23 @@ function DoctorMain() {
                       {Math.round(stats?.averageRating?.currentRating) ||
                         "Brak"}
                     </p>
-                    {!isNaN(stats?.averageRating?.percentageChange) && (
-                      <div
-                        className={`${styles.graph} ${styles.tCenter} ${styles.smBack} ${styles.flex} ${styles.itemsCenter}`}
-                      >
-                        <p>
-                          {`${stats.averageRating?.percentageChange?.toFixed(
-                            0
-                          )}%` || "Brak"}
-                        </p>
-                        <img
-                          src={graphUp}
-                          alt="Graph Up"
-                          className={styles.graphIcon}
-                        />
-                      </div>
-                    )}
+                    {!isNaN(stats?.averageRating?.percentageChange) &&
+                      stats?.averageRating?.percentageChange !== null && (
+                        <div
+                          className={`${styles.graph} ${styles.tCenter} ${styles.smBack} ${styles.flex} ${styles.itemsCenter}`}
+                        >
+                          <p>
+                            {`${stats.averageRating?.percentageChange?.toFixed(
+                              0
+                            )}%` || "Brak"}
+                          </p>
+                          <img
+                            src={graphUp}
+                            alt="Graph Up"
+                            className={styles.graphIcon}
+                          />
+                        </div>
+                      )}
                   </div>
                 </div>
               </>

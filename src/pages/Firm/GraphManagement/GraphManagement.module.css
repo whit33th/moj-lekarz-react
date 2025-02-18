@@ -117,7 +117,7 @@
   text-align: center;
   width: 100%;
   margin: 20px 0;
-  font-size: 18px;
+  
 }
 .card {
   background-color: white;
@@ -220,7 +220,4 @@
     width: 100%;
   } */
 
-  .noDataMessage {
-    font-size: 16px;
-  }
 }

@@ -20,6 +20,7 @@ import DropdownStas from "../../../components/Dropdown/DropdownStas";
 import useGetClinicServices from "../../../api/hooks/ServicesHooks/useGetClinicServices";
 import usePutDoctorInfo from "../../../api/hooks/ClinicHooks/usePutDoctorInfo";
 import InputError from "../../../components/UI/InputError/InputError";
+import useDeleteDoctor from "../../../api/hooks/ClinicHooks/useDeleteDoctor ";
 
 import grey from "@assets/img/grey.png";
 
@@ -34,6 +35,7 @@ export default function WorkersInfo() {
   const navigate = useNavigate();
   const { setModalActive, setModalContent } = useStore();
   const { mutate } = usePutDoctorInfo();
+  const { mutate: deleteDoctor } = useDeleteDoctor();
 
   const [visitTypes, setVisitTypes] = useState([]);
 
@@ -43,7 +45,7 @@ export default function WorkersInfo() {
         firstName: doctor?.user?.first_name,
         lastName: doctor?.user?.last_name,
         email: doctor?.user?.email,
-        phone: doctor?.user?.phone, 
+        phone: doctor?.user?.phone,
         gender: doctor?.user?.gender === "male" ? "Mężczyzna" : "Kobieta",
         city: doctor?.user?.address?.city,
         province: doctor?.user?.address?.province,
@@ -139,8 +141,6 @@ export default function WorkersInfo() {
       },
       servicesIds: visitTypes.map((type) => parseInt(type.id)),
     };
-
-    console.log("Sending data:", updateData);
     mutate(updateData);
   };
 
@@ -163,9 +163,9 @@ export default function WorkersInfo() {
   }
 
   function deleteAccountStatus() {
-    toast.success("Profil został usunięty");
-    setModalActive(false);
+    deleteDoctor(id);
   }
+
   const modalContentDeleteAccount = (
     <>
       <h1>Usuwanie konta</h1>
@@ -304,7 +304,7 @@ export default function WorkersInfo() {
               {...register("phone", {
                 required: "Telefon jest wymagany",
                 pattern: {
-                  value: /^\+?\d{9,}$/, 
+                  value: /^\+?\d{9,}$/,
                   message: "Minimum 9 cyfr",
                 },
               })}

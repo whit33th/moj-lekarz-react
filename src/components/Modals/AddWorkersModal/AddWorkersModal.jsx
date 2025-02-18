@@ -211,21 +211,7 @@ function AddWorkersModal() {
             <InputError errorField="gender" formState={formState} />
           </div>
 
-          <div className={styles.infoGroup}>
-            <label>Telefon*</label>
-            <input
-              {...register("phone", {
-                required: "Wymagane pole",
-                pattern: {
-                  value: /^\+?[0-9]{9,}$/,
-                  message: "Nieprawidłowy format telefonu",
-                },
-              })}
-              type="tel"
-              placeholder="+48XXXXXXXXX"
-            />
-            <InputError errorField="phone" formState={formState} />
-          </div>
+          
 
           <div className={styles.infoGroup}>
             <label>Data zatrudnienia*</label>

@@ -118,25 +118,26 @@ function DoctorMain() {
                     >
                       {stats?.countPatients?.totalCount || "0"}
                     </p>
-                    {!isNaN(stats?.countPatients?.percentageChange) && (
-                      <div
-                        className={`${styles.graph} ${styles.tCenter} ${styles.smBack} ${styles.flex} ${styles.itemsCenter}`}
-                      >
-                        <p>
-                          {stats.countPatients.percentageChange.toFixed(0) +
-                            "%"}
-                        </p>
-                        <img
-                          src={
-                            stats.countPatients.percentageChange >= 0
-                              ? graphUp
-                              : graphDown
-                          }
-                          alt="Graph"
-                          className={styles.graphIcon}
-                        />
-                      </div>
-                    )}
+                    {!isNaN(stats?.countPatients?.percentageChange) &&
+                      (stats?.countPatients?.percentageChange !== null && (
+                        <div
+                          className={`${styles.graph} ${styles.tCenter} ${styles.smBack} ${styles.flex} ${styles.itemsCenter}`}
+                        >
+                          <p>
+                            {stats.countPatients.percentageChange.toFixed(0) +
+                              "%"}
+                          </p>
+                          <img
+                            src={
+                              stats.countPatients.percentageChange >= 0
+                                ? graphUp
+                                : graphDown
+                            }
+                            alt="Graph"
+                            className={styles.graphIcon}
+                          />
+                        </div>
+                      ))}
                   </div>
                 </div>
 
@@ -148,25 +149,27 @@ function DoctorMain() {
                     >
                       {stats?.countAppointments?.totalCount || "0"}
                     </p>
-                    {!isNaN(stats?.countAppointments?.percentageChange) && (
-                      <div
-                        className={`${styles.graph} ${styles.tCenter} ${styles.smBack} ${styles.flex} ${styles.itemsCenter}`}
-                      >
-                        <p>
-                          {stats.countAppointments.percentageChange.toFixed(0) +
-                            "%"}
-                        </p>
-                        <img
-                          src={
-                            stats.countAppointments.percentageChange >= 0
-                              ? graphUp
-                              : graphDown
-                          }
-                          alt="Graph"
-                          className={styles.graphIcon}
-                        />
-                      </div>
-                    )}
+                    {!isNaN(stats?.countAppointments?.percentageChange) &&
+                      stats?.countAppointments?.percentageChange !== null && (
+                        <div
+                          className={`${styles.graph} ${styles.tCenter} ${styles.smBack} ${styles.flex} ${styles.itemsCenter}`}
+                        >
+                          <p>
+                            {stats.countAppointments.percentageChange.toFixed(
+                              0
+                            ) + "%"}
+                          </p>
+                          <img
+                            src={
+                              stats.countAppointments.percentageChange >= 0
+                                ? graphUp
+                                : graphDown
+                            }
+                            alt="Graph"
+                            className={styles.graphIcon}
+                          />
+                        </div>
+                      )}
                   </div>
                 </div>
               </>

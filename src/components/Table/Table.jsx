@@ -71,7 +71,7 @@ function Table({
                 <motion.tr
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3,delay: rowIndex * 0.05 }}
+                  transition={{ duration: 0.3, delay: rowIndex * 0.05 }}
                   key={rowIndex}
                 >
                   {columns.map((column, colIndex) => (
@@ -100,7 +100,7 @@ function Table({
                   colSpan={columns.length + 1}
                   className={styles.tCenter}
                 >
-                  Brak dostępnych danych
+                  Brak danych
                 </td>
               </tr>
             )}

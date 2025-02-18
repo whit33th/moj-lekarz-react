@@ -109,7 +109,7 @@ class ClinicServices {
     );
   }
   async deleteDoctor(id) {
-    return await axios.delete(`${this.URL}/api/posts/${id}`, {
+    return await axios.delete(`${this.URL}/api/clinics/doctors/${id}`, {
       withCredentials: true,
     });
   }
