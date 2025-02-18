@@ -44,20 +44,21 @@ function EditSheduleClinic({ initialSchedule, setModalActive }) {
 
   const onSubmit = (data) => {
     const timetablesData = Object.entries(data).map(([day, times]) => {
+      const startTime = times.from === "" ? null : times.from.length === 5 ? times.from : times.from;
+      const endTime = times.to === "" ? null : times.to.length === 5 ? times.to : times.to;
+
       if (initialSchedule && initialSchedule[day]) {
-      
         return {
           id: initialSchedule[day].id,
           dayOfWeek: initialSchedule[day].day_of_week,
-          startTime: times.from.length === 5 ? times.from : times.from,
-          endTime: times.to.length === 5 ? times.to : times.to,
+          startTime,
+          endTime,
         };
       } else {
-       
         return {
           dayOfWeek: dayMapping[day],
-          startTime: times.from.length === 5 ? times.from + ":00" : times.from,
-          endTime: times.to.length === 5 ? times.to + ":00" : times.to,
+          startTime,
+          endTime,
         };
       }
     });

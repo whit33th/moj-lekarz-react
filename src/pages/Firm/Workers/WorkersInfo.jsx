@@ -43,6 +43,7 @@ export default function WorkersInfo() {
         firstName: doctor?.user?.first_name,
         lastName: doctor?.user?.last_name,
         email: doctor?.user?.email,
+        phone: doctor?.user?.phone, 
         gender: doctor?.user?.gender === "male" ? "Mężczyzna" : "Kobieta",
         city: doctor?.user?.address?.city,
         province: doctor?.user?.address?.province,
@@ -52,9 +53,8 @@ export default function WorkersInfo() {
         postIndex: doctor?.user?.address?.post_index,
         position: {
           label: doctor?.specialty?.name,
-          value: doctor?.specialty?.id
+          value: doctor?.specialty?.id,
         },
-        phone: doctor?.phone,
         description: doctor?.description,
         hiredAt: new Date(doctor?.hired_at).toLocaleDateString(),
       });
@@ -100,19 +100,19 @@ export default function WorkersInfo() {
   }
 
   function addVisitType(selectedTypes) {
-    setVisitTypes(prevTypes => {
-      
-      const existingIds = prevTypes.map(type => type.id);
-      
-      
-      const newTypes = selectedTypes.filter(type => !existingIds.includes(type.id));
-      
+    setVisitTypes((prevTypes) => {
+      const existingIds = prevTypes.map((type) => type.id);
+
+      const newTypes = selectedTypes.filter(
+        (type) => !existingIds.includes(type.id)
+      );
+
       return [...prevTypes, ...newTypes];
     });
   }
 
   function handleDeleteVisitType(id) {
-    setVisitTypes(prevTypes => prevTypes.filter(type => type.id !== id));
+    setVisitTypes((prevTypes) => prevTypes.filter((type) => type.id !== id));
   }
 
   const onSubmit = (formData) => {
@@ -120,28 +120,27 @@ export default function WorkersInfo() {
       doctorId: id,
       userData: {
         email: formData.email,
-        phone: formData.phone ,
+        phone: formData.phone,
         first_name: formData.firstName,
         last_name: formData.lastName,
-        
       },
       addressData: {
         city: formData.city,
         province: formData.province,
         street: formData.street,
-        home: parseInt(formData.home),  
-        flat: parseInt(formData.flat),  
-        post_index: formData.postIndex
+        home: parseInt(formData.home),
+        flat: parseInt(formData.flat),
+        post_index: formData.postIndex,
       },
       doctorData: {
-        hired_at: doctor?.hired_at,  
+        hired_at: doctor?.hired_at,
         description: formData.description,
-        specialty_id: parseInt(formData.position?.value)
+        specialty_id: parseInt(formData.position?.value),
       },
-      servicesIds: visitTypes.map(type => parseInt(type.id))
+      servicesIds: visitTypes.map((type) => parseInt(type.id)),
     };
 
-    console.log('Sending data:', updateData);
+    console.log("Sending data:", updateData);
     mutate(updateData);
   };
 
@@ -247,18 +246,27 @@ export default function WorkersInfo() {
         <div className={styles.infoRow}>
           <div className={styles.infoGroup}>
             <label>Imię</label>
-            <input type="text" {...register("firstName", {
-              required: "Imię jest wymagane",
-              minLength: { value: 2, message: "Imię musi mieć min. 2 znaki" }
-            })} />
+            <input
+              type="text"
+              {...register("firstName", {
+                required: "Imię jest wymagane",
+                minLength: { value: 2, message: "Imię musi mieć min. 2 znaki" },
+              })}
+            />
             <InputError errorField="firstName" formState={formState} />
           </div>
           <div className={styles.infoGroup}>
             <label>Nazwisko</label>
-            <input type="text" {...register("lastName", {
-              required: "Nazwisko jest wymagane",
-              minLength: { value: 2, message: "Nazwisko musi mieć min. 2 znaki" }
-            })} />
+            <input
+              type="text"
+              {...register("lastName", {
+                required: "Nazwisko jest wymagane",
+                minLength: {
+                  value: 2,
+                  message: "Nazwisko musi mieć min. 2 znaki",
+                },
+              })}
+            />
             <InputError errorField="lastName" formState={formState} />
           </div>
         </div>
@@ -266,13 +274,16 @@ export default function WorkersInfo() {
         <div className={styles.infoRow}>
           <div className={styles.infoGroup}>
             <label>Email</label>
-            <input type="text" {...register("email", {
-              required: "Email jest wymagany",
-              pattern: {
-                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                message: "Nieprawidłowy format email"
-              }
-            })} />
+            <input
+              type="text"
+              {...register("email", {
+                required: "Email jest wymagany",
+                pattern: {
+                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                  message: "Nieprawidłowy format email",
+                },
+              })}
+            />
             <InputError errorField="email" formState={formState} />
           </div>
           <div className={styles.infoGroup}>
@@ -288,13 +299,16 @@ export default function WorkersInfo() {
           </div>
           <div className={styles.infoGroup}>
             <label>Tel.</label>
-            <input type="number" {...register("phone", {
-              required: "Telefon jest wymagany",
-              pattern: {
-                value: /^\d{9}$/,
-                message: "Nieprawidłowy format numeru telefonu"
-              }
-            })} />
+            <input
+              type="tel"
+              {...register("phone", {
+                required: "Telefon jest wymagany",
+                pattern: {
+                  value: /^\+?\d{9,}$/, 
+                  message: "Minimum 9 cyfr",
+                },
+              })}
+            />
             <InputError errorField="phone" formState={formState} />
           </div>
         </div>
@@ -304,45 +318,60 @@ export default function WorkersInfo() {
         <div className={styles.addressGrid}>
           <div className={styles.infoGroup}>
             <label>Miasto</label>
-            <input type="text" {...register("city", {
-              required: "Miasto jest wymagane"
-            })} />
+            <input
+              type="text"
+              {...register("city", {
+                required: "Miasto jest wymagane",
+              })}
+            />
             <InputError errorField="city" formState={formState} />
           </div>
 
           <div className={styles.infoGroup}>
             <label>Województwo</label>
-            <input type="text" {...register("province", {
-              required: "Województwo jest wymagane"
-            })} />
+            <input
+              type="text"
+              {...register("province", {
+                required: "Województwo jest wymagane",
+              })}
+            />
             <InputError errorField="province" formState={formState} />
           </div>
 
           <div className={styles.infoGroup}>
             <label>Kod pocztowy</label>
-            <input type="text" {...register("postIndex", {
-              required: "Kod pocztowy jest wymagany",
-              pattern: {
-                value: /^\d{5}$/,
-                message: "Nieprawidłowy format kodu pocztowego: XXXXX"
-              }
-            })} />
+            <input
+              type="text"
+              {...register("postIndex", {
+                required: "Kod pocztowy jest wymagany",
+                pattern: {
+                  value: /^\d{5}$/,
+                  message: "Nieprawidłowy format kodu pocztowego: XXXXX",
+                },
+              })}
+            />
             <InputError errorField="postIndex" formState={formState} />
           </div>
 
           <div className={styles.infoGroup}>
             <label>Ulica</label>
-            <input type="text" {...register("street", {
-              required: "Ulica jest wymagana"
-            })} />
+            <input
+              type="text"
+              {...register("street", {
+                required: "Ulica jest wymagana",
+              })}
+            />
             <InputError errorField="street" formState={formState} />
           </div>
 
           <div className={styles.infoGroup}>
             <label>Nr Domu</label>
-            <input type="text" {...register("home", {
-              required: "Numer domu jest wymagany"
-            })} />
+            <input
+              type="text"
+              {...register("home", {
+                required: "Numer domu jest wymagany",
+              })}
+            />
             <InputError errorField="home" formState={formState} />
           </div>
 
@@ -359,7 +388,10 @@ export default function WorkersInfo() {
               type="text"
               {...register("description", {
                 required: "Opis jest wymagany",
-                minLength: { value: 10, message: "Opis musi mieć min. 10 znaków" }
+                minLength: {
+                  value: 10,
+                  message: "Opis musi mieć min. 10 znaków",
+                },
               })}
               style={{ width: "100%" }}
             />

@@ -1,22 +1,18 @@
-import { useState, useEffect } from "react";
 import styles from "./style/DoctorProfile.module.css";
-import { NavLink } from "react-router-dom";
-
-import { useParams } from "react-router-dom";
-import useStore from "../../../data/store";
-
+import { useParams, useLocation } from "react-router-dom";
 import grey from "@assets/img/grey.png";
 import useGetFullInfo from "./../../../api/hooks/DoctorHooks/useGetFullInfo";
 import Skeleton from "react-loading-skeleton";
-import { pageConfig } from "../../../config/config";
+
 import useGetDoctorReviews from "../../../api/hooks/GeneralHooks/ReviewsHooks/useGetDoctorReviews";
 import ReviewCard from "../ReviewCard";
 import MapboxWithGeocoding from "../../../components/UI/Map/Map";
 import { motion } from "framer-motion";
 
 function DoctorProfile() {
-  const [doctorInfo, setDoctorInfo] = useState({});
   const { id } = useParams();
+  const location = useLocation();
+  const addressFromState = location.state?.address;
   const { data, isLoading } = useGetFullInfo({ id });
 
   const doctor = {
@@ -27,7 +23,7 @@ function DoctorProfile() {
     ) : (
       data?.user?.first_name + " " + data?.user?.last_name || "brak"
     ),
-    img: data?.user.photo || grey,
+    img: data?.user?.photo || grey,
     specialty: isLoading ? (
       <Skeleton width={150} />
     ) : (
@@ -35,20 +31,15 @@ function DoctorProfile() {
     ),
     description: isLoading ? <Skeleton count={6} /> : data?.description,
   };
-  const { doctorCard } = useStore();
 
   const { data: reviews } = useGetDoctorReviews({
     doctorId: id,
   });
 
-  useEffect(() => {
-    const doctor = doctorCard.find((item) => item.id == id);
-    setDoctorInfo(doctor || null);
-  }, [id, doctorCard]);
+  const hospitalAddress = addressFromState 
+    ? `${addressFromState.street}, ${addressFromState.postCode} ${addressFromState.city}, Polska`
+    : `${data?.user?.address?.street}, ${data?.user?.address?.post_index} ${data?.user?.address?.city}, Polska`;
 
-  const hospitalAddress = `${data?.user?.address?.street}, ${data?.user?.address?.post_index} ${data?.user?.address?.city}, Polska`;
-
-  // const hospitalAddress = "Lipka, 59047, Polska";
   return (
     <div className={styles.doctorProfile}>
       <motion.div

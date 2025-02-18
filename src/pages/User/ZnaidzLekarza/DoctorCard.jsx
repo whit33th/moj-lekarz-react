@@ -105,6 +105,15 @@ function DoctorCard({ data, loading, selectedDate, addZapis }) {
           <NavLink
             style={{ color: "#3E36B0" }}
             to={`/profileDoctor/${appointment.id}`}
+            state={{
+              address: {
+                street: appointment.street,
+                city: appointment.city,
+                home: appointment.home,
+                postCode: appointment.postCode,
+                clinic: appointment.clinic
+              }
+            }}
           >
             Zobacz więcej &#8594;
           </NavLink>

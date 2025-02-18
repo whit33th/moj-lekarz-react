@@ -108,6 +108,11 @@ class ClinicServices {
       }
     );
   }
+  async deleteDoctor(id) {
+    return await axios.delete(`${this.URL}/api/posts/${id}`, {
+      withCredentials: true,
+    });
+  }
   async putClinicInfo(data) {
     const clinicData = {};
     const addressData = {};
@@ -177,7 +182,7 @@ class ClinicServices {
         addressData: data.addressData,
         doctorData: data.doctorData,
         specialtyId: data.specialtyId,
-        servicesIds: data.servicesIds
+        servicesIds: data.servicesIds,
       },
       {
         withCredentials: true,
