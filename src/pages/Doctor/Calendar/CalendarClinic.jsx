@@ -221,7 +221,7 @@ function CalendarClinic() {
       </form>
 
       <div
-        className={`${isLoading ? styles.loading : ""} ${
+        className={` ${isLoading ? styles.loading : ""} ${
           styles.calendarContainer
         }`}
       >

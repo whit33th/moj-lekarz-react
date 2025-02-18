@@ -19,6 +19,7 @@ import useGetUserInfo from "../../../api/hooks/UserHooks/useGetUserInfo";
 import DropdownStas from "../../../components/Dropdown/DropdownStas";
 import useGetClinicServices from "../../../api/hooks/ServicesHooks/useGetClinicServices";
 import usePutDoctorInfo from "../../../api/hooks/ClinicHooks/usePutDoctorInfo";
+import InputError from "../../../components/UI/InputError/InputError";
 
 import grey from "@assets/img/grey.png";
 
@@ -27,7 +28,9 @@ export default function WorkersInfo() {
   const { data: doctor } = useGetFullInfo({ id: id });
   const { data: clinic } = useGetUserInfo();
   const { data: services } = useGetClinicServices({ clinicId: clinic?.id });
-  const { control, handleSubmit, register, reset } = useForm({});
+  const { control, handleSubmit, register, reset, formState } = useForm({
+    mode: "onChange",
+  });
   const navigate = useNavigate();
   const { setModalActive, setModalContent } = useStore();
   const { mutate } = usePutDoctorInfo();
@@ -51,6 +54,7 @@ export default function WorkersInfo() {
           label: doctor?.specialty?.name,
           value: doctor?.specialty?.id
         },
+        phone: doctor?.phone,
         description: doctor?.description,
         hiredAt: new Date(doctor?.hired_at).toLocaleDateString(),
       });
@@ -116,9 +120,10 @@ export default function WorkersInfo() {
       doctorId: id,
       userData: {
         email: formData.email,
-        phone: formData.phone,
+        phone: formData.phone ,
         first_name: formData.firstName,
-        last_name: formData.lastName
+        last_name: formData.lastName,
+        
       },
       addressData: {
         city: formData.city,
@@ -242,18 +247,33 @@ export default function WorkersInfo() {
         <div className={styles.infoRow}>
           <div className={styles.infoGroup}>
             <label>Imię</label>
-            <input type="text" {...register("firstName")} />
+            <input type="text" {...register("firstName", {
+              required: "Imię jest wymagane",
+              minLength: { value: 2, message: "Imię musi mieć min. 2 znaki" }
+            })} />
+            <InputError errorField="firstName" formState={formState} />
           </div>
           <div className={styles.infoGroup}>
             <label>Nazwisko</label>
-            <input type="text" {...register("lastName")} />
+            <input type="text" {...register("lastName", {
+              required: "Nazwisko jest wymagane",
+              minLength: { value: 2, message: "Nazwisko musi mieć min. 2 znaki" }
+            })} />
+            <InputError errorField="lastName" formState={formState} />
           </div>
         </div>
 
         <div className={styles.infoRow}>
           <div className={styles.infoGroup}>
             <label>Email</label>
-            <input type="text" {...register("email")} />
+            <input type="text" {...register("email", {
+              required: "Email jest wymagany",
+              pattern: {
+                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                message: "Nieprawidłowy format email"
+              }
+            })} />
+            <InputError errorField="email" formState={formState} />
           </div>
           <div className={styles.infoGroup}>
             <label>Data zatrudnienia</label>
@@ -268,7 +288,14 @@ export default function WorkersInfo() {
           </div>
           <div className={styles.infoGroup}>
             <label>Tel.</label>
-            <input type="number" {...register("phone")} />
+            <input type="number" {...register("phone", {
+              required: "Telefon jest wymagany",
+              pattern: {
+                value: /^\d{9}$/,
+                message: "Nieprawidłowy format numeru telefonu"
+              }
+            })} />
+            <InputError errorField="phone" formState={formState} />
           </div>
         </div>
       </div>
@@ -277,32 +304,52 @@ export default function WorkersInfo() {
         <div className={styles.addressGrid}>
           <div className={styles.infoGroup}>
             <label>Miasto</label>
-            <input type="text" {...register("city")} />
+            <input type="text" {...register("city", {
+              required: "Miasto jest wymagane"
+            })} />
+            <InputError errorField="city" formState={formState} />
           </div>
 
           <div className={styles.infoGroup}>
             <label>Województwo</label>
-            <input type="text" {...register("province")} />
+            <input type="text" {...register("province", {
+              required: "Województwo jest wymagane"
+            })} />
+            <InputError errorField="province" formState={formState} />
           </div>
 
           <div className={styles.infoGroup}>
             <label>Kod pocztowy</label>
-            <input type="text" {...register("postIndex")} />
+            <input type="text" {...register("postIndex", {
+              required: "Kod pocztowy jest wymagany",
+              pattern: {
+                value: /^\d{5}$/,
+                message: "Nieprawidłowy format kodu pocztowego: XXXXX"
+              }
+            })} />
+            <InputError errorField="postIndex" formState={formState} />
           </div>
 
           <div className={styles.infoGroup}>
             <label>Ulica</label>
-            <input type="text" {...register("street")} />
+            <input type="text" {...register("street", {
+              required: "Ulica jest wymagana"
+            })} />
+            <InputError errorField="street" formState={formState} />
           </div>
 
           <div className={styles.infoGroup}>
             <label>Nr Domu</label>
-            <input type="text" {...register("home")} />
+            <input type="text" {...register("home", {
+              required: "Numer domu jest wymagany"
+            })} />
+            <InputError errorField="home" formState={formState} />
           </div>
 
           <div className={styles.infoGroup}>
             <label>Nr Lokalu</label>
             <input type="text" {...register("flat")} />
+            <InputError errorField="flat" formState={formState} />
           </div>
         </div>
         <div className={styles.descriptionSection}>
@@ -310,9 +357,13 @@ export default function WorkersInfo() {
             <label>Opis</label>
             <input
               type="text"
-              {...register("description")}
+              {...register("description", {
+                required: "Opis jest wymagany",
+                minLength: { value: 10, message: "Opis musi mieć min. 10 znaków" }
+              })}
               style={{ width: "100%" }}
             />
+            <InputError errorField="description" formState={formState} />
           </div>
         </div>
       </div>

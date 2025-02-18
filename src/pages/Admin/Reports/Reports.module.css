@@ -1,4 +1,42 @@
 .navbar {
-	display: flex;
-	justify-content: flex-end;
+  display: flex;
+  justify-content: flex-end;
+}
+.dateFilterContainer {
+  display: flex;
+  justify-content: end;
+}
+.dateFilter {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  height: 40px;
+  padding: 0 10px;
+  border-radius: 16px;
+  background-color: #a6def7;
+  width: fit-content;
+}
+
+.dateFilter input {
+  border: 1px solid #9ed2ea;
+  outline: none;
+  border-radius: 16px;
+  padding: 0 5px;
+  background-color: #d2f1ff;
+  color: #222222;
+  font-size: 16px;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .dateFilter {
+    height: auto;
+    gap: 10px;
+    padding: 5px;
+  }
+
+  .dateFilter input {
+    width: 100%;
+    font-size: 14px;
+  }
 }

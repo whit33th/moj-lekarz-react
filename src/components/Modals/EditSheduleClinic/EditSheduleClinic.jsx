@@ -1,12 +1,12 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
 import styles from "./EditSheduleClinic.module.css";
 import Choice from "../../Modal/Choice";
 import usePutTimetable from "../../../api/hooks/GeneralHooks/Schedules/usePutTimetable";
 
-function EditSheduleClinic({ initialSchedule, setModalActive, userInfo }) {
+function EditSheduleClinic({ initialSchedule, setModalActive }) {
   const defaultSchedule = {
     Poniedziałek: { from: "", to: "" },
     Wtorek: { from: "", to: "" },
@@ -27,7 +27,7 @@ function EditSheduleClinic({ initialSchedule, setModalActive, userInfo }) {
     Niedziela: 7,
   };
 
-  const { register, handleSubmit, control, setValue } = useForm({
+  const { handleSubmit, control, setValue } = useForm({
     defaultValues: defaultSchedule,
   });
 
@@ -45,15 +45,15 @@ function EditSheduleClinic({ initialSchedule, setModalActive, userInfo }) {
   const onSubmit = (data) => {
     const timetablesData = Object.entries(data).map(([day, times]) => {
       if (initialSchedule && initialSchedule[day]) {
-        // Existing clinic case
+      
         return {
           id: initialSchedule[day].id,
           dayOfWeek: initialSchedule[day].day_of_week,
-          startTime: times.from.length === 5 ? times.from + ":00" : times.from,
-          endTime: times.to.length === 5 ? times.to + ":00" : times.to,
+          startTime: times.from.length === 5 ? times.from : times.from,
+          endTime: times.to.length === 5 ? times.to : times.to,
         };
       } else {
-        // New clinic case
+       
         return {
           dayOfWeek: dayMapping[day],
           startTime: times.from.length === 5 ? times.from + ":00" : times.from,

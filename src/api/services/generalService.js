@@ -122,7 +122,7 @@ class GeneralService {
   async putTimetable(timetablesData) {
     return await axios.put(
       `${this.URL}/api/clinics/timetable`,
-      { timetablesData },
+      timetablesData,
       { withCredentials: true }
     );
   }
@@ -210,7 +210,7 @@ class GeneralService {
   async postDocument(id, file) {
     const formData = new FormData();
     formData.append("file", file);
-    
+
     return await axios.post(
       `${this.URL}/api/doctors/documents/${id}`,
       formData,
@@ -231,6 +231,18 @@ class GeneralService {
   async getDocuments() {
     return await axios.get(`${this.URL}/api/doctors/documents`, {
       withCredentials: true,
+    });
+  }
+  async getReport(startDate, endDate) {
+    let url = `${this.URL}/api/admins/statistics/details/file?`;
+    if (startDate) url += `start_date=${startDate}&`;
+    if (endDate) url += `end_date=${endDate}`;
+    return await axios.get(url, {
+      withCredentials: true,
+      responseType: 'blob',
+      headers: {
+        'Accept': 'application/pdf'
+      }
     });
   }
 }

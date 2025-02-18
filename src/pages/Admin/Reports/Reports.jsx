@@ -1,42 +1,66 @@
-import Table from "../../../components/Table/Table"
-import styles from "./Reports.module.css"
-import download from "@assets/img/material-symbols-light_download.svg"
-import calendar from "@assets/img/calendar.png"
-import { userItems } from "../../../helpers/userItemList"
-import Dropdown from "./../../../components/Dropdown/Dropdown"
-function Reports() {
-  const tableData = userItems.map((item) => ({
-    name: item.reports,
-  }))
+import Table from "../../../components/Table/Table";
+import styles from "./Reports.module.css";
+import download from "@assets/img/material-symbols-light_download.svg";
+import { useState } from "react";
+import useAdminReport from "../../../api/hooks/GeneralHooks/Stats/adminReport";
 
-  const fileUrl = "/path/to/file.pdf"
-  const handleDownload = () => {
-    const link = document.createElement("a")
-    link.href = fileUrl
-    link.download = "Download.pdf"
-    link.click()
-    link.remove()
-  }
+function Reports() {
+  const getCurrentMonthRange = () => {
+    const start = new Date(new Date().getFullYear(), new Date().getMonth(), 1);
+    const end = new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0);
+    return {
+      start: start.toISOString().split('T')[0],
+      end: end.toISOString().split('T')[0],
+    };
+  };
+
+  const { start, end } = getCurrentMonthRange();
+  const [startFilter, setStartFilter] = useState(start);
+  const [endFilter, setEndFilter] = useState(end);
+  
+  const { downloadReport, isLoading } = useAdminReport({
+    startDate: startFilter,
+    endDate: endFilter,
+  });
+
+  const tableData = [{
+    name: "Statistics Report"
+  }];
 
   const columns = [
     { render: (item) => <div style={{ textAlign: "left" }}>{item.name}</div> },
-
     {
-      render: () => <img onClick={handleDownload} src={download} width={15} />,
+      render: () => (
+        <img 
+          onClick={downloadReport} 
+          src={download} 
+          width={15} 
+          style={{ cursor: isLoading ? 'wait' : 'pointer' }}
+          alt="Download report"
+        />
+      ),
     },
-  ]
+  ];
+
   return (
     <>
-      {/* <div className={styles.navbar}>
-        <Dropdown
-          options={["May 2024", "01.06.2024 - 1.07.2024"]}
-          color={"#A6DEF7"}
-          childrenLeft={<img src={calendar} />}
-        />
-      </div> */}
+      <div className={styles.dateFilterContainer}>
+        <div className={styles.dateFilter}>
+          <input 
+            type="date" 
+            value={startFilter} 
+            onChange={(e) => setStartFilter(e.target.value)} 
+          />
+          <input 
+            type="date" 
+            value={endFilter} 
+            onChange={(e) => setEndFilter(e.target.value)} 
+          />
+        </div>
+      </div>
       <Table columns={columns} data={tableData} />
     </>
-  )
+  );
 }
 
-export default Reports
+export default Reports;

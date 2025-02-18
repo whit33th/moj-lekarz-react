@@ -147,35 +147,34 @@ function DoctorMain() {
               </>
             ) : (
               <>
-                {stats?.countPatients?.totalCount && (
-                  <div className={`${styles.visitStats} ${styles.card}`}>
-                    <p>
-                      Całkowita liczba <br /> pacjentów
+                <div className={`${styles.visitStats} ${styles.card}`}>
+                  <p>
+                    Całkowita liczba <br /> pacjentów
+                  </p>
+
+                  <div className={styles.center}>
+                    <p
+                      className={`${styles.biggerCard} ${styles.smCountNumber}`}
+                    >
+                      {stats?.countPatients?.totalCount || "Brak"}
                     </p>
-                    <div className={styles.center}>
-                      <p
-                        className={`${styles.biggerCard} ${styles.smCountNumber}`}
+                    {!isNaN(stats?.countPatients?.percentageChange) && (
+                      <div
+                        className={`${styles.graph} ${styles.tCenter} ${styles.smBack} ${styles.flex} ${styles.itemsCenter}`}
                       >
-                        {stats?.countPatients?.totalCount || "Brak"}
-                      </p>
-                      {stats?.countPatients?.percentageChange !== undefined && (
-                        <div
-                          className={`${styles.graph} ${styles.tCenter} ${styles.smBack} ${styles.flex} ${styles.itemsCenter}`}
-                        >
-                          <p>
-                            {stats.countPatients?.percentageChange?.toFixed(0) +
-                              "%"}
-                          </p>
-                          <img
-                            src={graphDown}
-                            alt="Graph Down"
-                            className={styles.graphIcon}
-                          />
-                        </div>
-                      )}
-                    </div>
+                        <p>
+                          {stats.countPatients?.percentageChange?.toFixed(0) +
+                            "%"}
+                        </p>
+                        <img
+                          src={graphDown}
+                          alt="Graph Down"
+                          className={styles.graphIcon}
+                        />
+                      </div>
+                    )}
                   </div>
-                )}
+                </div>
 
                 <div className={`${styles.visitStats} ${styles.card}`}>
                   <p>
@@ -189,14 +188,14 @@ function DoctorMain() {
                       {Math.round(stats?.averageRating?.currentRating) ||
                         "Brak"}
                     </p>
-                    {stats?.averageRating?.percentageChange && (
+                    {!isNaN(stats?.averageRating?.percentageChange) && (
                       <div
                         className={`${styles.graph} ${styles.tCenter} ${styles.smBack} ${styles.flex} ${styles.itemsCenter}`}
                       >
                         <p>
                           {`${stats.averageRating?.percentageChange?.toFixed(
                             0
-                          )}` || "Brak"}
+                          )}%` || "Brak"}
                         </p>
                         <img
                           src={graphUp}
