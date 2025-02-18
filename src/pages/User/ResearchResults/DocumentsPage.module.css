@@ -1,126 +1,129 @@
-.researchResultsPage{
-    width: 100%;
-    padding: 40px 5%;
+.researchResultsPage {
+  width: 100%;
+  padding: 30px;
 }
-.resultsMainBtnBlock{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    padding: 50px 0;
+.resultsMainBtnBlock {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  
 }
-.resultsBtnConteiner{
-    background: #3E36B0;
-    width: 480px;
-    height: 45px;
-    border-radius: 1000px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: relative;
+.resultsMainBtnBlock h1 {
+  text-align: center;
+  font-size: 32px;
+  font-weight: 600;
+  margin: 40px 0;
+  color: #2c3e50;
+}
+.resultsBtnConteiner {
+  background: #3e36b0;
+  width: 480px;
+  height: 45px;
+  border-radius: 1000px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
 }
 
-.resultsBtnConteiner > span{
-    position: absolute;
-    width: 50%;
-    z-index: 2;
-    border-radius: 1000px;
-    background: #A6DEF7;
-    height: 100%;
-    top: 0;
-    left: 0;
-    transition: 0.6s;
-
+.resultsBtnConteiner > span {
+  position: absolute;
+  width: 50%;
+  z-index: 2;
+  border-radius: 1000px;
+  background: #a6def7;
+  height: 100%;
+  top: 0;
+  left: 0;
+  transition: 0.6s;
 }
-.resultsBtnConteiner > div{
-    width: 50%;
-    z-index: 3;
-    border-radius: 1000px;
-    text-align: center;
-    cursor: pointer;
-    transition: 0.6s;
-    font-size: 18px;
-    font-weight: 400;
-    line-height: 24.59px;
+.resultsBtnConteiner > div {
+  width: 50%;
+  z-index: 3;
+  border-radius: 1000px;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.6s;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 24.59px;
 }
-.resultContentBlock{
-    width: 100%;
-    padding: 20px 5%;
-    margin-top: 50px;
-
+.resultContentBlock {
+  width: 100%;
+  padding: 0 5%;
+ 
 }
 .listItem {
-    width: 100%;
-    padding: 30px 70px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #fff;
-    box-shadow: 0px 0px 50px 0px #0000001A;
-    border-radius: 20px;
-    font-size: 18px;
-    font-weight: 500;
-    line-height: 24.59px;
-    position: relative; 
-    margin-bottom: 15px;
+  width: 100%;
+  padding: 30px 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+  box-shadow: 0px 0px 50px 0px #0000001a;
+  border-radius: 20px;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 24.59px;
+  position: relative;
+  margin-bottom: 15px;
 }
-.listItem img{
-    cursor: pointer;
+.listItem img {
+  cursor: pointer;
 }
 
 .listItemDate {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%); 
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
-.listItemName{
-    max-width: 40%;
+.listItemName {
+  max-width: 40%;
 }
 
-.errorText{
-    width: 100%;
-    padding: 80px 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 36px;
-    font-weight: 500;
-    line-height: 49.18px;
-
+.errorText {
+  width: 100%;
+  padding: 80px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+  font-weight: 500;
+  line-height: 49.18px;
 }
 @media (min-width: 2224px) {
-    .researchResultsPage{
-        padding: 40px 8%;
-    }
+  .researchResultsPage {
+    padding: 40px 8%;
+  }
 }
 @media (max-width: 624px) {
-    .researchResultsPage{
-        padding-top: 150px;
-    }
-    .listItem {
-        padding: 28px 30px;
-        display: grid;
-        grid-template-columns: 85% 15%;
-        height: auto;
-
-    }
-    .listItemName{
-        grid-column: 1 / 2;
-        width: 100%;
-        max-width: none;
-        padding-bottom: 15px;
-    }
-    .listItemDate {
-        grid-column: 1 / 3;
-        grid-row: 2 / 3;
-        width: 100%;
-    }
-    .listItemImg{
-        width: 100%;
-        grid-column: 2 / 3;
-        grid-row: 1 / 3;
-    }
-    .resultsBtnConteiner > div{
-        z-index: 2;
-    }
+  .researchResultsPage {
+    padding-top: 150px;
+  }
+  .listItem {
+    padding: 28px 30px;
+    display: grid;
+    grid-template-columns: 85% 15%;
+    height: auto;
+  }
+  .listItemName {
+    grid-column: 1 / 2;
+    width: 100%;
+    max-width: none;
+    padding-bottom: 15px;
+  }
+  .listItemDate {
+    grid-column: 1 / 3;
+    grid-row: 2 / 3;
+    width: 100%;
+  }
+  .listItemImg {
+    width: 100%;
+    grid-column: 2 / 3;
+    grid-row: 1 / 3;
+  }
+  .resultsBtnConteiner > div {
+    z-index: 2;
+  }
 }

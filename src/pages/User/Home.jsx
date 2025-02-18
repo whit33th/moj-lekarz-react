@@ -74,18 +74,12 @@ function Home() {
     <div className={styles.home}>
       <div className={styles.homeFirstBlock}>
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 100 }}
+          initial={{ opacity: 1, scale: 0,rotate: 0 }}
+          animate={{ opacity: 1, scale: 1, rotate: 360*16 }}
+          transition={{ duration: 5 }}
           className={styles.homeFirstBlockLeft}
         >
-          <img
-            src={
-              "https://media.tenor.com/bnarFGvpLjkAAAAM/the-rock-the-rock-meme.gif" ||
-              mainImg
-            }
-            alt="Lekarz konsultujący pacjenta w gabinecie"
-          />
+          <img src={mainImg} alt="Lekarz konsultujący pacjenta w gabinecie" />
         </motion.div>
         <motion.div
           initial={{ opacity: 0, y: -10 }}

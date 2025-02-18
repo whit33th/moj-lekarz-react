@@ -183,7 +183,7 @@ function Map(props) {
           <div className={styles.staticItem}>
             <img src={img3} alt="Locations" />
             <CountUp endValue={props.data.locations} duration={2000} />
-            <p>Miejscowości, w których umówisz się na wizytę</p>
+            <p>Placówki medyczne</p>
           </div>
         </div>
       </div>
@@ -202,7 +202,7 @@ function Map(props) {
                 id={id}
                 d={pathData}
                 className={selectedPathId === id ? styles.selectedState : ""}
-                onMouseEnter={(event) => handlePathMouseEnter(id, data, event)}
+                // onMouseEnter={(event) => handlePathMouseEnter(id, data, event)}
                 onMouseLeave={handlePathMouseLeave}
                 onClick={(event) => handlePathClick(id, data, event)}
               />

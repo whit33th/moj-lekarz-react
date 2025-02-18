@@ -11,6 +11,8 @@ import { pageConfig } from "../../../config/config";
 import BlueBtn from "@components/Buttons/BlueBtn/BlueBtn";
 import { useGetDocumentsById } from "../../../api/hooks/GeneralHooks/Documents/useGetDocumentsById";
 import { usePostDocument } from "../../../api/hooks/GeneralHooks/Documents/usePostDocument";
+import Pagination from "../../UI/Pagination/Pagination";
+import { toast } from "sonner";
 
 const MoreInfoButtPatient = ({ id }) => {
   const {
@@ -21,9 +23,9 @@ const MoreInfoButtPatient = ({ id }) => {
     setModalContent,
   } = useStore();
 
-  const [isDocumentModalOpen, setIsDocumentModalOpen] = useState(false);
-  const { data: documents, isLoading } = useGetDocumentsById(id, isDocumentModalOpen);
+  const { data: documents, isLoading } = useGetDocumentsById(id);
   const { mutate: uploadDocument } = usePostDocument();
+  const [currentPage, setCurrentPage] = useState(1);
 
   const fileInputRef = useRef(null);
   const modalRef = useRef(null);
@@ -35,44 +37,25 @@ const MoreInfoButtPatient = ({ id }) => {
 
   const patientId = id || "unknown";
   const openDocumentModal = () => {
-    setIsDocumentModalOpen(true);
     setModalActive(true);
     setModalContent(modalContent);
   };
 
   const closeDocumentModal = () => {
-    setIsDocumentModalOpen(false);
     setModalActive(false);
   };
 
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (
-        modalRef.current &&
-        !modalRef.current.contains(event.target) &&
-        !event.target.closest(`.${styles.moreInfoButt}`)
-      ) {
-        closeModal();
-      }
-    };
-
-    if (isModalOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
-    } else {
-      document.removeEventListener("mousedown", handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [isModalOpen]);
-
   const handleFileChange = async (e) => {
     const file = e.target.files[0];
-    if (file && (file.type === "application/pdf" || file.type === "application/vnd.openxmlformats-officedocument.wordprocessingml.document")) {
+    if (
+      file &&
+      (file.type === "application/pdf" ||
+        file.type ===
+          "application/vnd.openxmlformats-officedocument.wordprocessingml.document")
+    ) {
       uploadDocument({ id, file });
     } else {
-      toast.error("Proszę przesłać plik PDF lub DOCX.");
+      toast.error("Proszę przesłać plik PDF, DOC lub DOCX.");
     }
   };
 
@@ -80,13 +63,26 @@ const MoreInfoButtPatient = ({ id }) => {
     fileInputRef.current.click();
   };
 
-  const fileUrl = "/path/to/file.pdf";
-  const handleDownloadPDF = () => {
-    const link = document.createElement("a");
-    link.href = fileUrl;
-    link.download = "Download.pdf";
-    link.click();
-    link.remove();
+  const handleDownloadFile = (link, filename) => {
+    fetch(link)
+      .then((response) => response.blob())
+      .then((blob) => {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+        document.body.removeChild(a);
+      });
+  };
+
+  const truncateFileName = (name) => {
+    if (name.length <= 20) return name;
+    const extension = name.split(".").pop();
+    const baseName = name.slice(0, 20);
+    return `${baseName}...${extension}`;
   };
 
   const uploadFile = (
@@ -111,7 +107,7 @@ const MoreInfoButtPatient = ({ id }) => {
       <div className={styles.dropFile} onClick={handleFileClick}>
         <i className="bx bx-cloud-upload"></i>
         <p>Kliknij albo upuść plik tutaj</p>
-
+        <p className={styles.formats}>Dostępne w formatach PDF, DOC i DOCX.</p>
         <input
           type="file"
           ref={fileInputRef}
@@ -140,27 +136,40 @@ const MoreInfoButtPatient = ({ id }) => {
         </BlueBtn>
       </div>
       <ul className={styles.fileList}>
-        {isLoading ? (
-          <p>Ładowanie...</p>
+        {documents?.documents.length === 0 ? (
+          <p>Brak documentow</p>
         ) : (
-          documents?.map((doc, index) => (
-            <li key={doc.id || index} className={styles.fileItem}>
+          documents?.documents?.map((doc, index) => (
+            <li key={doc.name || index} className={styles.fileItem}>
               <div className={styles.fileIcon}></div>
               <div className={styles.fileInfo}>
-                <p className={styles.fileName}>{doc.name}</p>
-                <p className={styles.fileDate}>{new Date(doc.createdAt).toLocaleDateString()}</p>
+                <p className={styles.fileName}>{truncateFileName(doc.name)}</p>
+                <p className={styles.fileDate}>
+                  {doc.createdAt
+                    ? new Date(doc.createdAt).toLocaleDateString()
+                    : ""}
+                </p>
               </div>
               <div className={styles.downloadIcon}>
                 <img
                   src={download}
-                  onClick={() => handleDownloadPDF(doc.url)}
+                  onClick={() => handleDownloadFile(doc.link, doc.name)}
                   width={15}
+                  style={{ cursor: "pointer" }}
                 />
               </div>
             </li>
           ))
         )}
       </ul>
+      {documents?.pages > 1 && (
+        <Pagination
+          total={documents.pages}
+          isLoading={isLoading}
+          value={currentPage}
+          onChange={(page) => setCurrentPage(page)}
+        />
+      )}
     </div>
   );
 

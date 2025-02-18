@@ -118,7 +118,7 @@ function DoctorMain() {
                     >
                       {stats?.countPatients?.totalCount || "0"}
                     </p>
-                    {stats?.countPatients?.percentageChange !== undefined && (
+                    {!isNaN(stats?.countPatients?.percentageChange) && (
                       <div
                         className={`${styles.graph} ${styles.tCenter} ${styles.smBack} ${styles.flex} ${styles.itemsCenter}`}
                       >
@@ -148,8 +148,7 @@ function DoctorMain() {
                     >
                       {stats?.countAppointments?.totalCount || "0"}
                     </p>
-                    {stats?.countAppointments?.percentageChange !==
-                      undefined && (
+                    {!isNaN(stats?.countAppointments?.percentageChange) && (
                       <div
                         className={`${styles.graph} ${styles.tCenter} ${styles.smBack} ${styles.flex} ${styles.itemsCenter}`}
                       >

@@ -229,7 +229,7 @@ class GeneralService {
     });
   }
   async getDocuments() {
-    return await axios.get(`${this.URL}/api/doctors/documents`, {
+    return await axios.get(`${this.URL}/api/patients/documents`, {
       withCredentials: true,
     });
   }

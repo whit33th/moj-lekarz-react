@@ -1,85 +1,110 @@
-
-import styles from './DocumentsPage.module.css'
-import { useState } from 'react'
-import img from '@assets/img/Vector-21.svg'
-
-import useStore from '../../../data/store'
-
+import styles from "./DocumentsPage.module.css";
+import { useState } from "react";
+import img from "@assets/img/Vector-21.svg";
+import { useGetDocuments } from "../../../api/hooks/GeneralHooks/Documents/useGetDocuments";
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
+import { motion } from "framer-motion";
 
 function DocumentsPage() {
-  const [btnState, setBtnState] = useState('Winiki badań')
-  const { stateResearchResult } = useStore()
+  const { data: documents, isLoading } = useGetDocuments();
 
-  const handleDownload = (fileUrl) => {
-    
-    const link = document.createElement('a')
-    link.href = fileUrl
-    link.download = "ResearchResults" 
-    document.body.appendChild(link)
-    link.click()
+  const handleDownload = (link, filename) => {
+    fetch(link)
+      .then(response => response.blob())
+      .then(blob => {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+        document.body.removeChild(a);
+      });
+  };
 
-    
-    document.body.removeChild(link)
-  }
+  const truncateFileName = (name) => {
+    if (name.length <= 20) return name;
+    const extension = name.split('.').pop();
+    const baseName = name.slice(0, 20);
+    return `${baseName}...${extension}`;
+  };
+
+  const DocumentSkeleton = () => (
+    <>
+      {[1, 2, 3].map((index) => (
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: index * 0.1 }}
+          className={styles.listItem}
+          key={index}
+        >
+          <div className={styles.listItemName}>
+            <Skeleton width={150} />
+          </div>
+         
+          <div className={styles.listItemImg}>
+            <Skeleton width={24} height={24} />
+          </div>
+        </motion.div>
+      ))}
+    </>
+  );
 
   return (
-    <div className={styles.researchResultsPage}>
-      <div className={styles.resultsMainBtnBlock}>
-        <div className={styles.resultsBtnConteiner}>
-          <span
-            style={{ left: btnState == "Winiki badań" ? "0%" : "50%" }}
-          ></span>
-          <div
-            onClick={() => setBtnState("Winiki badań")}
-            style={{ color: btnState == "Winiki badań" ? "#000" : "#fff" }}
-          >
-            Winiki badań
-          </div>
-          <div
-            onClick={() => setBtnState("Inne dokumenty")}
-            style={{ color: btnState == "Inne dokumenty" ? "#000" : "#fff" }}
-          >
-            Inne dokumenty
-          </div>
-        </div>
-      </div>
+    <motion.div 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      className={styles.researchResultsPage}
+    >
+      <motion.div
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.1 }}
+        className={styles.resultsMainBtnBlock}
+      >
+        <h1>Twoje dokumenty</h1>
+      </motion.div>
       <div className={styles.resultContentBlock}>
-        {btnState == "Winiki badań" ? (
-          stateResearchResult.researchResults.length == 0 ? (
-            <div className={styles.errorText}>Brak dokumentów</div>
-          ) : (
-            stateResearchResult.researchResults.map((item) => (
-              <div className={styles.listItem} key={item.id}>
-                <div className={styles.listItemName}> {item.name}</div>
-                <div className={styles.listItemDate}> {item.date}</div>
-                <div
-                  onClick={() => handleDownload(item.fileUrl)}
-                  className={styles.listItemImg}
-                >
-                  <img src={img} />
-                </div>
-              </div>
-            ))
-          )
-        ) : stateResearchResult.otherDocs.length == 0 ? (
-          <div className={styles.errorText}>Brak dokumentów</div>
+        {isLoading ? (
+          <DocumentSkeleton />
+        ) : !documents?.documents?.length ? (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.4 }}
+            className={styles.errorText}
+          >
+            Brak dokumentów
+          </motion.div>
         ) : (
-          stateResearchResult.otherDocs.map((item) => (
-            <div className={styles.listItem} key={item.id}>
-              <div className={styles.listItemName}> {item.name}</div>
-              <div className={styles.listItemDate}> {item.date}</div>
+          documents.documents.map((doc, index) => (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: index * 0.1 }}
+              className={styles.listItem}
+              key={doc.name || index}
+            >
+              <div className={styles.listItemName}>{truncateFileName(doc.name)}</div>
+              <div className={styles.listItemDate}>
+                {doc.createdAt ? new Date(doc.createdAt).toLocaleDateString() : ''}
+              </div>
               <div
-                onClick={() => handleDownload(item.fileUrl)}
+                onClick={() => handleDownload(doc.link, doc.name)}
                 className={styles.listItemImg}
               >
-                <img src={img} />
+                <img src={img} alt="download" />
               </div>
-            </div>
+            </motion.div>
           ))
         )}
       </div>
-    </div>
-  )
+    </motion.div>
+  );
 }
 
-export default DocumentsPage
+export default DocumentsPage;

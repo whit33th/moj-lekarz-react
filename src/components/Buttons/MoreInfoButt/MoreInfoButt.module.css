@@ -74,6 +74,10 @@
   font-size: 20px;
   font-weight: 600;
 }
+.formats{
+  font-size: 12px;
+  color: gray;
+}
 .addFileButton {
   background-color: #6c63ff;
   color: white;
@@ -90,6 +94,7 @@
   margin: 20px 0 0;
   max-height: 300px;
   overflow-y: auto;
+  margin-bottom: 20px; /* Add space before pagination */
 }
 
 .fileItem {
@@ -328,6 +333,10 @@
 .clip:active {
   scale: 0.9;
   opacity: 0.7;
+}
+
+.fileContainer {
+  padding-bottom: 20px; /* Add space for pagination */
 }
 
 @media screen and (max-width: 576px) {
