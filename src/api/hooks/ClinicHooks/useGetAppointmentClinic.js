@@ -1,6 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-
-import { clinicServices } from './../../services/clinicServices';
+import { clinicServices } from "./../../services/clinicServices";
 
 function useGetAppointmentClinic({
   doctorId,
@@ -29,7 +28,6 @@ function useGetAppointmentClinic({
         page,
         specialty
       ),
-
     select: (data) => {
       return data?.data || [];
     },

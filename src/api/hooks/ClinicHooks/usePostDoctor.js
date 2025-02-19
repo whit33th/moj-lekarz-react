@@ -1,13 +1,14 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useEffect } from "react";
 import { toast } from "sonner";
-import { clinicServices } from "../../services/clinicServices";
 import useStore from "../../../data/store";
+import { clinicServices } from "../../services/clinicServices";
 
 export default function usePostDoctor() {
   const { setModalActive } = useStore();
   const queryClient = useQueryClient();
-  const { mutate, isPending, isError, isSuccess, error } = useMutation({
+
+  const { mutate, isPending, isError, isSuccess } = useMutation({
     mutationKey: ["postDoctor"],
     mutationFn: (data) => clinicServices.postDoctor(data),
     retry: false,
@@ -15,7 +16,7 @@ export default function usePostDoctor() {
 
   useEffect(() => {
     if (isSuccess) {
-      toast.success("Doktor został pomyślnie dodany!");
+      toast.success("Lekarz został pomyślnie dodany!");
       queryClient.invalidateQueries(["workersList"]);
       setModalActive(false);
     }
@@ -25,7 +26,7 @@ export default function usePostDoctor() {
     if (isError) {
       toast.error("Coś poszło nie tak!");
     }
-  }, [isError, error]);
+  }, [isError]);
 
   return { mutate, isPending, isError, isSuccess };
 }

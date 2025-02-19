@@ -1,143 +1,137 @@
-.profilePage{
-    width: 100%;
-    padding: 40px 5%;
+.profilePage {
+  width: 100%;
+  padding: 40px 5%;
 }
-.passwordBlock{
-    width: 100%;
-    margin-top: 100px;
-    
+.passwordBlock {
+  width: 100%;
+  margin-top: 100px;
 }
-.passwordBlock h1{
-    font-size: 40px;
-    font-weight: 600;
-    line-height: 54.64px;
-    text-align: center;
-
+.passwordBlock h1 {
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 54.64px;
+  text-align: center;
 }
-.passwordBlockContent{
-    margin-bottom: 20px;
-    margin-top: 50px;
-    width: 100%;
-    background-color: #fff;
-    border-radius: 20px;
-    box-shadow: 0px 0px 50px 0px #0000001A;
-    padding: 35px 6%;
-    display: flex;
-    gap: 10px;
-    align-items: top;
+.passwordBlockContent {
+  margin-bottom: 20px;
+  margin-top: 50px;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: 0px 0px 50px 0px #0000001a;
+  padding: 35px 6%;
+  display: flex;
+  gap: 10px;
+  align-items: top;
 }
 .passwordBlockContent > div {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
 }
-.passwordBlockContent > div > p{
-    font-size: 18px;
-    font-weight: 500;
-    line-height: 24.59px;
-    
-    
+.passwordBlockContent > div > p {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 24.59px;
 }
-.passwordBlockContent > div > input{
-    height: 46px;
-    border-radius: 18px;
-    border: none ;
-    outline: none;
-    padding: 0 15px;
-    font-size: 17px;
-    font-weight: 400;
-    line-height: 24.59px;
-    box-shadow: 0px 0px 50px 0px #0000001A;
-    width: 100%;
+.passwordBlockContent > div > input {
+  height: 46px;
+  border-radius: 18px;
+  border: none;
+  outline: none;
+  padding: 0 15px;
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 24.59px;
+  box-shadow: 0px 0px 50px 0px #0000001a;
+  width: 100%;
 }
-.passwordBlockContent > button{
-    margin-top: 34.59px;
-    background: var(--gwny, #3E36B0);
-    color: #fff;
-    height: 46px;
-    width: 200px;
-    border-radius: 1000px;
-    border: none;
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 21.86px;
-
+.passwordBlockContent > button {
+  margin-top: 34.59px;
+  background: var(--gwny, #3e36b0);
+  color: #fff;
+  height: 46px;
+  width: 200px;
+  border-radius: 1000px;
+  border: none;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 21.86px;
 }
-.deleteAccountBlock{
-    transform: translateX(-50%);
-    margin: 0 50%;
-    width: 200px;
+.deleteAccountBlock {
+  transform: translateX(-50%);
+  margin: 0 50%;
+  width: 200px;
 }
-.visitsBlock{
-    width: 100%;
-    margin-top: 70px;
+.visitsBlock {
+  width: 100%;
+  margin-top: 70px;
 }
-.visitsBlock h1{
-    font-size: 40px;
-    font-weight: 600;
-    line-height: 54.64px;
-    text-align: center;
-    margin-bottom: 50px;
-
+.visitsBlock h1 {
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 54.64px;
+  text-align: center;
+  margin-bottom: 50px;
 }
-.visitsListItem{
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    padding: 25px 7%;
-    background-color: #fff;
-    border-radius: 20px;
-    box-shadow: 0px 0px 50px 0px #0000001A;
-    margin-bottom: 20px;
-
+.visitsListItem {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 25px 7%;
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: 0px 0px 50px 0px #0000001a;
+  margin-bottom: 20px;
 }
 
-.visitsListItemName{
-    display: flex;
-    align-items: center;
-    flex: 1;
+.visitsListItemName {
+  display: flex;
+  align-items: center;
+  flex: 1;
 }
-.visitsListItemName > div img{
-    width: 65px;
-    height: 65px;
-    border-radius: 1000px;
-    margin-right: 10px;
+.visitsListItemName > div img {
+  width: 65px;
+  height: 65px;
+  border-radius: 1000px;
+  margin-right: 10px;
 }
-.visitsListItemName div h3{
-    font-size: 21px;
-    font-weight: 500;
-    line-height: 22.78px;
+.visitsListItemName div h3 {
+  font-size: 21px;
+  font-weight: 500;
+  line-height: 22.78px;
 }
-.visitsListItemName div p{
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 24.59px;
-    color: #939393;
+.visitsListItemName div p {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24.59px;
+  color: #939393;
 }
-.visitsListItemAddress , .visitsListItemDate{
-    text-align: center;
-    font-size: 18px;
-    font-weight: 400;
-    line-height: 24.59px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex: 1;
+.visitsListItemAddress,
+.visitsListItemDate {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 24.59px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
 }
-.visitsListItemId{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 15%;
+.visitsListItemId {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 15%;
 }
-.visitsListItemId span{
-    padding: 13px 16px;
-    background: #A6DEF7;
-    border-radius: 6px;
-    min-height: 50px;
-    min-width: 71px;
-    text-align: center;
+.visitsListItemId span {
+  padding: 13px 16px;
+  background: #a6def7;
+  border-radius: 6px;
+  min-height: 50px;
+  min-width: 71px;
+  text-align: center;
 }
 
 .photo {
@@ -163,7 +157,7 @@
 .updatePhotoBtn {
   margin-top: 10px;
   padding: 8px 16px;
-  background-color: #3E36B0;
+  background-color: #3e36b0;
   color: white;
   border: none;
   border-radius: 20px;
@@ -177,101 +171,103 @@
 }
 
 .deleteAccountButton {
-    margin: 40px auto;
-    padding: 15px 30px;
-    background-color: #ff0000;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    display: block;
+  margin: 40px auto;
+  padding: 15px 30px;
+  background-color: #ff0000;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  display: block;
 }
 
 .deleteAccountButton:hover {
-    background-color: #cc0000;
+  background-color: #cc0000;
 }
 
 @media (max-width: 1024px) {
-    .profilePage{
-        padding-top: 150px;
-    }
-    .passwordBlockContent > div {
-        flex: auto;
-        margin-bottom: 8px;
-    }
-    .passwordBlockContent > div > p{
-        font-size: 16.5px;
-        
-        
-    }
-    .passwordBlockContent{
-        margin-top: 30px;
-        padding: 35px 9%;
-        flex-wrap: wrap;
-        justify-content: center;
+  .profilePage {
+    padding-top: 150px;
+  }
+  .passwordBlockContent > div {
+    flex: auto;
+    margin-bottom: 8px;
+  }
+  .passwordBlockContent > div > p {
+    font-size: 16.5px;
+  }
+  .passwordBlockContent {
+    margin-top: 30px;
+    padding: 35px 9%;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .passwordBlockContent > div > input {
+    width: 100%;
+  }
+  .passwordBlockContent > button {
+    width: 50%;
+  }
 
-    }
-    .passwordBlockContent > div > input{
-        width: 100%;
-    }
-    .passwordBlockContent > button{
-        width: 50%;
-    }
-    
-    .passwordBlockContent > input{
-        margin-top: 15px;
-    }
-    .visitsListItem{
-        height: auto;
-        flex-wrap: wrap;
-    }
-    .visitsListItemName , .visitsListItemAddress , .visitsListItemDate{
-        width: 100%;
-        flex: auto;
-    }
-    .visitsListItem {
-        display: grid;
-        grid-template-columns: 1fr; 
-        gap: 0;
-    }
+  .passwordBlockContent > input {
+    margin-top: 15px;
+  }
+  .visitsListItem {
+    height: auto;
+    flex-wrap: wrap;
+  }
+  .visitsListItemName,
+  .visitsListItemAddress,
+  .visitsListItemDate {
+    width: 100%;
+    flex: auto;
+  }
+  .visitsListItem {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
 
-    .visitsListItemName {
-        grid-column: 1 / -1; 
-        margin-bottom: 5px;
-    }
+  .visitsListItemName {
+    grid-column: 1 / -1;
+    margin-bottom: 5px;
+  }
 
-    .visitsListItemAddress, .visitsListItemDate {
-        grid-column: 1 / 2; 
-    }
+  .visitsListItemAddress,
+  .visitsListItemDate {
+    grid-column: 1 / 2;
+  }
 
-    .visitsListItemId {
-        grid-column: 2 / 3; 
-        display: flex;
-        justify-content: flex-end; 
-        align-items: center; 
-        grid-row: 2 / 4;
-    }
+  .visitsListItemId {
+    grid-column: 2 / 3;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    grid-row: 2 / 4;
+  }
 
-    .visitsListItemAddress, .visitsListItemDate, .visitsListItemId {
-        align-self: center;
-    }
-    .visitsListItemId{
-        width: 100%;
-    }
-    .visitsListItemAddress p, .visitsListItemDate p{
-        width: 100%;
-        text-align: left;
-    }
-    
+  .visitsListItemAddress,
+  .visitsListItemDate,
+  .visitsListItemId {
+    align-self: center;
+  }
+  .visitsListItemId {
+    width: 100%;
+  }
+  .visitsListItemAddress p,
+  .visitsListItemDate p {
+    width: 100%;
+    text-align: left;
+  }
 }
 @media (min-width: 1824px) {
-    .profilePage{
-        padding: 40px 7%;
-    }
+  .profilePage {
+    padding: 40px 7%;
+  }
 }
 @media (min-width: 2224px) {
-    .profilePage{
-        padding: 40px 10%;
-    }
+  .profilePage {
+    padding: 40px 10%;
+  }
 }

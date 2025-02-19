@@ -94,7 +94,7 @@ class ClinicServices {
     });
   }
   async putDoctorInfo(doctorId, data) {
-    // Send the data exactly as received without any transformations
+ 
     return await axios.put(
       `${this.URL}/api/clinics/doctors/${doctorId}`,
       {

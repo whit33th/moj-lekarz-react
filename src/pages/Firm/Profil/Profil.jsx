@@ -1,26 +1,24 @@
-"use client";
-
+import grey from "@assets/img/grey.png";
+import usePostUpdateImg from "@hooks/UserHooks/usePostUpdateImg";
+import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { motion } from "framer-motion";
-import styles from "./Profil.module.css";
-import BlueBtn from "../../../components/Buttons/BlueBtn/BlueBtn";
-import useGetUserInfo from "../../../api/hooks/UserHooks/useGetUserInfo";
-import useGetClinicSpecialties from "../../../api/hooks/GeneralHooks/SpecialtyHooks/useGetClinicSpecialties";
 import Skeleton from "react-loading-skeleton";
-import useStore from "../../../data/store";
-import EditSheduleClinic from "../../../components/Modals/EditSheduleClinic/EditSheduleClinic";
-import usePostUpdateImg from "@hooks/UserHooks/usePostUpdateImg";
-import grey from "@assets/img/grey.png";
 import usePutClinicInfo from "../../../api/hooks/ClinicHooks/usePutClinicInfo";
+import useGetClinicSpecialties from "../../../api/hooks/GeneralHooks/SpecialtyHooks/useGetClinicSpecialties";
+import useGetUserInfo from "../../../api/hooks/UserHooks/useGetUserInfo";
+import BlueBtn from "../../../components/Buttons/BlueBtn/BlueBtn";
+import EditSheduleClinic from "../../../components/Modals/EditSheduleClinic/EditSheduleClinic";
 import InputError from "../../../components/UI/InputError/InputError";
+import useStore from "../../../data/store";
+import styles from "./Profil.module.css";
 
 function ProfilFirm() {
   const [selectedImg, setSelectedImg] = useState(null);
   const { mutate: uploadImage } = usePostUpdateImg();
   const { mutate: updateClinicInfo, isPending } = usePutClinicInfo();
 
-  const { data, isLoading } = useGetUserInfo();
+  const { data } = useGetUserInfo();
   const { data: specialties, isLoading: specialtiesLoading } =
     useGetClinicSpecialties({
       clinicId: data?.id,
@@ -236,24 +234,13 @@ function ProfilFirm() {
 
           <div className={styles["form-group"]}>
             <label>Telefon</label>
-            <input
-              readOnly
-              {...register("phone", {
-                
-              })}
-            />
+            <input readOnly {...register("phone", {})} />
             <InputError errorField="phone" formState={formState} />
           </div>
 
           <div className={styles["form-group"]}>
             <label>Email</label>
-            <input
-              readOnly
-              {...register("email", {
-               
-                
-              })}
-            />
+            <input readOnly {...register("email", {})} />
             <InputError errorField="email" formState={formState} />
           </div>
 

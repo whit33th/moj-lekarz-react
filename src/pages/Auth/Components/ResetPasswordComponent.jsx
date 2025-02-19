@@ -1,9 +1,9 @@
+import { useForm } from "react-hook-form";
 import { useSearchParams } from "react-router-dom";
 import useResetPassword from "../../../api/hooks/AuthHooks/useResetPassword";
-import { useForm } from "react-hook-form";
 import InputError from "../../../components/UI/InputError/InputError";
-import styles from "../AuthPage.module.css";
 import LoadingPage from "../../../components/UI/Loading/LoadingPage";
+import styles from "../AuthPage.module.css";
 
 function ResetPasswordComponent() {
   const [searchParams] = useSearchParams();
@@ -18,7 +18,7 @@ function ResetPasswordComponent() {
     const formData = {
       newPassword: data.newPassword,
       token: token,
-    }
+    };
     mutate(formData);
   }
 
@@ -55,13 +55,16 @@ function ResetPasswordComponent() {
                 {...register("confirmPassword", {
                   required: "Potwierdzenie hasła jest wymagane",
                   validate: (val) => {
-                    if (watch('newPassword') !== val) {
+                    if (watch("newPassword") !== val) {
                       return "Hasła nie są takie same";
                     }
-                  }
+                  },
                 })}
               />
-              <InputError errorField={"confirmPassword"} formState={formState} />
+              <InputError
+                errorField={"confirmPassword"}
+                formState={formState}
+              />
             </div>
           </div>
           {isError && (

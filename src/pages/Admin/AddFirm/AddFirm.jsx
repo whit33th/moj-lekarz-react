@@ -1,18 +1,17 @@
-import Choice from "../../../components/Modal/Choice";
-import styles from "./AddFirm.module.css";
-import DropdownStas from "./../../../components/Dropdown/DropdownStas";
-import useStore from "../../../data/store";
-import BlueBorderBtn from "../../../components/Buttons/BlueBorderBtn/BlueBorderBtn";
-import RedBorderBtn from "../../../components/Buttons/RedBorderBtn/RedBorderBtn";
-import { toast } from "sonner";
+import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import usePostClinic from "../../../api/hooks/ClinicHooks/usePostClinic";
+import BlueBorderBtn from "../../../components/Buttons/BlueBorderBtn/BlueBorderBtn";
 import BlueBtn from "../../../components/Buttons/BlueBtn/BlueBtn";
-import { motion } from 'framer-motion';
+import RedBorderBtn from "../../../components/Buttons/RedBorderBtn/RedBorderBtn";
+import Choice from "../../../components/Modal/Choice";
+import useStore from "../../../data/store";
+import DropdownStas from "./../../../components/Dropdown/DropdownStas";
+import styles from "./AddFirm.module.css";
 
 export default function AddFirm() {
   const { setModalActive, setModalContent } = useStore();
-
   const { mutate, isPending } = usePostClinic();
 
   const {
@@ -32,20 +31,10 @@ export default function AddFirm() {
       nip: "",
       phone: "",
       email: "",
-      // type_visits: [],
-      // visit_type: "",
     },
   });
 
-  // const visitTypeOptions = ["NFZ", "Prywatna"].filter(
-  //   (option) => !selectedTypes.includes(option)
-  // );
-
   const onSubmit = (data) => {
-    // const formData = {
-    //   ...data,
-    //   type_visits: selectedTypes,
-    // };
     mutate(data);
   };
 
@@ -96,20 +85,13 @@ export default function AddFirm() {
     </div>
   );
 
-  // const removeVisitType = (typeToRemove) => {
-  //   setSelectedTypes((prev) => prev.filter((type) => type !== typeToRemove));
-  // };
-
-  // const getDropdownPlaceholder = () => {
-  //   if (selectedTypes.length === 0) return "Wybierz typ wizyty";
-  //   return selectedTypes.join(" + ");
-  // };
-
   return (
     <motion.div
       initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }} className={styles.container}>
+      transition={{ duration: 0.5 }}
+      className={styles.container}
+    >
       <div className={styles.background}>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className={styles.container}>

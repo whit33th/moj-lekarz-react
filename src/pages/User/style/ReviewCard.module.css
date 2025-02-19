@@ -1,46 +1,44 @@
-.reviewCard{
-    width: 100%;
-    margin: 20px 0 ;
-    box-shadow: 0px 0px 50px 0px #0000001A;
-    background-color: #fff;
-    border-radius: 18px;
-    padding: 30px 40px;
+.reviewCard {
+  width: 100%;
+  margin: 20px 0;
+  box-shadow: 0px 0px 50px 0px #0000001a;
+  background-color: #fff;
+  border-radius: 18px;
+  padding: 30px 40px;
 }
 
-.userInfo{
-    margin-bottom: 15px;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-
+.userInfo {
+  margin-bottom: 15px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
-.userInfo .reviewNameBlock p{
-font-size: 20px;
-font-weight: 500;
-line-height: 27.32px;
-
+.userInfo .reviewNameBlock p {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 27.32px;
 }
-.userInfo .reviewNameBlock span{
-font-size: 18px;
-font-weight: 400;
-line-height: 24.59px;
+.userInfo .reviewNameBlock span {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 24.59px;
 }
-.header > img{
-    width: 100px;
-    height: 100px;
-    border-radius: 100px;
+.header > img {
+  width: 100px;
+  height: 100px;
+  border-radius: 100px;
 }
-.header{
-    display: flex;
-    gap: 20px;
+.header {
+  display: flex;
+  gap: 20px;
 }
 .starsBlock img {
-    width: 15px;
+  width: 15px;
 }
-.userReviewText{
-    margin-top: 20px;
-    padding: 20px 0;
+.userReviewText {
+  margin-top: 20px;
+  padding: 20px 0;
 }
 
 .service {
@@ -53,43 +51,43 @@ line-height: 24.59px;
 .good {
   padding: 4px 12px;
   border-radius: 20px;
-  background: #E8F5E9;
-  color: #2E7D32;
+  background: #e8f5e9;
+  color: #2e7d32;
   font-size: 14px;
 }
 
 .bad {
   padding: 4px 12px;
   border-radius: 20px;
-  background: #FFEBEE;
-  color: #C62828;
+  background: #ffebee;
+  color: #c62828;
   font-size: 14px;
 }
 
 @media (max-width: 624px) {
-    .reviewCard{
-        padding: 30px 25px;
-    }
-    .userInfo > img{
-        width: 60px;
-        height: 60px;
-        border-radius: 100px;
-    }
-    .userInfo .reviewNameBlock{
-        padding-left: 5px;
-        display: flex;
-        align-items: center;
-        flex-wrap: wrap;
-    }
-    .starsBlock{
-        width: 75px;
-        display: flex;
-    }
-    .starsBlock img {
-        width: 14px;
-    }
-    .userReviewText{
-        margin-top: 0;
-        padding: 20px 0;
-    }
+  .reviewCard {
+    padding: 30px 25px;
+  }
+  .userInfo > img {
+    width: 60px;
+    height: 60px;
+    border-radius: 100px;
+  }
+  .userInfo .reviewNameBlock {
+    padding-left: 5px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .starsBlock {
+    width: 75px;
+    display: flex;
+  }
+  .starsBlock img {
+    width: 14px;
+  }
+  .userReviewText {
+    margin-top: 0;
+    padding: 20px 0;
+  }
 }

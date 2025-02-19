@@ -1,12 +1,12 @@
-import { useState, useEffect } from "react";
-import { useForm } from "react-hook-form";
-import styles from "./ProfileInfoBlock.module.css";
-import img from "@assets/img/Vector (22).svg";
 import useGetUserInfo from "@api/hooks/UserHooks/useGetUserInfo";
 import usePutUserInfo from "@api/hooks/UserHooks/usePutUserInfo";
 import grey from "@assets/img/grey.png";
+import img from "@assets/img/Vector (22).svg";
+import usePostUpdateImg from "@hooks/UserHooks/usePostUpdateImg";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 import BlueBtn from "../../../components/Buttons/BlueBtn/BlueBtn";
-import usePostUpdateImg from '@hooks/UserHooks/usePostUpdateImg';
+import styles from "./ProfileInfoBlock.module.css";
 
 function ProfileInfoBlock() {
   const { data: user } = useGetUserInfo();
@@ -91,7 +91,7 @@ function ProfileInfoBlock() {
   const handleUploadImage = () => {
     if (fileForUpload) {
       const formData = new FormData();
-      formData.set('image', fileForUpload);
+      formData.set("image", fileForUpload);
       uploadImage(formData);
       setFileForUpload(null);
     }
@@ -109,14 +109,11 @@ function ProfileInfoBlock() {
             type="file"
             accept="image/*"
             onChange={handleImgChange}
-            style={{ display: 'none' }}
+            style={{ display: "none" }}
           />
         </div>
         {fileForUpload && (
-          <button 
-            className={styles.updatePhotoBtn}
-            onClick={handleUploadImage}
-          >
+          <button className={styles.updatePhotoBtn} onClick={handleUploadImage}>
             Aktualizuj zdjęcie
           </button>
         )}

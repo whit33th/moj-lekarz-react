@@ -1,17 +1,17 @@
-.reviewsBlock{
-    padding: 50px 7.5%;   
+.reviewsBlock {
+  padding: 50px 7.5%;
 }
-.reviewsBlock h1{
-    text-align: center;
-    margin: 40px 0;
+.reviewsBlock h1 {
+  text-align: center;
+  margin: 40px 0;
 }
-.reviews{
-    margin-top: 50px;
+.reviews {
+  margin-top: 50px;
 }
 @media (max-width: 624px) {
-    .reviewsBlock{
-        padding: 50px 3%;   
+  .reviewsBlock {
+    padding: 50px 3%;
 
-        padding-top: 130px;
-    }
+    padding-top: 130px;
+  }
 }

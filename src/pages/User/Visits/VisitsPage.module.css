@@ -1,129 +1,122 @@
-.visitsPage{
-    width: 100%;
-    padding: 40px 5%;
-    display: flex;
+.visitsPage {
+  width: 100%;
+  padding: 40px 5%;
+  display: flex;
 }
 
-
-.visitsPageLeft{
-    width: 40%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 30px;
+.visitsPageLeft {
+  width: 40%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
 }
-.visitsPageLeft h1{
-    font-family: Manrope;
-    font-size: 40px;
-    font-weight: 600;
-    line-height: 54.64px;
-    text-align: center;
-
+.visitsPageLeft h1 {
+  font-family: Manrope;
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 54.64px;
+  text-align: center;
 }
-.newVisitsBtn{
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 30px;
+.newVisitsBtn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
 }
-.newVisitsBtn a{
-    width: 169px;
-    height: 42px;
-    border-radius: 1000px;
-    background: var(--gwny, #3E36B0);
-    font-family: Manrope;
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 21.86px;
-    text-align: center;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-
+.newVisitsBtn a {
+  width: 169px;
+  height: 42px;
+  border-radius: 1000px;
+  background: var(--gwny, #3e36b0);
+  font-family: Manrope;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 21.86px;
+  text-align: center;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
 }
-.newVisitsBtn a span{
-    font-size: 20px;
-    font-weight: 600;
-    margin-top: 3px;
-    margin-left: 2px;
+.newVisitsBtn a span {
+  font-size: 20px;
+  font-weight: 600;
+  margin-top: 3px;
+  margin-left: 2px;
 }
-.visitsPageRight{
-    width: 60%;
-    padding: 50px 5%;
-
+.visitsPageRight {
+  width: 60%;
+  padding: 50px 5%;
 }
-.visitsPageRight p{
-    font-size: 21px;
-    font-weight: 500;
-    line-height: 32.78px;
-    text-align: center;
+.visitsPageRight p {
+  font-size: 21px;
+  font-weight: 500;
+  line-height: 32.78px;
+  text-align: center;
 }
-.visitsPageRightIcons{
-    width: 100%;
-    height: auto;
-    padding: 30px 10%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.visitsPageRightIcons {
+  width: 100%;
+  height: auto;
+  padding: 30px 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.visitsPageRightIcons img{
-    width: 70%;
-    margin: 0 30px;
+.visitsPageRightIcons img {
+  width: 70%;
+  margin: 0 30px;
 }
-.qrBlock{
-    width: 100%;
-    height: auto;
-    padding: 30px 0 ;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
+.qrBlock {
+  width: 100%;
+  height: auto;
+  padding: 30px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 .qr {
-    width: 184px;
-    height: 177px;
-    padding: 15px;
-    border-radius: 16px;
-    background-color: rgb(255, 255, 255);
-    border: 1px solid #dcdcdc;
-
+  width: 184px;
+  height: 177px;
+  padding: 15px;
+  border-radius: 16px;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid #dcdcdc;
 }
-.qrBlock p{
-    margin-top: 40px;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 24.59px;
-    text-align: center;
-    width: 100%;
-
+.qrBlock p {
+  margin-top: 40px;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 24.59px;
+  text-align: center;
+  width: 100%;
 }
 
 @media (max-width: 624px) {
-    .visitsPage{
-        padding-top: 150px;
-        flex-wrap: wrap;
-    }
-    .visitsPageLeft{
-        width: 100%;
-    }
-    .visitsPageRight{
-        width: 100%;
-    }
-    .visitsPageRightIcons{
-        padding: 36px 2%;
-    }
-    .qrBlock{
-        display: none;
-    }
-    .visitsPageLeft h1{
-        font-family: Manrope;
-        font-size: 2rem;
-        font-weight: 600;
-        line-height: 54.64px;
-        text-align: center;
-    
-    }
+  .visitsPage {
+    padding-top: 150px;
+    flex-wrap: wrap;
+  }
+  .visitsPageLeft {
+    width: 100%;
+  }
+  .visitsPageRight {
+    width: 100%;
+  }
+  .visitsPageRightIcons {
+    padding: 36px 2%;
+  }
+  .qrBlock {
+    display: none;
+  }
+  .visitsPageLeft h1 {
+    font-family: Manrope;
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 54.64px;
+    text-align: center;
+  }
 }

@@ -1,30 +1,24 @@
-import { NavLink } from "react-router-dom";
-import { useForm } from "react-hook-form";
-import follow from "@assets/img/follow.png";
-import editPan from "@assets/img/editPen.png";
-import BestWorkerItem from "../../../components/FirmPage/VisitItem/BestWorkerItem";
-import { userItems } from "../../../helpers/userItemList";
-import styles from "./FirmManagement.module.css";
-import Review from "../../../components/FirmPage/Review/Review";
-import useStore from "../../../data/store";
-import profil from "@assets/img/profil.webp";
-import ReviewCard from "../../../components/FirmPage/Review/ReviewCard";
-import Dropdown from "../../../components/Dropdown/Dropdown";
 import exit from "@assets/img/cross.png";
-import BlueBtn from "../../../components/Buttons/BlueBtn/BlueBtn";
-import useGetUserInfo from "../../../api/hooks/UserHooks/useGetUserInfo";
-import useGetClinicReviews from "./../../../api/hooks/GeneralHooks/ReviewsHooks/useGetClinicReviews";
-import usePutUserInfo from "@api/hooks/UserHooks/usePutUserInfo";
-import useGetWorkersList from "../../../api/hooks/ClinicHooks/useGetWorkersList";
+import follow from "@assets/img/follow.png";
 import grey from "@assets/img/grey.png";
-import SkeletonTodayVisitItem from "../../../components/DoctorPage/Home/TodayVisitItem/SkeletonTodayVisitItem";
-import { pageConfig } from "../../../config/config";
+import profil from "@assets/img/profil.webp";
 import { motion } from "framer-motion";
+import { NavLink } from "react-router-dom";
+import useGetWorkersList from "../../../api/hooks/ClinicHooks/useGetWorkersList";
+import useGetUserInfo from "../../../api/hooks/UserHooks/useGetUserInfo";
+import SkeletonTodayVisitItem from "../../../components/DoctorPage/Home/TodayVisitItem/SkeletonTodayVisitItem";
+import Dropdown from "../../../components/Dropdown/Dropdown";
+import Review from "../../../components/FirmPage/Review/Review";
+import ReviewCard from "../../../components/FirmPage/Review/ReviewCard";
+import BestWorkerItem from "../../../components/FirmPage/VisitItem/BestWorkerItem";
+import { pageConfig } from "../../../config/config";
+import useStore from "../../../data/store";
+import useGetClinicReviews from "./../../../api/hooks/GeneralHooks/ReviewsHooks/useGetClinicReviews";
+import styles from "./FirmManagement.module.css";
 
 function FirmManagement() {
   const { setModalActive, setModalContent } = useStore();
   const { data, isLoading } = useGetUserInfo();
-  const { register, reset, handleSubmit } = useForm();
   const { data: workersData } = useGetWorkersList({
     clinicId: data?.id,
   });

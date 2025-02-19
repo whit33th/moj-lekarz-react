@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { generalService } from "../../../services/generalService";
 
 export default function useDoctorStats() {
-  const { data,isLoading } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ["doctorStats"],
     queryFn: () => generalService.getDoctorStats(),
     select: (data) => data?.data || [],

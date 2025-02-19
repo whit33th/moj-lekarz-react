@@ -1,5 +1,5 @@
-import Skeleton from 'react-loading-skeleton'
-import 'react-loading-skeleton/dist/skeleton.css'
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 import styles from "./style/ClinicCard.module.css";
 
 function ClinicCardSkeleton() {
@@ -16,13 +16,15 @@ function ClinicCardSkeleton() {
           </div>
           <Skeleton width={150} />
           <div className={styles.specialties}>
-            {Array(3).fill(0).map((_, i) => (
-              <Skeleton 
-                key={i} 
-                width={80} 
-                className={styles.specialtySkeleton}
-              />
-            ))}
+            {Array(3)
+              .fill(0)
+              .map((_, i) => (
+                <Skeleton
+                  key={i}
+                  width={80}
+                  className={styles.specialtySkeleton}
+                />
+              ))}
           </div>
         </div>
       </div>

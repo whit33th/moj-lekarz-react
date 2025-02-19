@@ -1,17 +1,14 @@
-import { useState, useEffect } from "react";
-import styles from "../GraphManagement/GraphManagement.module.css";
-import Search from "../../../components/UI/Search/Search";
-import useGetPatientsList from "../../../api/hooks/DoctorHooks/useGetPatientsList";
-import Skeleton from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css';
 import { motion } from "framer-motion";
+import { useState } from "react";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+import useGetPatientsList from "../../../api/hooks/DoctorHooks/useGetPatientsList";
+import Search from "../../../components/UI/Search/Search";
+import styles from "../GraphManagement/GraphManagement.module.css";
 
 function PatientSkeleton() {
   return (
-    <div 
-     
-      className={styles.row}
-    >
+    <div className={styles.row}>
       <Skeleton circle width={50} height={50} />
       <div className={styles.info}>
         <div className={styles.name}>
@@ -29,14 +26,13 @@ function Patients() {
   const [searchTerm, setSearchTerm] = useState("");
   const { data, isLoading } = useGetPatientsList({});
 
-
-  const allPatients = data?.map((item) => ({
-    id: item.id,
-    name: `${item.patient.user.first_name} ${item.patient.user.last_name}`,
-    phone: item.patient.user.address?.city || "Нет данных",
-    photo: item.patient.user.photo,
-  })) || [];
-
+  const allPatients =
+    data?.map((item) => ({
+      id: item.id,
+      name: `${item.patient.user.first_name} ${item.patient.user.last_name}`,
+      phone: item.patient.user.address?.city || "Нет данных",
+      photo: item.patient.user.photo,
+    })) || [];
 
   const filteredPatients = allPatients.filter(
     (patient) =>

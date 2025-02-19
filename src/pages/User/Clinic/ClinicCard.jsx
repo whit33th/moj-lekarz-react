@@ -1,11 +1,9 @@
-import styles from "./style/ClinicCard.module.css";
-import starimg from "@assets/img/Star.svg";
-import { NavLink } from "react-router-dom";
-import imgIcon1 from "@assets/img/simple-line-i.svg";
-import imgIcon2 from "@assets/img/Vector14.svg";
 import grey from "@assets/img/grey.png";
-import { pageConfig } from "../../../config/config";
+import imgIcon1 from "@assets/img/simple-line-i.svg";
+import starimg from "@assets/img/Star.svg";
 import { motion } from "framer-motion";
+import { NavLink } from "react-router-dom";
+import styles from "./style/ClinicCard.module.css";
 
 function ClinicCard({ data }) {
   const clinic = {
@@ -73,9 +71,9 @@ function ClinicCard({ data }) {
           <img src={imgIcon1} alt="address" />
           <div>
             <p>
-              {clinic.address?.street}, {clinic.address?.postIndex}, {clinic.address?.city}
+              {clinic.address?.street}, {clinic.address?.postIndex},{" "}
+              {clinic.address?.city}
             </p>
-            
           </div>
         </div>
         {/* <div>

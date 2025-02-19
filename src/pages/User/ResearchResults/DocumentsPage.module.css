@@ -6,7 +6,6 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  
 }
 .resultsMainBtnBlock h1 {
   text-align: center;
@@ -51,7 +50,6 @@
 .resultContentBlock {
   width: 100%;
   padding: 0 5%;
- 
 }
 .listItem {
   width: 100%;

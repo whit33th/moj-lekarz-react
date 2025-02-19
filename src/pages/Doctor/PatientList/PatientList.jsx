@@ -1,13 +1,11 @@
-import styles from "./PatientList.module.css";
-import tablecss from "../../../components/Table/Table.module.css";
-import filters from "@assets/img/filters.png";
-import Dropdown from "../../../components/Dropdown/Dropdown";
-import Table from "../../../components/Table/Table";
 import MoreInfoButtPatient from "../../../components/Buttons/MoreInfoButt/MoreInfoButt";
+import Table from "../../../components/Table/Table";
+import tablecss from "../../../components/Table/Table.module.css";
+import styles from "./PatientList.module.css";
 
 import useGetPatientsList from "@hooks/DoctorHooks/useGetPatientsList";
-import Pagination from "../../../components/UI/Pagination/Pagination";
 import { useState } from "react";
+import Pagination from "../../../components/UI/Pagination/Pagination";
 function PatientList() {
   const [page, setPage] = useState(1);
   const { data, isLoading } = useGetPatientsList({

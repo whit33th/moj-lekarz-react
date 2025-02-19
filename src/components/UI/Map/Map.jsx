@@ -1,8 +1,8 @@
-import { useEffect, useRef, useState, Suspense } from "react";
+import robot from "@assets/img/robot_svg/2.png";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
+import { Suspense, useEffect, useRef, useState } from "react";
 import Skeleton from "react-loading-skeleton";
-import robot from "@assets/img/robot_svg/2.png";
 
 mapboxgl.accessToken = import.meta.env.VITE_MAP_TOKEN;
 

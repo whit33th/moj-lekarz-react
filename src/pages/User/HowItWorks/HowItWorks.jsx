@@ -1,25 +1,16 @@
-import { useState } from "react";
-import { motion } from "framer-motion"; // Add this import
-import styles from "./HowItWorks.module.css";
 import img1 from "@assets/img/Frame1.svg";
 import img2 from "@assets/img/Frame2.svg";
 import img3 from "@assets/img/Frame3.svg";
 import arrow from "@assets/img/arrowmain.svg";
+import { motion } from "framer-motion"; // Add this import
 import SwiperSlider from "../../../components/SwiperSlider";
-import InputDropdownStas from "../../../components/Dropdown/InputDropdownStas";
-import { useForm } from "react-hook-form";
 import { pageConfig } from "../../../config/config";
 import useStore from "../../../data/store";
+import styles from "./HowItWorks.module.css";
 
 function HowItWorks() {
   const { isAuth } = useStore();
 
-  const options = ["Ortoped", "Logoped", "Surgeon"];
-  const [nameInputValue, setNameInputValue] = useState();
-  const [emailInputValue, setEmailInputValue] = useState();
-  const [phoneInputValue, setPhoneInputValue] = useState();
-  const [textareaInputValue, setTextareaInputValue] = useState();
-  const { control, handleSubmit, watch } = useForm({});
   return (
     <div className={styles.howItWorks}>
       <motion.div
@@ -136,8 +127,6 @@ function HowItWorks() {
         </motion.div>
         <SwiperSlider />
       </div>
-
-      
     </div>
   );
 }

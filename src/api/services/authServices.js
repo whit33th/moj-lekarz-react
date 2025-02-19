@@ -14,6 +14,11 @@ class AuthServices {
       }
     );
   }
+  async logout() {
+    return await axios.get(`${this.URL}/logout`, {
+      withCredentials: true,
+    });
+  }
   async registration(data) {
     return await axios.post(`${this.URL}/register`, {
       email: data.email.toLowerCase(),
@@ -45,12 +50,6 @@ class AuthServices {
         withCredentials: true,
       }
     );
-  }
-
-  async logout() {
-    return await axios.get(`${this.URL}/logout`, {
-      withCredentials: true,
-    });
   }
 }
 

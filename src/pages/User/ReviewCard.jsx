@@ -1,7 +1,7 @@
-import styles from "./style/ReviewCard.module.css";
 import starimg from "@assets/img/Star.svg";
 import grey from "@assets/img/grey.png";
 import { motion } from "framer-motion";
+import styles from "./style/ReviewCard.module.css";
 
 function ReviewCard({ reviews }) {
   const review = {

@@ -1,4 +1,4 @@
-.sTitleCard{
+.sTitleCard {
   font-size: 1em;
 }
 .grey {
@@ -7,7 +7,8 @@
 .meeting:first-child {
   font-weight: bold;
 }
-.meeting, .meeting > div {
+.meeting,
+.meeting > div {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -20,7 +21,7 @@
   gap: 30px;
 }
 .visits {
-	justify-content: space-between;
+  justify-content: space-between;
   min-height: 300px;
 }
 .history {
@@ -33,7 +34,7 @@
 }
 
 .emptyState {
-  background-color: #F3F4F6;
+  background-color: #f3f4f6;
   border-radius: 12px;
   padding: 40px 20px;
   text-align: center;
@@ -47,22 +48,22 @@
 }
 
 .emptyState p {
-  color: #9CA3AF;
+  color: #9ca3af;
   font-size: 16px;
   margin: 0;
 }
 
-.robotImage{
+.robotImage {
   width: 240px;
   top: 10px;
   right: 0;
   position: absolute;
   z-index: 0;
-  transition: 0.3s  ease;
+  transition: 0.3s ease;
 }
-.robotImage:hover{
+.robotImage:hover {
   scale: 1.1;
-  transition: 0.3s  ease;
+  transition: 0.3s ease;
 }
 
 .card {
@@ -76,13 +77,12 @@
   align-content: center;
   flex-wrap: nowrap;
   justify-content: space-between;
-  transition:  0.3s;
-  
+  transition: 0.3s;
 }
 .card:hover {
-	scale: 1.01;
-	transition: 0.3s;
-	backdrop-filter: none;
+  scale: 1.01;
+  transition: 0.3s;
+  backdrop-filter: none;
 }
 .mainCard {
   gap: 15px;
@@ -95,144 +95,142 @@
   position: relative;
   background-color: white;
 }
-.topLayer, .botLayer {
+.topLayer,
+.botLayer {
   display: flex;
   flex-direction: row;
   height: 50%;
   gap: 20px;
-
 }
 .titleCard {
-	font-size: 1.4em;
+  font-size: 1.4em;
 }
 .countNumber {
-	font-size: 4.5em;
-	font-weight: bold;
+  font-size: 4.5em;
+  font-weight: bold;
 }
 .botCards {
-	display: flex;
-	flex-direction: row;
-	gap: 25px;
-	z-index: 1;
+  display: flex;
+  flex-direction: row;
+  gap: 25px;
+  z-index: 1;
 }
 .biggerCard {
-	width: 65% !important;
+  width: 65% !important;
 }
 .smBack {
-	padding: 6px 10px;
-	background: #FFFFFF;
-	border-radius: 6px;
+  padding: 6px 10px;
+  background: #ffffff;
+  border-radius: 6px;
 }
 .graph p {
-	margin: 0 5px;
+  margin: 0 5px;
 }
 .graph img {
-	width: 18px;
+  width: 18px;
 }
 .smCountNumber {
-	font-weight: bold;
-	font-size: 2.5em;
+  font-weight: bold;
+  font-size: 2.5em;
 }
 .center {
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	align-content: center;
-	justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;
+  justify-content: space-between;
 }
 .tCenter {
-	text-align: center;
+  text-align: center;
 }
 .itemsCenter {
-	display: flex;
-	align-items: center;
+  display: flex;
+  align-items: center;
 }
 .ico {
-	width: 18px;
-	margin-left: 10px;
+  width: 18px;
+  margin-left: 10px;
 }
 .between {
-	justify-content: space-between;
+  justify-content: space-between;
 }
 .flex {
-	display: flex;
-	flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 
-.followLink{
-	font-size: 1.2em;
-	color: #222222;
+.followLink {
+  font-size: 1.2em;
+  color: #222222;
 }
 
 @media screen and (max-width: 920px) {
-
   .biggerCard {
-       width: 50% !important;
+    width: 50% !important;
   }
-  .sidebar{
-      display: none !important;
+  .sidebar {
+    display: none !important;
   }
 
-  .botCards div{
-      display: flex;
-      flex-direction: column;
-      width: 100%;
+  .botCards div {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
   }
   .smBack {
-      flex-direction: row !important;
-      justify-content: space-between;
+    flex-direction: row !important;
+    justify-content: space-between;
   }
 
-  .topLayer, .botLayer {
-      flex-direction: column;
-      width: 100% !important;
-
+  .topLayer,
+  .botLayer {
+    flex-direction: column;
+    width: 100% !important;
   }
 
   .mainCard {
-      width: 100% !important;
+    width: 100% !important;
   }
 
   .sidebar {
-      display: flex;
-      align-items: center;
-      background: #3E36B0;
-      width: 100%;
-      position: static;
-      gap: 10px;
-      flex-direction: row;
-      flex-wrap: nowrap;
+    display: flex;
+    align-items: center;
+    background: #3e36b0;
+    width: 100%;
+    position: static;
+    gap: 10px;
+    flex-direction: row;
+    flex-wrap: nowrap;
   }
 
   .container {
-      width: 100%;
-      margin-left: 0;
+    width: 100%;
+    margin-left: 0;
   }
 
   .sidebarLinks {
-      gap: 10px;
-      width: 100%;
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr 1fr;
-      flex-direction: row;
-      align-items: center;
-      justify-content: space-around;
+    gap: 10px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
   }
   main {
-      width: 100%;
-      display: grid;
-      flex-direction: column;
+    width: 100%;
+    display: grid;
+    flex-direction: column;
   }
   .sidebarLinkDiv {
-      font-size: 13px;
-      width: 100%;
-      padding: 5px;
-      transition: 0.1s;
-      display: flex;
-      align-items: center;
+    font-size: 13px;
+    width: 100%;
+    padding: 5px;
+    transition: 0.1s;
+    display: flex;
+    align-items: center;
   }
   .logo img {
-      width: 40px;
+    width: 40px;
   }
-  
 }

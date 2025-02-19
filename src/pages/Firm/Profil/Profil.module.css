@@ -85,11 +85,10 @@
   background-color: #f0f0f0;
 }
 
-.schedule-section{
+.schedule-section {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  
 }
 
 .schedule-section h2 {
@@ -153,4 +152,3 @@
     height: 175px;
   }
 }
-

@@ -1,31 +1,31 @@
-import { useState, useRef } from "react"
-import sbLinks from "../../helpers/sbLinks"
-import { NavLink, useNavigate } from "react-router-dom"
-import exit from "@assets/img/exitIco.png"
-import logo from "@assets/img/logoonly.png"
-import searchIco from "@assets/img/search.png"
-import styles from "./Sidebar.module.css"
-import useStore from "../../data/store"
-import ExitModal from '../Modals/ExitModal/ExitModal'
-import SearchResults from './../Navbar/SearchResults';
+import { useState, useRef } from "react";
+import sbLinks from "../../helpers/sbLinks";
+import { NavLink, useNavigate } from "react-router-dom";
+import exit from "@assets/img/exitIco.png";
+import logo from "@assets/img/logoonly.png";
+import searchIco from "@assets/img/search.png";
+import styles from "./Sidebar.module.css";
+import useStore from "../../data/store";
+import ExitModal from "../Modals/ExitModal/ExitModal";
+import SearchResults from "./../Navbar/SearchResults";
 
-function Sidebar({ role, children }) {
-  const { setModalActive, setModalContent } = useStore()
-  const navigate = useNavigate()
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [searchActive, setSearchActive] = useState(false)
-  const [searchValue, setSearchValue] = useState('')
+function Sidebar({ role }) {
+  const { setModalActive, setModalContent } = useStore();
+  const navigate = useNavigate();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [searchActive, setSearchActive] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
 
-  const sidebarLinkFilters = sbLinks.filter((sbLink) => sbLink.role === role)
+  const sidebarLinkFilters = sbLinks.filter((sbLink) => sbLink.role === role);
 
   function handleModal() {
-    setModalActive(true)
-    setModalContent(<ExitModal />)
-    setIsMobileMenuOpen(false) 
+    setModalActive(true);
+    setModalContent(<ExitModal />);
+    setIsMobileMenuOpen(false);
   }
 
   function toggleMobileMenu() {
-    setIsMobileMenuOpen(!isMobileMenuOpen)
+    setIsMobileMenuOpen(!isMobileMenuOpen);
   }
 
   return (
@@ -43,12 +43,20 @@ function Sidebar({ role, children }) {
           onChange={(e) => setSearchValue(e.target.value)}
           onFocus={() => setSearchActive(true)}
         />
-        <div className={`${styles.searchResults} ${searchActive && searchValue ? styles.active : ''}`}>
+        <div
+          className={`${styles.searchResults} ${
+            searchActive && searchValue ? styles.active : ""
+          }`}
+        >
           <SearchResults inputValue={searchValue} />
         </div>
       </div>
 
-      <div className={`${styles.sidebarLinks} ${isMobileMenuOpen ? styles.active : ''}`}>
+      <div
+        className={`${styles.sidebarLinks} ${
+          isMobileMenuOpen ? styles.active : ""
+        }`}
+      >
         {sidebarLinkFilters.map((sidebarLinkFilter, index) => (
           <NavLink
             key={index}
@@ -62,15 +70,17 @@ function Sidebar({ role, children }) {
             <span>{sidebarLinkFilter.title}</span>
           </NavLink>
         ))}
-        
+
         <div id="exit" className={styles.exit} onClick={handleModal}>
           <img src={exit} alt="exit" />
           <span>Wyjście</span>
         </div>
       </div>
 
-      <div 
-        className={`${styles.mobileMenuBtn} ${isMobileMenuOpen ? styles.active : ''}`} 
+      <div
+        className={`${styles.mobileMenuBtn} ${
+          isMobileMenuOpen ? styles.active : ""
+        }`}
         onClick={toggleMobileMenu}
       >
         <span></span>
@@ -78,7 +88,7 @@ function Sidebar({ role, children }) {
         <span></span>
       </div>
     </div>
-  )
+  );
 }
 
-export default Sidebar
+export default Sidebar;

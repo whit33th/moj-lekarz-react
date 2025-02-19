@@ -8,7 +8,7 @@ function usePutDoctorInfo() {
   const { setModalActive } = useStore();
   const queryClient = useQueryClient();
 
-  const { mutate, isSuccess, isError, error } = useMutation({
+  const { mutate, isSuccess, isError } = useMutation({
     mutationKey: ["putDoctorInfo"],
     mutationFn: (data) => clinicServices.putDoctorInfo(data.doctorId, data),
   });
@@ -16,7 +16,6 @@ function usePutDoctorInfo() {
   useEffect(() => {
     if (isError) {
       toast.error("Coś poszło nie tak!");
-      console.log(error)
     }
   }, [isError]);
 

@@ -39,7 +39,7 @@
   display: flex;
   flex-direction: column;
   align-items: start;
-  
+
   justify-content: center;
   position: relative;
   width: 100%;
@@ -53,7 +53,6 @@
   border: none;
   box-shadow: 0px 0px 50px 0px #0000001a;
   outline: none;
-  ;
   font-size: 15.5px;
   font-weight: 400;
   line-height: 21.86px;
@@ -100,7 +99,6 @@
 
 .dropdownMenuItem {
   padding: 10px;
-  ;
   font-size: 15.5px;
   font-weight: 400;
   line-height: 21.86px;
@@ -119,7 +117,7 @@
   line-height: 24.59px;
 }
 
-.choiceBlock>div {
+.choiceBlock > div {
   display: flex;
   justify-content: flex-start;
   font-size: 18px;
@@ -128,14 +126,14 @@
   margin-top: 15px;
 }
 
-.choiceBlock>div label {
+.choiceBlock > div label {
   margin-right: 35px;
   cursor: pointer;
   display: flex;
   align-items: center;
 }
 
-.choiceBlock>div input {
+.choiceBlock > div input {
   margin-right: 5px;
   width: 18px;
   height: 18px;
@@ -152,7 +150,8 @@
   align-items: center;
 }
 
-.btnBlock button, .btnBlock a {
+.btnBlock button,
+.btnBlock a {
   width: 251px;
   height: 49px;
   border-radius: 1000px;

@@ -1,39 +1,38 @@
-import { Suspense, useRef } from "react";
-import { motion } from "framer-motion";
-import users from "@assets/img/users.png";
-import graphUp from "@assets/img/graph-up.png";
-import graphDown from "@assets/img/graph-down.png";
 import companies from "@assets/img/companies.png";
 import doctor from "@assets/img/doctor-s.png";
+import graphDown from "@assets/img/graph-down.png";
+import graphUp from "@assets/img/graph-up.png";
+import users from "@assets/img/users.png";
 import visits from "@assets/img/visits.png";
-
-import plus from "@assets/img/plusBlack.png";
+import { motion } from "framer-motion";
+import { Suspense, useRef } from "react";
 import bucket from "@assets/img/bucket.png";
 import noteIco from "@assets/img/note.png";
-import styles from "./AdminMain.module.css";
-import AreaChartComp from "../../../components/Charts/AreaChart";
-import useStore from "./../../../data/store";
-import Textarea from "../../../components/UI/TextArea/Textarea";
-import BlueBtn from "./../../../components/Buttons/BlueBtn/BlueBtn";
-import useAdminStats from "../../../api/hooks/GeneralHooks/Stats/adminStats";
+import plus from "@assets/img/plusBlack.png";
 import { format } from "date-fns";
-import {
-  StatCardSkeleton,
-  TableSkeleton,
-  ChartSkeleton,
-} from "../../../components/Skeletons/AdminSkeletons";
 import Skeleton from "react-loading-skeleton";
+import useDeleteNotion from "../../../api/hooks/GeneralHooks/Notion/useDeleteNotion";
 import { useGetNotion } from "../../../api/hooks/GeneralHooks/Notion/useGetNotion";
 import usePostNotion from "../../../api/hooks/GeneralHooks/Notion/usePostNotion";
-import useDeleteNotion from "../../../api/hooks/GeneralHooks/Notion/useDeleteNotion";
+import useAdminStats from "../../../api/hooks/GeneralHooks/Stats/adminStats";
+import AreaChartComp from "../../../components/Charts/AreaChart";
+import {
+  ChartSkeleton,
+  StatCardSkeleton,
+  TableSkeleton,
+} from "../../../components/Skeletons/AdminSkeletons";
+import Textarea from "../../../components/UI/TextArea/Textarea";
 import { useStats5Months } from "../../../hooks/useStats5Months";
+import BlueBtn from "./../../../components/Buttons/BlueBtn/BlueBtn";
+import useStore from "./../../../data/store";
+import styles from "./AdminMain.module.css";
 
 function AdminMainContent() {
   const stats = useAdminStats();
   const { setModalActive, setModalContent } = useStore();
   const { data: notions } = useGetNotion();
-  const { mutate: deleteNotionMutation } = useDeleteNotion();
 
+  const { mutate: deleteNotionMutation } = useDeleteNotion();
   const { mutate: postNotionMutation } = usePostNotion();
   const textRef = useRef(null);
 

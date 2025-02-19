@@ -1,9 +1,9 @@
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { pageConfig } from "../../config/config";
+import styles from "./AuthPage.module.css";
 import ForgotPasswordForm from "./Forms/ForgotPasswordForm";
 import SignInForm from "./Forms/SignInForm";
-import styles from "./AuthPage.module.css";
-import { useState } from "react";
 
 function SignInComponent() {
   const [isForgotPassword, setIsForgotPassword] = useState(false);

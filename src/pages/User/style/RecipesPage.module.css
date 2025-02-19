@@ -1,113 +1,112 @@
 .recipesPage {
-    width: 100%;
-    padding: 30px 0;
+  width: 100%;
+  padding: 30px 0;
 }
 
 .recipesPage h1 {
-    text-align: center;
-    font-size: 32px;
-    font-weight: 600;
-    margin: 40px 0;
-    color: #2c3e50;
+  text-align: center;
+  font-size: 32px;
+  font-weight: 600;
+  margin: 40px 0;
+  color: #2c3e50;
 }
 
 .recipesList {
-    
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 20px;
-    padding: 0 40px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 20px;
+  padding: 0 40px;
 }
 
 .itemRecipes {
-    background-color: #fff;
-    border-radius: 12px;
-    padding: 24px;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .label {
-    font-size: 12px;
-    color: #7f8c8d;
-    text-transform: uppercase;
-    margin-bottom: 4px;
-    font-weight: 600;
+  font-size: 12px;
+  color: #7f8c8d;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+  font-weight: 600;
 }
 
 .itemRecipesName {
-    font-size: 18px;
-    font-weight: 600;
-    color: #2c3e50;
+  font-size: 18px;
+  font-weight: 600;
+  color: #2c3e50;
 }
 
 .itemRecipesDate {
-    color: #34495e;
-    font-size: 14px;
+  color: #34495e;
+  font-size: 14px;
 }
 
 .itemRecipesDescription {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .medication {
-    background: #f0f3f8;
-    padding: 8px 12px;
-    border-radius: 6px;
-    font-size: 14px;
-    color: #2c3e50;
-    display: inline-block;
+  background: #f0f3f8;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #2c3e50;
+  display: inline-block;
 }
 
 .itemRecipesId {
-    border-top: 1px solid #ecf0f1;
-    padding-top: 16px;
-    margin-top: 8px;
+  border-top: 1px solid #ecf0f1;
+  padding-top: 16px;
+  margin-top: 8px;
 }
 
-.itemRecipesId  {
-    background: #A6DEF7;
-    padding: 8px 16px;
-    border-radius: 6px;
-    font-size: 14px;
-    color: #2c3e50;
+.itemRecipesId {
+  background: #a6def7;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #2c3e50;
 }
 
 .disactiveRecipes .itemRecipesId span {
-    background: #BEBEBE;
-    color: #fff;
+  background: #bebebe;
+  color: #fff;
 }
 
 @media (max-width: 768px) {
-    .recipesPage {
-        padding: 16px;
-    }
+  .recipesPage {
+    padding: 16px;
+  }
 
-    .recipesPage h1 {
-        font-size: 24px;
-        text-align: center;
-    }
+  .recipesPage h1 {
+    font-size: 24px;
+    text-align: center;
+  }
 
-    .recipesList {
-        padding: 0;
-    }
+  .recipesList {
+    padding: 0;
+  }
 
-    .itemRecipes {
-        padding: 20px;
-    }
+  .itemRecipes {
+    padding: 20px;
+  }
 }
 
 @media (min-width: 2224px) {
-    .recipesPage {
-        max-width: 1800px;
-        margin: 0 auto;
-    }
+  .recipesPage {
+    max-width: 1800px;
+    margin: 0 auto;
+  }
 
-    .recipesList {
-        grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-    }
+  .recipesList {
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  }
 }

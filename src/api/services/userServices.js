@@ -31,10 +31,6 @@ class UserServices {
         flat: formData.flat,
         post_index: formData.post_index,
       },
-      // doctorData: {
-      //   hired_at: formData.hired_at || "",
-      //   description: formData.description || "",
-      // }
     };
     return await axios.put(`${this.URL}/api/users`, data, {
       withCredentials: true,

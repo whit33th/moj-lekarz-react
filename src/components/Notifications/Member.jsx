@@ -1,6 +1,6 @@
 import styles from "./Member.module.css";
 
-function Member({ img, index, name, lastMessage, newMessageCount = "1" }) {
+function Member({ img, name, lastMessage, newMessageCount = "1" }) {
   return (
     <div className={`${styles.member}`}>
       <div className={styles.memberLeft}>

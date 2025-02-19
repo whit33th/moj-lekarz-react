@@ -1,18 +1,18 @@
-import { useState } from "react";
-import { motion } from "framer-motion";
-import Skeleton from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css';
+import grey from "@assets/img/grey.png";
 import starimg from "@assets/img/Star.svg";
+import { motion } from "framer-motion";
+import { useState } from "react";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+import { useParams } from "react-router-dom";
+import useGetClinicReviews from "../../../api/hooks/GeneralHooks/ReviewsHooks/useGetClinicReviews";
+import useGetClinicsById from "./../../../api/hooks/ClinicHooks/useGetClinicsById";
+import useGetClinicServices from "./../../../api/hooks/ServicesHooks/useGetClinicServices";
+import ProfileAddress from "./ProfileAddress";
+import ProfileClinicAbout from "./ProfileClinicAbout";
+import ProfileClinicReviews from "./ProfileClinicReviews";
 import styles from "./style/ProfileClinic.module.css";
 import UslugiCard from "./UslugiCard";
-import ProfileClinicAbout from "./ProfileClinicAbout";
-import ProfileAddress from "./ProfileAddress";
-import ProfileClinicReviews from "./ProfileClinicReviews";
-import grey from "@assets/img/grey.png";
-import { useParams } from "react-router-dom";
-import useGetClinicsById from "./../../../api/hooks/ClinicHooks/useGetClinicsById";
-import useGetClinicReviews from "../../../api/hooks/GeneralHooks/ReviewsHooks/useGetClinicReviews";
-import useGetClinicServices from "./../../../api/hooks/ServicesHooks/useGetClinicServices";
 
 function ProfileClinic() {
   const { id } = useParams();
@@ -52,8 +52,8 @@ function ProfileClinic() {
   const isLoading = !data;
 
   const SkeletonStars = () => (
-    <div style={{ display: 'flex', gap: '4px' }}>
-      {[1,2,3,4,5].map((_, idx) => (
+    <div style={{ display: "flex", gap: "4px" }}>
+      {[1, 2, 3, 4, 5].map((_, idx) => (
         <Skeleton key={idx} width={20} height={20} />
       ))}
     </div>
@@ -61,13 +61,13 @@ function ProfileClinic() {
 
   return (
     <div className={styles.profileClinic}>
-      <motion.div 
+      <motion.div
         className={styles.profileClinicRow}
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <motion.div 
+        <motion.div
           className={styles.clinicNameBlock}
           initial={{ opacity: 0, y: -10 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -104,7 +104,7 @@ function ProfileClinic() {
           </div>
         </motion.div>
 
-        <motion.div 
+        <motion.div
           className={styles.clinicMenu}
           initial={{ opacity: 0, y: -10 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -145,7 +145,7 @@ function ProfileClinic() {
           </button>
         </motion.div>
 
-        <motion.div 
+        <motion.div
           className={styles.profileClinicContent}
           initial={{ opacity: 0, y: -10 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -153,8 +153,12 @@ function ProfileClinic() {
           viewport={{ once: true, amount: 0.2 }}
         >
           {isLoading ? (
-            <div style={{ padding: '20px' }}>
-              <Skeleton count={5} height={40} style={{ marginBottom: '10px' }} />
+            <div style={{ padding: "20px" }}>
+              <Skeleton
+                count={5}
+                height={40}
+                style={{ marginBottom: "10px" }}
+              />
             </div>
           ) : (
             <>

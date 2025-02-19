@@ -1,7 +1,7 @@
-import { useState } from "react";
-import styles from "./style/QAComponent.module.css";
 import vector from "@assets/img/Vector9.svg";
+import { useState } from "react";
 import useStore from "../../data/store";
+import styles from "./style/QAComponent.module.css";
 
 function QAComponent() {
   const { questionsData } = useStore();

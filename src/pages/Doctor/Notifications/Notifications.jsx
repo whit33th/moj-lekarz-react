@@ -1,22 +1,17 @@
+import clip from "@assets/img/clip.png";
+import moreInfoPurple from "@assets/img/more-info-purple.png";
+import plus from "@assets/img/plus.png";
+import profil from "@assets/img/profil.webp";
+import robot from "@assets/img/robot_svg/4.png";
+import searchIco from "@assets/img/search.png";
+import send from "@assets/img/send.png";
+import styles from "./Notifications.module.css";
 
-import styles from './Notifications.module.css'
-import plus from '@assets/img/plus.png'
-import robot from '@assets/img/robot_svg/4.png'
-import send from '@assets/img/send.png'
-import searchIco from '@assets/img/search.png'
-import moreInfoPurple from '@assets/img/more-info-purple.png'
-import profil from '@assets/img/profil.webp'
-import clip from '@assets/img/clip.png'
+import Member from "../../../components/Notifications/Member";
 
-import Member from '../../../components/Notifications/Member'
-
-import { userItems } from '../../../helpers/userItemList'
+import { userItems } from "../../../helpers/userItemList";
 
 function Notifications() {
-
-
-
-
   return (
     <div className={styles.content}>
       <div className={styles.chatDiv}>
@@ -33,7 +28,7 @@ function Notifications() {
               />
             </form>
             <div className={styles.addChat}>
-              <span className={styles.bold} style={{ color: '#3E36B0' }}>
+              <span className={styles.bold} style={{ color: "#3E36B0" }}>
                 CHAT
               </span>
               <img src={plus} alt="add chat" />
@@ -41,9 +36,13 @@ function Notifications() {
           </div>
           <div className={styles.chatMembers}>
             {userItems.map((u, index) => (
-
-              <Member key={index} name={u.name} img={u.img} lastMessage={u.lastMessage} newMessageCount={u.newMessageCount} />
-
+              <Member
+                key={index}
+                name={u.name}
+                img={u.img}
+                lastMessage={u.lastMessage}
+                newMessageCount={u.newMessageCount}
+              />
             ))}
           </div>
         </div>
@@ -57,7 +56,9 @@ function Notifications() {
               />
               <div className={styles.memberInfo}>
                 <p className={styles.bold}>Name</p>
-                <p className={`${styles.grey} ${styles.lastMessage}`}>aka Sigma (bo$$)</p>
+                <p className={`${styles.grey} ${styles.lastMessage}`}>
+                  aka Sigma (bo$$)
+                </p>
               </div>
             </div>
             <img
@@ -82,23 +83,25 @@ function Notifications() {
               />
             </form>
             <div
-              style={{ width: '42px', height: '42px' }}
+              style={{ width: "42px", height: "42px" }}
               className={`${styles.hoverOpacity} ${styles.activeScale}`}
             >
               <img
-                style={{ width: '10px', height: 'auto' }}
+                style={{ width: "10px", height: "auto" }}
                 src={clip}
                 alt="clip"
               />
             </div>
-            <div className={`${styles.sendDiv} ${styles.hoverOpacity} ${styles.activeScale}`}>
+            <div
+              className={`${styles.sendDiv} ${styles.hoverOpacity} ${styles.activeScale}`}
+            >
               <img src={send} alt="send" />
             </div>
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default Notifications
+export default Notifications;

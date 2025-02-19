@@ -1,27 +1,23 @@
-import { useEffect, useMemo, useState } from "react";
-import { useCalendarApp, ScheduleXCalendar } from "@schedule-x/react";
 import {
   createViewDay,
-  createViewWeek,
-  createViewMonthGrid,
   createViewMonthAgenda,
-  setRangeForDay,
-  viewDay,
-  viewMonthAgenda,
+  createViewMonthGrid,
+  createViewWeek,
 } from "@schedule-x/calendar";
-import { createEventsServicePlugin } from "@schedule-x/events-service";
-import "@schedule-x/theme-default/dist/index.css";
-import styles from "./Calendar.module.css";
 import { createEventModalPlugin } from "@schedule-x/event-modal";
+import { createEventsServicePlugin } from "@schedule-x/events-service";
+import { ScheduleXCalendar, useCalendarApp } from "@schedule-x/react";
+import "@schedule-x/theme-default/dist/index.css";
+import { useEffect, useMemo, useState } from "react";
+import styles from "./Calendar.module.css";
 
-import useGetAppointmentClinic from "../../../api/hooks/ClinicHooks/useGetAppointmentClinic";
 import InputDropdownStas from "@components/Dropdown/InputDropdownStas";
-import BlueBtn from "@components/Buttons/BlueBtn/BlueBtn";
-import { useForm, Controller } from "react-hook-form";
-import useGetWorkersList from "../../../api/hooks/ClinicHooks/useGetWorkersList";
-import useGetUserInfo from "../../../api/hooks/UserHooks/useGetUserInfo";
 import useGetPatientsList from "@hooks/DoctorHooks/useGetPatientsList";
+import { Controller, useForm } from "react-hook-form";
+import useGetAppointmentClinic from "../../../api/hooks/ClinicHooks/useGetAppointmentClinic";
+import useGetWorkersList from "../../../api/hooks/ClinicHooks/useGetWorkersList";
 import useGetClinicServices from "../../../api/hooks/ServicesHooks/useGetClinicServices";
+import useGetUserInfo from "../../../api/hooks/UserHooks/useGetUserInfo";
 
 function CalendarClinic() {
   const { data: clinic } = useGetUserInfo();
@@ -69,9 +65,8 @@ function CalendarClinic() {
     patientId: formValues.patient?.value || null,
     date: formValues.date || null,
     specialty: formValues.specialty?.value || null,
-    limit: 1000
+    limit: 1000,
   });
- 
 
   const plugins = [createEventsServicePlugin(), createEventModalPlugin()];
   const calendar = useCalendarApp(
@@ -99,7 +94,7 @@ function CalendarClinic() {
     plugins
   );
 
-  const { register, control, handleSubmit, watch } = useForm({
+  const { control, handleSubmit, watch } = useForm({
     defaultValues: {
       specialty: "",
       doctor: "",
@@ -110,17 +105,16 @@ function CalendarClinic() {
 
   const start = calendar.$app.calendarState.range.v.start.slice(0, 10);
   const end = calendar.$app.calendarState.range.v.end.slice(0, 10);
-  
 
-  const [startView, setStartView] = useState(start);
-  const [endView, setEndView] = useState(end);
+  const [setStartView] = useState(start);
+  const [setEndView] = useState(end);
 
   const appointments = useMemo(
     () => appointmentsData?.appointments || [],
     [appointmentsData]
   );
 
-  const onSubmit = (data) => {};
+  const onSubmit = () => {};
 
   useEffect(() => {
     const subscription = watch((value) => {
@@ -134,7 +128,8 @@ function CalendarClinic() {
       const mappedEvents = appointments.map((appointment) => ({
         id: appointment?.id || "",
         people: [
-          "Pacjent: " + appointment?.patient?.first_name +
+          "Pacjent: " +
+            appointment?.patient?.first_name +
             " " +
             appointment?.patient?.last_name || "",
         ],
@@ -204,20 +199,6 @@ function CalendarClinic() {
             />
           )}
         />
-        {/* <div className={styles.searchGroup}>
-          <div className={styles.dropdownContainer} style={{ flex: 1 }}>
-            <div className={styles.dropdown}>
-              <input
-                type="date"
-                className={styles.dateInput}
-                {...register("date")}
-              />
-            </div>
-          </div>
-          <div style={{ flex: "1" }}>
-            <BlueBtn cb={handleSubmit(onSubmit)}>Szukaj</BlueBtn>
-          </div>
-        </div> */}
       </form>
 
       <div
@@ -225,7 +206,7 @@ function CalendarClinic() {
           styles.calendarContainer
         }`}
       >
-        <ScheduleXCalendar  calendarApp={calendar} />
+        <ScheduleXCalendar calendarApp={calendar} />
       </div>
     </div>
   );

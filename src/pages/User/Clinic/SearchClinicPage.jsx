@@ -1,18 +1,16 @@
+import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import styles from "./style/SearchClinicPage.module.css";
+import useGetClinics from "../../../api/hooks/ClinicHooks/useGetClinics";
+import { useCities } from "../../../api/hooks/GeneralHooks/useCitys";
+import useSpecialties from "../../../api/hooks/GeneralHooks/useSpecialties";
+import InputDropdownStas from "../../../components/Dropdown/InputDropdownStas";
 import ClinicCard from "./ClinicCard";
 import ClinicCardSkeleton from "./ClinicCardSkeleton";
-
-import useGetClinics from "../../../api/hooks/ClinicHooks/useGetClinics";
-import useSpecialties from "../../../api/hooks/GeneralHooks/useSpecialties";
-import { useCities } from "../../../api/hooks/GeneralHooks/useCitys";
-import InputDropdownStas from "../../../components/Dropdown/InputDropdownStas";
-import { motion } from "framer-motion";
+import styles from "./style/SearchClinicPage.module.css";
 
 const arraySelectOptions = {
   select1: ["name1", "name2", "name3"],
-
   select4: ["NFZ", "Prywatne"],
 };
 

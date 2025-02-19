@@ -3,7 +3,7 @@ cardio.register()
 
 export default function LoadingPage() {
 	return (
-		<div className='loader'>
+		<div className='loader' >
 			< l-cardio
 				size="60"
 				stroke="4"

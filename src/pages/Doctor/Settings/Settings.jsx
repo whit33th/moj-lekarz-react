@@ -12,10 +12,10 @@ import AdditionalData from "./AdditionalData";
 
 import styles from "./styles.module.css";
 
-import CalendarBlockSchedules from "../../../components/DoctorPage/Home/Calendar/CalendarBlockSchedules";
-import useStore from "../../../data/store";
-import AddDoctorIconModal from "../../../components/Modals/AddDoctorIcon/AddDoctorIconModal";
 import { motion } from "framer-motion";
+import CalendarBlockSchedules from "../../../components/DoctorPage/Home/Calendar/CalendarBlockSchedules";
+import AddDoctorIconModal from "../../../components/Modals/AddDoctorIcon/AddDoctorIconModal";
+import useStore from "../../../data/store";
 function Settings() {
   const { setModalActive, setModalContent } = useStore();
   const [activeTab, setActiveTab] = useState("Dane podstawowe");
@@ -33,7 +33,6 @@ function Settings() {
     register: imgRegister,
     formState: imgFormState,
     handleSubmit: handleImgSubmit,
-    getValues,
   } = useForm({
     mode: "onChange",
   });
@@ -132,7 +131,7 @@ function Settings() {
     }
   }
 
-  const handleSubmitForm = handleImgSubmit(async (data) => {
+  const handleSubmitForm = handleImgSubmit(async () => {
     await changeImg();
   });
 

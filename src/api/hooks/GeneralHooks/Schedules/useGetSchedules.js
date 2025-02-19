@@ -12,7 +12,7 @@ function useGetSchedules({ year, month, doctorIds }) {
     staleTime: 10 * 1000,
     gcTime: 10 * 1000,
   });
-  
+
   return {
     data,
     isLoading,

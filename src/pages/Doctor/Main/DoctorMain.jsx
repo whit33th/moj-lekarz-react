@@ -1,21 +1,21 @@
-import { NavLink } from "react-router-dom";
-import robot from "@assets/img/robot_svg/1.png";
-import graphUp from "@assets/img/graph-up.png";
-import graphDown from "@assets/img/graph-down.png";
 import follow from "@assets/img/follow.png";
-import VisitItem from "../../../components/DoctorPage/Home/VisitItem/VisitItem";
-import Calendar from "../../../components/DoctorPage/Home/Calendar/CalendarBlock";
-import styles from "./DoctorMain.module.css";
-import useStore from "../../../data/store";
+import graphDown from "@assets/img/graph-down.png";
+import graphUp from "@assets/img/graph-up.png";
+import robot from "@assets/img/robot_svg/1.png";
 import useGetDoctorAppointment from "@hooks/DoctorHooks/useGetDoctorAppointment";
-import TodayVisitItem from "../../../components/DoctorPage/Home/TodayVisitItem/TodayVisitItem";
 import useGetUserInfo from "@hooks/UserHooks/useGetUserInfo";
-import Skeleton from "react-loading-skeleton";
-import SkeletonTodayVisitItem from "../../../components/DoctorPage/Home/TodayVisitItem/SkeletonTodayVisitItem";
-import { pageConfig } from "../../../config/config";
-import StatCardSkeleton from "../../../components/FirmPage/StatCard/StatCardSkeleton";
-import useDoctorStats from "../../../api/hooks/GeneralHooks/Stats/doctorStats";
 import { motion } from "framer-motion";
+import Skeleton from "react-loading-skeleton";
+import { NavLink } from "react-router-dom";
+import useDoctorStats from "../../../api/hooks/GeneralHooks/Stats/doctorStats";
+import Calendar from "../../../components/DoctorPage/Home/Calendar/CalendarBlock";
+import SkeletonTodayVisitItem from "../../../components/DoctorPage/Home/TodayVisitItem/SkeletonTodayVisitItem";
+import TodayVisitItem from "../../../components/DoctorPage/Home/TodayVisitItem/TodayVisitItem";
+import VisitItem from "../../../components/DoctorPage/Home/VisitItem/VisitItem";
+import StatCardSkeleton from "../../../components/FirmPage/StatCard/StatCardSkeleton";
+import { pageConfig } from "../../../config/config";
+import useStore from "../../../data/store";
+import styles from "./DoctorMain.module.css";
 
 function DoctorMain() {
   const {
@@ -119,7 +119,7 @@ function DoctorMain() {
                       {stats?.countPatients?.totalCount || "0"}
                     </p>
                     {!isNaN(stats?.countPatients?.percentageChange) &&
-                      (stats?.countPatients?.percentageChange !== null && (
+                      stats?.countPatients?.percentageChange !== null && (
                         <div
                           className={`${styles.graph} ${styles.tCenter} ${styles.smBack} ${styles.flex} ${styles.itemsCenter}`}
                         >
@@ -137,7 +137,7 @@ function DoctorMain() {
                             className={styles.graphIcon}
                           />
                         </div>
-                      ))}
+                      )}
                   </div>
                 </div>
 

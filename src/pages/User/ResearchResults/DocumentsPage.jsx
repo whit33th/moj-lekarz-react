@@ -1,20 +1,19 @@
-import styles from "./DocumentsPage.module.css";
-import { useState } from "react";
 import img from "@assets/img/Vector-21.svg";
-import { useGetDocuments } from "../../../api/hooks/GeneralHooks/Documents/useGetDocuments";
-import Skeleton from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css';
 import { motion } from "framer-motion";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+import { useGetDocuments } from "../../../api/hooks/GeneralHooks/Documents/useGetDocuments";
+import styles from "./DocumentsPage.module.css";
 
 function DocumentsPage() {
   const { data: documents, isLoading } = useGetDocuments();
 
   const handleDownload = (link, filename) => {
     fetch(link)
-      .then(response => response.blob())
-      .then(blob => {
+      .then((response) => response.blob())
+      .then((blob) => {
         const url = window.URL.createObjectURL(blob);
-        const a = document.createElement('a');
+        const a = document.createElement("a");
         a.href = url;
         a.download = filename;
         document.body.appendChild(a);
@@ -26,7 +25,7 @@ function DocumentsPage() {
 
   const truncateFileName = (name) => {
     if (name.length <= 20) return name;
-    const extension = name.split('.').pop();
+    const extension = name.split(".").pop();
     const baseName = name.slice(0, 20);
     return `${baseName}...${extension}`;
   };
@@ -44,7 +43,7 @@ function DocumentsPage() {
           <div className={styles.listItemName}>
             <Skeleton width={150} />
           </div>
-         
+
           <div className={styles.listItemImg}>
             <Skeleton width={24} height={24} />
           </div>
@@ -54,7 +53,7 @@ function DocumentsPage() {
   );
 
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
@@ -89,9 +88,13 @@ function DocumentsPage() {
               className={styles.listItem}
               key={doc.name || index}
             >
-              <div className={styles.listItemName}>{truncateFileName(doc.name)}</div>
+              <div className={styles.listItemName}>
+                {truncateFileName(doc.name)}
+              </div>
               <div className={styles.listItemDate}>
-                {doc.createdAt ? new Date(doc.createdAt).toLocaleDateString() : ''}
+                {doc.createdAt
+                  ? new Date(doc.createdAt).toLocaleDateString()
+                  : ""}
               </div>
               <div
                 onClick={() => handleDownload(doc.link, doc.name)}

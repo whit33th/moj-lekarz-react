@@ -6,7 +6,6 @@ function useGetDoctorReviews({ doctorId, limit, page, select }) {
     queryKey: ["doctorReviews", doctorId, limit, page],
     queryFn: () => generalService.getDoctorReviews(doctorId, limit, page),
     select: select || ((data) => data?.data || []),
-
     staleTime: 10 * 1000,
     gcTime: 10 * 1000,
   });

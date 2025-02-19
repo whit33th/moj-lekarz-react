@@ -7,7 +7,7 @@ import { toast } from "sonner";
 function usePostPrescriptions() {
   const { setModalActive } = useStore();
   const queryClient = useQueryClient();
-
+  
   const { mutate, isSuccess, isError } = useMutation({
     mutationKey: ["postPrescriptions"],
     mutationFn: (data) => doctorServices.postPrescriptions(data),

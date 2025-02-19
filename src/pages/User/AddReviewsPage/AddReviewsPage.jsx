@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from "react"
-import styles from "./AddReviewsPage.module.css"
-import { useSelector } from "react-redux"
-import { NavLink, useParams } from "react-router-dom"
-import imgName from "@assets/simple-line-i.svg"
-import imgType from "@assets/Vector14.svg"
-import phoneImg from "@assets/ph_phone-light.svg"
-import StarsReview from "../../components/StarsReview"
-import { useNavigate } from "react-router-dom"
-import { pageConfig } from '../../../config/config'
+import phoneImg from "@assets/ph_phone-light.svg";
+import imgName from "@assets/simple-line-i.svg";
+import imgType from "@assets/Vector14.svg";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
+import { pageConfig } from "../../../config/config";
+import StarsReview from "../../components/StarsReview";
+import styles from "./AddReviewsPage.module.css";
 
 const feedbackOptions = [
   "Profesjonalne podejście",
@@ -19,7 +18,7 @@ const feedbackOptions = [
   "Empatia i zrozumienie",
   "Dokładne wyjaśnienie diagnozy",
   "Indywidualne podejście do problemu",
-]
+];
 const feedbackOptionsStep3 = [
   "Niewielka dbałość o szczegóły",
   "Wysoki koszt wizyty",
@@ -28,48 +27,49 @@ const feedbackOptionsStep3 = [
   "Słaba komunikacja z pacjentem",
   "Długie oczekiwanie na wizytę",
   "Zbyt krótka wizyta",
-]
+];
 
 function AddReviewsPage({ isLoggedIn }) {
-  const [stateVisitsCard, setStateVisitsCard] = useState({})
-  const [rating, setRating] = useState(0)
-  const [step, setStep] = useState(1)
-  const [selectedFeedback, setSelectedFeedback] = useState("")
-  const [selectedFeedbackStep3, setSelectedFeedbackStep3] = useState("")
-  const [pageviewStatus, setPageviewStatus] = useState("reviews")
-  const [textareaState, setTextareaState] = useState("")
-  const navigate = useNavigate()
+  const [stateVisitsCard, setStateVisitsCard] = useState({});
+  const [rating, setRating] = useState(0);
+  const [step, setStep] = useState(1);
+  const [selectedFeedback, setSelectedFeedback] = useState("");
+  const [selectedFeedbackStep3, setSelectedFeedbackStep3] = useState("");
+  const [pageviewStatus, setPageviewStatus] = useState("reviews");
+  const [textareaState, setTextareaState] = useState("");
+  const navigate = useNavigate();
   useEffect(() => {
     if (!isLoggedIn) {
-      navigate("/auth/")
+      navigate("/auth/");
     }
-  }, [])
-  const { id } = useParams()
-  const visitsState = useSelector((state) => state.some.visitsState)
+  }, []);
+  const { id } = useParams();
+  const visitsState = useSelector((state) => state.some.visitsState);
 
   useEffect(() => {
-    const data = visitsState.completedVisits.find((item) => item.id == id)
-    setStateVisitsCard(data)
-  }, [id, visitsState])
+    const data = visitsState.completedVisits.find((item) => item.id == id);
+    setStateVisitsCard(data);
+  }, [id, visitsState]);
 
   const stepNext = () => {
     if (step != 4) {
-      setStep(step + 1)
+      setStep(step + 1);
     } else {
-      setPageviewStatus("thanksPage")
-      window.scrollTo(0, 0)
+      setPageviewStatus("thanksPage");
+      window.scrollTo(0, 0);
     }
-  }
+  };
   const handleFeedbackClick = (feedback) => {
-    setSelectedFeedback(feedback)
-  }
+    setSelectedFeedback(feedback);
+  };
   return (
     <div>
       {pageviewStatus == "reviews" && (
         <div className={styles.addReviewsBlock}>
           <div
-            className={`${styles.addReviewsTopBlock} ${styles[`progress-${step}`]
-              }`}
+            className={`${styles.addReviewsTopBlock} ${
+              styles[`progress-${step}`]
+            }`}
           >
             <div>Krok 1</div>
             <div>Krok 2</div>
@@ -216,6 +216,6 @@ function AddReviewsPage({ isLoggedIn }) {
         </div>
       )}
     </div>
-  )
+  );
 }
-export default AddReviewsPage
+export default AddReviewsPage;

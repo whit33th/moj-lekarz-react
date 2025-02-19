@@ -1,6 +1,5 @@
-import React from "react";
-import styles from "./style/ProfileClinicReviews.module.css";
 import ReviewCard from "../ReviewCard";
+import styles from "./style/ProfileClinicReviews.module.css";
 
 export default function ProfileClinicReviews({ reviews }) {
   console.log(reviews);
@@ -9,8 +8,6 @@ export default function ProfileClinicReviews({ reviews }) {
       {reviews.reviews.map((r) => (
         <ReviewCard key={r.id} reviews={r} />
       ))}
-      
-      
     </div>
   );
 }

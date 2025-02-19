@@ -5,14 +5,12 @@ import useLogin from "@hooks/AuthHooks/useLogin";
 import LoadingPage from "./../../../components/UI/Loading/LoadingPage";
 import logoGoogle from "@assets/img/logos_google-icon.svg";
 import { Link } from "react-router-dom";
-// import useGoogle from "../../../api/hooks/AuthHooks/useGoogle";
 
 function SignInForm({ setIsForgotPassword }) {
   const { register, handleSubmit, formState } = useForm({
     mode: "onChange",
   });
-  const { mutate, role, error, isError, isSuccess, isPending } = useLogin();
-  // const { handleGoogleLogin } = useGoogle();
+  const { mutate, isError, isPending } = useLogin();
 
   function onSubmit(data) {
     mutate(data);
@@ -24,22 +22,21 @@ function SignInForm({ setIsForgotPassword }) {
 
   return (
     <>
-      {/* <button onClick={handleGoogleLogin} className={styles.googleButton}>
-        Войти через Google
-      </button> */}
-
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.signIninputBlock}>
           <div>
             <div className={styles.registServiceSignIn}>
-              <Link to={'https://doc-web-rose.vercel.app/auth/google'} className={styles.registerServiceItem}>
+              <Link
+                to={"https://doc-web-rose.vercel.app/auth/google"}
+                className={styles.registerServiceItem}
+              >
                 <p>Kontynuuj z Google</p>
                 <img src={logoGoogle} alt="google" />
               </Link>
               {/* <a className={styles.registerServiceItem}>
                           <p>Kontynuuj z Apple</p>
                           <img src={logoApple} alt="Apple" />
-                        </a> */}
+                  </a> */}
             </div>
 
             <input

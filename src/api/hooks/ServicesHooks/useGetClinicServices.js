@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { servicesService } from "../../services/servicesServices";
 
-export default function useGetClinicServices({clinicId}) {
+export default function useGetClinicServices({ clinicId }) {
   const { data, isLoading, isError } = useQuery({
     queryKey: ["clinicServices", clinicId],
     queryFn: () => servicesService.getClinicServices(clinicId),

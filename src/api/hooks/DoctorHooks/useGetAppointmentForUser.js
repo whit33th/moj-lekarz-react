@@ -5,7 +5,6 @@ function useGetAppointmentForUser({ patientId, limit, page }) {
   const { data, isSuccess, isLoading } = useQuery({
     queryKey: ["getAppointmentForUser", patientId, limit, page],
     queryFn: () => doctorServices.getAppointmentForUser(patientId, limit, page),
-
     select: (data) => {
       return data?.data || [];
     },

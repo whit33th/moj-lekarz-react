@@ -1,6 +1,5 @@
 import { useLocation } from "react-router-dom";
 import Header from "../components/Header/Header";
-
 import Footer from "../components/Footer/Footer";
 import { pageConfig } from "../config/config";
 
@@ -11,7 +10,6 @@ const UserLayout = ({ children, activePage, setActivePage, isLoggedIn }) => {
     pageConfig.login,
     pageConfig.registration,
     pageConfig.resetPassword,
-    
   ].some((path) => location.pathname.toLowerCase().startsWith(path));
   return (
     <>

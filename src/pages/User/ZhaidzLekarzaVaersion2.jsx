@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import useStore from "../../data/store";
 import styles from "./style/ZhaidzLekarzaVersion2.module.css";
 import DoctorCard from "./ZnaidzLekarza/DoctorCard";
-import useStore from "../../data/store";
 
 const arraySelectOptions = {
   select1: ["ortoped", "logoped", "surgeon"],
@@ -9,7 +9,7 @@ const arraySelectOptions = {
   select3: ["Options 1", "Options 2", "Options 3"],
 };
 
-function ZnajdzLekarzaVersion2(props) {
+function ZnajdzLekarzaVersion2() {
   const { doctorCard } = useStore();
 
   const [isOpen1, setIsOpen1] = useState(false);
@@ -18,10 +18,10 @@ function ZnajdzLekarzaVersion2(props) {
   const [selectedOption1, setSelectedOption1] = useState("");
   const [selectedOption2, setSelectedOption2] = useState("");
   const [selectedOption3, setSelectedOption3] = useState("");
-  const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedDate] = useState(null);
   const [state, setState] = useState(doctorCard);
 
-  const [zapisState, setZapisState] = useState({
+  const [setZapisState] = useState({
     idDoctor: undefined,
     date: undefined,
     time: undefined,
@@ -33,7 +33,7 @@ function ZnajdzLekarzaVersion2(props) {
     if (savedState) {
       setZapisState(JSON.parse(savedState));
     }
-  }, []);
+  }, [setZapisState]);
 
   const addZapis = (id, time, date, info) => {
     const newState = {
@@ -88,8 +88,9 @@ function ZnajdzLekarzaVersion2(props) {
             </div>
             {isOpen1 && (
               <ul className={styles.dropdownMenu}>
-                {arraySelectOptions.select1.map((elem) => (
+                {arraySelectOptions.select1.map((elem, index) => (
                   <li
+                    key={index}
                     className={styles.dropdownMenuItem}
                     onClick={() =>
                       handleOptionClick(elem, setSelectedOption1, setIsOpen1)
@@ -112,8 +113,9 @@ function ZnajdzLekarzaVersion2(props) {
             </div>
             {isOpen2 && (
               <ul className={styles.dropdownMenu}>
-                {arraySelectOptions.select2.map((elem) => (
+                {arraySelectOptions.select2.map((elem, index) => (
                   <li
+                    key={index}
                     className={styles.dropdownMenuItem}
                     onClick={() =>
                       handleOptionClick(elem, setSelectedOption2, setIsOpen2)
@@ -136,8 +138,9 @@ function ZnajdzLekarzaVersion2(props) {
             </div>
             {isOpen3 && (
               <ul className={styles.dropdownMenu}>
-                {arraySelectOptions.select3.map((elem) => (
+                {arraySelectOptions.select3.map((elem, index) => (
                   <li
+                    key={index}
                     className={styles.dropdownMenuItem}
                     onClick={() =>
                       handleOptionClick(elem, setSelectedOption3, setIsOpen3)

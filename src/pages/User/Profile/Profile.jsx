@@ -1,16 +1,16 @@
 import { useState } from "react";
 import styles from "./Profile.module.css";
 import ProfileInfoBlock from "./ProfileInfoBlock";
-import doctorImg from "@assets/img/foto (1).png";
-import useStore from "../../../data/store";
-import { useForm } from "react-hook-form";
-import InputError from "../../../components/UI/InputError/InputError";
-import useChangePassword from "../../../api/hooks/UserHooks/useChangePassword";
-import usePostUpdateImg from "@hooks/UserHooks/usePostUpdateImg";
+
 import grey from "@assets/img/grey.png";
-import DeleteAccountModal from "../../../components/Modals/DeleteAccountModal/DeleteAccountModal";
-import BlueBtn from "../../../components/Buttons/BlueBtn/BlueBtn";
+import usePostUpdateImg from "@hooks/UserHooks/usePostUpdateImg";
+import { useForm } from "react-hook-form";
+import useChangePassword from "../../../api/hooks/UserHooks/useChangePassword";
 import useDeleteAccount from "../../../api/hooks/UserHooks/useDeleteAccount";
+import BlueBtn from "../../../components/Buttons/BlueBtn/BlueBtn";
+import DeleteAccountModal from "../../../components/Modals/DeleteAccountModal/DeleteAccountModal";
+import InputError from "../../../components/UI/InputError/InputError";
+import useStore from "../../../data/store";
 
 function Profile() {
   const { profileState } = useStore();

@@ -1,11 +1,11 @@
-import styles from "./Recipes.module.css";
-import tablecss from "../../../components/Table/Table.module.css";
-import useStore from "../../../data/store";
+import useGetPrescriptions from "@hooks/DoctorHooks/useGetPrescriptions";
+import { useState } from "react";
 import AddRecipesModal from "../../../components/Modals/AddRecipesModal/AddRecipesModal";
 import Table from "../../../components/Table/Table";
-import useGetPrescriptions from "@hooks/DoctorHooks/useGetPrescriptions";
+import tablecss from "../../../components/Table/Table.module.css";
 import Pagination from "../../../components/UI/Pagination/Pagination";
-import { useState } from "react";
+import useStore from "../../../data/store";
+import styles from "./Recipes.module.css";
 
 function PatientList() {
   const [page, setPage] = useState(1);

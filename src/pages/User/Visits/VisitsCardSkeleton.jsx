@@ -1,6 +1,6 @@
-import Skeleton from 'react-loading-skeleton'
-import 'react-loading-skeleton/dist/skeleton.css'
-import styles from './VisitsCard.module.css'
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+import styles from "./VisitsCard.module.css";
 
 function VisitsCardSkeleton() {
   return (
@@ -29,11 +29,11 @@ function VisitsCardSkeleton() {
       <div className={styles.visitsCardBottomPrice}>
         <Skeleton width="50%" height={16} />
       </div>
-      <div style={{ position: 'absolute', right: 15, top: 15 }}>
+      <div style={{ position: "absolute", right: 15, top: 15 }}>
         <Skeleton circle width={24} height={24} />
       </div>
     </div>
-  )
+  );
 }
 
-export default VisitsCardSkeleton
+export default VisitsCardSkeleton;

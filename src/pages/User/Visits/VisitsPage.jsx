@@ -1,18 +1,18 @@
-import { useState, useEffect } from "react";
-import styles from "./VisitsPage.module.css";
-import VisitsCard from "./VisitsCard";
 import img1 from "@assets/img/image1.svg";
 import img2 from "@assets/img/image2.svg";
-import { NavLink, useNavigate } from "react-router-dom";
-import VisitsCardCompleted from "./VisitsCardCompleted";
-import useStore from "../../../data/store";
-import { pageConfig } from "../../../config/config";
+import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 import QRCode from "react-qr-code";
+import { NavLink, useNavigate } from "react-router-dom";
 import useGetPatientAppointments from "../../../api/hooks/PatientHooks/useGetPatientAppointment";
 import DeleteAppointmentModal from "../../../components/Modals/DeleteAppointment/DeleteAppointmentModal";
+import { pageConfig } from "../../../config/config";
+import useStore from "../../../data/store";
 import useDeleteAppointment from "./../../../api/hooks/PatientHooks/useDeleteAppontment";
+import VisitsCard from "./VisitsCard";
+import VisitsCardCompleted from "./VisitsCardCompleted";
 import VisitsCardSkeleton from "./VisitsCardSkeleton";
-import { motion } from "framer-motion";
+import styles from "./VisitsPage.module.css";
 
 function VisitsPage({ isLoggedIn = true }) {
   const { data: scheduledAppointments, isLoading } = useGetPatientAppointments(
@@ -53,7 +53,7 @@ function VisitsPage({ isLoggedIn = true }) {
   }, [isLoggedIn, navigate]);
 
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
@@ -65,7 +65,7 @@ function VisitsPage({ isLoggedIn = true }) {
         deleteFc={deleteFc}
       />
 
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
@@ -113,7 +113,7 @@ function VisitsPage({ isLoggedIn = true }) {
           <p>Brak zrealizowanych wizyt</p>
         )}
       </motion.div>
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}

@@ -239,10 +239,10 @@ class GeneralService {
     if (endDate) url += `end_date=${endDate}`;
     return await axios.get(url, {
       withCredentials: true,
-      responseType: 'blob',
+      responseType: "blob",
       headers: {
-        'Accept': 'application/pdf'
-      }
+        Accept: "application/pdf",
+      },
     });
   }
 }

@@ -1,31 +1,30 @@
 import { useState } from "react";
-import styles from "./style/ClinicZapisPage.module.css";
-import { Link, useNavigate, useLocation, useParams } from "react-router-dom";
-import DropdownStas from "../../components/Dropdown/DropdownStas";
 import { useForm } from "react-hook-form";
-import AppointmentCard from "./AppointmentCard";
-import { pageConfig } from "../../config/config";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import useGetDoctorServices from "../../api/hooks/ServicesHooks/useGetDoctorServices";
+import DropdownStas from "../../components/Dropdown/DropdownStas";
+import { pageConfig } from "../../config/config";
+import AppointmentCard from "./AppointmentCard";
+import styles from "./style/ClinicZapisPage.module.css";
 
 function ClinicZapisPage() {
-  const {id} = useParams();
-  const {data: services, isLoading} = useGetDoctorServices(id);
+  const { id } = useParams();
+  const { data: services } = useGetDoctorServices(id);
   const [selectedServiceId, setSelectedServiceId] = useState(null);
 
-  
   const servicesMap = {};
-  const visitTypeOptions = services?.map(item => {
-    const optionText = `${item.service.name}, ${item.service.price} zł`;
-    servicesMap[optionText] = item.service.id;
-    return optionText;
-  }) || [];
+  const visitTypeOptions =
+    services?.map((item) => {
+      const optionText = `${item.service.name}, ${item.service.price} zł`;
+      servicesMap[optionText] = item.service.id;
+      return optionText;
+    }) || [];
 
-  
   const handleServiceSelect = (value) => {
     setSelectedServiceId(servicesMap[value]);
   };
 
-  const { state } = useLocation(); 
+  const { state } = useLocation();
   const { control, register, getValues } = useForm();
 
   const [selectedRadio, setSelectedRadio] = useState("");
@@ -42,7 +41,7 @@ function ClinicZapisPage() {
     return null;
   }
 
-  console.log(state)
+  console.log(state);
   const visitTypeOptions2 = ["prywatna", "NFZ"];
 
   const validateForm = () => {
@@ -71,39 +70,34 @@ function ClinicZapisPage() {
     }
   };
 
-  
   const handleLinkClick = (e) => {
     if (!validateForm()) {
       e.preventDefault();
       return;
     }
 
-   
     const currentService = getValues("service");
     const currentType = getValues("type");
 
-    
     if (!currentService || !currentType || !selectedServiceId) {
       e.preventDefault();
       setErrors({
         ...errors,
-        form: "Please fill in all required fields"
+        form: "Please fill in all required fields",
       });
       return;
     }
 
-    
     const visitDetails = {
       service: currentService,
       serviceId: selectedServiceId,
       type: currentType,
-      isFirstVisit: selectedRadio === "Tak"
+      isFirstVisit: selectedRadio === "Tak",
     };
 
-    
     e.currentTarget.state = {
       ...state,
-      visitDetails
+      visitDetails,
     };
   };
 
@@ -124,10 +118,12 @@ function ClinicZapisPage() {
               {...register("service", {
                 required: true,
                 message: "Pole jest wymagane",
-                onChange: (e) => handleServiceSelect(e.target.value)
+                onChange: (e) => handleServiceSelect(e.target.value),
               })}
             />
-            {errors.service && <span className={styles.error}>{errors.service}</span>}
+            {errors.service && (
+              <span className={styles.error}>{errors.service}</span>
+            )}
           </div>
         </div>
         <div className={styles.zapisPagePriceBlock}>

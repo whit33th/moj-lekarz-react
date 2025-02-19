@@ -1,36 +1,36 @@
-import styles from "./ReviewCard.module.css"
+import starGrey from "@assets/img/Star 6.svg";
+import star from "@assets/img/Star.svg";
+import { motion } from "framer-motion";
+import BlueBtn from "../../../components/Buttons/BlueBtn/BlueBtn";
+import ReviewModal from "../../../components/Modals/ReviewModal/ReviewModal";
+import useStore from "../../../data/store";
+import styles from "./ReviewCard.module.css";
 
-import avatar from "@assets/img/profil.webp"
-import useStore from "../../../data/store"
-
-import BlueBtn from "../../../components/Buttons/BlueBtn/BlueBtn"
-import ReviewModal from "../../../components/Modals/ReviewModal/ReviewModal"
-import star from "@assets/img/Star.svg"
-import starGrey from "@assets/img/Star 6.svg"
-import { motion } from 'framer-motion';
 const ReviewCard = ({ id, name, date, text, rating, avatar, tags }) => {
-  const { setModalActive, setModalContent } = useStore()
+  const { setModalActive, setModalContent } = useStore();
 
   function handleModal() {
-    setModalActive(true)
+    setModalActive(true);
     setModalContent(
-      <ReviewModal 
+      <ReviewModal
         id={id}
-        name={name} 
-        date={date} 
-        text={text} 
+        name={name}
+        date={date}
+        text={text}
         rating={rating}
         avatar={avatar}
         tags={tags}
       />
-    )
+    );
   }
   return (
     <motion.div
-    initial={{ opacity: 0, y: -10 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.5 }}
-    viewport={{ once: true, amount: 0.2 }} className={styles.card}>
+      initial={{ opacity: 0, y: -10 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      viewport={{ once: true, amount: 0.2 }}
+      className={styles.card}
+    >
       <div className={styles.header}>
         <img src={avatar || avatar} alt="Avatar" className={styles.avatar} />
         <div className={styles.headerInfo}>
@@ -54,11 +54,19 @@ const ReviewCard = ({ id, name, date, text, rating, avatar, tags }) => {
           </div>
 
           <div className={styles.service}>
-            {tags && tags.map((tag, index) => (
-              <div key={index} className={tag.includes("Bad") || tag.includes("Un") ? styles.bad : styles.good}>
-                {tag}
-              </div>
-            ))}
+            {tags &&
+              tags.map((tag, index) => (
+                <div
+                  key={index}
+                  className={
+                    tag.includes("Bad") || tag.includes("Un")
+                      ? styles.bad
+                      : styles.good
+                  }
+                >
+                  {tag}
+                </div>
+              ))}
           </div>
         </div>
       </div>
@@ -68,7 +76,7 @@ const ReviewCard = ({ id, name, date, text, rating, avatar, tags }) => {
         <BlueBtn cb={handleModal}> Zobacz </BlueBtn>
       </div>
     </motion.div>
-  )
-}
+  );
+};
 
-export default ReviewCard
+export default ReviewCard;

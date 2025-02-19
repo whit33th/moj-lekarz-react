@@ -1,9 +1,8 @@
 import logoGoogle from "@assets/img/logos_google-icon.svg";
-import logoApple from "@assets/img/Group.svg";
-import InputError from "../../components/UI/InputError/InputError";
 import { useForm } from "react-hook-form";
-import styles from "./AuthPage.module.css";
 import { Link, NavLink } from "react-router-dom";
+import InputError from "../../components/UI/InputError/InputError";
+import styles from "./AuthPage.module.css";
 
 import useRegistration from "@hooks/AuthHooks/useRegistration";
 import { pageConfig } from "../../config/config";
@@ -15,7 +14,7 @@ function SignUpComponent() {
   const password = watch("password");
   const checkbox = watch("checkbox");
 
-  const { mutate, isLoading, isError, isSuccess, error } = useRegistration();
+  const { mutate } = useRegistration();
 
   const onSubmit = (data) => {
     mutate(data);
@@ -28,7 +27,6 @@ function SignUpComponent() {
           <h1>Załóż konto</h1>
           <div className={styles.registService}>
             <Link
-             
               to={"https://doc-web-rose.vercel.app/auth/google"}
               className={styles.registerServiceItem}
             >

@@ -1,13 +1,13 @@
-import { useEffect, useState } from "react";
-import styles from "./styles.module.css";
 import grey from "@assets/img/grey.png";
 import useGetUserInfo from "@hooks/UserHooks/useGetUserInfo";
 import usePostUpdateImg from "@hooks/UserHooks/usePostUpdateImg";
+import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import usePutUserInfo from "../../../api/hooks/UserHooks/usePutUserInfo";
-import InputError from "../../../components/UI/InputError/InputError";
 import BlueBtn from "../../../components/Buttons/BlueBtn/BlueBtn";
-import { motion } from "framer-motion";
+import InputError from "../../../components/UI/InputError/InputError";
+import styles from "./styles.module.css";
 
 function Settings() {
   const [selectedImg, setSelectedImg] = useState(null);

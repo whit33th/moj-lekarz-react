@@ -1,18 +1,7 @@
-import { useForm } from "react-hook-form";
-import styles from "./styles.module.css";
-import usePutUserInfo from "../../../api/hooks/UserHooks/usePutUserInfo";
 import { motion } from "framer-motion";
+import styles from "./styles.module.css";
 
 function AdditionalData({ description }) {
-  // const { register, handleSubmit } = useForm()
-
-  // const { mutate } = usePutUserInfo()
-  // const onSubmit = (data) => {
-  // 	const formData = {
-  // 		description: data.description
-  // 	}
-  // 	mutate(formData)
-  // }
   return (
     <motion.form
       initial={{ opacity: 0, y: -10 }}
@@ -30,15 +19,7 @@ function AdditionalData({ description }) {
         value={description}
         className={styles.textarea}
         placeholder="Wpisz tekst"
-        // {...register("description")}
       ></textarea>
-      {/* <button
-				type="submit"
-				style={{ width: "200px", marginLeft: "calc(100% - 200px)" }}
-				className={styles.blueButt}
-			>
-				Zapisz zmiany
-			</button> */}
     </motion.form>
   );
 }

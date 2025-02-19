@@ -1,18 +1,16 @@
-import users from "@assets/img/users.png"
-import graphUp from "@assets/img/graph-up.png"
-import graphDown from "@assets/img/graph-down.png"
-import companies from "@assets/img/companies.png"
-import doctor from "@assets/img/doctor-s.png"
-import visits from "@assets/img/visits.png"
-import calendar from "@assets/img/calendar.png"
-import robot from "@assets/img/robot_svg/1.png"
+import calendar from "@assets/img/calendar.png";
+import companies from "@assets/img/companies.png";
+import doctor from "@assets/img/doctor-s.png";
+import graphDown from "@assets/img/graph-down.png";
+import graphUp from "@assets/img/graph-up.png";
+import robot from "@assets/img/robot_svg/1.png";
+import users from "@assets/img/users.png";
+import visits from "@assets/img/visits.png";
+import star from "@assets/img/star.png";
+import ColorfulRatingChart from "../../../components/Charts/RadialChart";
+import Dropdown from "../../../components/Dropdown/Dropdown";
+import styles from "./Statistic.module.css";
 
-import AreaChartComp from "../../../components/Charts/AreaChart"
-
-import styles from "./Statistic.module.css"
-import Dropdown from "../../../components/Dropdown/Dropdown"
-import star from "@assets/img/star.png"
-import ColorfulRatingChart from "../../../components/Charts/RadialChart"
 function Statistic() {
   return (
     <div className={styles.content}>
@@ -167,7 +165,7 @@ function Statistic() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default Statistic
+export default Statistic;

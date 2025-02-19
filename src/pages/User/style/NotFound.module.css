@@ -57,7 +57,7 @@
 }
 
 .back-button:hover {
-  background-color: #3E36B0;
+  background-color: #3e36b0;
 }
 
 .back-icon {
@@ -65,6 +65,6 @@
   width: 16px;
   height: 16px;
 }
-.home{
+.home {
   filter: invert(1);
 }

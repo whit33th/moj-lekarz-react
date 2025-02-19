@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import ModerationCard from "./ModerationCard";
-import styles from "./ReviewPage.module.css";
-import Tabs from "../../../components/Buttons/Tabs/Tabs";
-import ReviewCard from "./ReviewCard";
-import useGetAdminReviews from "../../../api/hooks/GeneralHooks/ReviewsHooks/useGetAdminReviews";
 import useGetAdminModerateReviews from "../../../api/hooks/GeneralHooks/ReviewsHooks/useGetAdminModerateReviews";
+import useGetAdminReviews from "../../../api/hooks/GeneralHooks/ReviewsHooks/useGetAdminReviews";
+import Tabs from "../../../components/Buttons/Tabs/Tabs";
+import ModerationCard from "./ModerationCard";
+import ReviewCard from "./ReviewCard";
+import styles from "./ReviewPage.module.css";
 
 function ReviewPage() {
   const [activeTab, setActiveTab] = useState("Moderacja");

@@ -1,7 +1,7 @@
-import styles from "./style/ReviewsUser.module.css";
-import ReviewCard from "./ReviewCard";
 import { useParams } from "react-router-dom";
 import useGetDoctorReviews from "./../../api/hooks/GeneralHooks/ReviewsHooks/useGetDoctorReviews";
+import ReviewCard from "./ReviewCard";
+import styles from "./style/ReviewsUser.module.css";
 
 function ReviewsUser() {
   const { id } = useParams();

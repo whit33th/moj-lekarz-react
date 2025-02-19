@@ -1,11 +1,11 @@
-import React, { useState, useMemo, useCallback } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
-import "swiper/swiper-bundle.css";
-import "swiper/css/navigation";
-import styles from "./style/Blog.module.css";
-import { useGetPosts } from "../../api/hooks/GeneralHooks/Posts/useGetPosts";
 import { motion } from "framer-motion";
+import React, { useCallback, useMemo, useState } from "react";
+import "swiper/css/navigation";
+import { Navigation } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/swiper-bundle.css";
+import { useGetPosts } from "../../api/hooks/GeneralHooks/Posts/useGetPosts";
+import styles from "./style/Blog.module.css";
 
 const BlogButton = React.memo(({ onClick, active, children, delay }) => (
   <motion.button

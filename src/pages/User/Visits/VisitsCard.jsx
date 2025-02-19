@@ -1,14 +1,11 @@
-import React from "react";
+import phoneImg from "@assets/img/ph_phone-light.svg";
+import imgName from "@assets/img/simple-line-i.svg";
+import closeImg from "@assets/img/Vector (33).svg";
+import imgType from "@assets/img/Vector14.svg";
 import { motion } from "framer-motion";
 import styles from "./VisitsCard.module.css";
-import imgName from "@assets/img/simple-line-i.svg";
-import imgType from "@assets/img/Vector14.svg";
-import phoneImg from "@assets/img/ph_phone-light.svg";
-import closeImg from "@assets/img/Vector (33).svg";
 
 function VisitsCard({ data, deleteFc }) {
-
-
   const appointment = {
     id: data?.id,
     doctorName:
@@ -31,7 +28,7 @@ function VisitsCard({ data, deleteFc }) {
   console.log(appointment.id);
 
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0, y: -20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}

@@ -1,24 +1,24 @@
-import { lazy, useEffect, useState } from "react"
-import Navbar from "../components/Navbar/Navbar"
-import Sidebar from "../components/Sidebar/Sidebar"
+import { useEffect, useState } from "react";
+import Navbar from "../components/Navbar/Navbar";
+import Sidebar from "../components/Sidebar/Sidebar";
 
-import loop from "@assets/img/loop.mp4"
-import poster from "@assets/img/loopPoster.png"
+import loop from "@assets/img/loop.mp4";
+import poster from "@assets/img/loopPoster.png";
 
 function Workspace({ role, children }) {
-  const [videoSrc, setVideoSrc] = useState(null)
+  const [videoSrc, setVideoSrc] = useState(null);
 
   useEffect(() => {
     const handlePageLoad = () => {
-      setVideoSrc(loop)
-    }
+      setVideoSrc(loop);
+    };
     if (document.readyState === "complete") {
-      handlePageLoad()
+      handlePageLoad();
     } else {
-      window.addEventListener("load", handlePageLoad)
+      window.addEventListener("load", handlePageLoad);
     }
-    return () => window.removeEventListener("load", handlePageLoad)
-  }, [])
+    return () => window.removeEventListener("load", handlePageLoad);
+  }, []);
 
   return (
     <>
@@ -42,7 +42,7 @@ function Workspace({ role, children }) {
         {children}
       </div>
     </>
-  )
+  );
 }
 
-export default Workspace
+export default Workspace;

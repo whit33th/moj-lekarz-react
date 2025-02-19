@@ -1,135 +1,128 @@
-.visitsCard{
-    width: 90%;
-    height: max-content;
-    padding: 30px;
-    border-radius: 20px;
-    background-color: #fff;
-    box-shadow: 0px 0px 50px 0px #0000001A;
-    position: relative;
+.visitsCard {
+  width: 90%;
+  height: max-content;
+  padding: 30px;
+  border-radius: 20px;
+  background-color: #fff;
+  box-shadow: 0px 0px 50px 0px #0000001a;
+  position: relative;
 }
-.deleteBtn{
-    position: absolute;
-    width: 18px;
-    height: 18px;
-    top: 35px;
-    right: 35px;
-    cursor: pointer;
+.deleteBtn {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  top: 35px;
+  right: 35px;
+  cursor: pointer;
 }
-.deleteBtn img{
-    width: 100%;
+.deleteBtn img {
+  width: 100%;
 }
-.visitsCardTimeBlock p{
-    font-size: 18px;
-    font-weight: 400;
-    line-height: 24.59px;
-    text-align: left;
-
+.visitsCardTimeBlock p {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 24.59px;
+  text-align: left;
 }
-.visitsCardTimeBlock p.visitsCardTimeText{
-    font-size: 40px;
-    font-weight: 600;
-    line-height: 54.64px;
-    color: #3E36B0;
-    
+.visitsCardTimeBlock p.visitsCardTimeText {
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 54.64px;
+  color: #3e36b0;
 }
 
-.visitsCardNameBlock{
-    margin-top: 30px;
-    font-size: 18px;
-    font-weight: 500;
-    line-height: 24.59px;
-    display: flex;
-    align-items: self-start;
-
-
+.visitsCardNameBlock {
+  margin-top: 30px;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 24.59px;
+  display: flex;
+  align-items: self-start;
 }
-.visitsCardNameBlock img{
-    margin-right: 8px;
-    margin-top: 3.5px;
+.visitsCardNameBlock img {
+  margin-right: 8px;
+  margin-top: 3.5px;
 }
-.visitsCardType{
-    color: #939393;
-    font-size: 16px;
-    margin-top: -2px;
+.visitsCardType {
+  color: #939393;
+  font-size: 16px;
+  margin-top: -2px;
 }
-.visitsCardAddressBlock{
-    margin-top: 30px;
-    font-size: 18px;
-    font-weight: 500;
-    line-height: 24.59px;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: self-start;
+.visitsCardAddressBlock {
+  margin-top: 30px;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 24.59px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: self-start;
 }
-.visitsCardAddressBlock img{
-    margin-right: 8px;
-    margin-top: 3.5px;
+.visitsCardAddressBlock img {
+  margin-right: 8px;
+  margin-top: 3.5px;
 }
-.visitsCardCity{
-    color: #939393;
-    font-size: 16px;
-    margin-top: -2px;
+.visitsCardCity {
+  color: #939393;
+  font-size: 16px;
+  margin-top: -2px;
 }
-.visitsCardAddressBlockBtnPhone{
-    width: 100%;
-    margin-top: 20px;
+.visitsCardAddressBlockBtnPhone {
+  width: 100%;
+  margin-top: 20px;
 }
-.visitsCardAddressBlockBtnPhone a{
-    width: 145px;
-    height: 43px;
-    border: 1px solid var(--gwny, #3E36B0);
-    border-radius: 1000px;
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 19.12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #3E36B0;
-    text-decoration: none;
+.visitsCardAddressBlockBtnPhone a {
+  width: 145px;
+  height: 43px;
+  border: 1px solid var(--gwny, #3e36b0);
+  border-radius: 1000px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 19.12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #3e36b0;
+  text-decoration: none;
 }
-.visitsCardAddressBlockBtnPhone a img{
-    margin-top: -2px;
+.visitsCardAddressBlockBtnPhone a img {
+  margin-top: -2px;
 }
 
-.visitsCardBottomPrice{
-    width: 100%;
-    margin-top: 25px;
-    padding-top: 20px;
-    padding-left: 1px;
-    font-size: 18px;
-    font-weight: 400;
-    line-height: 24.59px;
-    text-align: left;
-    border-top: 1px solid #3E36B0;
-
+.visitsCardBottomPrice {
+  width: 100%;
+  margin-top: 25px;
+  padding-top: 20px;
+  padding-left: 1px;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 24.59px;
+  text-align: left;
+  border-top: 1px solid #3e36b0;
 }
 
 @media (max-width: 624px) {
-    .visitsCard{
-        width: 100%;
-        padding: 30px 25px;
-    }
-    .visitsCardAddressBlock{
-        font-size: 0.98rem;
-        margin-top: 15px;
-    }
-    .visitsCardCity{
-        font-size: 0.85rem;
-    }
-    .visitsCardBottomPrice{
-        font-size: 1rem;
-        display: flex;
-        justify-content: center;
-
-    }
-    .deleteBtn{
-        position: absolute;
-        width: 18px;
-        height: 18px;
-        top: 20px;
-        right: 20px;
-        cursor: pointer;
-    }
-
+  .visitsCard {
+    width: 100%;
+    padding: 30px 25px;
+  }
+  .visitsCardAddressBlock {
+    font-size: 0.98rem;
+    margin-top: 15px;
+  }
+  .visitsCardCity {
+    font-size: 0.85rem;
+  }
+  .visitsCardBottomPrice {
+    font-size: 1rem;
+    display: flex;
+    justify-content: center;
+  }
+  .deleteBtn {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+  }
 }

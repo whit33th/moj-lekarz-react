@@ -1,10 +1,10 @@
-import { useNavigate } from "react-router-dom";
-import styles from "./AuthPage.module.css";
 import logo from "@assets/img/logo.svg";
-import ResetPasswordComponent from "./Components/ResetPasswordComponent";
-import useStore from "../../data/store";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import useStore from "../../data/store";
 import useLogout from "./../../api/hooks/AuthHooks/useLogout";
+import styles from "./AuthPage.module.css";
+import ResetPasswordComponent from "./Components/ResetPasswordComponent";
 
 function ResetPassword() {
   const { isAuth } = useStore();
@@ -14,7 +14,6 @@ function ResetPassword() {
   useEffect(() => {
     if (isAuth) {
       logout();
-      
     }
   }, [isAuth, logout]);
 

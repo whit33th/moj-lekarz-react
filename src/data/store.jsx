@@ -1,14 +1,12 @@
 import { create } from "zustand";
 import imageblog from "@assets/img/imageblog.webp";
-import doctor from "@assets/img/doctor.jpg";
 import Cookies from "js-cookie";
 const useStore = create((set) => ({
-  todayDate: new Date().toISOString().split("T")[0],
-  //role
+  //role state
   role: Cookies.get("role") === undefined ? "patient" : Cookies.get("role"),
   setRole: (role) => set({ role: role }),
 
-  //userId
+  //userId state
   userId: Cookies.get("id") === undefined ? 0 : Cookies.get("id"),
   setUserId: (userId) => set({ userId: userId }),
 
@@ -30,7 +28,9 @@ const useStore = create((set) => ({
 
   activeDropdownId: null,
   setActiveDropdownId: (id) => set({ activeDropdownId: id }),
+
   // Chosen date by user. ex: in calendar
+  todayDate: new Date().toISOString().split("T")[0],
   selectedDate: new Date().toISOString().slice(0, 10),
   selectedDateInWords: new Date().toLocaleString("pl-PL", {
     weekday: "long",
@@ -241,7 +241,6 @@ const useStore = create((set) => ({
 
   setQuestionsData: (questionsData) => set({ questionsData }),
   setBlogs: (blogs) => set({ blogs }),
- 
 }));
 
 export default useStore;

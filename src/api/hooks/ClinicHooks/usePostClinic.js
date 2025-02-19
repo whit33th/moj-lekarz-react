@@ -20,7 +20,7 @@ export default function usePostClinic() {
 
   useEffect(() => {
     if (isError) {
-      console.log(error)
+      console.log(error);
       if (error?.response?.data?.message === "Clinic already exist") {
         toast.error("Klinika o podanych danych już istnieje!");
       } else {

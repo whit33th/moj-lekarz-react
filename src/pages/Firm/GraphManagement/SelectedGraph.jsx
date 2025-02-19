@@ -1,14 +1,14 @@
-import { useLocation, useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
-import CalendarBlockManager from "../../../components/DoctorPage/Home/Calendar/CalendarBlockManager";
-import styles from "./GraphManagement.module.css";
 import bucket from "@assets/img/bucketBlue.png";
-import BlueBorderBtn from "../../../components/Buttons/BlueBorderBtn/BlueBorderBtn";
-import BlueBtn from "./../../../components/Buttons/BlueBtn/BlueBtn";
-import usePostSchedules from "../../../api/hooks/GeneralHooks/Schedules/usePostSchedules";
-import { toast } from "sonner";
-import { pageConfig } from "./../../../config/config";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { toast } from "sonner";
+import usePostSchedules from "../../../api/hooks/GeneralHooks/Schedules/usePostSchedules";
+import BlueBorderBtn from "../../../components/Buttons/BlueBorderBtn/BlueBorderBtn";
+import CalendarBlockManager from "../../../components/DoctorPage/Home/Calendar/CalendarBlockManager";
+import BlueBtn from "./../../../components/Buttons/BlueBtn/BlueBtn";
+import { pageConfig } from "./../../../config/config";
+import styles from "./GraphManagement.module.css";
 
 function SelectedGraph() {
   const location = useLocation();
@@ -72,7 +72,7 @@ function SelectedGraph() {
 
   return (
     <div className={styles.handleContainer}>
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
@@ -135,7 +135,7 @@ function SelectedGraph() {
         </div>
       </motion.div>
 
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
@@ -151,7 +151,7 @@ function SelectedGraph() {
                 transition={{ duration: 0.3, delay: index * 0.1 }}
                 className={styles.userRow}
               >
-                <span>{user.name}</span> 
+                <span>{user.name}</span>
                 <span>{user.phone}</span>
                 <div className={styles.btnDiv}>
                   <BlueBorderBtn cb={() => handleRemoveUser(user.id)}>
@@ -160,9 +160,7 @@ function SelectedGraph() {
                 </div>
               </motion.div>
             ))}
-            <div
-              
-            >
+            <div>
               <BlueBtn cb={handleSave}>Zapisz i dodaj do kalendarza</BlueBtn>
             </div>
           </>

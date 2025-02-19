@@ -1,20 +1,12 @@
 import grey from "@assets/img/grey.png";
-
-import styles from "./Profil.module.css";
-import { useState } from "react";
-
-import useGetUserInfo from "@hooks/UserHooks/useGetUserInfo";
-import Skeleton from "react-loading-skeleton";
 import useStore from "@data/store";
+import useGetUserInfo from "@hooks/UserHooks/useGetUserInfo";
 import { motion } from "framer-motion";
+import Skeleton from "react-loading-skeleton";
+import styles from "./Profil.module.css";
 
 function Profil() {
   const { role } = useStore();
-  const [vacationStatus, setVacationStatus] = useState(false);
-
-  function handleVacationStatus() {
-    setVacationStatus(!vacationStatus);
-  }
 
   const { data: user, isLoading } = useGetUserInfo() || [];
 

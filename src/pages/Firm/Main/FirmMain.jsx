@@ -1,24 +1,21 @@
-import { NavLink } from "react-router-dom";
-import { motion } from "framer-motion";
-
-import robot from "@assets/img/robot_svg/1.png";
-import graphUp from "@assets/img/graph-up.png";
-import graphDown from "@assets/img/graph-down.png";
-import follow from "@assets/img/follow.png";
-import pointed from "@assets/img/pointed.png";
-import unpointed from "@assets/img/unpointed.png";
-
-import BestWorkerItem from "../../../components/FirmPage/VisitItem/BestWorkerItem";
-
-import styles from "./FirmMain.module.css";
 import useGetUserInfo from "@api/hooks/UserHooks/useGetUserInfo";
-import CalendarBlockClinic from "../../../components/DoctorPage/Home/Calendar/CalendarBlockClinic";
-import useGetAppointmentClinic from "./../../../api/hooks/ClinicHooks/useGetAppointmentClinic";
-import useClinicStats from "../../../api/hooks/GeneralHooks/Stats/clinicStats";
-import useGetWorkersList from "../../../api/hooks/ClinicHooks/useGetWorkersList";
+import follow from "@assets/img/follow.png";
+import graphDown from "@assets/img/graph-down.png";
+import graphUp from "@assets/img/graph-up.png";
 import grey from "@assets/img/grey.png";
+import pointed from "@assets/img/pointed.png";
+import robot from "@assets/img/robot_svg/1.png";
+import unpointed from "@assets/img/unpointed.png";
+import { motion } from "framer-motion";
+import { NavLink } from "react-router-dom";
+import useGetWorkersList from "../../../api/hooks/ClinicHooks/useGetWorkersList";
+import useClinicStats from "../../../api/hooks/GeneralHooks/Stats/clinicStats";
+import CalendarBlockClinic from "../../../components/DoctorPage/Home/Calendar/CalendarBlockClinic";
 import SkeletonTodayVisitItem from "../../../components/DoctorPage/Home/TodayVisitItem/SkeletonTodayVisitItem";
 import StatCardSkeleton from "../../../components/FirmPage/StatCard/StatCardSkeleton";
+import BestWorkerItem from "../../../components/FirmPage/VisitItem/BestWorkerItem";
+import useGetAppointmentClinic from "./../../../api/hooks/ClinicHooks/useGetAppointmentClinic";
+import styles from "./FirmMain.module.css";
 
 function DoctorMain() {
   const { data, isLoading } = useGetUserInfo({});

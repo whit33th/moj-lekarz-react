@@ -5,7 +5,7 @@ import { toast } from "sonner";
 
 export default function usePutUserInfo() {
   const queryClient = useQueryClient();
-  const { mutate, isPending, isError, isSuccess, error } = useMutation({
+  const { mutate, isPending, isError, isSuccess } = useMutation({
     mutationKey: ["putUserInfo"],
     mutationFn: (data) => userServices.putInfo(data),
     retry: false,
@@ -21,7 +21,6 @@ export default function usePutUserInfo() {
   useEffect(() => {
     if (isError) {
       toast.error("Cos poszło nie tak!");
-      console.log("Error:", error);
     }
   }, [isError]);
 

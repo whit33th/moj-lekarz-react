@@ -1,6 +1,5 @@
-import styles from "./style/Uslugi.module.css";
-import { NavLink } from "react-router-dom";
 import { motion } from "framer-motion";
+import styles from "./style/Uslugi.module.css";
 
 function UslugiCard({ services }) {
   return (
@@ -19,11 +18,6 @@ function UslugiCard({ services }) {
               <div>
                 {service.name} - {service.price} zł
               </div>
-              {/* <div>
-                <NavLink to={`/appointment/${service.id}`}>
-                  Umów się na wizytę &#8594;
-                </NavLink>
-              </div> */}
             </div>
           </div>
         </motion.div>

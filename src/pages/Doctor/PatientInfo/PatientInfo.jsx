@@ -1,17 +1,15 @@
-import { useState } from "react";
-import styles from "./PatientInfo.module.css";
 import useGetPatientInfo from "@hooks/DoctorHooks/useGetPatientInfo";
 import Skeleton from "react-loading-skeleton";
 import { useNavigate, useParams } from "react-router-dom";
+import useGetAppointmentForUser from "../../../api/hooks/DoctorHooks/useGetAppointmentForUser";
 import BlueBtn from "../../../components/Buttons/BlueBtn/BlueBtn";
 import PatientMoreInfoModal from "../../../components/Modals/PatientMoreInfoModal/PatientMoreInfoModal";
 import grey from "./../../../assets/img/grey.png";
 import useStore from "./../../../data/store";
-import useGetAppointmentForUser from "../../../api/hooks/DoctorHooks/useGetAppointmentForUser";
+import styles from "./PatientInfo.module.css";
 
 function PatientInfo() {
   const { id } = useParams();
- 
 
   const navigate = useNavigate();
 
@@ -82,16 +80,16 @@ function PatientInfo() {
   const history = patientVisits?.appointments ? (
     patientVisits?.appointments.map((visit, index) => (
       <div className={styles.visitsRecord} key={index}>
-        <span>{(index + 1 + '.')+ ' ' + visit.description}</span>
-        <span className={styles.grey}>{visit.service.name + ' ' + visit.service.price + ' zl' }</span>
-        <span>{visit.date + ' / ' + visit.start_time }</span>
+        <span>{index + 1 + "." + " " + visit.description}</span>
+        <span className={styles.grey}>
+          {visit.service.name + " " + visit.service.price + " zl"}
+        </span>
+        <span>{visit.date + " / " + visit.start_time}</span>
       </div>
     ))
   ) : (
     <div>Brak historii wizyt</div>
   );
-
- 
 
   function handleModal() {
     setModalActive(true);

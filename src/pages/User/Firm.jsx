@@ -1,34 +1,30 @@
-import { useState, useCallback } from "react";
-import { motion } from "framer-motion";
-import styles from "./style/Firm.module.css";
-
-import img5 from "@assets/img/Vector311.svg";
-
+import img13 from "@assets/img/Group (2).svg";
+import img21 from "@assets/img/Group (3).svg";
+import imgfirstBlock1 from "@assets/img/Group 5.svg";
+import imgfirstBlock2 from "@assets/img/Group 6.svg";
 import img7 from "@assets/img/Vector (25).svg";
 import img8 from "@assets/img/Vector (26).svg";
 import img9 from "@assets/img/Vector (27).svg";
 import img10 from "@assets/img/Vector (28).svg";
 import img11 from "@assets/img/Vector (29).svg";
 import img12 from "@assets/img/Vector (30).svg";
-import img13 from "@assets/img/Group (2).svg";
-import img14 from "@assets/img/Vectorprice.svg";
-import img15 from "@assets/img/ri_user-settings-line.svg";
+import img5 from "@assets/img/Vector311.svg";
 import img16 from "@assets/img/Vector77.svg";
 import img17 from "@assets/img/Vector78.svg";
 import img18 from "@assets/img/Vector79.svg";
 import img19 from "@assets/img/Vector80.svg";
 import img20 from "@assets/img/Vector81.svg";
-import img21 from "@assets/img/Group (3).svg";
 import vector from "@assets/img/Vector9.svg";
-import imgfirstBlock1 from "@assets/img/Group 5.svg";
-import imgfirstBlock2 from "@assets/img/Group 6.svg";
+import img14 from "@assets/img/Vectorprice.svg";
 import cloud from "@assets/img/cloud.png";
-
-import { sendFormData } from "../../helpers/apiService";
-
-import PartnersSlider from "./../../components/PartnersSlider";
-import InputDropdownStas from "../../components/Dropdown/InputDropdownStas";
+import img15 from "@assets/img/ri_user-settings-line.svg";
+import { motion } from "framer-motion";
+import { useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
+import InputDropdownStas from "../../components/Dropdown/InputDropdownStas";
+import { sendFormData } from "../../helpers/apiService";
+import PartnersSlider from "./../../components/PartnersSlider";
+import styles from "./style/Firm.module.css";
 
 function Firm() {
   const [nameInputValue, setNameInputValue] = useState("");

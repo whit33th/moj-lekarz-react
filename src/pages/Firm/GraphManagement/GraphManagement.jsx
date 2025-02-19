@@ -1,17 +1,15 @@
-import { useState, useMemo } from "react";
+import { motion } from "framer-motion";
+import { useMemo, useState } from "react";
+import { useForm } from "react-hook-form";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import styles from "./GraphManagement.module.css";
-import DropdownStas from "../../../components/Dropdown/DropdownStas";
-import Search from "../../../components/UI/Search/Search";
-import BlueBtn from "../../../components/Buttons/BlueBtn/BlueBtn";
-import { motion } from "framer-motion";
-
 import { useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
-import InputDropdownStas from "../../../components/Dropdown/InputDropdownStas";
 import useGetWorkersList from "../../../api/hooks/ClinicHooks/useGetWorkersList";
 import useGetUserInfo from "../../../api/hooks/UserHooks/useGetUserInfo";
+import BlueBtn from "../../../components/Buttons/BlueBtn/BlueBtn";
+import InputDropdownStas from "../../../components/Dropdown/InputDropdownStas";
+import Search from "../../../components/UI/Search/Search";
+import styles from "./GraphManagement.module.css";
 
 import useGetClinicSpecialties from "../../../api/hooks/GeneralHooks/SpecialtyHooks/useGetClinicSpecialties";
 
@@ -19,7 +17,7 @@ function GraphManagement() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedUsers, setSelectedUsers] = useState([]);
   const { data: clinic } = useGetUserInfo();
-  const { control, handleSubmit, register, watch } = useForm({
+  const { control, register, watch } = useForm({
     mode: "onChange",
   });
 
@@ -30,8 +28,9 @@ function GraphManagement() {
     clinicId: clinic?.id,
     specialtyId: specialtyId,
   });
-  const { data: specialties, isLoading: isSpecialtiesLoading } =
-    useGetClinicSpecialties({ clinicId: clinic?.id });
+  const { data: specialties } = useGetClinicSpecialties({
+    clinicId: clinic?.id,
+  });
 
   const handleUserSelect = (doctor) => {
     const userInfo = {

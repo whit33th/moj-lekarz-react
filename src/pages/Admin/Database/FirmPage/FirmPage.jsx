@@ -1,44 +1,39 @@
-import React, { useState, useEffect } from "react"
-import { useParams } from "react-router-dom"
-import profilImage from "@assets/img/profil.webp"
-import confirmedImage from "@assets/img/confirmed.png"
-import unconfirmedImage from "@assets/img/unconfirmed.png"
-import styles from "./FirmPage.module.css"
-import mockFirmData from "../../../../helpers/firmItemList"
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import profilImage from "@assets/img/profil.webp";
+
+import styles from "./FirmPage.module.css";
+import mockFirmData from "../../../../helpers/firmItemList";
 
 function FirmPage() {
-  const { id } = useParams()
-  const [firmData, setFirmData] = useState(null)
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
-  const [vacationStatus, setVacationStatus] = useState(false)
+  const { id } = useParams();
+  const [firmData, setFirmData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [vacationStatus, setVacationStatus] = useState(false);
 
   useEffect(() => {
     const fetchFirmData = () => {
-      setLoading(true)
+      setLoading(true);
       setTimeout(() => {
         if (mockFirmData.id === id) {
-          setFirmData(mockFirmData)
+          setFirmData(mockFirmData);
         } else {
-          setError("Фирма не найдена")
+          setError("Фирма не найдена");
         }
-        setLoading(false)
-      }, 300)
-    }
+        setLoading(false);
+      }, 300);
+    };
 
-    fetchFirmData()
-  }, [id])
-
-  function handleVacationStatus() {
-    setVacationStatus(!vacationStatus)
-  }
+    fetchFirmData();
+  }, [id]);
 
   if (loading) {
-    return <div>Загрузка данных...</div>
+    return <div>Загрузка данных...</div>;
   }
 
   if (error) {
-    return <div>Ошибка: {error}</div>
+    return <div>Ошибка: {error}</div>;
   }
 
   return (
@@ -88,7 +83,7 @@ function FirmPage() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default FirmPage
+export default FirmPage;
