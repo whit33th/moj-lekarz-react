@@ -121,21 +121,21 @@ function Map(props) {
   });
   const svgRef = useRef(null);
 
-  const handlePathMouseEnter = (id, data) => {
-    const svgElement = svgRef.current;
-    if (svgElement) {
-      const pathElement = svgElement.querySelector(`#${id}`);
-      if (pathElement) {
-        const bbox = pathElement.getBBox();
-        setTooltip({
-          visible: true,
-          x: bbox.x + bbox.width / 2,
-          y: bbox.y - 10,
-          text: `${data.locations} placówki medyczne`,
-        });
-      }
-    }
-  };
+  // const handlePathMouseEnter = (id, data) => {
+  //   const svgElement = svgRef.current;
+  //   if (svgElement) {
+  //     const pathElement = svgElement.querySelector(`#${id}`);
+  //     if (pathElement) {
+  //       const bbox = pathElement.getBBox();
+  //       setTooltip({
+  //         visible: true,
+  //         x: bbox.x + bbox.width / 2,
+  //         y: bbox.y - 10,
+  //         text: `${data.locations} placówki medyczne`,
+  //       });
+  //     }
+  //   }
+  // };
 
   const handlePathMouseLeave = () => {
     setTooltip((prev) => ({ ...prev, visible: false }));

@@ -176,12 +176,12 @@ export default function WorkersInfo() {
       >
         <DropdownStas
           control={control}
-          name={"."}
-          placeholder={"Jakub Witold Jagoda"}
+          name={"nameDelete"}
+          placeholder={doctor?.user?.first_name + " " + doctor?.user?.last_name}
         />
         <DropdownStas
           control={control}
-          name={".."}
+          name={"reason"}
           placeholder={"Wpisz tekst"}
           options={option}
         />

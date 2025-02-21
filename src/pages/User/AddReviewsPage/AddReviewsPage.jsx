@@ -42,7 +42,7 @@ function AddReviewsPage({ isLoggedIn }) {
     if (!isLoggedIn) {
       navigate("/auth/");
     }
-  }, []);
+  }, [isLoggedIn, navigate]);
   const { id } = useParams();
   const visitsState = useSelector((state) => state.some.visitsState);
 

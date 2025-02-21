@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState } from "react";
+import { useRef, useState } from "react";
 import moreInfo from "@assets/img/more-info.png";
 import { NavLink } from "react-router-dom";
 import styles from "./MoreInfoButt.module.css";

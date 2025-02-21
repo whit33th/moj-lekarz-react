@@ -7,7 +7,6 @@ import { NavLink, useNavigate } from "react-router-dom";
 import useGetPatientAppointments from "../../../api/hooks/PatientHooks/useGetPatientAppointment";
 import DeleteAppointmentModal from "../../../components/Modals/DeleteAppointment/DeleteAppointmentModal";
 import { pageConfig } from "../../../config/config";
-import useStore from "../../../data/store";
 import useDeleteAppointment from "./../../../api/hooks/PatientHooks/useDeleteAppontment";
 import VisitsCard from "./VisitsCard";
 import VisitsCardCompleted from "./VisitsCardCompleted";
@@ -20,9 +19,6 @@ function VisitsPage({ isLoggedIn = true }) {
   );
   const { mutate } = useDeleteAppointment();
   const [deleteId, setDeleteId] = useState();
-  const { visitsState } = useStore((state) => ({
-    visitsState: state.visitsState,
-  }));
 
   const [modalWindowStatus, setModalWindowStatus] = useState(false);
 

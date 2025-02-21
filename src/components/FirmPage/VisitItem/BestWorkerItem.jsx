@@ -4,7 +4,7 @@ import styles from "./BestWorkerItem.module.css";
 import { pageConfig } from "../../../config/config";
 import { motion } from "framer-motion";
 
-function VisitItem({ id, img, name, position, rating, index, specialty }) {
+function VisitItem({ id, img, name, rating, index, specialty }) {
   return (
     <NavLink
       key={index}

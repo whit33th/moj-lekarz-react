@@ -1,7 +1,8 @@
 import phone from "@assets/img/foto.webp";
-import img3 from "@assets/img/Frame1.svg";
-import img4 from "@assets/img/Frame2.svg";
-import img5 from "@assets/img/Frame3.svg";
+
+import FrameCalendar from "@assets/img/FrameCalendar.png";
+import FramePanel from "@assets/img/FramePanel.png";
+import FrameTable from "@assets/img/FrameTable.png";
 import img1 from "@assets/img/image1.svg";
 import img2 from "@assets/img/image2.svg";
 import { motion } from "framer-motion";
@@ -72,13 +73,13 @@ function MobileAppPage() {
           className={styles.imagesBlockItem}
         >
           <div className={styles.itemImg}>
-            <img src={img3} />
+            <img src={FrameCalendar} />
           </div>
           <div className={styles.itemText}>
             <p className={styles.itemTextTitle}>Zawsze pamiętaj o wizytach</p>
             <p>
-              Otrzymasz powiadomienia, które przypomną Ci o terminach umówionych
-              wizyt.
+              Otrzymasz powiadomienia, które przypomną. Ci o terminach
+              umówionych wizyt.
             </p>
           </div>
         </motion.div>
@@ -90,7 +91,7 @@ function MobileAppPage() {
           className={styles.imagesBlockItem}
         >
           <div className={styles.itemImg}>
-            <img src={img5} />
+            <img src={FramePanel} />
           </div>
           <div className={styles.itemText}>
             <p className={styles.itemTextTitle}>
@@ -110,7 +111,7 @@ function MobileAppPage() {
           className={styles.imagesBlockItem}
         >
           <div className={styles.itemImg}>
-            <img src={img4} />
+            <img src={FrameTable} />
           </div>
           <div className={styles.itemText}>
             <p className={styles.itemTextTitle}>Pamiętaj o zażywaniu leków</p>

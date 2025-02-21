@@ -1,9 +1,7 @@
-import { NavLink } from "react-router-dom";
-import styles from "./VisitItem.module.css";
-
+import { motion } from "framer-motion";
 import VisitModal from "../../../Modals/VisitModal/VisitModal";
 import useStore from "./../../../../data/store";
-import { motion } from "framer-motion";
+import styles from "./VisitItem.module.css";
 
 function VisitItem({
   img,

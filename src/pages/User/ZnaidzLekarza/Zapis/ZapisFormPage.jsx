@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import styles from "./ZapisFormPage.module.css";
 import imgName from "@assets/img/simple-line-i.svg";
@@ -33,7 +33,7 @@ function ZapisFormPage() {
     },
   });
 
-  const { mutate, isPending, isSuccess } = usePostAppointment();
+  const { mutate, isPending } = usePostAppointment();
 
   useEffect(() => {
     if (user) {

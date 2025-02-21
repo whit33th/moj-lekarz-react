@@ -1,35 +1,32 @@
-import { useState } from "react"
-import moreInfo from "@assets/img/more-info.png"
-import styles from "./MoreInfoButt.module.css"
-import useStore from "../../../data/store"
-import BlueBorderBtn from "../BlueBorderBtn/BlueBorderBtn"
-import BlueBtn from "./../BlueBtn/BlueBtn"
-import profil from "@assets/img/profil.webp"
-import Choice from "./../../Modal/Choice"
-import DropdownStas from "./../../Dropdown/DropdownStas"
-import RedBorderBtn from "./../RedBorderBtn/RedBorderBtn"
-import { toast } from "sonner"
-import { useNavigate } from "react-router-dom"
-import clip from "@assets/img/clip.png"
-import { useForm } from 'react-hook-form'
-import { pageConfig } from "../../../config/config"
+import { useState } from "react";
+import moreInfo from "@assets/img/more-info.png";
+import styles from "./MoreInfoButt.module.css";
+import useStore from "../../../data/store";
+import BlueBorderBtn from "../BlueBorderBtn/BlueBorderBtn";
+import BlueBtn from "./../BlueBtn/BlueBtn";
+import profil from "@assets/img/profil.webp";
+import Choice from "./../../Modal/Choice";
+import DropdownStas from "./../../Dropdown/DropdownStas";
+import RedBorderBtn from "./../RedBorderBtn/RedBorderBtn";
+import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { pageConfig } from "../../../config/config";
 
 const MoreInfoButtFirm = ({ id }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false)
-  const { setModalActive, setModalContent } = useStore()
-  const navigate = useNavigate()
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { setModalActive, setModalContent } = useStore();
+  const navigate = useNavigate();
 
-  const toggleModal = () => setIsModalOpen(!isModalOpen)
+  const toggleModal = () => setIsModalOpen(!isModalOpen);
   const option = [
     "Usunięcie z powodu nieobecności",
     "Usunięcie z powodu rozwiązania umowy",
     "Usunięcie z powodu zaniedbania",
     "Kalendarz nullam non iaculis massa",
     "Nunc kalendarz aliquam metus",
-  ]
-  const { control, handleSubmit, watch } = useForm({
-
-  })
+  ];
+  const { control } = useForm({});
   const modalContentInfo = (
     <div className={styles.row}>
       <div className={styles.generalInfo}>
@@ -99,7 +96,7 @@ const MoreInfoButtFirm = ({ id }) => {
         </div>
       </div>
     </div>
-  )
+  );
   const modalContentDeleteAccount = (
     <>
       <h1>Usuwanie konta</h1>
@@ -109,8 +106,17 @@ const MoreInfoButtFirm = ({ id }) => {
           gap: "20px",
         }}
       >
-        <DropdownStas control={control} name={"username"} placeholder={"Jakub Witold Jagoda"} />
-        <DropdownStas control={control} name={"."} placeholder={"Wpisz tekst"} options={option} />
+        <DropdownStas
+          control={control}
+          name={"username"}
+          placeholder={"Jakub Witold Jagoda"}
+        />
+        <DropdownStas
+          control={control}
+          name={"reason"}
+          placeholder={"Wpisz tekst"}
+          options={option}
+        />
         <Choice
           choice1={"Anuluj"}
           choice2={"Usuń"}
@@ -119,35 +125,35 @@ const MoreInfoButtFirm = ({ id }) => {
         ></Choice>
       </div>
     </>
-  )
-  const modalContentMessage = (
-    <>
-      <h1>Nowa Wiadomość</h1>
+  );
+  // const modalContentMessage = (
+  //   <>
+  //     <h1>Nowa Wiadomość</h1>
 
-      <div className={styles.textareaDiv}>
-        <textarea className={styles.textarea} placeholder="Wpisz tekst" />
-        <img className={styles.clip} src={clip} alt="" />
-      </div>
+  //     <div className={styles.textareaDiv}>
+  //       <textarea className={styles.textarea} placeholder="Wpisz tekst" />
+  //       <img className={styles.clip} src={clip} alt="" />
+  //     </div>
 
-      <div className={styles.flex}>
-        <Choice
-          choice1={"Anuluj"}
-          choice2={"Wyślij"}
-          cb2={() => toast.success("Wiadomość została wysłana.")}
-          cb1={() => setModalActive(false)}
-        ></Choice>
-      </div>
-    </>
-  )
+  //     <div className={styles.flex}>
+  //       <Choice
+  //         choice1={"Anuluj"}
+  //         choice2={"Wyślij"}
+  //         cb2={() => toast.success("Wiadomość została wysłana.")}
+  //         cb1={() => setModalActive(false)}
+  //       ></Choice>
+  //     </div>
+  //   </>
+  // )
 
   function operationStatus() {
-    const status = Math.random() < 0.5
+    const status = Math.random() < 0.5;
 
     status === true
       ? toast.success("Profil został usunięty :(")
-      : toast.error("Error")
+      : toast.error("Error");
 
-    setModalActive(false)
+    setModalActive(false);
   }
 
   const acceptDeleting = (
@@ -162,17 +168,13 @@ const MoreInfoButtFirm = ({ id }) => {
         <RedBorderBtn cb={operationStatus}>Tak</RedBorderBtn>
       </div>
     </div>
-  )
+  );
   const handleNavigate = () => {
-    navigate(`${pageConfig.firm.workersInfo.slice(0,9)}${id}`) 
-  }
-  const openNotificationModal = () => {
-    setModalActive(true)
-    setModalContent(modalContentMessage)
-  }
+    navigate(`${pageConfig.firm.workersInfo.slice(0, 9)}${id}`);
+  };
 
-  const patientId = id || "unknown"
-  console.log("Patient ID in MoreInfoButt:", patientId)
+  const patientId = id || "unknown";
+  console.log("Patient ID in MoreInfoButt:", patientId);
   return (
     <div
       className={styles.moreInfoButt}
@@ -182,23 +184,19 @@ const MoreInfoButtFirm = ({ id }) => {
       <img src={moreInfo} alt="More Info" />
       {isModalOpen && (
         <div className={styles.moreInfoModal}>
-          <button onClick={(e) => {
-            e.stopPropagation();  
-            handleNavigate();
-          }} className={styles.hoverOpacity}>
-            <p style={{ fontWeight: "500" }}>Informacja</p>
-          </button>
-
-          {/* <button
-            onClick={openNotificationModal}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              handleNavigate();
+            }}
             className={styles.hoverOpacity}
           >
-            <p style={{ fontWeight: "500" }}>Wiadomość</p>
-          </button> */}
+            <p style={{ fontWeight: "500" }}>Informacja</p>
+          </button>
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default MoreInfoButtFirm
+export default MoreInfoButtFirm;

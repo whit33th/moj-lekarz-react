@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import styles from "./SearchItems.module.css";
+import patientIcon from "@assets/img/search-icons/Patient.png";
 import grey from "@assets/img/grey.png";
 import { pageConfig } from "../../../config/config";
 import useStore from "../../../data/store";
@@ -10,7 +11,7 @@ function SearchPatientsItem({ data,role }) {
     <>
       <div className={`${styles.searchItem} ${styles.searchItemContainer}`}>
         <div className={`${styles.sectionTitle}`}>
-          <img src={grey} alt="" width={20} height={20} />
+          <img src={patientIcon} alt="" width={20} height={20} />
           <h1>Pacjenci</h1>
         </div>
         {data?.patients?.length === 0 ? (
@@ -21,8 +22,13 @@ function SearchPatientsItem({ data,role }) {
         ) : (
           data?.patients?.slice(-10).map((patient, index) => (
             <NavLink
-
-              to={role !== 'doctor' ? null : (pageConfig.doctor.patientInfo.slice(0, 13) + "/" + patient.id) }
+              to={
+                role !== "doctor"
+                  ? null
+                  : pageConfig.doctor.patientInfo.slice(0, 13) +
+                    "/" +
+                    patient.id
+              }
               onClick={() => setSearchActive(false)}
               key={index}
               className={`${styles.searchItemContent} ${styles.borders}`}

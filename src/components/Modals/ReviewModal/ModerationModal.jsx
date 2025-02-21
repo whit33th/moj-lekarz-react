@@ -1,23 +1,20 @@
-import styles from "./ReviewModal.module.css";
-import avatar from "@assets/img/profil.webp";
-import RedBorderBtn from "../../Buttons/RedBorderBtn/RedBorderBtn";
-import BlueBorderBtn from "../../Buttons/BlueBorderBtn/BlueBorderBtn";
-import BlueBtn from "../../Buttons/BlueBtn/BlueBtn";
 import { useState } from "react";
-import InputDropdownStas from "../../Dropdown/InputDropdownStas";
 import useDeleteReviews from "../../../api/hooks/GeneralHooks/ReviewsHooks/useDeleteReviews";
 import usePatchReviews from "../../../api/hooks/GeneralHooks/ReviewsHooks/usePatchReviews";
+import BlueBorderBtn from "../../Buttons/BlueBorderBtn/BlueBorderBtn";
+import BlueBtn from "../../Buttons/BlueBtn/BlueBtn";
+import RedBorderBtn from "../../Buttons/RedBorderBtn/RedBorderBtn";
+import InputDropdownStas from "../../Dropdown/InputDropdownStas";
+import styles from "./ReviewModal.module.css";
 
-import star from "@assets/img/Star.svg";
 import starGrey from "@assets/img/Star 6.svg";
+import star from "@assets/img/Star.svg";
 import { useForm } from "react-hook-form";
-import useStore from "../../../data/store";
 
 const ModerationModal = ({ id, name, date, text, rating, avatar, tags }) => {
   console.log(id);
   const [RefuseBtn, setRefuseBtn] = useState(false);
   const [selectedOption, setSelectedOption] = useState("");
-  const { setModalActive } = useStore();
   const { mutate: deleteReview } = useDeleteReviews();
   const { mutate: acceptReview } = usePatchReviews();
   const reasons = [
@@ -31,25 +28,18 @@ const ModerationModal = ({ id, name, date, text, rating, avatar, tags }) => {
     "Bezużyteczne",
   ];
 
-  const positiveFeedbacks = [
-    "Profesjonalne podejście",
-    "Dbałość o komfort pacjenta",
-  ];
-  const negativeFeedbacks = ["Zbyt krótka wizyta", "Ograniczona dostępność"];
-
   function toggleRefuse() {
     setRefuseBtn(!RefuseBtn);
   }
-  const { control, register, getValues, handleSubmit, watch } = useForm({});
+  const { control, register, getValues } = useForm({});
   const handleOptionSelect = (option) => {
     setSelectedOption(option);
   };
 
   const handleDelete = () => {
-    console.log(getValues('reason'))
-    if (getValues('reason')) {
+    console.log(getValues("reason"));
+    if (getValues("reason")) {
       deleteReview(id);
-      
     }
   };
 

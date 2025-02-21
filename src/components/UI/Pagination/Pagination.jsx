@@ -1,12 +1,10 @@
+import Skeleton from "react-loading-skeleton";
 import { useSearchParams } from "react-router-dom";
 import styles from "./Pagination.module.css";
-import Skeleton from "react-loading-skeleton";
-import ScrollToTop from "./../../../utils/scrollToTop";
 
-const Pagination = ({ total, isLoading, value, onChange }) => {
+const Pagination = ({ total, isLoading, onChange }) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  
   const currentPage = parseInt(searchParams.get("page") || "1", 10);
 
   if (total <= 1) {
@@ -36,13 +34,12 @@ const Pagination = ({ total, isLoading, value, onChange }) => {
     pageNumbers.push(i);
   }
 
-  
   const handlePageChange = (page) => {
     if (page < 1 || page > total) return;
     if (onChange) {
-      onChange(page); 
+      onChange(page);
     }
-    setSearchParams({ page: page.toString() }); 
+    setSearchParams({ page: page.toString() });
 
     window.scrollTo(0, 0);
   };

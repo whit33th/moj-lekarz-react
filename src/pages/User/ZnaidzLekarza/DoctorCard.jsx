@@ -3,13 +3,13 @@ import starimg from "@assets/img/Star.svg";
 import imgIcon1 from "@assets/img/simple-line-i.svg";
 import imgIcon2 from "@assets/img/Vector14.svg";
 import { NavLink } from "react-router-dom";
-import Skeleton from "react-loading-skeleton";
+
 import grey from "@assets/img/grey.png";
 import { pageConfig } from "../../../config/config";
 import useStore from "../../../data/store";
 import { motion } from "framer-motion";
 
-function DoctorCard({ data, loading, selectedDate, addZapis }) {
+function DoctorCard({ data }) {
   const appointment = {
     id: data?.doctor_id || "Brak",
     clinicId: data?.clinic?.id || "Brak",
@@ -28,17 +28,6 @@ function DoctorCard({ data, loading, selectedDate, addZapis }) {
     clinic: data?.clinic.name || "Brak",
     phone: data?.user?.phone || "Brak",
   };
-  console.log(appointment);
-
-  // const rating = parseInt(data.rating, 10);
-
-  // const filteredDates = selectedDate
-  //   ? data.dates.filter(
-  //       (dateObj) => dateObj.date === selectedDate?.toLocaleDateString("pl-PL")
-  //     )
-  //   : data.dates;
-
-  // const displayedDates = filteredDates.slice(0, 2);
 
   const { isAuth } = useStore();
   console.log(isAuth);
@@ -111,8 +100,8 @@ function DoctorCard({ data, loading, selectedDate, addZapis }) {
                 city: appointment.city,
                 home: appointment.home,
                 postCode: appointment.postCode,
-                clinic: appointment.clinic
-              }
+                clinic: appointment.clinic,
+              },
             }}
           >
             Zobacz więcej &#8594;

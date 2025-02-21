@@ -2,8 +2,6 @@ import { useEffect, useState, useRef } from "react"
 import styles from "./Dropdown.module.css"
 import unpointed from "@assets/img/unpointed.png"
 import pointed from "@assets/img/pointed.png"
-import Choice from "../Modal/Choice"
-import Search from "../UI/Search/Search"
 import Filter from "../Modals/Filter/Filter"
 
 const Dropdown = ({

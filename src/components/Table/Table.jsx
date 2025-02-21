@@ -1,15 +1,13 @@
-import React, { useState } from "react";
-import styles from "./Table.module.css";
 import searchIco from "@assets/img/search.png";
-import Skeleton from "react-loading-skeleton";
 import { motion } from "framer-motion";
+import { useState } from "react";
+import Skeleton from "react-loading-skeleton";
+import styles from "./Table.module.css";
 
 function Table({
   loading = false,
   columns,
   data = [],
-  buttonProps,
-  together = true,
   showImage = true,
   inputPlaceholder = null,
 }) {

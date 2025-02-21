@@ -1,6 +1,4 @@
-import { NavLink } from "react-router-dom";
 import styles from "./VisitItem.module.css";
-
 import VisitModal from "../../../Modals/VisitModal/VisitModal";
 import useStore from "../../../../data/store";
 import { motion } from "framer-motion";

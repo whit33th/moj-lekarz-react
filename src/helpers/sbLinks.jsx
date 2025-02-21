@@ -1,20 +1,15 @@
-import home from "@assets/img/sidebar-home.png"
-import calendar from "@assets/img/sidebar-calendar.png"
-import list from "@assets/img/list.png"
-import recept from "@assets/img/sidebar-recepy.png"
-import notifications from "@assets/img/sidebar-notefictions.png"
-import chat from "@assets/img/chat.png"
-import settings from "@assets/img/sidebar-settings.png"
-import stetoskop from "@assets/img/stetoskop.png"
-import calendarManage from "@assets/img/CalendarManage.png"
-import firm from "@assets/img/FirmIco.png"
-import addingFirm from "@assets/img/addFirm.png"
-import table from "@assets/img/tableIco.png"
-import news from "@assets/img/NewsIco.png"
-import stats from "@assets/img/StatsIco.png"
-import reports from "@assets/img/ReportsIco.png"
-import reviews from "@assets/img/ReviewsIco.png"
-import { pageConfig } from "../config/config"
+import addingFirm from "@assets/img/addFirm.png";
+import calendarManage from "@assets/img/CalendarManage.png";
+import firm from "@assets/img/FirmIco.png";
+import list from "@assets/img/list.png";
+import news from "@assets/img/NewsIco.png";
+import reports from "@assets/img/ReportsIco.png";
+import reviews from "@assets/img/ReviewsIco.png";
+import calendar from "@assets/img/sidebar-calendar.png";
+import home from "@assets/img/sidebar-home.png";
+import recept from "@assets/img/sidebar-recepy.png";
+import settings from "@assets/img/sidebar-settings.png";
+import stetoskop from "@assets/img/stetoskop.png";
 
 const sbLinks = [
   //doctorLinks
@@ -157,6 +152,6 @@ const sbLinks = [
     img: settings,
     url: "/settings",
   },
-]
+];
 
-export default sbLinks
+export default sbLinks;

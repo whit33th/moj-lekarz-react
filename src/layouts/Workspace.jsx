@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar/Navbar";
 import Sidebar from "../components/Sidebar/Sidebar";
-
 import loop from "@assets/img/loop.mp4";
 import poster from "@assets/img/loopPoster.png";
 

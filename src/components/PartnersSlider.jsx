@@ -1,14 +1,12 @@
-import { useState, useEffect } from "react";
-import styles from "./PartnersSlider.module.css";
 import imgArrow from "@assets/img/Vector (32).svg";
-import facebookLogo from "@assets/img/Frame529.png";
-
 import img1 from "@assets/img/partners/1.png";
 import img2 from "@assets/img/partners/2.png";
 import img3 from "@assets/img/partners/3.png";
 import img4 from "@assets/img/partners/4.png";
 import img5 from "@assets/img/partners/5.png";
 import img6 from "@assets/img/partners/6.png";
+import { useEffect, useState } from "react";
+import styles from "./PartnersSlider.module.css";
 
 const partnersState = [
   { name: "Facebook", img: img1 },
@@ -18,7 +16,7 @@ const partnersState = [
   { name: "Pinterest", img: img5 },
   { name: "Pinterest", img: img6 },
 ];
-function PartnersSlider(props) {
+function PartnersSlider() {
   const [sliderStatePage, setSliderStatePage] = useState(0);
   const [itemsPerPage, setItemsPerPage] = useState(5);
 

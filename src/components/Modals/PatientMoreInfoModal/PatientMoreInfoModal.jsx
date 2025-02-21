@@ -1,12 +1,6 @@
-import styles from "../../../pages/Doctor/PatientInfo/PatientInfo.module.css"
-import BlueBorderBtn from "../../Buttons/BlueBorderBtn/BlueBorderBtn"
-import Choice from "./../../Modal/Choice"
-import plus from "@assets/img/plus.png"
-import bucketBlue from "@assets/img/bucketBlue.png"
-import useStore from "./../../../data/store"
+import styles from "../../../pages/Doctor/PatientInfo/PatientInfo.module.css";
 
 function PatientMoreInfoModal({ patientInfo }) {
-  const { setModalActive, setModalContent } = useStore()
   return (
     <div className={styles.profilInfo}>
       <div className={styles.mainInfo}>
@@ -137,64 +131,10 @@ function PatientMoreInfoModal({ patientInfo }) {
               readOnly
             />
           </div>
-          {/* <div className={styles.row}>
-            <div>
-              <label htmlFor="height">Wzrost</label>
-              <input
-                type="text"
-                id="height"
-                name="height"
-                value={patientInfo?.height || "Brak"}
-                readOnly
-              />
-            </div>
-            <div>
-              <label htmlFor="weight">Waga</label>
-              <input
-                type="text"
-                id="weight"
-                name="weight"
-                value={patientInfo?.weight || "Brak"}
-                readOnly
-              />
-            </div>
-          </div> */}
         </div>
-        {/* <div className={styles.allergy}>
-          <div>
-            <label htmlFor="allergy">Wpisz na co uczulenie</label>
-            <input
-              type="text"
-              id="allergy"
-              name="allergy"
-              placeholder="Azelastin POS aerosol do nosa"
-            />
-            <BlueBorderBtn>
-              <div className={styles.btnPlus}>
-                <span>Nowe uczulenie </span>
-                <img src={plus} alt="" />
-              </div>
-            </BlueBorderBtn>
-          </div>
-          <div>
-            <BlueBorderBtn>
-              <div className={styles.btnPlus}>
-                <span>Usun uczulenie</span>
-                <img src={bucketBlue} alt="" />
-              </div>
-            </BlueBorderBtn>
-          </div>
-        </div> */}
       </div>
-      {/* <div className={styles.actionButtons}>
-        <Choice
-          cb1={() => setModalActive(false)}
-          choice1={"Anuluj"}
-          choice2={"Aktualizuj"}
-        ></Choice>
-      </div> */}
     </div>
-  )
+  );
 }
 
-export default PatientMoreInfoModal
+export default PatientMoreInfoModal;

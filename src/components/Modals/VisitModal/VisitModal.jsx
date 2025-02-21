@@ -1,27 +1,19 @@
-import styles from "./VisitModal.module.css"
-
-import BlueBorderBtn from "../../Buttons/BlueBorderBtn/BlueBorderBtn"
-
-import BlueBtn from "../../Buttons/BlueBtn/BlueBtn"
-import useStore from "../../../data/store"
-import { useNavigate } from "react-router-dom"
-import grey from "@assets/img/grey.png"
-import useGetPatientInfo from '@hooks/DoctorHooks/useGetPatientInfo'
-import AddRecipesModalForSelectedUser from '../AddRecipesModal/AddRecipesModalForSelectedUser'
-import Skeleton from 'react-loading-skeleton'
-
+import grey from "@assets/img/grey.png";
+import useGetPatientInfo from "@hooks/DoctorHooks/useGetPatientInfo";
+import Skeleton from "react-loading-skeleton";
+import { useNavigate } from "react-router-dom";
+import useStore from "../../../data/store";
+import BlueBorderBtn from "../../Buttons/BlueBorderBtn/BlueBorderBtn";
+import BlueBtn from "../../Buttons/BlueBtn/BlueBtn";
+import AddRecipesModalForSelectedUser from "../AddRecipesModal/AddRecipesModalForSelectedUser";
+import styles from "./VisitModal.module.css";
 
 function VisitModal({ props }) {
-  const { setModalActive, setModalContent } = useStore()
-  const navigate = useNavigate()
+  const { setModalActive, setModalContent } = useStore();
+  const navigate = useNavigate();
 
+  const { data, isLoading } = useGetPatientInfo(props.patientId);
 
-  const { data, isLoading } = useGetPatientInfo(props.patientId)
-
-
-  function closeMainModal() {
-    setModalActive(false)
-  }
   return (
     <div className={styles.row}>
       <div className={styles.generalInfo}>
@@ -29,19 +21,32 @@ function VisitModal({ props }) {
           <h2>Informacja o wizycie</h2>
 
           <div className={styles.infoTag}>
-            <span>Godziny wizyty:</span> <span>{props.startTime + " - " + props.endTime}</span>
+            <span>Godziny wizyty:</span>{" "}
+            <span>{props.startTime + " - " + props.endTime}</span>
           </div>
 
           <div className={styles.infoTag}>
-            <span>Pacjent:</span> <span>{props.firstName + " " + props.lastName}</span>
+            <span>Pacjent:</span>{" "}
+            <span>{props.firstName + " " + props.lastName}</span>
           </div>
 
           <div className={styles.infoTag}>
             <span>Rodzaj wizyty:</span> <span>{props.type}</span>
           </div>
-
         </div>
-        <BlueBorderBtn cb={() => (setModalContent(<AddRecipesModalForSelectedUser patientId={props.patientId} name={props.firstName + " " + props.lastName} />), setModalActive(true))} >Lista recept</BlueBorderBtn>
+        <BlueBorderBtn
+          cb={() => (
+            setModalContent(
+              <AddRecipesModalForSelectedUser
+                patientId={props.patientId}
+                name={props.firstName + " " + props.lastName}
+              />
+            ),
+            setModalActive(true)
+          )}
+        >
+          Lista recept
+        </BlueBorderBtn>
       </div>
 
       <div className={styles.employeeInfo}>
@@ -49,17 +54,35 @@ function VisitModal({ props }) {
 
         <div className={styles.employeeDetails}>
           <div className={styles.topInfo}>
-            <img src={props.img || grey} className={styles.employeeImage} alt="Employee" />
+            <img
+              src={props.img || grey}
+              className={styles.employeeImage}
+              alt="Employee"
+            />
             <div>
-              <p style={{ color: "#3E36B0" }}>{props.firstName + " " + props.lastName}</p>
+              <p style={{ color: "#3E36B0" }}>
+                {props.firstName + " " + props.lastName}
+              </p>
               <div>
                 <p className={styles.phone}>
                   <span style={{ color: "#3E36B0" }}>Tel:</span>
-                  <span>{isLoading ? <Skeleton width={150} /> : data?.patient?.user?.phone || 'Brak'}</span>
+                  <span>
+                    {isLoading ? (
+                      <Skeleton width={150} />
+                    ) : (
+                      data?.patient?.user?.phone || "Brak"
+                    )}
+                  </span>
                 </p>
                 <p className={styles.email}>
                   <span style={{ color: "#3E36B0" }}>Email:</span>
-                  <span>{isLoading ? <Skeleton width={150} /> : data?.patient?.user?.email || 'Brak'}</span>
+                  <span>
+                    {isLoading ? (
+                      <Skeleton width={150} />
+                    ) : (
+                      data?.patient?.user?.email || "Brak"
+                    )}
+                  </span>
                 </p>
               </div>
             </div>
@@ -75,20 +98,44 @@ function VisitModal({ props }) {
             </div> */}
             <div>
               <span>Miasto:</span>
-              <span>{isLoading ? <Skeleton width={100} /> : data?.patient?.user?.address?.city || 'Brak'}</span>
+              <span>
+                {isLoading ? (
+                  <Skeleton width={100} />
+                ) : (
+                  data?.patient?.user?.address?.city || "Brak"
+                )}
+              </span>
             </div>
             <div>
               <span>Adres:</span>
-              <span>{isLoading ? <Skeleton width={125} /> : data?.patient?.user?.address?.street || 'Brak'}</span>
+              <span>
+                {isLoading ? (
+                  <Skeleton width={125} />
+                ) : (
+                  data?.patient?.user?.address?.street || "Brak"
+                )}
+              </span>
             </div>
             <div>
               <span>Data urodzenia:</span>
-              <span>{isLoading ? <Skeleton width={100} /> : data?.patient?.user?.birthday?.slice(0, 10) || 'Brak'}</span>
+              <span>
+                {isLoading ? (
+                  <Skeleton width={100} />
+                ) : (
+                  data?.patient?.user?.birthday?.slice(0, 10) || "Brak"
+                )}
+              </span>
             </div>
             <div>
-              <span>Plec:</span> <span>{isLoading ? <Skeleton width={100} /> : data?.patient?.user?.gender || 'Brak'}</span>
+              <span>Plec:</span>{" "}
+              <span>
+                {isLoading ? (
+                  <Skeleton width={100} />
+                ) : (
+                  data?.patient?.user?.gender || "Brak"
+                )}
+              </span>
             </div>
-
 
             {/* <div>
               <span>Wzrost:</span> <span>183 cm.</span>
@@ -105,7 +152,7 @@ function VisitModal({ props }) {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default VisitModal
+export default VisitModal;

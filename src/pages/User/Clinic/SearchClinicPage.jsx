@@ -9,10 +9,7 @@ import ClinicCard from "./ClinicCard";
 import ClinicCardSkeleton from "./ClinicCardSkeleton";
 import styles from "./style/SearchClinicPage.module.css";
 
-const arraySelectOptions = {
-  select1: ["name1", "name2", "name3"],
-  select4: ["NFZ", "Prywatne"],
-};
+
 
 function SearchClinicPage() {
   const { control, handleSubmit, watch, register } = useForm({

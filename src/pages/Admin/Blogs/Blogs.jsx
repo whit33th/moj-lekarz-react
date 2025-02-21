@@ -1,5 +1,3 @@
-"use client";
-
 import { useState, useMemo } from "react";
 import { useGetPosts } from "../../../api/hooks/GeneralHooks/Posts/useGetPosts";
 import useDeletePosts from "../../../api/hooks/GeneralHooks/Posts/useDeletePosts";
@@ -124,7 +122,7 @@ function Blogs() {
               <BlogSkeleton />
             </>
           ) : (
-            filteredArticles.map((article, index) => (
+            filteredArticles.map((article) => (
               <motion.div
                 initial={{ opacity: 0, y: -10 }}
                 whileInView={{ opacity: 1, y: 0 }}

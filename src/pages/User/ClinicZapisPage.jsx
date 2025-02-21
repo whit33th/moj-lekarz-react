@@ -63,12 +63,6 @@ function ClinicZapisPage() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleContinue = (e) => {
-    if (!validateForm()) {
-      e.preventDefault();
-      return;
-    }
-  };
 
   const handleLinkClick = (e) => {
     if (!validateForm()) {

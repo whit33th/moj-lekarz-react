@@ -10,7 +10,6 @@ function FirmPage() {
   const [firmData, setFirmData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [vacationStatus, setVacationStatus] = useState(false);
 
   useEffect(() => {
     const fetchFirmData = () => {

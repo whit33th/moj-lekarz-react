@@ -38,10 +38,10 @@ function Footer() {
             <p>Infolinia:</p>
             <div>
               <h3>
-                <a href="tel:+800 000 000">800 000 000</a>
+                <a href="tel:+800 000 000">800 000 000</a>
               </h3>
               <p>
-                lub +48 473 283 333 – dla połączeń komórkowych oraz z zagranicy
+                lub +48 473 283 333 – dla połączeń komórkowych oraz z zagranicy
               </p>
             </div>
           </div>

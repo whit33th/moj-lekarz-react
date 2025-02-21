@@ -1,15 +1,11 @@
-import { useState, useEffect } from "react";
-import ZapisPage from "./ZapisPage";
-import { useNavigate } from "react-router-dom";
-import ZapisFormPage from "./ZapisFormPage";
-import ZapisDone from "./ZapisDone";
-
-import { useParams } from "react-router-dom";
-import LoadingPage from "./LoadingPage";
-
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import useStore from "../../../../data/store";
-import { getCookie } from "./../../../../utils/AuthToken";
 import { sendNewOrder } from "./../../../../helpers/apiService";
+import LoadingPage from "./LoadingPage";
+import ZapisDone from "./ZapisDone";
+import ZapisFormPage from "./ZapisFormPage";
+import ZapisPage from "./ZapisPage";
 
 function ZapisConteiner({ zapisState, isLoggedIn }) {
   const [data, setData] = useState(zapisState);
@@ -45,7 +41,7 @@ function ZapisConteiner({ zapisState, isLoggedIn }) {
     if (!isLoggedIn) {
       navigate("/auth/");
     }
-  }, [ navigate, isLoggedIn]);
+  }, [navigate, isLoggedIn]);
 
   const handleFileUpload = (event) => {
     const file = event.target.files[0];

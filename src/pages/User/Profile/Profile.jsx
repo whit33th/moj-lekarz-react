@@ -79,7 +79,7 @@ function Profile() {
                 required: "To pole jest wymagane",
                 pattern: {
                   value:
-                    /^[A-Za-zĄąĆćĘęŁłŃńÓóŚśŹźŻż\d!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/,
+                    /^[A-Za-zĄąĆćĘęŁłŃńÓóŚśŹźŻż\d!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]*$/,
                   message: "Nieprawidłowy format hasła",
                 },
               })}
@@ -99,7 +99,7 @@ function Profile() {
                 },
                 pattern: {
                   value:
-                    /^[A-Za-zĄąĆćĘęŁłŃńÓóŚśŹźŻż\d!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/,
+                    /^[A-Za-zĄąĆćĘęŁłŃńÓóŚśŹźŻż\d!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]*$/,
                   message: "Nieprawidłowy format hasła",
                 },
               })}
@@ -118,7 +118,7 @@ function Profile() {
                   value === watch("newPassword") || "Hasła nie są takie same",
                 pattern: {
                   value:
-                    /^[A-Za-zĄąĆćĘęŁłŃńÓóŚśŹźŻż\d!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/,
+                    /^[A-Za-zĄąĆćĘęŁłŃńÓóŚśŹźŻż\d!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]*$/,
                   message: "Nieprawidłowy format hasła",
                 },
               })}
@@ -134,34 +134,6 @@ function Profile() {
       <div className={styles.deleteAccountBlock}>
         <BlueBtn cb={handleDeleteAccount}>Usuń konto</BlueBtn>
       </div>
-
-      {/* <div className={styles.visitsBlock}>
-        <h1>Najbliższe wizyty</h1>
-        <div className={styles.visitsList}>
-          {dataVisitsList.map((item) => (
-            <div className={styles.visitsListItem} key={item.id}>
-              <div className={styles.visitsListItemName}>
-                <div>
-                  <img src={item.doctorImg} />
-                </div>
-                <div>
-                  <h3>{item.doctorName} </h3>
-                  <p>{item.doctorType}</p>
-                </div>
-              </div>
-              <div className={styles.visitsListItemAddress}>
-                <p>{item.address}</p>
-              </div>
-              <div className={styles.visitsListItemDate}>
-                <p>{item.date}</p>
-              </div>
-              <div className={styles.visitsListItemId}>
-                <span>{item.id}</span>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div> */}
     </div>
   );
 }

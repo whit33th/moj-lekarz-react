@@ -1,11 +1,9 @@
-import React from "react";
+import { motion } from "framer-motion";
+import "swiper/css/pagination";
+import { Autoplay, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css";
-import "swiper/css/pagination";
 import styles from "./SwiperSlider.module.css";
-
-import { Pagination, Autoplay } from "swiper/modules";
-import { motion } from "framer-motion";
 
 const SwiperSlider = () => {
   return (
@@ -75,8 +73,8 @@ const SwiperSlider = () => {
                 Gwarancja bezpieczeństwa Twoich danych
               </p>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-                congue viverra felis.
+                Twoje dane są szyfrowane i chronione zgodnie z najwyższymi
+                standardami.
               </p>
             </div>
           </div>
@@ -86,10 +84,7 @@ const SwiperSlider = () => {
             <h3>02</h3>
             <div className={styles.sliderItemText}>
               <p className={styles.sliderItemTextTitle}>Leczenie na NFZ</p>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-                congue viverra felis.
-              </p>
+              <p>Korzystasz z bezpłatnych wizyt i usług medycznych.</p>
             </div>
           </div>
         </SwiperSlide>
@@ -101,8 +96,8 @@ const SwiperSlider = () => {
                 Dostęp do usługi całą dobę 7 dni w tygodniu
               </p>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-                congue viverra felis.
+                Rezerwacja wizyt, konsultacje i dokumentacja medyczna zawsze pod
+                ręką.
               </p>
             </div>
           </div>
@@ -114,10 +109,7 @@ const SwiperSlider = () => {
               <p className={styles.sliderItemTextTitle}>
                 Dostęp do usługi całą dobę 7 dni w tygodniu
               </p>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-                congue viverra felis.
-              </p>
+              <p>Możesz odwołać termin bez dodatkowych kosztów.</p>
             </div>
           </div>
         </SwiperSlide>
@@ -125,27 +117,8 @@ const SwiperSlider = () => {
           <div className={styles.sliderItem}>
             <h3>05</h3>
             <div className={styles.sliderItemText}>
-              <p className={styles.sliderItemTextTitle}>
-                Gwarancja bezpieczeństwa Twoich danych
-              </p>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-                congue viverra felis.
-              </p>
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className={styles.sliderItem}>
-            <h3>06</h3>
-            <div className={styles.sliderItemText}>
-              <p className={styles.sliderItemTextTitle}>
-                Gwarancja bezpieczeństwa Twoich danych
-              </p>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-                congue viverra felis.
-              </p>
+              <p className={styles.sliderItemTextTitle}>E-recepty</p>
+              <p>Wygodne i szybkie wystawianie recept.</p>
             </div>
           </div>
         </SwiperSlide>

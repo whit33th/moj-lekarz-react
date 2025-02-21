@@ -1,6 +1,7 @@
-import img1 from "@assets/img/Frame1.svg";
-import img2 from "@assets/img/Frame2.svg";
-import img3 from "@assets/img/Frame3.svg";
+import img1 from "@assets/img/Frame1.png";
+import img2 from "@assets/img/Frame2.png";
+import img3 from "@assets/img/Frame3.png";
+
 import arrow from "@assets/img/arrowmain.svg";
 import { motion } from "framer-motion"; // Add this import
 import SwiperSlider from "../../../components/SwiperSlider";

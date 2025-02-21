@@ -3,16 +3,13 @@ import leftArrow from "@assets/img/left.png"
 import rightArrow from "@assets/img/right.png"
 import styles from "./CalendarBlock.module.css"
 import useStore from "@data/store"
-import useGetDoctorAppointment from "@hooks/DoctorHooks/useGetDoctorAppointment"
+
 import Skeleton from 'react-loading-skeleton'
 import useGetAppointmentClinic from "../../../../api/hooks/ClinicHooks/useGetAppointmentClinic"
 
 const CalendarBlockClinic = () => {
-  const { userId, selectedDate, setSelectedDate, todayDate, setVisitCountForMonth } = useStore()
+  const { selectedDate, setSelectedDate, todayDate, setVisitCountForMonth } = useStore()
   const [currentDate, setCurrentDate] = useState(new Date())
-
-  const startOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1)
-  const endOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0)
 
   const { data: appointmentsData, isSuccess, isLoading } = useGetAppointmentClinic({
     // id: userId,

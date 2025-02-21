@@ -1,23 +1,22 @@
-import styles from "./ReviewModal.module.css"
-import useStore from "../../../data/store"
-import BlueBtn from "../../Buttons/BlueBtn/BlueBtn"
-import { useState } from "react"
-import star from "@assets/img/Star.svg"
-import starGrey from "@assets/img/Star 6.svg"
+import starGrey from "@assets/img/Star 6.svg";
+import star from "@assets/img/Star.svg";
+import useStore from "../../../data/store";
+import BlueBtn from "../../Buttons/BlueBtn/BlueBtn";
+import styles from "./ReviewModal.module.css";
 
 const ReviewModal = ({ name, date, text, rating, avatar, tags }) => {
-  const { setModalActive } = useStore()
+  const { setModalActive } = useStore();
 
   return (
     <div className={styles.card}>
       <div className={styles.header}>
-        <img 
-          src={avatar} 
-          alt="Avatar" 
+        <img
+          src={avatar}
+          alt="Avatar"
           className={styles.avatar}
           onError={(e) => {
             e.target.onerror = null;
-            e.target.src = "/path/to/default/avatar.png"
+            e.target.src = "/path/to/default/avatar.png";
           }}
         />
         <div className={styles.headerInfo}>
@@ -41,14 +40,19 @@ const ReviewModal = ({ name, date, text, rating, avatar, tags }) => {
           </div>
 
           <div className={styles.service}>
-            {tags && tags.map((tag, index) => (
-              <div 
-                key={index} 
-                className={tag.includes("Bad") || tag.includes("Un") ? styles.bad : styles.good}
-              >
-                {tag}
-              </div>
-            ))}
+            {tags &&
+              tags.map((tag, index) => (
+                <div
+                  key={index}
+                  className={
+                    tag.includes("Bad") || tag.includes("Un")
+                      ? styles.bad
+                      : styles.good
+                  }
+                >
+                  {tag}
+                </div>
+              ))}
           </div>
         </div>
       </div>
@@ -58,7 +62,7 @@ const ReviewModal = ({ name, date, text, rating, avatar, tags }) => {
         <BlueBtn cb={() => setModalActive(false)}> Zamknij </BlueBtn>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ReviewModal
+export default ReviewModal;

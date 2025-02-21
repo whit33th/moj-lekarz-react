@@ -2,7 +2,6 @@ import { useState, useRef, useEffect, lazy, useCallback } from "react";
 import { NavLink } from "react-router-dom";
 import styles from "./Navbar.module.css";
 import searchIco from "@assets/img/search.png";
-import bell from "@assets/img/bell.png";
 import grey from "@assets/img/grey.png";
 import useGetUserInfo from "@hooks/UserHooks/useGetUserInfo";
 import SearchResults from "./SearchResults";

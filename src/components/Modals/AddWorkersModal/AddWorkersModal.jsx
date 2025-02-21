@@ -1,4 +1,3 @@
-import { useState } from "react";
 import BlueBtn from "../../Buttons/BlueBtn/BlueBtn";
 import exit from "@assets/img/cross.png";
 import styles from "./AddWorkersModal.module.css";
@@ -38,32 +37,6 @@ function AddWorkersModal() {
       value: spec.id,
     }));
   }, [specialties]);
-
-  function handleModal() {
-    const existingServices = visitTypes || [];
-    setModalActive(true);
-    setModalContent(
-      <AddVisitTypeModal
-        onAddVisitType={addVisitType}
-        allServices={services || []}
-        existingServices={existingServices}
-      />
-    );
-  }
-
-  function addVisitType(selectedTypes) {
-    setVisitTypes((prevTypes) => {
-      const existingIds = prevTypes.map((type) => type.id);
-      const newTypes = selectedTypes.filter(
-        (type) => !existingIds.includes(type.id)
-      );
-      return [...prevTypes, ...newTypes];
-    });
-  }
-
-  function handleDeleteVisitType(id) {
-    setVisitTypes((prevTypes) => prevTypes.filter((type) => type.id !== id));
-  }
 
   const onSubmit = (data) => {
     const formattedData = {

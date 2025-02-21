@@ -17,7 +17,7 @@ function AddSpecializationModal({ onAddSpecialization }) {
   useEffect(() => {
     setSpecialty(visitTypeOptions[0])
   }, [])
-  const { control, handleSubmit, watch } = useForm({
+  const { control} = useForm({
 
   })
   const addVisitType = () => {

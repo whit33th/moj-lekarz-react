@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import styles from "./SearchItems.module.css";
+import doctorIcon from "@assets/img/search-icons/Doctor.png";
 import grey from "@assets/img/grey.png";
 import { pageConfig } from "../../../config/config";
 import useStore from "../../../data/store";
@@ -11,7 +12,7 @@ function SearchDoctorsItem({ data }) {
     <>
       <div className={`${styles.searchItem} ${styles.searchItemContainer}`}>
         <div className={`${styles.sectionTitle}`}>
-          <img src={grey} alt="" width={20} height={20} />
+          <img src={doctorIcon} alt="" width={20} height={20} />
           <h1>Lekarze</h1>
         </div>
         {!data?.doctors?.length ? (

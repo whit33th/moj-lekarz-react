@@ -140,7 +140,7 @@ function Blog() {
             ))}
         </motion.div>
       ) : !isSearching && activeFilterId == null ? (
-        categories.map((category, index) => (
+        categories.map((category) => (
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             whileInView={{ opacity: 1, y: 0 }}

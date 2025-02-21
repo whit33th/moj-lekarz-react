@@ -1,13 +1,11 @@
-import { useState, useEffect } from "react";
-import { NavLink, useLocation } from "react-router-dom";
-
-import styles from "./Header.module.css";
 import logo from "@assets/img/logo.svg";
 import imgProfile from "@assets/img/Vector23.svg";
-
-import { pageConfig } from "../../config/config";
+import { useEffect, useState } from "react";
+import { NavLink, useLocation } from "react-router-dom";
 import useLogout from "../../api/hooks/AuthHooks/useLogout";
-import exit from "@assets/img/exitIco.png";
+import { pageConfig } from "../../config/config";
+import styles from "./Header.module.css";
+
 function Header({ isLoggedIn }) {
   const location = useLocation();
   const [mobileMenuState, setMobileMenuState] = useState(false);
@@ -17,7 +15,7 @@ function Header({ isLoggedIn }) {
     if (mobileMenuState) {
       setMobileMenuState(false);
     }
-  }, [location.pathname]);
+  }, [location.pathname, mobileMenuState]);
 
   return (
     <header className={styles.header}>

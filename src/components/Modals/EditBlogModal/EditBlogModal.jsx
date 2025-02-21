@@ -1,14 +1,13 @@
-import styles from "./EditBlogModal.module.css";
+import { useEffect, useRef, useState } from "react";
+import { useForm } from "react-hook-form";
+import usePutPosts from "../../../api/hooks/GeneralHooks/Posts/usePutPosts";
+import useStore from "../../../data/store";
+import blueButtonStyles from "../../Buttons/BlueBorderBtn/BlueBorderBtn.module.css";
 import InputDropdownStas from "../../Dropdown/InputDropdownStas";
-import Textarea from "../../UI/TextArea/Textarea";
 import Choice from "../../Modal/Choice";
 import InputError from "../../UI/InputError/InputError";
-import { useForm } from "react-hook-form";
-import useStore from "../../../data/store";
-import { useRef, useState, useEffect, useMemo } from "react";
-import usePutPosts from "../../../api/hooks/GeneralHooks/Posts/usePutPosts";
-import blueButtonStyles from "../../Buttons/BlueBorderBtn/BlueBorderBtn.module.css";
-import { useGetCategory } from "../../../api/hooks/GeneralHooks/Posts/useGetCategories";
+import Textarea from "../../UI/TextArea/Textarea";
+import styles from "./EditBlogModal.module.css";
 
 function EditBlogModal({ post }) {
   const { setModalActive } = useStore();
@@ -16,16 +15,6 @@ function EditBlogModal({ post }) {
   const [selectedImage, setSelectedImage] = useState(null);
   const [photoError, setPhotoError] = useState("");
   const { mutate, isPending } = usePutPosts();
-  const { data: categoriesData, isLoading: categoriesLoading } =
-    useGetCategory();
-
-  const categories = useMemo(() => {
-    if (!categoriesData) return [];
-    return categoriesData.map((category) => ({
-      value: category.id.toString(),
-      label: category.name,
-    }));
-  }, [categoriesData]);
 
   const { register, handleSubmit, control, formState } = useForm({
     mode: "onChange",
@@ -143,8 +132,8 @@ function EditBlogModal({ post }) {
           accept="image/*"
         />
         <div>
-          <button 
-            type="button" 
+          <button
+            type="button"
             onClick={handleImageClick}
             className={blueButtonStyles.btn}
           >

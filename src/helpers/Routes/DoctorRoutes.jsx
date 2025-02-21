@@ -1,17 +1,15 @@
 import { Route, Routes } from "react-router-dom"
 import { pageConfig } from "../../config/config"
 import DoctorMain from "../../pages/Doctor/Main/DoctorMain"
-
-import PatientList from "../../pages/Doctor/PatientList/PatientList"
-import PatientInfo from "../../pages/Doctor/PatientInfo/PatientInfo"
-import Recipes from "../../pages/Doctor/Recipes/Recipes"
-import Notifications from "../../pages/Doctor/Notifications/Notifications"
-import SettingsAdmin from "../../pages/Doctor/Settings/Settings"
 import LastVisits from "../../pages/Doctor/LastVisits/LastVisits"
-import TodaysVisits from "../../pages/Doctor/TodaysVisits/TodaysVisits"
+import PatientInfo from "../../pages/Doctor/PatientInfo/PatientInfo"
+import PatientList from "../../pages/Doctor/PatientList/PatientList"
 import Profil from "../../pages/Doctor/Profil/Profil"
-import Calendar from "./../../pages/Doctor/Calendar/Calendar"
+import Recipes from "../../pages/Doctor/Recipes/Recipes"
+import SettingsAdmin from "../../pages/Doctor/Settings/Settings"
+import TodaysVisits from "../../pages/Doctor/TodaysVisits/TodaysVisits"
 import NotFound from "../../pages/User/NotFound"
+import Calendar from "./../../pages/Doctor/Calendar/Calendar"
 
 function DoctorRoutes({ isAuth }) {
   if (!isAuth) {
