@@ -62,7 +62,7 @@ function AddRecipesModalForSelectedUser({ patientId, name }) {
 
   return (
     <div>
-      <h1>Dodaj recept</h1>
+      <h1>Dodaj receptę</h1>
       <form className={styles.modalForm} onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.modalInputBox}>
           <InputDropdownStas
@@ -70,8 +70,7 @@ function AddRecipesModalForSelectedUser({ patientId, name }) {
             placeholder={name}
             disabled
             seeOptions={false}
-            {...register("patient", {
-            })}
+            {...register("patient", {})}
           />
 
           <InputDropdownStas
@@ -79,25 +78,40 @@ function AddRecipesModalForSelectedUser({ patientId, name }) {
             placeholder="Wybierz lek"
             options={medicationOptions}
             seeOptions
-            {...register("medication", {
-
-            })}
+            {...register("medication", {})}
           />
 
-          <button onClick={addNewMedication} type="button" className={styles.buttDef}>
+          <button
+            onClick={addNewMedication}
+            type="button"
+            className={styles.buttDef}
+          >
             <span>Dodaj następujący lek</span>
             <img src={plus} alt="plus" />
           </button>
         </div>
 
         {/* Рендер списка добавленных лекарств */}
-        <div style={addedMedications.length > 0 ? { display: 'flex' } : { display: 'none' }} className={styles.addedMedications}>
+        <div
+          style={
+            addedMedications.length > 0
+              ? { display: "flex" }
+              : { display: "none" }
+          }
+          className={styles.addedMedications}
+        >
           {addedMedications.map((medication, index) => (
             <div key={index} className={styles.addedMedicationItem}>
               <span>{medication.label}</span>
 
-              <img style={{ cursor: 'pointer' }} width={15} height={15} src={cross} alt="" onClick={() => removeMedication(medication.id)} />
-
+              <img
+                style={{ cursor: "pointer" }}
+                width={15}
+                height={15}
+                src={cross}
+                alt=""
+                onClick={() => removeMedication(medication.id)}
+              />
             </div>
           ))}
         </div>
@@ -110,7 +124,7 @@ function AddRecipesModalForSelectedUser({ patientId, name }) {
         />
       </form>
     </div>
-  )
+  );
 }
 
 export default AddRecipesModalForSelectedUser

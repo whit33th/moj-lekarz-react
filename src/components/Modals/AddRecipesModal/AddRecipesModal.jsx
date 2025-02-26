@@ -77,7 +77,7 @@ function AddRecipesModal() {
 
   return (
     <div>
-      <h1>Dodaj recept</h1>
+      <h1>Dodaj receptę</h1>
       <form className={styles.modalForm} onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.modalInputBox}>
           <InputDropdownStas

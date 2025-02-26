@@ -29,7 +29,7 @@ export default function RecipesPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          Aktywne receptury
+          Aktywne recepty
         </motion.h1>
         <div className={styles.recipesList}>
           {isLoading
