@@ -2,7 +2,6 @@ import { useState } from "react";
 import {
   useLocation,
   Navigate,
-  useNavigation,
   useNavigate,
 } from "react-router-dom";
 import styles from "./MakeReview.module.css";
