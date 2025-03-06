@@ -12,7 +12,6 @@ import VisitsCard from "./VisitsCard";
 import VisitsCardCompleted from "./VisitsCardCompleted";
 import VisitsCardSkeleton from "./VisitsCardSkeleton";
 import styles from "./VisitsPage.module.css";
-
 function VisitsPage({ isLoggedIn = true }) {
   const { data: scheduledAppointments, isLoading } = useGetPatientAppointments(
     {}

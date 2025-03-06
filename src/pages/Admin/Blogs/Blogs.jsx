@@ -14,6 +14,8 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { motion } from "framer-motion";
 
+import { useSearchParams } from "react-router-dom";
+
 const BlogSkeleton = () => (
   <div className={styles.tableRow}>
     <div className={styles.mainContent}>
@@ -39,7 +41,8 @@ const BlogSkeleton = () => (
 function Blogs() {
   const [searchQuery, setSearchQuery] = useState("");
   const { setModalContent, setModalActive } = useStore();
-  const { data, isLoading } = useGetPosts(1, 10);
+
+  const { data, isLoading } = useGetPosts(currentPage, 10);
   const { mutate: deleteBlog } = useDeletePosts();
 
   function handleAddModal() {

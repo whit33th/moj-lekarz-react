@@ -19,14 +19,15 @@ const types = [
 
 function SearchVisits() {
   const [page, setPage] = useState(1);
-  const { control, register, handleSubmit, getValues, formState } = useForm({});
+  const { control, register, handleSubmit, getValues, formState, watch } =
+    useForm({});
   const {
     data: fullData,
     isLoading,
     refetch,
   } = useAvailableSlots({
     specialty: getValues("specialty"),
-    date: getValues("date"),
+    date: watch("date"),
     visitType: getValues("type"),
     city: getValues("city"),
     limit: 10,

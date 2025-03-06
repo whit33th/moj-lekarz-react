@@ -23,7 +23,7 @@ class GeneralService {
     });
   }
 
-  async getPosts({ page, limit }) {
+  async getPosts({ page, limit = 10 }) {
     let url = `${this.URL}/api/posts?`;
 
     limit && (url += `limit=${limit}&`);
@@ -244,6 +244,25 @@ class GeneralService {
         Accept: "application/pdf",
       },
     });
+  }
+  async getAllTags() {
+    return await axios.get(`${this.URL}/api/tags`, {
+      withCredentials: true,
+    });
+  }
+  async postReview(data) {
+    return await axios.post(
+      `${this.URL}/api/reviews`,
+      {
+        doctorId: data.doctorId,
+        rating: data.rating,
+        comment: data.comment,
+        tagsIds: data.tagsIds,
+      },
+      {
+        withCredentials: true,
+      }
+    );
   }
 }
 

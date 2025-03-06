@@ -29,7 +29,9 @@ export default function RecipesPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          Aktywne recepty
+          {data?.inactive?.length > 0
+            ? "Aktywne recepty"
+            : "Brak aktywnych recept"}
         </motion.h1>
         <div className={styles.recipesList}>
           {isLoading
@@ -92,7 +94,9 @@ export default function RecipesPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          Nieaktywne recepty
+          {data?.inactive?.length > 0
+            ? "Nieaktywne recepty"
+            : "Brak nieaktywnych recept"}
         </motion.h1>
         <div className={styles.recipesList}>
           {isLoading

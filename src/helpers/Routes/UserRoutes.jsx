@@ -28,6 +28,7 @@ import DoctorProfile from "../../pages/User/ZnaidzLekarza/DoctorProfile";
 import SearchVisitsContainer from "../../pages/User/ZnaidzLekarza/SearchVisitsConteiner";
 import ZapisDone from "../../pages/User/ZnaidzLekarza/Zapis/ZapisDone";
 import ZapisFormPage from "./../../pages/User/ZnaidzLekarza/Zapis/ZapisFormPage";
+import MakeReview from "../../pages/User/Visits/MakeReview";
 
 function UserRoutes() {
   const { isAuth } = useStore();
@@ -85,6 +86,10 @@ function UserRoutes() {
           <Route
             path={`${pageConfig.patient.confirmVisit}/:id`}
             element={<ClinicZapisPage />}
+          />
+          <Route
+            path={`${pageConfig.patient.makeReview}/:id`}
+            element={<MakeReview />}
           />
           <Route
             path={pageConfig.patient.ZapisFormPage}

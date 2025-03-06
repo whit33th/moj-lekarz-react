@@ -64,6 +64,7 @@ class PageConfig {
     mobileApp: "/mobile-app",
     recipes: "/recipes",
     documents: "/documents",
+    makeReview: "/review-visits",
     qA: "/QA",
     blog: "/blog",
     visits: "/visits",
