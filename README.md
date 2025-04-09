@@ -1,8 +1,16 @@
-# React + Vite
+# Mój Lekarz (PL)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A comprehensive healthcare management platform connecting patients, doctors, and clinics in one seamless interface. The system streamlines appointment scheduling, medical record access, and healthcare service management and more.
 
-Currently, two official plugins are available:
+## Live Demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Visit our live application: [https://mojlekarz.netlify.app/](https://mojlekarz.netlify.app/)
+
+## Test Credentials
+
+| Role    | Email             | Password  |
+| ------- | ----------------- | --------- |
+| Doctor  | doctor@gmail.com  | 123456789 |
+| Admin   | admin@gmail.com   | 123456789 |
+| Clinic  | clinic@gmail.com  | 123456789 |
+| Patient | patient@gmail.com | 123456789 |
